@@ -1,0 +1,84 @@
+# MacOS
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+# Icon must end with two \r
+Icon
+# Thumbnails
+._*
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+# Dump file
+*.stackdump
+# Folder config file
+[Dd]esktop.ini
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+# Windows shortcuts
+*.lnk
+
+# Linux
+*~
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+# KDE directory preferences
+.directory
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+# WoW stuff
+/Cache/
+/D3D12/
+/Errors/
+/Fonts/
+/GPUCache/
+/Logs/
+/Screenshots/
+/Speech/
+/Utils/
+/UTILS/
+/World\ of\ Warcraft.app/
+/.flavor.info
+/BlizzardError.exe
+/d3d12.dll
+/dxilconv7.dll
+/icudt78l.dat
+/libxell.dll
+/DBGHELP.DLL
+/GFSDK_Aftermath_Lib.x64.dll
+/World\ of\ Warcraft\ Launcher.exe
+/Wow.exe
+/wow_loader.dll
+/WowClassic.exe
+/WowClassicB.exe
+/WoW.mfil
+/WTF/Account/*/SavedVariables/AuctionDB.lua*
+/WowClassic_loader.dll
