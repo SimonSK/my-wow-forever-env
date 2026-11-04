@@ -1,0 +1,13 @@
+## Interface: 120105, 110207, 59185, 50504, 40402, 38002, 30405, 20506, 16001, 11509
+## Title: Lib: LibStub
+## Notes: Universal Library Stub
+## Credits: Kaelten, Cladhaire, ckknight, Mikk, Ammo, Nevcairiel
+## X-Website: http://www.wowace.com/addons/libstub/
+## X-Category: Library
+## X-License: Public Domain
+## X-Curse-Packaged-Version: 1.0.2.60000
+## X-Curse-Project-Name: LibStub
+## X-Curse-Project-ID: libstub
+## X-Curse-Repository-ID: wow/libstub/mainline
+
+LibStub.lua
