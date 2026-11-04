@@ -1,0 +1,66 @@
+## Interface: 120105, 11509, 20506, 50504, 16001
+# Wrath (30405) and Cata (40402) are not yet supported - add their interface values to the
+# line above once ready.
+
+## Title: Threat Plates
+## Version: 13.3.5
+## Notes: Threat-reactive nameplates.
+## Notes-deDE: Bedrohungsreaktive Namensplaketten.
+## Notes-esES: Placas Identificativas de Amenaza
+## Notes-esMX: Placas Identificativas de Amenaza
+## Author: Suicidal Katt, Blacksalsify
+## SavedVariables: ThreatPlatesDB
+
+## AddonCompartmentFunc: TidyPlatesThreat_OnAddonCompartmentClick
+## IconTexture: Interface\Addons\TidyPlates_ThreatPlates\Artwork\Logo.tga
+## Category: Unit Frames
+## Category-deDE: Einheitenfenster
+## Category-esES: Marcos de unidades
+## Category-esMX: Marcos de unidades
+## Category-frFR: Portraits d'unités
+## Category-itIT: Riquadri delle unità
+## Category-koKR: 유닛프레임
+## Category-ptBR: Quadros de unidade
+## Category-ruRU: Рамки юнитов
+## Category-zhCN: 单位框体
+## Category-zhTW: 單位框架
+
+## X-Category: Unit Frames
+## X-Website: https://wow.curseforge.com/projects/tidy-plates-threat-plates
+## X-Curse-Project-ID: 21217
+## X-WoWI-ID: 15749
+## X-Wago-ID: RqGZkkNd
+
+## RequiredDeps:
+## OptionalDeps: Ace3, AceGUI-3.0-SharedMediaWidgets, LibSharedMedia-3.0, LibCustomGlow-1.0, LibDeflate, LibDualSpec-1.0
+## X-Embeds: Ace3, AceGUI-3.0-SharedMediaWidgets, LibSharedMedia-3.0, LibCustomGlow-1.0, LibDeflate, LibDualSpec-1.0
+
+## X-License: GNU General Public License
+## X-Credits: danltiger (for Tidy Plates), Tosaido (for quest handling code from QuestMobs)
+
+Libs\Libs.xml
+Locales\Locales.xml
+
+ThreatPlates.xml
+
+Init.lua
+Debug.lua
+Compatibility.lua
+Modules\Localization.lua
+EventService.lua
+CVarsManager.lua
+Media.lua
+Constants.lua
+Modules\Modules.xml
+Elements\Elements.xml
+Widgets\WidgetHandler.lua
+
+Nameplate.lua
+Database.lua
+Addon.lua
+Commands.lua
+AceGUIPreviewImage.lua
+Options.lua
+
+Styles\Styles.xml
+Widgets\Widgets.xml

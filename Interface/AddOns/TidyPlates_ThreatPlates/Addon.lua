@@ -1,0 +1,421 @@
+﻿---------------------------------------------------------------------------------------------------
+-- Main file for addon Threat Plates
+---------------------------------------------------------------------------------------------------
+local _, Addon = ...
+
+---------------------------------------------------------------------------------------------------
+-- Imported functions and constants
+---------------------------------------------------------------------------------------------------
+
+-- Lua APIs
+local select = select
+
+-- WoW APIs
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
+local C_Timer_NewTimer = C_Timer.NewTimer
+local UnitClass = UnitClass
+local GetSpecializationInfo = C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo or _G.GetSpecializationInfo
+local LoadAddOn = C_AddOns and C_AddOns.LoadAddOn or _G.LoadAddOn
+
+-- ThreatPlates APIs
+local TidyPlatesThreat = TidyPlatesThreat
+local LibStub = LibStub
+local L = Addon.L
+local Meta = Addon.Meta
+local CVars = Addon.CVars
+
+-- Global vars/functions that we don't upvalue since they might get hooked, or upgraded
+-- List them here for Mikk's FindGlobals script
+-- GLOBALS:
+
+---------------------------------------------------------------------------------------------------
+-- Local variables
+---------------------------------------------------------------------------------------------------
+local LSMUpdateTimer
+
+---------------------------------------------------------------------------------------------------
+-- Global configs and funtions
+---------------------------------------------------------------------------------------------------
+
+Addon.PlayerClass = select(2, UnitClass("player"))
+-- On WoW Forever, UnitName's 2nd return is a surname, not a realm - include it here (matching
+-- unit.basename in Nameplate.lua) so identity comparisons against other units' full/base names
+-- (e.g. Widgets/QuestWidget.lua's group-quest-tooltip parsing) still recognize the player's own name.
+Addon.PlayerName = Addon.GetUnitNameWithSurname("player", Addon.WOW_FEATURE_REGIONAL_SURNAMES)
+Addon.PlayerIsInCombat = false
+-- Addon.PlayerRole -- accessed via function Addon.GetPlayerRole()
+
+---------------------------------------------------------------------------------------------------
+-- Functions different depending on WoW version
+---------------------------------------------------------------------------------------------------
+
+-- C_NamePlate.SetNamePlateSize sets a single, global size shared by every native plate - including
+-- ones Threat Plates cannot replace (e.g. a protected friendly unit's plate inside an instance).
+-- ApplyPlateHitTest's SetAllHitTestPoints (Nameplate.lua) works independently of that native size,
+-- so TP does not need to set it at all.
+
+-- # Nameplate Hierarchy, Anchoring, and Scaling
+Addon.SetBaseNamePlateSize = function(self)
+  local db = self.db.profile.settings
+  local db_frame = db.frame
+  if db_frame.SyncWithHealthbar then
+    local db_healthbar = db.healthbar
+    -- Mirrors Blizzard's SetHitTestPoints formula (Blizzard_NamePlateUnitFrame.lua):
+    --   extraXOffset = 10 per side → total width + 20
+    --   extraYOffset = healthBarHeight / 2 per side → total height * 2
+    -- For "Big", divide by plate_scale so the screen-space hit area equals healthbar.width + 6.
+    -- For "Normal", no division: visual is scaled down by plate_scale via UIScaleChanged.
+    local plate_scale = (Addon.db.profile.Appearance.NameplateSize == "BIG" and UIParent:GetEffectiveScale()) or 1
+    db_frame.width = (db_healthbar.width + 20) / plate_scale
+    db_frame.height = (db_healthbar.height * 2) / plate_scale
+    db_frame.widthFriend = (db_healthbar.widthFriend + 20) / plate_scale
+    db_frame.heightFriend = (db_healthbar.heightFriend * 2) / plate_scale
+  end
+
+  -- db_frame.width/height/widthFriend/heightFriend are used as-is by ApplyPlateHitTest for the
+  -- actual per-reaction click area.
+  self.SetNamePlateClickThrough()
+end
+
+------------------
+-- ADDON LOADED --
+------------------
+
+-- The warning about other nameplate addons is shown in a frame of its own, not as a StaticPopup: a StaticPopup
+-- shown by an addon taints all Blizzard code that iterates over the shown popups while it is open. At login,
+-- that is Blizzard's guild control UI: on GUILD_RANKS_UPDATE_ACTIVE_PLAYER it calls StaticPopup_Hide and then
+-- the protected C_Discord.IsUserOAuthed, which resulted in an ADDON_ACTION_FORBIDDEN error blamed on Threat
+-- Plates.
+local IncompatibleAddonDialog
+
+local function CreateIncompatibleAddonDialogButton(dialog, text)
+  local button = CreateFrame("Button", nil, dialog, "UIPanelButtonTemplate")
+  button:SetText(text)
+  button:SetSize(math.max(100, button:GetFontString():GetStringWidth() + 30), 22)
+  button:SetScript("OnClick", function() dialog:Hide() end)
+  return button
+end
+
+local function ShowIncompatibleAddonDialog(text)
+  local dialog = IncompatibleAddonDialog
+  if not dialog then
+    dialog = CreateFrame("Frame", nil, UIParent, Addon.BackdropTemplate)
+    dialog:SetFrameStrata("DIALOG")
+    dialog:SetPoint("TOP", UIParent, "TOP", 0, -135)
+    dialog:SetWidth(320)
+    dialog:EnableMouse(true)
+    dialog:SetBackdrop({
+      bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+      edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+      tile = true, tileSize = 32, edgeSize = 32,
+      insets = { left = 11, right = 12, top = 12, bottom = 11 },
+    })
+
+    dialog.Text = dialog:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+    dialog.Text:SetPoint("TOP", dialog, "TOP", 0, -20)
+    dialog.Text:SetWidth(280)
+
+    local okay_button = CreateIncompatibleAddonDialogButton(dialog, OKAY)
+    okay_button:SetPoint("BOTTOMRIGHT", dialog, "BOTTOM", -6, 18)
+
+    local dont_ask_again_button = CreateIncompatibleAddonDialogButton(dialog, L["Don't Ask Again"])
+    dont_ask_again_button:SetPoint("BOTTOMLEFT", dialog, "BOTTOM", 6, 18)
+    dont_ask_again_button:HookScript("OnClick", function()
+      Addon.db.profile.CheckForIncompatibleAddons = false
+    end)
+
+    IncompatibleAddonDialog = dialog
+  end
+
+  dialog.Text:SetText("|cffFFA500" .. Meta("title") .. " Warning|r \n---------------------------------------\n" .. text)
+  dialog:SetHeight(dialog.Text:GetStringHeight() + 76)
+  dialog:Show()
+end
+
+
+function Addon:ReloadTheme()
+  -- Recreate all TidyPlates styles for ThreatPlates("normal", "dps", "tank", ...) - required, if theme style settings were changed
+  Addon:SetThemes()
+
+  -- Re-read all cached settings, ideally do not update any UI elements here
+  Addon:InitializeCustomNameplates()
+  Addon:InitializeIconTextures()
+  Addon:UpdateSettings()
+  Addon.Widgets:InitializeAllWidgets() -- UpdateSettings and enable widgets
+
+  -- Update existing nameplates as certain settings may have changed that are not covered by ForceUpdate()
+  Addon:UIScaleChanged()
+
+  -- Do this after combat ends, not in PLAYER_ENTERING_WORLD as it won't get set if the player is on combat when
+  -- that event fires.
+  Addon.ExecuteAfterCombatEnds(function() Addon:SetBaseNamePlateSize() end, L["Unable to change a setting while in combat."])
+  Addon.SetNamePlateClickThrough()
+  
+  -- Update all UI elements (frames, textures, ...)
+  Addon:UpdatePlatesVisible()
+  Addon:UpdateFramePropertiesOfPlatesCreated()
+end
+
+function Addon:CheckForFirstStartUp()
+  local db = self.db.global
+
+  -- GetNumSpecializations: Mists - Patch 5.0.4 (2012-08-28): Replaced GetNumTalentTabs.
+  if Addon.ExpansionIsAtLeastMists then
+    local spec_roles = self.db.char.spec
+    if #spec_roles ~= GetNumSpecializations() then
+      for i = 1, GetNumSpecializations() do
+        if spec_roles[i] == nil then
+          local _, _, _, _, role = GetSpecializationInfo(i)
+          spec_roles[i] = (role == "TANK" and true) or false
+        end
+      end
+    end
+  end
+
+  local new_version = tostring(Meta("version"))
+  if db.version ~= "" and db.version ~= new_version then
+    -- migrate and/or remove any old DB entries
+    Addon.MigrateDatabase(db.version)
+  end
+  db.version = new_version
+
+  --Addon.MigrateDatabase(db.version)
+end
+
+function Addon:CheckForIncompatibleAddons()
+  -- Check for other active nameplate addons which may create all kinds of errors and doesn't make
+  -- sense anyway:
+  if Addon.db.profile.CheckForIncompatibleAddons then
+    local warnings = {}
+    local function AddWarning(addon_name)
+      warnings[#warnings + 1] = L["You currently have two nameplate addons enabled: |cff89F559Threat Plates|r and |cff89F559%s|r. Please disable one of these, otherwise two overlapping nameplates will be shown for units."]:format(addon_name)
+    end
+
+    if IsAddOnLoaded("TidyPlates") then
+      warnings[#warnings + 1] = L["|cff89F559Threat Plates|r is no longer a theme of |cff89F559TidyPlates|r, but a standalone addon that does no longer require TidyPlates. Please disable one of these, otherwise two overlapping nameplates will be shown for units."]
+    end
+    if IsAddOnLoaded("Kui_Nameplates") then
+      AddWarning("KuiNameplates")
+    end
+    if IsAddOnLoaded("ElvUI") and ElvUI[1] and ElvUI[1].private and ElvUI[1].private.nameplates and ElvUI[1].private.nameplates.enable then
+    --if IsAddOnLoaded("ElvUI") and ElvUI[1].private.nameplates.enable then
+      AddWarning("ElvUI Nameplates")
+    end
+    if IsAddOnLoaded("Plater") then
+      AddWarning("Plater Nameplates")
+    end
+    if IsAddOnLoaded("Platynator") then
+      AddWarning("Platynator")
+    end
+    if IsAddOnLoaded("SpartanUI") and SUI.IsModuleEnabled and SUI:IsModuleEnabled("Nameplates") then
+      AddWarning("SpartanUI Nameplates")
+    end
+
+    if #warnings > 0 then
+      ShowIncompatibleAddonDialog(table.concat(warnings, "\n\n"))
+    end
+  end
+end
+
+---------------------------------------------------------------------------------------------------
+-- AceAddon functions: do init tasks here, like loading the Saved Variables, or setting up slash commands.
+---------------------------------------------------------------------------------------------------
+
+-- Register callbacks at LSM, so that we can refresh everything if additional media is added after TP is loaded
+function Addon.MediaUpdate(addon_name, name, mediatype, key)
+  if mediatype == Addon.LibSharedMedia.MediaType.SOUND then return end
+
+  -- LibSharedMedia:Register fires its callback once per key, synchronously, with no batching of its
+  -- own - addons commonly register several media entries back-to-back, or across multiple
+  -- ADDON_LOADED events during login, so bursts of many calls in a short span are normal. Cancel and
+  -- reschedule on every call (trailing-edge debounce) instead of only scheduling once and ignoring
+  -- the rest (leading-edge), so this refreshes exactly once, 1s after the LAST registration in a
+  -- burst - a fixed 1s-from-the-first window could otherwise still fire multiple times if
+  -- registrations keep trickling in past it.
+  if LSMUpdateTimer then
+    LSMUpdateTimer:Cancel()
+  end
+
+  LSMUpdateTimer = C_Timer_NewTimer(1, function()
+    LSMUpdateTimer = nil
+    -- Basically, ReloadTheme but without CVar and some other stuff
+    Addon:SetThemes()
+    -- no media used: Addon:UpdateConfigurationStatusText()
+    -- no media used: Addon:InitializeCustomNameplates()
+    Addon.Widgets:InitializeAllWidgets()
+    Addon:ForceUpdate()
+  end)
+end
+
+function Addon.LoadLibraryDogTag()
+	local db = Addon.db.profile.StatusText
+
+	-- Enable or disable LibDogTagSupport based on custom status text being actually used
+	if db.HealthbarMode.FriendlySubtext == "CUSTOM" or db.HealthbarMode.EnemySubtext == "CUSTOM" or db.NameMode.FriendlySubtext == "CUSTOM" or db.NameMode.EnemySubtext == "CUSTOM" then
+		if Addon.LibDogTag == nil then
+			LoadAddOn("LibDogTag-3.0")
+			Addon.LibDogTag = LibStub("LibDogTag-3.0", true)
+			if not Addon.LibDogTag then
+				Addon.LibDogTag = false
+				Addon.Logging.Error(L["Custom status text requires LibDogTag-3.0 to function."])
+			else
+				LoadAddOn("LibDogTag-Unit-3.0")
+			  if not LibStub("LibDogTag-Unit-3.0", true) then
+					Addon.LibDogTag = false
+					Addon.Logging.Error(L["Custom status text requires LibDogTag-Unit-3.0 to function."])
+				elseif not Addon.LibDogTag.IsLegitimateUnit or not Addon.LibDogTag.IsLegitimateUnit["nameplate1"] then
+					Addon.LibDogTag = false
+					Addon.Logging.Error(L["Your version of LibDogTag-Unit-3.0 does not support nameplates. You need to install at least v90000.3 of LibDogTag-Unit-3.0."])
+				end
+			end
+		end
+	end
+end
+
+function Addon.LoadLibraryMasque()
+  local masque, masque_version = LibStub("Masque", true)
+  if masque then
+    Addon.LibMasque = masque
+  end
+end
+
+-- The OnInitialize() method of your addon object is called by AceAddon when the addon is first loaded
+-- by the game client. It's a good time to do things like restore saved settings (see the info on
+-- AceConfig for more notes about that).
+function TidyPlatesThreat:OnInitialize()
+  local defaults = Addon.DEFAULT_SETTINGS
+
+  -- change back defaults old settings if wanted preserved it the user want's to switch back
+  if ThreatPlatesDB and ThreatPlatesDB.global and ThreatPlatesDB.global.DefaultsVersion == "CLASSIC" then
+    -- copy default settings, so that their original values are
+    defaults = Addon.GetDefaultSettingsV1(defaults)
+  end
+
+  local db = LibStub('AceDB-3.0'):New('ThreatPlatesDB', defaults, 'Default')
+  Addon.db = db
+
+  -- Register the database with LibDualSpec right away, so automatic spec-based profile
+  -- switching works immediately after login/reload, instead of only once the options window
+  -- has been opened (which lazily calls EnhanceOptions on this same lib, see Options.lua) [GH-685].
+  -- Not on Classic Era, which has no dual specialization (except for Season of Discovery and the Anniversary
+  -- realms): there is nothing to switch profiles for, and LibDualSpec either does not load there or runs into
+  -- Lua errors, depending on its version.
+  if not Addon.IS_CLASSIC or Addon.IS_CLASSIC_SOD or Addon.IS_CLASSIC_ANNIVERSARY then
+    Addon.LibDualSpec = LibStub:GetLibrary("LibDualSpec-1.0", true)
+    if Addon.LibDualSpec then
+      Addon.LibDualSpec:EnhanceDatabase(db, Addon.ADDON_NAME)
+    else
+      Addon.Logging.Error("LibDualSpec-1.0 cannot be loaded, dual-spec support will not be available.")
+    end
+  end
+
+  Addon.LibAceConfigDialog = LibStub("AceConfigDialog-3.0")
+  Addon.LibAceConfigRegistry = LibStub("AceConfigRegistry-3.0")
+  Addon.LibSharedMedia = LibStub("LibSharedMedia-3.0")
+  Addon.LibCustomGlow = LibStub("LibCustomGlow-1.0")
+
+  Addon.LoadLibraryMasque() -- Masque support
+  Addon.LoadLibraryDogTag() -- LibDogTag support
+
+  local RegisterCallback = db.RegisterCallback
+  RegisterCallback(Addon, 'OnProfileChanged', 'ProfChange')
+  RegisterCallback(Addon, 'OnProfileCopied', 'ProfChange')
+  RegisterCallback(Addon, 'OnProfileReset', 'ProfChange')
+  -- When reloading the UI or logging out, PLAYER_LOGOUT fires and AceDB strips defaults from the profile. 
+  -- Also, NAME_PLATE_UNIT_REMOVED fires for all visible nameplates. 
+  -- If a nameplate is still shown under the mouse cursor, TP hides the mouseover highlight and fires MouseoverOnLeave. 
+  -- This can result in a Lua error as profile defaults are no longer available (e.g. in Transparency). 
+  -- The solution is to stop publishing internal TP events (via EventService.Publish) once Addon.IsShuttingDown == true. 
+  RegisterCallback(Addon, 'OnDatabaseShutdown', function() Addon.IsShuttingDown = true end)
+
+  -- Register callbacks at LSM, so that we can refresh everything if additional media is added after TP is loaded
+  -- Register this callback after ReloadTheme as media will be updated there anyway
+  Addon.LibSharedMedia.RegisterCallback(Addon, "LibSharedMedia_SetGlobal", "MediaUpdate" )
+  Addon.LibSharedMedia.RegisterCallback(Addon, "LibSharedMedia_Registered", "MediaUpdate" )
+  
+  -- Setup Interface panel options
+  local app_name = Addon.ADDON_NAME
+  local dialog_name = app_name .. " Dialog"
+  LibStub("AceConfig-3.0"):RegisterOptionsTable(dialog_name, Addon.GetInterfaceOptionsTable())
+  Addon.LibAceConfigDialog:AddToBlizOptions(dialog_name, Addon.ADDON_NAME)
+
+  -- Setup chat commands
+  self:RegisterChatCommand("tptp", "ChatCommand")
+
+  Addon.CVars:Initialize()
+  Addon:CheckForFirstStartUp()
+  Addon:CheckForIncompatibleAddons()
+
+  -- Registering events here as otherwise PLAYER_LOGIN is not received
+  Addon:EnableEvents()
+
+  -- Get updates for CVar changes (e.g, for large nameplates, nameplage scale and alpha)
+  CVars.RegisterCVarHook()
+
+  Addon:ReloadTheme()
+end
+
+-- The OnEnable() and OnDisable() methods of your addon object are called by AceAddon when your addon is
+-- enabled/disabled by the user. Unlike OnInitialize(), this may occur multiple times without the entire
+-- UI being reloaded.
+-- AceAddon function: Do more initialization here, that really enables the use of your addon.
+-- Register Events, Hook functions, Create Frames, Get information from the game that wasn't available in OnInitialize
+-- function TidyPlatesThreat:OnEnable()
+--   --Addon:EnableEvents()
+-- end
+
+-- Called when the addon is disabled
+-- function TidyPlatesThreat:OnDisable()
+--   -- Reset all CVars to its initial values
+--   -- CVars:RestoreAllFromProfile()
+  
+--   -- DisableEvents()
+-- end
+
+-----------------------------------------------------------------------------------
+-- Functions for keybindings and addon compartment
+-----------------------------------------------------------------------------------
+
+-- Unit types switched by the keybindings. FriendlyMinion and EnemyMinion are not used.
+local FRIENDLY_PLAYER_UNIT_TYPES = { "FriendlyPlayer", "FriendlyPet", "FriendlyGuardian" }
+local FRIENDLY_NPC_UNIT_TYPES = { "FriendlyNPC", "FriendlyMinus" }
+local FRIENDLY_UNIT_TYPES = { "FriendlyPlayer", "FriendlyPet", "FriendlyGuardian", "FriendlyTotem", "FriendlyNPC", "FriendlyMinus" }
+local NEUTRAL_UNIT_TYPES = { "NeutralNPC", "NeutralMinus" }
+local ENEMY_UNIT_TYPES = { "EnemyPlayer", "EnemyNPC", "EnemyPet", "EnemyGuardian", "EnemyTotem", "EnemyMinus" }
+
+-- Toggles every unit type on its own, so unit types with different settings swap their views.
+local function ToggleNameplateMode(unit_types)
+  local visibility = Addon.db.profile.Visibility
+
+  for i = 1, #unit_types do
+    local unit_visibility = visibility[unit_types[i]]
+    unit_visibility.UseHeadlineView = not unit_visibility.UseHeadlineView
+  end
+
+  Addon:ForceUpdate()
+end
+
+function TidyPlatesThreat:ToggleNameplateModeFriendlyUnits()
+  ToggleNameplateMode(FRIENDLY_UNIT_TYPES)
+end
+
+function TidyPlatesThreat:ToggleNameplateModeFriendlyPlayers()
+  ToggleNameplateMode(FRIENDLY_PLAYER_UNIT_TYPES)
+end
+
+function TidyPlatesThreat:ToggleNameplateModeFriendlyNPCs()
+  ToggleNameplateMode(FRIENDLY_NPC_UNIT_TYPES)
+end
+
+function TidyPlatesThreat:ToggleNameplateModeNeutralUnits()
+  ToggleNameplateMode(NEUTRAL_UNIT_TYPES)
+end
+
+function TidyPlatesThreat:ToggleNameplateModeEnemyUnits()
+  ToggleNameplateMode(ENEMY_UNIT_TYPES)
+end
+
+function TidyPlatesThreat_OnAddonCompartmentClick(addonName, buttonName)
+  -- addonName: TidyPlates_ThreatPlates (name of directory)
+  Addon:OpenOptions()
+end
