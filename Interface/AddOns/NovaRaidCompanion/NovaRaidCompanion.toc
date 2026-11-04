@@ -1,0 +1,54 @@
+## Interface: 11509, 16001, 20506, 40402, 50504
+## Notes: Raid and combat helpers, raid wide cooldown tracking.
+## Title: Nova Raid Companion
+## Author: Novaspark-Arugal OCE
+## Version: 1.97
+## SavedVariables: NRCdatabase
+## IconTexture: Interface\Addons\NovaRaidCompanion\Media\nrc_icon
+
+embeds.xml
+Locale\Locales.xml
+Media\Templates.xml
+NovaRaidCompanion.lua
+DB\Classic_DB.lua
+DB\Classic_TalentData.lua
+DB\Classic_Cooldowns.lua
+DB\Forever_DB.lua
+DB\Forever_TalentData.lua
+DB\Forever_Cooldowns.lua
+DB\TBC_DB.lua
+DB\TBC_TalentData.lua
+DB\TBC_Cooldowns.lua
+DB\Wrath_DB.lua
+DB\Wrath_TalentData.lua
+DB\Wrath_Cooldowns.lua
+DB\Cata_DB.lua
+DB\Cata_TalentData.lua
+DB\Cata_Cooldowns.lua
+DB\MOP_DB.lua
+DB\MOP_TalentData.lua
+DB\MOP_Cooldowns.lua
+DB\zDB_Tools.lua
+Modules\Tools.lua
+Modules\Frames.lua
+Modules\Options.lua
+Modules\Data.lua
+Modules\Group.lua
+Modules\Auras.lua
+Modules\Equip.lua
+Modules\Inspect.lua
+Modules\Rolls.lua
+Modules\RaidStatus.lua
+Modules\RaidCooldowns.lua
+Modules\RaidLog.lua
+Modules\ScrollingRaidEvents.lua
+Modules\Classes\Warlock.lua
+Modules\Classes\Hunter.lua
+Modules\Classes\Rogue.lua
+Modules\Classes\Priest.lua
+Modules\Encounters.lua
+## Modules\TTK.lua
+Modules\Talents.lua
+Modules\Trades.lua
+Modules\RaidMana.lua
+Modules\Export.lua
