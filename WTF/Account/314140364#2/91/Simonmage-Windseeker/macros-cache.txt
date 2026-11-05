@@ -1,0 +1,98 @@
+VER 3 0100000000000001 "Arcane Explosion" "134400"
+#showtooltip Arcane Explosion
+/cancelaura Ice Block
+/cast Arcane Explosion
+END
+VER 3 0100000000000012 "Blink" "134400"
+#showtooltip Blink
+/stopcasting
+/cancelaura Ice Block
+/cast Blink
+END
+VER 3 010000000000000B "Blizzard" "134400"
+#showtooltip Blizzard
+/cancelaura Ice Block
+/cast Blizzard
+END
+VER 3 0100000000000002 "Blizzard Here" "134400"
+#showtooltip Blizzard
+/cancelaura Ice Block
+/cast [@player] Blizzard
+END
+VER 3 0100000000000006 "Cone of Cold" "134400"
+#showtooltip Cone of Cold
+/cancelaura Ice Block
+/cast Cone of Cold
+END
+VER 3 0100000000000010 "Counterspell" "134400"
+#showtooltip [mod:shift] Spellsteal; Counterspell
+/cancelaura Ice Block
+/stopcasting
+/cast [mod:shift] Spellsteal; Counterspell
+END
+VER 3 0100000000000011 "Dragon's Breath" "134400"
+#showtooltip Dragon's Breath
+/cancelaura Ice Block
+/cast Dragon's Breath
+END
+VER 3 010000000000000C "Fire Blast" "134400"
+#showtooltip Fire Blast
+/cancelaura Ice Block
+/cast Fire Blast
+END
+VER 3 0100000000000013 "Fireball" "134400"
+#showtooltip Fireball
+/cancelaura Ice Block
+/cast Fireball
+END
+VER 3 0100000000000009 "Flamestrike" "134400"
+#showtooltip Flamestrike
+/cancelaura Ice Block
+/cast Flamestrike
+END
+VER 3 010000000000000A "Flamestrike Here" "134400"
+#showtooltip Flamestrike
+/cancelaura Ice Block
+/cast [@player] Flamestrike
+END
+VER 3 0100000000000007 "Frost Nova" "134400"
+#showtooltip Frost Nova
+/cancelaura Ice Block
+/cast Frost Nova
+END
+VER 3 0100000000000008 "Frost Nova(R1)" "134400"
+#showtooltip Frost Nova(Rank 1)
+/cancelaura Ice Block
+/cast Frost Nova(Rank 1)
+END
+VER 3 0100000000000003 "Frostbolt" "134400"
+#showtooltip Frostbolt
+/cancelaura Ice Block
+/cast [harm] Frostbolt
+END
+VER 3 0100000000000004 "Ice Block" "134400"
+#showtooltip Ice Block
+/stopcasting
+/cancelaura Ice Block
+/cast Ice Block
+END
+VER 3 0100000000000005 "Ice Lance" "134400"
+#showtooltip Ice Lance
+/cancelaura Ice Block
+/cast Ice Lance
+END
+VER 3 010000000000000F "Polymorph" "134400"
+#showtooltip Polymorph
+/cancelaura Ice Block
+/cast [@focus, exists, nodead, harm][] Polymorph
+END
+VER 3 010000000000000E "Pyroblast" "134400"
+#showtooltip Pyroblast
+/cancelaura Ice Block
+/cast Pyroblast
+END
+VER 3 010000000000000D "Scorch" "134400"
+#showtooltip Scorch
+/cancelaura Ice Block
+/cast Scorch
+END

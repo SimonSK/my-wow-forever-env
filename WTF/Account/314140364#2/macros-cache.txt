@@ -1,0 +1,12 @@
+VER 3 0000000000000001 "Decursive" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/cast [@mouseover,nomod,exists] Will of the Forsaken;  [@mouseover,exists,mod:ctrl] Will of the Forsaken; [@mouseover,exists,mod:shift] Will of the Forsaken
+END
+VER 3 0000000000000003 "Range" "134400"
+#showtooltip
+/cast [worn:thrown] Throw; [worn:bow] Shoot Bow; [worn:gun] Shoot Gun; [worn:crossbow] Shoot Crossbow
+END
+VER 3 0000000000000002 "Wand" "134400"
+#showtooltip
+/castsequence reset=2 !shoot
+END
