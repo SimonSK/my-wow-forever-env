@@ -1,0 +1,250 @@
+--[[---------------------------------------------------------------------------
+    Addon:  "CursorTrail"
+    File:   _changelog.lua
+    Desc:   Text to display in the changelog window.
+-----------------------------------------------------------------------------]]
+----local kAddonFolderName, private = ...
+setfenv(1, _G.CursorTrail)  -- Everything after this uses our namespace rather than _G.
+kChangelogText =
+[[
+=======================================
+RELEASE 12.1.5.2
+Released 2026-11-05
+
+* Updated UDControls and UDProfiles libraries for all versions.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.1.5.2 for Retail WoW
+Version 5.5.4.7 for Classic Mists of Pandaria
+Version 2.5.6.6 for Classic Burning Crusade
+Version 1.15.9.6 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No functional changes.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 1.60.1.1 for WoW Forever
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Added support for WoW Forever 1.60.1.
+
+=======================================
+RELEASE 12.1.5.1
+Released 2026-10-14
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.1.5.1 for Retail WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Retail WoW 12.1.5.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 5.5.4.6 for Classic Mists of Pandaria
+Version 2.5.6.5 for Classic Burning Crusade
+Version 1.15.9.5 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No changes.
+
+
+=======================================
+RELEASE 12.1.0.1
+Released 2026-08-11
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.1.0.1 for Retail WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Retail WoW 12.1.0.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 5.5.4.5 for Classic Mists of Pandaria
+Version 2.5.6.4 for Classic Burning Crusade
+Version 1.15.9.4 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No changes.
+
+=======================================
+RELEASE 12.0.7.4
+Released 2026-07-31
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.0.7.4 for Retail WoW
+Version 5.5.4.4 for Classic Mists of Pandaria
+Version 2.5.6.3 for Classic Burning Crusade
+Version 1.15.9.3 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Fixed FX not following the mouse cursor correctly when using addons that change the game's UI scale below the normal minimum (65%).  (Tested using the "UIScale" addon.)
+- In the help text, updated a troubleshooting tip about other addons changing UI scale.
+- Minor change to how internal development switches are defined (for slightly better performance).
+- Changed profile menu item text from "Undo" to "Undo Changes".
+
+=======================================
+RELEASE 12.0.7.3
+Released 2026-07-27
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.0.7.3 for Retail WoW
+Version 5.5.4.3 for Classic Mists of Pandaria
+Version 2.5.6.2 for Classic Burning Crusade
+Version 1.15.9.2 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Fixed a scaling problem that occurred when using the ElvUI addon.
+
+=======================================
+RELEASE 12.0.7.2
+Released 2026-07-26
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+All Versions
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- In the options window, fixed the position of the large, dimmed, layer number shown on the background near the right side of the window.
+- Improved the changelog text parsing algorithm.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.0.7.2 for Retail WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No additional changes.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 5.5.4.2 for Classic Mists of Pandaria
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Set an icon for CursorTrail in the TOC file (displayed in the game's "AddOn List" window).
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 2.5.6.1 for Classic Burning Crusade
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Classic TBC 2.5.6.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 1.15.9.1 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Classic WoW 1.15.9.
+- Set an icon for CursorTrail in the TOC file (displayed in the game's "AddOn List" window).
+
+=======================================
+RELEASE 12.0.7.1
+Released 2026-06-16
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.0.7.1 for Retail WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Retail WoW 12.0.7.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 5.5.4.1 for Classic Mists of Pandaria
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Classic MoP Anniversary 5.5.4.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 2.5.5.6 for Classic Burning Crusade
+Version 1.15.8.8 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No changes.
+
+=======================================
+RELEASE 12.0.5.1
+Released 2026-04-22
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.0.5.1 for Retail WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Retail WoW 12.0.5.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 5.5.3.5 for Classic Mists of Pandaria
+Version 2.5.5.5 for Classic Burning Crusade
+Version 1.15.8.7 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No changes.
+
+=======================================
+RELEASE 12.0.1.2
+Released 2026-03-05
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.0.1.2 for Retail WoW
+Version 5.5.3.4 for Classic Mists of Pandaria
+Version 1.15.8.6 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No changes.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 2.5.5.4 for Classic Burning Crusade
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated the list of models for TBC.  Previously, TBC was using the same list as Classic WoW, but several of those models did not work in TBC.
+
+=======================================
+RELEASE 12.0.1.1
+Released 2026-02-10
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.0.1.1 for Retail WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Retail WoW 12.0.1.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 5.5.3.3 for Classic Mists of Pandaria
+Version 2.5.5.3 for Classic Burning Crusade
+Version 1.15.8.5 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No changes.
+
+Known Issues:
+- In Classic Burning Crusade, some of the choices in models list do not work properly.  (e.g. "Spots - Flare" and Glow - Electric, Red".)
+
+=======================================
+RELEASE 12.0.0.1
+Released 2026-01-23
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 12.0.0.1 for Retail WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Retail WoW 12.0.0 (Midnight).
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 5.5.3.2 for Classic Mists of Pandaria
+Version 2.5.5.2 for Classic Burning Crusade
+Version 1.15.8.4 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No changes.
+
+=======================================
+RELEASE 11.2.7.2
+Released 2026-01-20
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 11.2.7.2 for Retail WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+:ATTENTION:
+CursorTrail has NOT been updated to work with WoW Midnight.
+My computer is too old to run Midnight, so I am attempting to switch to Linux.  New hardware should arrive in 2-3 weeks.  Hopefully, I can get the game running and test CursorTrail on Midnight after that.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 5.5.3.1 for Classic Mists of Pandaria
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Classic MoP 5.5.3.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 2.5.5.1 for Classic Burning Crusade
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Added support for Classic TBC 2.5.5 anniversary release.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 1.15.8.3 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No changes.
+
+=======================================
+RELEASE 11.2.7.1
+Released 2025-12-02
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 11.2.7.1 for Retail WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- Updated for Retail WoW 11.2.7 (The War Within).
+
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+Version 5.5.2.2 for Classic Mists of Pandaria
+Version 1.15.8.2 for Classic WoW
+- - - - - - - - - - - - - - - - - - - - - - - - - -
+- No changes.
+
+]]
+
+--- End of File ---
