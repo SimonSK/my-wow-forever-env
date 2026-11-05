@@ -1,0 +1,6 @@
+## Interface: 16001
+## Author: Lohkin
+## Version: 12.0.7
+## Title: eAlign
+## Notes: A simple alignment grid.  Use |cffffd700/align|r to toggle on and off.
+eAlign.lua
