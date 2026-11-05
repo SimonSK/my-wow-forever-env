@@ -1,0 +1,10 @@
+## Interface: 120107, 120105, 120005, 120007, 120100, 16001, 50504, 30405, 20505, 20506, 11507, 11508, 40402
+## Title: |cFFD8DDE6Raid|r|cFFFFFFFFBar|r
+## Notes: Compact moveable raid marker & utility bar for Retail and Classic clients
+## Author: GI-Ka
+## Version: 1.1.16
+## SavedVariables: RaidBarDB
+## Category-enUS: Miscellaneous
+## IconTexture: Interface\AddOns\RaidBar\RB Icon
+
+RaidBar.lua

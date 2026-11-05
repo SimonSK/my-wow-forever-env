@@ -1,0 +1,10 @@
+## Interface: 11508, 11507, 40402
+## Title: |cFFD8DDE6Raid|r|cFFFFFFFFBar|r
+## Notes: Compact moveable raid marker & utility bar for Classic Era clients
+## Author: GI-Ka
+## Version: 1.1.16
+## SavedVariables: RaidBarDB
+## Category-enUS: Miscellaneous
+## IconTexture: Interface\AddOns\RaidBar\RB Icon
+
+RaidBar.lua

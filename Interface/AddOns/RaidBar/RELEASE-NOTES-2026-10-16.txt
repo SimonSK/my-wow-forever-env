@@ -1,0 +1,5 @@
+Raid Markers 1.1.9
+
+- Declares compatibility with WoW 12.1.5 (120105), retaining existing supported clients.
+- Aligns included client manifests and current version labels.
+- Preserves the current published version-report command.
