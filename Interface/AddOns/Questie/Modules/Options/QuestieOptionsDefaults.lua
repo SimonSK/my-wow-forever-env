@@ -104,6 +104,7 @@ function QuestieOptionsDefaults:Load()
             trackerFadeMinMaxButtons = false,
             trackerFadeQuestItemButtons = false,
             trackerFadeQuestFocusButtons = false,
+            trackerFollowSuperTracking = false,
             trackerDisableHoverFade = false,
             trackerBackdropEnabled = false,
             currentBackdropEnabled = false,
@@ -190,7 +191,8 @@ function QuestieOptionsDefaults:Load()
             iconTheme = "questie",
 
             minimap = {
-                hide = false
+                hide = false,
+                showInCompartment = true
             },
 
             TrackerWidth = 0,

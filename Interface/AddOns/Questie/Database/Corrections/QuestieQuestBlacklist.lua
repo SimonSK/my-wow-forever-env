@@ -7048,6 +7048,7 @@ function QuestieQuestBlacklist:Load()
         [13359] = false, -- Where Dragons Fell
 
         --- Forever quests
+        [60860] = true, -- This is a promotion quest that is only available in Asia
         [78124] = HIDE_ON_MAP, -- Nar'thalas Almanac
         [78127] = HIDE_ON_MAP, -- The Dalaran Digest
         [78142] = HIDE_ON_MAP, -- Bewitchments and Glamours
