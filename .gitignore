@@ -83,3 +83,11 @@ $RECYCLE.BIN/
 /WTF/Account/*/SavedVariables/AuctionDB.lua*
 /WowClassic_loader.dll
 /Interface/AddOns/Curator/
+/WTF/SavedVariables/*.bak
+/WTF/Account/SavedVariables/*.bak
+/WTF/Account/*/*.old
+/WTF/Account/*/cache.md5
+/WTF/Account/*/SavedVariables/*.bak
+/WTF/Account/*/*/*/*.old
+/WTF/Account/*/*/*/cache.md5
+/WTF/Account/*/*/*/SavedVariables/*.bak
