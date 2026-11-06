@@ -14,8 +14,8 @@ Bagnon_Sets = {
 ["point"] = "TOPRIGHT",
 ["color"] = {
 },
-["y"] = -377.0001229951158,
-["x"] = -74.0000709015876,
+["y"] = -377.0003352919604,
+["x"] = -74.00016216437075,
 ["spacing"] = 0,
 ["borderColor"] = {
 },
@@ -92,15 +92,15 @@ Bagnon_Sets = {
 },
 ["soul"] = {
 },
-["inscribe"] = {
+["leather"] = {
 },
 ["mine"] = {
 },
 ["gem"] = {
 },
-["leather"] = {
+["inscribe"] = {
 },
-["fridge"] = {
+["reagent"] = {
 },
 ["engineer"] = {
 },
@@ -108,7 +108,7 @@ Bagnon_Sets = {
 },
 ["tackle"] = {
 },
-["reagent"] = {
+["fridge"] = {
 },
 ["enchant"] = {
 },

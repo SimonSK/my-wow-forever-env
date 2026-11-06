@@ -65,8 +65,7 @@ BrotherBags = {
 ["money"] = 811,
 ["class"] = "PALADIN",
 ["race"] = "Scourge",
-[-1] = {
-},
+["faction"] = false,
 ["currency"] = {
 [3499] = 10,
 [3498] = 10,
@@ -75,7 +74,7 @@ BrotherBags = {
 },
 ["mail"] = {
 },
-["faction"] = false,
+["sex"] = 3,
 ["equip"] = {
 nil,
 nil,
@@ -95,7 +94,8 @@ nil,
 "2361::::::::8:1486::75:::::::",
 },
 ["level"] = 8,
-["sex"] = 3,
+[-1] = {
+},
 },
 },
 ["account"] = {

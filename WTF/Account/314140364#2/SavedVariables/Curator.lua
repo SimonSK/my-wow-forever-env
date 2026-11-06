@@ -3,26 +3,19 @@ CuratorDB = {
 ["pvpGone"] = 1,
 ["talents"] = {
 ["seen"] = {
-["tirisfal"] = 1793983208,
+["tirisfal"] = 1793989991,
 },
 ["cd"] = {
 },
 ["ranks"] = {
 },
 },
-["cases"] = {
-["got"] = {
-},
-["wearSeeds"] = 2,
-["opened"] = {
-},
-["keys"] = {
-},
-["won"] = {
-},
-["next"] = 1,
-["n"] = {
-},
+["forever"] = {
+["lvl"] = 1,
+["w"] = 1,
+["t"] = 1793932127,
+["xp"] = 0,
+["v"] = "1.14.2",
 },
 ["opened"] = 0,
 ["wire"] = {
@@ -30,22 +23,22 @@ CuratorDB = {
 },
 ["log"] = {
 },
-["n"] = 0,
 ["out"] = {
 },
+["n"] = 0,
 },
 ["mainReset"] = 1,
 ["chars"] = {
 ["Simonmage-Windseeker"] = {
 ["skillsInit"] = true,
 ["level"] = 1,
-["guid"] = "Player-6923-005A94FC",
 ["obj"] = {
 [364] = {
 0,
 0,
 },
 },
+["guid"] = "Player-6923-005A94FC",
 ["skills"] = {
 },
 ["class"] = "MAGE",
@@ -66,13 +59,13 @@ CuratorDB = {
 ["cards"] = {
 },
 ["oldPacksGone"] = true,
-["qmend"] = 1,
-["chat"] = false,
+["achInit"] = true,
+["chatTold"] = 2,
 ["trades"] = {
 },
 ["levelClaims"] = {
 },
-["copiesV"] = 1,
+["visitedInit"] = true,
 ["questsBar"] = true,
 ["choice"] = {
 },
@@ -96,24 +89,24 @@ CuratorDB = {
 ["pal"] = {
 },
 },
-["live"] = true,
+["historySeeded"] = true,
 ["ach150"] = true,
 ["ach"] = {
 },
 ["cid"] = "682d8cf8fed25794",
-["exportAt"] = 1793983367,
+["exportAt"] = 1793990082,
 ["qelitesGone"] = 1,
 ["dbar"] = 0,
 ["showcase"] = {
 },
 ["met"] = {
 },
-["seal"] = "453b62f63586f1e6",
+["seal"] = "74950f3e42e89ffd",
 ["newsSeen"] = "1.14.3",
 ["golden"] = {
+["n"] = 0,
 ["packs"] = {
 },
-["n"] = 0,
 },
 ["journalSeeded"] = true,
 ["version"] = 3,
@@ -124,6 +117,7 @@ CuratorDB = {
 ["w"] = 2990538,
 },
 },
+["uid"] = "93uly2",
 ["guild"] = {
 ["Simon-Windseeker"] = {
 ["dup"] = {
@@ -133,34 +127,29 @@ CuratorDB = {
 ["s"] = {
 ["tirisfal"] = {
 ["my"] = 0,
-["sh"] = 3,
-["ho"] = 3,
+["n"] = 363,
+["o"] = 159,
 ["best"] = "c1533",
 ["l"] = 0,
-["o"] = 159,
-["n"] = 363,
+["ho"] = 3,
+["sh"] = 3,
 },
 },
-["hist"] = {
+["v"] = {
 {
-["s"] = "b",
-["t"] = 1793880000,
-["k"] = "c1916",
-["f"] = "holo",
+["k"] = "c1533",
 },
 {
-["s"] = "b",
-["t"] = 1793880000,
-["k"] = "c1525",
-["f"] = "holo",
+["k"] = "c4606",
 },
 {
-["s"] = "b",
-["t"] = 1793880000,
-["k"] = "c11750",
-["f"] = "holo",
+["k"] = "c10136",
+["f"] = "shiny",
 },
 },
+["c"] = {
+},
+["t"] = 1793935308,
 ["i"] = {
 ["contracts"] = 5,
 ["owned"] = 159,
@@ -186,34 +175,121 @@ CuratorDB = {
 ["uid"] = "0ebf1s",
 ["count"] = 27,
 ["test"] = false,
-["spec"] = "carto",
-["ver"] = "1.14.2",
 ["edited"] = false,
+["ver"] = "1.14.2",
+["spec"] = "carto",
 },
-["t"] = 1793935308,
-["c"] = {
-},
-["v"] = {
+["hist"] = {
 {
-["k"] = "c1533",
+["k"] = "c1916",
+["t"] = 1793880000,
+["s"] = "b",
+["f"] = "holo",
 },
 {
-["k"] = "c4606",
+["k"] = "c1525",
+["t"] = 1793880000,
+["s"] = "b",
+["f"] = "holo",
 },
 {
-["k"] = "c10136",
-["f"] = "shiny",
+["k"] = "c11750",
+["t"] = 1793880000,
+["s"] = "b",
+["f"] = "holo",
 },
 },
 },
 },
 ["contracts"] = 0,
-["history"] = {
-},
+["announce"] = true,
 ["welcomed"] = true,
 ["qpvpGone"] = 1,
 ["minimap"] = {
 ["angle"] = 19.38453986828653,
+},
+["copiesV"] = 1,
+["ruby"] = {
+["qguard"] = {
+["f"] = 0,
+["w"] = 1794369600,
+["n"] = 0,
+},
+["guard"] = {
+["f"] = 0,
+["w"] = 1794369600,
+["n"] = 0,
+},
+["back"] = {
+["t"] = 1793932139,
+["v"] = "1.14.2",
+["n"] = 0,
+},
+},
+["dropped"] = {
+},
+["chat"] = false,
+["qmend"] = 1,
+["siteTold"] = 1793989998,
+["inns"] = {
+["cards"] = 0,
+["rumors"] = {
+},
+["visas"] = {
+},
+["steps"] = {
+},
+["tasted"] = {
+},
+["leadsFrom"] = 1,
+["loyal"] = {
+},
+["leads"] = {
+},
+["card"] = {
+},
+["signed"] = {
+},
+["heard"] = 0,
+["rest"] = {
+["out"] = 1793990082,
+["b"] = 0,
+["n"] = 0,
+},
+["stamps"] = 0,
+},
+["sealv"] = 2,
+["wireMig"] = 1,
+["xp"] = 0,
+["strangers"] = true,
+["keepOne"] = true,
+["cases"] = {
+["got"] = {
+},
+["wearSeeds"] = 2,
+["opened"] = {
+},
+["keys"] = {
+},
+["won"] = {
+},
+["next"] = 1,
+["n"] = {
+},
+},
+["live"] = true,
+["journal"] = {
+},
+["cinematic"] = true,
+["achClaimed"] = {
+},
+["held"] = {
+},
+["tour"] = true,
+["cap100"] = true,
+["fresh"] = {
+},
+["hallow"] = {
 },
 ["quests"] = {
 ["raidMonthly"] = {
@@ -280,108 +356,6 @@ CuratorDB = {
 },
 },
 },
-["raidWeekly"] = {
-["locked"] = true,
-["key"] = 1794369600,
-["list"] = {
-},
-},
-["daily"] = {
-["key"] = 1794024000,
-["list"] = {
-{
-["got"] = 0,
-["p"] = 0,
-["k"] = "quest",
-["r"] = 80,
-["pts"] = 25,
-["xp"] = 200,
-["n"] = 5,
-},
-{
-["got"] = 0,
-["p"] = 0,
-["k"] = "newcard",
-["r"] = 80,
-["pts"] = 25,
-["xp"] = 200,
-["n"] = 3,
-},
-{
-["got"] = 0,
-["p"] = 0,
-["k"] = "objective",
-["r"] = 80,
-["pts"] = 25,
-["xp"] = 200,
-["n"] = 40,
-},
-{
-["got"] = 0,
-["p"] = 0,
-["k"] = "kill",
-["r"] = 80,
-["pts"] = 25,
-["xp"] = 200,
-["n"] = 60,
-},
-{
-["got"] = 0,
-["p"] = 0,
-["k"] = "explore",
-["r"] = 80,
-["pts"] = 25,
-["xp"] = 200,
-["n"] = 3,
-},
-{
-["got"] = 0,
-["p"] = 0,
-["k"] = "rare",
-["r"] = 80,
-["pts"] = 25,
-["xp"] = 200,
-["n"] = 2,
-},
-{
-["a"] = 7,
-["p"] = 0,
-["k"] = "ctype",
-["r"] = 80,
-["got"] = 0,
-["pts"] = 25,
-["xp"] = 200,
-["n"] = 30,
-},
-{
-["got"] = 0,
-["p"] = 0,
-["k"] = "earn",
-["r"] = 80,
-["pts"] = 25,
-["xp"] = 200,
-["n"] = 2,
-},
-{
-["got"] = 0,
-["p"] = 0,
-["k"] = "open",
-["r"] = 80,
-["pts"] = 25,
-["xp"] = 200,
-["n"] = 2,
-},
-{
-["got"] = 0,
-["p"] = 0,
-["k"] = "xp",
-["r"] = 80,
-["pts"] = 25,
-["xp"] = 200,
-["n"] = 2000,
-},
-},
-},
 ["monthly"] = {
 ["key"] = 24323,
 ["list"] = {
@@ -411,6 +385,123 @@ CuratorDB = {
 },
 },
 },
+["daily"] = {
+["key"] = 1794024000,
+["list"] = {
+{
+["got"] = 0,
+["p"] = 0,
+["k"] = "quest",
+["r"] = 80,
+["xp"] = 200,
+["pts"] = 25,
+["n"] = 5,
+},
+{
+["got"] = 0,
+["p"] = 0,
+["k"] = "newcard",
+["r"] = 80,
+["xp"] = 200,
+["pts"] = 25,
+["n"] = 3,
+},
+{
+["got"] = 0,
+["p"] = 0,
+["k"] = "objective",
+["r"] = 80,
+["xp"] = 200,
+["pts"] = 25,
+["n"] = 40,
+},
+{
+["got"] = 0,
+["p"] = 0,
+["k"] = "kill",
+["r"] = 80,
+["xp"] = 200,
+["pts"] = 25,
+["n"] = 60,
+},
+{
+["got"] = 0,
+["p"] = 0,
+["k"] = "explore",
+["r"] = 80,
+["xp"] = 200,
+["pts"] = 25,
+["n"] = 3,
+},
+{
+["got"] = 0,
+["p"] = 0,
+["k"] = "rare",
+["r"] = 80,
+["xp"] = 200,
+["pts"] = 25,
+["n"] = 2,
+},
+{
+["a"] = 7,
+["p"] = 0,
+["k"] = "ctype",
+["r"] = 80,
+["got"] = 0,
+["xp"] = 200,
+["pts"] = 25,
+["n"] = 30,
+},
+{
+["got"] = 0,
+["p"] = 0,
+["k"] = "earn",
+["r"] = 80,
+["xp"] = 200,
+["pts"] = 25,
+["n"] = 2,
+},
+{
+["got"] = 0,
+["p"] = 0,
+["k"] = "open",
+["r"] = 80,
+["xp"] = 200,
+["pts"] = 25,
+["n"] = 2,
+},
+{
+["got"] = 0,
+["p"] = 0,
+["k"] = "xp",
+["r"] = 80,
+["xp"] = 200,
+["pts"] = 25,
+["n"] = 2000,
+},
+},
+},
+["palWeekly"] = {
+["key"] = 1794369600,
+["list"] = {
+{
+["got"] = 0,
+["c"] = 1,
+["r"] = 600,
+["k"] = "caseOpen",
+["xp"] = 2500,
+["n"] = 3,
+},
+{
+["got"] = 0,
+["c"] = 1,
+["r"] = 600,
+["k"] = "kill",
+["xp"] = 2500,
+["n"] = 700,
+},
+},
+},
 ["dungeonDaily"] = {
 ["locked"] = true,
 ["key"] = 1794024000,
@@ -420,12 +511,6 @@ CuratorDB = {
 ["dungeonWeekly"] = {
 ["locked"] = true,
 ["key"] = 1794369600,
-["list"] = {
-},
-},
-["pvpMonthly"] = {
-["locked"] = true,
-["key"] = 24323,
 ["list"] = {
 },
 },
@@ -467,104 +552,20 @@ CuratorDB = {
 },
 },
 },
-["palWeekly"] = {
+["pvpMonthly"] = {
+["locked"] = true,
+["key"] = 24323,
+["list"] = {
+},
+},
+["raidWeekly"] = {
+["locked"] = true,
 ["key"] = 1794369600,
 ["list"] = {
-{
-["got"] = 0,
-["c"] = 1,
-["r"] = 600,
-["k"] = "caseOpen",
-["xp"] = 2500,
-["n"] = 3,
-},
-{
-["got"] = 0,
-["c"] = 1,
-["r"] = 600,
-["k"] = "kill",
-["xp"] = 2500,
-["n"] = 700,
 },
 },
 },
+["history"] = {
 },
-["ruby"] = {
-["back"] = {
-["t"] = 1793932139,
-["n"] = 0,
-["v"] = "1.14.2",
-},
-["guard"] = {
-["n"] = 0,
-["w"] = 1794369600,
-["f"] = 0,
-},
-["qguard"] = {
-["n"] = 0,
-["w"] = 1794369600,
-["f"] = 0,
-},
-},
-["chatTold"] = 2,
-["dropped"] = {
-},
-["achInit"] = true,
-["visitedInit"] = true,
-["inns"] = {
-["cards"] = 0,
-["stamps"] = 0,
-["visas"] = {
-},
-["steps"] = {
-},
-["tasted"] = {
-},
-["leadsFrom"] = 1,
-["loyal"] = {
-},
-["rumors"] = {
-},
-["card"] = {
-},
-["signed"] = {
-},
-["heard"] = 0,
-["rest"] = {
-["n"] = 0,
-["b"] = 0,
-["out"] = 1793983367,
-},
-["leads"] = {
-},
-},
-["sealv"] = 2,
-["achClaimed"] = {
-},
-["forever"] = {
-["lvl"] = 1,
-["xp"] = 0,
-["t"] = 1793932127,
-["w"] = 1,
-["v"] = "1.14.2",
-},
-["cinematic"] = true,
-["historySeeded"] = true,
-["strangers"] = true,
-["keepOne"] = true,
-["journal"] = {
-},
-["xp"] = 0,
-["wireMig"] = 1,
-["held"] = {
-},
-["tour"] = true,
-["cap100"] = true,
-["fresh"] = {
-},
-["hallow"] = {
-},
-["announce"] = true,
-["uid"] = "93uly2",
 }
-CuratorExport = "!CUR:1!AQYxLjE0LjMQh4e41wYQNjgyZDhjZjhmZWQyNTc5NAlTaW1vbm1hZ2UWQ0FNV09XIFVTMSBSZWFsbSA1IFB2RRRQbGF5ZXItNjkyMy0wMDVBOTRGQwECBQgBAAAAAAAAAAAAWa8YCg=="
+CuratorExport = "!CUR:1!AQYxLjE0LjMQwru41wYQNjgyZDhjZjhmZWQyNTc5NAlTaW1vbm1hZ2UWQ0FNV09XIFVTMSBSZWFsbSA1IFB2RRRQbGF5ZXItNjkyMy0wMDVBOTRGQwECBQgBAAAAAAAAAAAAgIEYeQ=="

@@ -24,7 +24,7 @@ NITdatabase = {
 ["maxXP"] = 5400,
 ["gender"] = "Female",
 ["prof1"] = "Mining",
-["restedXP"] = 226,
+["restedXP"] = 732,
 ["totalBagSlots"] = 26,
 ["freeBagSlots"] = 18,
 ["questsDaily"] = {
@@ -32,13 +32,14 @@ NITdatabase = {
 ["currentXP"] = 4343,
 ["raceEnglish"] = "Scourge",
 ["profSkillMax1"] = 75,
-["playerName"] = "Simon Windseeker",
-["time"] = 1793935448,
-["race"] = "Undead",
+["fishing"] = "Fishing",
 ["bossKills"] = {
 },
+["race"] = "Undead",
+["time"] = 1793989705,
 ["gold"] = 811,
-["profSkillMax2"] = 75,
+["quests"] = {
+},
 ["levelLog"] = {
 {
 ["played"] = 1,
@@ -137,32 +138,31 @@ NITdatabase = {
 ["questCount"] = 6,
 },
 },
-["quests"] = {
-},
+["profSkillMax2"] = 75,
 ["realm"] = "PvE",
 ["guildRankName"] = "Guild Master",
 ["resting"] = true,
 ["raceLocalized"] = "Undead",
 ["cookingSkillMax"] = 75,
-["fishing"] = "Fishing",
+["playerName"] = "Simon Windseeker",
 ["classEnglish"] = "PALADIN",
-["cooking"] = "Cooking",
+["profSkill2"] = 15,
 ["questsMonthly"] = {
 },
 ["fishingSkillMax"] = 75,
 [21177] = 0,
-["profSkill2"] = 15,
 ["guild"] = "Simon",
 ["marks"] = {
 [20558] = 0,
 [20559] = 0,
 [20560] = 0,
 },
-["classLocalized"] = "Paladin",
 ["prof2"] = "Mining",
+["classLocalized"] = "Paladin",
+["cooking"] = "Cooking",
 },
 },
-["weeklyResetTime"] = 1794322800,
+["weeklyResetTime"] = 1794322799,
 ["trades"] = {
 },
 ["instances"] = {

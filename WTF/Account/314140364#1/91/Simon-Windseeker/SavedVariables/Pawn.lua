@@ -34,15 +34,15 @@ PawnOptions = {
 ["Level"] = 10,
 ["Link"] = "|cnIQ0:|Hitem:2648::::::::7:1486:::::::::|h[Loose Chain Vest]|h|r",
 },
-[16] = {
-["ID"] = 2361,
-["Level"] = 2,
-["Link"] = "|cnIQ1:|Hitem:2361::::::::1:1486::75:::::::|h[Battleworn Hammer]|h|r",
-},
 [9] = {
 ["ID"] = 2643,
 ["Level"] = 10,
 ["Link"] = "|cnIQ0:|Hitem:2643::::::::6:1486:::::::::|h[Loose Chain Bracers]|h|r",
+},
+[16] = {
+["ID"] = 2361,
+["Level"] = 2,
+["Link"] = "|cnIQ1:|Hitem:2361::::::::1:1486::75:::::::|h[Battleworn Hammer]|h|r",
 },
 },
 ["LastKeybindingsSet"] = 1,

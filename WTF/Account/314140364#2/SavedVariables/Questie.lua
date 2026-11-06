@@ -560,18 +560,18 @@ QuestieConfig = {
 },
 ["journey"] = {
 {
-["Timestamp"] = 1793863544,
-["Quest"] = 363,
 ["Level"] = 1,
-["Event"] = "Quest",
+["Quest"] = 363,
+["Timestamp"] = 1793863544,
 ["SubType"] = "Complete",
+["Event"] = "Quest",
 },
 {
-["Timestamp"] = 1793863545,
-["Quest"] = 364,
 ["Level"] = 1,
-["Event"] = "Quest",
+["Quest"] = 364,
+["Timestamp"] = 1793863545,
 ["SubType"] = "Accept",
+["Event"] = "Quest",
 },
 },
 ["townsfolk"] = {

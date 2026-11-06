@@ -11,11 +11,11 @@ NRCdatabase = {
 ["savedInstances"] = {
 },
 ["race"] = "Undead",
-["faction"] = "Horde",
 ["localizedClass"] = "Paladin",
+["guid"] = "Player-6933-00151DB5",
 ["englishClass"] = "PALADIN",
 ["level"] = 8,
-["guid"] = "Player-6933-00151DB5",
+["faction"] = "Horde",
 ["realm"] = "CAMWOW US2 Realm 7 PvE",
 },
 },

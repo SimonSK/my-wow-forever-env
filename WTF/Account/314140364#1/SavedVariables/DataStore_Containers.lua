@@ -2,7 +2,7 @@
 DataStore_Containers_Characters = {
 {
 ["bankInfo"] = 1119378,
-["lastUpdate"] = 1793934616,
+["lastUpdate"] = 1793989535,
 ["bagInfo"] = 18458,
 ["Containers"] = {
 {

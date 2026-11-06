@@ -73,7 +73,7 @@ DataStore_Containers_Characters = {
 },
 },
 ["bagInfo"] = 17428,
-["lastUpdate"] = 1793983207,
+["lastUpdate"] = 1793989991,
 },
 }
 DataStore_Containers_Banks = {

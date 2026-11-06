@@ -27,10 +27,10 @@ CHATTYNATOR_CONFIG = {
 ["isTemporary"] = false,
 ["backgroundColor"] = "1a1a1a",
 ["groups"] = {
-["OPENING"] = false,
-["PET_BATTLE_COMBAT_LOG"] = false,
-["VOICE_TEXT"] = false,
 ["COMBAT_MISC_INFO"] = false,
+["OPENING"] = false,
+["VOICE_TEXT"] = false,
+["PET_BATTLE_COMBAT_LOG"] = false,
 ["COMBAT_XP_GAIN"] = false,
 ["PET_INFO"] = false,
 ["TRADESKILLS"] = false,
@@ -338,10 +338,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 0.6235294342041016,
 },
-["CHANNEL_Trade"] = {
+["BG_SYSTEM_NEUTRAL"] = {
 ["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["g"] = 0.4705882668495178,
+["b"] = 0.03921568766236305,
 },
 ["FILTERED"] = {
 ["r"] = 1,
@@ -413,20 +413,20 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.501960813999176,
 ["b"] = 0.501960813999176,
 },
-["CHANNEL_Services"] = {
-["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
-},
 ["GUILD_DISCORD"] = {
 ["r"] = 0.4470588564872742,
 ["g"] = 0.4941176772117615,
 ["b"] = 1,
 },
-["INSTANCE_CHAT"] = {
+["CHANNEL18"] = {
 ["r"] = 1,
-["g"] = 0.4980392456054688,
-["b"] = -0,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
+},
+["BN_WHISPER_INFORM"] = {
+["r"] = -0,
+["g"] = 1,
+["b"] = 0.9647059440612793,
 },
 ["PET_INFO"] = {
 ["r"] = 0.501960813999176,
@@ -443,15 +443,15 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = -0,
 },
-["ARENA_POINTS"] = {
+["ACHIEVEMENT"] = {
 ["r"] = 1,
 ["g"] = 1,
-["b"] = 1,
+["b"] = -0,
 },
-["BN_WHISPER_INFORM"] = {
-["r"] = -0,
-["g"] = 1,
-["b"] = 0.9647059440612793,
+["INSTANCE_CHAT"] = {
+["r"] = 1,
+["g"] = 0.4980392456054688,
+["b"] = -0,
 },
 ["CHANNEL8"] = {
 ["r"] = 1,
@@ -528,12 +528,12 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = -0,
 },
-["ACHIEVEMENT"] = {
+["ARENA_POINTS"] = {
 ["r"] = 1,
 ["g"] = 1,
-["b"] = -0,
+["b"] = 1,
 },
-["CHANNEL18"] = {
+["CHANNEL_Services"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
@@ -558,10 +558,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7725490927696228,
 ["b"] = 1,
 },
-["BG_SYSTEM_NEUTRAL"] = {
+["CHANNEL_Trade"] = {
 ["r"] = 1,
-["g"] = 0.4705882668495178,
-["b"] = 0.03921568766236305,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["BN_INLINE_TOAST_BROADCAST"] = {
 ["r"] = 0.5098039507865906,
@@ -823,6 +823,11 @@ CHATTYNATOR_CONFIG = {
 ["g"] = -0,
 ["r"] = 1,
 },
+["CHANNEL_Custom: curatorhord"] = {
+["b"] = 0.7529412508010864,
+["g"] = 0.7529412508010864,
+["r"] = 1,
+},
 ["CHANNEL_Custom: CuratorNet"] = {
 ["b"] = 0.7529412508010864,
 ["g"] = 0.7529412508010864,
@@ -893,14 +898,14 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.3333333432674408,
 ["r"] = 0.3333333432674408,
 },
-["BG_SYSTEM_NEUTRAL"] = {
-["b"] = 0.03921568766236305,
-["g"] = 0.4705882668495178,
-["r"] = 1,
-},
 ["CHANNEL_Trade"] = {
 ["b"] = 0.7529412508010864,
 ["g"] = 0.7529412508010864,
+["r"] = 1,
+},
+["BG_SYSTEM_NEUTRAL"] = {
+["b"] = 0.03921568766236305,
+["g"] = 0.4705882668495178,
 ["r"] = 1,
 },
 ["MONEY"] = {
@@ -973,18 +978,18 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.501960813999176,
 ["r"] = 0.7529412508010864,
 },
-["CHANNEL18"] = {
-["b"] = 0.7529412508010864,
-["g"] = 0.7529412508010864,
-["r"] = 1,
-},
 ["CHANNEL_Services"] = {
 ["b"] = 0.7529412508010864,
 ["g"] = 0.7529412508010864,
 ["r"] = 1,
 },
-["ACHIEVEMENT"] = {
-["b"] = -0,
+["GUILD_DISCORD"] = {
+["b"] = 1,
+["g"] = 0.4941176772117615,
+["r"] = 0.4470588564872742,
+},
+["ARENA_POINTS"] = {
+["b"] = 1,
 ["g"] = 1,
 ["r"] = 1,
 },
@@ -1003,15 +1008,15 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["r"] = 1,
 },
-["ARENA_POINTS"] = {
-["b"] = 1,
+["ACHIEVEMENT"] = {
+["b"] = -0,
 ["g"] = 1,
 ["r"] = 1,
 },
-["INSTANCE_CHAT"] = {
-["b"] = -0,
-["g"] = 0.4980392456054688,
-["r"] = 1,
+["BN_WHISPER_INFORM"] = {
+["b"] = 0.9647059440612793,
+["g"] = 1,
+["r"] = -0,
 },
 ["CHANNEL8"] = {
 ["b"] = 0.7529412508010864,
@@ -1088,15 +1093,15 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["r"] = 1,
 },
-["BN_WHISPER_INFORM"] = {
-["b"] = 0.9647059440612793,
-["g"] = 1,
-["r"] = -0,
+["INSTANCE_CHAT"] = {
+["b"] = -0,
+["g"] = 0.4980392456054688,
+["r"] = 1,
 },
-["GUILD_DISCORD"] = {
-["b"] = 1,
-["g"] = 0.4941176772117615,
-["r"] = 0.4470588564872742,
+["CHANNEL18"] = {
+["b"] = 0.7529412508010864,
+["g"] = 0.7529412508010864,
+["r"] = 1,
 },
 ["ENCOUNTER_EVENT"] = {
 ["b"] = -0,
@@ -1201,10 +1206,10 @@ CHATTYNATOR_CONFIG = {
 },
 ["name"] = "GENERAL",
 ["groups"] = {
-["OPENING"] = false,
-["COMBAT_MISC_INFO"] = false,
-["COMBAT_XP_GAIN"] = false,
 ["PET_BATTLE_COMBAT_LOG"] = false,
+["OPENING"] = false,
+["COMBAT_XP_GAIN"] = false,
+["COMBAT_MISC_INFO"] = false,
 ["VOICE_TEXT"] = false,
 ["PET_INFO"] = false,
 ["TRADESKILLS"] = false,
@@ -1279,7 +1284,7 @@ CHATTYNATOR_CONFIG = {
 },
 }
 CHATTYNATOR_MESSAGE_LOG = {
-["cleanIndex"] = 44,
+["cleanIndex"] = 46,
 ["current"] = {
 {
 ["recordedBy"] = "Simon-Windseeker",
@@ -2131,8 +2136,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Deathguard Mort",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -2149,8 +2154,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Deathguard Mort",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,

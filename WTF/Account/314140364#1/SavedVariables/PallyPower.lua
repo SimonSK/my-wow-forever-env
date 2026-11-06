@@ -77,10 +77,11 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[0] = "None",
 [6] = "CuratorNet",
+[7] = "curatorhord",
 [4] = "Services",
 [5] = "TradeLocal",
+[0] = "None",
 }
 LCD_Data = nil
 LCD_GUIDAccess = nil

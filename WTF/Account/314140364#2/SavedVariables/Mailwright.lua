@@ -1,6 +1,17 @@
 
 MailwrightDB = {
-["sessions"] = 11,
+["alts"] = {
+["ForeverPlayer-6923-005A94FC"] = {
+["guid"] = "Player-6923-005A94FC",
+["level"] = 1,
+["name"] = "Simonmage Windseeker",
+["faction"] = "Horde",
+["ruleset"] = "Normal",
+["client"] = "Forever",
+["class"] = "MAGE",
+["realm"] = "CAMWOW US1 Realm 5 PvE",
+},
+},
 ["options"] = {
 ["bag"] = -1,
 ["blockTrades"] = true,
@@ -18,19 +29,8 @@ MailwrightDB = {
 ["delay"] = 0.35,
 ["quality"] = 0,
 },
+["sessions"] = 13,
 ["recent"] = {
-},
-["alts"] = {
-["ForeverPlayer-6923-005A94FC"] = {
-["guid"] = "Player-6923-005A94FC",
-["level"] = 1,
-["name"] = "Simonmage Windseeker",
-["faction"] = "Horde",
-["ruleset"] = "Normal",
-["client"] = "Forever",
-["class"] = "MAGE",
-["realm"] = "CAMWOW US1 Realm 5 PvE",
-},
 },
 ["contacts"] = {
 },

@@ -473,14 +473,12 @@ DataStore_Crafts_Characters = {
 821152,
 992544,
 },
-[2594] = {
-60205984,
-60207392,
-156897696,
-156897568,
-156897184,
-156897056,
-156897312,
+[2714] = {
+161672608,
+165291680,
+161661216,
+164275232,
+157406381,
 },
 [2645] = {
 159995936,
@@ -502,12 +500,14 @@ DataStore_Crafts_Characters = {
 159994656,
 159994528,
 },
-[2714] = {
-161672608,
-165291680,
-161661216,
-164275232,
-157406381,
+[2594] = {
+60205984,
+60207392,
+156897696,
+156897568,
+156897184,
+156897056,
+156897312,
 },
 [2632] = {
 160020256,
@@ -595,7 +595,7 @@ DataStore_Crafts_Characters = {
 },
 },
 },
-["lastUpdate"] = 1793934614,
+["lastUpdate"] = 1793989533,
 ["Indices"] = {
 ["Cooking"] = 3,
 ["Mining"] = 1,
@@ -645,7 +645,7 @@ DataStore_Crafts_RecipeCategories = {
 [2638] = "Winter Veil Treats",
 [2427] = "Enchanting",
 [2640] = "Stamina Food",
-[2506] = "Cloak Enchants",
+[2632] = "Everyday Meals",
 [2514] = "Camping",
 [2636] = "Miscellaneous Cuisines",
 [2645] = "Delightful Drinks",
@@ -657,7 +657,7 @@ DataStore_Crafts_RecipeCategories = {
 [2641] = "Spell Damage Food",
 [2433] = "Mining",
 [2594] = "SEASON OF DISCOVERY",
-[2632] = "Everyday Meals",
+[2506] = "Cloak Enchants",
 }
 DataStore_Crafts_Reagents = {
 }

@@ -284,9 +284,9 @@ ForeverDungeonJournalDB = {
 ["o"] = "Apothecary Johaan of the town of Brill needs 5 Vile Fin Scales from Murlocs in Tirisfal Glades.",
 ["d"] = "While you were collecting samples for me, my experiments led me to realize that more reagents will be required for this new disease to spread properly. Poisoning some hapless victim is child's play. Plaguing an entire world proves to be a bit more complicated.\n\nI will need 5 Vile Fin Scales from Murlocs in the vicinity.  You will find the creatures along the coast to the north or to the west.",
 },
-[356] = {
-["o"] = "Kill 8 Bleeding Horrors and 8 Wandering Spirits, then report back to Linnea at her camp.",
-["d"] = "The defenders on The Bulwark protecting Tirisfal from the Plaguelands are on constant alert. But sometimes Scourge will slip past them.\n\nOur success at the Bulwark depends on a one-front battle - we cannot allow an attack from the rear, nor can we allow our defenders' supply line to be cut.\n\nAssist the Bulwark. Patrol east and slay any Scourge you find. Spend particular effort at the Balnir Farmstead to the east. It has become a haven for interloping Scourge.",
+[97953] = {
+["o"] = "Speak with Vance Undergloom in Brill to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
+["d"] = "Enchanters make everything better and are always welcome at any camp out in the wilds.\r\n\r\nI reckon I know someone that can teach you how to craft an Enchanted Lute for your camp. It's so important to find entertainment during your downtime, and this bit of magic can help ensure you are ready to weather all sorts of challenges when you hit the old dusty trail once again.",
 },
 [95314] = {
 ["o"] = "Collect 8 Bottles of Whispering Elixir from Shadowvale, then return to Carolai Anise in Brill.",
@@ -300,29 +300,29 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Clyde Kellen in Brill to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "You might not think so, but your skill as a fisherman can actually come in handy at camp.\r\n\r\nI reckon I know someone that can teach you how to craft a Fish Bowl for your camp. You can use this fixture to help provide a bit of joy to yourself and your fellow adventurers. A happy adventurer is a strong adventurer and I'm sure your combat capabilities will reflect that.",
 },
-[99142] = {
-["o"] = "Collect 5 Tomb Weed and deliver them back to Junior Apothecary Holland.",
-["d"] = "If you're heading east, towards the Balnir Farmstead, I have more you might do for me. Good help is ever so hard to find these days, as your run-in with Gordo illuminates ever so clearly.\r\n\r\nAs I acquire doom weed I perform some minor alchemical alterations and replant them on that farmstead to cultivate my ultimate creation. I call it tomb weed, and it shall be the herald of my glorious destiny.\r\n\r\nDo keep an eye on the Scourge in the area while you're there. They seem... drawn... to the weed. Curious.",
+[91282] = {
+["o"] = "Find the fortress of Bandarion Keep and report to Breton Samuels there.",
+["d"] = "It is encouraging to see my newly risen brothers and sisters thrive as you have. It is only through community and shared faith that we can truly realize our full potential however, and to that end we've begun to form a new paladin order right here in Tirisfal. \r\n\r\nIf you wish to learn more, you should visit our monastery on the edge of the Whispering Woods. It is called Bandarion Keep. It's on the bluffs just northwest of the Solliden Farmstead, and should be hard to miss.",
 },
 [357] = {
 ["o"] = "Bring the Lich's Spellbook to Bethor Iceshard in the Undercity.",
 ["d"] = "There is a lich who dwells on the island in Brightwater Lake to the north.  Although he is a free-willed Forsaken, he believes all other Undead are Scourge slaves and has his minions attack anyone who approaches him.\n\nBut because he is Forsaken, the Queen will want him.  And if he is skilled in Necromancy, then his knowledge would be...quite useful to us.\n\nTo discover his identity and his talents, I must see his spellbook.  Steal into his camp and acquire it, then return to me.",
 },
-[362] = {
-["o"] = "Slay Devlin Agamand, and bring Devlin's Remains to Coleman Farthing in Brill.",
-["d"] = "Devlin Agamand was the younger of two sons in the Agamand family, and in life the two could not be more different.  Thurman was tall and gentle while his younger brother was weak and sharp tongued.\n\nWhen Agamand Mills fell to the Plague, I was not surprised to hear that Devlin was quick to succumb.  His mad chattering can still be heard near the road leading to the Agamand Mills.\n\nI'm collecting the remains of the Agamands, and I want poor Devlin.  Find him, destroy him, and bring me his bones.",
-},
 [97959] = {
 ["o"] = "Speak with Brom Killian in Undercity to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "Mining isn't the most glamorous, but it's good honest work and a fine profession for you to explore.\r\n\r\nI reckon I know someone that can teach you how to craft a Lodestone for your camp. Build one of these and everyone who wants to swing a sword will be eager to gather round your fire and soak up the extra \"oomph\" it can provide to increase their combat prowess.",
 },
-[91282] = {
-["o"] = "Find the fortress of Bandarion Keep and report to Breton Samuels there.",
-["d"] = "It is encouraging to see my newly risen brothers and sisters thrive as you have. It is only through community and shared faith that we can truly realize our full potential however, and to that end we've begun to form a new paladin order right here in Tirisfal. \r\n\r\nIf you wish to learn more, you should visit our monastery on the edge of the Whispering Woods. It is called Bandarion Keep. It's on the bluffs just northwest of the Solliden Farmstead, and should be hard to miss.",
+[362] = {
+["o"] = "Slay Devlin Agamand, and bring Devlin's Remains to Coleman Farthing in Brill.",
+["d"] = "Devlin Agamand was the younger of two sons in the Agamand family, and in life the two could not be more different.  Thurman was tall and gentle while his younger brother was weak and sharp tongued.\n\nWhen Agamand Mills fell to the Plague, I was not surprised to hear that Devlin was quick to succumb.  His mad chattering can still be heard near the road leading to the Agamand Mills.\n\nI'm collecting the remains of the Agamands, and I want poor Devlin.  Find him, destroy him, and bring me his bones.",
 },
-[97953] = {
-["o"] = "Speak with Vance Undergloom in Brill to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
-["d"] = "Enchanters make everything better and are always welcome at any camp out in the wilds.\r\n\r\nI reckon I know someone that can teach you how to craft an Enchanted Lute for your camp. It's so important to find entertainment during your downtime, and this bit of magic can help ensure you are ready to weather all sorts of challenges when you hit the old dusty trail once again.",
+[99142] = {
+["o"] = "Collect 5 Tomb Weed and deliver them back to Junior Apothecary Holland.",
+["d"] = "If you're heading east, towards the Balnir Farmstead, I have more you might do for me. Good help is ever so hard to find these days, as your run-in with Gordo illuminates ever so clearly.\r\n\r\nAs I acquire doom weed I perform some minor alchemical alterations and replant them on that farmstead to cultivate my ultimate creation. I call it tomb weed, and it shall be the herald of my glorious destiny.\r\n\r\nDo keep an eye on the Scourge in the area while you're there. They seem... drawn... to the weed. Curious.",
+},
+[356] = {
+["o"] = "Kill 8 Bleeding Horrors and 8 Wandering Spirits, then report back to Linnea at her camp.",
+["d"] = "The defenders on The Bulwark protecting Tirisfal from the Plaguelands are on constant alert. But sometimes Scourge will slip past them.\n\nOur success at the Bulwark depends on a one-front battle - we cannot allow an attack from the rear, nor can we allow our defenders' supply line to be cut.\n\nAssist the Bulwark. Patrol east and slay any Scourge you find. Spend particular effort at the Balnir Farmstead to the east. It has become a haven for interloping Scourge.",
 },
 },
 },

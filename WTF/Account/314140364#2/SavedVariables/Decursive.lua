@@ -1,7 +1,7 @@
 
 DecursiveDB = {
 ["global"] = {
-["LastVersionAnnounce"] = 1793983119,
+["LastVersionAnnounce"] = 1793989998,
 ["NonRelease"] = "2.9.0-RC4",
 },
 ["profileKeys"] = {

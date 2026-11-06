@@ -1,12 +1,14 @@
 
 DataStore_Quests_Characters = {
 {
-["lastUpdate"] = 1793983110,
+["lastUpdate"] = 1793989989,
 ["QuestHeaders"] = {
+"Deathknell",
 },
 ["Rewards"] = {
 },
 ["Quests"] = {
+285235970,
 },
 ["Emissaries"] = {
 },
@@ -14,7 +16,7 @@ DataStore_Quests_Characters = {
 }
 DataStore_Quests_History = {
 {
-["LastUpdate"] = 1793983209,
+["LastUpdate"] = 1793989993,
 ["Size"] = 1,
 ["Quests"] = {
 [6] = 8796093022208,

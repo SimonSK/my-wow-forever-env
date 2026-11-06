@@ -1,19 +1,15 @@
 
 PallyPowerDB = {
 ["profileKeys"] = {
-["Simonmage Windseeker"] = "Simon",
+["Simonmage Windseeker"] = "Other",
 },
 ["profiles"] = {
-["Simon"] = {
+["Other"] = {
 ["ForeverShamanColumn"] = true,
-["auraDurations"] = {
-["Seal of Righteousness"] = 30,
-},
+["ForeverSalvSplit"] = true,
+["seal"] = 11,
 ["display"] = {
 ["HideCountText"] = true,
-["frameLocked"] = true,
-["offsetX"] = 389.4999389648438,
-["offsetY"] = 63.33323287963867,
 },
 ["enable"] = true,
 ["minimap"] = {
@@ -21,11 +17,30 @@ PallyPowerDB = {
 },
 ["ForeverSealRestored"] = true,
 ["ShowPets"] = false,
+["ForeverCountDefault"] = true,
+},
+["Simon"] = {
+["ShowPets"] = false,
+["ForeverShamanColumn"] = true,
+["enable"] = true,
+["auraDurations"] = {
+["Seal of Righteousness"] = 30,
+},
+["ForeverCountDefault"] = true,
 ["ForeverSalvSplit"] = true,
+["minimap"] = {
+["show"] = false,
+},
+["display"] = {
+["offsetY"] = 63.33323287963867,
+["frameLocked"] = true,
+["HideCountText"] = true,
+["offsetX"] = 389.4999389648438,
+},
 ["autobuff"] = {
 ["buffDuration"] = false,
 },
-["ForeverCountDefault"] = true,
+["ForeverSealRestored"] = true,
 ["rf"] = true,
 },
 ["Default"] = {

@@ -2,7 +2,7 @@
 DataStore_Inventory_Characters = {
 {
 ["EquipmentInfo"] = 0,
-["lastUpdate"] = 1793983209,
+["lastUpdate"] = 1793989993,
 ["overallAIL"] = 0,
 ["Inventory"] = {
 [7] = "|cnIQ0:|Hitem:1395::::::::1:1482::75:::::::|h[Apprentice's Pants]|h|r",

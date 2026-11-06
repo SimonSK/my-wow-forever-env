@@ -12,10 +12,10 @@ ThreatPlatesDB = {
 ["Default"] = {
 ["settings"] = {
 ["frame"] = {
-["heightFriend"] = 25.85937502408342,
-["widthFriend"] = 181.0156251685839,
-["height"] = 25.85937502408342,
-["width"] = 181.0156251685839,
+["heightFriend"] = 26.27604195216716,
+["widthFriend"] = 183.9322936651701,
+["height"] = 26.27604195216716,
+["width"] = 183.9322936651701,
 },
 },
 },

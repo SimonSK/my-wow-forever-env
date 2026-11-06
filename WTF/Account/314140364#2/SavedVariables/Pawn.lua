@@ -13,11 +13,6 @@ PawnCommon = {
 ["ShowTooltipIcons"] = true,
 ["LastVersion"] = 2.1401,
 ["ShowSocketingAdvisor"] = true,
-["ShowSpecIcons"] = true,
-["IgnoreGemsWhileLeveling"] = true,
-["ButtonPosition"] = 1,
-["Digits"] = 1,
-["ShowQuestUpgradeAdvisor"] = true,
 ["Scales"] = {
 ["\"Classic\":WARRIOR2"] = {
 ["Color"] = "c69b6d",
@@ -404,5 +399,10 @@ PawnCommon = {
 ["UnenchantedColor"] = "bfbfbf",
 },
 },
+["IgnoreGemsWhileLeveling"] = true,
+["ButtonPosition"] = 1,
+["Digits"] = 1,
+["ShowQuestUpgradeAdvisor"] = true,
+["ShowSpecIcons"] = true,
 ["ShownGettingStarted"] = true,
 }

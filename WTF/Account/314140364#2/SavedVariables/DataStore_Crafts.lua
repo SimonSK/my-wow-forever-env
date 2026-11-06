@@ -3,7 +3,7 @@ DataStore_Crafts_Characters = {
 {
 ["Professions"] = {
 },
-["lastUpdate"] = 1793983207,
+["lastUpdate"] = 1793989989,
 ["Indices"] = {
 },
 ["Ranks"] = {

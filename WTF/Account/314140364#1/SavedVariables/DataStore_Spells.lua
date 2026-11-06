@@ -1,7 +1,7 @@
 
 DataStore_Spells_Characters = {
 {
-["lastUpdate"] = 1793934614,
+["lastUpdate"] = 1793989533,
 ["englishClass"] = "PALADIN",
 ["Spells"] = {
 ["Protection"] = {

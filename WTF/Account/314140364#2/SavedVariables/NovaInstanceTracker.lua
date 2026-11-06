@@ -44,8 +44,8 @@ NITdatabase = {
 [17056] = 0,
 ["currentXP"] = 40,
 ["raceEnglish"] = "Scourge",
-["resting"] = false,
-["time"] = 1793983324,
+["race"] = "Undead",
+["time"] = 1793990041,
 ["gold"] = 0,
 ["levelLog"] = {
 {
@@ -67,14 +67,14 @@ NITdatabase = {
 },
 ["questsMonthly"] = {
 },
-["guild"] = "Simon",
 ["guildRankName"] = "Member",
+["guild"] = "Simon",
 [17020] = 0,
 ["bossKills"] = {
 },
 [17032] = 0,
 ["classLocalized"] = "Mage",
-["race"] = "Undead",
+["resting"] = false,
 },
 },
 ["weeklyResetTime"] = 1794322799,
