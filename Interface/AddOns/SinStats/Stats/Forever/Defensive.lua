@@ -7,10 +7,19 @@ local Safe = Ns.Safe
 --		Options Equates		--
 ------------------------------
 local Both, Enhanced, Base = 3, 1, 2
+local Chance, Reduction = 1, 2
 local cachedDefenseBase = 0
 local cachedDefenseBonus = 0
 local cachedMitigation = 0
 local cachedMitigationBase = 0
+local cachedDefenseCrit = 0
+local cachedResilCrit = 0
+
+local DEFENSE_CRIT_PER_POINT = 0.04
+local BASE_ENEMY_CRIT = 5
+local ENEMY_CRIT_PER_LEVEL = 0.2
+local BOSS_CRIT_CAP = 5.6 -- 5% + 3 levels * 0.2%
+local RESIL_CRIT_RATING = COMBAT_RATING_RESILIENCE_CRIT_TAKEN or 15
 
 ------------------------------
 --		Global Updater		--
@@ -179,6 +188,55 @@ function Ns.FunctionList.Block(HUD, data, options, ...)
 	if cap == 0 then capColor = "" end
 
 	HUD:UpdateText(data, capColor .. Ns.DecimalFormat(options.Decimals_Two, "%%"):format(blockChance))
+end
+------------------------------------------------
+
+-- Crit Immunity
+local function GetCritReduction()
+	local baseDefense, defenseModifier = UnitDefenseSkill("player")
+	local resilBonus = GetCombatRatingBonus(RESIL_CRIT_RATING)
+
+	if not issecretvalue(baseDefense) and not issecretvalue(defenseModifier) and not issecretvalue(resilBonus) then
+		local excess = math.max((baseDefense or 0) + (defenseModifier or 0) - UnitLevel("player") * 5, 0)
+		cachedDefenseCrit = excess * DEFENSE_CRIT_PER_POINT
+		cachedResilCrit = resilBonus or 0
+	end
+
+	return cachedDefenseCrit, cachedResilCrit
+end
+
+function Ns.FunctionList.CritImmunity(HUD, data, options, ...)
+
+	local EB = options.Chance_Reduction or 1
+	local defenseCrit, resilCrit = GetCritReduction()
+	local levelPenalty = ((Ns.targetLevel or Ns.playerLevel) - Ns.playerLevel) * ENEMY_CRIT_PER_LEVEL
+	local chanceGetCrit = (BASE_ENEMY_CRIT + levelPenalty) - defenseCrit - resilCrit - (Ns.survFittest or 0)
+	local critTakenCap = BOSS_CRIT_CAP - chanceGetCrit
+	local decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
+	local chanceColor, reductionColor = "", ""
+
+	if options.Color_Effect then
+		chanceColor = Ns.GradientRedGreen(BOSS_CRIT_CAP - chanceGetCrit, BOSS_CRIT_CAP)
+		reductionColor = Ns.GradientRedGreen(critTakenCap, BOSS_CRIT_CAP)
+	end
+
+	local returnText, statusbar
+	if Ns.Band(EB, Chance) then
+		returnText = chanceColor .. (decimals):format(chanceGetCrit)
+		statusbar = BOSS_CRIT_CAP - chanceGetCrit
+	end
+	if Ns.Band(EB, Reduction) then
+		returnText = reductionColor .. (decimals):format(critTakenCap)
+		statusbar = critTakenCap
+	end
+	if Ns.Band(EB, Both) then
+		returnText = chanceColor .. (decimals):format(chanceGetCrit) .. "|r (" .. reductionColor .. (decimals):format(critTakenCap) .. "|r)"
+		statusbar = BOSS_CRIT_CAP - chanceGetCrit
+	end
+	if returnText == nil then returnText = "" end
+
+	HUD:UpdateText(data, returnText)
+	HUD:UpdateBar(data, statusbar, BOSS_CRIT_CAP)
 end
 ------------------------------------------------
 

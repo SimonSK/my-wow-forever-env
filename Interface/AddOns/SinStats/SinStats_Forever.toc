@@ -2,7 +2,7 @@
 ## Title: |cff71FFC9SinStats|r
 ## Author: Sinba
 ## Notes : Character Stats
-## Version: 7.040
+## Version: 7.041
 ## IconTexture: Interface\AddOns\SinStats\Textures\MiniMap.blp
 ## X-License: All Rights Reserved
 ## Category: Combat
@@ -25,6 +25,7 @@ Stats\Forever\IDTables.lua
 Stats\Forever\Talents.lua
 Stats\Forever\Updater.lua
 Stats\Forever\SinLive.lua
+Stats\Forever\Attributes.lua
 Stats\Forever\Melee.lua
 Stats\Forever\Ranged.lua
 Stats\Forever\Defensive.lua

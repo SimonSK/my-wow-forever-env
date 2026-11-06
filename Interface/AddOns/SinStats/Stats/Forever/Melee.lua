@@ -6,7 +6,7 @@ local Safe = Ns.Safe
 ------------------------------
 --		Options Equates		--
 ------------------------------
-local Both, MainHand, OffHand, SameLevel, BossLevel, Auto, Enhanced, Base = 3, 1, 2, 1, 2, 3, 1, 2
+local Both, MainHand, OffHand, SameLevel, BossLevel, Auto, Enhanced, Base, Value, Rating = 3, 1, 2, 1, 2, 3, 1, 2, 1, 2
 
 ------------------------------
 --		Weapon Skills		--
@@ -297,8 +297,6 @@ end
 ------------------------------------------------
 
 -- DPS
--- Forever: UnitDamage/UnitAttackSpeed turn secret in restricted content, so keep the last
--- readable DPS (damage / speed is arithmetic, which secrets don't allow)
 local cachedMeleeDPS, cachedMeleeDPSOH = 0, 0
 
 function Ns.FunctionList.mDPS(HUD, data, options, ...)
@@ -535,6 +533,55 @@ function Ns.FunctionList.weaponSpeed(HUD, data, options, ...)
 	if returnText == nil then returnText = "" end
 
 	HUD:UpdateText(data, returnText)
+end
+------------------------------------------------
+
+-- Expertise
+function Ns.FunctionList.Expertise(HUD, data, options, ...)
+
+	local EB = options.Value_Rating
+	local expertisePercent, offhandExpertisePercent = GetExpertisePercent()
+	local expertiseRating = GetCombatRating(CR_EXPERTISE)
+	local returnText, decimals, decimalsV, statusbar
+	local cc, ratingColor, ec = "", "", ""
+	local mainHandFormat, offHandFormat = "", ""
+
+	if options.Decimals_Default == 0 then decimals = "%.0f%%"; decimalsV = "%.0f"
+	elseif options.Decimals_Default == 1 then decimals = "%.1f%%"; decimalsV = "%.1f"
+	elseif options.Decimals_Default == 2 then decimals = "%.2f%%"; decimalsV = "%.2f"
+	else decimals = "%.3f%%"; decimalsV = "%.3f" end
+
+	if not issecretvalue(expertiseRating) and expertiseRating >= 781 then ratingColor = Ns.greenText end
+	if not issecretvalue(expertisePercent) and expertisePercent >= (options.Cap_Melee_Exp or 6.5) then cc = Ns.greenText end
+
+	if cc ~= "" then ec = "|r" end
+
+	if options.Display_Expertise then
+		mainHandFormat = (decimals):format(expertisePercent)
+	else
+		mainHandFormat = (decimalsV):format(expertisePercent)
+	end
+
+	if not options.Display_MainHand and not issecretvalue(offhandExpertisePercent) and offhandExpertisePercent > 0 then
+		local ohID = GetInventoryItemID("player", 17)
+		local item = ohID and C_Item.GetItemInfoInstant(ohID)
+		if item and item.classID == Enum.ItemClass.Weapon then
+			if options.Display_Expertise then
+				offHandFormat = "/" .. (decimals):format(offhandExpertisePercent)
+			else
+				offHandFormat = "/" .. (decimalsV):format(offhandExpertisePercent)
+			end
+		end
+	end
+
+	if Ns.Band(EB, Value) then returnText = cc .. mainHandFormat .. offHandFormat end
+	if Ns.Band(EB, Rating) then returnText = ratingColor .. expertiseRating end
+	if Ns.Band(EB, Both) then returnText = cc .. mainHandFormat .. offHandFormat .. ec .. " (" .. ratingColor .. expertiseRating .. "|r)" end
+
+	if returnText == nil then returnText = "" end
+
+	HUD:UpdateText(data, returnText)
+	HUD:UpdateBar(data, statusbar)
 end
 ------------------------------------------------
 

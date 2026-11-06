@@ -35,6 +35,7 @@ Ns.spirit = 0
 Ns.meleeHaste, Ns.castHaste, Ns.totalHaste, Ns.totalRangedHaste = 0, 0, 0, 0
 Ns.totalMP5, Ns.totalMP2, Ns.castingMP2, Ns.buffCount, Ns.debuffCount, Ns.castingMP5 = 0, 0, 0, 0, 0, 0
 Ns.exposeWeakness = 0
+Ns.survFittest = 0
 
 
 --------------------------------------

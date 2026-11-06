@@ -139,7 +139,7 @@ Ns.SpellClass = {
 	[1] = { stat="Text", grp=Ns.TextGroupOrder, order=Ns.TextDisplayOrder, icon="Fonts", },
 	[2] = { stat="Layout", grp=Ns.LayoutGroupOrder, order=Ns.LayoutDisplayOrder, icon="Layout", },
 	[3] = { stat="Events", grp=Ns.EventsGroupOrder, order=Ns.EventsDisplayOrder, icon="Events", },
-	[4] = { stat="Panels", grp=Ns.PanelGroupOrder, order=Ns.PanelDisplayOrder, icon="Layout", },
+	[4] = { stat="Panels", grp=Ns.PanelGroupOrder, order=Ns.PanelDisplayOrder, icon="HUDStudio", },
 	[5] = { stat="Profiles", grp=Ns.ProfileGroupOrder, order=Ns.ProfileDisplayOrder, icon="Profiles", },
 	[6] = { stat="", },
 	[7] = { stat="Search", icon="Search", },
