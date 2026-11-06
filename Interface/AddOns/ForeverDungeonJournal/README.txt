@@ -1,4 +1,4 @@
-DungeonJournal 1.6.5
+DungeonJournal 1.7.0
 
 INSTALLATION
 Exit WoW, then extract this ZIP so
@@ -9,6 +9,82 @@ SETTINGS
 The addon folder, keybinding and saved-variable names are unchanged, so existing
 preferences carry over. Character progress is read from the game.
 Command: /dj.
+
+CHANGES IN 1.7.0
+- Quest tracker (new): the Track button on a dungeon's quest list puts its
+  quests in a small window framed like the game's Options panel. Each
+  dungeon gets its own window, and each character tracks its own dungeons.
+  - Quests are grouped: ready to hand in, in your log (with your progress),
+    to pick up, too low a level, done. A quest with nothing to do but talk to
+    someone counts as ready as soon as you have it.
+  - Click the ! of a quest to pick up, or the ? of a quest to hand in, to see
+    the NPC on the map (inside a dungeon: on that dungeon's map). Click a
+    quest's name to open it in the journal.
+  - A quest that needs a chain first shows a chain icon: click it to list the
+    steps, with a tick on the ones done and a clickable ! or ? on the step
+    you are on.
+  - Once you loot an item that starts a quest, its icon replaces the !:
+    click it to accept the quest. Quests picked up inside the dungeon, or
+    started by an item that drops there, show the In Dungeon icon.
+  - Drag the window anywhere (it stays on the screen and keeps its place),
+    resize it from its corner, fold it down to its title bar.
+- The Drowned City has its full page: six bosses, the Horde and Alliance
+  quests with the chains before them, quest givers on the map and the
+  entrance. No loot is known yet ("Items Data TBD").
+- Journal: a quest ready to hand in shows a round ? instead of the green
+  tick (in the list, on its page and on chain steps). Click it to see where
+  to hand it in.
+- Boss portraits show up at once: the ones the game draws itself (the WoW
+  Forever dungeons) are prepared in the background after you log in, and a
+  boss the game did not know yet is looked up again by itself.
+- Horde paladins get the class quest Old Fire-Eye (Wolfsbane) in The
+  Deadmines, Blackfathom Deeps and Shadowfang Keep. The paladin class quests
+  say on each dungeon's page that they are a chain.
+- Maps work on every game client: the journal brings its own copy of every
+  classic dungeon map where the game has none.
+- Loot Filter: cloaks no longer count as cloth.
+- Knowledge in the Deeps needs level 18, as in WoW Forever.
+
+CHANGES IN 1.6.8
+- Show on Map in combat: if a quest page is open when a fight starts, Show on
+  Map and Show Turn In open the map through the game's own map button. If the
+  journal was opened during the fight, the button says to press M, and the
+  map jumps to the marked spot when you do.
+
+CHANGES IN 1.6.7
+- RPG Mode explains itself. In the mode chooser at first login, RPG Mode's
+  button is now "Enable in Options": it opens the options on the Dungeon
+  list page (the RPG Mode box pulses gold) and you tick the box there, so you
+  know where to switch modes later. The journal stays in Gamer Mode until
+  then.
+- The first time you open the journal in RPG Mode, a note over the dungeon
+  cards says dungeons stay locked until you kill their final boss, with
+  "Disable in Options" and "Keep RPG Mode". The new RPG Mode button in the
+  dungeon list header (left of Favourites) opens it any time. The Journey bar
+  now sits just under the header buttons.
+- New Rogue class quests from C's Dead Drop near Pyrewood Village:
+  The Horn of Xelthos (Shadowfang Keep) and The Eye of Bhossca (Scarlet
+  Monastery: Graveyard and Library). Each page shows the whole chain, the
+  route through the dungeon, where every key and tool comes from, and the
+  rewards (Pyrewood Signet Ring, Ruby-Adorned Blade). Rogues see them (other
+  classes too with "Show all class quests" on).
+- The New Plague (Ruins of Lordaeron, Horde) now needs the whole A Recipe For
+  Death chain first, and The Wrath of Rath'mael needs the Rear Guard Patrol
+  chain first, as on live. Both chains show every step: who gives it, where
+  to go, and the rewards.
+- Quest chain steps: Show on Map for the quest giver, and Show Turn In when
+  someone else takes the quest. YOU HAVE IT shows when a step is in your
+  quest log. Click an item to mark where it is on the map (for example
+  Berard's Journal); where items drop is in their tooltips.
+- Less text on quest chain steps: the objective (with your progress), where
+  to go, and who starts and takes the quest. Rewards you get on top of the
+  one you choose are listed separately.
+- Maps for three announced dungeons: The Drowned City, Krol'dok Stronghold
+  and Shaper's Terrace. Click their Coming Soon card to open the map.
+- Boss and trash portraits for the original dungeons load instantly, and
+  portraits the journal looks up are remembered between sessions.
+- Fixed: the new-version reminder could keep naming a version that isn't out.
+- Everything new is translated into every supported language.
 
 CHANGES IN 1.6.5
 - New options panel in the style of the game's own Options window: Options
