@@ -188,15 +188,15 @@ Bartender4DB = {
 ["profiles"] = {
 ["Simon"] = {
 ["version"] = 3,
-["skin"] = {
-["Zoom"] = true,
-},
 ["position"] = {
 ["growHorizontal"] = "BOTH",
 ["x"] = 0,
 ["point"] = "BOTTOM",
 ["scale"] = 1,
 ["y"] = 202,
+},
+["skin"] = {
+["Zoom"] = true,
 },
 },
 },
@@ -208,8 +208,8 @@ Bartender4DB = {
 ["skin"] = {
 ["Zoom"] = true,
 },
-["version"] = 3,
 ["hidehotkey"] = false,
+["version"] = 3,
 ["position"] = {
 ["y"] = 171,
 ["x"] = -163,

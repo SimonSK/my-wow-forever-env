@@ -5,23 +5,19 @@ DataStore_Inventory_Characters = {
 nil,
 nil,
 nil,
-"|cnIQ1:|Hitem:6125::::::::8:1486::75:::::::|h[Brawler's Harness]|h|r",
-"|cnIQ0:|Hitem:2648::::::::8:1486:::::::::|h[Loose Chain Vest]|h|r",
-"|cnIQ0:|Hitem:2649::::::::8:1486:::::::::|h[Flimsy Chain Belt]|h|r",
-"|cnIQ1:|Hitem:11852::::::::8:1486::11:::::::|h[Roamer's Leggings]|h|r",
-"|cnIQ1:|Hitem:3439::::::::8:1486::11:::::::|h[Zombie Skin Boots]|h|r",
-"|cnIQ0:|Hitem:2643::::::::8:1486:::::::::|h[Loose Chain Bracers]|h|r",
-"|cnIQ0:|Hitem:1368::::::::8:1486:::::::::|h[Ragged Leather Gloves]|h|r",
-nil,
-nil,
-nil,
-nil,
-"|cnIQ1:|Hitem:3833::::::::8:1486::11:::::::|h[Adept's Cloak]|h|r",
-"|cnIQ1:|Hitem:2361::::::::8:1486::75:::::::|h[Battleworn Hammer]|h|r",
+"|cnIQ1:|Hitem:6125::::::::14:1486::75:::::::|h[Brawler's Harness]|h|r",
+"|cnIQ0:|Hitem:2648::::::::14:1486:::::::::|h[Loose Chain Vest]|h|r",
+"|cnIQ1:|Hitem:6509::::::::14:1486:::::::::|h[Infantry Belt]|h|r",
+"|cnIQ1:|Hitem:5941::::::::14:1486::11:::::::|h[Brass Scale Pants]|h|r",
+"|cnIQ0:|Hitem:1427::::::::14:1486:::::::::|h[Patchwork Shoes]|h|r",
+[17] = "|cnIQ2:|Hitem:246265::::::::14:1486::11:::::::|h[Salvaged Wooden Tower Shield]|h|r",
+[15] = "|cnIQ2:|Hitem:286744::::::::14:1486::11:::::::|h[Thrice-Stitched Flesh]|h|r",
+[10] = "|cnIQ0:|Hitem:1368::::::::14:1486:::::::::|h[Ragged Leather Gloves]|h|r",
+[16] = "|cnIQ0:|Hitem:1511::::::::14:1486:::::::::|h[Commoner's Sword]|h|r",
 },
-["lastUpdate"] = 1793989537,
-["averageItemLvl"] = 1.3125,
-["overallAIL"] = 1.3125,
+["lastUpdate"] = 1794084099,
+["averageItemLvl"] = 2.375,
+["overallAIL"] = 3.125,
 ["EquipmentInfo"] = 0,
 },
 }
@@ -29,10 +25,10 @@ DataStore_Inventory_Guilds = {
 {
 ["Members"] = {
 ["Simonmage Windseeker"] = {
-["averageItemLvl"] = 0,
+["averageItemLvl"] = 4,
 },
 ["Simon Windseeker"] = {
-["averageItemLvl"] = 1,
+["averageItemLvl"] = 2,
 },
 },
 },
@@ -43,10 +39,12 @@ DataStore_Inventory_CollectedSets = {
 }
 DataStore_Inventory_AppearancesCounters = {
 ["PALADIN"] = {
-[18] = 12402,
+[15] = 24664,
+[18] = 28786,
+[22] = 20538,
 [19] = 115,
-[15] = 4183,
-[22] = 4154,
+[14] = 12373,
+[21] = 12343,
 },
 }
 DataStore_Inventory_Options = {

@@ -1,23 +1,23 @@
 
 DataStore_GuildIDs = {
-["List"] = {
-"Default.CAMWOW US2 Realm 7 PvE.Simon",
-},
-["Count"] = 1,
 ["Set"] = {
 ["Default.CAMWOW US2 Realm 7 PvE.Simon"] = 1,
+},
+["Count"] = 1,
+["List"] = {
+"Default.CAMWOW US2 Realm 7 PvE.Simon",
 },
 }
 DataStore_GuildFactions = {
 "Horde",
 }
 DataStore_CharacterIDs = {
-["List"] = {
-"Default.CAMWOW US2 Realm 7 PvE.Simon Windseeker",
-},
-["Count"] = 1,
 ["Set"] = {
 ["Default.CAMWOW US2 Realm 7 PvE.Simon Windseeker"] = 1,
+},
+["Count"] = 1,
+["List"] = {
+"Default.CAMWOW US2 Realm 7 PvE.Simon Windseeker",
 },
 }
 DataStore_CharacterGUIDs = {

@@ -1,20 +1,20 @@
 
 DataStore_Characters_Info = {
 {
-["restXP"] = 730,
-["playedThisLevel"] = 22477,
+["restXP"] = 1280,
+["playedThisLevel"] = 11851,
 ["zone"] = "Tirisfal Glades",
-["money"] = 811,
-["played"] = 47498,
-["lastLogoutTimestamp"] = 1793989729,
-["maxXP"] = 5400,
-["bindLocation"] = "Gallows' End Tavern",
-["guildRankIndex"] = 0,
-["name"] = "Simon Windseeker",
-["lastUpdate"] = 1793989729,
+["money"] = 5107,
+["played"] = 85145,
+["XP"] = 7396,
+["maxXP"] = 12900,
+["bindLocation"] = "Undercity",
 ["subZone"] = "Gallows' End Tavern",
-["BaseInfo"] = 2894088,
-["XP"] = 4343,
+["guildRankIndex"] = 0,
+["lastUpdate"] = 1794084996,
+["name"] = "Simon Windseeker",
+["BaseInfo"] = 2894094,
+["lastLogoutTimestamp"] = 1794084996,
 },
 }
 DataStore_Characters_GuildRanks = {

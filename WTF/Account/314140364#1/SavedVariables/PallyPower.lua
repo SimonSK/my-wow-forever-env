@@ -23,26 +23,28 @@ PallyPowerDB = {
 ["ForeverShamanColumn"] = true,
 ["auraDurations"] = {
 ["Seal of Righteousness"] = 30,
+["Righteous Fury"] = 1800,
 },
+["seal"] = 0,
 ["display"] = {
 ["HideCountText"] = true,
 ["buffDuration"] = false,
 ["frameLocked"] = true,
 ["offsetX"] = 389.4999389648438,
-["showPlayerButtons"] = false,
 ["offsetY"] = 63.33323287963867,
+["showPlayerButtons"] = false,
 },
 ["enable"] = true,
-["minimap"] = {
-["show"] = false,
-},
+["ForeverCountDefault"] = true,
 ["ForeverSealRestored"] = true,
 ["ShowPets"] = false,
 ["ForeverSalvSplit"] = true,
 ["autobuff"] = {
 ["buffDuration"] = false,
 },
-["ForeverCountDefault"] = true,
+["minimap"] = {
+["show"] = false,
+},
 ["rf"] = true,
 },
 },
@@ -77,11 +79,10 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
+[0] = "None",
 [6] = "CuratorNet",
-[7] = "curatorhord",
 [4] = "Services",
 [5] = "TradeLocal",
-[0] = "None",
 }
 LCD_Data = nil
 LCD_GUIDAccess = nil

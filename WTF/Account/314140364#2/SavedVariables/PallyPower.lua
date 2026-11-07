@@ -32,10 +32,10 @@ PallyPowerDB = {
 ["show"] = false,
 },
 ["display"] = {
-["offsetY"] = 63.33323287963867,
-["frameLocked"] = true,
 ["HideCountText"] = true,
+["frameLocked"] = true,
 ["offsetX"] = 389.4999389648438,
+["offsetY"] = 63.33323287963867,
 },
 ["autobuff"] = {
 ["buffDuration"] = false,
@@ -61,10 +61,24 @@ PallyPowerDB = {
 },
 }
 PallyPower_Assignments = {
+["Simon Windseeker"] = {
+2,
+2,
+0,
+2,
+2,
+0,
+0,
+0,
+2,
+},
 }
 PallyPower_NormalAssignments = {
+["Simon Windseeker"] = {
+},
 }
 PallyPower_AuraAssignments = {
+["Simon Windseeker"] = 1,
 }
 PallyPower_SavedPresets = {
 ["PallyPower_NormalAssignments"] = {

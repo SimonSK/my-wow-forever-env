@@ -3,14 +3,14 @@ DataStore_Currencies_Characters = {
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1793989989,
+["lastUpdate"] = 1794082874,
 },
 }
 DataStore_Currencies_Catalog = {
-["List"] = {
+["Set"] = {
 },
 ["Count"] = 0,
-["Set"] = {
+["List"] = {
 },
 }
 DataStore_Currencies_Info = {
@@ -18,10 +18,10 @@ DataStore_Currencies_Info = {
 DataStore_Currencies_Max = {
 }
 DataStore_Currencies_Headers = {
-["List"] = {
+["Set"] = {
 },
 ["Count"] = 0,
-["Set"] = {
+["List"] = {
 },
 }
 DataStore_Currencies_Archeology = {

@@ -11,7 +11,7 @@ FrameLevel: 1
 Anchor: TOPLEFT
 X: 26
 Y: -210
-W: 432
+W: 36
 H: 36
 Frame: PallyPowerFrame
 FrameLevel: 1
@@ -34,13 +34,6 @@ X: -209
 Y: 4
 W: 1010
 H: 1200
-Frame: PawnUIFrame
-FrameLevel: 1
-Anchor: CENTER
-X: 12
-Y: -11
-W: 800
-H: 525
 Frame: RaidBarSettingsFrame
 FrameLevel: 1
 Anchor: TOP
@@ -52,6 +45,6 @@ Frame: BagnonInventory1
 FrameLevel: 1
 Anchor: RIGHT
 X: -74
-Y: 42
+Y: -13
 W: 384
-H: 170
+H: 281

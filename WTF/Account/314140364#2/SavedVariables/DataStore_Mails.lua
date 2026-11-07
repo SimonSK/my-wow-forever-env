@@ -1,9 +1,9 @@
 
 DataStore_Mails_Characters = {
 {
-["MailCache"] = {
-},
 ["Mails"] = {
+},
+["MailCache"] = {
 },
 },
 }
@@ -11,7 +11,7 @@ DataStore_Mails_Options = {
 ["ReportExpiredMailsToChat"] = true,
 ["ScanMailBody"] = true,
 ["CheckMailExpiry"] = true,
-["CheckMailExpiryAllAccounts"] = true,
-["MailWarningThreshold"] = 5,
 ["CheckMailExpiryAllRealms"] = true,
+["MailWarningThreshold"] = 5,
+["CheckMailExpiryAllAccounts"] = true,
 }

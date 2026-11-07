@@ -4,10 +4,21 @@ SilverDragon3DB = {
 ["Simon Windseeker"] = "Simon",
 },
 ["namespaces"] = {
+["ClickTarget"] = {
+["profiles"] = {
+["Simon"] = {
+["anchor"] = {
+["y"] = -209.8217926025391,
+["point"] = "RIGHT",
+},
+},
+},
+},
 ["History"] = {
 ["profiles"] = {
 ["Simon"] = {
-["style"] = "Traditional",
+["combat"] = true,
+["loot"] = false,
 ["position"] = {
 ["y"] = -0.0002899169921875,
 ["x"] = -340.997314453125,
@@ -15,7 +26,7 @@ SilverDragon3DB = {
 ["height"] = 600,
 ["width"] = 320,
 },
-["loot"] = false,
+["style"] = "Traditional",
 },
 },
 },
@@ -27,6 +38,20 @@ SilverDragon3DB = {
 },
 },
 },
+},
+},
+["global"] = {
+["mob_count"] = {
+[1533] = 1,
+[1936] = 1,
+[271080] = 1,
+[1531] = 2,
+},
+["mob_seen"] = {
+[1533] = 1794013524,
+[1936] = 1793992431,
+[271080] = 1793993938,
+[1531] = 1794014170,
 },
 },
 ["profiles"] = {

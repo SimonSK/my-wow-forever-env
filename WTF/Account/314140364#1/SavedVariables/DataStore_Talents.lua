@@ -10,21 +10,21 @@ DataStore_Talents_Specializations = {
 }
 DataStore_Talents_SpecializationInfos = {
 ["Roles"] = {
-["List"] = {
-"DAMAGER",
-},
-["Count"] = 1,
 ["Set"] = {
 ["DAMAGER"] = 1,
 },
+["Count"] = 1,
+["List"] = {
+"DAMAGER",
+},
 },
 ["Names"] = {
-["List"] = {
-"Paladin",
-},
-["Count"] = 1,
 ["Set"] = {
 ["Paladin"] = 1,
+},
+["Count"] = 1,
+["List"] = {
+"Paladin",
 },
 },
 }

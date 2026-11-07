@@ -50,7 +50,6 @@ MailLogger: enabled
 Mailwright: enabled
 NovaInstanceTracker: enabled
 NovaRaidCompanion: enabled
-Pawn: enabled
 Questie: enabled
 QuestieDB: enabled
 RaidBar: enabled

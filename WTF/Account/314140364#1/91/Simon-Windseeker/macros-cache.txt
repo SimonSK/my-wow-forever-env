@@ -1,3 +1,7 @@
+VER 3 0100000000000010 "BoP" "134400"
+#showtooltip Blessing of Protection
+/cast Blessing of Protection
+END
 VER 3 0100000000000009 "Cancel RF" "134400"
 #showtooltip Righteous Fury
 /cancelaura Blessing of Protection
@@ -7,14 +11,18 @@ END
 VER 3 0100000000000001 "Consecration" "134400"
 #showtooltip Consecration
 /cancelaura Blessing of Protection
-/cancelaura Blessing of Salvation
 /startattack
 /cast Consecration
+END
+VER 3 010000000000000F "Divine Prot" "134400"
+#showtooltip Divine Protection
+/cast Divine Protection
+/cancelaura Divine Protection
+/startattack
 END
 VER 3 0100000000000002 "Exorcism" "134400"
 #showtooltip Exorcism
 /cancelaura Blessing of Protection
-/cancelaura Blessing of Salvation
 /startattack
 /cast Exorcism
 END
@@ -29,16 +37,14 @@ END
 VER 3 0100000000000006 "Hammer of Wrath" "134400"
 #showtooltip Hammer of Wrath
 /cancelaura Blessing of Protection
-/cancelaura Blessing of Salvation
 /startattack
 /cast Hammer of Wrath
 END
-VER 3 0100000000000003 "Hand of Justice" "134400"
-#showtooltip Hand of Justice
+VER 3 0100000000000003 "HoJ" "134400"
+#showtooltip Hammer of Justice
 /cancelaura Blessing of Protection
-/cancelaura Blessing of Salvation
 /stopcasting
-/cast Hand of Justice
+/cast Hammer of Justice
 END
 VER 3 010000000000000B "Holy Light" "134400"
 #showtooltip Holy Light
@@ -47,21 +53,45 @@ END
 VER 3 0100000000000007 "Holy Shield" "134400"
 #showtooltip Holy Shield
 /cancelaura Blessing of Protection
-/cancelaura Blessing of Salvation
 /startattack
 /cast Holy Shield
+END
+VER 3 010000000000000D "Holy Strike" "134400"
+#showtooltip Holy Strike
+/cancelaura Blessing of Protection
+/startattack
+/cast Judgement
+/cast Holy Strike
 END
 VER 3 0100000000000008 "Judgment" "134400"
 #showtooltip Judgement
 /cancelaura Blessing of Protection
-/cancelaura Blessing of Salvation
 /startattack
 /cast Judgement
+END
+VER 3 0100000000000011 "LoH" "134400"
+#showtooltip Lay on Hands
+/cast Lay on Hands
+END
+VER 3 0100000000000013 "Redemption" "134400"
+#showtooltip Redemption
+/cast Redemption
+END
+VER 3 010000000000000C "Seal of Crusader" "134400"
+#showtooltip Seal of the Crusader
+/cancelaura Blessing of Protection
+/startattack
+/cast Seal of the Crusader
+END
+VER 3 0100000000000012 "Seal of Fury" "134400"
+#showtooltip Seal of Fury
+/cancelaura Blessing of Protection
+/startattack
+/cast Seal of Fury
 END
 VER 3 010000000000000A "Seal of Right" "134400"
 #showtooltip Seal of Righteousness
 /cancelaura Blessing of Protection
-/cancelaura Blessing of Salvation
 /startattack
 /cast Seal of Righteousness
 END

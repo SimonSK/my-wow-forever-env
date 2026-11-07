@@ -1,8 +1,50 @@
 
 DecursiveDB = {
 ["global"] = {
-["LastVersionAnnounce"] = 1793989998,
+["LastVersionAnnounce"] = 1794081941,
 ["NonRelease"] = "2.9.0-RC4",
+["t_SpellIDsSoundReg"] = {
+[1319539] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 16,
+},
+[9991] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 8,
+},
+[7713] = {
+["enabled"] = true,
+["spellType"] = 4,
+["from"] = "history",
+},
+[1297068] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 1,
+},
+[6751] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 8,
+},
+[13322] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 1,
+},
+[1306224] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 1,
+},
+[3237] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 4,
+},
+},
 },
 ["profileKeys"] = {
 ["Simonmage Windseeker"] = "Default",
