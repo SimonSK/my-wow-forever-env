@@ -1,4 +1,5 @@
 local _, wt = ...
+local refreshCraftingTab
 
 wt.ProfessionIcon = wt.createIconSetting("WT_ProfessionIcon", {
     {key = "question", texture = "Interface\\Icons\\INV_Misc_QuestionMark", name = wt.L.ADDON_ICON_QUESTION_MARK},
@@ -17,7 +18,12 @@ local function setProfessionTabPosition(position)
     if wt.PositionCraftingTab then wt.PositionCraftingTab() end
 end
 
-function wt.GenerateProfessionTabMenu(_, menu)
+local function setProfessionTabHidden(hidden)
+    WT_HideProfessionTab = hidden
+    if refreshCraftingTab then refreshCraftingTab() end
+end
+
+function wt.GenerateProfessionTabPositionMenu(_, menu)
     for _, option in ipairs({
         {wt.L.PROFESSION_TAB_TOP, "top"},
         {wt.L.PROFESSION_TAB_RIGHT, "right"},
@@ -26,12 +32,25 @@ function wt.GenerateProfessionTabMenu(_, menu)
         menu:CreateRadio(option[1], function(position) return professionTabPosition() == position end,
             setProfessionTabPosition, option[2])
     end
+end
+
+function wt.GenerateProfessionTabMenu(owner, menu)
+    wt.GenerateProfessionTabPositionMenu(owner, menu)
+    menu:CreateDivider()
+    menu:CreateCheckbox(wt.L.HIDE_PROFESSION_TAB, function() return WT_HideProfessionTab == true end, function()
+        setProfessionTabHidden(not WT_HideProfessionTab)
+        return MenuResponse.CloseAll
+    end)
     menu:CreateDivider()
     menu:CreateTitle(wt.L.ADDON_ICON_TITLE)
     menu:CreateIconRow(wt.ProfessionIcon)
 end
 
 function wt.MoveProfessionTab(direction)
+    if direction == "hide" or direction == "show" then
+        setProfessionTabHidden(direction == "hide")
+        return
+    end
     local position = professionTabPosition()
     if direction == "up" then
         position = position == "bottom" and "right" or "top"
@@ -201,6 +220,14 @@ local function attach()
 
     local function sync()
         queued = false
+        if WT_HideProfessionTab then
+            active = false
+            if controller then controller:Deactivate() end
+            launcher:Hide()
+            page:Hide()
+            returnTab:Hide()
+            return
+        end
         if InputUtil.IsGamepadUIEnabled() then
             active = false
             if not controller then
@@ -245,6 +272,7 @@ local function attach()
             returnTab.tooltipText = selected.tooltipText
         end
     end
+    refreshCraftingTab = sync
 
     local function request()
         if queued then return end
@@ -322,6 +350,7 @@ local function attach()
 end
 
 function wt.AttachCrafting()
+    WT_HideProfessionTab = WT_HideProfessionTab == true
     WT_ProfessionIcon = wt.ProfessionIcon.normalize(WT_ProfessionIcon)
     EventUtil.ContinueOnAddOnLoaded("Blizzard_Professions", attach)
 end

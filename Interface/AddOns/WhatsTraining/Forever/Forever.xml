@@ -4,8 +4,11 @@
     <Script file="Layout.lua"/>
     <Script file="Widgets.lua"/>
     <Script file="Menu.lua"/>
+    <Script file="Settings.lua"/>
+    <Script file="Ignored.lua"/>
     <Script file="Views.lua"/>
     <Script file="Banner.lua"/>
     <Script file="SpellBook.lua"/>
     <Script file="Controller.lua"/>
+    <Script file="Trainer.lua"/>
 </Ui>
