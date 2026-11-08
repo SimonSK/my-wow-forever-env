@@ -1,6 +1,11 @@
 
 NITdatabase = {
 ["profileKeys"] = {
+["Simondruid Windseeker"] = "Default",
+["Simonrogue Windseeker"] = "Default",
+["Simonwarrior Windseeker"] = "Default",
+["Simonhunter Windseeker"] = "Default",
+["Simonshaman Windseeker"] = "Default",
 ["Simon Windseeker"] = "Default",
 },
 ["global"] = {
@@ -10,11 +15,272 @@ NITdatabase = {
 ["gammaBuffSettings"] = {
 },
 ["myChars"] = {
+["Simondruid Windseeker"] = {
+["guild"] = "The Lusty Argonian Maid",
+["raceEnglish"] = "Skyborne",
+["guildRankName"] = "Member",
+["marks"] = {
+[20558] = 0,
+[20559] = 0,
+[20560] = 0,
+},
+["quests"] = {
+},
+["durabilityAverage"] = 100,
+["resting"] = false,
+["bossKills"] = {
+},
+["gold"] = 0,
+["time"] = 1794105937,
+["level"] = 1,
+["trackedItems"] = {
+},
+["savedInstances"] = {
+},
+["maxXP"] = 400,
+["freeBagSlots"] = 17,
+["raceLocalized"] = "Windshaper Skyborne",
+["gender"] = "Female",
+[17038] = 0,
+["classEnglish"] = "DRUID",
+["realm"] = "PvE",
+["questsMonthly"] = {
+},
+["currentXP"] = 0,
+["restedXP"] = 2,
+["totalBagSlots"] = 20,
+[17026] = 0,
+["questsDaily"] = {
+},
+["levelLog"] = {
+{
+["y"] = 0.2314112299342723,
+["x"] = 0.4281438070575843,
+["subzoneName"] = "Thendal Village",
+["zone"] = 2521,
+["zoneName"] = "Zephras Isle",
+["timestamp"] = 1794089360,
+["played"] = 2,
+["gold"] = 0,
+},
+},
+["classLocalized"] = "Druid",
+["race"] = "Windshaper Skyborne",
+},
+["Simonrogue Windseeker"] = {
+["guild"] = "The Lusty Argonian Maid",
+["raceEnglish"] = "Skyborne",
+["marks"] = {
+[20558] = 0,
+[20559] = 0,
+[20560] = 0,
+},
+["durabilityAverage"] = 100,
+["race"] = "Windshaper Skyborne",
+["bossKills"] = {
+},
+["gold"] = 0,
+["guildRankName"] = "Member",
+["levelLog"] = {
+{
+["y"] = 0.2314112299342723,
+["x"] = 0.4281438070575843,
+["subzoneName"] = "Thendal Village",
+["zone"] = 2521,
+["zoneName"] = "Zephras Isle",
+["timestamp"] = 1794088932,
+["played"] = 2,
+["gold"] = 0,
+},
+},
+["trackedItems"] = {
+},
+["realm"] = "PvE",
+["quests"] = {
+},
+["resting"] = false,
+["raceLocalized"] = "Windshaper Skyborne",
+["gender"] = "Female",
+["maxXP"] = 400,
+["classEnglish"] = "ROGUE",
+["time"] = 1794106370,
+["questsMonthly"] = {
+},
+["currentXP"] = 0,
+["restedXP"] = 2,
+["totalBagSlots"] = 20,
+["freeBagSlots"] = 18,
+["questsDaily"] = {
+},
+["level"] = 1,
+["classLocalized"] = "Rogue",
+["savedInstances"] = {
+},
+},
+["Simonwarrior Windseeker"] = {
+["guild"] = "The Lusty Argonian Maid",
+["raceEnglish"] = "Skyborne",
+["marks"] = {
+[20558] = 0,
+[20559] = 0,
+[20560] = 0,
+},
+["durabilityAverage"] = 100,
+["race"] = "Windshaper Skyborne",
+["bossKills"] = {
+},
+["gold"] = 0,
+["realm"] = "PvE",
+["levelLog"] = {
+{
+["y"] = 0.2314112299342723,
+["x"] = 0.4281438070575843,
+["subzoneName"] = "Thendal Village",
+["zone"] = 2521,
+["zoneName"] = "Zephras Isle",
+["timestamp"] = 1794089522,
+["gold"] = 0,
+["played"] = 2,
+},
+},
+["trackedItems"] = {
+},
+["savedInstances"] = {
+},
+["classLocalized"] = "Warrior",
+["level"] = 1,
+["raceLocalized"] = "Windshaper Skyborne",
+["classEnglish"] = "WARRIOR",
+["maxXP"] = 400,
+["gender"] = "Female",
+["time"] = 1794106063,
+["questsMonthly"] = {
+},
+["currentXP"] = 0,
+["restedXP"] = 2,
+["totalBagSlots"] = 20,
+["freeBagSlots"] = 18,
+["questsDaily"] = {
+},
+["resting"] = false,
+["quests"] = {
+},
+["guildRankName"] = "Member",
+},
+["Simonhunter Windseeker"] = {
+["marks"] = {
+[20558] = 0,
+[20559] = 0,
+[20560] = 0,
+},
+["durabilityAverage"] = 100,
+["level"] = 1,
+["trackedItems"] = {
+},
+["savedInstances"] = {
+},
+["totalPetPoints"] = 0,
+["maxXP"] = 400,
+["gender"] = "Female",
+["restedXP"] = 2,
+["totalBagSlots"] = 20,
+["freeBagSlots"] = 17,
+["questsDaily"] = {
+},
+["hasPet"] = false,
+["currentXP"] = 0,
+["raceEnglish"] = "Skyborne",
+["ammo"] = 200,
+["race"] = "Windshaper Skyborne",
+["time"] = 1794106084,
+["gold"] = 0,
+["levelLog"] = {
+{
+["y"] = 0.2314112299342723,
+["x"] = 0.4281438070575843,
+["subzoneName"] = "Thendal Village",
+["zone"] = 2521,
+["zoneName"] = "Zephras Isle",
+["timestamp"] = 1794089890,
+["gold"] = 0,
+["played"] = 3,
+},
+},
+["realm"] = "PvE",
+["raceLocalized"] = "Windshaper Skyborne",
+["ammoType"] = 2512,
+["classEnglish"] = "HUNTER",
+["questsMonthly"] = {
+},
+["isPetDead"] = false,
+["classLocalized"] = "Hunter",
+["bossKills"] = {
+},
+["guildRankName"] = "Member",
+["spentPetPoints"] = 0,
+["guild"] = "The Lusty Argonian Maid",
+["quests"] = {
+},
+["resting"] = false,
+},
+["Simonshaman Windseeker"] = {
+["guild"] = "The Lusty Argonian Maid",
+["currentXP"] = 0,
+[17030] = 0,
+["classLocalized"] = "Shaman",
+["marks"] = {
+[20558] = 0,
+[20559] = 0,
+[20560] = 0,
+},
+["raceEnglish"] = "Skyborne",
+["durabilityAverage"] = 100,
+["race"] = "Windshaper Skyborne",
+["bossKills"] = {
+},
+["gold"] = 0,
+["time"] = 1794105960,
+["levelLog"] = {
+{
+["y"] = 0.2314112299342723,
+["x"] = 0.4281438070575843,
+["subzoneName"] = "Thendal Village",
+["zone"] = 2521,
+["zoneName"] = "Zephras Isle",
+["timestamp"] = 1794089066,
+["gold"] = 0,
+["played"] = 2,
+},
+},
+["trackedItems"] = {
+},
+["savedInstances"] = {
+},
+["freeBagSlots"] = 17,
+["resting"] = false,
+["raceLocalized"] = "Windshaper Skyborne",
+["classEnglish"] = "SHAMAN",
+["maxXP"] = 400,
+["gender"] = "Female",
+["realm"] = "PvE",
+["questsMonthly"] = {
+},
+["level"] = 1,
+["restedXP"] = 2,
+["totalBagSlots"] = 20,
+[17057] = 0,
+["questsDaily"] = {
+},
+[17058] = 0,
+["quests"] = {
+},
+["guildRankName"] = "Member",
+},
 ["Simon Windseeker"] = {
 ["fishingSkill"] = 20,
 ["cookingSkill"] = 1,
 ["profSkill1"] = 56,
-["durabilityAverage"] = 70.47970479704797,
+["durabilityAverage"] = 72.82608695652173,
 [17033] = 0,
 ["level"] = 14,
 ["trackedItems"] = {
@@ -24,25 +290,22 @@ NITdatabase = {
 ["maxXP"] = 12900,
 ["gender"] = "Female",
 ["prof1"] = "Mining",
-["restedXP"] = 1280,
+["restedXP"] = 1958,
 ["totalBagSlots"] = 44,
-["freeBagSlots"] = 1,
+["freeBagSlots"] = 27,
 ["questsDaily"] = {
 },
 ["currentXP"] = 7396,
 ["raceEnglish"] = "Scourge",
 ["profSkillMax1"] = 150,
-["marks"] = {
-[20558] = 0,
-[20559] = 0,
-[20560] = 0,
-},
-["guild"] = "Simon",
-["race"] = "Undead",
+["guildRankName"] = "Member",
+["guild"] = "The Lusty Argonian Maid",
+["resting"] = true,
 ["bossKills"] = {
 },
-["gold"] = 5107,
-["classLocalized"] = "Paladin",
+["gold"] = 5130,
+["quests"] = {
+},
 ["levelLog"] = {
 {
 ["played"] = 1,
@@ -213,28 +476,31 @@ NITdatabase = {
 ["questCount"] = 11,
 },
 },
-["profSkill2"] = 56,
+["race"] = "Undead",
 ["realm"] = "PvE",
-["cooking"] = "Cooking",
-["prof2"] = "Mining",
+["time"] = 1794124027,
+["profSkillMax2"] = 150,
 ["raceLocalized"] = "Undead",
-["cookingSkillMax"] = 75,
+["fishingSkillMax"] = 75,
 ["fishing"] = "Fishing",
 ["classEnglish"] = "PALADIN",
-["playerName"] = "Simon Windseeker",
+["cookingSkillMax"] = 75,
 ["questsMonthly"] = {
 },
-["fishingSkillMax"] = 75,
+["playerName"] = "Simon Windseeker",
 [21177] = 0,
-["resting"] = true,
-["guildRankName"] = "Guild Master",
-["profSkillMax2"] = 150,
-["quests"] = {
+["marks"] = {
+[20558] = 0,
+[20559] = 0,
+[20560] = 0,
 },
-["time"] = 1794084992,
+["prof2"] = "Mining",
+["cooking"] = "Cooking",
+["classLocalized"] = "Paladin",
+["profSkill2"] = 56,
 },
 },
-["weeklyResetTime"] = 1794322798,
+["weeklyResetTime"] = 1794322799,
 ["trades"] = {
 },
 ["instances"] = {

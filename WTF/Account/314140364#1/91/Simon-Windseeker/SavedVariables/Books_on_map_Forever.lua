@@ -8,11 +8,11 @@ BooksOnMapForeverDB = {
 ["minimapIcon"] = {
 ["minimapPos"] = 153.1798277281107,
 },
-["folded"] = {
-},
+["minimapPinSize"] = 14,
 ["collected"] = {
 ["abecedaire"] = true,
 },
-["minimapPinSize"] = 14,
+["folded"] = {
+},
 ["sideTab"] = "rewards",
 }

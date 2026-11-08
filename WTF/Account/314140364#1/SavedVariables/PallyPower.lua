@@ -1,9 +1,57 @@
 
 PallyPowerDB = {
 ["profileKeys"] = {
+["Simondruid Windseeker"] = "Other",
+["Simonrogue Windseeker"] = "Other",
+["Simonwarrior Windseeker"] = "Other",
+["Simonhunter Windseeker"] = "Other",
+["Simonshaman Windseeker"] = "Other",
 ["Simon Windseeker"] = "Simon",
 },
 ["profiles"] = {
+["Other"] = {
+["ShowPets"] = false,
+["ForeverShamanColumn"] = true,
+["enable"] = true,
+["ForeverSalvSplit"] = true,
+["minimap"] = {
+["show"] = false,
+},
+["display"] = {
+["HideCountText"] = true,
+},
+["seal"] = 11,
+["ForeverSealRestored"] = true,
+["ForeverCountDefault"] = true,
+},
+["Simon"] = {
+["ForeverShamanColumn"] = true,
+["auraDurations"] = {
+["Seal of Righteousness"] = 30,
+["Righteous Fury"] = 1800,
+},
+["seal"] = 0,
+["display"] = {
+["HideCountText"] = true,
+["buffDuration"] = false,
+["frameLocked"] = true,
+["offsetX"] = 389.4999389648438,
+["showPlayerButtons"] = false,
+["offsetY"] = 63.33323287963867,
+},
+["enable"] = true,
+["ForeverCountDefault"] = true,
+["ForeverSealRestored"] = true,
+["ShowPets"] = false,
+["ForeverSalvSplit"] = true,
+["autobuff"] = {
+["buffDuration"] = false,
+},
+["minimap"] = {
+["show"] = false,
+},
+["rf"] = true,
+},
 ["Default"] = {
 ["ShowPets"] = false,
 ["ForeverShamanColumn"] = true,
@@ -19,50 +67,25 @@ PallyPowerDB = {
 ["ForeverSealRestored"] = true,
 ["rf"] = true,
 },
-["Simon"] = {
-["ForeverShamanColumn"] = true,
-["auraDurations"] = {
-["Seal of Righteousness"] = 30,
-["Righteous Fury"] = 1800,
-},
-["seal"] = 0,
-["display"] = {
-["HideCountText"] = true,
-["buffDuration"] = false,
-["frameLocked"] = true,
-["offsetX"] = 389.4999389648438,
-["offsetY"] = 63.33323287963867,
-["showPlayerButtons"] = false,
-},
-["enable"] = true,
-["ForeverCountDefault"] = true,
-["ForeverSealRestored"] = true,
-["ShowPets"] = false,
-["ForeverSalvSplit"] = true,
-["autobuff"] = {
-["buffDuration"] = false,
-},
-["minimap"] = {
-["show"] = false,
-},
-["rf"] = true,
-},
 },
 }
 PallyPower_Assignments = {
 ["Simon Windseeker"] = {
-2,
-2,
-nil,
-2,
-2,
-[9] = 2,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
 },
 }
 PallyPower_NormalAssignments = {
 }
 PallyPower_AuraAssignments = {
-["Simon Windseeker"] = 1,
+["Simon Windseeker"] = 0,
 }
 PallyPower_SavedPresets = {
 ["PallyPower_NormalAssignments"] = {

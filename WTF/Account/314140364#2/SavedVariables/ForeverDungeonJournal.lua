@@ -18,11 +18,13 @@ ForeverDungeonJournalDB = {
 },
 ["fdjOptionsDump"] = {
 },
+["newestSeenAt"] = 1794114044,
+["newestSeenVersion"] = "1.7.2",
 ["questFaction"] = "Horde",
 ["lastMode"] = "bosses",
-["lastBoss"] = 1,
+["lastBoss"] = 3,
 ["lastQuest"] = 1,
-["lastDungeon"] = "Ruins of Lordaeron",
+["lastDungeon"] = "Wailing Caverns",
 ["showAllClassQuests"] = true,
 ["mapFloors"] = {
 },
@@ -40,6 +42,10 @@ ForeverDungeonJournalDB = {
 ["o"] = "Bring the Lich's Spellbook to Bethor Iceshard in the Undercity.",
 ["d"] = "There is a lich who dwells on the island in Brightwater Lake to the north.  Although he is a free-willed Forsaken, he believes all other Undead are Scourge slaves and has his minions attack anyone who approaches him.\n\nBut because he is Forsaken, the Queen will want him.  And if he is skilled in Necromancy, then his knowledge would be...quite useful to us.\n\nTo discover his identity and his talents, I must see his spellbook.  Steal into his camp and acquire it, then return to me.",
 },
+[361] = {
+["o"] = "Find Yvette Farthing, and deliver to her the letter from Thurman Agamand.",
+["d"] = "This is a letter written by Thurman, the eldest son of Gregor Agamand.  It is addressed to an Yvette Farthing, though it does not appear to have reached her...",
+},
 [492] = {
 ["o"] = "Bring Johaan's Special Drink to the Captured Mountaineer.",
 ["d"] = "According to the Deathguard, another one of those foolish Dwarven Mountaineers has just been captured.  The Deathguard likes to use the cellar of the Gallows End Tavern as a holding cell until prisoners can be \"properly\" dealt with.\n\nWhy don't you go see how the Captured Mountaineer enjoys this special drink I made for him?  It contains a subtle hint of what The Dark Lady has planned for the rest of Azeroth.",
@@ -54,15 +60,19 @@ ForeverDungeonJournalDB = {
 },
 [96607] = {
 ["o"] = "Sit near Eleanor's Basic Campfire and wait until you receive the Boosted Rest buff.",
-["d"] = "Greetings, mage. I can see you've got the look of an adventurer about you. This is good. The world needs more of us restless souls, seeking fortune and glory.\r\n\r\nYou'll need to learn to thrive in the wilds to be successful in this line of work. Not sure how your outdoor skills are but I can probably teach you a thing or two, if you'd be apt to learn.\r\n\r\nHave a seat near the fire and get comfortable. I'll walk you through it.",
+["d"] = "Greetings, priest. I can see you've got the look of an adventurer about you. This is good. The world needs more of us restless souls, seeking fortune and glory.\r\n\r\nYou'll need to learn to thrive in the wilds to be successful in this line of work. Not sure how your outdoor skills are but I can probably teach you a thing or two, if you'd be apt to learn.\r\n\r\nHave a seat near the fire and get comfortable. I'll walk you through it.",
 },
 [381] = {
 ["o"] = "Bring Executor Arren 12 Scarlet Armbands from Scarlet Converts and Scarlet Initiates.",
 ["d"] = "You'll be happy to know we appear to be making progress in the mine, thanks in no small part to your efforts.  We can now turn our eyes to other concerns.\n\nMy scouts have reported that a detachment of the Scarlet Crusade is setting up a camp southeast of here. The Scarlet Crusade is a despicable organization that hunts us, and they will not rest until every undead--Lich King's Scourge or no--is destroyed. We must strike first!\n\nBe careful, their unholy zeal makes them dangerous adversaries.",
 },
+[5651] = {
+["o"] = "Speak to Dark Cleric Beryl in Tirisfal Glades.",
+["d"] = "There are many lessons that the Forsaken have learned through experience--things that some races can only begin to fathom. And although our path lies in darkness, you will find that a great many things rely on both the light and the dark. Your lessons shall teach you to use both... and with discretion. But heed my words: never forget we were forged in corruption and left to rot like so much carrion. The Darkness is our home.\n\nSeek out Dark Cleric Beryl in Brill when you're ready to learn more.",
+},
 [405] = {
 ["o"] = "Present Sevren's Orders to Bethor Iceshard in the Undercity.",
-["d"] = "Bethor Iceshard, a high-ranking and powerful mage in the Undercity to the south, commands me to send him an agent with proven worth against the Scourge.  You, N, will be that agent.\n\nPresent these orders to Bethor.  He will then instruct you on your mission.  I don't know its details, but it deals with recruiting a wayward Lich.  And it will be dangerous.\n\nSo ready yourself, Mage.  You must not fail.\n\nYou may find Bethor in the Magic Quarter of the Undercity.",
+["d"] = "Bethor Iceshard, a high-ranking and powerful mage in the Undercity to the south, commands me to send him an agent with proven worth against the Scourge.  You, N, will be that agent.\n\nPresent these orders to Bethor.  He will then instruct you on your mission.  I don't know its details, but it deals with recruiting a wayward Lich.  And it will be dangerous.\n\nSo ready yourself, Priest.  You must not fail.\n\nYou may find Bethor in the Magic Quarter of the Undercity.",
 },
 [409] = {
 ["o"] = "Obtain a Candle of Beckoning.\n\nSummon Lillith Nefara and kill her.\n\nReturn to Gunther on his island.",
@@ -79,6 +89,10 @@ ForeverDungeonJournalDB = {
 [95314] = {
 ["o"] = "Collect 8 Bottles of Whispering Elixir from Shadowvale, then return to Carolai Anise in Brill.",
 ["d"] = "Before the Scourge invasion, the reclusive village of Shadowvale was known for its Whispering Elixir. Distilled from herbs found only in Tyr's Fall, the elixir was sought by apothecaries, mystics, and poisoners alike even after being banned in the city.\r\n\r\nI've had requests from a number of buyers eager to get their hands on some elixir. Travel to the ruins of Shadowvale deep in the Whispering Forest to the west. I'm prepared to offer significant compensation if you can recover some bottles for me.",
+},
+[3099] = {
+["o"] = "Read the Tainted Scroll and speak to Maximillion in Deathknell.",
+["d"] = "Ah, while you were off dealing with the mindless Scourge, this scroll arrived for you. I would think it's some matter of importance as it seems it bears the seal of the warlock trainer Maximillion. I would take some time to read it before heading out again.",
 },
 [445] = {
 ["o"] = "Take Apothecary Johaan's findings to Apothecary Renferrel in Silverpine Forest.",
@@ -118,7 +132,7 @@ ForeverDungeonJournalDB = {
 },
 [99141] = {
 ["o"] = "Obtain reports from Deathguard Dillinger, Deathguard Kristof, and Gordo for Executor Zygand.",
-["d"] = "Make no mistake, mage--the Dark Lady demands the perfect execution of her will. As an Executor, it is my duty to see that this happens.\r\n\r\nReports from several of my Deathguards are overdue. Needless to say, my patience has run out. Obtain their reports and bring them to me in the Dark Lady's name.\r\n\r\nYou will find Deathguard Dillinger just west of here, by the graveyard. Deathguard Kristof is stationed at the waystation to the east. And check on the abomination Gordo; he wanders west near Stillwater Pond.",
+["d"] = "Make no mistake, warlock--the Dark Lady demands the perfect execution of her will. As an Executor, it is my duty to see that this happens.\r\n\r\nReports from several of my Deathguards are overdue. Needless to say, my patience has run out. Obtain their reports and bring them to me in the Dark Lady's name.\r\n\r\nYou will find Deathguard Dillinger just west of here, by the graveyard. Deathguard Kristof is stationed at the waystation to the east. And check on the abomination Gordo; he wanders west near Stillwater Pond.",
 },
 [382] = {
 ["o"] = "Kill Meven Korgal, the messenger, at the Crusader camp, then return any information you find to Executor Arren.",
@@ -131,6 +145,10 @@ ForeverDungeonJournalDB = {
 [398] = {
 ["o"] = "Kill Maggot Eye and return to Executor Zygand in Brill with his paw for a reward.",
 ["d"] = "Wanted: Maggot Eye!\n\nA foul beast, even by Gnoll standards, Maggot Eye has been sentenced to death for his crimes against The Forsaken.  This despicable villain has been stealing corpses for use by the Lich King's army.  Maggot Eye was last seen pillaging the lands near Garren's Haunt to the north of Brill.\n\nThe town of Brill hereby offers a reward to the capable soul who can carry out the execution.  Show Executor Zygand the villain's paw once the deed is done.\n\nMercy is for the weak.",
+},
+[97959] = {
+["o"] = "Speak with Brom Killian in Undercity to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
+["d"] = "Mining isn't the most glamorous, but it's good honest work and a fine profession for you to explore.\r\n\r\nI reckon I know someone that can teach you how to craft a Lodestone for your camp. Build one of these and everyone who wants to swing a sword will be eager to gather round your fire and soak up the extra \"oomph\" it can provide to increase their combat prowess.",
 },
 [5481] = {
 ["o"] = "Collect 3 Gloom Weed and deliver them to Junior Apothecary Holland in the Brill graveyard.",
@@ -166,7 +184,7 @@ ForeverDungeonJournalDB = {
 },
 [96658] = {
 ["o"] = "Speak with William Pickman in Brill to learn to become a cook.",
-["d"] = "So you want to learn more about camping, huh? Good for you, mage. The first step any adventurer needs to take is to become a cook and learn how to make a campfire.\r\n\r\nCooking's not just about making tasty foods. It's also the foundation for your camp.",
+["d"] = "So you want to learn more about camping, huh? Good for you, priest. The first step any adventurer needs to take is to become a cook and learn how to make a campfire.\r\n\r\nCooking's not just about making tasty foods. It's also the foundation for your camp.",
 },
 [86784] = {
 ["o"] = "Collect 6 Dry Branches and bring them to Eleanor Shackleton.",
@@ -175,6 +193,10 @@ ForeverDungeonJournalDB = {
 [359] = {
 ["o"] = "Speak with Deathguard Linnea.",
 ["d"] = "I need a fresh report from our Deathguard waystation to the east.\n\nI must know if more Scourge forces have slipped past The Bulwark and into Tirisfal.  Our vigilance on the border to the Plaguelands must be maintained - we can't let the Scourge get a stronger foothold here!\n\nTravel south along the road, then east at the fork to the waystation.  Speak with Deathguard Linnea.  She has the information I need.",
+},
+[363] = {
+["o"] = "Speak with Shadow Priest Sarvis.",
+["d"] = "About time you woke up. We were ready to toss you into the fire with the others, but it looks like you made it.\n\nI am Mordo, the caretaker of the crypt of Deathknell. And you are the Lich King's slave no more.\n\nSpeak with Shadow Priest Sarvis in the chapel at the base of the hill, he will tell you more of what you must know.",
 },
 [367] = {
 ["o"] = "Apothecary Johaan in the town of Brill wants you to collect 5 Vials of Darkhound Blood.",
@@ -190,7 +212,7 @@ ForeverDungeonJournalDB = {
 },
 [98389] = {
 ["o"] = "Free 6 Webbed Victims in Night's Web Hollow for Aramis Hammerhand in Deathknell.",
-["d"] = "Greetings, mage. Yes, I am a paladin. Not even death can stop the Light.\r\n\r\nThis is something my kind have in common with all Forsaken--we have overcome what the living view as their end. However, some even among our own fear us; they suspect we will smite them as some monstrosity.\r\n\r\nIn truth, our relationship with undeath is complex, but I am not here to hurt our own. Help me show the others this. Venture to Night's Web Hollow to the northwest and free the freshly raised fools trapped by the spiders there.",
+["d"] = "Greetings, priest. Yes, I am a paladin. Not even death can stop the Light.\r\n\r\nThis is something my kind have in common with all Forsaken--we have overcome what the living view as their end. However, some even among our own fear us; they suspect we will smite them as some monstrosity.\r\n\r\nIn truth, our relationship with undeath is complex, but I am not here to hurt our own. Help me show the others this. Venture to Night's Web Hollow to the northwest and free the freshly raised fools trapped by the spiders there.",
 },
 [383] = {
 ["o"] = "Deliver the Scarlet Crusade Documents to Executor Zygand in Brill.",
@@ -219,6 +241,10 @@ ForeverDungeonJournalDB = {
 [427] = {
 ["o"] = "Executor Zygand of Brill wants you to kill 10 Scarlet Warriors.",
 ["d"] = "The documents Executor Arren provided are just the break we needed in our battle with the wretched Scarlet Crusade.  We now know their exact locations throughout Tirisfal Glades.\n\nBut the Deathguard has larger concerns.  The Lich King's army grows in number each night.  We need someone with \"initiative\" like yourself to drive the Scarlet Crusade to the grave.\n\nProve to me you are capable of serving The Dark Lady by travelling west to the tower past the Solliden Farmstead and slay 10 Scarlet Warriors.",
+},
+[1470] = {
+["o"] = "Bring Venya Marthand 3 Rattlecage Skulls.",
+["d"] = "Greetings, child. I can see that you are still young in the ways of the warlock, power still eluding your grasp. I can sense your eagerness to learn.\n\nAnd you will learn.\n\nThere is no strength in ignorance. Knowledge is our greatest power. Through its application, we can control the chaotic magics and beings of the void, bending them to our will.\n\nI will show you how to bind a servant to your will, but first you must bring me three skulls of the rattlecage skeletons near the abandoned smithy.",
 },
 [99144] = {
 ["o"] = "Help Bareth Dawnstone escape Crusader's Outpost, and report his safety to Shari Stilwell in Brill.",
@@ -280,6 +306,10 @@ ForeverDungeonJournalDB = {
 ["o"] = "Defeat Calvin Montague in Deathknell.",
 ["d"] = "What?\n\nWhat?!\n\nYou want money? I don't owe you any money.\n\nLetter? What letter? Oh, you wanna fight then? All right, mate... let's do this! Owe you any money...",
 },
+[3097] = {
+["o"] = "Read the Hallowed Scroll and speak to Dark Cleric Duesten in the church in Deathknell.",
+["d"] = "Ah, while you were off dealing with the mindless Scourge, this scroll arrived for you. I would think it's some matter of importance as it seems it bears the seal of the priest trainer Duesten. I would take some time to read it before heading out again.",
+},
 [95328] = {
 ["o"] = "Deliver Whispering Horror Residue to Father Lankester in the War Quarter of Undercity.",
 ["d"] = "Against your better judgement you scrape up and collect the squirming remains of the beast. Someone in Undercity might have a use for them.",
@@ -302,7 +332,7 @@ ForeverDungeonJournalDB = {
 },
 [365] = {
 ["o"] = "Steal 10 pumpkins from the farm to the west, just north of Deathknell and take them to Apothecary Johaan in Brill.",
-["d"] = "What have we here?  You look like a fledgling mage.  If you hope to prove yourself to The Dark Lady, you need to learn the ways of The Forsaken.\n\nTo the west you'll find a farm.  Humans infest the land like mold on a rotting corpse.  And worse yet, the Scarlet Crusade patrols nearby from their tower.  Teach those scum a lesson and steal 10 of their precious pumpkins.\n\nOnce you have 10, take them to Apothecary Johaan in Brill.",
+["d"] = "What have we here?  You look like a fledgling warlock.  If you hope to prove yourself to The Dark Lady, you need to learn the ways of The Forsaken.\n\nTo the west you'll find a farm.  Humans infest the land like mold on a rotting corpse.  And worse yet, the Scarlet Crusade patrols nearby from their tower.  Teach those scum a lesson and steal 10 of their precious pumpkins.\n\nOnce you have 10, take them to Apothecary Johaan in Brill.",
 },
 [368] = {
 ["o"] = "Apothecary Johaan of the town of Brill needs 5 Vile Fin Scales from Murlocs in Tirisfal Glades.",
@@ -314,7 +344,7 @@ ForeverDungeonJournalDB = {
 },
 [374] = {
 ["o"] = "Bring 10 Scarlet Insignia Rings to Deathguard Burgess in Brill.",
-["d"] = "Executor Zygand tells me you've been out killing Scarlet Crusaders. Tirisfal Glades is crawling with them.\n\nVarimathras, lieutenant to The Dark Lady, is seeing to it personally that the scum of Azeroth, the Human race, gets wiped into oblivion. Here in Tirisfal Glades we face a particularly annoying breed of humans: The Scarlet Crusade.\n\nVenture forth and wage an offensive on the Scarlet Crusade, mage. Bring me back 10 Scarlet Insignia Rings as proof of your loyalty to Varimathras and The Dark Lady.",
+["d"] = "Executor Zygand tells me you've been out killing Scarlet Crusaders. Tirisfal Glades is crawling with them.\n\nVarimathras, lieutenant to The Dark Lady, is seeing to it personally that the scum of Azeroth, the Human race, gets wiped into oblivion. Here in Tirisfal Glades we face a particularly annoying breed of humans: The Scarlet Crusade.\n\nVenture forth and wage an offensive on the Scarlet Crusade, priest. Bring me back 10 Scarlet Insignia Rings as proof of your loyalty to Varimathras and The Dark Lady.",
 },
 [1881] = {
 ["o"] = "Speak with Anastasia Hartwell.",
@@ -323,6 +353,10 @@ ForeverDungeonJournalDB = {
 [97558] = {
 ["o"] = "Bring Shelene Rhobart 8 Duskbat Wing Membranes, 6 Darkhound Hides and 3 Vile Fin Murloc Skin.",
 ["d"] = "One part of undeath no one mentions is what happens when we are injured. How does the skin of an undead heal itself?\r\n\r\nWell, it doesn't.\r\n\r\nOurs is a cursed life, N. We must take from the living to further our own existence.\r\n\r\nWhen we sustain an injury, we must replace our skin which usually means animal hides. Since different hide thicknesses are better for different places on our bodies a variety is key!\r\n\r\nBring me wing membranes of a duskbat, hides from a darkhound and skin of a Vile Fin murloc.",
+},
+[5650] = {
+["o"] = "Find Deathguard Kel and heal his wounds using Lesser Heal (Rank 2). Afterwards, grant him Power Word: Fortitude and then return to Dark Cleric Beryl in Brill.",
+["d"] = "Our power comes from darkness and shadow, N, but that is not your only role. You have acknowledged that there is merit in knowing the healing arts. This is wise. But before you can know the dark, you must also know the light. And for this, I have a test for you.\n\nNorth of the cemetery is a wounded Deathguard--Deathguard Kel. He has protected us from gnolls for some time, and needs healing. But, you must also fortify his body before he can return to duty. Do both with your spells, and then return to me.",
 },
 },
 },

@@ -47,9 +47,9 @@ BagSyncDB = {
 ["extTT_CustomAnchorY"] = 0,
 ["enableRealmNames"] = true,
 ["enableAccurateBattlePets"] = true,
-["enableFaction"] = true,
+["extTT_Font"] = "Friz Quadrata TT",
 ["extTT_CustomAnchorX"] = 0,
-["enableBNET"] = false,
+["enableItemTypes"] = true,
 ["alwaysShowSearchFilters"] = false,
 ["addonversion"] = "20.38",
 ["minimap"] = {
@@ -58,16 +58,16 @@ BagSyncDB = {
 ["hide"] = true,
 },
 ["showCurrentCharacterOnly"] = false,
-["enableTooltipGreenCheck"] = true,
-["enableItemTypes"] = true,
+["enableRealmShortName"] = false,
+["enableTooltipSeparator"] = true,
 ["enableCurrentRealmName"] = false,
 ["tooltipModifer"] = "NONE",
-["enableTooltipSeparator"] = true,
+["enableBNET"] = false,
 ["enableUnitClass"] = true,
 ["enableShowUniqueItemsTotals"] = true,
 ["itemTotalsByClassColor"] = true,
-["enableRealmShortName"] = false,
-["extTT_Font"] = "Friz Quadrata TT",
+["enableTooltipGreenCheck"] = true,
+["enableFaction"] = true,
 ["enableLoginVersionInfo"] = true,
 ["enable_GSC_Display"] = false,
 ["enableTooltips"] = true,
@@ -167,9 +167,9 @@ BagSyncDB = {
 ["mailbox"] = true,
 ["auction"] = true,
 ["currency"] = false,
-["void"] = false,
 ["equip"] = true,
 ["professions"] = true,
+["void"] = false,
 ["reagents"] = false,
 ["bank"] = true,
 },
@@ -183,9 +183,237 @@ BagSyncDB = {
 ["savedsearch§"] = {
 },
 ["CAMWOW US1 Realm 5 PvE"] = {
+["Simonpriest"] = {
+["race_atlas"] = "raceicon128-undead-female",
+["guild"] = "The Lusty Argonian Maid©",
+["guid"] = "Player-6923-01B20BD0",
+["class"] = "PRIEST",
+["race"] = "Scourge",
+["equip"] = {
+"53",
+"16607",
+"3442",
+"281283",
+"1427",
+"3641",
+"1430",
+"2580",
+"277247",
+"286743",
+},
+["guildrealm"] = "CAMWOWUS2Realm5PvE",
+["realmKey"] = "CAMWOW US1 Realm 5 Pv E",
+["equipbags"] = {
+["bag"] = {
+"279939;1;bagslot=1",
+"4238;1;bagslot=2",
+"4238;1;bagslot=3",
+"4238;1;bagslot=4",
+},
+},
+["rwsKey"] = "CAMWOWUS1Realm5PvE",
+["gender"] = 3,
+["local_class_name"] = "Priest",
+["class_id"] = 5,
+["currency"] = {
+},
+["race_id"] = 5,
+["money"] = 6732,
+["faction"] = "Horde",
+["professions"] = {
+[356] = {
+["categories"] = {
+[2715] = {
+["orderIndex"] = 1,
+["name"] = "Camping",
+["recipes"] = "|1229745",
+},
+},
+["categoryCount"] = 1,
+["name"] = "Fishing",
+["skillLineMaxLevel"] = 75,
+["recipeCount"] = 1,
+["skillLineCurrentLevel"] = 20,
+},
+[182] = {
+["categories"] = {
+[2716] = {
+["orderIndex"] = 1,
+["name"] = "Camping",
+["recipes"] = "|1229705",
+},
+},
+["recipeCount"] = 1,
+["name"] = "Herbalism",
+["skillLineMaxLevel"] = 75,
+["categoryCount"] = 1,
+["skillLineCurrentLevel"] = 48,
+},
+[185] = {
+["categories"] = {
+[2714] = {
+["orderIndex"] = 1,
+["name"] = "Camping",
+["recipes"] = "|1229737",
+},
+[2632] = {
+["orderIndex"] = 1,
+["name"] = "Everyday Meals",
+["recipes"] = "|2538",
+},
+[2640] = {
+["orderIndex"] = 1,
+["name"] = "Stamina Food",
+["recipes"] = "|8604",
+},
+[2633] = {
+["orderIndex"] = 1,
+["name"] = "Strength Food",
+["recipes"] = "|2540",
+},
+[2643] = {
+["orderIndex"] = 1,
+["name"] = "Attack Power Food",
+["recipes"] = "|7751",
+},
+[2594] = {
+["name"] = "SEASON OF DISCOVERY",
+["orderIndex"] = 1,
+},
+},
+["recipeCount"] = 5,
+["name"] = "Cooking",
+["categoryCount"] = 6,
+},
+},
+["bag"] = {
+{
+},
+{
+},
+{
+},
+{
+},
+{
+"2449;6",
+"2447;3",
+"765;2",
+},
+[0] = {
+"6948",
+"118;2",
+"6256",
+"3238",
+},
+},
+["local_race_name"] = "Undead",
+},
+["Simonwarlock"] = {
+["race_atlas"] = "raceicon128-undead-female",
+["guild"] = "The Lusty Argonian Maid©",
+["guid"] = "Player-6923-01B20C57",
+["class"] = "WARLOCK",
+["race"] = "Scourge",
+["equip"] = {
+"6129",
+"7026",
+"1378",
+"1374",
+"3365",
+"1377",
+"11847",
+"2092",
+"247789",
+},
+["guildrealm"] = "CAMWOWUS2Realm5PvE",
+["realmKey"] = "CAMWOW US1 Realm 5 Pv E",
+["rwsKey"] = "CAMWOWUS1Realm5PvE",
+["gender"] = 3,
+["bag"] = {
+{
+},
+{
+},
+{
+},
+{
+},
+[0] = {
+"6948",
+"159;12",
+"3277",
+"2901",
+"2580",
+"2770;2",
+"2835;2",
+"2589;17",
+"208185",
+"286202",
+"286200",
+"2855;2",
+},
+},
+["class_id"] = 9,
+["equipbags"] = {
+["bag"] = {
+"279939;1;bagslot=1",
+"805;1;bagslot=2",
+"5572;1;bagslot=3",
+"828;1;bagslot=4",
+},
+},
+["race_id"] = 5,
+["money"] = 406,
+["faction"] = "Horde",
+["professions"] = {
+},
+["currency"] = {
+},
+["local_race_name"] = "Undead",
+["local_class_name"] = "Warlock",
+},
+["Simonpaladin"] = {
+["race_atlas"] = "raceicon128-undead-male",
+["guild"] = "Simon©",
+["guid"] = "Player-6923-00E24B64",
+["class"] = "PALADIN",
+["race"] = "Scourge",
+["equip"] = {
+"6125",
+"139",
+"140",
+"2361",
+},
+["guildrealm"] = "CAMWOWUS2Realm7PvE",
+["realmKey"] = "CAMWOW US1 Realm 5 Pv E",
+["rwsKey"] = "CAMWOWUS1Realm5PvE",
+["gender"] = 2,
+["local_class_name"] = "Paladin",
+["currency"] = {
+},
+["bag"] = {
+[0] = {
+"4604;4",
+"6948",
+"159;2",
+},
+},
+["race_id"] = 5,
+["money"] = 0,
+["faction"] = "Horde",
+["professions"] = {
+},
+["class_id"] = 2,
+["local_race_name"] = "Undead",
+["equipbags"] = {
+["bag"] = {
+},
+},
+},
 ["Simonmage"] = {
 ["race_atlas"] = "raceicon128-undead-female",
-["guild"] = "Simon©",
+["guild"] = "The Lusty Argonian Maid©",
 ["guid"] = "Player-6923-005A94FC",
 ["class"] = "MAGE",
 ["local_class_name"] = "Mage",
@@ -201,35 +429,13 @@ BagSyncDB = {
 "3446",
 "286743",
 },
-["guildrealm"] = "CAMWOWUS2Realm7PvE",
+["guildrealm"] = "CAMWOWUS2Realm5PvE",
 ["realmKey"] = "CAMWOW US1 Realm 5 Pv E",
-["bag"] = {
-{
-},
-{
-},
-{
-},
-{
-},
-{
-"10938;4",
-"10940;4",
-},
-[0] = {
-"6948",
-"2288;2",
-"5349;4",
-"118;2",
-"6256",
-"6218",
-"3238",
-},
-},
 ["rwsKey"] = "CAMWOWUS1Realm5PvE",
 ["gender"] = 3,
 ["currency"] = {
 },
+["class_id"] = 8,
 ["equipbags"] = {
 ["bag"] = {
 "279939;1;bagslot=1",
@@ -238,7 +444,6 @@ BagSyncDB = {
 "4238;1;bagslot=4",
 },
 },
-["race"] = "Scourge",
 ["race_id"] = 5,
 ["money"] = 8593,
 ["faction"] = "Horde",
@@ -294,15 +499,15 @@ BagSyncDB = {
 ["name"] = "Cloaks",
 ["recipes"] = "|2397|2387",
 },
-[2583] = {
-["orderIndex"] = 1,
-["name"] = "Robes and Vests",
-["recipes"] = "|7630|7629",
-},
 [2576] = {
 ["orderIndex"] = 1,
 ["name"] = "Reagents",
 ["recipes"] = "|2963",
+},
+[2583] = {
+["orderIndex"] = 1,
+["name"] = "Robes and Vests",
+["recipes"] = "|7630|7629",
 },
 },
 ["recipeCount"] = 13,
@@ -345,8 +550,29 @@ BagSyncDB = {
 ["skillLineCurrentLevel"] = 11,
 },
 },
-["class_id"] = 8,
+["race"] = "Scourge",
 ["local_race_name"] = "Undead",
+["bag"] = {
+{
+},
+{
+},
+{
+},
+{
+},
+{
+"10938;6",
+"10940;8",
+},
+[0] = {
+"6948",
+"118;2",
+"6256",
+"6218",
+"3238",
+},
+},
 },
 },
 }

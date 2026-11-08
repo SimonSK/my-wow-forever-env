@@ -1,6 +1,9 @@
 
 Details_StreamerDB = {
 ["characters"] = {
+["Simonpriest - CAMWOW US1 Realm 5 PvE"] = "Simon",
+["Simonpaladin - CAMWOW US1 Realm 5 PvE"] = "Simon",
+["Simonwarlock - CAMWOW US1 Realm 5 PvE"] = "Simon",
 ["Simonmage - CAMWOW US1 Realm 5 PvE"] = "Simon",
 },
 ["profiles"] = {

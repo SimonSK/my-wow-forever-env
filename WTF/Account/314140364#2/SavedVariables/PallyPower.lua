@@ -1,6 +1,9 @@
 
 PallyPowerDB = {
 ["profileKeys"] = {
+["Simonwarlock Windseeker"] = "Other",
+["Simonpaladin Windseeker"] = "Simon",
+["Simonpriest Windseeker"] = "Other",
 ["Simonmage Windseeker"] = "Other",
 },
 ["profiles"] = {
@@ -33,9 +36,9 @@ PallyPowerDB = {
 },
 ["display"] = {
 ["HideCountText"] = true,
-["frameLocked"] = true,
-["offsetX"] = 389.4999389648438,
 ["offsetY"] = 63.33323287963867,
+["offsetX"] = 389.4999389648438,
+["frameLocked"] = true,
 },
 ["autobuff"] = {
 ["buffDuration"] = false,
@@ -62,15 +65,15 @@ PallyPowerDB = {
 }
 PallyPower_Assignments = {
 ["Simon Windseeker"] = {
-2,
-2,
-0,
-2,
-2,
 0,
 0,
 0,
-2,
+0,
+0,
+0,
+0,
+0,
+0,
 },
 }
 PallyPower_NormalAssignments = {
@@ -78,7 +81,7 @@ PallyPower_NormalAssignments = {
 },
 }
 PallyPower_AuraAssignments = {
-["Simon Windseeker"] = 1,
+["Simon Windseeker"] = 0,
 }
 PallyPower_SavedPresets = {
 ["PallyPower_NormalAssignments"] = {

@@ -2,6 +2,12 @@
 DataStore_Auctions_Characters = {
 {
 },
+{
+},
+{
+},
+{
+},
 }
 DataStore_Auctions_AuctionsList = {
 }

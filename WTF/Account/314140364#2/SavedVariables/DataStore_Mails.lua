@@ -6,6 +6,24 @@ DataStore_Mails_Characters = {
 ["MailCache"] = {
 },
 },
+{
+["Mails"] = {
+},
+["MailCache"] = {
+},
+},
+{
+["MailCache"] = {
+},
+["Mails"] = {
+},
+},
+{
+["MailCache"] = {
+},
+["Mails"] = {
+},
+},
 }
 DataStore_Mails_Options = {
 ["ReportExpiredMailsToChat"] = true,

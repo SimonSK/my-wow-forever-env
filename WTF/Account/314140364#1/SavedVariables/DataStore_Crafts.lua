@@ -473,17 +473,12 @@ DataStore_Crafts_Characters = {
 821152,
 992544,
 },
-[2636] = {
-3284384,
-165633824,
-1667616,
-1054496,
-160328480,
-325536,
-1217696,
-820896,
-162640928,
-162641312,
+[2714] = {
+161672608,
+165291680,
+161661216,
+164275232,
+157406381,
 },
 [2645] = {
 159995936,
@@ -505,12 +500,14 @@ DataStore_Crafts_Characters = {
 159994656,
 159994528,
 },
-[2714] = {
-161672608,
-165291680,
-161661216,
-164275232,
-157406381,
+[2594] = {
+60205984,
+60207392,
+156897696,
+156897568,
+156897184,
+156897056,
+156897312,
 },
 [2632] = {
 160020256,
@@ -560,14 +557,17 @@ DataStore_Crafts_Characters = {
 357792,
 325164,
 },
-[2594] = {
-60205984,
-60207392,
-156897696,
-156897568,
-156897184,
-156897056,
-156897312,
+[2636] = {
+3284384,
+165633824,
+1667616,
+1054496,
+160328480,
+325536,
+1217696,
+820896,
+162640928,
+162641312,
 },
 },
 ["CategoryInfo"] = {
@@ -595,7 +595,7 @@ DataStore_Crafts_Characters = {
 },
 },
 },
-["lastUpdate"] = 1794084097,
+["lastUpdate"] = 1794122745,
 ["Indices"] = {
 ["Cooking"] = 3,
 ["Mining"] = 1,
@@ -604,13 +604,68 @@ DataStore_Crafts_Characters = {
 },
 ["Ranks"] = {
 9830456,
-4915203,
+4915205,
 4915201,
 4915220,
 },
 },
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1794106135,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1794105956,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1794105822,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1794106009,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1794106081,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
 }
 DataStore_Crafts_ArcheologyItems = {
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
 {
 },
 }
@@ -642,22 +697,22 @@ DataStore_Crafts_RecipeCategories = {
 [2497] = "Glove Enchants",
 [2505] = "Amulet Enchants",
 [2513] = "Off-Hands",
-[2506] = "Cloak Enchants",
+[2638] = "Winter Veil Treats",
 [2427] = "Enchanting",
-[2514] = "Camping",
-[2632] = "Everyday Meals",
 [2640] = "Stamina Food",
-[2433] = "Mining",
+[2632] = "Everyday Meals",
+[2514] = "Camping",
+[2636] = "Miscellaneous Cuisines",
 [2645] = "Delightful Drinks",
 [2575] = "Smelted Bars",
-[2490] = "Reagents",
-[2491] = "Runed Enchanting Rods",
 [2635] = "Intellect Food",
+[2491] = "Runed Enchanting Rods",
+[2490] = "Reagents",
 [2633] = "Strength Food",
 [2641] = "Spell Damage Food",
-[2636] = "Miscellaneous Cuisines",
+[2433] = "Mining",
 [2594] = "SEASON OF DISCOVERY",
-[2638] = "Winter Veil Treats",
+[2506] = "Cloak Enchants",
 }
 DataStore_Crafts_Reagents = {
 }

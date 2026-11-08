@@ -1,0 +1,136 @@
+VER 3 010000000100003D "Bane of Agony" "134400"
+#showtooltip Bane of Agony
+/startattack
+/cast [harm,nodead] Bane of Agony
+END
+VER 3 0100000001000031 "Bane of Doom" "134400"
+#showtooltip Bane of Doom
+/startattack
+/cast [harm,nodead] Bane of Doom
+END
+VER 3 0100000001000026 "Banish" "134400"
+#showtooltip Banish
+/cast [harm,nodead] Banish
+END
+VER 3 0100000001000029 "CoE" "134400"
+#showtooltip Curse of the Elements
+/startattack
+/cast [harm,nodead] Curse of the Elements
+END
+VER 3 010000000100001B "Conflagrate" "134400"
+#showtooltip Conflagrate
+/startattack
+/cast [harm,nodead] Conflagrate
+END
+VER 3 010000000100002A "CoR" "134400"
+#showtooltip Curse of Recklessness
+/startattack
+/cast [harm,nodead] Curse of Recklessness
+END
+VER 3 010000000100003A "Corruption" "134400"
+#showtooltip Corruption
+/startattack
+/cast [harm,nodead] Corruption
+END
+VER 3 0100000001000016 "CoT" "134400"
+#showtooltip Curse of Tongues
+/startattack
+/cast [harm,nodead] Curse of Tongues
+END
+VER 3 010000000100003C "CoW" "134400"
+#showtooltip Curse of Weakness
+/startattack
+/cast [harm,nodead] Curse of Weakness
+END
+VER 3 0100000001000035 "Death Coil" "134400"
+#showtooltip Death Coil
+/startattack
+/cast [harm,nodead] Death Coil
+END
+VER 3 010000000100002F "Demon Armor" "134400"
+#showtooltip Demon Armor
+/cast Demon Armor
+END
+VER 3 0100000001000038 "Demon Skin" "134400"
+#showtooltip Demon Skin
+/cast Demon Skin
+END
+VER 3 0100000001000036 "Detect Invis" "134400"
+#showtooltip Detect Invisibility
+/cast [harm,nodead] Detect Invisibility
+END
+VER 3 0100000001000001 "Drain Life" "134400"
+#showtooltip Drain Life
+/cast [nochanneling:Drain Life] Drain Life
+END
+VER 3 0100000001000037 "Drain Mana" "134400"
+#showtooltip Drain Mana
+/startattack
+/cast [harm,nodead] Drain Mana
+END
+VER 3 0100000001000032 "Drain Soul" "134400"
+#showtooltip Drain Soul
+/startattack
+/cast [harm,nodead] Drain Soul
+END
+VER 3 0100000001000019 "Fear" "134400"
+#showtooltip Fear
+/cast [harm,nodead] Fear
+END
+VER 3 010000000100002C "Health Funnel" "134400"
+#showtooltip Health Funnel
+/cast [nochanneling:Health Funnel] Health Funnel
+END
+VER 3 0100000001000004 "Hellfire" "134400"
+#showtooltip Hellfire
+/cast [nochanneling:Hellfire] Hellfire
+END
+VER 3 0100000001000028 "Here RoF" "134400"
+#showtooltip Rain of Fire
+/cast [@player] Rain of Fire
+END
+VER 3 0100000001000024 "Howl of Terror" "134400"
+#showtooltip Howl of Terror
+/cast Howl of Terror
+END
+VER 3 0100000001000039 "Immolate" "134400"
+#showtooltip Immolate
+/startattack
+/cast [harm,nodead] Immolate
+END
+VER 3 0100000001000011 "Incinerate" "134400"
+#showtooltip Incinerate
+/startattack
+/cast [harm,nodead] Incinerate
+END
+VER 3 010000000100003B "Life Tap" "134400"
+#showtooltip Life Tap
+/cast Life Tap
+END
+VER 3 010000000100001A "Searing Pain" "134400"
+#showtooltip Searing Pain
+/cast [harm,nodead] Searing Pain
+END
+VER 3 010000000100003E "Shadow Ward" "134400"
+#showtooltip Shadow Ward
+/cast Shadow Ward
+END
+VER 3 0100000001000034 "Shadowbolt" "134400"
+#showtooltip Shadow Bolt
+/startattack
+/cast [harm,nodead] Shadow Bolt
+END
+VER 3 010000000100001C "Shadowburn" "134400"
+#showtooltip Shadowburn
+/startattack
+/cast [harm,nodead] Shadowburn
+END
+VER 3 010000000100002B "Soul Fire" "134400"
+#showtooltip Soul Fire
+/startattack
+/cast [harm,nodead] Soul Fire
+END
+VER 3 010000000100002E "Subjugate Demon" "134400"
+#showtooltip Subjugate Demon
+/cast Subjugate Demon
+END

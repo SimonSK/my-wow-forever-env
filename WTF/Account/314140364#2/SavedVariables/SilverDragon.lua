@@ -1,6 +1,9 @@
 
 SilverDragon3DB = {
 ["profileKeys"] = {
+["Simonwarlock Windseeker"] = "Simon",
+["Simonpaladin Windseeker"] = "Simon",
+["Simonpriest Windseeker"] = "Simon",
 ["Simonmage Windseeker"] = "Simon",
 },
 ["namespaces"] = {
@@ -8,7 +11,7 @@ SilverDragon3DB = {
 ["profiles"] = {
 ["Simon"] = {
 ["anchor"] = {
-["y"] = -209.82177734375,
+["y"] = -209.8218231201172,
 ["point"] = "RIGHT",
 },
 },
@@ -42,19 +45,21 @@ SilverDragon3DB = {
 },
 ["global"] = {
 ["mob_count"] = {
-[1533] = 1,
-[276089] = 1,
+[1533] = 2,
+[276089] = 2,
 [1910] = 1,
 [10358] = 1,
 },
 ["mob_seen"] = {
-[1533] = 1794043570,
-[276089] = 1794049680,
+[1533] = 1794108769,
+[276089] = 1794117753,
 [1910] = 1794042719,
 [10358] = 1794051900,
 },
 },
 ["profiles"] = {
+["Default"] = {
+},
 ["Simon"] = {
 },
 },

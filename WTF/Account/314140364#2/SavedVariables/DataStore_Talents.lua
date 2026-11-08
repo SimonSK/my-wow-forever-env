@@ -4,9 +4,24 @@ DataStore_Talents_Characters = {
 ["Glyphs"] = {
 },
 },
+{
+["Glyphs"] = {
+},
+},
+{
+["Glyphs"] = {
+},
+},
+{
+["Glyphs"] = {
+},
+},
 }
 DataStore_Talents_Specializations = {
 41,
+73,
+105,
+137,
 }
 DataStore_Talents_SpecializationInfos = {
 ["Roles"] = {
@@ -20,11 +35,17 @@ DataStore_Talents_SpecializationInfos = {
 },
 ["Names"] = {
 ["Set"] = {
+["Priest"] = 3,
+["Warlock"] = 2,
+["Paladin"] = 4,
 ["Mage"] = 1,
 },
-["Count"] = 1,
+["Count"] = 4,
 ["List"] = {
 "Mage",
+"Warlock",
+"Priest",
+"Paladin",
 },
 },
 }

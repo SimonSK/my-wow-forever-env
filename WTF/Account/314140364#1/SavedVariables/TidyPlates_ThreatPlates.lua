@@ -2,14 +2,19 @@
 ThreatPlatesDB = {
 ["namespaces"] = {
 },
-["profileKeys"] = {
-["Simon Windseeker"] = "Simon",
-},
 ["global"] = {
 ["version"] = "13.3.6",
 },
+["profileKeys"] = {
+["Simondruid Windseeker"] = "Simon",
+["Simonrogue Windseeker"] = "Simon",
+["Simonwarrior Windseeker"] = "Simon",
+["Simonhunter Windseeker"] = "Simon",
+["Simonshaman Windseeker"] = "Simon",
+["Simon Windseeker"] = "Simon",
+},
 ["profiles"] = {
-["Default"] = {
+["Simon"] = {
 ["AuraWidget"] = {
 ["CrowdControl"] = {
 ["ShowAllEnemy"] = true,
@@ -24,7 +29,7 @@ ThreatPlatesDB = {
 },
 },
 },
-["Simon"] = {
+["Default"] = {
 ["AuraWidget"] = {
 ["CrowdControl"] = {
 ["ShowAllEnemy"] = true,
@@ -32,8 +37,18 @@ ThreatPlatesDB = {
 },
 ["settings"] = {
 ["frame"] = {
-["widthFriend"] = 183.9322936651701,
+["heightFriend"] = 26.27604195216716,
+["width"] = 183.9322936651701,
 ["height"] = 26.27604195216716,
+["widthFriend"] = 183.9322936651701,
+},
+},
+},
+["ROGUE"] = {
+["settings"] = {
+["frame"] = {
+["height"] = 26.27604195216716,
+["widthFriend"] = 183.9322936651701,
 ["heightFriend"] = 26.27604195216716,
 ["width"] = 183.9322936651701,
 },

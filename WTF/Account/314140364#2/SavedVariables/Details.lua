@@ -35,7 +35,11 @@ _detalhes_global = {
 ["boss_wipe_min_time"] = 20,
 ["plater"] = {
 ["realtime_dps_enabled"] = false,
-["damage_taken_shadow"] = true,
+["damage_taken_anchor"] = {
+["y"] = 0,
+["x"] = 0,
+["side"] = 7,
+},
 ["realtime_dps_player_shadow"] = true,
 ["realtime_dps_player_enabled"] = false,
 ["realtime_dps_player_size"] = 12,
@@ -51,12 +55,8 @@ _detalhes_global = {
 ["x"] = 0,
 ["side"] = 7,
 },
-["damage_taken_anchor"] = {
-["y"] = 0,
-["x"] = 0,
-["side"] = 7,
-},
 ["realtime_dps_size"] = 12,
+["damage_taken_shadow"] = true,
 ["realtime_dps_player_color"] = {
 1,
 1,
@@ -434,7 +434,7 @@ _detalhes_global = {
 ["slashk_dnd"] = false,
 ["encounter_journal_cache"] = {
 },
-["combat_id_global"] = 142759,
+["combat_id_global"] = 143148,
 ["displays_by_spec"] = {
 },
 ["damage_scroll_position"] = {
@@ -454,7 +454,7 @@ _detalhes_global = {
 },
 ["last_changelog_size"] = 148,
 ["immersion_unit_special_icons"] = true,
-["lastUpdateWarning"] = 0,
+["lastUpdateWarning"] = 1794117451,
 ["custom"] = {
 },
 ["npcid_pool"] = {
@@ -470,7 +470,10 @@ _detalhes_global = {
 ["user_is_patreon_supporter"] = false,
 ["merge_player_abilities"] = false,
 ["__char_profiles"] = {
+["Simonwarlock-CAMWOW US1 Realm 5 PvE"] = "Simon",
 ["Simonmage-CAMWOW US1 Realm 5 PvE"] = "Simon",
+["Simonpaladin-CAMWOW US1 Realm 5 PvE"] = "Simon",
+["Simonpriest-CAMWOW US1 Realm 5 PvE"] = "Simon",
 },
 ["report_where"] = "RAID",
 ["appocalypse_mode"] = 0,
@@ -517,7 +520,7 @@ _detalhes_global = {
 ["width"] = 231,
 },
 },
-["latest_encounter_spell_pool_access"] = 1793936114,
+["latest_encounter_spell_pool_access"] = 1794109661,
 ["parser_options"] = {
 ["tank_avoidance"] = false,
 ["shield_overheal"] = false,
@@ -538,28 +541,10 @@ _detalhes_global = {
 ["bar_texture"] = "Skyline",
 },
 ["got_first_run"] = true,
-["aura_tracker_frame"] = {
-["scaletable"] = {
-["scale"] = 1,
-},
-["position"] = {
-},
-},
-["data_wipes_exp"] = {
-["9"] = true,
-["14"] = false,
-["13"] = false,
-["12"] = false,
-["11"] = false,
-["10"] = false,
-},
-["spell_category_latest_save"] = 0,
-["keystone_alts_cache"] = {
-},
 ["tutorial"] = {
 ["bookmark_tutorial"] = false,
-["main_help_button"] = 18936,
-["logons"] = 18936,
+["main_help_button"] = 18980,
+["logons"] = 18980,
 ["ENCOUNTER_BREAKDOWN_CHART"] = true,
 ["DETAILS_INFO_TUTORIAL2"] = 10,
 ["DISABLE_ONDEATH_PANEL"] = true,
@@ -583,11 +568,58 @@ false,
 ["MIN_COMBAT_TIME"] = true,
 ["ctrl_click_close_tutorial"] = false,
 },
+["switchSaved"] = {
+["slots"] = 10,
+["table"] = {
+{
+["atributo"] = 1,
+["sub_atributo"] = 1,
+},
+{
+["atributo"] = 2,
+["sub_atributo"] = 1,
+},
+{
+["atributo"] = 4,
+["sub_atributo"] = 3,
+},
+{
+["atributo"] = 4,
+["sub_atributo"] = 4,
+},
+{
+["atributo"] = 1,
+["sub_atributo"] = 3,
+},
+{
+["atributo"] = 2,
+["sub_atributo"] = 3,
+},
+{
+},
+{
+},
+{
+},
+{
+},
+},
+},
+["auto_change_to_standard"] = true,
+["keystone_alts_cache"] = {
+},
+["slash_me_used"] = false,
 ["all_switch_config"] = {
 ["scale"] = 1,
 ["font_size"] = 10,
 },
-["item_level_pool"] = {
+["data_wipes_exp"] = {
+["9"] = true,
+["14"] = false,
+["13"] = false,
+["12"] = false,
+["11"] = false,
+["10"] = false,
 },
 ["__profiles"] = {
 ["Simon"] = {
@@ -863,19 +895,16 @@ false,
 ["segments_amount"] = 40,
 ["report_lines"] = 5,
 ["deny_score_messages"] = false,
-["minimum_combat_time"] = 5,
+["overall_clear_logout"] = false,
 ["skin"] = "Minimalistic",
 ["override_spellids"] = true,
+["font_sizes"] = {
+["menus"] = 10,
+},
+["minimum_combat_time"] = 5,
 ["new_window_size"] = {
 ["height"] = 158,
 ["width"] = 310,
-},
-["realtimedps_always_arena"] = false,
-["window_clamp"] = {
--8,
-0,
-21,
--14,
 },
 ["chat_tab_embed"] = {
 ["enabled"] = false,
@@ -884,17 +913,22 @@ false,
 ["tab_name"] = "",
 ["single_window"] = false,
 },
-["overall_clear_logout"] = false,
+["realtimedps_always_arena"] = false,
 ["broadcaster_enabled"] = false,
 ["cloud_capture"] = true,
 ["damage_taken_everything"] = false,
 ["scroll_speed"] = 2,
-["font_sizes"] = {
-["menus"] = 10,
+["window_clamp"] = {
+-8,
+0,
+21,
+-14,
 },
 ["memory_threshold"] = 3,
 ["deadlog_events"] = 32,
-["total_abbreviation"] = 2,
+["hotcorner_topleft"] = {
+["hide"] = false,
+},
 ["close_shields"] = false,
 ["class_coords"] = {
 ["HUNTER"] = {
@@ -1020,7 +1054,7 @@ false,
 },
 ["segments_auto_erase"] = 1,
 ["disable_alldisplays_window"] = true,
-["trash_auto_remove"] = true,
+["total_abbreviation"] = 2,
 ["segments_boss_wipes_keep_best_performance"] = true,
 ["class_colors"] = {
 ["HUNTER"] = {
@@ -1140,9 +1174,7 @@ false,
 ["damage"] = "red",
 },
 ["clear_graphic"] = true,
-["hotcorner_topleft"] = {
-["hide"] = false,
-},
+["trash_auto_remove"] = true,
 ["animation_speed_triggertravel"] = 5,
 ["options_group_edit"] = true,
 ["segments_amount_to_save"] = 40,
@@ -1527,7 +1559,7 @@ false,
 ["textL_offset"] = 0,
 ["text_yoffset"] = 0,
 ["texture_background_class_color"] = false,
-["playername_alignment_auto"] = true,
+["start_after_icon"] = true,
 ["font_face_file"] = "Interface\\Addons\\Details\\fonts\\Accidental Presidency.ttf",
 ["height"] = 11,
 ["backdrop"] = {
@@ -1542,14 +1574,14 @@ false,
 ["size"] = 12,
 },
 ["faction_icon_size_offset"] = -10,
+["playername_alignment_auto"] = true,
+["textL_custom_text"] = "{data1}. {data3}{data2}",
 ["textL_outline_small_color"] = {
 0,
 0,
 0,
 1,
 },
-["textL_custom_text"] = "{data1}. {data3}{data2}",
-["start_after_icon"] = true,
 ["font_size"] = 11,
 ["percent_type"] = 1,
 ["textL_outline_small"] = true,
@@ -2784,12 +2816,20 @@ nil,
 ["SHAMAN"] = 1579053.174000001,
 },
 [0] = {
-["MAGE"] = 41586.30599999998,
-["PALADIN"] = 42341.78800000006,
+["MAGE"] = 44908.418,
+["PRIEST"] = 23986.36099999998,
+["WARLOCK"] = 6716.598000000005,
+["PALADIN"] = 43006.98900000006,
 },
 },
-["auto_change_to_standard"] = true,
-["slash_me_used"] = false,
+["show_warning_id1"] = true,
+["aura_tracker_frame"] = {
+["scaletable"] = {
+["scale"] = 1,
+},
+["position"] = {
+},
+},
 ["exit_errors"] = {
 },
 ["debug_options_panel"] = {
@@ -2799,7 +2839,7 @@ nil,
 ["scale"] = 1,
 },
 },
-["show_warning_id1"] = true,
+["spell_category_latest_save"] = 0,
 ["run_code"] = {
 ["on_groupchange"] = "\n-- this code runs when the player enter or leave a group",
 ["on_zonechanged"] = "\n-- when the player changes zone, this code will run",
@@ -2814,7 +2854,7 @@ nil,
 0.1294,
 0.8,
 },
-["latest_npcid_pool_access"] = 1793936114,
+["latest_npcid_pool_access"] = 1794109661,
 ["mythic_plus"] = {
 ["make_overall_boss_only"] = false,
 ["mythicrun_chart_frame"] = {
@@ -2841,42 +2881,7 @@ nil,
 },
 ["createauraframe"] = {
 },
-["switchSaved"] = {
-["slots"] = 10,
-["table"] = {
-{
-["atributo"] = 1,
-["sub_atributo"] = 1,
-},
-{
-["atributo"] = 2,
-["sub_atributo"] = 1,
-},
-{
-["atributo"] = 4,
-["sub_atributo"] = 3,
-},
-{
-["atributo"] = 4,
-["sub_atributo"] = 4,
-},
-{
-["atributo"] = 1,
-["sub_atributo"] = 3,
-},
-{
-["atributo"] = 2,
-["sub_atributo"] = 3,
-},
-{
-},
-{
-},
-{
-},
-{
-},
-},
+["item_level_pool"] = {
 },
 ["check_stuttering"] = false,
 ["third_party"] = {
@@ -2919,7 +2924,7 @@ nil,
 ["show_totalhitdamage_on_overkill"] = false,
 ["switch_post_apoc"] = true,
 ["merge_pet_abilities"] = false,
-["latest_spell_pool_access"] = 1793936114,
+["latest_spell_pool_access"] = 1794109661,
 ["savedStyles"] = {
 },
 ["always_use_profile_exception"] = {
@@ -3033,12 +3038,12 @@ nil,
 ["damage_scroll_auto_open"] = true,
 }
 __details_backup = {
-["_instance_backup"] = {
-},
 ["_general_logs"] = {
 },
 ["_exit_error"] = {
 "2026-11-05 00:52:40 | true: _detalhes.wipe_full_config | VCPM 15339 RELEASE 1.60.1",
+},
+["_instance_backup"] = {
 },
 }
 __details_debug = {

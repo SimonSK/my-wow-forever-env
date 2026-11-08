@@ -236,16 +236,33 @@ ForeverDungeonJournalDB = {
 "SettingsPanel.SearchBox.clearButton.Icon [Texture] atlas=common-search-clearbutton 10x10",
 "SettingsPanel.SearchBox.searchIcon [Texture] atlas=common-search-magnifyingglass 10x10",
 },
+["newestSeenAt"] = 1794114044,
+["newestSeenVersion"] = "1.7.2",
 ["questFaction"] = "Horde",
 ["lastMode"] = "bosses",
-["lastBoss"] = 1,
+["lootFilter"] = {
+["enabled"] = false,
+["classOnly"] = false,
+["recipes"] = false,
+["schools"] = {
+},
+["matchAll"] = true,
+["resists"] = {
+},
+["weaponTypes"] = {
+},
+["stats"] = {
+},
+["armorTypes"] = {
+},
+},
 ["lastQuest"] = 3,
 ["lastDungeon"] = "Ragefire Chasm",
 ["showAllClassQuests"] = true,
+["learnedItemIDs"] = {
+},
 ["mapFloors"] = {
 ["Ragefire Chasm"] = 1,
-},
-["learnedItemIDs"] = {
 },
 ["portraitTexturesByNpcID"] = {
 },
@@ -339,17 +356,17 @@ ForeverDungeonJournalDB = {
 ["o"] = "Take Apothecary Johaan's findings to Apothecary Renferrel in Silverpine Forest.",
 ["d"] = "Time is a luxury that is not afforded to those of us under the employ of Lady Sylvanas.  Surely you know this by now.\n\nAs a member of the Royal Apothecary Society it is my duty to share my knowledge with my colleagues so that our collective efforts might one day provide The Dark Lady with the New Plague she so badly desires.\n\nTake these findings to Apothecary Renferrel who is stationed at The Sepulcher in Silverpine Forest.  Follow the roads to the south from Brill.  From the Undercity go southwest.",
 },
-[8368] = {
-["o"] = "Bring 3 Warsong Marks of Honor to a Horde Warbringer outside the battlegrounds.",
-["d"] = "The battle in Warsong Gulch against the Silverwing Sentinels is of great importance.  Under the guise of protecting a forest that doesn't belong to them, the Alliance seeks to deny the Horde one of our largest sources for lumber.\n\nDo not let this happen, N!  Come back to me with proof of serving the Horde in a worthy manner!",
+[99144] = {
+["o"] = "Help Bareth Dawnstone escape Crusader's Outpost, and report his safety to Shari Stilwell in Brill.",
+["d"] = "Light bless you for finding me. I was on my way from Bandarion Keep to deliver a message to Shari Stilwell in Brill when these monsters captured me. They wield the Light with a hatred in their hearts that makes what's left of my blood seethe. It goes against all we stand for!\r\n\r\n<Bareth Dawnstone steadies himself.>\r\n\r\nOur ranks are thin. If you would aid me in escaping this place, I would be forever grateful.",
 },
-[5725] = {
-["o"] = "Bring the books Spells of Shadow and Incantations from the Nether to Varimathras in Undercity.",
-["d"] = "Many denizens of the Legion bestow gifts on their followers as you may well know. Some of these gifts the Dark Lady feels would be better off in her hands than in the hands of those with... lesser vision.\n\nA sect of the Shadow Council hidden in caverns below Orgrimmar known as the Searing Blade are a prime example. The Lady tells me that members of the Searing Blade have come into the possession of two powerful spell books--she would like to \"borrow\" these books from them. You will get them for her.",
+[95328] = {
+["o"] = "Deliver Whispering Horror Residue to Father Lankester in the War Quarter of Undercity.",
+["d"] = "Against your better judgement you scrape up and collect the squirming remains of the beast. Someone in Undercity might have a use for them.",
 },
-[94438] = {
-["o"] = "Take the Symbol of Life and use it to resurrect Deathguard Falgan at Venomweb Vale. \r\n\r\nShould you misplace your Symbol of Life, return to Danitha Morr for a replacement.",
-["d"] = "Falgan and I were sent on a mission to scout out scarlet activity in Venomweb Vale. We managed to sneak close enough to one of their camps to hear about new orders involving an attack on Brill. Before we could decide what to do next, I stepped on a twig and the noise alerted them to us.\r\n\r\nFalgan yelled at me to run, so I ran. By the time I realized he wasn't with me, I was halfway to Brill. That brave idiot probably stayed behind to hold them off for me.\r\n\r\nPlease, find my friend and help him if you can.",
+[94427] = {
+["o"] = "Speak to Tanis Alderwood in the Undercity.",
+["d"] = "A key tenent of being a paladin is the pursuit of divinity. This is not the pursuit of godhood, but merely the pursuit of good itself, for good's sake. We've all arrived at this place due to tragedy of one form or another, and it would be easy to lose that grace that defined us as paladins in life.\r\n\r\nGo to the Undercity and seek out Tanis Alderwood in the Trade Quarter. They are in need, and they could benefit greatly from some grace.",
 },
 [91317] = {
 ["o"] = "Slay 8 Tarnished Drudges, 6 Tarnished Zealots, and collect the head of Commander Rudolph Gelhardt in Tirisfal Glades.",
@@ -359,22 +376,6 @@ ForeverDungeonJournalDB = {
 ["o"] = "Bring Shelene Rhobart 8 Duskbat Wing Membranes, 6 Darkhound Hides and 3 Vile Fin Murloc Skin.",
 ["d"] = "One part of undeath no one mentions is what happens when we are injured. How does the skin of an undead heal itself?\r\n\r\nWell, it doesn't.\r\n\r\nOurs is a cursed life, N. We must take from the living to further our own existence.\r\n\r\nWhen we sustain an injury, we must replace our skin which usually means animal hides. Since different hide thicknesses are better for different places on our bodies a variety is key!\r\n\r\nBring me wing membranes of a duskbat, hides from a darkhound and skin of a Vile Fin murloc.",
 },
-[94434] = {
-["o"] = "Bring 10 Linen Cloth to Tanis Alderwood in the Undercity.",
-["d"] = "Wait, you want to... help? Why would a paladin want to help a beggar like me?\r\n\r\nWell, I suppose that you could be of some assistance. \r\n\r\nIt's my wife you see. She, well... she's falling apart. I mean that literally. The apothecaries can stitch her back together right as rain, but they are about the Dark Lady's business and none are available to help. If you could perhaps bring me some fresh cloth then I could at least make her a wrapping to hold her together while we wait for the apothecaries.",
-},
-[94435] = {
-["o"] = "Return to Danitha Morr at Bandarion Keep.",
-["d"] = "I don't know why you'd go out of your way to help me, but I appreciate it. If someone sent you my way, tell them I appreciate them too. You'll always have a friend in Tanis Alderwood, paladin.",
-},
-[94441] = {
-["o"] = "Speak with Danitha Morr in the keep at Bandarion Keep.",
-["d"] = "Please give my thanks to Danitha Morr and tell her that the rest of the Deathguard will hear about the service that the paladins of Bandarion Keep performed for us. \r\n\r\nYou have a lot of promise as a paladin, and I am proud to have those like you among the ranks of the Forsaken. Dark Lady watch over you, N.",
-},
-[492] = {
-["o"] = "Bring Johaan's Special Drink to the Captured Mountaineer.",
-["d"] = "According to the Deathguard, another one of those foolish Dwarven Mountaineers has just been captured.  The Deathguard likes to use the cellar of the Gallows End Tavern as a holding cell until prisoners can be \"properly\" dealt with.\n\nWhy don't you go see how the Captured Mountaineer enjoys this special drink I made for him?  It contains a subtle hint of what The Dark Lady has planned for the rest of Azeroth.",
-},
 [97956] = {
 ["o"] = "Speak with Clyde Kellen in Brill to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "You might not think so, but your skill as a fisherman can actually come in handy at camp.\r\n\r\nI reckon I know someone that can teach you how to craft a Fish Bowl for your camp. You can use this fixture to help provide a bit of joy to yourself and your fellow adventurers. A happy adventurer is a strong adventurer and I'm sure your combat capabilities will reflect that.",
@@ -383,13 +384,29 @@ ForeverDungeonJournalDB = {
 ["o"] = "Find the fortress of Bandarion Keep and report to Breton Samuels there.",
 ["d"] = "It is encouraging to see my newly risen brothers and sisters thrive as you have. It is only through community and shared faith that we can truly realize our full potential however, and to that end we've begun to form a new paladin order right here in Tirisfal. \r\n\r\nIf you wish to learn more, you should visit our monastery on the edge of the Whispering Woods. It is called Bandarion Keep. It's on the bluffs just northwest of the Solliden Farmstead, and should be hard to miss.",
 },
-[94436] = {
-["o"] = "Speak with Deathguard Billmuth at Bandarion Keep.\r\n\r\nShould you misplace your Symbol of Life, return to Danitha Morr for a replacement.",
-["d"] = "It's time to demonstrate your ability to channel one of the light's greatest gifts.\r\n\r\nThe item I just gave you is called the Symbol of Life. Take care, as it may cause you some discomfort to handle a talisman of the light such as this. The light may be anathema to the force that created us, but it is still our guide and ally. The pain reminds us of this.\r\n\r\nGo see Deathguard Billmuth downstairs. He just arrived and he has petitioned us for aid. Show him and the Forsaken what a true paladin can do.",
+[411] = {
+["o"] = "Bring the Nether Gem to Bethor Iceshard in the Undercity.",
+["d"] = "Take this Nether Gem to my old comrade Bethor.  It will let us communicate ... and I have much to tell him.",
 },
 [94440] = {
 ["o"] = "Retrieve the Scarlet Crusade Attack Plans from the Scarlet Crusaders at Venomweb Vale, and return to Deathguard Billmuth at Bandarion Keep.",
 ["d"] = "These Scarlet Crusaders often carry satchels with their deployment orders. We know an attack is coming, but if we can recover their orders, we can warn the rest of the Deathguard and prepare an ambush. \r\n\r\nYou are clearly an impressive paladin. Kill these scarlet animals and retrieve a copy of their orders and bring them back to Deathguard Billmuth. He'll take it from there.",
+},
+[99153] = {
+["o"] = "Find the Hidden Crystal Fragment beneath Shadowvale for Ephram Barbaro.",
+["d"] = "Oi, you! Word travels quickly among our ranks. I heard about the work you did with the cultists around the remnants of the battle with Naxxramas.\r\n\r\nProblem is, one of them cultists got away with a piece of the focusing crystal. Seems to still have some juice in it. Best guess we have is it's somewhere beneath Shadowvale. It's either raising 'em or making 'em stronger, and you don't want either one.\r\n\r\nFind that crystal before this gets out of hand.",
+},
+[95314] = {
+["o"] = "Collect 8 Bottles of Whispering Elixir from Shadowvale, then return to Carolai Anise in Brill.",
+["d"] = "Before the Scourge invasion, the reclusive village of Shadowvale was known for its Whispering Elixir. Distilled from herbs found only in Tyr's Fall, the elixir was sought by apothecaries, mystics, and poisoners alike even after being banned in the city.\r\n\r\nI've had requests from a number of buyers eager to get their hands on some elixir. Travel to the ruins of Shadowvale deep in the Whispering Forest to the west. I'm prepared to offer significant compensation if you can recover some bottles for me.",
+},
+[94436] = {
+["o"] = "Speak with Deathguard Billmuth at Bandarion Keep.\r\n\r\nShould you misplace your Symbol of Life, return to Danitha Morr for a replacement.",
+["d"] = "It's time to demonstrate your ability to channel one of the light's greatest gifts.\r\n\r\nThe item I just gave you is called the Symbol of Life. Take care, as it may cause you some discomfort to handle a talisman of the light such as this. The light may be anathema to the force that created us, but it is still our guide and ally. The pain reminds us of this.\r\n\r\nGo see Deathguard Billmuth downstairs. He just arrived and he has petitioned us for aid. Show him and the Forsaken what a true paladin can do.",
+},
+[96897] = {
+["o"] = "Kill 8 Dark Neophytes and 8 Dark Enforcers in Tirisfal Glades.",
+["d"] = "The Scourge are a blight on our lands, and their living servants are the worst of them. The people of Tirisfal have enough to deal with between the mindless dead and the Scarlet Crusade. If you wish to do some good, help me put an end to this scum.",
 },
 [91294] = {
 ["o"] = "Speak to the residents of Bandarion Keep.",
@@ -407,37 +424,37 @@ ForeverDungeonJournalDB = {
 ["o"] = "Gather 12 Necrotic Crystal Fragments in Tirisfal Glades.",
 ["d"] = "It wasn't long ago that the citadel of Naxxramas bore down upon this city, intent on wiping the Forsaken off the map. Both the Forsaken and the Argent Dawn lost much that day to secure the future of the Forsaken.\r\n\r\nDuring the battle, the great necrotic focusing crystal mounted atop Naxxramas was shattered and its fragments were scattered all over this area. I suspect that is what the cultists are here for. Help me recover the fragments and deprive the Scourge of them.",
 },
-[97953] = {
-["o"] = "Speak with Vance Undergloom in Brill to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
-["d"] = "Enchanters make everything better and are always welcome at any camp out in the wilds.\r\n\r\nI reckon I know someone that can teach you how to craft an Enchanted Lute for your camp. It's so important to find entertainment during your downtime, and this bit of magic can help ensure you are ready to weather all sorts of challenges when you hit the old dusty trail once again.",
-},
-[426] = {
-["o"] = "Gather 5 Notched Ribs and 3 Blackened Skulls, then return to Deathguard Dillinger in Brill.",
-["d"] = "The Scourge are trying to form a base at the Agamand Mills.  If they do, then they can stage further attacks within Tirisfal.\n\nThe orders have been given.  The Scourge in the Mills must be destroyed.\n\nGo to the Mills.  Collect Notched Ribs from Rattlecage and Cracked Skull Soldiers, and Blackened Skulls from Darkeye Bonecasters.\n\nTo get to the Mills, follow the road west.  After crossing the bridge, take the next fork north then keep going north.  When you see windmills, the battle will begin.",
-},
-[99142] = {
-["o"] = "Collect 5 Tomb Weed and deliver them back to Junior Apothecary Holland.",
-["d"] = "If you're heading east, towards the Balnir Farmstead, I have more you might do for me. Good help is ever so hard to find these days, as your run-in with Gordo illuminates ever so clearly.\r\n\r\nAs I acquire doom weed I perform some minor alchemical alterations and replant them on that farmstead to cultivate my ultimate creation. I call it tomb weed, and it shall be the herald of my glorious destiny.\r\n\r\nDo keep an eye on the Scourge in the area while you're there. They seem... drawn... to the weed. Curious.",
-},
-[370] = {
-["o"] = "Executor Zygand in Brill wants you to kill Captain Perrine, 3 Scarlet Zealots and 3 Scarlet Missionaries.",
-["d"] = "The strategic documents from Executor Arren contain all the details we need to wipe the human infestation from the lands.  According to the information, The Scarlet Crusade has assigned Captain Perrine and a brigade to the ruined tower southwest of Brill.\n\nKill Perrine along with 3 Zealots and 3 Missionaries and report back to me.",
-},
-[98545] = {
-["o"] = "Deliver the Sealed Letter to Glix Xizzix in the Undercity.",
-["d"] = "Since you are here, I'd like you to deliver this letter to an old friend of mine in the Undercity. I'd deliver myself but I have a somewhat colorful history with the Dark Lady, and it would be better if a neutral third party made the delivery.\r\n\r\nYou are looking for a goblin named Glix Xizzix in the Trade Quarter area of the Undercity. I'm sure he'd be happy to compensate you for your time.\r\n\r\n<Leonid lets out a low chuckle as he hands you the letter.>",
-},
-[95803] = {
-["o"] = "Bring the head of Rudolph Gelhardt to Sylvanas Windrunner in the Undercity.",
-["d"] = "Now that we've claimed the head of the tarnished commander, I need you to deliver it to the Undercity. Sylvanas Windrunner mistrusts us greatly, and all but openly disparages us.\r\n\r\nDeliver Rudolph Gelhardt's head to the Dark Lady. Show her that we tend to our own house and are devoted to the prosperity of the forsaken.",
+[407] = {
+["o"] = "Take the Laced Pumpkin to the Captured Scarlet Zealot who is being held in the cellar of the Gallow's End Tavern.",
+["d"] = "Harmless pumpkins, right?  Or so it would seem.  If we are to defeat Arthas's advances from the North and the Human infestation from the South we need to start realizing the full potential of our gift of undeath.\n\nWith a little ingenuity a simple pumpkin becomes an agent for our Dark Lady.  This pumpkin, laced with my latest formula, will prove to be quite a treat.\n\nYet another Scarlet Zealot has been captured and is being kept in the cellar of the Gallow's End Tavern.  Take this pumpkin to the fool.",
 },
 [427] = {
 ["o"] = "Executor Zygand of Brill wants you to kill 10 Scarlet Warriors.",
 ["d"] = "The documents Executor Arren provided are just the break we needed in our battle with the wretched Scarlet Crusade.  We now know their exact locations throughout Tirisfal Glades.\n\nBut the Deathguard has larger concerns.  The Lich King's army grows in number each night.  We need someone with \"initiative\" like yourself to drive the Scarlet Crusade to the grave.\n\nProve to me you are capable of serving The Dark Lady by travelling west to the tower past the Solliden Farmstead and slay 10 Scarlet Warriors.",
 },
-[407] = {
-["o"] = "Take the Laced Pumpkin to the Captured Scarlet Zealot who is being held in the cellar of the Gallow's End Tavern.",
-["d"] = "Harmless pumpkins, right?  Or so it would seem.  If we are to defeat Arthas's advances from the North and the Human infestation from the South we need to start realizing the full potential of our gift of undeath.\n\nWith a little ingenuity a simple pumpkin becomes an agent for our Dark Lady.  This pumpkin, laced with my latest formula, will prove to be quite a treat.\n\nYet another Scarlet Zealot has been captured and is being kept in the cellar of the Gallow's End Tavern.  Take this pumpkin to the fool.",
+[95803] = {
+["o"] = "Bring the head of Rudolph Gelhardt to Sylvanas Windrunner in the Undercity.",
+["d"] = "Now that we've claimed the head of the tarnished commander, I need you to deliver it to the Undercity. Sylvanas Windrunner mistrusts us greatly, and all but openly disparages us.\r\n\r\nDeliver Rudolph Gelhardt's head to the Dark Lady. Show her that we tend to our own house and are devoted to the prosperity of the forsaken.",
+},
+[98545] = {
+["o"] = "Deliver the Sealed Letter to Glix Xizzix in the Undercity.",
+["d"] = "Since you are here, I'd like you to deliver this letter to an old friend of mine in the Undercity. I'd deliver myself but I have a somewhat colorful history with the Dark Lady, and it would be better if a neutral third party made the delivery.\r\n\r\nYou are looking for a goblin named Glix Xizzix in the Trade Quarter area of the Undercity. I'm sure he'd be happy to compensate you for your time.\r\n\r\n<Leonid lets out a low chuckle as he hands you the letter.>",
+},
+[370] = {
+["o"] = "Executor Zygand in Brill wants you to kill Captain Perrine, 3 Scarlet Zealots and 3 Scarlet Missionaries.",
+["d"] = "The strategic documents from Executor Arren contain all the details we need to wipe the human infestation from the lands.  According to the information, The Scarlet Crusade has assigned Captain Perrine and a brigade to the ruined tower southwest of Brill.\n\nKill Perrine along with 3 Zealots and 3 Missionaries and report back to me.",
+},
+[99142] = {
+["o"] = "Collect 5 Tomb Weed and deliver them back to Junior Apothecary Holland.",
+["d"] = "If you're heading east, towards the Balnir Farmstead, I have more you might do for me. Good help is ever so hard to find these days, as your run-in with Gordo illuminates ever so clearly.\r\n\r\nAs I acquire doom weed I perform some minor alchemical alterations and replant them on that farmstead to cultivate my ultimate creation. I call it tomb weed, and it shall be the herald of my glorious destiny.\r\n\r\nDo keep an eye on the Scourge in the area while you're there. They seem... drawn... to the weed. Curious.",
+},
+[426] = {
+["o"] = "Gather 5 Notched Ribs and 3 Blackened Skulls, then return to Deathguard Dillinger in Brill.",
+["d"] = "The Scourge are trying to form a base at the Agamand Mills.  If they do, then they can stage further attacks within Tirisfal.\n\nThe orders have been given.  The Scourge in the Mills must be destroyed.\n\nGo to the Mills.  Collect Notched Ribs from Rattlecage and Cracked Skull Soldiers, and Blackened Skulls from Darkeye Bonecasters.\n\nTo get to the Mills, follow the road west.  After crossing the bridge, take the next fork north then keep going north.  When you see windmills, the battle will begin.",
+},
+[97953] = {
+["o"] = "Speak with Vance Undergloom in Brill to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
+["d"] = "Enchanters make everything better and are always welcome at any camp out in the wilds.\r\n\r\nI reckon I know someone that can teach you how to craft an Enchanted Lute for your camp. It's so important to find entertainment during your downtime, and this bit of magic can help ensure you are ready to weather all sorts of challenges when you hit the old dusty trail once again.",
 },
 [408] = {
 ["o"] = "Kill 8 Wailing Ancestors and 8 Rotting Ancestors.\n\nKill Captain Dargol, and bring his skull to Magistrate Sevren in Brill.",
@@ -447,50 +464,35 @@ ForeverDungeonJournalDB = {
 ["o"] = "Obtain a Candle of Beckoning.\n\nSummon Lillith Nefara and kill her.\n\nReturn to Gunther on his island.",
 ["d"] = "You say you are not bound by the will of the Lich King, and the enchantment Bethor placed upon my book corroborates this.  But before I believe you I must have proof that you are enemy to the Scourge.\n\nThere is an old, bloody altar just off the southern coast of this island.  it is used by a powerful Scourge agent, Lillith Nefara.\n\nTake a Candle of Beckoning from this crate here.  Light it on the altar and Lillith will awake.  Destroy Lillith, and I will believe you are the Lich King's foe.",
 },
-[96897] = {
-["o"] = "Kill 8 Dark Neophytes and 8 Dark Enforcers in Tirisfal Glades.",
-["d"] = "The Scourge are a blight on our lands, and their living servants are the worst of them. The people of Tirisfal have enough to deal with between the mindless dead and the Scarlet Crusade. If you wish to do some good, help me put an end to this scum.",
+[492] = {
+["o"] = "Bring Johaan's Special Drink to the Captured Mountaineer.",
+["d"] = "According to the Deathguard, another one of those foolish Dwarven Mountaineers has just been captured.  The Deathguard likes to use the cellar of the Gallows End Tavern as a holding cell until prisoners can be \"properly\" dealt with.\n\nWhy don't you go see how the Captured Mountaineer enjoys this special drink I made for him?  It contains a subtle hint of what The Dark Lady has planned for the rest of Azeroth.",
 },
-[411] = {
-["o"] = "Bring the Nether Gem to Bethor Iceshard in the Undercity.",
-["d"] = "Take this Nether Gem to my old comrade Bethor.  It will let us communicate ... and I have much to tell him.",
+[94441] = {
+["o"] = "Speak with Danitha Morr in the keep at Bandarion Keep.",
+["d"] = "Please give my thanks to Danitha Morr and tell her that the rest of the Deathguard will hear about the service that the paladins of Bandarion Keep performed for us. \r\n\r\nYou have a lot of promise as a paladin, and I am proud to have those like you among the ranks of the Forsaken. Dark Lady watch over you, N.",
 },
-[95314] = {
-["o"] = "Collect 8 Bottles of Whispering Elixir from Shadowvale, then return to Carolai Anise in Brill.",
-["d"] = "Before the Scourge invasion, the reclusive village of Shadowvale was known for its Whispering Elixir. Distilled from herbs found only in Tyr's Fall, the elixir was sought by apothecaries, mystics, and poisoners alike even after being banned in the city.\r\n\r\nI've had requests from a number of buyers eager to get their hands on some elixir. Travel to the ruins of Shadowvale deep in the Whispering Forest to the west. I'm prepared to offer significant compensation if you can recover some bottles for me.",
+[94435] = {
+["o"] = "Return to Danitha Morr at Bandarion Keep.",
+["d"] = "I don't know why you'd go out of your way to help me, but I appreciate it. If someone sent you my way, tell them I appreciate them too. You'll always have a friend in Tanis Alderwood, paladin.",
 },
-[99153] = {
-["o"] = "Find the Hidden Crystal Fragment beneath Shadowvale for Ephram Barbaro.",
-["d"] = "Oi, you! Word travels quickly among our ranks. I heard about the work you did with the cultists around the remnants of the battle with Naxxramas.\r\n\r\nProblem is, one of them cultists got away with a piece of the focusing crystal. Seems to still have some juice in it. Best guess we have is it's somewhere beneath Shadowvale. It's either raising 'em or making 'em stronger, and you don't want either one.\r\n\r\nFind that crystal before this gets out of hand.",
+[94434] = {
+["o"] = "Bring 10 Linen Cloth to Tanis Alderwood in the Undercity.",
+["d"] = "Wait, you want to... help? Why would a paladin want to help a beggar like me?\r\n\r\nWell, I suppose that you could be of some assistance. \r\n\r\nIt's my wife you see. She, well... she's falling apart. I mean that literally. The apothecaries can stitch her back together right as rain, but they are about the Dark Lady's business and none are available to help. If you could perhaps bring me some fresh cloth then I could at least make her a wrapping to hold her together while we wait for the apothecaries.",
 },
-[94427] = {
-["o"] = "Speak to Tanis Alderwood in the Undercity.",
-["d"] = "A key tenent of being a paladin is the pursuit of divinity. This is not the pursuit of godhood, but merely the pursuit of good itself, for good's sake. We've all arrived at this place due to tragedy of one form or another, and it would be easy to lose that grace that defined us as paladins in life.\r\n\r\nGo to the Undercity and seek out Tanis Alderwood in the Trade Quarter. They are in need, and they could benefit greatly from some grace.",
+[94438] = {
+["o"] = "Take the Symbol of Life and use it to resurrect Deathguard Falgan at Venomweb Vale. \r\n\r\nShould you misplace your Symbol of Life, return to Danitha Morr for a replacement.",
+["d"] = "Falgan and I were sent on a mission to scout out scarlet activity in Venomweb Vale. We managed to sneak close enough to one of their camps to hear about new orders involving an attack on Brill. Before we could decide what to do next, I stepped on a twig and the noise alerted them to us.\r\n\r\nFalgan yelled at me to run, so I ran. By the time I realized he wasn't with me, I was halfway to Brill. That brave idiot probably stayed behind to hold them off for me.\r\n\r\nPlease, find my friend and help him if you can.",
 },
-[95328] = {
-["o"] = "Deliver Whispering Horror Residue to Father Lankester in the War Quarter of Undercity.",
-["d"] = "Against your better judgement you scrape up and collect the squirming remains of the beast. Someone in Undercity might have a use for them.",
+[5725] = {
+["o"] = "Bring the books Spells of Shadow and Incantations from the Nether to Varimathras in Undercity.",
+["d"] = "Many denizens of the Legion bestow gifts on their followers as you may well know. Some of these gifts the Dark Lady feels would be better off in her hands than in the hands of those with... lesser vision.\n\nA sect of the Shadow Council hidden in caverns below Orgrimmar known as the Searing Blade are a prime example. The Lady tells me that members of the Searing Blade have come into the possession of two powerful spell books--she would like to \"borrow\" these books from them. You will get them for her.",
 },
-[99144] = {
-["o"] = "Help Bareth Dawnstone escape Crusader's Outpost, and report his safety to Shari Stilwell in Brill.",
-["d"] = "Light bless you for finding me. I was on my way from Bandarion Keep to deliver a message to Shari Stilwell in Brill when these monsters captured me. They wield the Light with a hatred in their hearts that makes what's left of my blood seethe. It goes against all we stand for!\r\n\r\n<Bareth Dawnstone steadies himself.>\r\n\r\nOur ranks are thin. If you would aid me in escaping this place, I would be forever grateful.",
-},
-},
-},
-["lootFilter"] = {
-["enabled"] = false,
-["classOnly"] = false,
-["recipes"] = false,
-["schools"] = {
-},
-["matchAll"] = true,
-["resists"] = {
-},
-["armorTypes"] = {
-},
-["stats"] = {
-},
-["weaponTypes"] = {
+[8368] = {
+["o"] = "Bring 3 Warsong Marks of Honor to a Horde Warbringer outside the battlegrounds.",
+["d"] = "The battle in Warsong Gulch against the Silverwing Sentinels is of great importance.  Under the guise of protecting a forest that doesn't belong to them, the Alliance seeks to deny the Horde one of our largest sources for lumber.\n\nDo not let this happen, N!  Come back to me with proof of serving the Horde in a worthy manner!",
 },
 },
+},
+["lastBoss"] = 1,
 }

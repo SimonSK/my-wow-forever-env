@@ -1,0 +1,121 @@
+VER 3 0100000001000039 "Dark Sacrifice" "134400"
+#showtooltip Dark Sacrifice
+/cast Dark Sacrifice
+END
+VER 3 0100000001000036 "Devouring Plague" "134400"
+#showtooltip Devouring Plague
+/cast [harm,nodead] Devouring Plague
+END
+VER 3 0100000001000017 "Dispel Magic" "134400"
+#showtooltip [mod:shift] Dispel Magic; Levitate
+/stopcasting
+/cast [mod:shift] Dispel Magic; Levitate
+END
+VER 3 0100000001000035 "Divine Spirit" "134400"
+#showtooltip Divine Spirit
+/cast Divine Spirit
+END
+VER 3 0100000001000026 "Fade" "134400"
+#showtooltip Fade
+/cast Fade
+END
+VER 3 010000000100000E "Greater Heal" "134400"
+#showtooltip Greater Heal
+/cast [nochanneling] Greater Heal
+END
+VER 3 0100000001000016 "Heal" "134400"
+#showtooltip Heal
+/cast [nochanneling] Heal
+END
+VER 3 010000000100000D "Holy Fire" "134400"
+#showtooltip [harm] Holy Fire; Renew
+/cast [harm,nochanneling] Holy Fire; [nochanneling] Renew
+END
+VER 3 0100000001000034 "Holy Nova" "134400"
+#showtooltip Holy Nova
+/cast Holy Nova
+END
+VER 3 0100000001000038 "Inner Fire" "134400"
+#showtooltip Inner Fire
+/cast Inner Fire
+END
+VER 3 010000000100003E "Mana Burn" "134400"
+#showtooltip Mana Burn
+/cast [harm,nodead] Mana Burn
+END
+VER 3 0100000001000008 "Mind Blast" "134400"
+#showtooltip Mind Blast
+/cast [harm,nodead] Mind Blast
+END
+VER 3 010000000100003B "Mind Control" "134400"
+#showtooltip Mind Control
+/cast [harm,nodead] Mind Control
+END
+VER 3 010000000100001C "Mind Flay" "134400"
+#showtooltip Mind Flay
+/cast [harm,nodead] Mind Flay
+END
+VER 3 0100000001000040 "Mind Soothe" "134400"
+#showtooltip Mind Soothe
+/cast [harm,nodead] Mind Soothe
+END
+VER 3 010000000100001E "Mind Vision" "134400"
+#showtooltip Mind Vision
+/cast Mind Vision
+END
+VER 3 010000000100001F "Penance" "134400"
+#showtooltip Penance
+/cast [nochanneling] Penance
+END
+VER 3 0100000001000020 "Prayer of Heal" "134400"
+#showtooltip Prayer of Healing
+/cast [nochanneling] Prayer of Healing
+END
+VER 3 0100000001000010 "Prayer of Mend" "134400"
+#showtooltip Prayer of Mending
+/cast [nochanneling] Prayer of Mending
+END
+VER 3 010000000100000B "Psychic Scream" "134400"
+#showtooltip Psychic Scream
+/cast Psychic Scream
+END
+VER 3 0100000001000032 "PW: Fortitude" "134400"
+#showtooltip Power Word: Fortitude
+/cast Power Word: Fortitude
+END
+VER 3 0100000001000001 "PW: Shield" "134400"
+#showtooltip Power Word: Shield
+/cast [nochanneling] Power Word: Shield
+END
+VER 3 010000000100003F "Renew" "134400"
+#showtooltip Renew
+/cast [nochanneling] Renew
+END
+VER 3 0100000001000033 "Resurrection" "134400"
+#showtooltip Resurrection
+/cast Resurrection
+END
+VER 3 0100000001000021 "Shackle Undead" "134400"
+#showtooltip Shackle Undead
+/cast [harm,nodead] Shackle Undead
+END
+VER 3 010000000100003D "Shadow Prot" "134400"
+#showtooltip Shadow Protection
+/cast Shadow Protection
+END
+VER 3 010000000100000C "Smite" "134400"
+#showtooltip [harm] Smite; Lesser Heal
+/cast [harm,nodead,nochanneling] Smite; [nochanneling] Lesser Heal
+END
+VER 3 010000000100003C "SW: Death" "134400"
+#showtooltip Shadow Word: Death
+/cast [harm,nodead] Shadow Word: Death
+END
+VER 3 010000000100003A "SW: Pain" "134400"
+#showtooltip Shadow Word: Pain
+/cast [harm,nodead] Shadow Word: Pain
+END
+VER 3 0100000001000037 "Touch of Weak" "134400"
+#showtooltip Touch of Weakness
+/cast [harm,nodead] Touch of Weakness
+END

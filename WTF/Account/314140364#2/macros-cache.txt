@@ -1,6 +1,6 @@
 VER 3 0000000000000001 "Decursive" "INV_MISC_QUESTIONMARK"
 /stopcasting
-/cast [@mouseover,nomod,exists] Polymorph;  [@mouseover,exists,mod:ctrl] Polymorph; [@mouseover,exists,mod:shift] Polymorph
+/cast [@mouseover,nomod,exists] Will of the Forsaken;  [@mouseover,exists,mod:ctrl] Will of the Forsaken; [@mouseover,exists,mod:shift] Will of the Forsaken
 END
 VER 3 0000000000000003 "Range" "134400"
 #showtooltip

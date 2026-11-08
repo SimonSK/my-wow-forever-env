@@ -7,8 +7,8 @@ ForeverDungeonJournalCharacterDB = {
 ["hiddenDungeons"] = {
 },
 ["journalMode"] = "gamer",
-["trackerSlots"] = {
-},
 ["trackedDungeons"] = {
+},
+["trackerSlots"] = {
 },
 }

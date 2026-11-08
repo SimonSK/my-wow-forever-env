@@ -2,8 +2,8 @@ Version: 1
 Frame: DcrMUFsContainer
 FrameLevel: 1
 Anchor: CENTER
-X: -90
-Y: -210
+X: -89
+Y: -206
 W: 20
 H: 20
 Frame: RaidBarFrame
@@ -47,4 +47,4 @@ Anchor: RIGHT
 X: -170
 Y: 121
 W: 384
-H: 281
+H: 170

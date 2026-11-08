@@ -1,16 +1,6 @@
 
 MailwrightDB = {
-["alts"] = {
-["ForeverPlayer-6923-005A94FC"] = {
-["guid"] = "Player-6923-005A94FC",
-["level"] = 13,
-["name"] = "Simonmage Windseeker",
-["faction"] = "Horde",
-["ruleset"] = "Normal",
-["client"] = "Forever",
-["class"] = "MAGE",
-["realm"] = "CAMWOW US1 Realm 5 PvE",
-},
+["recent"] = {
 },
 ["options"] = {
 ["bag"] = -1,
@@ -29,9 +19,49 @@ MailwrightDB = {
 ["language"] = "auto",
 ["moneySubject"] = true,
 },
-["sessions"] = 28,
-["recent"] = {
+["alts"] = {
+["ForeverPlayer-6923-00E24B64"] = {
+["guid"] = "Player-6923-00E24B64",
+["client"] = "Forever",
+["name"] = "Simonpaladin Windseeker",
+["faction"] = "Horde",
+["ruleset"] = "Normal",
+["class"] = "PALADIN",
+["level"] = 1,
+["realm"] = "CAMWOW US1 Realm 5 PvE",
 },
+["ForeverPlayer-6923-01B20BD0"] = {
+["guid"] = "Player-6923-01B20BD0",
+["level"] = 13,
+["name"] = "Simonpriest Windseeker",
+["faction"] = "Horde",
+["ruleset"] = "Normal",
+["client"] = "Forever",
+["class"] = "PRIEST",
+["realm"] = "CAMWOW US1 Realm 5 PvE",
+},
+["ForeverPlayer-6923-005A94FC"] = {
+["faction"] = "Horde",
+["class"] = "MAGE",
+["name"] = "Simonmage Windseeker",
+["guid"] = "Player-6923-005A94FC",
+["ruleset"] = "Normal",
+["level"] = 13,
+["client"] = "Forever",
+["realm"] = "CAMWOW US1 Realm 5 PvE",
+},
+["ForeverPlayer-6923-01B20C57"] = {
+["guid"] = "Player-6923-01B20C57",
+["client"] = "Forever",
+["name"] = "Simonwarlock Windseeker",
+["faction"] = "Horde",
+["ruleset"] = "Normal",
+["class"] = "WARLOCK",
+["level"] = 6,
+["realm"] = "CAMWOW US1 Realm 5 PvE",
+},
+},
+["sessions"] = 72,
 ["contacts"] = {
 },
 ["schema"] = 1,

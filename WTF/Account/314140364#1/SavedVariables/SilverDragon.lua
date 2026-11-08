@@ -1,6 +1,11 @@
 
 SilverDragon3DB = {
 ["profileKeys"] = {
+["Simondruid Windseeker"] = "Simon",
+["Simonrogue Windseeker"] = "Simon",
+["Simonwarrior Windseeker"] = "Simon",
+["Simonhunter Windseeker"] = "Simon",
+["Simonshaman Windseeker"] = "Simon",
 ["Simon Windseeker"] = "Simon",
 },
 ["namespaces"] = {
@@ -55,6 +60,8 @@ SilverDragon3DB = {
 },
 },
 ["profiles"] = {
+["Default"] = {
+},
 ["Simon"] = {
 },
 },

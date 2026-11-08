@@ -14,6 +14,9 @@ MailLoggerDB = {
 ["EnableML"] = true,
 ["AltList"] = {
 ["Simonmage-CAMWOW US1 Realm 5 PvE"] = true,
+["Simonwarlock-CAMWOW US1 Realm 5 PvE"] = true,
+["Simonpaladin-CAMWOW US1 Realm 5 PvE"] = true,
+["Simonpriest-CAMWOW US1 Realm 5 PvE"] = true,
 },
 ["SetWindowPos"] = {
 "CENTER",
@@ -485,6 +488,523 @@ true,
 ["Number"] = 1,
 ["ItemLink"] = "|cnIQ0:|Hitem:6293::::::::13:1482:::::::::|h[Dried Bat Blood]|h|r",
 ["Name"] = "Dried Bat Blood",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "16:34:00",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:805::::::::1:1490:::::::::|h[Small Red Pouch]|h|r",
+["Name"] = "Small Red Pouch",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5572::::::::1:1490:::::::::|h[Small Green Pouch]|h|r",
+["Name"] = "Small Green Pouch",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:828::::::::1:1490:::::::::|h[Small Blue Pouch]|h|r",
+["Name"] = "Small Blue Pouch",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "16:34:20",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:5350::::::::1:1490:::::::::|h[Conjured Water]|h|r",
+["Name"] = "Conjured Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1113::::::::1:1490:::::::::|h[Conjured Bread]|h|r",
+["Name"] = "Conjured Bread",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:5350::::::::1:1490:::::::::|h[Conjured Water]|h|r",
+["Name"] = "Conjured Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:5349::::::::1:1490:::::::::|h[Conjured Muffin]|h|r",
+["Name"] = "Conjured Muffin",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "16:34:58",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:2901::::::::1:1490::14:::::::|h[Mining Pick]|h|r",
+["Name"] = "Mining Pick",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:247789::::::::1:1490:::::::::|h[Novice's Practice Wand]|h|r",
+["Name"] = "Novice's Practice Wand",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:7026::::::::1:1490:::::::::|h[Linen Belt]|h|r",
+["Name"] = "Linen Belt",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:2580::::::::1:1490:::::::::|h[Reinforced Linen Cape]|h|r",
+["Name"] = "Reinforced Linen Cape",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "16:35:20",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:2901::::::::1:1490::14:::::::|h[Mining Pick]|h|r",
+["Name"] = "Mining Pick",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "16:39:21",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ0:|Hitem:1377::::::::1:1490:::::::::|h[Frayed Gloves]|h|r",
+["Name"] = "Frayed Gloves",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ0:|Hitem:1367::::::::1:1490:::::::::|h[Ragged Leather Boots]|h|r",
+["Name"] = "Ragged Leather Boots",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "17:08:16",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2288::::::::4:1490:::::::::|h[Conjured Fresh Water]|h|r",
+["Name"] = "Conjured Fresh Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2288::::::::4:1490:::::::::|h[Conjured Fresh Water]|h|r",
+["Name"] = "Conjured Fresh Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2288::::::::4:1490:::::::::|h[Conjured Fresh Water]|h|r",
+["Name"] = "Conjured Fresh Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1113::::::::4:1490:::::::::|h[Conjured Bread]|h|r",
+["Name"] = "Conjured Bread",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "17:46:05",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2288::::::::1:1487:::::::::|h[Conjured Fresh Water]|h|r",
+["Name"] = "Conjured Fresh Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2288::::::::1:1487:::::::::|h[Conjured Fresh Water]|h|r",
+["Name"] = "Conjured Fresh Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2288::::::::1:1487:::::::::|h[Conjured Fresh Water]|h|r",
+["Name"] = "Conjured Fresh Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1113::::::::1:1487:::::::::|h[Conjured Bread]|h|r",
+["Name"] = "Conjured Bread",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:5350::::::::1:1487:::::::::|h[Conjured Water]|h|r",
+["Name"] = "Conjured Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:5350::::::::1:1487:::::::::|h[Conjured Water]|h|r",
+["Name"] = "Conjured Water",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "17:46:20",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:5349::::::::1:1487:::::::::|h[Conjured Muffin]|h|r",
+["Name"] = "Conjured Muffin",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:247789::::::::1:1487:::::::::|h[Novice's Practice Wand]|h|r",
+["Name"] = "Novice's Practice Wand",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:7026::::::::1:1487:::::::::|h[Linen Belt]|h|r",
+["Name"] = "Linen Belt",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:2580::::::::1:1487:::::::::|h[Reinforced Linen Cape]|h|r",
+["Name"] = "Reinforced Linen Cape",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "17:46:36",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4238::::::::1:1487:::::::::|h[Linen Bag]|h|r",
+["Name"] = "Linen Bag",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4238::::::::1:1487:::::::::|h[Linen Bag]|h|r",
+["Name"] = "Linen Bag",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4238::::::::1:1487:::::::::|h[Linen Bag]|h|r",
+["Name"] = "Linen Bag",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "17:47:49",
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:2580::::::::6:1490:::::::::|h[Reinforced Linen Cape]|h|r",
+["Name"] = "Reinforced Linen Cape",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "20:50:29",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2288::::::::9:1487:::::::::|h[Conjured Fresh Water]|h|r",
+["Name"] = "Conjured Fresh Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2288::::::::9:1487:::::::::|h[Conjured Fresh Water]|h|r",
+["Name"] = "Conjured Fresh Water",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "21:59:13",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211787::::::::13:1482:::::::::|h[Scroll: LOWER PING WHOMEVER]|h|r",
+["Name"] = "Scroll: LOWER PING WHOMEVER",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211785::::::::13:1482:::::::::|h[Scroll: CWAL]|h|r",
+["Name"] = "Scroll: CWAL",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["Time"] = "22:05:31",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 18,
+["ItemLink"] = "|cnIQ1:|Hitem:2320::::::::13:1482:::::::::|h[Coarse Thread]|h|r",
+["Name"] = "Coarse Thread",
+},
+{
+["Number"] = 18,
+["ItemLink"] = "|cnIQ1:|Hitem:2996::::::::13:1482:::::::::|h[Bolt of Linen Cloth]|h|r",
+["Name"] = "Bolt of Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "22:06:31",
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::11:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::11:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::11:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::11:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::11:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 16,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::11:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "22:06:45",
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:253664::::::::11:1487:::::::::|h[Linen Reagent Bag]|h|r",
+["Name"] = "Linen Reagent Bag",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::11:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::11:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::11:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 3,
+["ItemLink"] = "|cnIQ1:|Hitem:2996::::::::11:1487:::::::::|h[Bolt of Linen Cloth]|h|r",
+["Name"] = "Bolt of Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-07",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "22:07:10",
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:268415::::::::11:1487:::::::::|h[Commonplace Herb Seeds]|h|r",
+["Name"] = "Commonplace Herb Seeds",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["Time"] = "00:43:13",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ2:|Hitem:10938::::::::13:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["Name"] = "Lesser Magic Essence",
+},
+{
+["Number"] = 3,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::13:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["Time"] = "00:46:05",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:3322::::::::13:1482:::::::::|h[Wispy Cloak]|h|r",
+["Name"] = "Wispy Cloak",
 },
 },
 },

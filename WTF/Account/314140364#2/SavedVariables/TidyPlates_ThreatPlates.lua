@@ -3,6 +3,9 @@ ThreatPlatesDB = {
 ["namespaces"] = {
 },
 ["profileKeys"] = {
+["Simonwarlock Windseeker"] = "Simon",
+["Simonpaladin Windseeker"] = "Simon",
+["Simonpriest Windseeker"] = "Simon",
 ["Simonmage Windseeker"] = "Simon",
 },
 ["global"] = {
@@ -18,9 +21,9 @@ ThreatPlatesDB = {
 ["settings"] = {
 ["frame"] = {
 ["heightFriend"] = 26.27604195216716,
-["widthFriend"] = 183.9322936651701,
-["height"] = 26.27604195216716,
 ["width"] = 183.9322936651701,
+["height"] = 26.27604195216716,
+["widthFriend"] = 183.9322936651701,
 },
 },
 },
@@ -32,9 +35,9 @@ ThreatPlatesDB = {
 },
 ["settings"] = {
 ["frame"] = {
+["heightFriend"] = 26.27604195216716,
 ["widthFriend"] = 183.9322936651701,
 ["height"] = 26.27604195216716,
-["heightFriend"] = 26.27604195216716,
 ["width"] = 183.9322936651701,
 },
 },
