@@ -1,7 +1,7 @@
 ## Interface: 16001
 ## Author: Aznamir, Dyaxler, Es, gallantron; Forever port by Pallyblaze, Laxativum
 ## Title: PallyPower Forever
-## Version: v1.6.4-classic
+## Version: v1.6.5-classic
 ## Notes: Raid/Party Paladin buffs
 ## Notes-esES: Buffs de Paladín para Grupo/Banda
 ## Notes-zhCN: 圣骑士祝福管理
