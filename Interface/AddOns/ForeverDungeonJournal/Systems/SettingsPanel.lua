@@ -51,10 +51,11 @@ local function MaxDungeonLevel(dungeon)
     return top
 end
 
--- True when the character has finished every quest of this dungeon that it
+-- True when the character has handed in every quest of this dungeon that it
 -- can actually take (own faction, own class). False when there are none.
+-- (questdone: a quest ready to turn in is not done yet.)
 local function AllQuestsDone(dungeon)
-    if not FDJ.IsQuestFinished then return false end
+    if not FDJ.QuestTurnedIn then return false end
     local faction, class = PlayerFaction(), PlayerClass()
     if not faction then return false end
     local count = 0
@@ -67,7 +68,7 @@ local function AllQuestsDone(dungeon)
             or not FDJ.PlayerHasProfession or FDJ.PlayerHasProfession(quest.profession)
         if forFaction and forClass and forProfession and not quest.hideFromMainList and not quest.repeatable and quest.id then
             count = count + 1
-            if not FDJ.IsQuestFinished(quest.id) then return false end
+            if not FDJ.QuestTurnedIn(quest.id) then return false end
         end
     end
     return count > 0
@@ -128,6 +129,12 @@ local OPTIONS = {
         set = function(on) if FDJ.SetLFGButtonHidden then FDJ.SetLFGButtonHidden(on) end end,
     },
     {
+        label = "OPT_HIDE_SLEEPING_BAG",
+        tip = "OPT_HIDE_SLEEPING_BAG_TIP",
+        get = function() return FDJ.IsSleepingBagHidden and FDJ.IsSleepingBagHidden() or false end,
+        set = function(on) if FDJ.SetSleepingBagHidden then FDJ.SetSleepingBagHidden(on) end end,
+    },
+    {
         label = "OPT_HIDE_DUNGEON_MAP",
         tip = "OPT_HIDE_DUNGEON_MAP_TIP",
         get = function() return Store().worldMapOverlay == false end,
@@ -143,6 +150,17 @@ local OPTIONS = {
         tip = "OPT_RPG_MODE_TIP",
         get = function() return FDJ.IsRPGMode and FDJ.IsRPGMode() or false end,
         set = function(on) if FDJ.SetJournalMode then FDJ.SetJournalMode(on and "rpg" or "gamer") end end,
+        refreshHome = true,
+    },
+    {
+        -- Same switch as the WoW Forever emblem at the top left of the
+        -- dungeon list (Systems/ForeverFilter.lua), for players who clicked
+        -- the emblem by mistake and can't find the other dungeons. Off by
+        -- default.
+        label = "OPT_FOREVER_ONLY",
+        tip = "OPT_FOREVER_ONLY_TIP",
+        get = function() return FDJ.IsForeverOnly and FDJ.IsForeverOnly() or false end,
+        set = function(on) if FDJ.SetForeverOnly then FDJ.SetForeverOnly(on) end end,
         refreshHome = true,
     },
     {
@@ -946,6 +964,16 @@ local function CreatePanel()
         end
     end)
     panel:Hide()
+end
+
+-- Ticks follow changes made elsewhere while the panel is open (the WoW
+-- Forever emblem).
+function FDJ.RefreshSettingsChecks()
+    if not (panel and panel.checks) then return end
+    for _, check in ipairs(panel.checks) do
+        local ok, value = pcall(check.option.get)
+        check:SetChecked(ok and value or false)
+    end
 end
 
 function FDJ.ToggleSettingsPanel()

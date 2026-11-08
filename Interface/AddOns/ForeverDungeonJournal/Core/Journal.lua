@@ -235,12 +235,19 @@ FDJ.DUNGEON_MAPS = {
         entrance = { floor = 1, x = 0.846, y = 0.521, angle = 0 }, -- the swirl in Sunken Hollow
         bosses = {},
     },
-    -- Announced dungeons (no boss data yet): the map is their only page.
+    -- No boss positions known yet.
     ["Krol'dok Stronghold"] = {
         floors = { { texture = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\KroldokMap", texBottom = 683 / 1024 } },
         entrance = { floor = 1, x = 0.205, y = 0.807, angle = 180 }, -- the swirl where the trail comes in (south-west)
         bosses = {},
     },
+    -- No boss positions known yet.
+    ["Alcaz Prison"] = {
+        floors = { { texture = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\AlcazPrisonMap", texBottom = 683 / 1024 } },
+        entrance = { floor = 1, x = 0.353, y = 0.160, angle = 180 }, -- the swirl at the top of the stairs (label on the left, clear of "Main Unit")
+        bosses = {},
+    },
+    -- Announced dungeons (no boss data yet): the map is their only page.
     ["Shaper's Terrace"] = {
         floors = { { texture = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\ShapersTerraceMap", texBottom = 683 / 1024 } },
         bosses = {},
@@ -408,6 +415,14 @@ FDJ.DUNGEON_MAPS = {
     ["Excavation Site: Wetlands"] = {
         floors = { { texture = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\ExcavationSiteMap", texBottom = 683 / 1024 } },
         entrance = { floor = 1, x = 0.888, y = 0.258, angle = 180, labelPos = "top" }, -- the swirl at the right of the map
+        -- insidequest: quest NPCs inside (Warcraft Tavern's screenshots):
+        -- Ardin Grassman up on the wooden tower by the Relic Guardian (just
+        -- beside its portrait), Daewyn Songblade's body in a tent at the Lost
+        -- Dig Site, by the dig and the bones.
+        turnins = {
+            { npc = "Ardin Grassman", x = 0.262, y = 0.668 },
+            { npc = "Daewyn Songblade", x = 0.074, y = 0.497 },
+        },
         -- Boss spots as marked by Exehn on the map (2026-10-06).
         bosses = {
             { name = "Saltspine",       x = 0.550, y = 0.361 },
@@ -481,6 +496,12 @@ FDJ.DUNGEON_MAPS = {
             { uiMapID = 315, tiles = "Interface\\WorldMap\\ShadowfangKeep\\ShadowfangKeep6_", patches = { { tex = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\MapPatches\\ShadowfangKeep6_s1", x0 = 0.6677, y0 = 0.3084, x1 = 0.7016, y1 = 0.3593 }, { tex = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\MapPatches\\ShadowfangKeep6_s2", x0 = 0.5289, y0 = 0.6018, x1 = 0.5629, y1 = 0.6527 } } },
         },
         entrance = { floor = 1, x = 0.705, y = 0.605, angle = 0 },
+        -- Deathstalkers in Shadowfang is handed in to Deathstalker Vincent,
+        -- lying just inside the courtyard, right of the steps up from
+        -- Rethilgore's jail (straight ahead of the entrance, past the gate).
+        turnins = {
+            { npc = "Deathstalker Vincent", floor = 1, x = 0.558, y = 0.622 },
+        },
         -- Pins on a printed map marker sit exactly on it; the rest follow the
         -- boss positions published for the Forever client.
         bosses = {
@@ -519,9 +540,8 @@ FDJ.DUNGEON_MAPS = {
             { uiMapID = 223, tiles = "Interface\\WorldMap\\BlackFathomDeeps\\BlackFathomDeeps3_", patches = { { tex = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\MapPatches\\BlackFathomDeeps3_s1", x0 = 0.5569, y0 = 0.2799, x1 = 0.5908, y1 = 0.3308 } } },
         },
         entrance = { floor = 1, x = 0.455, y = 0.085, angle = -20 },
-        -- Quest objectives you click or loot on the spot (not kills / drops).
-        -- Positions from Wowhead's spawn data for the same map.
-        -- Switched off for now (shown later):
+        -- Quest objectives you click or loot on the spot (not kills / drops):
+        -- now FDJ.MAP_QUEST_PINS (Data/QuestMaps.lua), with the other quests'.
         -- objectives = {
         --     { floor = 1, x = 0.330, y = 0.413, questID = 971, quest = "Knowledge in the Deeps", textKey = "MAP_OBJ_BFD_CHEST" },
         --     { floor = 2, x = 0.414, y = 0.754, questID = 6921, quest = "Amongst the Ruins", textKey = "MAP_OBJ_BFD_FATHOM" },
@@ -588,6 +608,11 @@ FDJ.DUNGEON_MAPS = {
         entrances = {
             { floor = 1, x = 0.618, y = 0.281, angle = 0, labelKey = "MAP_ENTRANCE_ORANGE", color = { 1.00, 0.55, 0.10 } },
             { floor = 1, x = 0.764, y = 0.659, angle = 0, labelKey = "MAP_ENTRANCE_PURPLE", color = { 0.78, 0.45, 1.00 } },
+        },
+        -- turninall: Celebras the Redeemed stands where Celebras the Cursed
+        -- falls (quest tracker's ? button).
+        turnins = {
+            { npc = "Celebras the Redeemed", floor = 2, x = 0.245, y = 0.143 },
         },
         floors = {
             { uiMapID = 280, tiles = "Interface\\WorldMap\\Maraudon\\Maraudon1_" },
@@ -835,6 +860,92 @@ FDJ.StartsInsideDungeon = function(pickupText)
     return text:find("inside ", 1, true) ~= nil
 end
 
+-- insidequest: handed in inside the dungeon: "..., inside Shadowfang Keep",
+-- or the place after the last comma is the dungeon itself ("Baelog,
+-- Uldaman"); never "just outside".
+FDJ.TurnInInsideDungeon = function(turninText, dungeonName)
+    if type(turninText) ~= "string" or turninText == "" then return false end
+    local text = string.lower(turninText)
+    if text:find("outside", 1, true) then return false end
+    if text:find("inside", 1, true) then return true end
+    if type(dungeonName) ~= "string" then return false end
+    local place = text:match(",%s*([^,]-)%s*$")
+    if not place or place == "" then return false end
+    local name = string.lower(dungeonName)
+    return place == name or place == name:match("^(.-):")
+end
+
+-- A chain step done inside the dungeon: handed in there, or its objective
+-- says inside / within this dungeon (The Horn of Xelthos: "inside of
+-- Shadowfang Keep", not on the Scarlet Monastery's pages).
+FDJ.ObjectiveInsideDungeon = function(details, dungeonName)
+    if type(details) ~= "table" then return false end
+    if FDJ.TurnInInsideDungeon(details.turnin, dungeonName) then return true end
+    if type(details.objective) ~= "string" or type(dungeonName) ~= "string" then return false end
+    local text = string.lower(details.objective)
+    if not (text:find("inside", 1, true) or text:find("within", 1, true)) then return false end
+    local name = string.lower(dungeonName)
+    return text:find(name:match("^(.-):") or name, 1, true) ~= nil
+end
+
+-- Quests (and chain steps) handed in inside a dungeon, by quest ID.
+FDJ.HandedInInsideDungeon = function(questID)
+    if not questID then return false end
+    if not FDJ.insideTurnInIDs then
+        local ids = {}
+        for dungeonName, dungeon in pairs(DB) do
+            if type(dungeon) == "table" and type(dungeon.quests) == "table" then
+                for _, quest in ipairs(dungeon.quests) do
+                    if type(quest) == "table" and quest.id then
+                        if FDJ.TurnInInsideDungeon(quest.turnin, dungeonName) then ids[quest.id] = true end
+                        for _, step in ipairs(QUEST_PREREQ_CHAINS[quest.id] or {}) do
+                            local details = type(step) == "table" and step.id and QUEST_PREREQ_DETAILS[step.id]
+                            if type(details) == "table" and FDJ.TurnInInsideDungeon(details.turnin, dungeonName) then
+                                ids[step.id] = true
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        FDJ.insideTurnInIDs = ids
+    end
+    return FDJ.insideTurnInIDs[questID] == true
+end
+
+-- The In Dungeon icon after a quest page's Objective / Turn in header
+-- (key: questObjectiveDungeonIcon / questTurninDungeonIcon), as after
+-- Starts at. show false: hidden.
+FDJ.SetHeaderDungeonIcon = function(key, header, show)
+    local icon = frame and frame[key]
+    if not show or not header or not frame or not frame.questDetailContent then
+        if icon then icon:Hide() end
+        return
+    end
+    if not icon then
+        icon = CreateFrame("Button", nil, frame.questDetailContent)
+        frame[key] = icon
+        icon:SetSize(26, 26)
+        icon.icon = icon:CreateTexture(nil, "ARTWORK")
+        icon.icon:SetAllPoints()
+        local ok = icon.icon.SetAtlas and pcall(icon.icon.SetAtlas, icon.icon, "Dungeon", false)
+        if not ok then
+            icon.icon:SetTexture("Interface\\Icons\\INV_Misc_Rune_01")
+            icon.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+        end
+        icon:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square", "ADD")
+        icon:SetScript("OnEnter", function(self)
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            GameTooltip:SetText(L("IN_DUNGEON"))
+            GameTooltip:Show()
+        end)
+        icon:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    end
+    icon:ClearAllPoints()
+    icon:SetPoint("LEFT", header, "RIGHT", 6, 0)
+    icon:Show()
+end
+
 -- A quest started by an item that drops in the dungeon (from one of its
 -- bosses or its trash) starts inside too, whatever its text says.
 FDJ.StartItemDropsIn = function(quest, dungeonName)
@@ -848,6 +959,23 @@ FDJ.StartItemDropsIn = function(quest, dungeonName)
         end
     end
     return false
+end
+
+-- A quest that needs a chain first is picked up where its chain starts:
+-- the chain's first step (pendingOnly, for the tracker: the first step not
+-- handed in yet). True/false; nil without a chain, or with every step done.
+FDJ.ChainStartsInside = function(quest, dungeonName, pendingOnly)
+    local chain = type(quest) == "table" and quest.id and QUEST_PREREQ_CHAINS[quest.id]
+    if type(chain) ~= "table" or #chain == 0 then return nil end
+    for _, step in ipairs(chain) do
+        if type(step) == "table" and step.id ~= quest.id and not (pendingOnly and step.id
+            and not step.itemStep and FDJ.QuestTurnedIn and FDJ.QuestTurnedIn(step.id)) then
+            local details = (step.id and QUEST_PREREQ_DETAILS[step.id]) or {}
+            return details.startsInDungeon == true or FDJ.StartsInsideDungeon(details.pickup)
+                or FDJ.StartItemDropsIn(details, dungeonName)
+        end
+    end
+    return nil
 end
 
 -- Quest list rows: a small dungeon icon after "Available from Level X" for
@@ -881,6 +1009,204 @@ FDJ.SetRowDungeonIcon = function(button, show, offsetX)
     icon:ClearAllPoints()
     icon:SetPoint("LEFT", button.meta, "LEFT", offsetX, 0)
     icon:Show()
+end
+
+-- chainturnin: a chain step in the quest log that is handed in inside the
+-- dungeon says so at the top of its page: YOU HAVE IT (gold, a thin black
+-- outline) and a "Turn in: Dungeon" button like Show on Map, with the round
+-- quest ? in it (on the left); a click opens the dungeon map where it is handed in (as
+-- the ? of a quest ready to hand in does). Returns cursorY.
+FDJ.PlaceStepHaveItRow = function(show, questID, details, title, cursorY)
+    local row = frame and frame.questStepHaveIt
+    if not show or not frame or not frame.questDetailContent then
+        if row then row:Hide() end
+        return cursorY
+    end
+    if not row then
+        row = CreateFrame("Frame", nil, frame.questDetailContent)
+        frame.questStepHaveIt = row
+        row:SetHeight(26)
+        row.haveIt = row:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        row.haveIt:SetPoint("LEFT", row, "LEFT", 0, 0)
+        do
+            local font, size = row.haveIt:GetFont()
+            if font then row.haveIt:SetFont(font, size or 12, "OUTLINE") end
+        end
+        row.haveIt:SetTextColor(1.00, 0.82, 0.10)
+        local button = CreateFrame("Button", nil, row, "UIPanelButtonTemplate")
+        row.button = button
+        button:SetSize(130, 24)
+        button:SetPoint("LEFT", row.haveIt, "RIGHT", 10, 0)
+        button:RegisterForClicks("LeftButtonUp")
+        row.mark = FDJ.CreateTurnInButton and FDJ.CreateTurnInButton(button, 21)
+        if row.mark then
+            row.mark:SetPoint("LEFT", button, "LEFT", 5, 0)
+            row.mark:SetFrameLevel(button:GetFrameLevel() + 2)
+        end
+        -- The button does what the ? does (the ? itself takes no mouse).
+        local function Forward(script)
+            return function(_, ...)
+                local mark = row.mark
+                local fn = mark and mark:GetScript(script)
+                if fn then fn(mark, ...) end
+            end
+        end
+        button:SetScript("OnClick", Forward("OnClick"))
+        button:SetScript("OnEnter", Forward("OnEnter"))
+        button:SetScript("OnLeave", Forward("OnLeave"))
+        button:HookScript("OnMouseDown", Forward("OnMouseDown"))
+        button:HookScript("OnMouseUp", Forward("OnMouseUp"))
+    end
+    local button = row.button
+    row.haveIt:SetText(L("YOU_HAVE_IT"))
+    button:SetText(L("TURN_IN_DUNGEON"))
+    local fs = button:GetFontString()
+    local textWidth = fs and fs:GetStringWidth() or 0
+    button:SetWidth(math.max(96, math.min(210, math.ceil(textWidth + 24 + 22))))
+    if fs then
+        fs:ClearAllPoints()
+        fs:SetPoint("CENTER", button, "CENTER", row.mark and 10 or 0, 0)
+    end
+    if row.mark and FDJ.SetTurnInButton then
+        FDJ.SetTurnInButton(row.mark, { id = questID, turnin = details.turnin, turninMap = details.turninMap }, title)
+        local clickable = row.mark:IsMouseEnabled()
+        row.mark:EnableMouse(false)
+        button:EnableMouse(clickable)
+    end
+    row:ClearAllPoints()
+    row:SetPoint("TOPLEFT", frame.questDetailContent, "TOPLEFT", 0, -cursorY)
+    row:SetWidth(math.max(120, (row.haveIt:GetStringWidth() or 0) + 10 + button:GetWidth()))
+    row:Show()
+    return cursorY + 26 + 8
+end
+
+-- mapfocus: the ? / ! a control opened the dungeon map for pulses a few
+-- seconds (FDJ.MAP_FOCUS_SECONDS), told apart from the other markers: by its
+-- quest, else by where it is.
+do
+FDJ.MAP_FOCUS_SECONDS = 3.5
+local FOCUS_GLOW = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\TickGlow"
+FDJ.FocusDungeonMapQuest = function(questID, floor, x, y)
+    FDJ.dungeonMapFocus = { questID = questID, floor = floor or 1, x = x, y = y,
+        untilT = ((GetTime and GetTime()) or 0) + FDJ.MAP_FOCUS_SECONDS }
+end
+local function FocusMatches(questIDs, floor, x, y)
+    local f = FDJ.dungeonMapFocus
+    if not f or ((GetTime and GetTime()) or 0) > f.untilT then return false end
+    if f.questID and questIDs and questIDs[f.questID] then return true end
+    if f.x and f.y and x and y and (floor or 1) == (f.floor or 1) then
+        return math.abs(f.x - x) < 0.015 and math.abs(f.y - y) < 0.015
+    end
+    return false
+end
+-- The pulse on one marker (on = false: off).
+FDJ.PulseMarker = function(marker, on)
+    if not marker then return end
+    local glow = marker.fdjPulse
+    if not on then
+        if glow then glow:Hide() end
+        if marker.fdjPulsing then marker:SetScript("OnUpdate", nil) marker.fdjPulsing = nil end
+        return
+    end
+    if not glow then
+        glow = marker:CreateTexture(nil, "BACKGROUND")
+        glow:SetTexture(FOCUS_GLOW)
+        glow:SetBlendMode("ADD")
+        glow:SetVertexColor(1, 0.85, 0.2)
+        glow:SetPoint("CENTER")
+        marker.fdjPulse = glow
+        marker:HookScript("OnHide", function(self) FDJ.PulseMarker(self, false) end)
+    end
+    local size = (marker:GetWidth() or 24) * 2.2
+    glow:SetSize(size, size)
+    glow:Show()
+    marker.fdjPulsing = true
+    local untilT = FDJ.dungeonMapFocus and FDJ.dungeonMapFocus.untilT or 0
+    marker:SetScript("OnUpdate", function(self)
+        local now = (GetTime and GetTime()) or 0
+        if now > untilT then FDJ.PulseMarker(self, false) return end
+        glow:SetAlpha(0.35 + 0.65 * (0.5 + 0.5 * math.sin(now * 2 * math.pi * 1.5)))
+    end)
+end
+-- The markers on the map now: the matching ones pulse, the others not.
+FDJ.ApplyDungeonMapFocus = function()
+    local mark = frame and frame.dungeonMapTurnIn
+    if mark and mark:IsShown() and mark.turnIn then
+        local t = mark.turnIn
+        FDJ.PulseMarker(mark, FocusMatches(t.questID and { [t.questID] = true }, t.floor, t.x, t.y))
+    end
+    for _, b in ipairs((FDJ.MapQuestPinButtons and FDJ.MapQuestPinButtons()) or {}) do
+        if b:IsShown() and b.fdjSpots then
+            local ids = {}
+            for _, spot in ipairs(b.fdjSpots) do
+                for _, q in ipairs(spot.shown or {}) do
+                    if q.id then ids[q.id] = true end
+                    if q.main then ids[q.main] = true end
+                end
+            end
+            FDJ.PulseMarker(b, FocusMatches(ids, b.fdjFloor, b.fdjX, b.fdjY))
+        end
+    end
+end
+end
+
+-- glowingshard: a quest whose objective is done somewhere first (The
+-- Glowing Shard: speak with Sputtervalve in Ratchet) gets a Show on Map
+-- button under its objective: the world map, the NPC marked (and targeted
+-- when near, like Show on Map). Returns cursorY.
+FDJ.PlaceObjectiveMapButton = function(quest, cursorY)
+    local spot = type(quest) == "table" and quest.objectiveMap or nil
+    local b = frame and frame.questObjectiveMapButton
+    if type(spot) ~= "table" or not spot.mapID or not frame or not frame.questDetailContent then
+        if b then b:Hide() end
+        return cursorY
+    end
+    if not b then
+        local ok, made = pcall(CreateFrame, "Button", nil, frame.questDetailContent, "UIPanelButtonTemplate,InsecureActionButtonTemplate")
+        if ok and made then
+            b = made
+            b._fdjCanTarget = true
+            b:SetAttribute("useOnKeyDown", false)
+        else
+            b = CreateFrame("Button", nil, frame.questDetailContent, "UIPanelButtonTemplate")
+            b._fdjCanTarget = false
+        end
+        frame.questObjectiveMapButton = b
+        b:SetSize(104, 24)
+        b:RegisterForClicks("LeftButtonUp")
+        -- PostClick keeps the template's own click (the target macro).
+        b:SetScript(b._fdjCanTarget and "PostClick" or "OnClick", function(self)
+            local s = self.fdjSpot
+            local show = FDJ.MapMarkers and FDJ.MapMarkers.ShowRecordedLocationOnMap
+            if not s or not show then return end
+            s = (FDJ.LocalizeMapLocation and FDJ.LocalizeMapLocation(s)) or s
+            FDJ.pendingMarkerQuestTitle = self.fdjQuestTitle
+            FDJ.pendingMarkerQuestID = self.fdjQuestID -- autoclear: gone once the objective is done
+            FDJ.pendingMarkerObjective = true
+            show(s, s.label)
+        end)
+        b:SetScript("OnEnter", function(self)
+            if FDJ.MapMarkers and FDJ.MapMarkers.ConfigureTargetAndMarkAction then
+                FDJ.MapMarkers.ConfigureTargetAndMarkAction(self, self.fdjSpot, true)
+            end
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            GameTooltip:SetText(L("SHOW_ON_MAP"))
+            if type(self.fdjWhere) == "string" and self.fdjWhere ~= "" then GameTooltip:AddLine(self.fdjWhere, 1, 1, 1, true) end
+            GameTooltip:Show()
+        end)
+        b:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    end
+    b.fdjSpot = spot
+    b.fdjWhere = quest.objectiveWhere
+    b.fdjQuestTitle = QuestField(quest.id, "name", quest.name)
+    b.fdjQuestID = quest.id -- autoclear
+    b:SetText(L("SHOW_ON_MAP"))
+    local fs = b:GetFontString()
+    b:SetWidth(math.max(96, math.min(150, math.ceil(((fs and fs:GetStringWidth()) or 0) + 24))))
+    b:ClearAllPoints()
+    b:SetPoint("TOPLEFT", frame.questDetailContent, "TOPLEFT", 0, -(cursorY - 6))
+    b:Show()
+    return cursorY - 6 + 24 + 12
 end
 
 FDJ.PositionInDungeonIcon = function()
@@ -1135,7 +1461,7 @@ FDJ.INSTANCE_ID_TO_DUNGEON = {
     [389] = "Ragefire Chasm", [36] = "The Deadmines", [43] = "Wailing Caverns", [33] = "Shadowfang Keep",
     [34] = "The Stockade", [48] = "Blackfathom Deeps", [90] = "Gnomeregan", [47] = "Razorfen Kraul",
     [189] = "Scarlet Monastery", [2999] = "Ruins of Lordaeron", [2959] = "City of Dalaran",
-    [2998] = "Excavation Site: Wetlands", [3065] = "Hall of Thanes", [129] = "Razorfen Downs", [70] = "Uldaman", [209] = "Zul'Farrak", [109] = "Sunken Temple", [289] = "Scholomance", [349] = "Maraudon", [230] = "Blackrock Depths",
+    [2998] = "Excavation Site: Wetlands", [3065] = "Hall of Thanes", [2994] = "Alcaz Prison", [2974] = "Blackmaw Hold", [129] = "Razorfen Downs", [70] = "Uldaman", [209] = "Zul'Farrak", [109] = "Sunken Temple", [289] = "Scholomance", [349] = "Maraudon", [230] = "Blackrock Depths",
 }
 FDJ.SCARLET_WING_MAPS = { [302] = "Scarlet Monastery: Graveyard", [303] = "Scarlet Monastery: Library",
     [304] = "Scarlet Monastery: Armory", [305] = "Scarlet Monastery: Cathedral" }
@@ -1505,8 +1831,12 @@ local function BuildQuestRewardSummary(quest, includeXP)
     return summary
 end
 
+-- devlog: /dj fakelog <questID>: quests shown as if in the quest log.
+FDJ.DEV_FAKE_LOG = FDJ.DEV_FAKE_LOG or {}
+
 local function IsQuestFinished(questID)
     if not questID then return false end
+    if FDJ.DEV_FAKE_LOG[questID] then return false end -- devlog
 
     -- A permanently completed quest is always complete.
     if C_QuestLog and type(C_QuestLog.IsQuestFlaggedCompleted) == "function" then
@@ -1555,6 +1885,13 @@ local function IsQuestFinished(questID)
             if okCount and type(count) == "number" then objectiveCount = count end
         end
     end
+    -- insidequest: nothing to do but go and speak to someone inside a
+    -- dungeon (Songblade Search, Deathstalkers in Shadowfang): the quest log
+    -- calls it complete as soon as it is accepted, but it is not ready before
+    -- that talk. YOU HAVE IT (in the quest log) until it is handed in there.
+    if objectiveCount == 0 and FDJ.HandedInInsideDungeon and FDJ.HandedInInsideDungeon(questID) then
+        return false
+    end
     if C_QuestLog and type(C_QuestLog.IsComplete) == "function" then
         local ok, value = pcall(C_QuestLog.IsComplete, questID)
         if ok then
@@ -1567,6 +1904,7 @@ end
 
 local function IsQuestInLog(questID)
     if not questID then return false end
+    if FDJ.DEV_FAKE_LOG[questID] then return true end -- devlog
 
     if C_QuestLog and type(C_QuestLog.GetLogIndexForQuestID) == "function" then
         local ok, index = pcall(C_QuestLog.GetLogIndexForQuestID, questID)
@@ -1699,7 +2037,7 @@ FDJ.UpdateQuestShareButton = function(questID, classLabel)
     if not frame or not frame.questShareButton then return 48 end
     local button = frame.questShareButton
 
-    if type(questID) ~= "number" then
+    if type(questID) ~= "number" or questID <= 0 then
         button.questID = nil
         button:Hide()
         return 48
@@ -2861,6 +3199,19 @@ function FDJ.AddUnseenItemHint(tooltip)
     return true
 end
 
+-- kroldok: the stats the game showed for an item whose ID is not known
+-- yet (item.tip: a line, or { left, right }).
+function FDJ.AddItemTipLines(tooltip, item)
+    local tip = type(item) == "table" and item.tip
+    for _, line in ipairs(type(tip) == "table" and tip or {}) do
+        if type(line) == "table" then
+            tooltip:AddDoubleLine(line[1], line[2], 1, 1, 1, 1, 1, 1)
+        else
+            tooltip:AddLine(line, 1, 1, 1, true)
+        end
+    end
+end
+
 local function ShowItemTooltip(row)
     if not row.item then return end
 
@@ -2873,8 +3224,15 @@ local function ShowItemTooltip(row)
     itemTooltip:SetOwner(row, "ANCHOR_NONE")
     if itemTooltip.ClearLines then itemTooltip:ClearLines() end
     if not row.item[1] or row.item[1] <= 0 then
-        local r, g, b = QualityColor(row.item[3] or 1)
+        local r, g, b = QualityColor(tonumber(row.item[4]) or tonumber(row.item[3]) or 1)
         itemTooltip:AddLine(row.item[2] or L("ITEM"), r, g, b)
+        for _, line in ipairs(type(row.item.tip) == "table" and row.item.tip or {}) do -- drownedloot
+            if type(line) == "table" then
+                itemTooltip:AddDoubleLine(line[1], line[2], 1, 1, 1, 1, 1, 1)
+            else
+                itemTooltip:AddLine(line, 1, 1, 1, true)
+            end
+        end
         itemTooltip:Show()
         if FDJ.RefreshTooltipBacking then FDJ.RefreshTooltipBacking() end
         PositionPrimaryItemTooltip(row)
@@ -3218,9 +3576,18 @@ local function MakeQuestButton(parent)
     -- Ready to hand in: the quest tracker's round ? in place of the tick (a
     -- click shows where to hand the quest in).
     if FDJ.CreateTurnInButton then
-        button.turnIn = FDJ.CreateTurnInButton(button, 32)
-        button.turnIn:SetPoint("CENTER", button, "TOPRIGHT", -18, -18)
+        -- bigready: big and on its own (no faction icons) so nobody misses it.
+        button.turnIn = FDJ.CreateTurnInButton(button, 44)
+        button.turnIn:SetPoint("CENTER", button, "TOPRIGHT", -26, -24)
         button.turnIn:SetFrameLevel(button:GetFrameLevel() + 6)
+    end
+    -- turninlabel: "Turn in" left of the ?, in the quest tracker's green.
+    if button.turnIn then
+        button.turnInLabel = button:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+        button.turnInLabel:SetPoint("RIGHT", button.turnIn, "LEFT", 3, 0)
+        button.turnInLabel:SetJustifyH("RIGHT")
+        button.turnInLabel:SetTextColor(0.30, 1.00, 0.36)
+        button.turnInLabel:Hide()
     end
 
     button.allianceIcon = button:CreateTexture(nil, "OVERLAY")
@@ -3338,7 +3705,7 @@ local function MakeQuestButton(parent)
 
     button:SetScript("OnClick", function(self)
         -- Shift-click with a chat box open links the quest instead of selecting it.
-        if FDJ.TryLinkQuest and FDJ.TryLinkQuest(self.questID, self.fdjQuestName, self.fdjQuestLevel) then return end
+        if not self.fdjRPGHidden and FDJ.TryLinkQuest and FDJ.TryLinkQuest(self.questID, self.fdjQuestName, self.fdjQuestLevel) then return end
         SelectQuest(self.questIndex)
     end)
 
@@ -3413,6 +3780,10 @@ local function MakeQuestRewardButton(parent)
             if itemTooltip then itemTooltip:Hide() end
             HideComparisonTooltips()
             local src = self.fdjMapLocation
+            if src.dungeon and FDJ.ShowQuestSpotOnDungeonMap then -- mapquests: a spot in a dungeon
+                FDJ.ShowQuestSpotOnDungeonMap(src)
+                return
+            end
             local loc = {
                 mapID = src.mapID, x = src.x, y = src.y, markerType = src.markerType,
                 label = FDJ.LocalizeFreeText and FDJ.LocalizeFreeText(src.label) or src.label,
@@ -3479,6 +3850,7 @@ local function UpdateModeTabs()
     if frame.dungeonRouteButton and frame.dungeonRouteButton:IsShown() then
         style(frame.dungeonRouteButton, routeActive)
     end
+    if FDJ.RPGStyleMapTab then FDJ.RPGStyleMapTab(frame.mapTab, selectedDungeon) end -- rpgpartial: greyed out
 end
 
 local function UpdateDungeonHeaderTabs()
@@ -3493,6 +3865,19 @@ local function UpdateDungeonHeaderTabs()
         frame.bossesTab:SetPoint("TOPRIGHT", -13, -14)
         if frame.mapTab then frame.mapTab:Hide() end
         if frame.dungeonRouteButton then frame.dungeonRouteButton:Hide() end
+        return
+    end
+
+    -- sleepingbag: a page that is one quest chain has its Quests tab only.
+    if currentDungeon and currentDungeon.questChainPage then
+        frame.bossesTab:Hide()
+        frame.questsTab:Show()
+        frame.questsTab:ClearAllPoints()
+        frame.questsTab:SetSize(108, 30)
+        frame.questsTab:SetPoint("TOPRIGHT", -13, -14)
+        if frame.mapTab then frame.mapTab:Hide() end
+        if frame.dungeonRouteButton then frame.dungeonRouteButton:Hide() end
+        if frame.dungeonMapPanel then frame.dungeonMapPanel:Hide() end
         return
     end
 
@@ -3621,6 +4006,7 @@ local function UpdateDungeonHeaderTabs()
             frame.mapTab.text:SetPoint("CENTER", frame.mapTab, "CENTER", 7, 0)
         end
     end
+    if FDJ.RPGStyleMapTab then FDJ.RPGStyleMapTab(frame.mapTab, selectedDungeon) end -- rpgpartial: greyed out
 end
 
 local function UpdateFactionButtons()
@@ -3644,6 +4030,10 @@ local function UpdateFactionButtons()
 
     Style(frame.allianceQuestButton, selectedQuestFaction == "Alliance", "Alliance")
     Style(frame.hordeQuestButton, selectedQuestFaction == "Horde", "Horde")
+    -- sleepingbag: a quest chain page shows the character's faction only.
+    local single = DB[selectedDungeon] and DB[selectedDungeon].questChainPage
+    frame.allianceQuestButton:SetShown(not single)
+    frame.hordeQuestButton:SetShown(not single)
 end
 
 local function BuildVisibleQuestIndexes()
@@ -3691,6 +4081,12 @@ local function BuildVisibleQuestIndexes()
     if not selectedVisible then
         allowHiddenQuestSelection = false
         selectedQuest = visibleQuestIndexes[1] or 1
+        for _, index in ipairs(visibleQuestIndexes) do -- rpgpartial: an unlocked one first
+            if not (FDJ.RPGQuestHidden and FDJ.RPGQuestHidden(selectedDungeon, quests[index])) then
+                selectedQuest = index
+                break
+            end
+        end
         ForeverDungeonJournalDB.lastQuest = selectedQuest
     end
 end
@@ -3706,6 +4102,7 @@ RefreshQuestList = function()
     UpdateFactionButtons()
 
     frame.questListTitle:SetText(L("QUESTS") .. "  |  " .. (FDJ.questMainCount or #visibleQuestIndexes))
+    if FDJ.UpdateQuestsTBD then FDJ.UpdateQuestsTBD() end
 
     local contentHeight = 0
     local mainCount = FDJ.questMainCount or #visibleQuestIndexes
@@ -3753,13 +4150,25 @@ RefreshQuestList = function()
             end
 
             local quest = quests[questIndex]
+            -- rpgpartial: RPG Mode, a quest not unlocked yet is a ??? row.
+            local rpgHidden = FDJ.RPGQuestHidden and FDJ.RPGQuestHidden(selectedDungeon, quest) or false
+            button.fdjRPGHidden = rpgHidden
             local complete = IsQuestFinished(quest.id)
             local inLog = IsQuestInLog(quest.id)
             local ready = complete and inLog and not FDJ.QuestTurnedIn(quest.id)
 
             button.questIndex = questIndex
-            button.name:SetText(QuestField(quest.id, "name", quest.name))
-            button.meta:SetText(L("AVAILABLE_FROM_LEVEL", quest.requires))
+            -- turninlabel: ready to hand in, "Turn in" beside the ?, the
+            -- quest's name kept clear of it.
+            if button.turnInLabel then
+                button.turnInLabel:SetText(L("TURN_IN_LABEL"))
+                button.turnInLabel:SetShown(ready == true)
+                button.fdjTextRoom = ready and math.max(120, math.min(182, 203 - (button.turnInLabel:GetStringWidth() or 0))) or 182
+                button.name:SetWidth(button.fdjTextRoom)
+                button.meta:SetWidth(button.fdjTextRoom)
+            end
+            button.name:SetText(rpgHidden and "???" or QuestField(quest.id, "name", quest.name))
+            button.meta:SetText(rpgHidden and "" or L("AVAILABLE_FROM_LEVEL", quest.requires))
             local titleHeight = math.max(14, button.name:GetStringHeight() or 14)
             local metaHeight = math.max(12, button.meta:GetStringHeight() or 12)
             local baseRowHeight = math.max(48, 9 + titleHeight + 5 + metaHeight + 10)
@@ -3768,8 +4177,11 @@ RefreshQuestList = function()
             button.questID = quest.id
             button.fdjQuestName = quest.name
             button.fdjQuestLevel = quest.level
-            local rawChain = GetQuestPrereqChain(quest)
-            local chain = rawChain
+            local rawChain = (not rpgHidden) and GetQuestPrereqChain(quest) or nil
+            -- turninclean: ready to hand in, the row shows only the big ?
+            -- and "Turn in": no chain, In Dungeon, class or faction icons.
+            -- They all come back with the tick once it is handed in.
+            local chain = (not ready) and rawChain or nil
 
             local chainExpanded = chain and expandedQuestChains[quest.id] == true
 
@@ -3787,8 +4199,9 @@ RefreshQuestList = function()
             -- then sits to the right of the chain control.
             local rowIconOffset = (button.meta:GetStringWidth() or 0) + 6
             if chain and button.chainToggle then rowIconOffset = rowIconOffset + (button.chainToggle:GetWidth() or 20) + 4 end
-            FDJ.SetRowDungeonIcon(button, quest.startsInDungeon or ((not chain) and (FDJ.StartsInsideDungeon(quest.pickup)
-                or FDJ.StartItemDropsIn(quest, selectedDungeon))), rowIconOffset)
+            FDJ.SetRowDungeonIcon(button, (not rpgHidden) and (not ready) and (quest.startsInDungeon or ((not chain) and (FDJ.StartsInsideDungeon(quest.pickup)
+                or FDJ.StartItemDropsIn(quest, selectedDungeon)))
+                or (chain and FDJ.ChainStartsInside(quest, selectedDungeon) == true)), rowIconOffset)
             -- With a chain control, the faction icons leave no room to its
             -- right: stack the dungeon icon on top of the chain control.
             if chain and button.chainToggle and button.dungeonStartIcon and button.dungeonStartIcon:IsShown() then
@@ -4006,6 +4419,19 @@ RefreshQuestList = function()
                     button.classIcon:SetPoint("TOPRIGHT", button, "TOPRIGHT", -31, iconTopY)
                 end
             end
+            if rpgHidden then -- rpgpartial: nothing to tell it by
+                button.allianceIcon:Hide()
+                button.hordeIcon:Hide()
+                if button.classIcon then button.classIcon:Hide() end
+            end
+            if button.icon and button.icon.SetDesaturated then button.icon:SetDesaturated(rpgHidden) end
+            -- bigready: ready to hand in, the big ? alone (turninclean).
+            -- Handed in: the tick and faction icons.
+            if ready and button.turnIn then
+                button.allianceIcon:Hide()
+                button.hordeIcon:Hide()
+                if button.classIcon then button.classIcon:Hide() end -- turninclean
+            end
 
             if selectedQuest == questIndex then
                 button:SetBackdropColor(unpack(theme.rowSelected))
@@ -4209,7 +4635,7 @@ end
 -- item tooltip followed by where the item comes from.
 -- Shift-click quest linking. Returns true when something was put in the chat box.
 FDJ.TryLinkQuest = function(questID, name, level)
-    if not questID or not IsModifiedClick or not IsModifiedClick("CHATLINK") then return false end
+    if type(questID) ~= "number" or questID <= 0 or not IsModifiedClick or not IsModifiedClick("CHATLINK") then return false end
     if not ChatEdit_InsertLink then return false end
     if type(ChatEdit_GetActiveWindow) == "function" and not ChatEdit_GetActiveWindow() then return false end
     local title = name
@@ -4234,6 +4660,7 @@ end
 
 FDJ.QuestTurnedIn = function(questID)
     if not questID then return false end
+    if FDJ.DEV_FAKE_LOG[questID] then return false end -- devlog
     if C_QuestLog and type(C_QuestLog.IsQuestFlaggedCompleted) == "function" then
         local ok, value = pcall(C_QuestLog.IsQuestFlaggedCompleted, questID)
         return ok and value == true
@@ -4362,7 +4789,7 @@ local function RefreshPrerequisiteQuestDetail(step)
     local stepReady = complete and not FDJ.QuestTurnedIn(questID)
     frame.selectedQuestComplete:SetShown(complete and not (stepReady and frame.selectedQuestTurnIn))
     if frame.selectedQuestTurnIn then
-        FDJ.SetTurnInButton(frame.selectedQuestTurnIn, stepReady and { id = questID, turnin = details.turnin } or nil, title)
+        FDJ.SetTurnInButton(frame.selectedQuestTurnIn, stepReady and { id = questID, turnin = details.turnin, turninMap = details.turninMap } or nil, title)
     end
     UpdatePrerequisiteNavButtons()
 
@@ -4440,6 +4867,8 @@ local function RefreshPrerequisiteQuestDetail(step)
 
     if frame.questStartsHeader then frame.questStartsHeader:Hide() end
     if frame.questTurninHeader then frame.questTurninHeader:Hide() end
+    FDJ.SetHeaderDungeonIcon("questObjectiveDungeonIcon") -- insidequest
+    FDJ.SetHeaderDungeonIcon("questTurninDungeonIcon")
     if frame.questMapButton then
         frame.questMapButton.quest = nil
         frame.questMapButton.prereqLocation = nil
@@ -4456,6 +4885,7 @@ local function RefreshPrerequisiteQuestDetail(step)
         frame.questStartLinkButton.questID = nil
         frame.questStartLinkButton:Hide()
     end
+    if frame.questStartRequiresText then frame.questStartRequiresText:Hide() end
     if frame.questLeadsToButton then
         frame.questLeadsToButton.questID = nil
         frame.questLeadsToButton:Hide()
@@ -4482,9 +4912,14 @@ local function RefreshPrerequisiteQuestDetail(step)
     if FDJ.LayoutRepPills then FDJ.LayoutRepPills({}, 0, 0) end
 
     local cursorY = 0
+    FDJ.PlaceObjectiveMapButton(nil, 0) -- glowingshard: not on a chain step's page
+    cursorY = FDJ.PlaceStepHaveItRow(inLog and not FDJ.QuestTurnedIn(questID) -- chainturnin
+        and FDJ.TurnInInsideDungeon(details.turnin, selectedDungeon), questID, details, title, cursorY)
     frame.questObjectiveHeader:ClearAllPoints()
     frame.questObjectiveHeader:SetPoint("TOPLEFT", frame.questDetailContent, "TOPLEFT", 0, -cursorY)
     frame.questObjectiveHeader:Show()
+    FDJ.SetHeaderDungeonIcon("questObjectiveDungeonIcon", frame.questObjectiveHeader,
+        (not isItemStep) and FDJ.ObjectiveInsideDungeon(details, selectedDungeon)) -- insidequest
     cursorY = cursorY + (frame.questObjectiveHeader:GetStringHeight() or 18) + 4
 
     frame.questDetailText:ClearAllPoints()
@@ -4583,7 +5018,8 @@ local function RefreshPrerequisiteQuestDetail(step)
             frame.questStartItemButton:Show()
             if frame.questStartDungeonIcon then
                 frame.questStartDungeonIcon:Hide()
-                if details.startsInDungeon or FDJ.StartsInsideDungeon(details.pickup) then FDJ.PositionInDungeonIcon() end
+                if details.startsInDungeon or FDJ.StartsInsideDungeon(details.pickup)
+                    or FDJ.StartItemDropsIn(details, selectedDungeon) then FDJ.PositionInDungeonIcon() end
             end
             cursorY = cursorY + 48
         else
@@ -4607,6 +5043,7 @@ local function RefreshPrerequisiteQuestDetail(step)
             frame.questMapButton.quest = nil
             frame.questMapButton.prereqLocation = (FDJ.LocalizeMapLocation and FDJ.LocalizeMapLocation(details.map)) or details.map
             frame.questMapButton.fdjQuestTitle = QuestField(questID, "name", step.name)
+            frame.questMapButton.fdjQuestID = questID -- autoclear
             frame.questMapButton.fdjLabelKey = nil
             if frame.questMapButton.icon then frame.questMapButton.icon:Hide() end
             UpdateQuestActionButtonSizes()
@@ -4623,6 +5060,8 @@ local function RefreshPrerequisiteQuestDetail(step)
         frame.questTurninHeader:ClearAllPoints()
         frame.questTurninHeader:SetPoint("TOPLEFT", frame.questDetailContent, "TOPLEFT", 0, -cursorY)
         frame.questTurninHeader:Show()
+        FDJ.SetHeaderDungeonIcon("questTurninDungeonIcon", frame.questTurninHeader,
+            (not isItemStep) and FDJ.TurnInInsideDungeon(details.turnin, selectedDungeon)) -- insidequest
         cursorY = cursorY + (frame.questTurninHeader:GetStringHeight() or 18) + 3
         frame.questTurninText:ClearAllPoints()
         frame.questTurninText:SetPoint("TOPLEFT", frame.questDetailContent, "TOPLEFT", 0, -cursorY)
@@ -4641,6 +5080,7 @@ local function RefreshPrerequisiteQuestDetail(step)
             turninButton.quest = nil
             turninButton.prereqLocation = (FDJ.LocalizeMapLocation and FDJ.LocalizeMapLocation(turninMap)) or turninMap
             turninButton.fdjQuestTitle = QuestField(questID, "name", step.name)
+            turninButton.fdjQuestID = questID -- autoclear
             turninButton.fdjLabelKey = "SHOW_TURN_IN"
             if turninButton.icon then turninButton.icon:Show() end
             if FDJ.MapMarkers and FDJ.MapMarkers.ConfigureTargetAndMarkAction then
@@ -4829,8 +5269,11 @@ RefreshQuestDetail = function()
         BuildVisibleQuestIndexes()
         quest = dungeon.quests and dungeon.quests[selectedQuest]
     end
-    if not quest or not QuestMatchesFaction(quest, selectedQuestFaction) then
-        frame.selectedQuestName:SetText(L("NO_QUESTS"))
+    -- rpgpartial: a quest not unlocked yet shows nothing but how to unlock it.
+    local rpgHiddenQuest = quest and QuestMatchesFaction(quest, selectedQuestFaction)
+        and FDJ.RPGQuestHidden and FDJ.RPGQuestHidden(selectedDungeon, quest) or false
+    if not quest or not QuestMatchesFaction(quest, selectedQuestFaction) or rpgHiddenQuest then
+        frame.selectedQuestName:SetText(rpgHiddenQuest and "???" or L("NO_QUESTS"))
         frame.selectedQuestMeta:SetText("")
         if frame.selectedQuestClass then frame.selectedQuestClass:Hide() end
         if frame.selectedQuestClassIcon then frame.selectedQuestClassIcon:Hide() end
@@ -4840,7 +5283,7 @@ RefreshQuestDetail = function()
         if frame.questShareButton then frame.questShareButton.questID = nil; frame.questShareButton:Hide() end
         if frame.questDetailScroll then frame.questDetailScroll:Hide() end
         if frame.noQuestMessage then
-            frame.noQuestMessage:SetText(L("NO_FACTION_QUESTS", selectedQuestFaction))
+            frame.noQuestMessage:SetText(rpgHiddenQuest and L("RPG_QUEST_HIDDEN") or L((dungeon and dungeon.fullQuestsTBD) and "NO_FACTION_QUESTS_TBD" or "NO_FACTION_QUESTS", selectedQuestFaction))
             frame.noQuestMessage:Show()
         end
         frame.questDetailText:SetText("")
@@ -4852,12 +5295,17 @@ RefreshQuestDetail = function()
         if frame.questNotesHeader then frame.questNotesHeader:Hide() end
         if frame.questMapButton then frame.questMapButton.quest = nil; frame.questMapButton:Hide() end
         if frame.questStartLinkButton then frame.questStartLinkButton.questID = nil; frame.questStartLinkButton:Hide() end
+        if frame.questStartRequiresText then frame.questStartRequiresText:Hide() end
         if frame.questLeadsToButton then frame.questLeadsToButton.questID = nil; frame.questLeadsToButton:Hide() end
         if frame.questStartItemButton then frame.questStartItemButton.item = nil; frame.questStartItemButton:Hide() end
         if frame.questRequiredItemsHeader then frame.questRequiredItemsHeader:Hide() end
         if frame.questRequiredItemButton then frame.questRequiredItemButton.item = nil; frame.questRequiredItemButton:Hide() end
         if frame.questNoteItemButton then frame.questNoteItemButton.item = nil; frame.questNoteItemButton:Hide() end
         if frame.questStartDungeonIcon then frame.questStartDungeonIcon:Hide() end
+        FDJ.PlaceStepHaveItRow(false) -- chainturnin
+        FDJ.PlaceObjectiveMapButton(nil, 0) -- glowingshard
+        FDJ.SetHeaderDungeonIcon("questObjectiveDungeonIcon") -- insidequest
+        FDJ.SetHeaderDungeonIcon("questTurninDungeonIcon")
         if frame.questTurninText then frame.questTurninText:SetText("") end
         frame.questRewardHeader:SetText("")
         if frame.questXPReward then frame.questXPReward:Hide() end
@@ -4876,6 +5324,7 @@ RefreshQuestDetail = function()
     if frame.questDetailScroll then frame.questDetailScroll:Show() end
     if frame.noQuestMessage then frame.noQuestMessage:Hide() end
     if frame.questStartDungeonIcon then frame.questStartDungeonIcon:Hide() end
+    FDJ.PlaceStepHaveItRow(false) -- chainturnin
 
     local detailWidth = math.max(260, (frame.questDetailScroll:GetWidth() or 350) - 4)
     frame.questDetailContent:SetWidth(detailWidth)
@@ -5004,6 +5453,9 @@ RefreshQuestDetail = function()
     end
 
     cursorY = PlaceHeader(frame.questObjectiveHeader, cursorY)
+    -- insidequest: done and handed in inside the dungeon.
+    FDJ.SetHeaderDungeonIcon("questObjectiveDungeonIcon", frame.questObjectiveHeader,
+        FDJ.TurnInInsideDungeon(quest.turnin, selectedDungeon))
     frame.questDetailText:ClearAllPoints()
     frame.questDetailText:SetPoint("TOPLEFT", frame.questDetailContent, "TOPLEFT", 0, -cursorY)
     -- Real quest text from the game when known (see Systems/QuestText.lua).
@@ -5015,6 +5467,7 @@ RefreshQuestDetail = function()
     frame.questDetailText:SetText(frame.fdjObjText)
     frame.questDetailText:SetTextColor(0.10, 0.065, 0.025)
     cursorY = cursorY + (frame.questDetailText:GetStringHeight() or 30) + 13
+    cursorY = FDJ.PlaceObjectiveMapButton(quest, cursorY) -- glowingshard
     if FDJ.PlaceQuestDescription then cursorY = FDJ.PlaceQuestDescription(frame, frame.fdjDescText, cursorY, PlaceHeader) end
 
     -- Normal dungeon-quest required items use field 5 for Journal-only source
@@ -5023,6 +5476,7 @@ RefreshQuestDetail = function()
     if quest.requiredItem and type(quest.requiredItem[5]) == "string" and quest.requiredItem[5] ~= "" and frame.questRequiredItemButton then
         cursorY = PlaceHeader(frame.questRequiredItemsHeader, cursorY)
         frame.questRequiredItemButton.item = quest.requiredItem
+        frame.questRequiredItemButton.fdjMapLocation = FDJ.MapQuestItemSpot and FDJ.MapQuestItemSpot(quest.id, quest.requiredItem[1]) or nil -- mapquests
         frame.questRequiredItemButton.fdjSourceText = FreeText(quest.requiredItem[5])
         frame.questRequiredItemButton:SetWidth(math.min(260, rewardWidth))
         frame.questRequiredItemButton.icon:SetTexture(ItemIcon(quest.requiredItem[1]))
@@ -5047,6 +5501,7 @@ RefreshQuestDetail = function()
         if frame.questRequiredItemButton then
             frame.questRequiredItemButton.item = nil
             frame.questRequiredItemButton.fdjSourceText = nil
+            frame.questRequiredItemButton.fdjMapLocation = nil -- mapquests
             frame.questRequiredItemButton:Hide()
         end
     end
@@ -5152,6 +5607,7 @@ RefreshQuestDetail = function()
         frame.questStartLinkButton.questID = nil
         frame.questStartLinkButton:Hide()
     end
+    if frame.questStartRequiresText then frame.questStartRequiresText:Hide() end
     if frame.questLeadsToButton then
         frame.questLeadsToButton.questID = nil
         frame.questLeadsToButton:Hide()
@@ -5159,6 +5615,20 @@ RefreshQuestDetail = function()
 
     -- Render a direct link to the previous quest AFTER reset/cleanup.
     if quest.startQuestLink and frame.questStartLinkButton then
+        -- leadinrequires: under Starts at, the lead-in named in a line of
+        -- its own ("Requires: In Search of Thaelrid"), then its button.
+        if not frame.questStartRequiresText then
+            frame.questStartRequiresText = frame.questDetailContent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+            frame.questStartRequiresText:SetJustifyH("LEFT")
+        end
+        local requires = frame.questStartRequiresText
+        requires:ClearAllPoints()
+        requires:SetPoint("TOPLEFT", frame.questDetailContent, "TOPLEFT", 0, -cursorY)
+        requires:SetWidth(math.max(120, (frame.questDetailContent:GetWidth() or 360) - 8))
+        requires:SetText(L("REQUIRES_QUEST", QuestField(quest.startQuestLink.id, "name", quest.startQuestLink.name or L("PREVIOUS_QUEST"))))
+        requires:SetTextColor(0.62, 0.10, 0.05)
+        requires:Show()
+        cursorY = cursorY + (requires:GetStringHeight() or 14) + 6
         frame.questStartLinkButton:ClearAllPoints()
         frame.questStartLinkButton.questID = quest.startQuestLink.id
         frame.questStartLinkButton:SetText(QuestField(quest.startQuestLink.id, "name", quest.startQuestLink.name or L("PREVIOUS_QUEST")))
@@ -5215,6 +5685,7 @@ RefreshQuestDetail = function()
     local showMap = loc and not quest.startItem
     if FDJ.MapMarkers and FDJ.MapMarkers.ConfigureTargetAndMarkAction then
         frame.questMapButton.fdjQuestTitle = QuestField(quest.id, "name", quest.name)
+        frame.questMapButton.fdjQuestID = quest.id -- autoclear
         FDJ.MapMarkers.ConfigureTargetAndMarkAction(frame.questMapButton, showMap and loc or nil, true)
     end
     -- Show Quest Chain always comes first, then Show on Map.
@@ -5241,6 +5712,8 @@ RefreshQuestDetail = function()
     end
 
     cursorY = PlaceHeader(frame.questTurninHeader, cursorY)
+    FDJ.SetHeaderDungeonIcon("questTurninDungeonIcon", frame.questTurninHeader,
+        FDJ.TurnInInsideDungeon(quest.turnin, selectedDungeon)) -- insidequest
     frame.questTurninText:ClearAllPoints()
     frame.questTurninText:SetPoint("TOPLEFT", frame.questDetailContent, "TOPLEFT", 0, -cursorY)
     frame.questTurninText:SetText(QuestField(quest.id, "turnin", quest.turnin))
@@ -5316,6 +5789,7 @@ RefreshQuestDetail = function()
             frame.questNoteItemButton.item = noteItem
             frame.questNoteItemButton.fdjSourceText = FreeText(noteItem[4])
             frame.questNoteItemButton.mapLocation = quest.noteItemMap
+                or (FDJ.MapQuestItemSpot and FDJ.MapQuestItemSpot(quest.id, noteItem[1])) or nil -- mapquests
             frame.questNoteItemButton.icon:SetTexture(ItemIcon(noteItem[1]))
             local itemName = ItemInfo(noteItem[1])
             frame.questNoteItemButton.name:SetText(itemName or noteItem[2])
@@ -6198,12 +6672,13 @@ FDJ.RenderCustomDungeonMap = function(data, floorIndex)
                 if candidate.name == mapBoss.name then bossRecord, bossIndex = candidate, idx break end
             end
             marker.portrait:SetTexCoord(0, 1, 0, 1)
-            local portraitRecord = bossRecord or (mapBoss.npcID and { name = mapBoss.name, npcID = mapBoss.npcID })
+            local rpgHidden = FDJ.RPGMapBossHidden and FDJ.RPGMapBossHidden(selectedDungeon, bossRecord) or false -- rpgpartial
+            local portraitRecord = (not rpgHidden) and (bossRecord or (mapBoss.npcID and { name = mapBoss.name, npcID = mapBoss.npcID })) or nil
             if not (portraitRecord and SetBossPortrait(marker.portrait, selectedDungeon, portraitRecord)) then
                 marker.portrait:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
                 marker.portrait:SetTexCoord(0.08, 0.92, 0.08, 0.92)
             end
-            marker.bossName = bossRecord and BossName(bossRecord.name) or mapBoss.name
+            marker.bossName = rpgHidden and "???" or (bossRecord and BossName(bossRecord.name) or mapBoss.name)
             local markerDungeon = selectedDungeon
             marker:SetScript("OnClick", function()
                 if not bossIndex then return end
@@ -6401,7 +6876,7 @@ FDJ.RenderCustomDungeonMap = function(data, floorIndex)
                 if not t then return end
                 GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
                 local text = (FDJ.LocalizeFreeText and FDJ.LocalizeFreeText(t.npc)) or t.npc or ""
-                if type(t.title) == "string" and t.title ~= "" then text = text .. " \226\128\148 " .. t.title end
+                if type(t.title) == "string" and t.title ~= "" then text = text .. " - " .. t.title end -- a short dash
                 GameTooltip:SetText(text)
                 GameTooltip:AddLine(L(t.start and "QUEST_STARTS_HERE" or "TURN_IN_HERE"), 1, 0.82, 0.05)
                 GameTooltip:AddLine(L("MAP_RIGHT_REMOVE"), 1, 1, 1)
@@ -6416,6 +6891,7 @@ FDJ.RenderCustomDungeonMap = function(data, floorIndex)
                 self.turnIn = nil
                 self:Hide()
                 GameTooltip:Hide()
+                if FDJ.RefreshMapQuestPins then pcall(FDJ.RefreshMapQuestPins) end -- mapquests
             end)
             frame.dungeonMapTurnIn = mark
         end
@@ -6424,6 +6900,7 @@ FDJ.RenderCustomDungeonMap = function(data, floorIndex)
         mark.icon:SetTexture(turnIn.start and "Interface\\GossipFrame\\AvailableQuestIcon" or "Interface\\GossipFrame\\ActiveQuestIcon")
         local size = math.max(24, math.floor(baseH * 0.08))
         mark:SetSize(size, size)
+        if FDJ.StrokeIcon then FDJ.StrokeIcon(mark, mark.icon, size) end -- mapquests: a black edge
         mark:SetFrameLevel(holder:GetFrameLevel() + 16)
         mark:ClearAllPoints()
         mark:SetPoint("CENTER", holder, "TOPLEFT", turnIn.x * artW, -(turnIn.y * artH))
@@ -6432,6 +6909,12 @@ FDJ.RenderCustomDungeonMap = function(data, floorIndex)
         mark.turnIn = nil
         mark:Hide()
     end
+
+    -- mapquests: the quests' spots on this level (Systems/MapMarkers.lua).
+    if FDJ.RenderMapQuestPins then
+        pcall(FDJ.RenderMapQuestPins, selectedDungeon, floorIndex, holder, artW, artH, baseH, selectedQuestFaction)
+    end
+    if FDJ.ApplyDungeonMapFocus then pcall(FDJ.ApplyDungeonMapFocus) end -- mapfocus
 end
 
 HideDungeonMap = function()
@@ -6440,6 +6923,7 @@ end
 
 ShowDungeonMap = function()
     if not frame or not FDJ.DUNGEON_MAPS[selectedDungeon] then return end
+    if FDJ.IsDungeonMapLocked and FDJ.IsDungeonMapLocked(selectedDungeon) then return end -- rpgpartial
     -- The map panel may be lent to the world map (M): take it back first.
     if FDJ.DetachWorldMapOverlay then pcall(FDJ.DetachWorldMapOverlay) end
     HideRouteGuide()
@@ -6497,6 +6981,7 @@ SetMode = function(mode)
     frame.questRightPanel:SetShown(not bosses)
 
     UpdateModeTabs()
+    if FDJ.UpdateQuestsTBD then FDJ.UpdateQuestsTBD() end
 
     if bosses then
         RefreshBossList()
@@ -6851,7 +7336,8 @@ RefreshHomeDungeonCards = function()
         for _, quest in ipairs(dungeon.quests or {}) do
             if QuestMatchesFaction(quest, playerFaction) and not quest.hideFromMainList and not quest.repeatable then
                 factionQuestCount = factionQuestCount + 1
-                if quest.id and IsQuestFinished(quest.id) then finishedCount = finishedCount + 1 end
+                -- questdone: handed in only (ready to turn in is not done yet).
+                if quest.id and FDJ.QuestTurnedIn(quest.id) then finishedCount = finishedCount + 1 end
             end
         end
 
@@ -6972,7 +7458,8 @@ RefreshBossList = function()
                 end
             end
 
-            local boss = dungeon.bosses[i]
+            -- rpgpartial: RPG Mode, a boss not killed yet is a ? ("???").
+            local boss = FDJ.RPGBossView and FDJ.RPGBossView(selectedDungeon, dungeon.bosses[i]) or dungeon.bosses[i]
             button.index = i
             if boss.fdjDungeon then
                 -- Loot Filter page: bosses from every dungeon share one list.
@@ -7044,6 +7531,7 @@ end
 FDJ.ShowsItemsTBD = function(name)
     local d = DB[name]
     if not d then return false end
+    if d.questChainPage then return false end -- sleepingbag: no loot to list
     if d.itemsTBD or d.fullItemsTBD then return true end -- loot only partly known
     for _, boss in ipairs(d.bosses or {}) do
         if boss.loot and #boss.loot > 0 then return false end
@@ -7057,6 +7545,22 @@ FDJ.ItemsTBDText = function(name)
     local d = DB[name]
     if d and d.fullItemsTBD then return "Full Items Data TBD" end
     return "Items Data TBD"
+end
+
+-- "Full Quests TBD" (dungeons flagged fullQuestsTBD: Alcaz Prison, Blackmaw
+-- Hold): on the Quests tab only, on the level line after the items notice,
+-- so a faction with few or no quests listed reads as "not found yet".
+FDJ.UpdateQuestsTBD = function()
+    local label = frame and frame.questsTBD
+    if not label then return end
+    local d = DB[selectedDungeon]
+    label:ClearAllPoints()
+    if frame.stockadeItemsTBD and frame.stockadeItemsTBD:IsShown() then
+        label:SetPoint("LEFT", frame.stockadeItemsTBD, "RIGHT", 14, 0)
+    elseif frame.dungeonMeta then
+        label:SetPoint("LEFT", frame.dungeonMeta, "RIGHT", 14, 0)
+    end
+    label:SetShown((d and d.fullQuestsTBD and selectedMode == "quests") and true or false)
 end
 
 RefreshLoot = function()
@@ -7083,6 +7587,7 @@ RefreshLoot = function()
         frame.stockadeLootTBD:SetText(FDJ.ItemsTBDText(selectedDungeon))
         frame.stockadeLootTBD:SetShown(lootTBD)
     end
+    if FDJ.UpdateQuestsTBD then FDJ.UpdateQuestsTBD() end
 
     frame.selectedBossName:SetText(BossName(boss.name))
     if frame.selectedBossRareBorder then
@@ -7128,6 +7633,10 @@ RefreshLoot = function()
 
     frame.selectedBossDescription:SetText("")
     frame.selectedBossDescription:Hide()
+    if boss.fdjRPGHint then -- rpgpartial: how to reveal this boss
+        frame.selectedBossDescription:SetText(boss.fdjRPGHint)
+        frame.selectedBossDescription:Show()
+    end
     frame.lootTitle:SetText("")
     frame.lootTitle:Hide()
     frame.lootScroll:ClearAllPoints()
@@ -7144,6 +7653,14 @@ RefreshLoot = function()
     if sharedCount > 0 and FDJ.lootSharedExpanded then
         for _, item in ipairs(sharedList) do loot[#loot + 1] = item end
     end
+    -- probableloot: then, under "Not confirmed, but probable drop" (open),
+    -- the items very likely from this boss that nobody has seen drop yet.
+    local sharedEnd = #loot
+    local probableList = type(boss.probableLoot) == "table" and boss.probableLoot or nil
+    local probableCount = probableList and #probableList or 0
+    if probableCount > 0 and FDJ.lootProbableExpanded then
+        for _, item in ipairs(probableList) do loot[#loot + 1] = item end
+    end
 
     -- Sections, top to bottom: gear, "Recipes & Patterns" (when split off),
     -- "Shared Loot" (when the boss has any). Each divider line sits between.
@@ -7152,7 +7669,8 @@ RefreshLoot = function()
     local sections = {}
     sections[#sections + 1] = { first = 1, last = recipeSplit or ownCount }
     if recipeSplit then sections[#sections + 1] = { line = "recipe", first = recipeSplit + 1, last = ownCount } end
-    if sharedCount > 0 then sections[#sections + 1] = { line = "shared", first = ownCount + 1, last = #loot } end
+    if sharedCount > 0 then sections[#sections + 1] = { line = "shared", first = ownCount + 1, last = sharedEnd } end
+    if probableCount > 0 then sections[#sections + 1] = { line = "probable", first = sharedEnd + 1, last = #loot } end
 
     -- One column normally. When the list would need scrolling, use two
     -- columns (items read left, right, next line) so far less scrolling is
@@ -7413,6 +7931,46 @@ RefreshLoot = function()
                 line.icon:SetTexture(open and "Interface\\Buttons\\UI-MinusButton-Up" or "Interface\\Buttons\\UI-PlusButton-Up")
                 line:ClearAllPoints()
                 line:SetPoint("TOPLEFT", frame.lootContent, "TOPLEFT", 0, -(lineY.shared or 0))
+                line:SetPoint("RIGHT", frame.lootContent, "RIGHT", 0, 0)
+                line:Show()
+            else
+                line:Hide()
+            end
+        end
+    end
+
+    -- probableloot: the "Not confirmed, but probable drop (N)" divider, as
+    -- Shared Loot's: folded by default, a click shows / hides the items.
+    do
+        local line = frame.lootProbableLine
+        if probableCount > 0 and not line then
+            line = CreateFrame("Button", nil, frame.lootContent)
+            frame.lootProbableLine = line
+            line:SetHeight(24)
+            line.rule = line:CreateTexture(nil, "BACKGROUND")
+            line.rule:SetHeight(1)
+            line.rule:SetPoint("BOTTOMLEFT", 0, 0)
+            line.rule:SetPoint("BOTTOMRIGHT", 0, 0)
+            line.rule:SetColorTexture(0.48, 0.40, 0.27, 0.6)
+            line.icon = line:CreateTexture(nil, "ARTWORK")
+            line.icon:SetSize(16, 16)
+            line.icon:SetPoint("LEFT", 4, 0)
+            line.text = line:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+            line.text:SetPoint("LEFT", line.icon, "RIGHT", 6, 0)
+            line.text:SetJustifyH("LEFT")
+            line:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight", "ADD")
+            line:SetScript("OnClick", function()
+                FDJ.lootProbableExpanded = not FDJ.lootProbableExpanded
+                RefreshLoot()
+            end)
+        end
+        if line then
+            if probableCount > 0 then
+                local open = FDJ.lootProbableExpanded and true or false
+                line.text:SetText(L("PROBABLE_LOOT", probableCount))
+                line.icon:SetTexture(open and "Interface\\Buttons\\UI-MinusButton-Up" or "Interface\\Buttons\\UI-PlusButton-Up")
+                line:ClearAllPoints()
+                line:SetPoint("TOPLEFT", frame.lootContent, "TOPLEFT", 0, -(lineY.probable or 0))
                 line:SetPoint("RIGHT", frame.lootContent, "RIGHT", 0, 0)
                 line:Show()
             else
@@ -7720,6 +8278,7 @@ RefreshAll = function()
         frame.stockadeItemsTBD:SetText(FDJ.ItemsTBDText(selectedDungeon))
         frame.stockadeItemsTBD:SetShown(FDJ.ShowsItemsTBD(selectedDungeon))
     end
+    if FDJ.UpdateQuestsTBD then FDJ.UpdateQuestsTBD() end
 
     UpdateDungeonHeaderTabs()
     UpdateTabs()
@@ -7731,6 +8290,15 @@ RefreshAll = function()
     if dungeon.previewOnly and FDJ.DUNGEON_MAPS[selectedDungeon] and ShowDungeonMap then
         ShowDungeonMap()
         return
+    end
+    -- sleepingbag: a quest chain page opens on its quests; the next
+    -- dungeon opens on the tab used before it.
+    if dungeon.questChainPage then
+        if selectedMode ~= "quests" then FDJ.modeBeforeQuestChain = selectedMode end
+        selectedMode = "quests"
+    elseif FDJ.modeBeforeQuestChain then
+        selectedMode = FDJ.modeBeforeQuestChain
+        FDJ.modeBeforeQuestChain = nil
     end
     SetMode(selectedMode)
 end
@@ -8053,6 +8621,14 @@ local function CreateGlobalSearchUI()
         return profession
     end
 
+    -- rpgsearch: dungeons the search leaves out - locked pages, and in RPG
+    -- Mode the "coming soon" ones too (blank pages there).
+    local function SearchSkipsDungeon(dungeonName)
+        if FDJ.IsDungeonLocked and FDJ.IsDungeonLocked(dungeonName) then return true end
+        local dungeon = DB[dungeonName]
+        return (dungeon and dungeon.previewOnly and FDJ.IsRPGMode and FDJ.IsRPGMode()) and true or false
+    end
+
     local function BuildSearchResults(queryText)
         local query = SearchText(queryText):gsub("^%s+", ""):gsub("%s+$", "")
         local results = {}
@@ -8066,7 +8642,7 @@ local function CreateGlobalSearchUI()
         if query == "" then
             for _, dungeonName in ipairs(ORDER or {}) do
                 local dungeon = DB[dungeonName]
-                if dungeon and not (FDJ.IsDungeonLocked and FDJ.IsDungeonLocked(dungeonName)) then
+                if dungeon and not SearchSkipsDungeon(dungeonName) then
                     results[#results + 1] = {
                         kind = "dungeon",
                         dungeonName = dungeonName,
@@ -8084,7 +8660,7 @@ local function CreateGlobalSearchUI()
         -- One letter only matches dungeon names; items and quests need two.
         for _, dungeonName in ipairs(ORDER or {}) do
             local dungeon = DB[dungeonName]
-            if dungeon and not (FDJ.IsDungeonLocked and FDJ.IsDungeonLocked(dungeonName)) then
+            if dungeon and not SearchSkipsDungeon(dungeonName) then
                 local localizedDungeon = DungeonName(dungeonName)
                 local aliases = DUNGEON_SEARCH_ALIASES[dungeonName]
                 local aliasText = aliases and table.concat(aliases, " ") or ""
@@ -8133,6 +8709,7 @@ local function CreateGlobalSearchUI()
                                 dungeonName = dungeonName,
                                 bossIndex = bossIndex,
                                 itemID = item[1],
+                                item = item, -- kroldok: no ID yet, its stats on hover
                                 displayName = itemName,
                                 subText = localizedDungeon .. "  -  " .. BossName(boss.name),
                                 -- Boss-loot tuple field 5 is optional source/mob text,
@@ -8159,7 +8736,7 @@ local function CreateGlobalSearchUI()
                     AddQuestSearchItem(quest.startItem)
                     AddQuestSearchItem(quest.noteItem)
 
-                    for _, item in ipairs(questItems) do
+                    for _, item in ipairs((FDJ.RPGQuestHidden and FDJ.RPGQuestHidden(dungeonName, quest)) and {} or questItems) do
                         local itemName = SearchItemDisplayName(item)
                         local matchScore = SearchMatchScore(query, itemName, item[2])
                         if matchScore then results[#results + 1] = {
@@ -8294,7 +8871,8 @@ local function CreateGlobalSearchUI()
                 for _, sourceBoss in ipairs(sourceDungeon.bosses or {}) do
                     -- Recipe-tab rows are synthetic duplicates. Build this hidden
                     -- page from the real bosses only.
-                    if not sourceBoss.recipeTab and not sourceBoss.trash then
+                    if not sourceBoss.recipeTab and not sourceBoss.trash
+                        and not (FDJ.RPGBossHidden and FDJ.RPGBossHidden(sourceDungeonName, sourceBoss)) then
                         for _, sourceItem in ipairs(sourceBoss.loot or {}) do
                             if tonumber(sourceItem[1]) == itemID then
                                 local sourceKey = tostring(sourceDungeonName) .. "|" .. tostring(sourceBoss.name)
@@ -8408,9 +8986,16 @@ local function CreateGlobalSearchUI()
             itemTooltip:Hide()
             itemTooltip:SetOwner(self, "ANCHOR_NONE")
             if itemTooltip.ClearLines then itemTooltip:ClearLines() end
-            local _, liveLink = ItemInfo(result.itemID)
-            itemTooltip:SetHyperlink(liveLink or ("item:" .. result.itemID))
-            FDJ.AddUnseenItemHint(itemTooltip)
+            if (tonumber(result.itemID) or 0) <= 0 then -- kroldok: item ID not known yet
+                local item = result.item or {}
+                local r, g, b = QualityColor(tonumber(item[4]) or 1)
+                itemTooltip:AddLine(result.displayName or item[2] or "", r, g, b)
+                FDJ.AddItemTipLines(itemTooltip, item)
+            else
+                local _, liveLink = ItemInfo(result.itemID)
+                itemTooltip:SetHyperlink(liveLink or ("item:" .. result.itemID))
+                FDJ.AddUnseenItemHint(itemTooltip)
+            end
             itemTooltip:Show()
             if FDJ.RefreshTooltipBacking then FDJ.RefreshTooltipBacking() end
             itemTooltip:ClearAllPoints()
@@ -8845,9 +9430,16 @@ local function CreateMainFrame()
     FDJ.ShowTurnInOnDungeonMap = function(dungeonName, spot, questTitle, questID, start)
         local mapData = FDJ.DUNGEON_MAPS[dungeonName]
         if not DB[dungeonName] or not mapData or type(spot) ~= "table" then return end
+        -- rpgpartial: the map still locked: the quest's page instead.
+        if FDJ.IsDungeonMapLocked and FDJ.IsDungeonMapLocked(dungeonName) then
+            if FDJ.RPGMapLockedNotice then FDJ.RPGMapLockedNotice(dungeonName) end
+            if questID and FDJ.OpenQuestPage then FDJ.OpenQuestPage(dungeonName, questID) end
+            return
+        end
         local floor = spot.floor or 1
         FDJ.dungeonTurnIns = FDJ.dungeonTurnIns or {}
         FDJ.dungeonTurnIns[mapData] = { floor = floor, x = spot.x, y = spot.y, npc = spot.npc, title = questTitle, questID = questID, start = start and true or nil }
+        FDJ.FocusDungeonMapQuest(questID, floor, spot.x, spot.y) -- mapfocus
         SelectDungeon(dungeonName)
         if selectedDungeon ~= dungeonName then return end
         ShowDungeonMap()
@@ -8855,12 +9447,40 @@ local function CreateMainFrame()
             FDJ.ResetDungeonMapView()
             FDJ.RenderCustomDungeonMap(mapData, floor)
         end
+        FDJ.ApplyDungeonMapFocus() -- mapfocus
+    end
+    -- mapquests: a quest item lying on one of the map's quest spots (the
+    -- item's click on the quest page): that dungeon map, on its level.
+    FDJ.ShowQuestSpotOnDungeonMap = function(spot)
+        local name = type(spot) == "table" and spot.dungeon or nil
+        local mapData = name and FDJ.DUNGEON_MAPS[name]
+        if not name or not DB[name] or not mapData then return end
+        if FDJ.IsDungeonMapLocked and FDJ.IsDungeonMapLocked(name) then
+            if FDJ.RPGMapLockedNotice then FDJ.RPGMapLockedNotice(name) end
+            return
+        end
+        FDJ.FocusDungeonMapQuest(spot.questID, spot.floor or 1, spot.x, spot.y) -- mapfocus
+        SelectDungeon(name)
+        if selectedDungeon ~= name then return end
+        ShowDungeonMap()
+        local floor = spot.floor or 1
+        if frame.dungeonMapFloor ~= floor then
+            FDJ.ResetDungeonMapView()
+            FDJ.RenderCustomDungeonMap(mapData, floor)
+        end
+        FDJ.ApplyDungeonMapFocus() -- mapfocus
     end
     FDJ.OpenQuestPage = function(dungeonName, questID)
         if not DB[dungeonName] then return end
         SelectDungeon(dungeonName)
         SetMode("quests")
         if SelectQuestByID then SelectQuestByID(questID) end
+    end
+    -- rpgpartial: the "Dungeon Map Unlocked" popup opens the map.
+    FDJ.OpenDungeonMap = function(dungeonName)
+        if not DB[dungeonName] then return end
+        SelectDungeon(dungeonName)
+        if selectedDungeon == dungeonName and ShowDungeonMap then ShowDungeonMap() end
     end
     -- questtracker: a chain step clicked in the quest tracker opens that
     -- step's page, with the quest's chain unfolded in the list (what Show
@@ -8889,6 +9509,15 @@ local function CreateMainFrame()
         if target.id then RequestQuestRewardData(target.id) end
         RefreshQuestList()
         RefreshQuestDetail()
+    end
+    -- sleepingbag: a quest with its chain unfolded in the list; with a
+    -- step, that step's page.
+    FDJ.OpenQuestChain = function(dungeonName, questID, stepID)
+        if stepID then return FDJ.OpenQuestChainStep(dungeonName, questID, stepID) end
+        FDJ.OpenQuestPage(dungeonName, questID)
+        if selectedDungeon ~= dungeonName or not QUEST_PREREQ_CHAINS[questID] then return end
+        expandedQuestChains[questID] = true
+        RefreshQuestList()
     end
     FDJ.RefreshLootNow = function()
         if selectedDungeon and DB[selectedDungeon] and frame.lootContent then pcall(RefreshLoot) end
@@ -9045,6 +9674,14 @@ local function CreateMainFrame()
     frame.stockadeItemsTBD:SetShadowColor(0, 0, 0, 1)
     frame.stockadeItemsTBD:SetShadowOffset(1, -1)
     frame.stockadeItemsTBD:Hide()
+    -- "Full Quests TBD": on the Quests tab of a new dungeon whose quests are
+    -- still being found (FDJ.UpdateQuestsTBD).
+    frame.questsTBD = header:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    frame.questsTBD:SetText("Full Quests TBD")
+    frame.questsTBD:SetTextColor(1.00, 0.10, 0.10)
+    frame.questsTBD:SetShadowColor(0, 0, 0, 1)
+    frame.questsTBD:SetShadowOffset(1, -1)
+    frame.questsTBD:Hide()
 
     -- Sub-tabs live inside the dungeon header, to the right of the dungeon name.
     frame.questsTab = CreateModeButton(header, L("QUESTS"), -13)
@@ -9669,6 +10306,10 @@ local function CreateMainFrame()
         if self.mapLocation then
             if itemTooltip then itemTooltip:Hide() end
             HideComparisonTooltips()
+            if self.mapLocation.dungeon and FDJ.ShowQuestSpotOnDungeonMap then -- mapquests
+                FDJ.ShowQuestSpotOnDungeonMap(self.mapLocation)
+                return
+            end
             ShowRecordedLocationOnMap(self.mapLocation, self.mapLocation.label)
             return
         end
@@ -9711,7 +10352,8 @@ local function CreateMainFrame()
         -- Targeting and raid marking, when the quest giver is nearby, are handled
         -- by the secure hardware-click macro configured for this button.
         FDJ.pendingMarkerQuestTitle = self.fdjQuestTitle
-        FDJ.pendingMarkerTurnIn = (self == frame.questTurninMapButton) or nil
+        FDJ.pendingMarkerTurnIn = (self == frame.questTurninMapButton or self.fdjLabelKey == "SHOW_TURN_IN") or nil
+        FDJ.pendingMarkerQuestID = self.fdjQuestID or (self.quest and self.quest.id) -- autoclear
         if self.prereqLocation then
             ShowRecordedLocationOnMap(self.prereqLocation, self.prereqLocation.label)
         else
@@ -10477,6 +11119,28 @@ SlashCmdList.FOREVERDUNGEONJOURNAL = function(msg)
         if FDJ.ToggleSettingsPanel then FDJ.ToggleSettingsPanel() end
         return
     end
+    if msg == "bake" then -- bake: photographs portraits for bundling (Systems/PortraitBake.lua)
+        if FDJ.BakePortraits then FDJ.BakePortraits() end
+        return
+    end
+    if msg:match("^fakelog") then -- devlog
+        local id = tonumber(msg:match("^fakelog%s+(%d+)"))
+        if id then
+            FDJ.DEV_FAKE_LOG[id] = not FDJ.DEV_FAKE_LOG[id] or nil
+            print("|cffffd100Dungeon Journal|r fakelog " .. id .. ": " .. (FDJ.DEV_FAKE_LOG[id] and "ON (shown as in your quest log)" or "OFF"))
+            if frame and frame:IsShown() then
+                if RefreshQuestList then RefreshQuestList() end
+                if RefreshQuestDetail then RefreshQuestDetail() end
+            end
+            if FDJ.RefreshQuestTracker then pcall(FDJ.RefreshQuestTracker) end
+        else
+            local ids = {}
+            for k in pairs(FDJ.DEV_FAKE_LOG) do ids[#ids + 1] = tostring(k) end
+            table.sort(ids)
+            print("|cffffd100Dungeon Journal|r /dj fakelog <questID>: show a quest as if in your quest log (again: off). On: " .. (#ids > 0 and table.concat(ids, ", ") or "none"))
+        end
+        return
+    end
     if msg == "newids" then
         if FDJ.PrintLearnedItemIDs then FDJ.PrintLearnedItemIDs() end
         return
@@ -10623,6 +11287,21 @@ function FDJ.ScheduleQuestRefresh()
     FDJ.questRefreshWorker:Show()
 end
 
+-- rpgpartial: something revealed (RPG Mode): redraw the open page.
+function FDJ.RefreshRPGPage()
+    if not frame or not frame:IsShown() or frame.currentView == "home" then return end
+    if not selectedDungeon or not DB[selectedDungeon] then return end
+    if FDJ.IsDungeonLocked and FDJ.IsDungeonLocked(selectedDungeon) then return end
+    UpdateModeTabs()
+    if selectedMode == "quests" then
+        RefreshQuestList()
+        RefreshQuestDetail()
+    else
+        RefreshBossList()
+        RefreshLoot()
+    end
+end
+
 FDJ.events:SetScript("OnEvent", function(_, event, arg1, arg2)
     local questID, success = arg1, arg2
     if event == "PLAYER_LOGIN" then
@@ -10661,7 +11340,7 @@ FDJ.events:SetScript("OnEvent", function(_, event, arg1, arg2)
         elseif GetAddOnMetadata then
             addonVersion = GetAddOnMetadata("ForeverDungeonJournal", "Version")
         end
-        addonVersion = (addonVersion and tostring(addonVersion)) or "1.7.0"
+        addonVersion = (addonVersion and tostring(addonVersion)) or "1.7.3"
         print("|cffd8a83cDungeon Journal by Exehn|r |cffffffffv" .. addonVersion .. "|r")
         return
     end

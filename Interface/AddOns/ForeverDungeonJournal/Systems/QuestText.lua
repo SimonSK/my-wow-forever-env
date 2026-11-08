@@ -13,6 +13,25 @@ local NAME_TOKEN = "\001N" -- the player's name is stored as a token
 local function Secret(v) return type(issecretvalue) == "function" and issecretvalue(v) end
 local function Str(v) return type(v) == "string" and not Secret(v) and v ~= "" and v or nil end
 
+-- glowingshard: a quest objective line the game words vaguely ("Speak with
+-- someone in Ratchet") named and counted like a WoW objective: "0/1 Speak
+-- with Sputtervalve in Ratchet", "1/1 ..." once done (or the quest is ready
+-- to hand in). FDJ.OBJECTIVE_LINE_OVERRIDES[questID] = { match = text found
+-- in the game's line (lower case), text = the line }. Returns text, finished.
+function FDJ.ObjectiveLineOverride(questID, text, finished)
+    local o = questID and FDJ.OBJECTIVE_LINE_OVERRIDES and FDJ.OBJECTIVE_LINE_OVERRIDES[questID]
+    if type(o) ~= "table" or type(text) ~= "string" then return text, finished end
+    if not string.lower(text):find(o.match, 1, true) then return text, finished end
+    local done = finished == true or (FDJ.IsQuestFinished and FDJ.IsQuestFinished(questID)) or false
+    return (done and "1/1 " or "0/1 ") .. o.text, done
+end
+-- The same line for a quest in the log whose objective the game does not list.
+function FDJ.ObjectiveLineMissing(questID)
+    local o = questID and FDJ.OBJECTIVE_LINE_OVERRIDES and FDJ.OBJECTIVE_LINE_OVERRIDES[questID]
+    if type(o) ~= "table" then return nil end
+    return FDJ.ObjectiveLineOverride(questID, o.match, false)
+end
+
 local function Locale() return (GetLocale and GetLocale()) or "enUS" end
 
 local function Store()
@@ -63,6 +82,7 @@ local function ScanLog()
         if ok and type(info) == "table" and not info.isHeader and type(info.questID) == "number" and info.questID > 0 then
             local ok2, desc, obj = pcall(GetQuestLogQuestText, i)
             if ok2 then Save(info.questID, obj, desc) end
+            if FDJ.LearnQuestID then pcall(FDJ.LearnQuestID, info.questID, info.title) end -- dalaranquests
         end
     end
 end
@@ -85,6 +105,7 @@ events:SetScript("OnEvent", function(_, event)
         pcall(function()
             local id = GetQuestID and GetQuestID()
             Save(id, GetObjectiveText and GetObjectiveText(), GetQuestText and GetQuestText())
+            if FDJ.LearnQuestID then FDJ.LearnQuestID(id, GetTitleText and GetTitleText()) end -- dalaranquests
         end)
     else
         ScanSoon()
@@ -108,13 +129,29 @@ local function ProgressLines(questID)
     local okI, index = pcall(C_QuestLog.GetLogIndexForQuestID, questID)
     if not okI or type(index) ~= "number" or index <= 0 then return nil end
     local ok, objectives = pcall(C_QuestLog.GetQuestObjectives, questID)
+    if ok and type(objectives) == "table" and #objectives == 0 then
+        -- glowingshard: the line the game leaves out, named.
+        local text, done = FDJ.ObjectiveLineMissing(questID)
+        if text then return done and ("|cff6e5c40" .. text .. "|r") or text end
+    end
     if not ok or type(objectives) ~= "table" or #objectives == 0 then return nil end
+    -- objectivetext: in the journal's language when that is not the game's.
+    local own = FDJ.LocalizeObjectives and FDJ.LocalizeObjectives(questID, objectives, nil, true)
+    if own then
+        local translated = {}
+        for _, line in ipairs(own) do
+            translated[#translated + 1] = line[2] and ("|cff6e5c40" .. line[1] .. "|r") or line[1]
+        end
+        return #translated > 0 and table.concat(translated, "\n") or nil
+    end
     local lines = {}
     for _, o in ipairs(objectives) do
         local text = type(o) == "table" and Str(o.text)
         if text then
+            local finished = o.finished
+            text, finished = FDJ.ObjectiveLineOverride(questID, text, finished) -- glowingshard
             -- Finished objectives are muted, like the game's quest log.
-            lines[#lines + 1] = o.finished and ("|cff6e5c40" .. text .. "|r") or text
+            lines[#lines + 1] = finished and ("|cff6e5c40" .. text .. "|r") or text
         end
     end
     return #lines > 0 and table.concat(lines, "\n") or nil
@@ -154,6 +191,527 @@ function FDJ.HideQuestDescription(frame)
     if frame and frame.questDescHeader then frame.questDescHeader:Hide() end
     if frame and frame.questDescText then frame.questDescText:Hide() end
 end
+
+-- BEGIN objectivetext
+-- The game hands over quest objective lines in its own language. When the
+-- journal speaks another one, the counted lines (12/20 Deviate Hide, 3/15
+-- Defias Pillager slain) are rebuilt with the item's or creature's name in the
+-- journal's language (FDJ.OBJECTIVE_NAMES, Localization/Content_NewDungeons.lua).
+-- Lines with the quest's own wording (speak with someone in Ratchet, explore
+-- a place) give way to the journal's translated objective; on the quest page,
+-- which shows that objective already, they are left out.
+do
+    local column = {}
+    for i, loc in ipairs(FDJ.OBJECTIVE_NAME_LOCALES or {}) do column[loc] = i end
+    -- How a creature to kill reads in each language's Forever quest log,
+    -- count first like the tracker (the others: just the name).
+    local SLAIN = { enUS = "%s slain", deDE = "%s getötet", koKR = "%s 처치", ruRU = "%s – убито", zhCN = "消灭%s", zhTW = "殺死%s" }
+
+    -- The game's own line format ("%2$d/%3$d %1$s slain") as a pattern that
+    -- finds the name and both counts in a line.
+    local patterns = {}
+    local function Pattern(key)
+        if patterns[key] ~= nil then return patterns[key] or nil end
+        local fmt = _G[key]
+        if type(fmt) ~= "string" or Secret(fmt) then patterns[key] = false return nil end
+        fmt = fmt:gsub("|4[^;]*;", "\001")
+        local out, order, auto, i = { "^" }, {}, 0, 1
+        while i <= #fmt do
+            local c = fmt:sub(i, i)
+            if c == "%" then
+                local pos, kind, len = fmt:match("^%%(%d)%$([sd])()", i)
+                if not pos then
+                    kind = fmt:match("^%%([sd])", i)
+                    if kind then auto, pos, len = auto + 1, auto + 1, i + 2 end
+                else
+                    pos = tonumber(pos)
+                end
+                if kind then
+                    out[#out + 1] = kind == "s" and "(.-)" or "(%d+)"
+                    order[#order + 1] = pos
+                    i = len
+                else
+                    out[#out + 1] = "%%"
+                    i = i + 1
+                end
+            elseif c == "\001" then
+                out[#out + 1] = ".-"
+                i = i + 1
+            else
+                out[#out + 1] = c:find("[%^%$%(%)%%%.%[%]%*%+%-%?]") and ("%" .. c) or c
+                i = i + 1
+            end
+        end
+        out[#out + 1] = "$"
+        local p = { table.concat(out), order }
+        patterns[key] = p
+        return p
+    end
+    local KEYS = { monster = "QUEST_MONSTERS_KILLED", item = "QUEST_ITEMS_NEEDED", object = "QUEST_OBJECTS_FOUND" }
+    -- name, done, needed (nil: not a counted line)
+    local function Split(text, kind)
+        local order = { KEYS[kind], "QUEST_MONSTERS_KILLED", "QUEST_ITEMS_NEEDED", "QUEST_OBJECTS_FOUND" }
+        for _, key in ipairs(order) do
+            local p = key and Pattern(key)
+            if p then
+                local got = { text:match(p[1]) }
+                if #got == #p[2] and #got > 0 then
+                    local args = {}
+                    for n, pos in ipairs(p[2]) do args[pos] = got[n] end
+                    if args[1] and tonumber(args[2]) and tonumber(args[3]) then
+                        return args[1], tonumber(args[2]), tonumber(args[3]), key == "QUEST_MONSTERS_KILLED"
+                    end
+                end
+            end
+        end
+        local done, needed, name = text:match("^(%d+)%s*/%s*(%d+)%s+(.+)$")
+        if name then return name, tonumber(done), tonumber(needed), false end
+        name, done, needed = text:match("^(.-)%s*[:：]%s*(%d+)%s*/%s*(%d+)$")
+        if name and name ~= "" then return name, tonumber(done), tonumber(needed), false end
+        return nil
+    end
+
+    -- A name in the game's language -> English (the table's key).
+    local reverse = {}
+    local function English(name, client)
+        if client == "enUS" then return FDJ.OBJECTIVE_NAMES and FDJ.OBJECTIVE_NAMES[name] and name or nil end
+        local col = column[client]
+        if not col or not FDJ.OBJECTIVE_NAMES then return nil end
+        local index = reverse[client]
+        if not index then
+            index = {}
+            for english, row in pairs(FDJ.OBJECTIVE_NAMES) do
+                if row[col] then index[row[col]] = english end
+            end
+            reverse[client] = index
+        end
+        -- Not known in the game's language: the same name as in English.
+        return index[name] or (FDJ.OBJECTIVE_NAMES[name] and name) or nil
+    end
+    -- "Faldrim Anvilmar slain" -> "Faldrim Anvilmar" (a line the game's own
+    -- format did not split, the kill word still on the name).
+    local function Unslain(name, client)
+        local before, after = (SLAIN[client] or ""):match("^(.-)%%s(.*)$")
+        if not before then return nil end
+        local function Esc(s) return (s:gsub("[%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%0")) end
+        local bare = name:match("^" .. Esc(before) .. "%s*(.-)%s*" .. Esc(after) .. "$")
+        return bare and bare ~= "" and bare ~= name and bare or nil
+    end
+    local function Localized(english, target)
+        if target == "enUS" then return english end
+        local row = FDJ.OBJECTIVE_NAMES and FDJ.OBJECTIVE_NAMES[english]
+        local col = column[target]
+        if not row or not col then return nil end
+        -- Not known in that language: the name as it is in English.
+        return row[col] or english
+    end
+
+    -- objectives: the game's list for a quest (C_QuestLog.GetQuestObjectives).
+    -- Returns the lines in the journal's language as { {text, finished}, ... },
+    -- or nil when the journal speaks the game's language. goal: the quest's
+    -- English objective (for an English journal on another game language);
+    -- onPage: the quest page, which shows the translated objective already.
+    function FDJ.LocalizeObjectives(questID, objectives, goal, onPage)
+        if not FDJ.CanUseClientLocalizedText or FDJ.CanUseClientLocalizedText() then return nil end
+        if type(objectives) ~= "table" then return nil end
+        local target = (FDJ.GetLanguage and FDJ.GetLanguage()) or "enUS"
+        local client = (FDJ.GetClientLanguage and FDJ.GetClientLanguage()) or "enUS"
+        local out, worded, wordedDone = {}, false, true
+        for _, o in ipairs(objectives) do
+            local text = type(o) == "table" and Str(o.text) or nil
+            if text then
+                local finished = o.finished == true
+                local name, done, needed, slain = Split(text, o.type)
+                if name then
+                    local english = English(name, client)
+                    if not english then
+                        local bare = Unslain(name, client)
+                        english = bare and English(bare, client)
+                        slain = slain or english ~= nil
+                    end
+                    local localized = english and Localized(english, target)
+                    if localized then
+                        done = (type(o.numFulfilled) == "number" and not Secret(o.numFulfilled)) and o.numFulfilled or done
+                        needed = (type(o.numRequired) == "number" and not Secret(o.numRequired)) and o.numRequired or needed
+                        if o.type == "monster" or slain then localized = (SLAIN[target] or "%s"):format(localized) end
+                        text = done .. "/" .. needed .. " " .. localized
+                    end
+                    out[#out + 1] = { text, finished }
+                else
+                    worded = true
+                    wordedDone = wordedDone and finished
+                    out[#out + 1] = { text, finished, worded = true }
+                end
+            end
+        end
+        if not worded then return out end
+        local translated
+        if target == "enUS" then
+            translated = goal
+        elseif FDJ.LocalizeQuestField then
+            translated = FDJ.LocalizeQuestField(questID, "objective", nil)
+        end
+        if type(translated) ~= "string" or translated == "" then return out end
+        local kept, placed = {}, false
+        for _, line in ipairs(out) do
+            if not line.worded then
+                kept[#kept + 1] = line
+            elseif not placed and not onPage then
+                placed = true
+                kept[#kept + 1] = { translated, wordedDone }
+            end
+        end
+        return kept
+    end
+end
+-- END objectivetext
+
+-- BEGIN sleepingbagui
+-- The Cozy Sleeping Bag page (data: Data/QuestUpdates.lua). The bag's own
+-- icon from the game, round with the WoW Forever emblem's soft glow, on the
+-- journal's home page in the row of that emblem and the Raids medallion, opens the bag's quest
+-- chain, unfolded at the step the character is on; right-click: Hide (also in
+-- Options). The
+-- page's title is the bag's name in the journal's language; Track on its
+-- quest list works as on a dungeon's (a tracked chain keeps its arrow).
+do
+    local PAGE = FDJ.SLEEPING_BAG_PAGE
+    local ITEM = FDJ.SLEEPING_BAG_ITEM or 211527
+    local QUEST = 79976
+    local ICON = "Interface\\Icons\\INV_Misc_Bag_BigBagofEnchantments" -- only if the client doesn't know the bag
+    local MASK = "Interface\\CharacterFrame\\TempPortraitAlphaMask"
+    local GLOW = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\TickGlow"
+    if PAGE and FDJ.DB and FDJ.DB[PAGE] then
+        local strings = {
+            enUS = { SLEEPING_BAG = "Sleeping Bag", SLEEPING_BAG_TITLE = "Cozy Sleeping Bag",
+                SLEEPING_BAG_HOW = "How to get Sleeping Bag", SLEEPING_BAG_HIDE_TIP = "Right-click to hide", SLEEPING_BAG_HIDE = "Hide" },
+            deDE = { SLEEPING_BAG = "Schlafsack", SLEEPING_BAG_TITLE = "Gemütlicher Schlafsack",
+                SLEEPING_BAG_HOW = "So bekommst du den Schlafsack", SLEEPING_BAG_HIDE_TIP = "Rechtsklick zum Ausblenden", SLEEPING_BAG_HIDE = "Ausblenden" },
+            frFR = { SLEEPING_BAG = "Sac de couchage", SLEEPING_BAG_TITLE = "Sac de couchage douillet",
+                SLEEPING_BAG_HOW = "Comment obtenir le sac de couchage", SLEEPING_BAG_HIDE_TIP = "Clic droit pour masquer", SLEEPING_BAG_HIDE = "Masquer" },
+            esES = { SLEEPING_BAG = "Saco de dormir", SLEEPING_BAG_TITLE = "Saco de dormir acogedor",
+                SLEEPING_BAG_HOW = "Cómo conseguir el saco de dormir", SLEEPING_BAG_HIDE_TIP = "Clic derecho para ocultar", SLEEPING_BAG_HIDE = "Ocultar" },
+            itIT = { SLEEPING_BAG = "Sacco a pelo", SLEEPING_BAG_TITLE = "Sacco a pelo accogliente",
+                SLEEPING_BAG_HOW = "Come ottenere il sacco a pelo", SLEEPING_BAG_HIDE_TIP = "Clic destro per nascondere", SLEEPING_BAG_HIDE = "Nascondi" },
+            ptBR = { SLEEPING_BAG = "Saco de dormir", SLEEPING_BAG_TITLE = "Saco de dormir aconchegante",
+                SLEEPING_BAG_HOW = "Como conseguir o saco de dormir", SLEEPING_BAG_HIDE_TIP = "Clique com o botão direito para ocultar", SLEEPING_BAG_HIDE = "Ocultar" },
+            ruRU = { SLEEPING_BAG = "Спальный мешок", SLEEPING_BAG_TITLE = "Уютный спальный мешок",
+                SLEEPING_BAG_HOW = "Как получить спальный мешок", SLEEPING_BAG_HIDE_TIP = "Правый клик — скрыть", SLEEPING_BAG_HIDE = "Скрыть" },
+            koKR = { SLEEPING_BAG = "침낭", SLEEPING_BAG_TITLE = "아늑한 침낭",
+                SLEEPING_BAG_HOW = "침낭 얻는 방법", SLEEPING_BAG_HIDE_TIP = "우클릭하여 숨기기", SLEEPING_BAG_HIDE = "숨기기" },
+            zhCN = { SLEEPING_BAG = "睡袋", SLEEPING_BAG_TITLE = "舒适的睡袋",
+                SLEEPING_BAG_HOW = "如何获得睡袋", SLEEPING_BAG_HIDE_TIP = "右键点击隐藏", SLEEPING_BAG_HIDE = "隐藏" },
+            zhTW = { SLEEPING_BAG = "睡袋", SLEEPING_BAG_TITLE = "舒適的睡袋",
+                SLEEPING_BAG_HOW = "如何獲得睡袋", SLEEPING_BAG_HIDE_TIP = "右鍵點擊隱藏", SLEEPING_BAG_HIDE = "隱藏" },
+        }
+        for locale, entries in pairs(strings) do
+            local t = FDJ.Locales and FDJ.Locales[locale]
+            if t then
+                for key, value in pairs(entries) do
+                    if t[key] == nil then t[key] = value end
+                end
+            end
+        end
+
+        local function L(key)
+            return FDJ.L and FDJ.L(key) or key
+        end
+        local function Plain(v)
+            if type(issecretvalue) == "function" and issecretvalue(v) then return nil end
+            return v
+        end
+
+        -- The game's own name of the bag when the journal speaks the game's
+        -- language, else the journal's translation.
+        local function Title()
+            if FDJ.CanUseClientLocalizedText and FDJ.CanUseClientLocalizedText() then
+                local get = (C_Item and C_Item.GetItemNameByID) or GetItemInfo
+                if type(get) == "function" then
+                    local ok, name = pcall(get, ITEM)
+                    name = ok and Plain(name) or nil
+                    if type(name) == "string" and name ~= "" then return name end
+                end
+            end
+            return L("SLEEPING_BAG_TITLE")
+        end
+        local baseName = FDJ.LocalizeDungeonName
+        FDJ.LocalizeDungeonName = function(name, ...)
+            if name == PAGE then return Title() end
+            if baseName then return baseName(name, ...) end
+            return name
+        end
+
+        -- Step 1 and where Stepping Stones is picked up: the character's faction.
+        local function Resolve()
+            if not FDJ.SetSleepingBagFaction or type(UnitFactionGroup) ~= "function" then return end
+            local ok, faction = pcall(UnitFactionGroup, "player")
+            faction = ok and Plain(faction) or nil
+            if faction == "Horde" or faction == "Alliance" then FDJ.SetSleepingBagFaction(faction) end
+        end
+        Resolve()
+        local events = CreateFrame("Frame")
+        events:RegisterEvent("PLAYER_LOGIN")
+        events:SetScript("OnEvent", function()
+            Resolve()
+            if C_Item and C_Item.RequestLoadItemDataByID then pcall(C_Item.RequestLoadItemDataByID, ITEM) end
+        end)
+
+        -- The chain at the step the character is on (the first one not handed
+        -- in); the whole chain done: the last quest.
+        function FDJ.OpenSleepingBagChain()
+            if not FDJ.OpenQuestChain then return end
+            local stepID
+            for _, step in ipairs((FDJ.QUEST_PREREQ_CHAINS and FDJ.QUEST_PREREQ_CHAINS[QUEST]) or {}) do
+                if type(step) == "table" and type(step.id) == "number"
+                    and not (FDJ.QuestTurnedIn and FDJ.QuestTurnedIn(step.id)) then
+                    stepID = step.id
+                    break
+                end
+            end
+            FDJ.OpenQuestChain(PAGE, QUEST, stepID)
+        end
+
+        -- The bag is the chain's reward: once the character has it (in the bags
+        -- or the bank, or the chain's last quest handed in), the icon goes by itself.
+        local function HasBag()
+            if FDJ.QuestTurnedIn and FDJ.QuestTurnedIn(QUEST) then return true end
+            local count
+            if C_Item and C_Item.GetItemCount then
+                local ok, n = pcall(C_Item.GetItemCount, ITEM, true)
+                if ok then count = Plain(n) end
+            end
+            if count == nil and GetItemCount then
+                local ok, n = pcall(GetItemCount, ITEM, true)
+                if ok then count = Plain(n) end
+            end
+            return type(count) == "number" and count > 0
+        end
+        FDJ.HasSleepingBag = HasBag
+
+        -- The bag's medallion on the home page: placed by Systems/ForeverFilter.lua
+        -- right of the Raids medallion, a little smaller. Click: the chain; hover:
+        -- How to get Sleeping Bag; right-click: Hide (Options: Hide Sleeping Bag
+        -- quest). Hidden, a tracked chain still shows its arrow.
+        -- hideSleepingBag: true = hidden (ticked, or Hide); false = shown, even
+        -- with the bag (unticked while the character has it); nil = shown until
+        -- the character has the bag.
+        function FDJ.IsSleepingBagHidden()
+            local v = ForeverDungeonJournalDB and ForeverDungeonJournalDB.hideSleepingBag
+            if v == true then return true end
+            if v == false then return false end
+            return HasBag() and true or false
+        end
+
+        local function Wanted(b)
+            return b and b.fdjPlaced == true and not FDJ.IsSleepingBagHidden()
+        end
+
+        local menu
+        local lastHidden
+        -- Keep the Options checkbox in step (right-click Hide, the bag looted).
+        local function RefreshOptions()
+            lastHidden = FDJ.IsSleepingBagHidden()
+            local settings = _G.ForeverDungeonJournalSettings
+            if settings and settings:IsShown() then
+                local onShow = settings:GetScript("OnShow")
+                if onShow then pcall(onShow, settings) end
+            end
+        end
+        function FDJ.SetSleepingBagHidden(hidden)
+            ForeverDungeonJournalDB = ForeverDungeonJournalDB or {}
+            -- Unticked always brings it back, the bag or not.
+            if hidden then
+                ForeverDungeonJournalDB.hideSleepingBag = true
+            elseif HasBag() then
+                ForeverDungeonJournalDB.hideSleepingBag = false
+            else
+                ForeverDungeonJournalDB.hideSleepingBag = nil
+            end
+            local frame = _G.ForeverDungeonJournalFrame
+            local b = frame and frame.sleepingBagButton
+            if b then b:SetShown(Wanted(b)) end
+            if menu then menu:Hide() end
+            RefreshOptions()
+        end
+
+        -- The chain's own spots (where each step is picked up and handed in):
+        -- Show on Map there brings the waypoint arrow up too (Systems/MapMarkers.lua).
+        local function Same(a, spot)
+            return type(a) == "table" and a.mapID == spot.mapID
+                and math.abs((tonumber(a.x) or -1) - spot.x) < 0.0005
+                and math.abs((tonumber(a.y) or -1) - spot.y) < 0.0005
+        end
+        local function OnPage(loc, spot)
+            return Same(loc.map, spot) or Same(loc.startMap, spot) or Same(loc.turninMap, spot)
+        end
+        function FDJ.IsSleepingBagSpot(spot)
+            if type(spot) ~= "table" or not spot.mapID then return false end
+            local x, y = tonumber(spot.x), tonumber(spot.y)
+            if not x or not y then return false end
+            spot = { mapID = spot.mapID, x = x, y = y }
+            for _, quest in ipairs((FDJ.DB[PAGE] and FDJ.DB[PAGE].quests) or {}) do
+                if type(quest) == "table" and OnPage(quest, spot) then return true end
+            end
+            local details = FDJ.QUEST_PREREQ_DETAILS or {}
+            local ids = { 79007, 79008 } -- step 1, both factions
+            for _, step in ipairs((FDJ.QUEST_PREREQ_CHAINS and FDJ.QUEST_PREREQ_CHAINS[QUEST]) or {}) do
+                if type(step) == "table" then ids[#ids + 1] = step.id end
+            end
+            for _, id in ipairs(ids) do
+                if type(details[id]) == "table" and OnPage(details[id], spot) then return true end
+            end
+            return false
+        end
+
+        -- Right-click: a small menu with Hide (as the LFG eye's Disable).
+        local function ShowMenu(anchor)
+            if not menu then
+                menu = CreateFrame("Frame", "ForeverDungeonJournalSleepingBagMenu", UIParent, "BackdropTemplate")
+                menu:SetFrameStrata("FULLSCREEN_DIALOG")
+                menu:EnableMouse(true)
+                menu:SetBackdrop({
+                    bgFile = "Interface\\Buttons\\WHITE8X8",
+                    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+                    edgeSize = 12,
+                    insets = { left = 3, right = 3, top = 3, bottom = 3 },
+                })
+                menu:SetBackdropColor(0.055, 0.05, 0.043, 0.98)
+                menu:SetBackdropBorderColor(0.57, 0.43, 0.20, 1)
+                local item = CreateFrame("Button", nil, menu)
+                item:SetPoint("TOPLEFT", 5, -5)
+                item:SetPoint("RIGHT", -5, 0)
+                item:SetHeight(20)
+                item:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight", "ADD")
+                item.text = item:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+                item.text:SetPoint("LEFT", 6, 0)
+                item:SetScript("OnClick", function()
+                    menu:Hide()
+                    FDJ.SetSleepingBagHidden(true)
+                end)
+                menu.hide = item
+                -- Closes on its own once the mouse has been away for a moment.
+                menu:SetScript("OnUpdate", function(self, elapsed)
+                    if self:IsMouseOver() or (self.fdjAnchor and self.fdjAnchor:IsMouseOver()) then
+                        self.fdjAway = 0
+                    else
+                        self.fdjAway = (self.fdjAway or 0) + elapsed
+                        if self.fdjAway > 0.6 then self:Hide() end
+                    end
+                end)
+            end
+            menu.hide.text:SetText(L("SLEEPING_BAG_HIDE"))
+            menu:SetSize(math.max(110, (menu.hide.text:GetStringWidth() or 0) + 24), 30)
+            menu.fdjAnchor = anchor
+            menu.fdjAway = 0
+            menu:ClearAllPoints()
+            menu:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", 4, -2)
+            menu:Show()
+            if GameTooltip then GameTooltip:Hide() end
+        end
+
+        -- The bag's own icon, as the game shows it.
+        local function BagIcon()
+            local icon
+            if C_Item and C_Item.GetItemIconByID then
+                local ok, v = pcall(C_Item.GetItemIconByID, ITEM)
+                if ok then icon = Plain(v) end
+            end
+            if not icon and GetItemIcon then
+                local ok, v = pcall(GetItemIcon, ITEM)
+                if ok then icon = Plain(v) end
+            end
+            return icon or ICON
+        end
+
+        local function Build(frame)
+            local home = frame.homePanel
+            local b = CreateFrame("Button", nil, home)
+            frame.sleepingBagButton = b
+            b:SetSize(40, 40)
+            b:SetFrameLevel(home:GetFrameLevel() + 5)
+            b:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+            -- Round like the emblems next to it, with the WoW Forever emblem's
+            -- soft golden glow behind it.
+            b.halo = b:CreateTexture(nil, "BACKGROUND", nil, -1)
+            b.halo:SetTexture(GLOW)
+            b.halo:SetBlendMode("ADD")
+            b.halo:SetVertexColor(1, 0.82, 0.35)
+            b.halo:SetAlpha(0.75)
+            b.halo:SetPoint("CENTER")
+            b.icon = b:CreateTexture(nil, "ARTWORK")
+            b.icon:SetPoint("CENTER")
+            b.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+            if b.CreateMaskTexture then
+                local mask = b:CreateMaskTexture()
+                mask:SetTexture(MASK, "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+                mask:SetAllPoints(b.icon)
+                b.icon:AddMaskTexture(mask)
+                b.mask = mask
+            end
+            b.hl = b:CreateTexture(nil, "HIGHLIGHT")
+            b.hl:SetTexture(MASK)
+            b.hl:SetBlendMode("ADD")
+            b.hl:SetAlpha(0.25)
+            b.hl:SetPoint("CENTER")
+            b:SetScript("OnMouseDown", function(self, button)
+                if button ~= "LeftButton" then return end
+                self.icon:ClearAllPoints()
+                self.icon:SetPoint("CENTER", 1, -1)
+            end)
+            b:SetScript("OnMouseUp", function(self)
+                self.icon:ClearAllPoints()
+                self.icon:SetPoint("CENTER")
+            end)
+            b:SetScript("OnClick", function(self, button)
+                if button == "RightButton" then
+                    ShowMenu(self)
+                    return
+                end
+                if GameTooltip then GameTooltip:Hide() end
+                if PlaySound and SOUNDKIT and SOUNDKIT.IG_CHARACTER_INFO_OPEN then pcall(PlaySound, SOUNDKIT.IG_CHARACTER_INFO_OPEN) end
+                FDJ.OpenSleepingBagChain()
+            end)
+            b:SetScript("OnEnter", function(self)
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                GameTooltip:SetText(L("SLEEPING_BAG_HOW"), 1, 0.82, 0)
+                GameTooltip:AddLine(L("SLEEPING_BAG_HIDE_TIP"), 0.6, 0.6, 0.6)
+                GameTooltip:Show()
+            end)
+            b:SetScript("OnLeave", function() GameTooltip:Hide() end)
+            return b
+        end
+
+        function FDJ.PlaceSleepingBagButton(frame, anchor, size)
+            if not frame or not frame.homePanel or not anchor then return end
+            local b = frame.sleepingBagButton or Build(frame)
+            size = size or 40
+            -- A little smaller than the medallions next to it (1.9.7).
+            local inner = math.floor(size * 0.9 + 0.5)
+            b:SetSize(inner, inner)
+            b.icon:SetTexture(BagIcon())
+            b.icon:SetSize(inner, inner)
+            b.hl:SetSize(inner, inner)
+            local glow = math.floor(inner * 1.92 + 0.5) -- as the WoW Forever emblem's, to scale
+            b.halo:SetSize(glow, glow)
+            b:ClearAllPoints()
+            b:SetPoint("LEFT", anchor, "RIGHT", size >= 40 and 12 or (size >= 30 and 10 or 8), 0)
+            b.fdjPlaced = true
+            b:SetShown(Wanted(b))
+        end
+
+        -- The bag looted or the last quest handed in while the journal is open.
+        local watch = CreateFrame("Frame")
+        watch:RegisterEvent("BAG_UPDATE_DELAYED")
+        watch:RegisterEvent("QUEST_TURNED_IN")
+        watch:SetScript("OnEvent", function()
+            local frame = _G.ForeverDungeonJournalFrame
+            local b = frame and frame.sleepingBagButton
+            if b then b:SetShown(Wanted(b)) end
+            if FDJ.IsSleepingBagHidden() ~= lastHidden then RefreshOptions() end
+        end)
+    end
+end
+-- END sleepingbagui
 
 -- BEGIN questtracker
 -- ------------------------------------------------------------ quest tracker
@@ -219,6 +777,9 @@ do
     local POI_RING_DOWN = "UI-QuestPoi-QuestNumber-Pressed"
     local POI_LIT = "UI-QuestPoi-InnerGlow"
     local POI_TURN_IN = "UI-QuestIcon-TurnIn-Normal"
+    -- The same button drawn big (Media/TurnInMark.tga), sharp where the
+    -- game's small art goes soft: the quest list's and quest page's ?.
+    local TURN_IN_ART = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\TurnInMark"
 
     local GOLD = { 1.00, 0.82, 0.00 }
     local GREEN = { 0.30, 1.00, 0.36 }
@@ -357,7 +918,8 @@ do
         local faction = Faction()
         for _, quest in ipairs(dungeon.quests or {}) do
             if type(quest) == "table" and type(quest.id) == "number" and quest.name
-                and not quest.repeatable and not quest.hideFromMainList and Matches(quest, faction) then
+                and not quest.repeatable and not quest.hideFromMainList and Matches(quest, faction)
+                and not (FDJ.RPGQuestHidden and FDJ.RPGQuestHidden(name, quest)) then -- RPG Mode: unlocked ones only
                 list[#list + 1] = quest
             end
         end
@@ -422,16 +984,27 @@ do
         return text
     end
 
-    local function Objectives(id)
+    local function Objectives(id, goal)
         local lines = {}
         if C_QuestLog and type(C_QuestLog.GetQuestObjectives) == "function" then
             local ok, list = pcall(C_QuestLog.GetQuestObjectives, id)
             if ok and type(list) == "table" then
+                -- In the journal's language when that is not the game's.
+                local own = FDJ.LocalizeObjectives and FDJ.LocalizeObjectives(id, list, goal)
+                if own then
+                    for _, line in ipairs(own) do lines[#lines + 1] = { CountFirst(line[1]), line[2] } end
+                    return lines
+                end
                 for _, objective in ipairs(list) do
                     local text = type(objective) == "table" and Plain(objective.text) or nil
                     if type(text) == "string" and text ~= "" then
-                        lines[#lines + 1] = { CountFirst(text), objective.finished == true }
+                        local named, done = FDJ.ObjectiveLineOverride(id, text, objective.finished == true) -- glowingshard
+                        lines[#lines + 1] = { named ~= text and named or CountFirst(text), done }
                     end
+                end
+                if #lines == 0 and #list == 0 and LogIndex(id) then
+                    local named, done = FDJ.ObjectiveLineMissing(id) -- glowingshard
+                    if named then lines[1] = { named, done } end
                 end
                 return lines
             end
@@ -443,7 +1016,8 @@ do
                 local ok, text, _, finished = pcall(GetQuestLogLeaderBoard, i, index)
                 text = ok and Plain(text) or nil
                 if type(text) == "string" and text ~= "" then
-                    lines[#lines + 1] = { CountFirst(text), finished == true or finished == 1 }
+                    local named, done = FDJ.ObjectiveLineOverride(id, text, finished == true or finished == 1) -- glowingshard
+                    lines[#lines + 1] = { named ~= text and named or CountFirst(text), done }
                 end
             end
         end
@@ -453,9 +1027,9 @@ do
     -- Done counts ("8/8 Dwarven Heirloom") grey out; a line without a count
     -- is a "take this to / talk to" one, done the moment the quest is taken:
     -- it stays white, it says where to go.
-    local function ObjectiveText(id, indent)
+    local function ObjectiveText(id, indent, goal)
         local parts = {}
-        for _, line in ipairs(Objectives(id)) do
+        for _, line in ipairs(Objectives(id, goal)) do
             local text, finished = line[1], line[2]
             local color = "|cffe8e8e8"
             if finished then
@@ -471,8 +1045,10 @@ do
     -- says its chain starts inside (startsInDungeon).
     local function StartsInDungeon(quest, dungeonName)
         if quest.startsInDungeon then return true end
-        local chain = FDJ.QUEST_PREREQ_CHAINS and FDJ.QUEST_PREREQ_CHAINS[quest.id]
-        if type(chain) == "table" and #chain > 0 then return false end
+        -- A quest that needs a chain first: the step the chain is at (the
+        -- first one not handed in yet); every step done: the quest itself.
+        local fromChain = FDJ.ChainStartsInside and FDJ.ChainStartsInside(quest, dungeonName, true)
+        if fromChain ~= nil then return fromChain == true end
         if FDJ.StartsInsideDungeon ~= nil and FDJ.StartsInsideDungeon(quest.pickup) == true then return true end
         -- Started by an item that drops in this dungeon (The Glowing Shard).
         return FDJ.StartItemDropsIn ~= nil and FDJ.StartItemDropsIn(quest, dungeonName) == true
@@ -590,20 +1166,161 @@ do
                     end
                 end
             end
+            -- turninall: a boss who takes quests once beaten or won over
+            -- (Captain Kromcrush): his spot on the map.
+            for dungeon, data in pairs(FDJ.DUNGEON_MAPS or {}) do
+                for _, boss in ipairs(type(data) == "table" and data.bosses or {}) do
+                    local key = type(boss) == "table" and type(boss.name) == "string" and boss.name:lower()
+                    if key and boss.x and boss.y and not dungeonNpcs[key] then
+                        dungeonNpcs[key] = { dungeon = dungeon, spot = { floor = boss.floor or 1, x = boss.x, y = boss.y, npc = boss.name } }
+                    end
+                end
+            end
         end
         return dungeonNpcs[name]
     end
+    -- The dungeon page that lists a quest (a chain step: its quest's page).
+    local questDungeons
+    local function QuestDungeon(id)
+        if not questDungeons then
+            questDungeons = {}
+            for dungeon, data in pairs(FDJ.DB or {}) do
+                for _, listed in ipairs(type(data) == "table" and data.quests or {}) do
+                    if type(listed) == "table" and listed.id and not questDungeons[listed.id] then questDungeons[listed.id] = dungeon end
+                end
+            end
+            for mainID, chain in pairs(FDJ.QUEST_PREREQ_CHAINS or {}) do
+                local dungeon = questDungeons[mainID]
+                for _, step in ipairs((dungeon and type(chain) == "table") and chain or {}) do
+                    if type(step) == "table" and step.id and not questDungeons[step.id] then questDungeons[step.id] = dungeon end
+                end
+            end
+        end
+        return id and questDungeons[id] or nil
+    end
+    -- turninall: the dungeon a turn-in names in its last part ("Bijou, Lower
+    -- Blackrock Spire", "Lorekeeper Lydros, Athenaeum, Dire Maul", "...,
+    -- inside Shadowfang Keep"). A name shared by several pages (Dire Maul,
+    -- Stratholme): the page that lists the quest, else one with a map.
+    local dungeonNames
+    local function NamedDungeon(quest)
+        local where = type(quest) == "table" and quest.turnin
+        if type(where) ~= "string" then return nil end
+        local last = where:gsub("%b()", ""):match("([^,]*)$") or ""
+        last = last:lower():gsub("^%s+", ""):gsub("%s+$", "")
+        last = last:gsub("^just ", ""):gsub("^inside ", "")
+        if last == "" then return nil end
+        if not dungeonNames then
+            dungeonNames = {}
+            local function Add(key, dungeon)
+                dungeonNames[key] = dungeonNames[key] or {}
+                table.insert(dungeonNames[key], dungeon)
+            end
+            for dungeon in pairs(FDJ.DB or {}) do
+                local full = dungeon:lower()
+                Add(full, dungeon)
+                local base = full:match("^(.-):")
+                if base and base ~= "" then Add(base, dungeon) end
+            end
+            for _, list in pairs(dungeonNames) do table.sort(list) end
+        end
+        local list = dungeonNames[last]
+        if not list then return nil end
+        local own = QuestDungeon(quest.id)
+        for _, dungeon in ipairs(list) do
+            if dungeon == own then return dungeon end
+        end
+        for _, dungeon in ipairs(list) do
+            if FDJ.DUNGEON_MAPS and FDJ.DUNGEON_MAPS[dungeon] then return dungeon end
+        end
+        return list[1]
+    end
+    -- Handed in inside a dungeon with a map page: the one it names, else
+    -- ("..., inside the dungeon") the one that lists it.
+    local function InsideDungeon(quest)
+        local maps = FDJ.DUNGEON_MAPS or {}
+        local named = NamedDungeon(quest)
+        if named then return maps[named] and named or nil end
+        local where = type(quest) == "table" and quest.turnin
+        if type(where) ~= "string" or not where:lower():find("inside", 1, true) then return nil end
+        local dungeon = QuestDungeon(quest.id)
+        return dungeon and maps[dungeon] and dungeon or nil
+    end
+    -- turninall: where on a dungeon map a quest is handed in, from the map's
+    -- own quest spots (FDJ.MAP_QUEST_PINS, act "end"): the NPC or object its
+    -- turn-in names first (Belnistrasz's Brazier, not Belnistrasz).
+    local questPins
+    local function QuestPin(quest)
+        local id = type(quest) == "table" and quest.id
+        if not id then return nil end
+        if not questPins then
+            questPins = {}
+            for dungeon, pins in pairs(FDJ.MAP_QUEST_PINS or {}) do
+                for _, pin in ipairs(type(pins) == "table" and pins or {}) do
+                    for _, spot in ipairs(type(pin) == "table" and pin.spots or {}) do
+                        for _, q in ipairs(type(spot) == "table" and spot.quests or {}) do
+                            local ends = false
+                            for _, act in ipairs(type(q) == "table" and q.acts or {}) do
+                                if act == "end" then ends = true end
+                            end
+                            if ends and q.id and pin.x and pin.y then
+                                local list = questPins[q.id] or {}
+                                questPins[q.id] = list
+                                list[#list + 1] = { dungeon = dungeon, spot = { floor = pin.floor or 1, x = pin.x, y = pin.y, npc = spot.name } }
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        local list = questPins[id]
+        if not list then return nil end
+        local name = NpcName(quest.turnin)
+        for _, hit in ipairs(list) do
+            if name and type(hit.spot.npc) == "string" and hit.spot.npc:lower() == name then return hit end
+        end
+        return list[1]
+    end
+    -- Handed in inside a dungeon: the spot on its map (the map's quest spot,
+    -- else the NPC's), else just its map.
+    local function DungeonTurnIn(quest)
+        local pinned = QuestPin(quest)
+        if pinned then return pinned end
+        local name = NpcName(quest.turnin)
+        local known = name and DungeonNpc(name)
+        if known then return known end
+        local dungeon = InsideDungeon(quest)
+        return dungeon and { dungeon = dungeon, spot = {} } or nil
+    end
+    -- turninall: inside a dungeon with no map page here (Lower Blackrock
+    -- Spire, Scholomance): its entrance on the world map.
+    local function EntranceSpot(quest)
+        local dungeon = NamedDungeon(quest)
+        if not dungeon and type(quest.turnin) == "string" and quest.turnin:lower():find("inside", 1, true) then
+            dungeon = QuestDungeon(quest.id)
+        end
+        local data = dungeon and FDJ.DB and FDJ.DB[dungeon]
+        local entrance = type(data) == "table" and data.entrance
+        if type(entrance) ~= "table" or not entrance.mapID or not entrance.x or not entrance.y then return nil end
+        return { mapID = entrance.mapID, x = entrance.x, y = entrance.y, label = entrance.label, detail = entrance.detail }
+    end
     local function TurnInSpot(quest)
+        -- The spot given with the quest first: two places can share a name
+        -- (the Burned-Out Remains in The Barrens and in Westfall).
+        local given = quest.turninMap
+        if type(given) == "table" and given.mapID then return given end
+        -- turninall: a quest handed in at one of a dungeon map's quest spots
+        -- goes there (Dark Iron Legacy: Franclorn's monument in the Depths,
+        -- not his ghost outside).
+        if QuestPin(quest) then return nil end
         local name = NpcName(quest.turnin)
         if not name then return nil end
         local own = FDJ.QUEST_START_MAPS and FDJ.QUEST_START_MAPS[quest.id]
         if own and NpcOf(own) == name then return own end
-        return NpcSpot(name)
-    end
-    -- Handed in inside a dungeon.
-    local function DungeonTurnIn(quest)
-        local name = NpcName(quest.turnin)
-        return name and DungeonNpc(name) or nil
+        local spot = NpcSpot(name)
+        if spot then return spot end
+        if DungeonTurnIn(quest) then return nil end
+        return EntranceSpot(quest)
     end
     -- Where a quest is picked up: the journal's Show on Map spot, else the
     -- giver's spot by name. A quest started by an item has none.
@@ -643,10 +1360,17 @@ do
         elseif info.state == "log" then
             info.icon, info.grey, info.color = ICON_LOG, true, GOLD
             -- Its grey ? shows where it is handed in too (a "talk to" quest
-            -- is never counted as finished before it is handed in).
-            info.turnin = TurnInSpot(quest)
+            -- is never counted as finished before it is handed in). A quest
+            -- whose objective is done somewhere else first (The Glowing Shard:
+            -- talk to Sputtervalve in Ratchet) shows that place until it is.
+            local goTo = quest.objectiveMap
+            if type(goTo) == "table" and goTo.mapID then
+                info.turnin, info.goTo = goTo, true
+            else
+                info.turnin = TurnInSpot(quest)
+            end
             if not info.turnin then info.dungeonTurnin = DungeonTurnIn(quest) end
-            local parts = ObjectiveText(id)
+            local parts = ObjectiveText(id, nil, quest.objective)
             if #parts == 0 then
                 -- Nothing to count (go somewhere, talk to someone): the goal.
                 local goal = Field(id, "objective", quest.objective)
@@ -659,8 +1383,19 @@ do
         else
             info.low = type(quest.requires) == "number" and level ~= nil and level < quest.requires
             info.icon, info.grey, info.color = ICON_TODO, info.low, info.low and GREY or TODO
-            -- The ! shows where to pick the quest up.
+            -- The ! shows where to pick the quest up: a chain's next step
+            -- first, while none of its steps is in the log.
             info.start = StartSpot(quest)
+            local chain = FDJ.QUEST_PREREQ_CHAINS and FDJ.QUEST_PREREQ_CHAINS[quest.id]
+            if type(chain) == "table" and not ChainStep(quest) then
+                for _, s in ipairs(chain) do
+                    if type(s) == "table" and type(s.id) == "number" and not s.itemStep and not TurnedIn(s.id) then
+                        local d = (FDJ.QUEST_PREREQ_DETAILS and FDJ.QUEST_PREREQ_DETAILS[s.id]) or {}
+                        info.start = StartSpot({ id = s.id, pickup = d.pickup, startMap = d.map, startItem = d.startItem }) or info.start
+                        break
+                    end
+                end
+            end
             if not info.start then info.dungeonStart = DungeonStart(quest) end
             local step = ChainStep(quest)
             if step then
@@ -668,7 +1403,8 @@ do
                 info.stepName = Field(step.id, "name", step.name or "")
                 -- No chain glyph of its own: the quest's chain icon says it.
                 local parts = { Hex(GOLD) .. info.stepName .. "|r" }
-                for _, line in ipairs(ObjectiveText(step.id, "   ")) do parts[#parts + 1] = line end
+                local stepDetails = FDJ.QUEST_PREREQ_DETAILS and FDJ.QUEST_PREREQ_DETAILS[step.id]
+                for _, line in ipairs(ObjectiveText(step.id, "   ", stepDetails and stepDetails.objective)) do parts[#parts + 1] = line end
                 info.stepText = table.concat(parts, "\n")
             end
             local chain = FDJ.QUEST_PREREQ_CHAINS and FDJ.QUEST_PREREQ_CHAINS[quest.id]
@@ -695,8 +1431,8 @@ do
                     entry.state = "done"
                 elseif InLog(id) then
                     current = true
-                    entry.parts = ObjectiveText(id, "   ")
-                    entry.turnin = TurnInSpot({ id = id, turnin = details.turnin })
+                    entry.parts = ObjectiveText(id, "   ", details.objective)
+                    entry.turnin = TurnInSpot({ id = id, turnin = details.turnin, turninMap = details.turninMap })
                     if FDJ.IsQuestFinished and FDJ.IsQuestFinished(id) then
                         entry.state = "ready"
                     else
@@ -1152,6 +1888,7 @@ do
             spot = (FDJ.LocalizeMapLocation and FDJ.LocalizeMapLocation(spot)) or spot
             FDJ.pendingMarkerQuestTitle = entry.name
             FDJ.pendingMarkerTurnIn = turnIn
+            FDJ.pendingMarkerQuestID = entry.step and entry.step.id -- autoclear
             show(spot, spot.label)
         end)
         mark:SetScript("OnEnter", function(self)
@@ -1230,6 +1967,12 @@ do
         button.ring:SetAtlas(down and POI_RING_DOWN or POI_RING)
         button.display:ClearAllPoints()
         button.display:SetPoint("CENTER", button, "CENTER", down and 1 or 0, down and -1 or 0)
+        if mark.sharp then
+            local shade = down and 0.8 or 1
+            mark.sharp:SetVertexColor(shade, shade, shade)
+            mark.sharp:ClearAllPoints()
+            mark.sharp:SetPoint("CENTER", button, "CENTER", down and 1 or 0, down and -1 or 0)
+        end
     end
 
     local function MakeRow(parent)
@@ -1240,7 +1983,12 @@ do
         -- The icon is a button: the ? of a quest ready to turn in is the
         -- game's own quest button and shows on the map where to hand the
         -- quest in (like Show Turn In).
-        local mark = CreateFrame("Button", nil, row)
+        -- The insecure action template lets a click target the NPC when
+        -- near (FDJ.MapMarkers.ConfigureTargetAndMarkAction, set on mouse-over).
+        local okMark, made = pcall(CreateFrame, "Button", nil, row, "InsecureActionButtonTemplate")
+        local mark = okMark and made or CreateFrame("Button", nil, row)
+        mark._fdjCanTarget = (okMark and made) and true or false
+        if mark._fdjCanTarget then mark:SetAttribute("useOnKeyDown", false) end
         row.mark = mark
         mark:SetSize(ICON_SIZE, ICON_SIZE)
         mark:SetPoint("CENTER", row, "TOPLEFT", ICON_X, -7)
@@ -1289,7 +2037,8 @@ do
         mark.glow:SetAllPoints(row.icon)
         mark.glow:SetTexture(ICON_LOG)
         mark.glow:SetBlendMode("ADD")
-        mark:SetScript("OnClick", function(self)
+        -- PostClick keeps the template's own click (the target macro).
+        mark:SetScript(mark._fdjCanTarget and "PostClick" or "OnClick", function(self)
             local info = self:GetParent().info
             if JustDragged() or not info then return end
             if info.state == "todo" then
@@ -1300,6 +2049,7 @@ do
                     local show = FDJ.MapMarkers and FDJ.MapMarkers.ShowRecordedLocationOnMap
                     if not show then return end
                     FDJ.pendingMarkerQuestTitle = info.name
+                    FDJ.pendingMarkerQuestID = info.quest and info.quest.id -- autoclear
                     show(spot, spot.label or info.quest.pickup)
                 elseif info.dungeonStart and FDJ.ShowTurnInOnDungeonMap and ShowJournal() then
                     FDJ.ShowTurnInOnDungeonMap(info.dungeonStart.dungeon, info.dungeonStart.spot, info.name, info.quest.id, true)
@@ -1319,7 +2069,9 @@ do
             local show = FDJ.MapMarkers and FDJ.MapMarkers.ShowRecordedLocationOnMap
             if not show then return end
             FDJ.pendingMarkerQuestTitle = info.name
-            FDJ.pendingMarkerTurnIn = true
+            FDJ.pendingMarkerTurnIn = not info.goTo
+            FDJ.pendingMarkerQuestID = info.quest and info.quest.id -- autoclear
+            FDJ.pendingMarkerObjective = info.goTo and true or nil
             show(spot, spot.label)
         end)
         mark:SetScript("OnMouseDown", function(self, button)
@@ -1331,6 +2083,9 @@ do
         mark:SetScript("OnEnter", function(self)
             local info = self:GetParent().info
             if not info then return end
+            -- The NPC this ? / ! leads to: targeted by the click when near.
+            local configure = FDJ.MapMarkers and FDJ.MapMarkers.ConfigureTargetAndMarkAction
+            if configure then configure(self, (info.state == "todo" and info.start) or info.turnin or nil, true) end
             if info.state == "todo" then
                 if not (info.start or info.dungeonStart) then return end
                 TooltipBeside(self, SIDE + 4)
@@ -1344,8 +2099,14 @@ do
             if self.button then self.button.lit:Show() end
             if self.halo then self.halo:SetAlpha(1) end
             TooltipBeside(self, SIDE + 4)
-            GameTooltip:SetText(T("SHOW_TURN_IN"), 1, 0.82, 0)
-            local where = Field(info.quest.id, "turnin", info.quest.turnin)
+            local where
+            if info.goTo then
+                GameTooltip:SetText(T("SHOW_ON_MAP"), 1, 0.82, 0)
+                where = info.quest.objectiveWhere
+            else
+                GameTooltip:SetText(T("SHOW_TURN_IN"), 1, 0.82, 0)
+                where = Field(info.quest.id, "turnin", info.quest.turnin)
+            end
             if type(where) == "string" and where ~= "" then GameTooltip:AddLine(where, 1, 1, 1, true) end
             GameTooltip:Show()
         end)
@@ -1872,6 +2633,73 @@ do
         FitArt(f, height, collapsed)
     end
 
+    -- The waypoint arrow (Systems/MapMarkers.lua) follows a tracked quest
+    -- chain page (the Cozy Sleeping Bag): to where its next step is picked
+    -- up, then to where that step is handed in, and so on to the end.
+    -- 1.9.9: also, tracked or not, once Show on Map has shown one of its
+    -- spots, until the arrow is right-clicked away (kept over reloads).
+    local followed = {}
+    local function ArrowChains()
+        local db = CharDB()
+        if type(db.arrowChains) ~= "table" then db.arrowChains = {} end
+        return db.arrowChains
+    end
+    local function FollowChains()
+        if not FDJ.FollowWaypoint then return end
+        local level = PlayerLevel()
+        local now = {}
+        local names = {}
+        for _, name in ipairs(TrackedList()) do names[#names + 1] = name end
+        for name, on in pairs(ArrowChains()) do
+            if on and FDJ.DB and FDJ.DB[name] and not IsTracked(name) then names[#names + 1] = name end
+        end
+        for _, name in ipairs(names) do
+            local dungeon = FDJ.DB[name]
+            if dungeon and dungeon.questChainPage and not Locked(name) then
+                now[name] = true
+                local spot, title, turnIn
+                for _, quest in ipairs(QuestsOf(name)) do
+                    local info = RowInfo(quest, level)
+                    if info.state == "ready" or info.state == "log" then
+                        spot, title, turnIn = info.turnin, info.name, true
+                    elseif info.state == "todo" then
+                        local pending = false
+                        for _, entry in ipairs(ChainSteps(info)) do
+                            if entry.state == "next" then
+                                pending, spot, title = true, entry.start, entry.name
+                                break
+                            elseif entry.state == "log" or entry.state == "ready" then
+                                pending, spot, title, turnIn = true, entry.turnin, entry.name, true
+                                break
+                            end
+                        end
+                        if not pending then spot, title = info.start, info.name end
+                    end
+                    if spot then break end
+                end
+                FDJ.FollowWaypoint(name, spot, title, turnIn)
+            end
+        end
+        for name in pairs(followed) do
+            if not now[name] then FDJ.FollowWaypoint(name, nil) end
+        end
+        followed = now
+    end
+    -- Show on Map on a chain page's spot (FDJ.SetWaypointArrow): follow it.
+    function FDJ.FollowChainArrow(name)
+        local dungeon = name and FDJ.DB and FDJ.DB[name]
+        if not (dungeon and dungeon.questChainPage) then return end
+        ArrowChains()[name] = true
+        FollowChains()
+    end
+    -- The arrow right-clicked away (or its pin removed): stop following it
+    -- from Show on Map. True when it isn't tracked either (the arrow goes).
+    function FDJ.StopChainArrow(name)
+        if name == nil then return false end
+        ArrowChains()[name] = nil
+        return not IsTracked(name)
+    end
+
     Refresh = function()
         local shown = {}
         for _, name in ipairs(TrackedList()) do
@@ -1910,6 +2738,7 @@ do
                 f:Hide()
             end
         end
+        FollowChains()
     end
     FDJ.RefreshQuestTracker = Refresh
 
@@ -2005,11 +2834,20 @@ do
         local on = not IsTracked(name)
         if on then
             list[#list + 1] = name
+            -- A page that is one quest chain (the Cozy Sleeping Bag): its
+            -- chain unfolded from the start.
+            if FDJ.DB[name].questChainPage then
+                for _, quest in ipairs(QuestsOf(name)) do
+                    if FDJ.QUEST_PREREQ_CHAINS and FDJ.QUEST_PREREQ_CHAINS[quest.id] then ChainsOpen()[quest.id] = true end
+                end
+            end
         else
             for i = #list, 1, -1 do
                 if list[i] == name then table.remove(list, i) end
             end
             WindowSlots()[name] = nil
+            -- Not tracked any more: its arrow stops, Show on Map's too (1.9.9).
+            ArrowChains()[name] = nil
         end
         Folded()[name] = nil
         if PlaySound and SOUNDKIT then
@@ -2079,6 +2917,7 @@ do
             spot = (FDJ.LocalizeMapLocation and FDJ.LocalizeMapLocation(spot)) or spot
             FDJ.pendingMarkerQuestTitle = title
             FDJ.pendingMarkerTurnIn = true
+            FDJ.pendingMarkerQuestID = type(quest) == "table" and quest.id or nil -- autoclear
             show(spot, spot.label)
             return
         end
@@ -2114,6 +2953,18 @@ do
             button.icon:SetAtlas(POI_TURN_IN)
             button.icon:SetSize(size, size)
             button.icon:SetPoint("CENTER")
+            -- Our own ring and ?, sharp at this size (under the hover glow).
+            -- A new file only loads after a game restart: until then, the
+            -- game's art.
+            local sharp = button:CreateTexture(nil, "ARTWORK", nil, 1)
+            if sharp:SetTexture(TURN_IN_ART, nil, nil, "TRILINEAR") ~= false then
+                sharp:SetSize(size, size)
+                b.sharp = sharp
+                button.ring:Hide()
+                button.icon:Hide()
+            else
+                sharp:Hide()
+            end
             PressMark(b, false)
         else
             b.icon = b:CreateTexture(nil, "ARTWORK")
