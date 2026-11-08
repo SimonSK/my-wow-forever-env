@@ -1,7 +1,6 @@
 # Chattynator
 
-## [228](https://github.com/TheMouseNest/Chattynator/tree/228) (2026-10-17)
-[Full Changelog](https://github.com/TheMouseNest/Chattynator/compare/227...228) 
+## [230](https://github.com/TheMouseNest/Chattynator/tree/230) (2026-11-07)
+[Full Changelog](https://github.com/TheMouseNest/Chattynator/compare/229...230) 
 
-- Forever: Fix player level up message  
-- Libs update  
+- Fix missing "Guild Discord Chat" entry  
