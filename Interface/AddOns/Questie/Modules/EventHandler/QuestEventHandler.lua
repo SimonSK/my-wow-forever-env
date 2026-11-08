@@ -24,8 +24,8 @@ local QuestieDB = QuestieLoader:ImportModule("QuestieDB")
 local AutoQuesting = QuestieLoader:ImportModule("AutoQuesting")
 ---@type QuestieAnnounce
 local QuestieAnnounce = QuestieLoader:ImportModule("QuestieAnnounce")
----@type QuestiePlayer
-local QuestiePlayer = QuestieLoader:ImportModule("QuestiePlayer")
+---@type ActiveQuests
+local ActiveQuests = QuestieLoader:ImportModule("ActiveQuests")
 ---@type IsleOfQuelDanas
 local IsleOfQuelDanas = QuestieLoader:ImportModule("IsleOfQuelDanas")
 ---@type Expansions
@@ -402,9 +402,9 @@ function QuestEventHandler.QuestTurnedIn(questId, xpReward, moneyReward)
         lastMarkerQuestEventTime = GetTime()
     end
 
-    QuestLogCache.RemoveQuest(questId)
-    QuestieQuest:SetObjectivesDirty(questId) -- is this necessary? should whole quest.Objectives be cleared at some point of quest removal?
+    -- Ends the acceptance before the quest leaves QuestLogCache, so no deferred work reads the cache for it after
     QuestLifecycle:CompleteQuest(questId)
+    QuestLogCache.RemoveQuest(questId)
     QuestieAPI.PropagateQuestUpdate(questId, {}, QuestieAPI.Enums.QuestUpdateTriggerReason.QUEST_TURNED_IN)
 
     QuestieJourney:CompleteQuest(questId)
@@ -462,9 +462,9 @@ function _QuestEventHandler:MarkQuestAsAbandoned(questId)
 
         Questie.Debug(Questie.DEBUG_INFO, "Quest:", questId, "was abandoned")
 
-        QuestLogCache.RemoveQuest(questId)
-        QuestieQuest:SetObjectivesDirty(questId)
+        -- As for a turn-in: the acceptance ends before the quest leaves QuestLogCache
         QuestLifecycle:AbandonQuest(questId)
+        QuestLogCache.RemoveQuest(questId)
         questLog[questId] = nil
 
         QuestieAPI.PropagateQuestUpdate(questId, {}, QuestieAPI.Enums.QuestUpdateTriggerReason.QUEST_ABANDONED)
@@ -623,7 +623,7 @@ function _QuestEventHandler:UpdateAllQuests(doRetryWithoutChanges)
             QuestieQuest:SetObjectivesDirty(questId)
 
             QuestieNameplate:UpdateNameplate()
-            if QuestiePlayer.currentQuestlog[questId] then
+            if ActiveQuests.Get(questId) then
                 QuestLifecycle:UpdateQuest(questId)
             elseif QuestieDB.GetQuest(questId) then
                 -- Not in the player's quest log: adopted above, or not in the cache right after login (e.g. the API is

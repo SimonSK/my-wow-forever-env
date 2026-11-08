@@ -12,8 +12,8 @@ local QuestieDB = QuestieLoader:ImportModule("QuestieDB")
 local QuestieLib = QuestieLoader:ImportModule("QuestieLib")
 ---@type QuestLogCache
 local QuestLogCache = QuestieLoader:ImportModule("QuestLogCache")
----@type QuestiePlayer
-local QuestiePlayer = QuestieLoader:ImportModule("QuestiePlayer")
+---@type ActiveQuests
+local ActiveQuests = QuestieLoader:ImportModule("ActiveQuests")
 ---@type TrackerUtils
 local TrackerUtils = QuestieLoader:ImportModule("TrackerUtils")
 ---@type QuestieEvent
@@ -174,7 +174,7 @@ end
 _AddQuestStatus = function(tooltip, quest)
     local DoableStates = QuestieDB.DoableStates
     local eligibilityText, _, returnReason = QuestieDB.IsDoableVerbose(quest.Id, false, true, true)
-    if QuestiePlayer.currentQuestlog[quest.Id] then
+    if ActiveQuests.Get(quest.Id) then
         local onQuestText = l10n("You are on this quest")
         local stateText
         local questIsComplete = QuestieDB.IsComplete(quest.Id)
@@ -252,7 +252,7 @@ end
 ---@param quest Quest
 _AddQuestRequirements = function(tooltip, quest)
     local questId = quest.Id
-    if QuestiePlayer.currentQuestlog[questId] or Questie.db.char.complete[questId] then
+    if ActiveQuests.Get(questId) or Questie.db.char.complete[questId] then
         return
     end
 
@@ -395,7 +395,7 @@ end
 ---@param finisherName string?
 ---@param finisherZoneName string?
 _AddPlayerQuestProgress = function(tooltip, quest, starterName, starterZoneName, finisherName, finisherZoneName)
-    if QuestiePlayer.currentQuestlog[quest.Id] then
+    if ActiveQuests.Get(quest.Id) then
         -- On Quest: display quest progress
         if (QuestieDB.IsComplete(quest.Id) == 0) then
             _AddTooltipLine(tooltip, " ")
@@ -454,6 +454,14 @@ _AddPlayerQuestProgress = function(tooltip, quest, starterName, starterZoneName,
 end
 
 _InstallSetHyperlinkOverride = function()
+    -- Replacing ItemRefTooltip.SetHyperlink taints every link click on Forever, which breaks
+    -- Blizzard's ItemRefSetHyperlink with secret values in instances. Use the link handler API there.
+    if Questie.IsForever then
+        LinkUtil.RegisterLinkHandler("questie", HandleSetHyperlink.ProcessLink)
+        LinkUtil.RegisterLinkHandler("quest", HandleSetHyperlink.ProcessLink)
+        return
+    end
+
     local oldItemSetHyperlink = ItemRefTooltip.SetHyperlink
 
     --- Override of the default SetHyperlink function to filter Questie links

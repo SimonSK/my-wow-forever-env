@@ -12,6 +12,8 @@ local QuestieLib = QuestieLoader:ImportModule("QuestieLib");
 local QuestLogCache = QuestieLoader:ImportModule("QuestLogCache")
 ---@type QuestiePlayer
 local QuestiePlayer = QuestieLoader:ImportModule("QuestiePlayer");
+---@type ActiveQuests
+local ActiveQuests = QuestieLoader:ImportModule("ActiveQuests")
 ---@type QuestieDB
 local QuestieDB = QuestieLoader:ImportModule("QuestieDB");
 ---@type ZoneDB
@@ -413,9 +415,11 @@ function QuestieTooltips.GetTooltip(key, playerZone)
                         title = QuestieLib:GetColoredQuestName(questId, Questie.db.profile.enableTooltipsQuestLevel, true)
                     }
                 end
-                if not QuestiePlayer.currentQuestlog[questId] then
-                    -- TODO: Is this still required?
-                    QuestieTooltips.lookupByKey[key][k] = nil
+                if not ActiveQuests.Get(questId) then
+                    -- A quest log rebuild logs the quest again without registering its tooltips anew
+                    if (not QuestLogCache.TryGetQuest(questId)) then
+                        QuestieTooltips.lookupByKey[key][k] = nil
+                    end
                 else
                     tooltipData[questId].objectivesText = _InitObjectiveTexts(tooltipData[questId].objectivesText, objectiveIndex, playerName)
                     local text;

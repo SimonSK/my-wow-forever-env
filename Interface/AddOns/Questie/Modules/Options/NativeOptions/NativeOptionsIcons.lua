@@ -14,8 +14,8 @@ local QuestieMap = QuestieLoader:ImportModule("QuestieMap")
 local l10n = QuestieLoader:ImportModule("l10n")
 ---@type QuestieQuest
 local QuestieQuest = QuestieLoader:ImportModule("QuestieQuest")
----@type QuestiePlayer
-local QuestiePlayer = QuestieLoader:ImportModule("QuestiePlayer")
+---@type ActiveQuests
+local ActiveQuests = QuestieLoader:ImportModule("ActiveQuests")
 ---@type QuestieTooltips
 local QuestieTooltips = QuestieLoader:ImportModule("QuestieTooltips")
 ---@type QuestieMenu
@@ -101,15 +101,15 @@ function QuestieOptionsEngine.tabs.icons:Initialize()
                                     QuestieQuest:ShowQuestIcons()
                                 end
                                 if value == true then
-                                    for _, quest in pairs(QuestiePlayer.currentQuestlog) do
-                                        if type(quest) == "table" and (not QuestieQuest:ShouldShowQuestNotes(quest.Id)) then
-                                            QuestieTooltips:RemoveQuest(quest.Id)
+                                    for questId, acceptance in ActiveQuests.Iterate() do
+                                        if acceptance.quest and (not QuestieQuest:ShouldShowQuestNotes(questId)) then
+                                            QuestieTooltips:RemoveQuest(questId)
                                         end
                                     end
                                 else
-                                    for _, quest in pairs(QuestiePlayer.currentQuestlog) do
-                                        if type(quest) == "table" then
-                                            QuestieQuest:PopulateObjectiveNotes(quest)
+                                    for _, acceptance in ActiveQuests.Iterate() do
+                                        if acceptance.quest then
+                                            QuestieQuest:PopulateObjectiveNotes(acceptance.quest)
                                         end
                                     end
                                 end
@@ -267,7 +267,7 @@ function QuestieOptionsEngine.tabs.icons:Initialize()
                         order = 2.20,
                         title = "Season of Discovery Runes",
                         width = "full",
-                        visible = false,
+                        visible = Questie.IsSoD,
                     },
                     showSoDRunes = {
                         type = "checkbox",
@@ -287,7 +287,7 @@ function QuestieOptionsEngine.tabs.icons:Initialize()
                         type = "container",
                         order = 2.22,
                         title = "",
-                        visible = false,
+                        visible = Questie.IsSoD,
                         enabled = function() return _IsEnabled() and Questie.db.profile.showSoDRunes end,
                         items = {
                             phase1 = {
@@ -1186,8 +1186,9 @@ end
 
 function QuestieOptionsUtils.ExecuteTheme(info, value)
     Questie.db.profile.iconTheme = value
+    local currentQuestPOI = GetCVar("questPOI")
     if value == "questie" then
-        if GetCVar("questPOI") then
+        if currentQuestPOI and currentQuestPOI ~= "0" then
             SetCVar("questPOI", "0")
         end
         if WorldMapQuestShowObjectives then
@@ -1206,7 +1207,7 @@ function QuestieOptionsUtils.ExecuteTheme(info, value)
         Questie.db.profile.alwaysGlowMinimap = optionsDefaults.profile.alwaysGlowMinimap
         Questie.db.profile.objectiveFilterDistance = optionsDefaults.profile.objectiveFilterDistance
     elseif value == "pfquest" then
-        if GetCVar("questPOI") then
+        if currentQuestPOI and currentQuestPOI ~= "0" then
             SetCVar("questPOI", "0")
         end
         if WorldMapQuestShowObjectives then
@@ -1225,7 +1226,7 @@ function QuestieOptionsUtils.ExecuteTheme(info, value)
         Questie.db.profile.alwaysGlowMinimap = false
         Questie.db.profile.objectiveFilterDistance = 2
     elseif value == "blizzard" then
-        if GetCVar("questPOI") then
+        if currentQuestPOI and currentQuestPOI ~= "1" then
             SetCVar("questPOI", "1")
         end
         if WorldMapQuestShowObjectives then

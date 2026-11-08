@@ -42,29 +42,10 @@ function TrackerItemButton.New(buttonName, OnHighlightEnter, OnHighlightLeave)
 
         local validTexture
 
-        for bag = -2, 4 do
-            for slot = 1, QuestieCompat.GetContainerNumSlots(bag) do
-                local texture, _, _, _, _, _, _, _, _, itemId = QuestieCompat.GetContainerItemInfo(bag, slot)
-
-                if questItemId == itemId and (isNativeQuestItem or QuestieDB.QueryItemSingle(itemId, "class") == QuestieDB.itemClasses.QUEST) then
-                    validTexture = texture
-                    self.itemId = questItemId
-                    break
-                end
-            end
-        end
-
-        -- Edge case to find "equipped" quest items since they will no longer be in the players bag
-        if (not validTexture) then
-            for inventorySlot = 1, 19 do
-                local itemId = GetInventoryItemID("player", inventorySlot)
-
-                if questItemId == itemId and (isNativeQuestItem or QuestieDB.QueryItemSingle(itemId, "class") == QuestieDB.itemClasses.QUEST) then
-                    validTexture = GetInventoryItemTexture("player", inventorySlot)
-                    self.itemId = questItemId
-                    break
-                end
-            end
+        -- GetItemCount covers bags and equipped items, so no slot scan is needed
+        if GetItemCount(questItemId) > 0 and (isNativeQuestItem or QuestieDB.QueryItemSingle(questItemId, "class") == QuestieDB.itemClasses.QUEST) then
+            validTexture = QuestieCompat.GetItemIcon(questItemId) or "Interface\\Icons\\INV_Misc_QuestionMark"
+            self.itemId = questItemId
         end
 
         if validTexture and self.itemId then
@@ -93,7 +74,7 @@ function TrackerItemButton.New(buttonName, OnHighlightEnter, OnHighlightLeave)
             -- Cooldown Updates
             cooldown:SetSize(size - 4, size - 4)
             cooldown:SetPoint("CENTER", self, "CENTER", 0, 0)
-            cooldown:Hide()
+            self:UpdateCooldown()
 
             -- Range Updates
             self.range:SetText("●")
@@ -117,17 +98,7 @@ function TrackerItemButton.New(buttonName, OnHighlightEnter, OnHighlightLeave)
 
         return false
     end
-    btn.OnEvent = function(self, event, ...)
-        if (event == "PLAYER_TARGET_CHANGED") then
-            self.rangeTimer = -1
-            self.range:Hide()
-        end
-    end
-    btn.OnUpdate = function(self, elapsed)
-        if not self.itemId or not self:IsVisible() then
-            return
-        end
-
+    btn.UpdateCooldown = function(self)
         local start, duration, enabled = QuestieCompat.GetItemCooldown(self.itemId)
 
         if enabled == 1 and duration > 0 then
@@ -136,7 +107,8 @@ function TrackerItemButton.New(buttonName, OnHighlightEnter, OnHighlightLeave)
         else
             cooldown:Hide()
         end
-
+    end
+    btn.UpdateCharges = function(self)
         local charges = GetItemCount(self.itemId, nil, true)
         if (not charges or charges ~= self.charges) then
             self.count:Hide()
@@ -146,13 +118,30 @@ function TrackerItemButton.New(buttonName, OnHighlightEnter, OnHighlightLeave)
                 self.count:Show()
             end
             if self.charges == 0 then
-                Questie.Debug(Questie.DEBUG_DEVELOP, "[TrackerLinePool: Button.OnUpdate]")
+                Questie.Debug(Questie.DEBUG_DEVELOP, "[TrackerLinePool: Button.UpdateCharges]")
                 QuestieCombatQueue:Queue(function()
                     C_Timer.After(0.2, function()
                         QuestieTracker:Update()
                     end)
                 end)
             end
+        end
+    end
+    btn.OnEvent = function(self, event, ...)
+        if (event == "PLAYER_TARGET_CHANGED") then
+            self.rangeTimer = -1
+            self.range:Hide()
+        elseif (not self.itemId) then
+            return
+        elseif (event == "BAG_UPDATE_COOLDOWN") then
+            self:UpdateCooldown()
+        elseif (event == "BAG_UPDATE") then
+            self:UpdateCharges()
+        end
+    end
+    btn.OnUpdate = function(self, elapsed)
+        if not self.itemId or not self:IsVisible() then
+            return
         end
 
         if UnitExists("target") then
@@ -181,9 +170,18 @@ function TrackerItemButton.New(buttonName, OnHighlightEnter, OnHighlightLeave)
     end
     btn.OnShow = function(self)
         self:RegisterEvent("PLAYER_TARGET_CHANGED")
+        self:RegisterEvent("BAG_UPDATE_COOLDOWN")
+        self:RegisterEvent("BAG_UPDATE")
+        -- Events were missed while hidden
+        if self.itemId then
+            self:UpdateCooldown()
+            self:UpdateCharges()
+        end
     end
     btn.OnHide = function(self)
         self:UnregisterEvent("PLAYER_TARGET_CHANGED")
+        self:UnregisterEvent("BAG_UPDATE_COOLDOWN")
+        self:UnregisterEvent("BAG_UPDATE")
     end
     btn.OnEnter = function(self)
         local centerX = select(1, self:GetCenter()) or 0
