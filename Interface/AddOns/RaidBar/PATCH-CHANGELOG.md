@@ -1,3 +1,7 @@
+# Raid Markers 1.1.17
+
+- Hide Blizzard raid UI now also hides the left-edge strip and arrow toggles (CompactRaidFrameManagerToggleButtonForward/Back and any other manager chrome) that newer clients added. The protected raid container is left untouched.
+
 # Raid Markers 1.1.16
 
 - Minor Lua source readability cleanup and release-version updates. Existing gameplay behavior and settings are unchanged.

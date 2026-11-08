@@ -2,7 +2,7 @@
 ## Title: |cFFD8DDE6Raid|r|cFFFFFFFFBar|r
 ## Notes: Compact moveable raid marker & utility bar for Classic Era clients
 ## Author: GI-Ka
-## Version: 1.1.16
+## Version: 1.1.17
 ## SavedVariables: RaidBarDB
 ## Category-enUS: Miscellaneous
 ## IconTexture: Interface\AddOns\RaidBar\RB Icon

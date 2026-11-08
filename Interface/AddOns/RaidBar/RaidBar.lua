@@ -740,6 +740,20 @@ local function ApplyBlizzRaidUI()
     SuppressAlpha(toggle)
     SuppressControlMouse(display)
     SuppressControlMouse(toggle)
+
+    -- Newer clients add more chrome (the arrow toggles, the edge strip). Hide
+    -- every other child of the manager too, except the protected raid container.
+    local container = manager.container or _G.CompactRaidFrameContainer
+    local extras = { _G.CompactRaidFrameManagerToggleButtonForward,
+                     _G.CompactRaidFrameManagerToggleButtonBack,
+                     manager.toggleButtonForward, manager.toggleButtonBack }
+    for _, child in ipairs({ manager:GetChildren() }) do extras[#extras + 1] = child end
+    for _, child in ipairs(extras) do
+        if child and child ~= container and child ~= display and child ~= toggle then
+            SuppressAlpha(child)
+            SuppressControlMouse(child)
+        end
+    end
 end
 
 local function ToggleBlizzRaidUI()
@@ -1584,7 +1598,7 @@ SlashCmdList["RAIDBAR"] = function(msg)
     -- Copy this line into support reports to identify the addon and client.
     if type(msg) == "string" and msg:match("^%s*(.-)%s*$"):lower() == "version" then
         local getMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
-        local installedVersion = getMetadata and getMetadata("RaidBar", "Version") or "1.1.16"
+        local installedVersion = getMetadata and getMetadata("RaidBar", "Version") or "1.1.17"
         local clientVersion, clientBuild = "unknown", "unknown"
         if type(GetBuildInfo) == "function" then clientVersion, clientBuild = GetBuildInfo() end
         print("Raid Markers " .. tostring(installedVersion) .. " | WoW " .. tostring(clientVersion) .. " (build " .. tostring(clientBuild) .. ")")
