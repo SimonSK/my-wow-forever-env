@@ -1,17 +1,16 @@
-# QuestieDB 1.0.11
+# QuestieDB 1.0.12
 
 ### Quest fixes
 
-- Adjusted prequest for A Light in the Darkness ([Cabro](https://github.com/Questie/QuestieDB/commit/e5000f674e13dfc96011b540852c4ce37fc4c4ba))
-- Change objectives order for An Enticing Offer (it was the other way around in Beta) ([Cabro](https://github.com/Questie/QuestieDB/commit/9764927e7993b7a6d4b3d5852915d7b367ddd469))
+- Check for the right faction banner for alliance Camping 101: Tailoring quests ([Cabro](https://github.com/Questie/QuestieDB/commit/21be34023b72cf2ec3027cb9a61a8b72a1910857))
 
 ### Database fixes
 
-- Added exclusivity among Divine Grace and Confounding Flash quests ([Cabro](https://github.com/Questie/QuestieDB/commit/19b92933b1d7ce44e2815002138d94b302c51823))
-- [Forever] Update all databases ([BreakBB](https://github.com/Questie/QuestieDB/commit/63c8d80753e015e4075de9400c21e08cc55f74fe))
+- [Forever] Fix exploration coords for "Frostmane Hold" ([BreakBB](https://github.com/Questie/QuestieDB/commit/ad3de4625b3146540d24ea2ccbe26c6da8f9597b))
+- [Forever] Update all databases ([BreakBB](https://github.com/Questie/QuestieDB/commit/07bc49ad1d6cffb7f32b947f394edfbf54905e01))
 
 ### Localization fixes
 
-- [Forever] Update all translations ([BreakBB](https://github.com/Questie/QuestieDB/commit/25fcbdf8dfff91b18a9c3d44098ee1681b9d129f))
+- [Forever] Update all translations ([BreakBB](https://github.com/Questie/QuestieDB/commit/3ac79c37f140b8eb343a28318b7a516b82802a86))
 
-[All changes since v1.0.10](https://github.com/Questie/QuestieDB/compare/v1.0.10..80866960788084ae1592abf66a08f0d306458a95)
+[All changes since v1.0.11](https://github.com/Questie/QuestieDB/compare/v1.0.11..4d31c10394b11bd133069ecf1662062cdf4d8691)
