@@ -7,8 +7,10 @@ DataStore_Mails_Characters = {
 },
 },
 {
+["lastUpdate"] = 1794183581,
 ["Mails"] = {
 },
+["lastVisitDate"] = "2026/11/08 17:19",
 ["MailCache"] = {
 },
 },

@@ -11,7 +11,7 @@ NRCdatabase = {
 ["race"] = "Undead",
 ["faction"] = "Horde",
 ["localizedClass"] = "Warlock",
-["level"] = 6,
+["level"] = 13,
 ["englishClass"] = "WARLOCK",
 ["guid"] = "Player-6923-01B20C57",
 ["savedInstances"] = {
@@ -66,6 +66,262 @@ NRCdatabase = {
 ["versions"] = {
 },
 ["trades"] = {
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Undercity",
+["time"] = 1794196193,
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:2680::::::::13:1482:::::::::|h[Spiced Wolf Meat]|h|r",
+["count"] = 10,
+["texture"] = 134021,
+},
+},
+},
+{
+["meClass"] = "WARLOCK",
+["me"] = "Simonwarlock Windseeker",
+["where"] = "Undercity",
+["time"] = 1794195847,
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:6325::::::::13:1490::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["texture"] = 134939,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:6326::::::::13:1490::14:::::::|h[Recipe: Slitherskin Mackerel]|h|r",
+["texture"] = 134939,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Undercity",
+["time"] = 1794195075,
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:12223::::::::13:1482:::::::::|h[Meaty Bat Wing]|h|r",
+["count"] = 6,
+["texture"] = 134360,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2672::::::::13:1482:::::::::|h[Stringy Wolf Meat]|h|r",
+["count"] = 20,
+["texture"] = 133970,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2672::::::::13:1482:::::::::|h[Stringy Wolf Meat]|h|r",
+["count"] = 20,
+["texture"] = 133970,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2672::::::::13:1482:::::::::|h[Stringy Wolf Meat]|h|r",
+["count"] = 2,
+["texture"] = 133970,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Undercity",
+["time"] = 1794194534,
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:6289::::::::13:1482:::::::::|h[Raw Longjaw Mud Snapper]|h|r",
+["count"] = 20,
+["texture"] = 133918,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:6308::::::::13:1482:::::::::|h[Raw Bristle Whisker Catfish]|h|r",
+["count"] = 2,
+["texture"] = 133916,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:5465::::::::13:1482:::::::::|h[Small Spider Leg]|h|r",
+["count"] = 13,
+["texture"] = 134321,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:6303::::::::13:1482:::::::::|h[Raw Slitherskin Mackerel]|h|r",
+["count"] = 8,
+["texture"] = 133910,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:5503::::::::13:1482:::::::::|h[Clam Meat]|h|r",
+["texture"] = 134007,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Undercity",
+["time"] = 1794193863,
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:5465::::::::13:1482:::::::::|h[Small Spider Leg]|h|r",
+["count"] = 6,
+["texture"] = 134321,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2840::::::::13:1482:::::::::|h[Copper Bar]|h|r",
+["count"] = 13,
+["texture"] = 133216,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2835::::::::13:1482:::::::::|h[Rough Stone]|h|r",
+["count"] = 9,
+["texture"] = 135232,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:10940::::::::13:1482:::::::::|h[Strange Dust]|h|r",
+["texture"] = 132858,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:828::::::::13:1482:::::::::|h[Small Blue Pouch]|h|r",
+["texture"] = 133636,
+},
+},
+},
+{
+["meClass"] = "PRIEST",
+["me"] = "Simonpriest Windseeker",
+["where"] = "Undercity",
+["targetItems"] = {
+{
+["count"] = 20,
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["texture"] = 132889,
+},
+{
+["count"] = 20,
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["texture"] = 132889,
+},
+{
+["count"] = 4,
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["texture"] = 132889,
+},
+},
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["time"] = 1794193791,
+},
+{
+["meClass"] = "PRIEST",
+["me"] = "Simonpriest Windseeker",
+["where"] = "Undercity",
+["time"] = 1794183814,
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["texture"] = 132889,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Undercity",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:4577::::::::13:1482:::::::::|h[Compact Shotgun]|h|r",
+["texture"] = 135612,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:253664::::::::13:1482:::::::::|h[Linen Reagent Bag]|h|r",
+["texture"] = 348520,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:5572::::::::13:1482:::::::::|h[Small Green Pouch]|h|r",
+["texture"] = 133637,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:828::::::::13:1482:::::::::|h[Small Blue Pouch]|h|r",
+["texture"] = 133636,
+},
+{
+["itemLink"] = "|cnIQ2:|Hitem:4561::::::::13:1482:::1:12724::::::|h[Scalping Tomahawk of the Falcon]|h|r",
+["texture"] = 132410,
+},
+},
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["time"] = 1794183743,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Undercity",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:2598::::::::13:1482:::::::::|h[Pattern: Red Linen Robe]|h|r",
+["texture"] = 134942,
+},
+},
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["time"] = 1794183715,
+},
+{
+["meClass"] = "WARLOCK",
+["me"] = "Simonwarlock Windseeker",
+["where"] = "Tirisfal Glades",
+["time"] = 1794167450,
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:6256::::::::6:1490::14:::::::|h[Fishing Pole]|h|r",
+["texture"] = 132932,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:253664::::::::6:1490:::::::::|h[Linen Reagent Bag]|h|r",
+["texture"] = 348520,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2288::::::::6:1490:::::::::|h[Conjured Fresh Water]|h|r",
+["count"] = 20,
+["texture"] = 132794,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:1113::::::::6:1490:::::::::|h[Conjured Bread]|h|r",
+["count"] = 20,
+["texture"] = 133951,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2288::::::::6:1490:::::::::|h[Conjured Fresh Water]|h|r",
+["count"] = 19,
+["texture"] = 132794,
+},
+},
+},
 {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
@@ -485,7 +741,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Undercity",
-["tradeWho"] = "Simon Windseeker",
 ["playerItems"] = {
 {
 ["itemLink"] = "|cnIQ2:|Hitem:774::::::::12:1482:::::::::|h[Malachite]|h|r",
@@ -497,6 +752,7 @@ NRCdatabase = {
 ["texture"] = 133970,
 },
 },
+["tradeWho"] = "Simon Windseeker",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794051031,
 },
@@ -504,7 +760,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Undercity",
-["tradeWho"] = "Simon Windseeker",
 ["playerItems"] = {
 {
 ["count"] = 12,
@@ -535,6 +790,7 @@ NRCdatabase = {
 ["texture"] = 134339,
 },
 },
+["tradeWho"] = "Simon Windseeker",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794051022,
 },
@@ -542,7 +798,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Undercity",
-["tradeWho"] = "Simon Windseeker",
 ["playerItems"] = {
 {
 ["itemLink"] = "|cnIQ1:|Hitem:4536::::::::12:1482:::::::::|h[Shiny Red Apple]|h|r",
@@ -554,6 +809,7 @@ NRCdatabase = {
 ["texture"] = 132794,
 },
 },
+["tradeWho"] = "Simon Windseeker",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794051009,
 },
@@ -561,7 +817,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Undercity",
-["tradeWho"] = "Simon Windseeker",
 ["playerItems"] = {
 {
 ["count"] = 20,
@@ -579,6 +834,7 @@ NRCdatabase = {
 ["texture"] = 132889,
 },
 },
+["tradeWho"] = "Simon Windseeker",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794050987,
 },
@@ -586,7 +842,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Undercity",
-["tradeWho"] = "Simon Windseeker",
 ["playerItems"] = {
 {
 ["itemLink"] = "|cnIQ1:|Hitem:5572::::::::12:1482:::::::::|h[Small Green Pouch]|h|r",
@@ -615,6 +870,7 @@ NRCdatabase = {
 ["texture"] = 132889,
 },
 },
+["tradeWho"] = "Simon Windseeker",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794050979,
 },

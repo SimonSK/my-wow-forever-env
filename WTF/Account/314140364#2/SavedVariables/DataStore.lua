@@ -45,7 +45,7 @@ DataStore_CharacterGuilds = {
 3,
 3,
 3,
-2,
+1,
 }
 DataStore_AltGroups = {
 }

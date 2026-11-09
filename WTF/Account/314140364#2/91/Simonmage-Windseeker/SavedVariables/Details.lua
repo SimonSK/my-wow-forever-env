@@ -173,8 +173,9 @@ _detalhes_database = {
 ["width"] = 120,
 ["ignored_cooldowns"] = {
 },
-["height"] = 18,
 ["framme_locked"] = false,
+["cooldowns"] = {
+},
 ["own_frame"] = {
 ["defensive-raid"] = false,
 ["ofensive"] = false,
@@ -182,8 +183,7 @@ _detalhes_database = {
 ["utility"] = false,
 ["defensive-personal"] = false,
 },
-["cooldowns"] = {
-},
+["height"] = 18,
 ["show_conditions"] = {
 ["only_inside_instance"] = true,
 ["only_in_group"] = true,
@@ -209,10 +209,13 @@ _detalhes_database = {
 },
 ["arena_data_compressed"] = {
 },
-["cached_roles"] = {
-},
+["last_instance_time"] = 0,
 ["arena_data_index_selected"] = 1,
-["damage_meter_sessions"] = {
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
+},
+["last_coach_name"] = false,
 },
 ["local_instances_config"] = {
 {
@@ -287,11 +290,13 @@ _detalhes_database = {
 },
 },
 },
-["auto_combatlog"] = false,
-["on_death_menu"] = false,
-["nick_tag_cache"] = {
-["nextreset"] = 1795161162,
-["last_version"] = 16,
+["cached_roles"] = {
+},
+["damage_meter_sessions"] = {
+},
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
 },
 ["last_instance_id"] = 0,
 ["data_harvest_for_charsts"] = {
@@ -324,20 +329,13 @@ _detalhes_database = {
 ["reverse"] = false,
 },
 ["active_profile"] = "Simon",
-["mythic_dungeon_currentsaved"] = {
-["dungeon_name"] = "",
-["started"] = false,
-["segment_id"] = 0,
-["ej_id"] = 0,
-["started_at"] = 0,
-["run_id"] = 0,
-["level"] = 0,
-["dungeon_zone_id"] = 0,
-["previous_boss_killed_at"] = 0,
+["last_day"] = "08",
+["auto_combatlog"] = false,
+["data_harvested_for_charts"] = {
 },
-["last_realversion"] = 172,
-["ignore_nicktag"] = false,
-["damage_meter_session_info"] = {
+["benchmark_db"] = {
+["frame"] = {
+},
 },
 ["arena_data_headers"] = {
 },
@@ -351,11 +349,38 @@ _detalhes_database = {
 ["evoker_show_realtimedps"] = false,
 ["inverse_deathlog_mplus"] = false,
 },
-["coach"] = {
-["enabled"] = false,
-["welcome_panel_pos"] = {
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
 },
-["last_coach_name"] = false,
+["mythic_plus_log"] = {
+},
+["on_death_menu"] = false,
+["nick_tag_cache"] = {
+["nextreset"] = 1795161162,
+["last_version"] = 16,
+},
+["last_realversion"] = 172,
+["damage_meter_session_info"] = {
+},
+["apocalypse_hashes"] = {
+},
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["last_version"] = "1.60.1 15404",
+["combat_id"] = 0,
+["savedStyles"] = {
+},
+["character_data"] = {
+["logons"] = 39,
 },
 ["plugin_database"] = {
 ["DETAILS_PLUGIN_TINY_THREAT"] = {
@@ -493,30 +518,6 @@ _detalhes_database = {
 ["row_height"] = 20,
 ["scale"] = 1,
 },
-},
-["data_harvested_for_charts"] = {
-},
-["mythic_plus_log"] = {
-},
-["benchmark_db"] = {
-["frame"] = {
-},
-},
-["cached_talents"] = {
-},
-["apocalypse_hashes"] = {
-},
-["SoloTablesSaved"] = {
-["Mode"] = 1,
-},
-["last_version"] = "1.60.1 15400",
-["combat_id"] = 0,
-["savedStyles"] = {
-},
-["last_day"] = "08",
-["announce_firsthit"] = {
-["enabled"] = true,
-["channel"] = "SELF",
 },
 ["announce_deaths"] = {
 ["enabled"] = false,
@@ -662,11 +663,10 @@ _detalhes_database = {
 ["spells_cast_timeline"] = {
 },
 },
-["last_instance_time"] = 0,
+["ignore_nicktag"] = false,
 ["apocalypes_info"] = {
 },
-["character_data"] = {
-["logons"] = 31,
+["cached_talents"] = {
 },
 ["announce_cooldowns"] = {
 ["ignored_cooldowns"] = {
@@ -684,7 +684,6 @@ _detalhes_database = {
 ["channel"] = "SELF",
 },
 ["cached_specs"] = {
-["Player-6933-00151DB5"] = 1486,
 ["Player-6923-005A94FC"] = 1482,
 },
 }

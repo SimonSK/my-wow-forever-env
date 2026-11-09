@@ -403,7 +403,7 @@ DataStore_Crafts_Characters = {
 },
 ["Name"] = "Cooking",
 ["CurrentLevelName"] = "Cooking",
-["FullLink"] = 167116985,
+["FullLink"] = 203292857,
 ["Crafts"] = {
 [2641] = {
 2335648,
@@ -428,8 +428,8 @@ DataStore_Crafts_Characters = {
 431776,
 326304,
 431392,
-325280,
-325024,
+325292,
+325037,
 },
 [2642] = {
 2334752,
@@ -450,17 +450,17 @@ DataStore_Crafts_Characters = {
 325664,
 160019744,
 821280,
-2039712,
-160020000,
+2039713,
+160020001,
 },
 [2643] = {
 2335520,
 2335264,
 2334624,
 2677280,
-992416,
-992172,
-992300,
+992428,
+992173,
+992301,
 },
 [2771] = {
 168872096,
@@ -473,12 +473,17 @@ DataStore_Crafts_Characters = {
 821152,
 992544,
 },
-[2714] = {
-161672608,
-165291680,
-161661216,
-164275232,
-157406381,
+[2636] = {
+3284384,
+165633824,
+1667616,
+1054496,
+160328480,
+325536,
+1217696,
+820896,
+162640928,
+162641314,
 },
 [2645] = {
 159995936,
@@ -486,11 +491,11 @@ DataStore_Crafts_Characters = {
 159995680,
 159995552,
 159995424,
-159995296,
+159995299,
 },
 [2638] = {
 2706464,
-2706336,
+2706337,
 },
 [2646] = {
 159995168,
@@ -498,16 +503,14 @@ DataStore_Crafts_Characters = {
 159994912,
 159994784,
 159994656,
-159994528,
+159994531,
 },
-[2594] = {
-60205984,
-60207392,
-156897696,
-156897568,
-156897184,
-156897056,
-156897312,
+[2714] = {
+161672608,
+165291680,
+161661216,
+164275232,
+157406383,
 },
 [2632] = {
 160020256,
@@ -522,8 +525,8 @@ DataStore_Crafts_Characters = {
 821408,
 832160,
 831904,
-820768,
-324908,
+820769,
+324909,
 160670883,
 },
 [2640] = {
@@ -537,8 +540,8 @@ DataStore_Crafts_Characters = {
 431648,
 821024,
 160020128,
-1101356,
-162641056,
+1101357,
+162641059,
 },
 [2633] = {
 3174560,
@@ -555,19 +558,16 @@ DataStore_Crafts_Characters = {
 325408,
 1101728,
 357792,
-325164,
+325165,
 },
-[2636] = {
-3284384,
-165633824,
-1667616,
-1054496,
-160328480,
-325536,
-1217696,
-820896,
-162640928,
-162641312,
+[2594] = {
+60205984,
+60207392,
+156897696,
+156897568,
+156897184,
+156897056,
+156897312,
 },
 },
 ["CategoryInfo"] = {
@@ -594,25 +594,129 @@ DataStore_Crafts_Characters = {
 2548039680,
 },
 },
+nil,
+{
+["Categories"] = {
+{
+2535,
+2530,
+2533,
+2531,
 },
-["lastUpdate"] = 1794122745,
+},
+["Name"] = "First Aid",
+["CurrentLevelName"] = "First Aid",
+["FullLink"] = 214564993,
+["Crafts"] = {
+[2530] = {
+3842720,
+2384672,
+60204704,
+2384544,
+1387680,
+1387552,
+1014944,
+1014816,
+419616,
+419501,
+419374,
+419247,
+},
+[2535] = {
+161664160,
+161663520,
+157455023,
+},
+[2531] = {
+159287840,
+159287712,
+159287584,
+159287456,
+159287340,
+159287214,
+},
+[2533] = {
+3044768,
+161196192,
+161196704,
+161195680,
+161196064,
+161196576,
+161195936,
+1015712,
+161196448,
+161195808,
+1015597,
+},
+},
+["CategoryInfo"] = {
+2546991104,
+},
+},
+},
+["lastUpdate"] = 1794206026,
 ["Indices"] = {
 ["Cooking"] = 3,
-["Mining"] = 1,
 ["Fishing"] = 4,
+["Mining"] = 1,
+["First Aid"] = 6,
 ["Enchanting"] = 2,
 },
 ["Ranks"] = {
 9830456,
 4915205,
-4915201,
+9830470,
 4915220,
+nil,
+9830483,
 },
 },
 {
 ["Professions"] = {
 },
-["lastUpdate"] = 1794106135,
+["lastUpdate"] = 1794167028,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+{
+["Name"] = "Herbalism",
+["CurrentLevelName"] = "Herbalism",
+},
+{
+["Name"] = "Enchanting",
+["CurrentLevelName"] = "Enchanting",
+},
+{
+["Name"] = "Cooking",
+["CurrentLevelName"] = "Cooking",
+},
+[6] = {
+["Name"] = "First Aid",
+["CurrentLevelName"] = "First Aid",
+},
+},
+["lastUpdate"] = 1794205588,
+["Indices"] = {
+["Herbalism"] = 1,
+["Cooking"] = 3,
+["First Aid"] = 6,
+["Enchanting"] = 2,
+},
+["Ranks"] = {
+4915236,
+4915201,
+4915201,
+[6] = 4915201,
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1794167159,
 ["Indices"] = {
 },
 ["Ranks"] = {
@@ -621,7 +725,7 @@ DataStore_Crafts_Characters = {
 {
 ["Professions"] = {
 },
-["lastUpdate"] = 1794105956,
+["lastUpdate"] = 1794167092,
 ["Indices"] = {
 },
 ["Ranks"] = {
@@ -630,25 +734,7 @@ DataStore_Crafts_Characters = {
 {
 ["Professions"] = {
 },
-["lastUpdate"] = 1794105822,
-["Indices"] = {
-},
-["Ranks"] = {
-},
-},
-{
-["Professions"] = {
-},
-["lastUpdate"] = 1794106009,
-["Indices"] = {
-},
-["Ranks"] = {
-},
-},
-{
-["Professions"] = {
-},
-["lastUpdate"] = 1794106081,
+["lastUpdate"] = 1794167217,
 ["Indices"] = {
 },
 ["Ranks"] = {
@@ -680,6 +766,7 @@ DataStore_Crafts_RecipeCategories = {
 [2509] = "Relics",
 [2643] = "Attack Power Food",
 [2714] = "Camping",
+[2533] = "Curatives",
 [2502] = "Weapon Enchants",
 [2510] = "Curios",
 [2644] = "Fisherman's Delights",
@@ -688,6 +775,7 @@ DataStore_Crafts_RecipeCategories = {
 [2503] = "Shield Enchants",
 [2511] = "Staves",
 [2771] = "Armor Food",
+[2535] = "Camping",
 [2496] = "Bracer Enchants",
 [2504] = "Off-Hand Enchants",
 [2512] = "Wands",
@@ -697,22 +785,25 @@ DataStore_Crafts_RecipeCategories = {
 [2497] = "Glove Enchants",
 [2505] = "Amulet Enchants",
 [2513] = "Off-Hands",
+[2433] = "Mining",
+[2594] = "SEASON OF DISCOVERY",
 [2638] = "Winter Veil Treats",
+[2506] = "Cloak Enchants",
 [2427] = "Enchanting",
-[2640] = "Stamina Food",
-[2632] = "Everyday Meals",
 [2514] = "Camping",
-[2636] = "Miscellaneous Cuisines",
-[2645] = "Delightful Drinks",
+[2632] = "Everyday Meals",
+[2640] = "Stamina Food",
+[2490] = "Reagents",
+[2530] = "Bandages",
 [2575] = "Smelted Bars",
 [2635] = "Intellect Food",
 [2491] = "Runed Enchanting Rods",
-[2490] = "Reagents",
+[2636] = "Miscellaneous Cuisines",
 [2633] = "Strength Food",
 [2641] = "Spell Damage Food",
-[2433] = "Mining",
-[2594] = "SEASON OF DISCOVERY",
-[2506] = "Cloak Enchants",
+[2429] = "First Aid",
+[2531] = "Healing Potions",
+[2645] = "Delightful Drinks",
 }
 DataStore_Crafts_Reagents = {
 }

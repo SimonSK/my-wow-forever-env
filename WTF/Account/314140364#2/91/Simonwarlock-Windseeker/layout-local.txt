@@ -27,6 +27,13 @@ X: -219
 Y: 16
 W: 925
 H: 538
+Frame: GRM_CoreFrame
+FrameLevel: 1
+Anchor: CENTER
+X: 4
+Y: 21
+W: 600
+H: 535
 Frame: PallyPowerBlessingsFrame
 FrameLevel: 1
 Anchor: CENTER
@@ -44,7 +51,7 @@ H: 574
 Frame: BagnonInventory1
 FrameLevel: 1
 Anchor: RIGHT
-X: -74
-Y: -13
+X: -284
+Y: 21
 W: 384
 H: 281

@@ -29,16 +29,16 @@ PallyPowerDB = {
 ["auraDurations"] = {
 ["Seal of Righteousness"] = 30,
 },
-["ForeverCountDefault"] = true,
-["ForeverSalvSplit"] = true,
 ["minimap"] = {
 ["show"] = false,
 },
+["ForeverSalvSplit"] = true,
+["ForeverCountDefault"] = true,
 ["display"] = {
-["HideCountText"] = true,
-["offsetY"] = 63.33323287963867,
-["offsetX"] = 389.4999389648438,
 ["frameLocked"] = true,
+["offsetY"] = 63.33323287963867,
+["HideCountText"] = true,
+["offsetX"] = 389.4999389648438,
 },
 ["autobuff"] = {
 ["buffDuration"] = false,

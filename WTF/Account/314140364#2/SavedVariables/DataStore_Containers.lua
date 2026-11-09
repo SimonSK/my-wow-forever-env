@@ -2,8 +2,8 @@
 DataStore_Containers_Characters = {
 {
 ["bankInfo"] = 1123474,
-["lastUpdate"] = 1794123989,
-["bagInfo"] = 44082,
+["lastUpdate"] = 1794205056,
+["bagInfo"] = 36914,
 ["Cooldowns"] = {
 },
 ["Containers"] = {
@@ -42,7 +42,7 @@ DataStore_Containers_Characters = {
 {
 ["items"] = {
 716832774,
-716963848,
+716963849,
 },
 ["link"] = "|cnIQ1:|Hitem:253664::::::::13:1482::::::::Player-6923-005A94FC:|h[Linen Reagent Bag]|h|r",
 ["info"] = 1461798834225,
@@ -111,120 +111,31 @@ DataStore_Containers_Characters = {
 [0] = {
 ["items"] = {
 455344129,
+175636490,
 7733250,
+299958273,
+298909697,
 409993217,
 407502849,
+16624123905,
+365166593,
+54263809,
+54263809,
 212205569,
 },
 ["links"] = {
 "|cnIQ1:|Hitem:6948::::::::13:1482:::::::::|h[Hearthstone]|h|r",
+"|cnIQ1:|Hitem:2680::::::::13:1482:::::::::|h[Spiced Wolf Meat]|h|r",
 "|cnIQ1:|Hitem:118::::::::13:1482:::::::::|h[Minor Healing Potion]|h|r",
+"|cnIQ2:|Hitem:4577::::::::13:1482:::::::::|h[Compact Shotgun]|h|r",
+"|cnIQ2:|Hitem:4561::::::::13:1482:::1:12724::::::|h[Scalping Tomahawk of the Falcon]|h|r",
 "|cnIQ1:|Hitem:6256::::::::13:1482::14:::::::|h[Fishing Pole]|h|r",
 "|cnIQ1:|Hitem:6218::::::::13:1482::::::::Player-6923-005A94FC:|h[Runed Copper Rod]|h|r",
+"|cnIQ1:|Hitem:253664::::::::13:1482::::::::Player-6923-005A94FC:|h[Linen Reagent Bag]|h|r",
+"|cnIQ1:|Hitem:5572::::::::13:1482:::::::::|h[Small Green Pouch]|h|r",
+"|cnIQ1:|Hitem:828::::::::13:1482:::::::::|h[Small Blue Pouch]|h|r",
+"|cnIQ1:|Hitem:828::::::::13:1482:::::::::|h[Small Blue Pouch]|h|r",
 "|cnIQ1:|Hitem:3238::::::::13:1482:::::::::|h[Johaan's Findings]|h|r",
-},
-["info"] = 15520,
-["link"] = false,
-},
-[-5] = {
-["items"] = {
-},
-["links"] = {
-},
-},
-[-6] = {
-["items"] = {
-},
-["links"] = {
-},
-},
-[-7] = {
-["items"] = {
-},
-["links"] = {
-},
-},
-[-1] = {
-["items"] = {
-},
-["link"] = false,
-["info"] = 33024,
-["links"] = {
-},
-},
-},
-},
-{
-["Cooldowns"] = {
-},
-["Containers"] = {
-{
-["items"] = {
-},
-["links"] = {
-},
-["info"] = 995186710577,
-["link"] = "|cnIQ1:|Hitem:279939::::::::6:1490:::::::::|h[Collecting Basket]|h|r",
-},
-{
-["items"] = {
-},
-["links"] = {
-},
-["info"] = 560518404145,
-["link"] = "|cnIQ1:|Hitem:805::::::::6:1490:::::::::|h[Small Red Pouch]|h|r",
-},
-{
-["items"] = {
-},
-["links"] = {
-},
-["info"] = 560514209841,
-["link"] = "|cnIQ1:|Hitem:5572::::::::6:1490:::::::::|h[Small Green Pouch]|h|r",
-},
-{
-["items"] = {
-},
-["links"] = {
-},
-["info"] = 560510015537,
-["link"] = "|cnIQ1:|Hitem:828::::::::6:1490:::::::::|h[Small Blue Pouch]|h|r",
-},
-{
-["items"] = {
-},
-["info"] = 0,
-["links"] = {
-},
-},
-[0] = {
-["items"] = {
-455344129,
-10420236,
-214761473,
-190119937,
-169082881,
-181534722,
-185794562,
-169672721,
-13643612161,
-18756534273,
-18756403201,
-187105282,
-},
-["links"] = {
-"|cnIQ1:|Hitem:6948::::::::6:1490::75:::::::|h[Hearthstone]|h|r",
-"|cnIQ1:|Hitem:159::::::::6:1490:::::::::|h[Refreshing Spring Water]|h|r",
-"|cnIQ1:|Hitem:3277::::::::6:1490::11:::::::|h[Executor Staff]|h|r",
-"|cnIQ1:|Hitem:2901::::::::6:1490::14:::::::|h[Mining Pick]|h|r",
-"|cnIQ2:|Hitem:2580::::::::6:1490::::::::Player-6923-005A94FC:|h[Reinforced Linen Cape]|h|r",
-"|cnIQ1:|Hitem:2770::::::::6:1490:::::::::|h[Copper Ore]|h|r",
-"|cnIQ1:|Hitem:2835::::::::6:1490:::::::::|h[Rough Stone]|h|r",
-"|cnIQ1:|Hitem:2589::::::::6:1490:::::::::|h[Linen Cloth]|h|r",
-"|cnIQ1:|Hitem:208185::::::::6:1490:::::::::|h[The Apothecary's Metaphysical Primer]|h|r",
-"|cnIQ1:|Hitem:286202::::::::6:1490:::::::::|h[Gordo's Report]|h|r",
-"|cnIQ1:|Hitem:286200::::::::6:1490:::::::::|h[Dillinger's Report]|h|r",
-"|cnIQ1:|Hitem:2855::::::::6:1490:::::::::|h[Putrid Claw]|h|r",
 },
 ["info"] = 8352,
 ["link"] = false,
@@ -256,14 +167,194 @@ DataStore_Containers_Characters = {
 },
 },
 },
-["lastUpdate"] = 1794123931,
-["bagInfo"] = 32812,
+},
+{
+["bankInfo"] = 1129618,
+["lastUpdate"] = 1794195854,
+["bagInfo"] = 27698,
+["Cooldowns"] = {
+{
+["startTime"] = 30580.001,
+["duration"] = 3600,
+},
+},
+["Containers"] = {
+{
+["items"] = {
+410583041,
+410583041,
+410583041,
+},
+["links"] = {
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+},
+["info"] = 995186707505,
+["link"] = "|cnIQ1:|Hitem:279939::::::::13:1490:::::::::|h[Collecting Basket]|h|r",
+},
+{
+["items"] = {
+},
+["links"] = {
+},
+["info"] = 560518404145,
+["link"] = "|cnIQ1:|Hitem:805::::::::13:1490:::::::::|h[Small Red Pouch]|h|r",
+},
+{
+["items"] = {
+},
+["links"] = {
+},
+["info"] = 560514209841,
+["link"] = "|cnIQ1:|Hitem:5572::::::::13:1490:::::::::|h[Small Green Pouch]|h|r",
+},
+{
+["items"] = {
+},
+["links"] = {
+},
+["info"] = 560510015537,
+["link"] = "|cnIQ1:|Hitem:828::::::::13:1490:::::::::|h[Small Blue Pouch]|h|r",
+},
+{
+["items"] = {
+},
+["links"] = {
+},
+["info"] = 1461798836273,
+["link"] = "|cnIQ1:|Hitem:253664::::::::13:1490::::::::Player-6923-005A94FC:|h[Linen Reagent Bag]|h|r",
+},
+{
+["items"] = {
+225050629,
+},
+["link"] = "|cnIQ1:|Hitem:242709::::::::11:1490:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
+["info"] = 556852624769,
+["links"] = {
+"|cnIQ1:|Hitem:3434::::::::11:1490:::::::::|h[Slumber Sand]|h|r",
+},
+},
+{
+["items"] = {
+},
+["info"] = 0,
+["links"] = {
+},
+},
+{
+["items"] = {
+},
+["info"] = 0,
+["links"] = {
+},
+},
+{
+["items"] = {
+},
+["info"] = 0,
+["links"] = {
+},
+},
+{
+["items"] = {
+},
+["info"] = 0,
+["links"] = {
+},
+},
+{
+["items"] = {
+},
+["info"] = 0,
+["links"] = {
+},
+},
+[0] = {
+["items"] = {
+455344129,
+7733249,
+225837057,
+190119937,
+409993217,
+212205569,
+410583041,
+410583041,
+410583041,
+410583041,
+410583041,
+410583041,
+410583041,
+410583041,
+410583041,
+410583041,
+410583041,
+410583041,
+410583041,
+410583041,
+},
+["links"] = {
+"|cnIQ1:|Hitem:6948::::::::13:1490::75:::::::|h[Hearthstone]|h|r",
+"|cnIQ1:|Hitem:118::::::::13:1490:::::::::|h[Minor Healing Potion]|h|r",
+"|cnIQ2:|Hitem:3446::::::::13:1490::11:::::::|h[Darkwood Staff]|h|r",
+"|cnIQ1:|Hitem:2901::::::::13:1490::14:::::::|h[Mining Pick]|h|r",
+"|cnIQ1:|Hitem:6256::::::::13:1490::14:::::::|h[Fishing Pole]|h|r",
+"|cnIQ1:|Hitem:3238::::::::13:1490:::::::::|h[Johaan's Findings]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+"|cnIQ1:|Hitem:6265::::::::13:1490::::::::Player-6923-01B20C57:|h[Soul Shard]|h|r",
+},
+["info"] = 160,
+["link"] = false,
+},
+[-5] = {
+["items"] = {
+},
+["links"] = {
+},
+},
+[-6] = {
+["items"] = {
+},
+["links"] = {
+},
+},
+[-7] = {
+["items"] = {
+},
+["links"] = {
+},
+},
+[-1] = {
+["items"] = {
+},
+["link"] = false,
+["info"] = 33024,
+["links"] = {
+},
+},
+},
 },
 {
 ["bankInfo"] = 1110162,
-["lastUpdate"] = 1794124015,
-["bagInfo"] = 44082,
+["lastUpdate"] = 1794195885,
+["bagInfo"] = 47154,
 ["Cooldowns"] = {
+{
+["duration"] = 3600,
+["startTime"] = 32635.787,
+},
 },
 ["Containers"] = {
 {
@@ -300,26 +391,23 @@ DataStore_Containers_Characters = {
 },
 {
 ["items"] = {
-160497670,
-160366595,
-50135042,
 },
 ["link"] = "|cnIQ1:|Hitem:253664::::::::13:1487::::::::Player-6923-005A94FC:|h[Linen Reagent Bag]|h|r",
-["info"] = 1461798833201,
+["info"] = 1461798836273,
 ["links"] = {
-"|cnIQ1:|Hitem:2449::::::::13:1487:::::::::|h[Earthroot]|h|r",
-"|cnIQ1:|Hitem:2447::::::::13:1487:::::::::|h[Peacebloom]|h|r",
-"|cnIQ1:|Hitem:765::::::::13:1487:::::::::|h[Silverleaf]|h|r",
 },
 },
 {
 ["items"] = {
 225050629,
 17590845442,
+160497670,
 160366612,
 160366612,
+160366596,
 50135060,
 50135060,
+50135042,
 196345859,
 169672724,
 169672724,
@@ -330,22 +418,21 @@ DataStore_Containers_Characters = {
 169672724,
 169672724,
 169672724,
-169672724,
-169672724,
-169672705,
+169672710,
 },
 ["link"] = "|cnIQ1:|Hitem:242709::::::::13:1487:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
-["info"] = 556852606337,
+["info"] = 556852605313,
 ["links"] = {
 "|cnIQ1:|Hitem:3434::::::::13:1487:::::::::|h[Slumber Sand]|h|r",
 "|cnIQ2:|Hitem:268415::::::::13:1487:::::::::|h[Commonplace Herb Seeds]|h|r",
+"|cnIQ1:|Hitem:2449::::::::13:1487:::::::::|h[Earthroot]|h|r",
 "|cnIQ1:|Hitem:2447::::::::13:1487:::::::::|h[Peacebloom]|h|r",
 "|cnIQ1:|Hitem:2447::::::::13:1487:::::::::|h[Peacebloom]|h|r",
+"|cnIQ1:|Hitem:2447::::::::13:1487:::::::::|h[Peacebloom]|h|r",
+"|cnIQ1:|Hitem:765::::::::13:1487:::::::::|h[Silverleaf]|h|r",
 "|cnIQ1:|Hitem:765::::::::13:1487:::::::::|h[Silverleaf]|h|r",
 "|cnIQ1:|Hitem:765::::::::13:1487:::::::::|h[Silverleaf]|h|r",
 "|cnIQ1:|Hitem:2996::::::::13:1487:::::::::|h[Bolt of Linen Cloth]|h|r",
-"|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
-"|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
 "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
 "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
 "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
@@ -510,7 +597,7 @@ DataStore_Containers_Characters = {
 },
 },
 ["bagInfo"] = 17428,
-["lastUpdate"] = 1794090210,
+["lastUpdate"] = 1794166798,
 },
 }
 DataStore_Containers_Banks = {
@@ -525,8 +612,11 @@ DataStore_Containers_Banks = {
 },
 {
 ["items"] = {
+15906177025,
 },
+["freeslots"] = 0,
 ["links"] = {
+"|cnIQ1:|Hitem:242709::::::::11:1490:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
 },
 },
 {

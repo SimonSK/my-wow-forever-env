@@ -1008,5 +1008,339 @@ true,
 },
 },
 },
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["Time"] = "12:50:38",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6256::::::::6:1490::14:::::::|h[Fishing Pole]|h|r",
+["Name"] = "Fishing Pole",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:253664::::::::6:1490:::::::::|h[Linen Reagent Bag]|h|r",
+["Name"] = "Linen Reagent Bag",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2288::::::::6:1490:::::::::|h[Conjured Fresh Water]|h|r",
+["Name"] = "Conjured Fresh Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1113::::::::6:1490:::::::::|h[Conjured Bread]|h|r",
+["Name"] = "Conjured Bread",
+},
+{
+["Number"] = 19,
+["ItemLink"] = "|cnIQ1:|Hitem:2288::::::::6:1490:::::::::|h[Conjured Fresh Water]|h|r",
+["Name"] = "Conjured Fresh Water",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["Time"] = "12:51:24",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Tirisfal Glades",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:2140::::::::6:1490:::1:12729::::::|h[Carving Knife of Intellect]|h|r",
+["Name"] = "Carving Knife of Intellect",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "17:21:49",
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:2598::::::::13:1482:::::::::|h[Pattern: Red Linen Robe]|h|r",
+["Name"] = "Pattern: Red Linen Robe",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "17:21:59",
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:4577::::::::13:1482:::::::::|h[Compact Shotgun]|h|r",
+["Name"] = "Compact Shotgun",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:253664::::::::13:1482:::::::::|h[Linen Reagent Bag]|h|r",
+["Name"] = "Linen Reagent Bag",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5572::::::::13:1482:::::::::|h[Small Green Pouch]|h|r",
+["Name"] = "Small Green Pouch",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:828::::::::13:1482:::::::::|h[Small Blue Pouch]|h|r",
+["Name"] = "Small Blue Pouch",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:4561::::::::13:1482:::1:12724::::::|h[Scalping Tomahawk of the Falcon]|h|r",
+["Name"] = "Scalping Tomahawk of the Falcon",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["Time"] = "17:23:29",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "20:09:46",
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 4,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::13:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["Time"] = "20:10:54",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 6,
+["ItemLink"] = "|cnIQ1:|Hitem:5465::::::::13:1482:::::::::|h[Small Spider Leg]|h|r",
+["Name"] = "Small Spider Leg",
+},
+{
+["Number"] = 13,
+["ItemLink"] = "|cnIQ1:|Hitem:2840::::::::13:1482:::::::::|h[Copper Bar]|h|r",
+["Name"] = "Copper Bar",
+},
+{
+["Number"] = 9,
+["ItemLink"] = "|cnIQ1:|Hitem:2835::::::::13:1482:::::::::|h[Rough Stone]|h|r",
+["Name"] = "Rough Stone",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::13:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:828::::::::13:1482:::::::::|h[Small Blue Pouch]|h|r",
+["Name"] = "Small Blue Pouch",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["Time"] = "20:22:08",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6289::::::::13:1482:::::::::|h[Raw Longjaw Mud Snapper]|h|r",
+["Name"] = "Raw Longjaw Mud Snapper",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:6308::::::::13:1482:::::::::|h[Raw Bristle Whisker Catfish]|h|r",
+["Name"] = "Raw Bristle Whisker Catfish",
+},
+{
+["Number"] = 13,
+["ItemLink"] = "|cnIQ1:|Hitem:5465::::::::13:1482:::::::::|h[Small Spider Leg]|h|r",
+["Name"] = "Small Spider Leg",
+},
+{
+["Number"] = 8,
+["ItemLink"] = "|cnIQ1:|Hitem:6303::::::::13:1482:::::::::|h[Raw Slitherskin Mackerel]|h|r",
+["Name"] = "Raw Slitherskin Mackerel",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5503::::::::13:1482:::::::::|h[Clam Meat]|h|r",
+["Name"] = "Clam Meat",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:12223::::::::13:1482:::::::::|h[Meaty Bat Wing]|h|r",
+["Name"] = "Meaty Bat Wing",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["Time"] = "20:31:05",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 6,
+["ItemLink"] = "|cnIQ1:|Hitem:12223::::::::13:1482:::::::::|h[Meaty Bat Wing]|h|r",
+["Name"] = "Meaty Bat Wing",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2672::::::::13:1482:::::::::|h[Stringy Wolf Meat]|h|r",
+["Name"] = "Stringy Wolf Meat",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2672::::::::13:1482:::::::::|h[Stringy Wolf Meat]|h|r",
+["Name"] = "Stringy Wolf Meat",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:2672::::::::13:1482:::::::::|h[Stringy Wolf Meat]|h|r",
+["Name"] = "Stringy Wolf Meat",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["Time"] = "20:43:56",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6325::::::::13:1490::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["Name"] = "Recipe: Brilliant Smallfish",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6326::::::::13:1490::14:::::::|h[Recipe: Slitherskin Mackerel]|h|r",
+["Name"] = "Recipe: Slitherskin Mackerel",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-08",
+["Time"] = "20:49:48",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 10,
+["ItemLink"] = "|cnIQ1:|Hitem:2680::::::::13:1482:::::::::|h[Spiced Wolf Meat]|h|r",
+["Name"] = "Spiced Wolf Meat",
+},
+},
+},
 },
 }

@@ -956,9 +956,9 @@ Bartender4DB = {
 ["Simon"] = {
 ["version"] = 3,
 ["position"] = {
-["y"] = 19.5,
-["x"] = -114.5000305175781,
-["point"] = "CENTER",
+["y"] = 227,
+["x"] = 213.394287109375,
+["point"] = "BOTTOM",
 },
 },
 },

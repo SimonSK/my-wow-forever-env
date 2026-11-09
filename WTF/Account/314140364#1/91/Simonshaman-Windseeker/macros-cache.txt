@@ -1,0 +1,102 @@
+VER 3 010000000100001E "Ancestral Spirit" "134400"
+#showtooltip Ancestral Spirit
+/cast Ancestral Spirit
+END
+VER 3 0100000001000021 "Ascendance" "134400"
+#showtooltip Ascendance
+/use 10
+/cast Ascendance
+/cast Berserking
+/cast Reinforce
+/cast [harm] Lava Burst
+END
+VER 3 010000000100001C "Bloodlust" "134400"
+#showtooltip Bloodlust
+/cast Bloodlust
+/cast Stormlash Totem
+END
+VER 3 0100000001000011 "Chain Lightning" "134400"
+#showtooltip [help] Chain Heal; Chain Lightning
+/startattack
+/cast [help] Chain Heal; Chain Lightning
+END
+VER 3 0100000001000016 "Cleanse Spirit" "134400"
+#showtooltip Cleanse Spirit
+/stopcasting
+/cast Cleanse Spirit
+END
+VER 3 010000000100000D "Earth Shock" "134400"
+#showtooltip [mod:shift] Purge; Earth Shock
+/stopcasting
+/cast [mod:shift] Purge; Earth Shock
+END
+VER 3 010000000100002A "FB Weapon" "134400"
+#showtooltip Frostbrandr Weapon
+/cast Frostbrand Weapon
+END
+VER 3 0100000001000018 "Fire Nova" "134400"
+#showtooltip Fire Nova
+/startattack
+/cast [harm,nodead] Fire Nova
+END
+VER 3 0100000001000007 "Flame Shock" "134400"
+#showtooltip [help] Earth Shield; Flame Shock
+/cast [help] Earth Shield; [harm,nodead] Flame Shock
+END
+VER 3 010000000100000A "Frost Shock" "134400"
+#showtooltip Frost Shock
+/startattack
+/cast [harm,nodead] Frost Shock
+END
+VER 3 0100000001000014 "FT Weapon" "134400"
+#showtooltip Flametongue Weapon
+/cast Flametongue Weapon
+END
+VER 3 0100000001000012 "Greater Healing" "134400"
+#showtooltip Greater Healing Wave
+/cast Ancestral Swiftness
+/cast Greater Healing Wave
+END
+VER 3 010000000100000E "Healing Rain" "134400"
+#showtooltip Healing Rain
+/cast [@player] Healing Rain
+END
+VER 3 010000000100000F "Healing Wave" "134400"
+#showtooltip Healing Wave
+/cast Healing Wave
+END
+VER 3 0100000001000005 "Hex" "134400"
+#showtooltip Hex
+/cast [@focus, exists, nodead, harm][]  Hex
+END
+VER 3 0100000001000029 "Lesser Healing" "134400"
+#showtooltip Lesser Healing Wave
+/cast Lesser Healing Wave
+END
+VER 3 0100000001000003 "Lightning Bolt" "134400"
+#showtooltip Lightning Bolt
+/startattack
+/cast Lightning Bolt
+END
+VER 3 0100000001000024 "Lightning Shield" "134400"
+#showtooltip Lightning Shield
+/cast Lightning Shield
+END
+VER 3 0100000001000026 "Riptide" "134400"
+#showtooltip Riptide
+/cast [help] Riptide
+END
+VER 3 0100000001000027 "Rockbiter Weapon" "134400"
+#showtooltip Rockbiter Weapon
+/cast Rockbiter Weapon
+END
+VER 3 0100000001000025 "Taunt" "134400"
+#showtooltip Rockbiter Weapon
+/castsequence reset=10 Rockbiter Weapon, Unleash Elements, Flametongue Weapon
+/use 16
+/click StaticPopup1Button1
+END
+VER 3 0100000001000028 "WF Weapon" "134400"
+#showtooltip Windfury Weapon
+/cast Windfury Weapon
+END

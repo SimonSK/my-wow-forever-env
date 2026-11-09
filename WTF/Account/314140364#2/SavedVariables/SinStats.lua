@@ -64,9 +64,9 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Enhanced_Base"] = 1,
 },
-["ShadowResist"] = {
+["APUD"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
 },
 ["DMG"] = {
 ["Show"] = false,
@@ -89,9 +89,11 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["RAPUD"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
 },
 ["RepairCost"] = {
 ["Show"] = false,
@@ -105,9 +107,10 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Max_Average_Damage"] = 1,
 },
-["NatureResist"] = {
+["Fire"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
+["Enhanced_Base"] = 1,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -157,10 +160,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Main_Off_Auto"] = 1,
 },
-["Fire"] = {
+["NatureResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Cap_Percent"] = 100,
 },
 ["SpellMiss"] = {
 ["Show"] = false,
@@ -232,16 +234,19 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["Armor"] = {
-["Show"] = false,
+["Speed"] = {
+["Show"] = true,
+["Speed_Secret"] = false,
+["Speed_Mode"] = 1,
+["Speed_Static"] = 1,
+["Speed_Unit"] = true,
 ["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Speed_Color"] = true,
 },
-["HasteCaster"] = {
+["InstanceTimer"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
-["Decimals_Two"] = 2,
-["Enhanced_Base"] = 1,
+["Timer_Format"] = 1,
+["Send_Chat"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
@@ -253,23 +258,20 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["InstanceTimer"] = {
+["HasteCaster"] = {
 ["Show"] = false,
-["Timer_Format"] = 1,
-["Send_Chat"] = false,
+["Cap_Percent"] = 100,
+["Decimals_Two"] = 2,
+["Enhanced_Base"] = 1,
 },
 ["Threat"] = {
 ["Show"] = false,
 ["Percent_Rating"] = 1,
 },
-["Speed"] = {
-["Show"] = true,
-["Speed_Secret"] = false,
-["Speed_Mode"] = 1,
-["Speed_Static"] = 1,
-["Speed_Unit"] = true,
+["Armor"] = {
+["Show"] = false,
 ["Decimals_Default"] = 0,
-["Speed_Color"] = true,
+["Enhanced_Base"] = 1,
 },
 ["Honor"] = {
 ["Show"] = false,
@@ -297,11 +299,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Enhanced_Base"] = 1,
 },
-["mDPS"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Display_Average"] = false,
 ["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
 },
 ["RangedMiss"] = {
 ["Show"] = true,
@@ -330,9 +330,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["APUD"] = {
+["ShadowResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
+["Cap_Percent"] = 100,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -430,9 +430,9 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Enhanced_Base"] = 1,
 },
-["ShadowResist"] = {
+["APUD"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
 },
 ["DMG"] = {
 ["Show"] = true,
@@ -455,9 +455,11 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["RAPUD"] = {
-["Show"] = false,
+["mDPS"] = {
+["Show"] = true,
+["Display_Average"] = false,
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
 },
 ["RepairCost"] = {
 ["Show"] = false,
@@ -471,9 +473,10 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Max_Average_Damage"] = 1,
 },
-["NatureResist"] = {
+["Fire"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
+["Enhanced_Base"] = 1,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -523,10 +526,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Main_Off_Auto"] = 1,
 },
-["Fire"] = {
+["NatureResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Cap_Percent"] = 100,
 },
 ["SpellMiss"] = {
 ["Show"] = false,
@@ -598,16 +600,19 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["Armor"] = {
-["Show"] = false,
+["Speed"] = {
+["Show"] = true,
+["Speed_Secret"] = false,
+["Speed_Mode"] = 1,
+["Speed_Static"] = 1,
+["Speed_Unit"] = true,
 ["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Speed_Color"] = true,
 },
-["HasteCaster"] = {
+["InstanceTimer"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
-["Decimals_Two"] = 2,
-["Enhanced_Base"] = 1,
+["Timer_Format"] = 1,
+["Send_Chat"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
@@ -619,23 +624,20 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["InstanceTimer"] = {
+["HasteCaster"] = {
 ["Show"] = false,
-["Timer_Format"] = 1,
-["Send_Chat"] = false,
+["Cap_Percent"] = 100,
+["Decimals_Two"] = 2,
+["Enhanced_Base"] = 1,
 },
 ["Threat"] = {
 ["Show"] = false,
 ["Percent_Rating"] = 1,
 },
-["Speed"] = {
-["Show"] = true,
-["Speed_Secret"] = false,
-["Speed_Mode"] = 1,
-["Speed_Static"] = 1,
-["Speed_Unit"] = true,
+["Armor"] = {
+["Show"] = false,
 ["Decimals_Default"] = 0,
-["Speed_Color"] = true,
+["Enhanced_Base"] = 1,
 },
 ["Honor"] = {
 ["Show"] = false,
@@ -663,11 +665,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Enhanced_Base"] = 1,
 },
-["mDPS"] = {
-["Show"] = true,
-["Display_Average"] = false,
+["RAPUD"] = {
+["Show"] = false,
 ["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
 },
 ["RangedMiss"] = {
 ["Show"] = false,
@@ -696,9 +696,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["APUD"] = {
+["ShadowResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
+["Cap_Percent"] = 100,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -796,9 +796,9 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Enhanced_Base"] = 1,
 },
-["ShadowResist"] = {
+["APUD"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
 },
 ["DMG"] = {
 ["Show"] = false,
@@ -821,9 +821,11 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["RAPUD"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
 },
 ["RepairCost"] = {
 ["Show"] = false,
@@ -837,9 +839,10 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Max_Average_Damage"] = 1,
 },
-["NatureResist"] = {
+["Fire"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
+["Enhanced_Base"] = 1,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -889,10 +892,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Main_Off_Auto"] = 1,
 },
-["Fire"] = {
+["NatureResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Cap_Percent"] = 100,
 },
 ["SpellMiss"] = {
 ["Show"] = false,
@@ -964,16 +966,19 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["Armor"] = {
+["Speed"] = {
 ["Show"] = true,
+["Speed_Secret"] = false,
+["Speed_Mode"] = 1,
+["Speed_Static"] = 1,
+["Speed_Unit"] = true,
 ["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Speed_Color"] = true,
 },
-["HasteCaster"] = {
+["InstanceTimer"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
-["Decimals_Two"] = 2,
-["Enhanced_Base"] = 1,
+["Timer_Format"] = 1,
+["Send_Chat"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
@@ -985,23 +990,20 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["InstanceTimer"] = {
+["HasteCaster"] = {
 ["Show"] = false,
-["Timer_Format"] = 1,
-["Send_Chat"] = false,
+["Cap_Percent"] = 100,
+["Decimals_Two"] = 2,
+["Enhanced_Base"] = 1,
 },
 ["Threat"] = {
 ["Show"] = false,
 ["Percent_Rating"] = 1,
 },
-["Speed"] = {
+["Armor"] = {
 ["Show"] = true,
-["Speed_Secret"] = false,
-["Speed_Mode"] = 1,
-["Speed_Static"] = 1,
-["Speed_Unit"] = true,
 ["Decimals_Default"] = 0,
-["Speed_Color"] = true,
+["Enhanced_Base"] = 1,
 },
 ["Honor"] = {
 ["Show"] = false,
@@ -1029,11 +1031,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Enhanced_Base"] = 1,
 },
-["mDPS"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Display_Average"] = false,
 ["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
 },
 ["RangedMiss"] = {
 ["Show"] = false,
@@ -1062,9 +1062,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["APUD"] = {
+["ShadowResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
+["Cap_Percent"] = 100,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -1162,9 +1162,9 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Enhanced_Base"] = 1,
 },
-["ShadowResist"] = {
+["APUD"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
 },
 ["DMG"] = {
 ["Show"] = false,
@@ -1187,9 +1187,11 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["RAPUD"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
 },
 ["RepairCost"] = {
 ["Show"] = false,
@@ -1203,9 +1205,10 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Max_Average_Damage"] = 1,
 },
-["NatureResist"] = {
-["Show"] = false,
-["Cap_Percent"] = 100,
+["Fire"] = {
+["Show"] = true,
+["Decimals_Default"] = 0,
+["Enhanced_Base"] = 1,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -1255,10 +1258,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Main_Off_Auto"] = 1,
 },
-["Fire"] = {
-["Show"] = true,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["NatureResist"] = {
+["Show"] = false,
+["Cap_Percent"] = 100,
 },
 ["SpellMiss"] = {
 ["Show"] = true,
@@ -1330,16 +1332,19 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["Armor"] = {
-["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
-},
-["HasteCaster"] = {
+["Speed"] = {
 ["Show"] = true,
-["Cap_Percent"] = 100,
-["Decimals_Two"] = 2,
-["Enhanced_Base"] = 1,
+["Speed_Secret"] = false,
+["Speed_Mode"] = 1,
+["Speed_Static"] = 1,
+["Speed_Unit"] = true,
+["Decimals_Default"] = 0,
+["Speed_Color"] = true,
+},
+["InstanceTimer"] = {
+["Show"] = false,
+["Timer_Format"] = 1,
+["Send_Chat"] = false,
 },
 ["Frost"] = {
 ["Show"] = true,
@@ -1351,23 +1356,20 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["InstanceTimer"] = {
-["Show"] = false,
-["Timer_Format"] = 1,
-["Send_Chat"] = false,
+["HasteCaster"] = {
+["Show"] = true,
+["Cap_Percent"] = 100,
+["Decimals_Two"] = 2,
+["Enhanced_Base"] = 1,
 },
 ["Threat"] = {
 ["Show"] = false,
 ["Percent_Rating"] = 1,
 },
-["Speed"] = {
-["Show"] = true,
-["Speed_Secret"] = false,
-["Speed_Mode"] = 1,
-["Speed_Static"] = 1,
-["Speed_Unit"] = true,
+["Armor"] = {
+["Show"] = false,
 ["Decimals_Default"] = 0,
-["Speed_Color"] = true,
+["Enhanced_Base"] = 1,
 },
 ["Honor"] = {
 ["Show"] = false,
@@ -1395,11 +1397,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Enhanced_Base"] = 1,
 },
-["mDPS"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Display_Average"] = false,
 ["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
 },
 ["RangedMiss"] = {
 ["Show"] = false,
@@ -1428,9 +1428,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["APUD"] = {
+["ShadowResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
+["Cap_Percent"] = 100,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -1528,9 +1528,9 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Enhanced_Base"] = 1,
 },
-["ShadowResist"] = {
+["APUD"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
 },
 ["DMG"] = {
 ["Show"] = false,
@@ -1553,9 +1553,11 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["RAPUD"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
 },
 ["RepairCost"] = {
 ["Show"] = false,
@@ -1569,9 +1571,10 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Max_Average_Damage"] = 1,
 },
-["NatureResist"] = {
+["Fire"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
+["Enhanced_Base"] = 1,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -1621,10 +1624,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Main_Off_Auto"] = 1,
 },
-["Fire"] = {
+["NatureResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Cap_Percent"] = 100,
 },
 ["SpellMiss"] = {
 ["Show"] = true,
@@ -1696,16 +1698,19 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["Armor"] = {
-["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
-},
-["HasteCaster"] = {
+["Speed"] = {
 ["Show"] = true,
-["Cap_Percent"] = 100,
-["Decimals_Two"] = 2,
-["Enhanced_Base"] = 1,
+["Speed_Secret"] = false,
+["Speed_Mode"] = 1,
+["Speed_Static"] = 1,
+["Speed_Unit"] = true,
+["Decimals_Default"] = 0,
+["Speed_Color"] = true,
+},
+["InstanceTimer"] = {
+["Show"] = false,
+["Timer_Format"] = 1,
+["Send_Chat"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
@@ -1717,23 +1722,20 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["InstanceTimer"] = {
-["Show"] = false,
-["Timer_Format"] = 1,
-["Send_Chat"] = false,
+["HasteCaster"] = {
+["Show"] = true,
+["Cap_Percent"] = 100,
+["Decimals_Two"] = 2,
+["Enhanced_Base"] = 1,
 },
 ["Threat"] = {
 ["Show"] = false,
 ["Percent_Rating"] = 1,
 },
-["Speed"] = {
-["Show"] = true,
-["Speed_Secret"] = false,
-["Speed_Mode"] = 1,
-["Speed_Static"] = 1,
-["Speed_Unit"] = true,
+["Armor"] = {
+["Show"] = false,
 ["Decimals_Default"] = 0,
-["Speed_Color"] = true,
+["Enhanced_Base"] = 1,
 },
 ["Honor"] = {
 ["Show"] = false,
@@ -1761,11 +1763,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Enhanced_Base"] = 1,
 },
-["mDPS"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Display_Average"] = false,
 ["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
 },
 ["RangedMiss"] = {
 ["Show"] = false,
@@ -1794,9 +1794,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["APUD"] = {
+["ShadowResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
+["Cap_Percent"] = 100,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -1894,9 +1894,9 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Enhanced_Base"] = 1,
 },
-["ShadowResist"] = {
+["APUD"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
 },
 ["DMG"] = {
 ["Show"] = true,
@@ -1919,9 +1919,11 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["RAPUD"] = {
-["Show"] = false,
+["mDPS"] = {
+["Show"] = true,
+["Display_Average"] = false,
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
 },
 ["RepairCost"] = {
 ["Show"] = false,
@@ -1935,9 +1937,10 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Max_Average_Damage"] = 1,
 },
-["NatureResist"] = {
+["Fire"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
+["Enhanced_Base"] = 1,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -1987,10 +1990,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Main_Off_Auto"] = 1,
 },
-["Fire"] = {
+["NatureResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Cap_Percent"] = 100,
 },
 ["SpellMiss"] = {
 ["Show"] = false,
@@ -2062,16 +2064,19 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["Armor"] = {
-["Show"] = false,
+["Speed"] = {
+["Show"] = true,
+["Speed_Secret"] = false,
+["Speed_Mode"] = 1,
+["Speed_Static"] = 1,
+["Speed_Unit"] = true,
 ["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Speed_Color"] = true,
 },
-["HasteCaster"] = {
+["InstanceTimer"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
-["Decimals_Two"] = 2,
-["Enhanced_Base"] = 1,
+["Timer_Format"] = 1,
+["Send_Chat"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
@@ -2083,23 +2088,20 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["InstanceTimer"] = {
+["HasteCaster"] = {
 ["Show"] = false,
-["Timer_Format"] = 1,
-["Send_Chat"] = false,
+["Cap_Percent"] = 100,
+["Decimals_Two"] = 2,
+["Enhanced_Base"] = 1,
 },
 ["Threat"] = {
 ["Show"] = false,
 ["Percent_Rating"] = 1,
 },
-["Speed"] = {
-["Show"] = true,
-["Speed_Secret"] = false,
-["Speed_Mode"] = 1,
-["Speed_Static"] = 1,
-["Speed_Unit"] = true,
+["Armor"] = {
+["Show"] = false,
 ["Decimals_Default"] = 0,
-["Speed_Color"] = true,
+["Enhanced_Base"] = 1,
 },
 ["Honor"] = {
 ["Show"] = false,
@@ -2127,11 +2129,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Enhanced_Base"] = 1,
 },
-["mDPS"] = {
-["Show"] = true,
-["Display_Average"] = false,
+["RAPUD"] = {
+["Show"] = false,
 ["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
 },
 ["RangedMiss"] = {
 ["Show"] = false,
@@ -2160,9 +2160,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["APUD"] = {
+["ShadowResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
+["Cap_Percent"] = 100,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -2260,9 +2260,9 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Enhanced_Base"] = 1,
 },
-["ShadowResist"] = {
+["APUD"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
 },
 ["DMG"] = {
 ["Show"] = false,
@@ -2285,9 +2285,11 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["RAPUD"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
 },
 ["RepairCost"] = {
 ["Show"] = false,
@@ -2301,9 +2303,10 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Max_Average_Damage"] = 1,
 },
-["NatureResist"] = {
+["Fire"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
+["Enhanced_Base"] = 1,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -2353,10 +2356,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Main_Off_Auto"] = 1,
 },
-["Fire"] = {
+["NatureResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Cap_Percent"] = 100,
 },
 ["SpellMiss"] = {
 ["Show"] = true,
@@ -2428,16 +2430,19 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["Armor"] = {
-["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
-},
-["HasteCaster"] = {
+["Speed"] = {
 ["Show"] = true,
-["Cap_Percent"] = 100,
-["Decimals_Two"] = 2,
-["Enhanced_Base"] = 1,
+["Speed_Secret"] = false,
+["Speed_Mode"] = 1,
+["Speed_Static"] = 1,
+["Speed_Unit"] = true,
+["Decimals_Default"] = 0,
+["Speed_Color"] = true,
+},
+["InstanceTimer"] = {
+["Show"] = false,
+["Timer_Format"] = 1,
+["Send_Chat"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
@@ -2449,23 +2454,20 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["InstanceTimer"] = {
-["Show"] = false,
-["Timer_Format"] = 1,
-["Send_Chat"] = false,
+["HasteCaster"] = {
+["Show"] = true,
+["Cap_Percent"] = 100,
+["Decimals_Two"] = 2,
+["Enhanced_Base"] = 1,
 },
 ["Threat"] = {
 ["Show"] = false,
 ["Percent_Rating"] = 1,
 },
-["Speed"] = {
-["Show"] = true,
-["Speed_Secret"] = false,
-["Speed_Mode"] = 1,
-["Speed_Static"] = 1,
-["Speed_Unit"] = true,
+["Armor"] = {
+["Show"] = false,
 ["Decimals_Default"] = 0,
-["Speed_Color"] = true,
+["Enhanced_Base"] = 1,
 },
 ["Honor"] = {
 ["Show"] = false,
@@ -2493,11 +2495,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Enhanced_Base"] = 1,
 },
-["mDPS"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Display_Average"] = false,
 ["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
 },
 ["RangedMiss"] = {
 ["Show"] = false,
@@ -2526,9 +2526,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["APUD"] = {
+["ShadowResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
+["Cap_Percent"] = 100,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -2684,6 +2684,30 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
+["APUD"] = {
+["Show"] = false,
+["BarAlpha"] = 1,
+["BarColor"] = {
+["r"] = 0.2,
+["g"] = 0.6,
+["b"] = 0.2,
+},
+["BarTexture"] = "Blizzard",
+["Decimals_Default"] = 0,
+["StaticBar"] = false,
+},
+["RepairCost"] = {
+["Show"] = false,
+["Total_Equipped_Bags"] = 1,
+["BarAlpha"] = 1,
+["BarTexture"] = "Blizzard",
+["BarColor"] = {
+["r"] = 0.2,
+["g"] = 0.6,
+["b"] = 0.2,
+},
+["StaticBar"] = false,
+},
 ["ShadowResist"] = {
 ["BarAutoColor"] = false,
 ["BarBgAlpha"] = 1,
@@ -2705,30 +2729,6 @@ SinStatsDB = {
 ["BarTexture"] = "Blizzard",
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
-},
-["RepairCost"] = {
-["Show"] = false,
-["Total_Equipped_Bags"] = 1,
-["BarAlpha"] = 1,
-["BarTexture"] = "Blizzard",
-["BarColor"] = {
-["r"] = 0.2,
-["g"] = 0.6,
-["b"] = 0.2,
-},
-["StaticBar"] = false,
-},
-["APUD"] = {
-["Show"] = false,
-["BarAlpha"] = 1,
-["BarColor"] = {
-["r"] = 0.2,
-["g"] = 0.6,
-["b"] = 0.2,
-},
-["BarTexture"] = "Blizzard",
-["Decimals_Default"] = 0,
-["StaticBar"] = false,
 },
 ["DMG"] = {
 ["Show"] = false,
@@ -2789,18 +2789,16 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
-["mDPS"] = {
+["RAPUD"] = {
 ["Show"] = false,
+["BarAlpha"] = 1,
 ["BarColor"] = {
 ["r"] = 0.2,
 ["g"] = 0.6,
 ["b"] = 0.2,
 },
-["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
-["Display_Average"] = false,
 ["BarTexture"] = "Blizzard",
-["BarAlpha"] = 1,
+["Decimals_Default"] = 0,
 ["StaticBar"] = false,
 },
 ["RAP"] = {
@@ -2834,9 +2832,9 @@ SinStatsDB = {
 ["g"] = 0.1,
 ["b"] = 0.1,
 },
-["Level_Same_Boss"] = 1,
-["BarMaxMode"] = 1,
 ["BarMaxCustom"] = 100,
+["BarMaxMode"] = 1,
+["Level_Same_Boss"] = 1,
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
@@ -2853,27 +2851,18 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["StaticBar"] = false,
 },
-["NatureResist"] = {
-["BarAutoColor"] = false,
-["BarBgAlpha"] = 1,
-["Cap_Percent"] = 100,
+["Fire"] = {
+["Show"] = false,
 ["BarColor"] = {
 ["r"] = 0.2,
 ["g"] = 0.6,
 ["b"] = 0.2,
 },
-["StaticBar"] = false,
-["Show"] = false,
-["BarBgColor"] = {
-["r"] = 0.1,
-["g"] = 0.1,
-["b"] = 0.1,
-},
-["BarMaxCustom"] = 100,
-["BarMaxMode"] = 1,
+["Enhanced_Base"] = 1,
+["Decimals_Default"] = 0,
 ["BarTexture"] = "Blizzard",
 ["BarAlpha"] = 1,
-["ShowBar"] = false,
+["StaticBar"] = false,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -2995,9 +2984,9 @@ SinStatsDB = {
 ["g"] = 0.1,
 ["b"] = 0.1,
 },
-["Level_Same_Boss"] = 1,
-["BarMaxMode"] = 1,
 ["BarMaxCustom"] = 100,
+["BarMaxMode"] = 1,
+["Level_Same_Boss"] = 1,
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
@@ -3040,18 +3029,27 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["StaticBar"] = false,
 },
-["Fire"] = {
-["Show"] = false,
+["NatureResist"] = {
+["BarAutoColor"] = false,
+["BarBgAlpha"] = 1,
+["Cap_Percent"] = 100,
 ["BarColor"] = {
 ["r"] = 0.2,
 ["g"] = 0.6,
 ["b"] = 0.2,
 },
-["Enhanced_Base"] = 1,
-["Decimals_Default"] = 0,
+["StaticBar"] = false,
+["Show"] = false,
+["BarBgColor"] = {
+["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
+},
+["BarMaxCustom"] = 100,
+["BarMaxMode"] = 1,
 ["BarTexture"] = "Blizzard",
 ["BarAlpha"] = 1,
-["StaticBar"] = false,
+["ShowBar"] = false,
 },
 ["SpellMiss"] = {
 ["BarAutoColor"] = false,
@@ -3190,32 +3188,18 @@ SinStatsDB = {
 },
 ["StaticBar"] = false,
 },
-["Speed"] = {
-["Speed_Unit"] = true,
-["Speed_Secret"] = false,
-["Decimals_Default"] = 0,
-["StaticBar"] = false,
-["SpeedBar"] = 1,
-["BarMaxCustom"] = 100,
-["Speed_Color"] = true,
-["BarAutoColor"] = false,
-["BarBgAlpha"] = 1,
-["Speed_Mode"] = 1,
-["BarTexture"] = "Blizzard",
-["BarBgColor"] = {
-["r"] = 0.1,
-["g"] = 0.1,
-["b"] = 0.1,
-},
-["Show"] = true,
+["Armor"] = {
+["Show"] = false,
 ["BarColor"] = {
 ["r"] = 0.2,
 ["g"] = 0.6,
 ["b"] = 0.2,
 },
-["Speed_Static"] = 1,
+["Enhanced_Base"] = 1,
+["Decimals_Default"] = 0,
+["BarTexture"] = "Blizzard",
 ["BarAlpha"] = 1,
-["ShowBar"] = false,
+["StaticBar"] = false,
 },
 ["Nature"] = {
 ["Show"] = false,
@@ -3265,45 +3249,6 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["StaticBar"] = false,
 },
-["InstanceTimer"] = {
-["Show"] = false,
-["Timer_Format"] = 1,
-["BarColor"] = {
-["r"] = 0.2,
-["g"] = 0.6,
-["b"] = 0.2,
-},
-["Send_Chat"] = false,
-["BarTexture"] = "Blizzard",
-["BarAlpha"] = 1,
-["StaticBar"] = false,
-},
-["Dodge"] = {
-["Show"] = true,
-["BarAlpha"] = 1,
-["BarColor"] = {
-["r"] = 0.2,
-["g"] = 0.6,
-["b"] = 0.2,
-},
-["Cap_Percent"] = 100,
-["BarTexture"] = "Blizzard",
-["Decimals_Two"] = 2,
-["StaticBar"] = false,
-},
-["Armor"] = {
-["Show"] = false,
-["BarColor"] = {
-["r"] = 0.2,
-["g"] = 0.6,
-["b"] = 0.2,
-},
-["Enhanced_Base"] = 1,
-["Decimals_Default"] = 0,
-["BarTexture"] = "Blizzard",
-["BarAlpha"] = 1,
-["StaticBar"] = false,
-},
 ["HasteCaster"] = {
 ["BarAutoColor"] = false,
 ["BarBgAlpha"] = 1,
@@ -3327,6 +3272,59 @@ SinStatsDB = {
 },
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
+},
+["Dodge"] = {
+["Show"] = true,
+["BarAlpha"] = 1,
+["BarColor"] = {
+["r"] = 0.2,
+["g"] = 0.6,
+["b"] = 0.2,
+},
+["Cap_Percent"] = 100,
+["BarTexture"] = "Blizzard",
+["Decimals_Two"] = 2,
+["StaticBar"] = false,
+},
+["Speed"] = {
+["Speed_Unit"] = true,
+["Speed_Secret"] = false,
+["Decimals_Default"] = 0,
+["StaticBar"] = false,
+["SpeedBar"] = 1,
+["BarMaxCustom"] = 100,
+["Speed_Color"] = true,
+["BarAutoColor"] = false,
+["BarBgAlpha"] = 1,
+["Speed_Mode"] = 1,
+["BarTexture"] = "Blizzard",
+["BarBgColor"] = {
+["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
+},
+["Show"] = true,
+["BarColor"] = {
+["r"] = 0.2,
+["g"] = 0.6,
+["b"] = 0.2,
+},
+["Speed_Static"] = 1,
+["BarAlpha"] = 1,
+["ShowBar"] = false,
+},
+["InstanceTimer"] = {
+["Show"] = false,
+["Timer_Format"] = 1,
+["BarColor"] = {
+["r"] = 0.2,
+["g"] = 0.6,
+["b"] = 0.2,
+},
+["Send_Chat"] = false,
+["BarTexture"] = "Blizzard",
+["BarAlpha"] = 1,
+["StaticBar"] = false,
 },
 ["Block"] = {
 ["Show"] = true,
@@ -3481,16 +3479,18 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
-["RAPUD"] = {
+["mDPS"] = {
 ["Show"] = false,
-["BarAlpha"] = 1,
 ["BarColor"] = {
 ["r"] = 0.2,
 ["g"] = 0.6,
 ["b"] = 0.2,
 },
-["BarTexture"] = "Blizzard",
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
+["Display_Average"] = false,
+["BarTexture"] = "Blizzard",
+["BarAlpha"] = 1,
 ["StaticBar"] = false,
 },
 ["RangedMiss"] = {
@@ -3591,9 +3591,9 @@ SinStatsDB = {
 ["g"] = 0.1,
 ["b"] = 0.1,
 },
-["Level_Same_Boss"] = 2,
-["BarMaxMode"] = 1,
 ["BarMaxCustom"] = 100,
+["BarMaxMode"] = 1,
+["Level_Same_Boss"] = 2,
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
@@ -3733,9 +3733,9 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Enhanced_Base"] = 1,
 },
-["ShadowResist"] = {
+["APUD"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
 },
 ["DMG"] = {
 ["Show"] = false,
@@ -3758,9 +3758,11 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["RAPUD"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
 },
 ["RepairCost"] = {
 ["Show"] = false,
@@ -3774,9 +3776,10 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Max_Average_Damage"] = 1,
 },
-["NatureResist"] = {
+["Fire"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
+["Enhanced_Base"] = 1,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -3826,10 +3829,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Main_Off_Auto"] = 1,
 },
-["Fire"] = {
+["NatureResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Cap_Percent"] = 100,
 },
 ["SpellMiss"] = {
 ["Show"] = true,
@@ -3901,16 +3903,19 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["Armor"] = {
-["Show"] = false,
+["Speed"] = {
+["Show"] = true,
+["Speed_Secret"] = false,
+["Speed_Mode"] = 1,
+["Speed_Static"] = 1,
+["Speed_Unit"] = true,
 ["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Speed_Color"] = true,
 },
-["HasteCaster"] = {
+["InstanceTimer"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
-["Decimals_Two"] = 2,
-["Enhanced_Base"] = 1,
+["Timer_Format"] = 1,
+["Send_Chat"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
@@ -3922,23 +3927,20 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["InstanceTimer"] = {
+["HasteCaster"] = {
 ["Show"] = false,
-["Timer_Format"] = 1,
-["Send_Chat"] = false,
+["Cap_Percent"] = 100,
+["Decimals_Two"] = 2,
+["Enhanced_Base"] = 1,
 },
 ["Threat"] = {
 ["Show"] = false,
 ["Percent_Rating"] = 1,
 },
-["Speed"] = {
-["Show"] = true,
-["Speed_Secret"] = false,
-["Speed_Mode"] = 1,
-["Speed_Static"] = 1,
-["Speed_Unit"] = true,
+["Armor"] = {
+["Show"] = false,
 ["Decimals_Default"] = 0,
-["Speed_Color"] = true,
+["Enhanced_Base"] = 1,
 },
 ["Honor"] = {
 ["Show"] = false,
@@ -3966,11 +3968,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Enhanced_Base"] = 1,
 },
-["mDPS"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Display_Average"] = false,
 ["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
 },
 ["RangedMiss"] = {
 ["Show"] = false,
@@ -3999,9 +3999,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["APUD"] = {
+["ShadowResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
+["Cap_Percent"] = 100,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -4099,9 +4099,9 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Enhanced_Base"] = 1,
 },
-["ShadowResist"] = {
+["APUD"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
 },
 ["DMG"] = {
 ["Show"] = false,
@@ -4124,9 +4124,11 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["RAPUD"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
 },
 ["RepairCost"] = {
 ["Show"] = false,
@@ -4140,9 +4142,10 @@ SinStatsDB = {
 ["Decimals_Default"] = 0,
 ["Max_Average_Damage"] = 1,
 },
-["NatureResist"] = {
+["Fire"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
+["Decimals_Default"] = 0,
+["Enhanced_Base"] = 1,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -4192,10 +4195,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Main_Off_Auto"] = 1,
 },
-["Fire"] = {
+["NatureResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Cap_Percent"] = 100,
 },
 ["SpellMiss"] = {
 ["Show"] = true,
@@ -4267,16 +4269,19 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["Armor"] = {
-["Show"] = false,
+["Speed"] = {
+["Show"] = true,
+["Speed_Secret"] = false,
+["Speed_Mode"] = 1,
+["Speed_Static"] = 1,
+["Speed_Unit"] = true,
 ["Decimals_Default"] = 0,
-["Enhanced_Base"] = 1,
+["Speed_Color"] = true,
 },
-["HasteCaster"] = {
+["InstanceTimer"] = {
 ["Show"] = false,
-["Cap_Percent"] = 100,
-["Decimals_Two"] = 2,
-["Enhanced_Base"] = 1,
+["Timer_Format"] = 1,
+["Send_Chat"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
@@ -4288,23 +4293,20 @@ SinStatsDB = {
 ["Cap_Percent"] = 100,
 ["Decimals_Two"] = 2,
 },
-["InstanceTimer"] = {
+["HasteCaster"] = {
 ["Show"] = false,
-["Timer_Format"] = 1,
-["Send_Chat"] = false,
+["Cap_Percent"] = 100,
+["Decimals_Two"] = 2,
+["Enhanced_Base"] = 1,
 },
 ["Threat"] = {
 ["Show"] = false,
 ["Percent_Rating"] = 1,
 },
-["Speed"] = {
-["Show"] = true,
-["Speed_Secret"] = false,
-["Speed_Mode"] = 1,
-["Speed_Static"] = 1,
-["Speed_Unit"] = true,
+["Armor"] = {
+["Show"] = false,
 ["Decimals_Default"] = 0,
-["Speed_Color"] = true,
+["Enhanced_Base"] = 1,
 },
 ["Honor"] = {
 ["Show"] = false,
@@ -4332,11 +4334,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Enhanced_Base"] = 1,
 },
-["mDPS"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Display_Average"] = false,
 ["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
 },
 ["RangedMiss"] = {
 ["Show"] = false,
@@ -4365,9 +4365,9 @@ SinStatsDB = {
 ["Decimals_Two"] = 2,
 ["Level_Same_Boss"] = 1,
 },
-["APUD"] = {
+["ShadowResist"] = {
 ["Show"] = false,
-["Decimals_Default"] = 0,
+["Cap_Percent"] = 100,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -5044,8 +5044,8 @@ SinStatsDB = {
 ["g"] = 0.6,
 ["r"] = 0.2,
 },
-["Level_Same_Boss"] = 2,
 ["BarMaxCustom"] = 100,
+["Level_Same_Boss"] = 2,
 ["BarMaxMode"] = 1,
 ["BarBgColor"] = {
 ["b"] = 0.1,
@@ -5177,15 +5177,15 @@ SinStatsDB = {
 ["BarBgAlpha"] = 1,
 ["ShowBar"] = false,
 ["Display_MainHand"] = false,
+["Decimals_Default"] = 0,
+["BarTexture"] = "Blizzard",
 ["BarColor"] = {
 ["b"] = 0.2,
 ["g"] = 0.6,
 ["r"] = 0.2,
 },
-["BarTexture"] = "Blizzard",
-["Decimals_Default"] = 0,
 ["StaticBar"] = false,
-["Cap_Melee_Exp"] = 6.5,
+["Show"] = false,
 ["Display_Expertise"] = false,
 ["BarBgColor"] = {
 ["b"] = 0.1,
@@ -5194,7 +5194,7 @@ SinStatsDB = {
 },
 ["BarMaxCustom"] = 100,
 ["BarMaxMode"] = 1,
-["Show"] = false,
+["Cap_Melee_Exp"] = 6.5,
 ["BarAlpha"] = 1,
 ["Value_Rating"] = 1,
 },
@@ -5243,8 +5243,8 @@ SinStatsDB = {
 ["g"] = 0.6,
 ["r"] = 0.2,
 },
-["Level_Same_Boss"] = 1,
 ["BarMaxCustom"] = 100,
+["Level_Same_Boss"] = 1,
 ["BarMaxMode"] = 1,
 ["BarBgColor"] = {
 ["b"] = 0.1,
@@ -5549,8 +5549,8 @@ SinStatsDB = {
 ["g"] = 0.6,
 ["r"] = 0.2,
 },
-["Level_Same_Boss"] = 1,
 ["BarMaxCustom"] = 100,
+["Level_Same_Boss"] = 1,
 ["BarMaxMode"] = 1,
 ["BarBgColor"] = {
 ["b"] = 0.1,
@@ -5750,6 +5750,30 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
+["APUD"] = {
+["Show"] = false,
+["BarAlpha"] = 1,
+["BarColor"] = {
+["r"] = 0.2,
+["g"] = 0.6,
+["b"] = 0.2,
+},
+["BarTexture"] = "Blizzard",
+["Decimals_Default"] = 0,
+["StaticBar"] = false,
+},
+["RepairCost"] = {
+["Show"] = false,
+["Total_Equipped_Bags"] = 1,
+["BarAlpha"] = 1,
+["BarTexture"] = "Blizzard",
+["BarColor"] = {
+["r"] = 0.2,
+["g"] = 0.6,
+["b"] = 0.2,
+},
+["StaticBar"] = false,
+},
 ["ShadowResist"] = {
 ["BarAutoColor"] = false,
 ["BarBgAlpha"] = 1,
@@ -5771,30 +5795,6 @@ SinStatsDB = {
 ["BarTexture"] = "Blizzard",
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
-},
-["RepairCost"] = {
-["Show"] = false,
-["Total_Equipped_Bags"] = 1,
-["BarAlpha"] = 1,
-["BarTexture"] = "Blizzard",
-["BarColor"] = {
-["r"] = 0.2,
-["g"] = 0.6,
-["b"] = 0.2,
-},
-["StaticBar"] = false,
-},
-["APUD"] = {
-["Show"] = false,
-["BarAlpha"] = 1,
-["BarColor"] = {
-["r"] = 0.2,
-["g"] = 0.6,
-["b"] = 0.2,
-},
-["BarTexture"] = "Blizzard",
-["Decimals_Default"] = 0,
-["StaticBar"] = false,
 },
 ["DMG"] = {
 ["Show"] = false,
@@ -5855,18 +5855,16 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
-["mDPS"] = {
+["RAPUD"] = {
 ["Show"] = false,
+["BarAlpha"] = 1,
 ["BarColor"] = {
 ["r"] = 0.2,
 ["g"] = 0.6,
 ["b"] = 0.2,
 },
-["Decimals_Default"] = 0,
-["Main_Off_Auto"] = 1,
-["Display_Average"] = false,
 ["BarTexture"] = "Blizzard",
-["BarAlpha"] = 1,
+["Decimals_Default"] = 0,
 ["StaticBar"] = false,
 },
 ["RAP"] = {
@@ -5900,9 +5898,9 @@ SinStatsDB = {
 ["g"] = 0.1,
 ["b"] = 0.1,
 },
-["Level_Same_Boss"] = 1,
-["BarMaxMode"] = 1,
 ["BarMaxCustom"] = 100,
+["BarMaxMode"] = 1,
+["Level_Same_Boss"] = 1,
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
@@ -5919,27 +5917,18 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["StaticBar"] = false,
 },
-["NatureResist"] = {
-["BarAutoColor"] = false,
-["BarBgAlpha"] = 1,
-["Cap_Percent"] = 100,
+["Fire"] = {
+["Show"] = false,
 ["BarColor"] = {
 ["r"] = 0.2,
 ["g"] = 0.6,
 ["b"] = 0.2,
 },
-["StaticBar"] = false,
-["Show"] = false,
-["BarBgColor"] = {
-["r"] = 0.1,
-["g"] = 0.1,
-["b"] = 0.1,
-},
-["BarMaxCustom"] = 100,
-["BarMaxMode"] = 1,
+["Enhanced_Base"] = 1,
+["Decimals_Default"] = 0,
 ["BarTexture"] = "Blizzard",
 ["BarAlpha"] = 1,
-["ShowBar"] = false,
+["StaticBar"] = false,
 },
 ["Jump"] = {
 ["Show"] = false,
@@ -6061,9 +6050,9 @@ SinStatsDB = {
 ["g"] = 0.1,
 ["b"] = 0.1,
 },
-["Level_Same_Boss"] = 1,
-["BarMaxMode"] = 1,
 ["BarMaxCustom"] = 100,
+["BarMaxMode"] = 1,
+["Level_Same_Boss"] = 1,
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
@@ -6106,18 +6095,27 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["StaticBar"] = false,
 },
-["Fire"] = {
-["Show"] = false,
+["NatureResist"] = {
+["BarAutoColor"] = false,
+["BarBgAlpha"] = 1,
+["Cap_Percent"] = 100,
 ["BarColor"] = {
 ["r"] = 0.2,
 ["g"] = 0.6,
 ["b"] = 0.2,
 },
-["Enhanced_Base"] = 1,
-["Decimals_Default"] = 0,
+["StaticBar"] = false,
+["Show"] = false,
+["BarBgColor"] = {
+["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
+},
+["BarMaxCustom"] = 100,
+["BarMaxMode"] = 1,
 ["BarTexture"] = "Blizzard",
 ["BarAlpha"] = 1,
-["StaticBar"] = false,
+["ShowBar"] = false,
 },
 ["SpellMiss"] = {
 ["BarAutoColor"] = false,
@@ -6256,32 +6254,18 @@ SinStatsDB = {
 },
 ["StaticBar"] = false,
 },
-["Speed"] = {
-["Speed_Unit"] = true,
-["Speed_Secret"] = false,
-["Decimals_Default"] = 0,
-["StaticBar"] = false,
-["SpeedBar"] = 1,
-["BarMaxCustom"] = 100,
-["Speed_Color"] = true,
-["BarAutoColor"] = false,
-["BarBgAlpha"] = 1,
-["Speed_Mode"] = 1,
-["BarTexture"] = "Blizzard",
-["BarBgColor"] = {
-["r"] = 0.1,
-["g"] = 0.1,
-["b"] = 0.1,
-},
-["Show"] = true,
+["Armor"] = {
+["Show"] = false,
 ["BarColor"] = {
 ["r"] = 0.2,
 ["g"] = 0.6,
 ["b"] = 0.2,
 },
-["Speed_Static"] = 1,
+["Enhanced_Base"] = 1,
+["Decimals_Default"] = 0,
+["BarTexture"] = "Blizzard",
 ["BarAlpha"] = 1,
-["ShowBar"] = false,
+["StaticBar"] = false,
 },
 ["Nature"] = {
 ["Show"] = false,
@@ -6331,45 +6315,6 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["StaticBar"] = false,
 },
-["InstanceTimer"] = {
-["Show"] = false,
-["Timer_Format"] = 1,
-["BarColor"] = {
-["r"] = 0.2,
-["g"] = 0.6,
-["b"] = 0.2,
-},
-["Send_Chat"] = false,
-["BarTexture"] = "Blizzard",
-["BarAlpha"] = 1,
-["StaticBar"] = false,
-},
-["Dodge"] = {
-["Show"] = true,
-["BarAlpha"] = 1,
-["BarColor"] = {
-["r"] = 0.2,
-["g"] = 0.6,
-["b"] = 0.2,
-},
-["Cap_Percent"] = 100,
-["BarTexture"] = "Blizzard",
-["Decimals_Two"] = 2,
-["StaticBar"] = false,
-},
-["Armor"] = {
-["Show"] = false,
-["BarColor"] = {
-["r"] = 0.2,
-["g"] = 0.6,
-["b"] = 0.2,
-},
-["Enhanced_Base"] = 1,
-["Decimals_Default"] = 0,
-["BarTexture"] = "Blizzard",
-["BarAlpha"] = 1,
-["StaticBar"] = false,
-},
 ["HasteCaster"] = {
 ["BarAutoColor"] = false,
 ["BarBgAlpha"] = 1,
@@ -6393,6 +6338,59 @@ SinStatsDB = {
 },
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
+},
+["Dodge"] = {
+["Show"] = true,
+["BarAlpha"] = 1,
+["BarColor"] = {
+["r"] = 0.2,
+["g"] = 0.6,
+["b"] = 0.2,
+},
+["Cap_Percent"] = 100,
+["BarTexture"] = "Blizzard",
+["Decimals_Two"] = 2,
+["StaticBar"] = false,
+},
+["Speed"] = {
+["Speed_Unit"] = true,
+["Speed_Secret"] = false,
+["Decimals_Default"] = 0,
+["StaticBar"] = false,
+["SpeedBar"] = 1,
+["BarMaxCustom"] = 100,
+["Speed_Color"] = true,
+["BarAutoColor"] = false,
+["BarBgAlpha"] = 1,
+["Speed_Mode"] = 1,
+["BarTexture"] = "Blizzard",
+["BarBgColor"] = {
+["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
+},
+["Show"] = true,
+["BarColor"] = {
+["r"] = 0.2,
+["g"] = 0.6,
+["b"] = 0.2,
+},
+["Speed_Static"] = 1,
+["BarAlpha"] = 1,
+["ShowBar"] = false,
+},
+["InstanceTimer"] = {
+["Show"] = false,
+["Timer_Format"] = 1,
+["BarColor"] = {
+["r"] = 0.2,
+["g"] = 0.6,
+["b"] = 0.2,
+},
+["Send_Chat"] = false,
+["BarTexture"] = "Blizzard",
+["BarAlpha"] = 1,
+["StaticBar"] = false,
 },
 ["Block"] = {
 ["Show"] = true,
@@ -6547,16 +6545,18 @@ SinStatsDB = {
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },
-["RAPUD"] = {
+["mDPS"] = {
 ["Show"] = false,
-["BarAlpha"] = 1,
 ["BarColor"] = {
 ["r"] = 0.2,
 ["g"] = 0.6,
 ["b"] = 0.2,
 },
-["BarTexture"] = "Blizzard",
 ["Decimals_Default"] = 0,
+["Main_Off_Auto"] = 1,
+["Display_Average"] = false,
+["BarTexture"] = "Blizzard",
+["BarAlpha"] = 1,
 ["StaticBar"] = false,
 },
 ["RangedMiss"] = {
@@ -6657,9 +6657,9 @@ SinStatsDB = {
 ["g"] = 0.1,
 ["b"] = 0.1,
 },
-["Level_Same_Boss"] = 2,
-["BarMaxMode"] = 1,
 ["BarMaxCustom"] = 100,
+["BarMaxMode"] = 1,
+["Level_Same_Boss"] = 2,
 ["BarAlpha"] = 1,
 ["ShowBar"] = false,
 },

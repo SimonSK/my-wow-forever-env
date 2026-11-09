@@ -28,6 +28,7 @@ WT_Crafting = {
 [182] = true,
 [333] = true,
 [356] = true,
+[129] = true,
 [185] = true,
 },
 ["selectedSources"] = {

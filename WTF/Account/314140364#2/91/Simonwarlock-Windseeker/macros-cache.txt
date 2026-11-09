@@ -61,7 +61,7 @@ VER 3 0100000001000036 "Detect Invis" "134400"
 END
 VER 3 0100000001000001 "Drain Life" "134400"
 #showtooltip Drain Life
-/cast [nochanneling:Drain Life] Drain Life
+/cast [nochanneling:Drain Life,harm,nodead] Drain Life
 END
 VER 3 0100000001000037 "Drain Mana" "134400"
 #showtooltip Drain Mana
@@ -70,8 +70,7 @@ VER 3 0100000001000037 "Drain Mana" "134400"
 END
 VER 3 0100000001000032 "Drain Soul" "134400"
 #showtooltip Drain Soul
-/startattack
-/cast [harm,nodead] Drain Soul
+/cast [nochanneling:Drain Soul,harm,nodead] Drain Soul
 END
 VER 3 0100000001000019 "Fear" "134400"
 #showtooltip Fear
@@ -84,10 +83,6 @@ END
 VER 3 0100000001000004 "Hellfire" "134400"
 #showtooltip Hellfire
 /cast [nochanneling:Hellfire] Hellfire
-END
-VER 3 0100000001000028 "Here RoF" "134400"
-#showtooltip Rain of Fire
-/cast [@player] Rain of Fire
 END
 VER 3 0100000001000024 "Howl of Terror" "134400"
 #showtooltip Howl of Terror
@@ -106,6 +101,10 @@ END
 VER 3 010000000100003B "Life Tap" "134400"
 #showtooltip Life Tap
 /cast Life Tap
+END
+VER 3 0100000001000028 "Rain of Fire" "134400"
+#showtooltip Rain of Fire
+/cast Rain of Fire
 END
 VER 3 010000000100001A "Searing Pain" "134400"
 #showtooltip Searing Pain
@@ -132,5 +131,5 @@ VER 3 010000000100002B "Soul Fire" "134400"
 END
 VER 3 010000000100002E "Subjugate Demon" "134400"
 #showtooltip Subjugate Demon
-/cast Subjugate Demon
+/cast [harm,nodead] Subjugate Demon
 END

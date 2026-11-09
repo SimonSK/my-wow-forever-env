@@ -11,11 +11,11 @@ Bagnon_Sets = {
 "trade",
 },
 },
-["point"] = "BOTTOMRIGHT",
+["point"] = "TOPRIGHT",
 ["color"] = {
 },
-["y"] = 350.9996032714844,
-["x"] = -74.00016216437075,
+["y"] = -343.0007015028979,
+["x"] = -284.0000400940583,
 ["spacing"] = 0,
 ["showBags"] = true,
 ["activeRules"] = {
@@ -92,15 +92,15 @@ Bagnon_Sets = {
 },
 ["soul"] = {
 },
-["reagent"] = {
+["fridge"] = {
 },
 ["mine"] = {
 },
 ["engineer"] = {
 },
-["inscribe"] = {
+["leather"] = {
 },
-["fridge"] = {
+["reagent"] = {
 },
 ["gem"] = {
 },
@@ -108,7 +108,7 @@ Bagnon_Sets = {
 },
 ["tackle"] = {
 },
-["leather"] = {
+["inscribe"] = {
 },
 ["normal"] = {
 },

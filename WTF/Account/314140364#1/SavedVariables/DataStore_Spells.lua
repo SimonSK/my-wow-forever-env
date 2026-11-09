@@ -1,70 +1,70 @@
 
 DataStore_Spells_Characters = {
 {
-["lastUpdate"] = 1794122594,
+["lastUpdate"] = 1794206026,
 ["englishClass"] = "PALADIN",
 ["Spells"] = {
 ["Protection"] = {
-335782144,
-127488,
 261632,
-6599680,
 2634240,
+127488,
 218368,
+6599680,
+335782144,
 },
 ["Holy"] = {
-294912,
-5193472,
-1875968,
+5053952,
 162560,
-162048,
-5397504,
-1408512,
 163584,
 165632,
-5053952,
+162048,
+294912,
+1875968,
+5397504,
+5193472,
+1408512,
 },
 ["General"] = {
-1982464,
 1690368,
 5267712,
-27392,
+1982464,
 331190272,
-800512,
-331176192,
-1338112,
+27392,
 20736,
+331176192,
+800512,
 322608384,
+1338112,
 },
 ["Retribution"] = {
-5396992,
+5053440,
 5077504,
-5189376,
-5161472,
 173824,
 173568,
-5053440,
+5189376,
+5396992,
+5161472,
 },
 },
 },
 {
-["lastUpdate"] = 1794106135,
+["lastUpdate"] = 1794167028,
 ["englishClass"] = "ROGUE",
 ["Spells"] = {
+["Combat"] = {
+448512,
+},
 ["General"] = {
 1690368,
-634880,
-322479616,
 707584,
 322410496,
+634880,
+322479616,
 331190272,
 20736,
 322484992,
 331176192,
 322485760,
-},
-["Combat"] = {
-448512,
 },
 ["Assassination"] = {
 537088,
@@ -72,10 +72,15 @@ DataStore_Spells_Characters = {
 },
 },
 {
-["lastUpdate"] = 1794105956,
+["lastUpdate"] = 1794202064,
 ["englishClass"] = "SHAMAN",
 ["Spells"] = {
+["Enhancement"] = {
+2052352,
+2066176,
+},
 ["Elemental Combat"] = {
+2058752,
 103168,
 },
 ["Restoration"] = {
@@ -95,7 +100,7 @@ DataStore_Spells_Characters = {
 },
 },
 {
-["lastUpdate"] = 1794105822,
+["lastUpdate"] = 1794167159,
 ["englishClass"] = "DRUID",
 ["Spells"] = {
 ["Balance"] = {
@@ -106,26 +111,26 @@ DataStore_Spells_Characters = {
 },
 ["General"] = {
 1690368,
-322410496,
 322479616,
+322410496,
 331190272,
-322485760,
 20736,
 322484992,
 331176192,
+322485760,
 },
 },
 },
 {
-["lastUpdate"] = 1794106009,
+["lastUpdate"] = 1794167092,
 ["englishClass"] = "WARRIOR",
 ["Spells"] = {
 ["General"] = {
 1690368,
-707584,
-322410496,
 634880,
 322479616,
+707584,
+322410496,
 331190272,
 27392,
 20736,
@@ -140,7 +145,7 @@ DataStore_Spells_Characters = {
 },
 },
 {
-["lastUpdate"] = 1794106081,
+["lastUpdate"] = 1794167217,
 ["englishClass"] = "HUNTER",
 ["Spells"] = {
 ["Marksmanship"] = {
@@ -182,15 +187,16 @@ DataStore_Spells_Tabs = {
 "Restoration",
 "Balance",
 },
+["SHAMAN"] = {
+"General",
+"Enhancement",
+"Restoration",
+"Elemental Combat",
+},
 ["PALADIN"] = {
 "General",
 "Retribution",
 "Protection",
 "Holy",
-},
-["SHAMAN"] = {
-"General",
-"Restoration",
-"Elemental Combat",
 },
 }

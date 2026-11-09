@@ -37,4 +37,5 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/g i gotta change my plan if so. i was planning to level all toons very slowly lol",
 "/g /ginvite Simonrogue windseeker",
 "/s /reload",
+"/p |cnIQ1:|Hitem:6328::::::::13:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
 }

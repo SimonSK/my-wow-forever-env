@@ -20,9 +20,9 @@ PallyPowerDB = {
 ["display"] = {
 ["HideCountText"] = true,
 },
-["seal"] = 11,
-["ForeverSealRestored"] = true,
 ["ForeverCountDefault"] = true,
+["ForeverSealRestored"] = true,
+["seal"] = 11,
 },
 ["Simon"] = {
 ["ForeverShamanColumn"] = true,
@@ -36,8 +36,8 @@ PallyPowerDB = {
 ["buffDuration"] = false,
 ["frameLocked"] = true,
 ["offsetX"] = 389.4999389648438,
-["showPlayerButtons"] = false,
 ["offsetY"] = 63.33323287963867,
+["showPlayerButtons"] = false,
 },
 ["enable"] = true,
 ["ForeverCountDefault"] = true,

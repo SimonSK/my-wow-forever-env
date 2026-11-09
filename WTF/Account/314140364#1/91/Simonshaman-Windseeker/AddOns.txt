@@ -64,3 +64,4 @@ Blizzard_CompactRaidFrames: enabled
 !ImprovedErrorFrame: disabled
 Blizzard_CombatText: enabled
 Chattynator: enabled
+Bartender4: enabled

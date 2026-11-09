@@ -9,7 +9,7 @@ ThreatPlatesDB = {
 ["Simonmage Windseeker"] = "Simon",
 },
 ["global"] = {
-["version"] = "13.3.6",
+["version"] = "13.3.7",
 },
 ["profiles"] = {
 ["Default"] = {
@@ -20,10 +20,10 @@ ThreatPlatesDB = {
 },
 ["settings"] = {
 ["frame"] = {
-["heightFriend"] = 26.27604195216716,
-["width"] = 183.9322936651701,
-["height"] = 26.27604195216716,
-["widthFriend"] = 183.9322936651701,
+["heightFriend"] = 20,
+["width"] = 140,
+["height"] = 20,
+["widthFriend"] = 140,
 },
 },
 },

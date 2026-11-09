@@ -3,39 +3,39 @@ DataStore_Currencies_Characters = {
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794122595,
+["lastUpdate"] = 1794206026,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794106135,
+["lastUpdate"] = 1794167029,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794105958,
+["lastUpdate"] = 1794202064,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794105823,
+["lastUpdate"] = 1794167159,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794106009,
+["lastUpdate"] = 1794167093,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794106081,
+["lastUpdate"] = 1794167219,
 },
 }
 DataStore_Currencies_Catalog = {
-["List"] = {
+["Set"] = {
 },
 ["Count"] = 0,
-["Set"] = {
+["List"] = {
 },
 }
 DataStore_Currencies_Info = {
@@ -43,10 +43,10 @@ DataStore_Currencies_Info = {
 DataStore_Currencies_Max = {
 }
 DataStore_Currencies_Headers = {
-["List"] = {
+["Set"] = {
 },
 ["Count"] = 0,
-["Set"] = {
+["List"] = {
 },
 }
 DataStore_Currencies_Archeology = {
