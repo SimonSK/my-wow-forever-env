@@ -1,4 +1,4 @@
-DungeonJournal 1.7.3
+DungeonJournal 2.0
 
 INSTALLATION
 Exit WoW, then extract this ZIP so
@@ -9,6 +9,276 @@ SETTINGS
 The addon folder, keybinding and saved-variable names are unchanged, so existing
 preferences carry over. Character progress is read from the game.
 Command: /dj.
+
+CHANGES IN 2.0
+- The Drowned City: Serpentbane Crown confirmed for Min'loth the Serpent.
+- Developer test commands removed.
+- Character Logs: a Party button next to the dungeon name lists who did the
+  run, in class colours (runs recorded from now on).
+- Character Logs: run dates follow the game clock's settings (12/24-hour,
+  realm or local time); English shows e.g. Nov 9  9:01 PM.
+- Character Logs: Trash killed is now a plain count instead of a percentage.
+- Character Logs: hovering an item no longer compares it with your gear;
+  hold Shift to compare.
+- /dj export: compressed FDJ3 character snapshots for permanent website links,
+  including quest/RPG progress and the latest 100 Character Logs.
+- Razorfen Downs: The Coldbringer's Eye (Horde) is given and taken back
+  by Sutara Plainstalker, Skywatcher Plateau, Mulgore (map pin added).
+- The first time the Dungeon Tracker shows up, a note with an arrow points
+  at it: New Dungeon Tracker, "Right Click" to disable. It stays until OK
+  is clicked; until then, right-clicking the note or the tracker opens
+  Options > Dungeon Tracker with Never track dungeons highlighted.
+- New Options page "RPG Mode": Enable (same switch as RPG Mode on the
+  Dungeon list page), Hide Quest Achievement Popups, Hide Boss
+  Achievement Popups, Mute Achievements, and an Achievement Popup sound
+  slider (now 15% quieter by default: 85%).
+- Blackfathom Deeps (Alliance): once Blackfathom Villainy is handed in
+  without In Search of Thaelrid done, Thaelrid can't be done any more. It then no
+  longer counts towards the dungeon's quests (so the dungeon can still show
+  as completed), and its row is greyed out: "Unavailable, read quest
+  warning" (still clickable).
+- The first time you click the WoW Forever emblem (only Forever dungeons
+  shown), a note with an arrow points at it: Switch back to full view.
+- Quest items a boss drops (An Unsent Letter from Edwin VanCleef, and the
+  like) now say where: "Looted from Edwin VanCleef, The Deadmines". Clicking
+  the item opens that boss's loot with the item glowing (3 seconds, or until
+  you hover it).
+- The Drowned City: new Trash Drops page with Risen Sentry's Links (Legs,
+  Mail), dropped by the Risen Sentry, shown with its portrait.
+- Wailing Caverns: Lord Serpentis drops the Blueprint: Journeyman Campfire.
+- The Drowned City: new level 38 rare, Umbra (a murloc), with Deep-Dweller's Grips as a
+  confirmed drop (it was listed as a probable drop from Gill).
+- Blackmaw Hold: new level 55 rare, Gortek the Apprentice, who drops Fist of
+  Revelation. Elder Shaman Bloodmane drops Bloody Claws of Attack, and the
+  Unbound Spirit drops the Flamebreak Talisman.
+- Show Location: the entrance button now works for Krol'dok Stronghold,
+  Alcaz Prison, Blackmaw Hold and Shaper's Terrace.
+- No more "found the item ID of ..." lines in chat: the journal still learns
+  item IDs on its own, silently (/dj newids lists them). Five learned IDs
+  are now built in.
+- Razorfen Downs: Plaguemaw the Rotting's loot is listed (Swine Fists,
+  Plaguerot Sprig, and the new Decaying Flesh Bands).
+- Razorfen Downs: Plaguemaw the Rotting is not a rare: he comes at the end of
+  Extinguishing the Idol. He is listed after Tuten'kash, and his page says
+  "Spawns at the end of ? Extinguishing the Idol" (click it for the quest).
+- Krol'dok Stronghold: Slavecrusher Grox drops the Blueprint: Expert Campfire.
+- Razorfen Downs: Ragglesnout's loot is listed (X'caliboar, Savage Boar's
+  Guard, Boar Champion's Belt, Plans: Sentinel's Boots).
+- Zul'Farrak: Witch Doctor Zum'rah also drops Jumanza Grips.
+- More loot: Avenger's Armor (Razorfen Kraul trash); The Rockpounder and
+  Stoneslayer (Archaedas, whose Archaedic Stone now shows "Random
+  enchantment"); Blade of the Wretched and Eater of the Dead (Ogom the
+  Wretched); Chloromesh Girdle and Brusslehide Leggings (Razorlash); Blade of
+  Eternal Darkness (Princess Theradras).
+- Sliverblade is listed with the Scarlet Monastery trash drops (very rare).
+- The Looking For Group eye now finds The Stockade ("Stormwind Stockades" in
+  the group list) and other dungeons whose list name differs a little.
+- The Drowned City: Gill is level 38, and the Tidebound Dagger is a confirmed
+  drop from Gill (it was listed as a probable drop).
+- Krol'dok Stronghold: Bossman Toof drops the Band of Bossman (Finger).
+- The Stockade: Kam Deepfury drops the Pattern: Trapper's Leather Helm.
+- Krol'dok Stronghold: Nar'gurk drops the Krol'dok Warplate Helmet (it was a
+  probable trash drop).
+- The Drowned City: new level 38 rare elite, "Pyromancer" Braxton, with the
+  Pyromancer's Baton (seen dropping) and the Flamestarter's Signet; both were
+  listed as Gill's probable loot.
+- The Drowned City: the Umbral Scaled Belt is now Umbra's probable loot
+  (it was Gill's).
+- Stratholme: Baroness Anastari drops Wail of the Banshee.
+- Stratholme: Undead: Magistrate Barthilas is listed after Maleki the Pallid.
+- Krol'dok Stronghold: War Handler Ashka is level 43, and War Handler's Gaze
+  is a confirmed drop from him (it was listed as probable).
+- Zul'Farrak: Dustwraith drops the Desertwalker Cane; Chief Ukorz Sandscalp
+  also drops Ripsaw, Embrace of the Lycan and Jang'thraze the Protector;
+  Antu'sul also drops the Lifeblood Amulet and Sang'thraze the Deflector.
+- Zul'Farrak: Ruuzlu is no longer listed as a boss of his own (he is fought
+  together with Chief Ukorz Sandscalp). In the Character Logs that fight
+  counts as done once both of them are dead.
+- New: Character Logs. Your character's portrait left of Favourites on the
+  main page (or /dj log) opens a log of this character's dungeon runs, recorded on their
+  own. Each run shows its time (first trash kill to last boss kill), deaths,
+  how much of the trash was killed, the XP from mobs, every boss (killed or
+  not) and every kind of trash killed with the XP it gave, the items you
+  pressed Need on (won or lost), and the time spent outside. A run is one
+  copy of the dungeon: a corpse run after releasing, or stepping out to a
+  vendor and coming back, carries on the same run; a reset dungeon starts a
+  new one. The red X on a run deletes it (after asking).
+  While a run is going, "Track on screen" shows its time, XP and bosses in a
+  small window you can drag anywhere by its top; bosses are shown by portrait, greyed
+  out with an X once killed (the log's boss list uses the same portraits).
+  Hover a killed boss (on screen or in the log) to see what it dropped and
+  who got it, with the dice (Need) or coin (Greed) and the number they rolled.
+  Won Need rolls in the log show the dice and your roll too.
+  Each run's page has its dungeon's card art faintly behind it.
+  Time outside: a Death Walk (released spirit, ghost run back) shows the
+  Spirit Healer's portrait; Stepped out is a trip out alive.
+  Right-click the portrait icon to hide it (Options: Hide Character Logs
+  icon brings it back; /dj log still opens the log).
+  The on-screen tracker has a size grip in its bottom right corner
+  (right-click it for 100%).
+  A run counts as completed (and its clock stops) only once every boss is
+  dead, not just the last one; rares and bosses that need a quest or a
+  summoning item to appear don't count.
+  The tracker also opens by itself when you enter a dungeon in a group
+  (close it with its X for that run). It shows the dungeon's rares too:
+  faded until found; one found alive glows gold with a soft chime (at once,
+  then 4, 8, 16... seconds apart). Click a rare's portrait to target it and
+  mark it with a skull (that also stops the glow and the chime).
+  Click a boss's portrait on the tracker to target it (no mark).
+  At the level cap (no XP to earn), the tracker and the log show the gold
+  and silver the run earned instead of the mobs' XP; below it the tracker
+  shows Time, Mobs XP and Gold side by side. Each run's page shows the
+  money it earned at the top right (gold and silver, or silver and copper
+  below one gold).
+  The tracker can always be moved, in combat too (the portraits' click
+  areas catch up once the fight is over).
+  Options > Dungeon Tracker: Never track dungeons (the tracker no longer
+  opens by itself), Show Tracker for solo runs too, Hide Time, Hide Mobs XP, Hide Gold, Hide Bosses (and rares). Right-click the
+  tracker for a menu with Options that opens that page.
+
+CHANGES IN 1.7.4
+- Quest tracker: in an opened quest chain, a step ready to hand in (Lost
+  Relic Carry in Prehistoric Prism) shows the round ? after its name, like
+  the other quests, instead of the small ? in front of it.
+- Excavation Site: Wetlands map: the Highland Horror (Horrors in the
+  Highland) is on the map, north of the Lost Dig Site, with the game's
+  quest badge (the yellow !) on its portrait to show it is a quest target.
+  Clicking it opens the quest.
+- Dungeon maps: a quest spot shows ? when it is where a quest in your log is
+  handed in or done, even if another quest also starts there (Daewyn
+  Songblade in the Excavation Site: Wetlands). A spot with nothing for you
+  right now (quests not taken yet, or already taken or done) is greyed out.
+  Clicking a spot opens the quest in your log. The pins update as you take
+  or hand in quests.
+- The Stockade, The Color of Blood: Nikova Raskol's map pin is in Old Town
+  (it was Classic's spot, north of Old Town on Forever's Stormwind map).
+  She walks around, so the map shows her path as a loop, drawn like the
+  travel routes, and her pin walks along it (it stops under the mouse).
+  Pins for NPCs that walk around can now show their path this way.
+- Boss loot is grouped by rarity (epic, rare, uncommon, common), with
+  materials such as the Maker's Spark always at the bottom.
+- No more small stutter a second after turning in a quest: the home page's
+  dungeon cards were rebuilt even with the journal closed. They are now
+  rebuilt only when the home page is on screen.
+- Shaper's Terrace: the Talon of Tor'Rel is a confirmed drop from Izha'Rel
+  and Tor'Rel (it was listed as a probable drop).
+- Search bar: no more lag while typing (for example "dm w"). The search
+  asked the game again for every item it had not loaded yet on each key
+  press, and every answer ran the whole search again. Each item is now asked
+  for once, and item answers redraw the journal once per burst. Results also
+  show a little sooner after the last key.
+- The Drowned City: the Dreadfrost Saber is a confirmed drop from Captain
+  Dreadrise (it was listed as a probable drop).
+- Summon items (Tome of Dalaran, Mallet of Zul'Farrak): the tooltip always
+  shows the whole "How to get it" text. On the first hover the game was
+  still loading the item and rebuilt the tooltip without it.
+- "Summon with:" and the item name are written in the quest list's font.
+- The Mallet of Zul'Farrak page has Bosses and Map buttons: they lead back
+  to Zul'Farrak (Bosses opens on Gahz'rilla).
+- Zul'Farrak: Gahz'rilla's page says "Summon with:" and the Mallet of
+  Zul'Farrak (the real item, its tooltip saying "Click to show quest"); a
+  click opens the mallet's quest chain. It replaces the red button. ("Summoned
+  by:" reads "Summon with:" for Lyn the Ignored too.)
+- Quest chain steps ready to hand in show the round ? in the chain list and
+  in the quest tracker (after the step's name): a click shows where to hand
+  it in.
+- Quest tracker: the chain step under a quest shows its number ("1. The
+  Greenwarden"). Clicking a turn-in ? also targets and marks the NPC when
+  you are near, like Show on Map.
+- Quest list: "Available from Level X" is shorter in French ("Ã€ partir du
+  niveau"), Spanish, Portuguese and Italian, so it fits on one line and the
+  chain and In Dungeon icons sit as in English, clear of the faction icons. A step's page shows "Show Turn In" whenever the turn-in NPC's spot
+  is known (e.g. The Greenwarden: Rethiel in the Green Belt).
+- Wailing Caverns map: the full original cave (from before patch 4.1 cut the
+  eastern maze) instead of the game's cut-down map; Lord Pythas and Skum
+  moved to their rooms in the east.
+- Required and provided item cards on quest pages sit two to a row, like the
+  rewards, instead of one under the other.
+- Arrows either side of the Dungeons button go to the previous / next
+  dungeon (in the home page's order) on the same page: Bosses, Quests or Map.
+  They stop at the first and last dungeon (greyed out there).
+- The Drowned City: Priestess Cloak drops from Var'Taka (not Primeval
+  Elemental as guessed); Heart of the Primeval (Primeval Elemental) and Maw
+  of Min'loth (Min'loth the Serpent) are confirmed drops now.
+- The Drowned City: Knucklebone Ring drops from Deathless Marrow (it was
+  guessed for Primeval Elemental).
+- The Drowned City (Horde): A Tale Spun Around the Fire, Kin'weelay's
+  follow-up (take the etchings to Master Gadrin in Sen'jin Village), is the
+  quest's entry now, with The Drowned City as a step in its chain; its three
+  reward choices are shown.
+- Shaper's Terrace: Nanaya added as the last boss (Leggings of Curation,
+  Maker's Spark). New drops: Titanosaur Scale Pendant (Titanosaur, with a
+  "Can drop 2 items" note under his name), Spiderchitin Wrap (Venomridge),
+  Dinofrill Casque (Thunderhoof), Tooth of the Matriarch (Direhorn
+  Matriarch), and Shaper's Robe as a trash drop.
+- Shaper's Terrace: Izha'Rel and Tor'Rel, two raptors fought together (not
+  elite), added before Nanaya: Raptorscale Bulwark, Frostfang Mail Vest
+  (Talon of Tor'Rel probable). Legplates of Reinforced Crystal confirmed from
+  Nanaya.
+- Zul'Farrak: Horde quest Zum'rah's Head (Mazu'kon, Skywatcher Plateau,
+  Mulgore); The Witch Doctor's Head (Alliance) has its real quest ID now.
+- Dire Maul West: Illyanna Ravenoak now after Magister Kalendris; Lord
+  Hel'nurath says he is summoned by the Warlock epic mount quest.
+  Tendris Warpwood drops Stoneflower Staff.
+- Dire Maul East: Pusillin added as the first boss (Obsidian Bauble, Recipe:
+  Runn Tum Tuber Surprise). Fervent Helm shows "<Random enchantment>" like on
+  Wowhead (it drops as "of Frost Resistance" and so on). Venomvessel Ring (Venomridge), Nanaya's Control Spire (Nanaya).
+  Real item IDs for the Shaper's Terrace drops (tooltips from the game now),
+  and the rest of the dungeon's item batch listed as probable drops.
+- Quest chains: a step done (even partly) inside the dungeon shows the In
+  Dungeon icon after its Objective: its objective names the dungeon, or one
+  of its items comes from there (e.g. Destruction in Deadmines, The Test of
+  Righteousness, The Drowned City's rubbings).
+- Alcaz Prison: Alliance quest The Dragon's Journal (Zarla's Journal from
+  Blazeroar; starts in Dalaran, giver not known yet).
+- Krol'dok Stronghold: the key quests for both factions (Krol'dok Moulding,
+  then Key Ingredients for the Krol'dok Compound Key); Scraps of Knowledge
+  and Curious Trinkets before A Small Favor in the Alliance Tome of Twilight
+  chain; Bring Me His Head, Twilight Mementos, Lingering Essence and
+  (probably) Curios of Curiosity as one Alliance chain.
+- Blackmaw Hold quests: Get to the Roots of It (both factions, after
+  Beneath Nordrassil), Blackmaw Magic (both factions; givers not known yet)
+  and Claws That Rend, Tusks that Gore (Ogtinc, Azshara).
+- Blackmaw Hold: Blackmaw Pouches (Ekkal, Ruins of Eldarath). Shaper's
+  Terrace: Crystalline Elements (Mayena Earthseeker, Mulgore), Essence of
+  Seeping Slimes and The Dark Crystal (givers not known yet), with their
+  rewards. Seen by Horde players.
+- Rewards (XP, money, reputation, items) for the new Blackmaw Hold, Alcaz
+  and Krol'dok quests, from Wowhead Forever. Quests the server sends no data
+  for now show their stored XP after a few seconds instead of nothing.
+- Blackmaw Hold: Impaan the Imprisoner drops Flameslash Crescent. Boss list
+  now starts Impaan, Bonesnout, Moontouched Wanderer. New drops: Lunarlight
+  Robe (Moontouched Wanderer), Shamanic Wristguards (Elder Shaman Bloodmane),
+  Trousers of the Ebon Giant (Blackmaw Behemoth), Scalding Flamehoof (Varrox
+  Bleakhoof).
+- Razorfen Downs: Glutton drops Abomination Chain and Plans: Justicar's
+  Boots.
+- Shaper's Terrace is open: its page has six bosses (Titanosaur,
+  Venomridge, Thunderhoof, Direhorn Matriarch, Bolt, Vitrix; the order is
+  not confirmed yet), their levels and the drops seen so far: Deeproar Cord
+  and Gargantuan Wristguards (Titanosaur), Octoclaw Chain Boots
+  (Venomridge), Deep Jungle Rifle (Thunderhoof), Scaleguard Scimitar
+  (Direhorn Matriarch), Bolt's Charged Eyeball (Bolt). New card art (its
+  loading screen).
+- Zul'Farrak: a "How to get the Mallet" button on Gahz'rilla's boss page,
+  under his name beside the portrait, opens the Mallet of Zul'Farrak chain: loot the Sacred Mallet from
+  Qiaga the Keeper (Altar of Zul), then use it at the altar on top of
+  Jintha'Alor (both in The Hinterlands). Each step has Show on Map and is
+  ticked once you hold its item.
+- Blackmaw Hold: Varrox Bleakhoof is the final boss (now last in the
+  list). New drops: Veilpiercer Girdle (Elder Shaman Bloodmane), Behemoth
+  Bones (Blackmaw Behemoth), Burnished Pridescales (Unbound Spirit), Bleak
+  Eye Shoulderplates (Varrox Bleakhoof). Elder Shaman Bloodmane, Blackmaw
+  Behemoth and Unbound Spirit are level 59.
+- The Drowned City: Bloodslash Axe is a confirmed drop from Zul'Alai.
+- Krol'dok Stronghold: Strongly Scented Hood drops from Overlord Mugg;
+  Mugg's Crosser is listed as his probable drop.
+- Blackfathom Deeps (Alliance): Blackfathom Villainy no longer says
+  "Requires: In Search of Thaelrid" (Argent Guard Thaelrid gives it without
+  it). In Search of Thaelrid warns in red above its Objective: if it is not
+  handed in before you accept Blackfathom Villainy, it becomes unavailable.
+  Blackfathom Villainy warns too: accept it after completing In Search of
+  Thaelrid, or you will lose that quest.
 
 CHANGES IN 1.7.3
 - New option "Forever Dungeons Only" (Options > Dungeon List, off by
@@ -86,6 +356,11 @@ CHANGES IN 1.7.3
   both Destruction in Deadmines quests (not at the Sentinel Hill inn).
 - Gnomeregan: Rig Wars is listed as a quest of its own (it stays the first
   step of Gnomer-gooooone!), and its pin on the dungeon map opens Rig Wars.
+  In Gnomer-gooooone!'s chain it reads "Rig Wars (accept only)": it only
+  has to be in your quest log for Sovik to offer Chief Engineer Scooty.
+- Scarlet Monastery: Into The Scarlet Monastery and In the Name of the Light
+  are listed in the Library too (Houndmaster Loksey is one of their kills),
+  not only in the Armory and the Cathedral.
 - The Glowing Shard: the objective reads "0/1 Speak with Sputtervalve in
   Ratchet" (then "1/1 ...", greyed, once you have spoken to him), with a
   Show on Map button under it that marks Sputtervalve by the flight master
@@ -373,7 +648,7 @@ CHANGES IN 1.6.4
   tooltip on dungeon covers was removed; the City of Dalaran cover no longer
   shows a black strip at the bottom.
 - Wailing Caverns: Lord Pythas moved to his correct spot on the map.
-- French: "Une requête apeurée" quest name and objective corrected.
+- French: "Une requÃªte apeurÃ©e" quest name and objective corrected.
 - Options: "Show all class quests" label matches the other options.
 
 CHANGES IN 1.6.3
@@ -489,7 +764,7 @@ CHANGES IN 1.6.1
 - New items whose ID was not known yet fill in their icon and tooltip by
   themselves once you see the item in game (tooltip, loot, roll or chat link).
 - The pop-up about the /dj command no longer appears at login.
-- Spanish: dungeon names now match the game (Salón de los Feudales, Minas de
+- Spanish: dungeon names now match the game (SalÃ³n de los Feudales, Minas de
   la Muerte, Mazmorras de Ventormenta).
 
 CHANGES IN 1.6.0

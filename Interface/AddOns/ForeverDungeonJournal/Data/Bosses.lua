@@ -16,12 +16,26 @@ FDJ.BOSS_LEVELS = {
         ["Arcanic Enigma"] = "30",
         ["Shade of the Archmage"] = "33",
     },
+    ["Shaper's Terrace"] = {
+        ["Titanosaur"] = "61",
+        ["Venomridge"] = "61",
+        ["Thunderhoof"] = "61",
+        ["Direhorn Matriarch"] = "61",
+        ["Bolt"] = "62",
+        ["Vitrix"] = "62",
+        ["Izha'Rel and Tor'Rel"] = "61",
+        ["Nanaya"] = "62",
+    },
     ["Blackmaw Hold"] = {
         ["Withermaw"] = "58",
         ["Impaan the Imprisoner"] = "57",
         ["Bonesnout the Unbroken"] = "58",
         ["Varrox Bleakhoof"] = "60",
+        ["Elder Shaman Bloodmane"] = "59",
+        ["Blackmaw Behemoth"] = "59",
+        ["Unbound Spirit"] = "59",
         ["Moontouched Wanderer"] = "55",
+        ["Gortek the Apprentice"] = "55",
     },
     ["Alcaz Prison"] = {
         ["Overseer Wrex"] = "50",
@@ -33,6 +47,7 @@ FDJ.BOSS_LEVELS = {
     ["Krol'dok Stronghold"] = {
         ["Slavecrusher Grox"] = "42",
         ["Twilight Commander Zarmok"] = "43",
+        ["War Handler Ashka"] = "43",
         ["Nar'gurk"] = "44",
         ["Bossman Toof"] = "42",
         ["Overlord Mugg"] = "45",
@@ -132,6 +147,7 @@ FDJ.BOSS_LEVELS = {
         ["Princess Theradras"] = "51",
     },
     ["Dire Maul: East"] = {
+        ["Pusillin"] = "57",
         ["Zevrim Thornhoof"] = "57",
         ["Hydrospawn"] = "57",
         ["Lethtendris"] = "57",
@@ -394,6 +410,7 @@ FDJ.STATIC_DISPLAY_IDS = {
     [260322] = 144209,  -- Saltspine
     [260325] = 144210,  -- Shadetooth
     [260326] = 144224,  -- Relic Guardian
+    [260808] = 9010,    -- Highland Horror (quest target, Wowhead Forever)
 
     -- City of Dalaran
     [247126] = 145787,  -- Atrexis the Grave Knight
@@ -509,6 +526,7 @@ FDJ.STATIC_DISPLAY_IDS = {
 
     -- Dire Maul: East
     [11490] = 11335,  -- Zevrim Thornhoof
+    [14354] = 7552,   -- Pusillin
     [13280] = 5489,   -- Hydrospawn
     [14327] = 14378,  -- Lethtendris
     [11492] = 14416,  -- Alzzin the Wildshaper
@@ -617,6 +635,8 @@ FDJ.STATIC_DISPLAY_IDS = {
     [270885] = 142245,  -- Deathless Marrow (the client's "Staging Area" copy)
     [270887] = 129945,  -- Primeval Elemental (the client's "Staging Area" copy)
     [264177] = 144023,  -- Gill
+    [264172] = 144022,  -- Umbra
+    [260468] = 142457,  -- "Pyromancer" Braxton
     [260274] = 142322,  -- Min'loth the Serpent
     -- Krol'dok Stronghold
     [258966] = 141217,  -- Slavecrusher Grox
@@ -630,6 +650,16 @@ FDJ.STATIC_DISPLAY_IDS = {
     [257016] = 2317,    -- Katerina the Cleaner
     [256236] = 140092,  -- The Questioner
     [255702] = 6374,    -- Blazeroar
+    -- Shaper's Terrace
+    [253201] = 142989,  -- Titanosaur
+    [261813] = 144511,  -- Venomridge
+    [261812] = 144514,  -- Thunderhoof
+    [262127] = 144515,  -- Direhorn Matriarch
+    [262081] = 143063,  -- Bolt
+    [272561] = 147098,  -- Vitrix
+    [261809] = 143832,  -- Nanaya
+    [253218] = 143040,  -- Izha'Rel
+    [261811] = 143039,  -- Tor'Rel
     -- Blackmaw Hold
     [247195] = 140708,  -- Withermaw
     [247206] = 130432,  -- Impaan the Imprisoner
@@ -639,6 +669,7 @@ FDJ.STATIC_DISPLAY_IDS = {
     [247207] = 130436,  -- Blackmaw Behemoth
     [247231] = 131644,  -- Unbound Spirit
     [269104] = 12235,   -- Moontouched Wanderer
+    [269111] = 145808,  -- Gortek the Apprentice
 }
 
 -- 1.9.4: Primeval Elemental (The Drowned City) has no NPC ID of its own yet:
@@ -683,4 +714,6 @@ FDJ.TRASH_MOB_DISPLAY_IDS = {
     ["Scarlet Myrmidon"] = 2514, -- npc 4295
     ["Scarlet Champion"] = 2460, -- npc 4302
     ["Scarlet Centurion"] = 2499, -- npc 4301
+    -- The Drowned City
+    ["Risen Sentry"] = 145398, -- npc 258792
 }
