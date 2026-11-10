@@ -1,16 +1,12 @@
-# QuestieDB 1.0.12
+# QuestieDB 1.0.13
 
 ### Quest fixes
 
-- Check for the right faction banner for alliance Camping 101: Tailoring quests ([Cabro](https://github.com/Questie/QuestieDB/commit/21be34023b72cf2ec3027cb9a61a8b72a1910857))
+- Fixed the Sleeping Bag quest chains ([Cabro](https://github.com/Questie/QuestieDB/commit/059590ea1636867449ff08d5a4386a19edd18a65))
+- [Forever] Fix objective location for "The Sleeper Has Awakened" ([BreakBB](https://github.com/Questie/QuestieDB/commit/68fff48d9c05ba6c8ca20f5838be188da4520778))
 
 ### Database fixes
 
-- [Forever] Fix exploration coords for "Frostmane Hold" ([BreakBB](https://github.com/Questie/QuestieDB/commit/ad3de4625b3146540d24ea2ccbe26c6da8f9597b))
-- [Forever] Update all databases ([BreakBB](https://github.com/Questie/QuestieDB/commit/07bc49ad1d6cffb7f32b947f394edfbf54905e01))
+- [Forever] Add quest XP from traces ([BreakBB](https://github.com/Questie/QuestieDB/commit/60f45b0bfc314925ff85e9840a025b7e69dd0d6d))
 
-### Localization fixes
-
-- [Forever] Update all translations ([BreakBB](https://github.com/Questie/QuestieDB/commit/3ac79c37f140b8eb343a28318b7a516b82802a86))
-
-[All changes since v1.0.11](https://github.com/Questie/QuestieDB/compare/v1.0.11..4d31c10394b11bd133069ecf1662062cdf4d8691)
+[All changes since v1.0.12](https://github.com/Questie/QuestieDB/compare/v1.0.12..0f7d8adc92b28ac6594f4ad8745257f4d9784edf)
