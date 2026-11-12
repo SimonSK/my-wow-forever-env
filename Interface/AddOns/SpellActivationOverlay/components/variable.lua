@@ -86,14 +86,26 @@ var.condition.description,
 var.condition.checker,
 var.condition.noeToHash
 )
-if type(var.event.isRequired)=='function' and var.event.isRequired()
-or type(var.event.isRequired)=='boolean' and var.event.isRequired then
-for _,eventName in ipairs(var.event.names or {})do
+local function addEventProxy(eventName)
 if var.event[eventName] then
 if SAO.VariableEventProxy[eventName] then
 tinsert(SAO.VariableEventProxy[eventName],var)
 else
 SAO.VariableEventProxy[eventName]={var}
+end
+end
+end
+if type(var.event.isRequired)=='function' and var.event.isRequired()
+or type(var.event.isRequired)=='boolean' and var.event.isRequired then
+for _,eventName in ipairs(var.event.names or {})do
+addEventProxy(eventName)
+end
+for unitName,eventName in pairs(var.event.unitNames or {})do
+if type(eventName)=='string' then
+addEventProxy(eventName)
+elseif type(eventName)=='table' then
+for _,subEventName in ipairs(eventName)do
+addEventProxy(subEventName)
 end
 end
 end

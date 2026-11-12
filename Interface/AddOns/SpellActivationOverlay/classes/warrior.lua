@@ -259,6 +259,7 @@ overpower,
 "counter",
 {
 buttonOption=not SAO.IsMoP() and {variants=function() return OverpowerHandler.variants end} or nil,
+overlay=SAO.IsForever() and {texture="bandits_guile",position="Top (CW)",scale=1.2,alpha=234} or nil,
 }
 )
 end
@@ -309,6 +310,7 @@ revenge,
 "counter",
 {
 buttonOption=not SAO.IsMoP() and {variants=function() return RevengeHandler.variants end} or nil,
+overlay=SAO.IsForever() and {texture="sword_and_board",position="Left + Right (Flipped)",scale=1.1} or nil,
 }
 )
 end

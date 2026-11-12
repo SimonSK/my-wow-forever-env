@@ -59,6 +59,7 @@ end,
 event={
 isRequired=true,
 names={"PLAYER_EQUIPMENT_CHANGED"},
+unitNames=nil,
 PLAYER_EQUIPMENT_CHANGED=function(...)
 SAO:CheckManuallyAllBuckets(SAO.TRIGGER_ITEM_SET)
 end,

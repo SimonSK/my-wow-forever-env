@@ -80,6 +80,14 @@ bit.band(projectFlags,SAO.MOP)~=0 and SAO.IsMoP() or
 bit.band(projectFlags,SAO.RETAIL)~=0 and SAO.IsRetail()
 )
 end
+local isClassic=SAO.IsProject(SAO.ERA + SAO.TBC + SAO.WRATH + SAO.CATA + SAO.MOP)
+function SAO.IsClassic()
+return isClassic
+end
+local isModern=SAO.IsProject(SAO.FOREVER + SAO.RETAIL)
+function SAO.IsModern()
+return isModern
+end
 local flavorNames={
 [WOW_PROJECT_FOREVER or 18]="Forever",
 [WOW_PROJECT_CLASSIC or 2]="Era",

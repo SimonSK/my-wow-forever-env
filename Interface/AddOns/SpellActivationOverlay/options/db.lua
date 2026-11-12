@@ -118,6 +118,12 @@ transferOption(db, "DRUID", "alert",omenOfClarity,-1,omenOfClarity,0)
 overwriteOption(db, "DRUID", "alert",omenOfClarity,-1,nil)
 end
 end},
+{"2.9.0",function(db)
+if SAO.IsProject(SAO.FOREVER)then
+local frozenDebuff=5276
+overwriteOption(db, "MAGE", "alert",frozenDebuff,0,true)
+end
+end},
 }
 function SAO.LoadDB(self)
 local db=SpellActivationOverlayDB or {}
@@ -142,7 +148,7 @@ if (type(db.alert.timer)=="nil")then
 db.alert.timer=1
 end
 if (type(db.alert.sound)=="nil")then
-db.alert.sound=self.IsProject(SAO.CATA_AND_ONWARD) and 1 or 0
+db.alert.sound=self.IsProject(SAO.FOREVER + SAO.CATA_AND_ONWARD) and 1 or 0
 end
 if not db.glow then
 db.glow={}

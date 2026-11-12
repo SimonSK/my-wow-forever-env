@@ -511,6 +511,38 @@ overlay={texture="genericarc_05",position="Left + Right (Flipped)",scale=1.5,pul
 }
 )
 end
+local function useFreezeDebuff()
+local freezeID=5276
+local frozenAKAs={}
+local addSpellIDCandidates=function(ids)
+for _,id in pairs(ids)do
+if SAO:GetSpellName(id)then
+table.insert(frozenAKAs,id)
+end
+end
+end
+addSpellIDCandidates(FrozenHandler.frostbite)
+addSpellIDCandidates(FrozenHandler.frost_nova)
+addSpellIDCandidates(FrozenHandler.freezing_trap)
+addSpellIDCandidates(FrozenHandler.freeze)
+addSpellIDCandidates(FrozenHandler.shattered_barrier)
+addSpellIDCandidates(FrozenHandler.deep_freeze)
+addSpellIDCandidates(FrozenHandler.deep_freeze_sod)
+addSpellIDCandidates(FrozenHandler.hungering_cold)
+addSpellIDCandidates(FrozenHandler.improved_cone_of_cold)
+addSpellIDCandidates(FrozenHandler.ring_of_frost)
+SAO:CreateEffect(
+"freeze",
+SAO.FOREVER,
+freezeID,-- Not the real spellID,but useful because it has an informative "Freeze" name and icon
+"aura",
+{
+aka=frozenAKAs,
+auraProps={debuff=true},
+overlay={texture="frozen_fingers",position="Top (CW)",pulse=false},
+}
+)
+end
 local function useFingersOfFrost()
 local hash0Stacks=SAO:HashNameFromStacks(0)
 local hash1Stack=SAO:HashNameFromStacks(1)
@@ -603,9 +635,9 @@ SAO.FOREVER,
 "aura",
 {
 overlays={
-{stacks=1,texture="hot_streak",position="Left + Right (Flipped)",scale=0.6,pulse=false,level=1,color={200,200,200},option=false},
-{stacks=2,texture="hot_streak",position="Left + Right (Flipped)",scale=0.8,pulse=false,level=2,color={222,222,222},option=false},
-{stacks=3,texture="hot_streak",position="Left + Right (Flipped)",scale=1.0,pulse=true ,level=3,color={255,255,255},option={setupHash=SAO:HashNameFromStacks(0),testHash=SAO:HashNameFromStacks(3)}},
+{stacks=1,texture="hot_streak",position="Left + Right (Flipped)",scale=0.5,pulse=false,level=1,color={200,200,200},option=false},
+{stacks=2,texture="hot_streak",position="Left + Right (Flipped)",scale=0.7,pulse=false,level=2,color={222,222,222},option=false},
+{stacks=3,texture="hot_streak",position="Left + Right (Flipped)",scale=0.9,pulse=true ,level=3,color={255,255,255},option={setupHash=SAO:HashNameFromStacks(0),testHash=SAO:HashNameFromStacks(3)}},
 },
 }
 )
@@ -627,7 +659,7 @@ end
 if self.IsProject(SAO.SOD + SAO.WRATH + SAO.CATA)then
 self:RegisterAura("hot_streak_half",0,heatingUpSpellID, "hot_streak", "Left + Right (Flipped)",0.5,255,255,255,false)
 end
-if self.IsCata(SAO.SOD + SAO.WRATH)then
+if self.IsProject(SAO.SOD + SAO.WRATH)then
 self:RegisterAura("hot_streak_duo",0,hotStreakHeatingUpSpellID, "hot_streak", "Left + Right (Flipped)",0.5,255,255,255,false)
 self:RegisterAura("hot_streak_duo",0,hotStreakHeatingUpSpellID, "hot_streak", "Left + Right (Flipped)",1,255,255,255,true)
 end
@@ -635,6 +667,8 @@ end
 local function registerFrost(self)
 if self.IsProject(SAO.ERA + SAO.TBC + SAO.WRATH + SAO.CATA + SAO.MOP)then
 self:RegisterAura("freeze",0,FrozenHandler.fakeSpellID,FrozenHandler.saoTexture,FrozenHandler.saoPosition,FrozenHandler.saoScaleFactor,255,255,255,false)
+elseif self.IsProject(SAO.FOREVER)then
+useFreezeDebuff()
 end
 if self.IsSoD()then
 local iceLanceAndDeepFreezeSoD={self:GetSpellName(FrozenHandler.ice_lance_sod[1]),self:GetSpellName(FrozenHandler.deep_freeze_sod[1])}

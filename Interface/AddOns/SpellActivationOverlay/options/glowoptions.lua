@@ -16,9 +16,9 @@ local classFile=self.CurrentClass.Intrinsics[2]
 local applyTextFunc=function(self)
 local retryApplyText
 local enabled=self:IsEnabled()
-local text=""
+local text=" "
 if talentID and talentID~=glowID and not alwaysHideTalentText then
-text=text.." "..talentText
+text=text..talentText
 if type(talentSubText)=='function' then
 local evalTalentSubText=talentSubText()
 if type(evalTalentSubText)=='string' then

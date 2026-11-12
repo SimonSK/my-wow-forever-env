@@ -8,18 +8,6 @@ local shortSide=128 * sizeScale
 local combatOverlayFactor=2
 local useTimer=true
 local useSound=false
-if SAO.IsForever()then
-local welcomeBefore=SAO:gradientText(">>>>>>",{{r=0.5,g=0.5,b=1},{r=1,g=1,b=1}})
-local orange,orangeLight,orangeDark={r=1,g=0.7,b=0.2},{r=1,g=0.85,b=0.55},{r=0.9,g=0.65,b=0.15}
-local welcomeSAO=SAO:gradientText("Spell Activation Overlay",{orange,orangeLight,orange,orangeDark})
-local lightBlue,lightBlueLight={r=0.7,g=0.9,b=1},{r=0.85,g=0.95,b=1}
-local welcomeForever=SAO:gradientText("World of Warcraft: Forever",{lightBlue,lightBlueLight,lightBlue})
-local welcomeDiscord="|cffcdffcdDiscord server|r"
-local welcomeCurseForge="|cffcdffcdCurseForge|r"
-local welcomeText=welcomeBefore .. " Welcome to " .. welcomeSAO .. " for " .. welcomeForever .. ". " ..
-"Make sure to send feedback over the " .. welcomeDiscord .. " or " .. welcomeCurseForge .. ", ".. "thank you :)"
-print(welcomeText)
-end
 function SpellActivationOverlay_OnLoad(self)
 SAO.Frame=self
 SAO.ShowAllOverlays=SpellActivationOverlay_ShowAllOverlays
@@ -82,8 +70,17 @@ SAO:RegisterEventHandler(self, "ADDON_LOADED", "Main init")
 for _,var in pairs(SAO.Variables)do
 if type(var.event.isRequired)=='function' and var.event.isRequired()
 or type(var.event.isRequired)=='boolean' and var.event.isRequired then
-for _,eventName in ipairs(var.event.names)do
+for _,eventName in ipairs(var.event.names or {})do
 SAO:RegisterEventHandler(self,eventName, "Main init: Variable "..var.core)
+end
+for unitName,eventName in pairs(var.event.unitNames or {})do
+if type(eventName)=='string' then
+SAO:RegisterEventHandler(self,eventName, "Main init: Variable "..var.core,unitName)
+elseif type(eventName)=='table' then
+for _,subEventName in ipairs(eventName)do
+SAO:RegisterEventHandler(self,subEventName, "Main init: Variable "..var.core,unitName)
+end
+end
 end
 end
 end

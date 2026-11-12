@@ -1,7 +1,7 @@
 local AddonName,SAO=...
 local Module="auracontainer"
 local LoadAddOn=C_AddOns and C_AddOns.LoadAddOn or LoadAddOn
-local useAuraContainer=(SAO.IsForever() or SAO.IsRetail()) and C_Secrets~=nil and C_Secrets.GetSpellAuraSecrecy~=nil
+local useAuraContainer=SAO.IsModern() and C_Secrets~=nil and C_Secrets.GetSpellAuraSecrecy~=nil
 local function splitPositions(position)
 local positions={}
 for component in string.gmatch(position or "", "[^%+]+")do
@@ -10,13 +10,21 @@ tinsert(positions,component)
 end
 return positions
 end
-local function getInfoFromHash(hash,macroCondition,spellID)
+local function getInfoFromHash(hash,macroCondition,spellID,extra)
 local requiresAura=type(SAO.Hash.hasAuraStacks)=='function' and hash:hasAuraStacks()
 if not requiresAura then
 return nil
 end
-local unit="player" -- For now,aura containers only support the "player" unit
-local itemInfo={unit=unit}
+local unit="player"
+local filterString="HELPFUL"
+if extra and extra.debuff then
+unit="target"
+filterString="HARMFUL"
+end
+if extra and extra.mineOnly then
+filterString=filterString .. "|PLAYER"
+end
+local itemInfo={unit=unit,filterString=filterString}
 local nbAuraStacks=hash:getAuraStacks()
 itemInfo.nbAuraStacks=nbAuraStacks
 if nbAuraStacks==nil then
@@ -76,6 +84,7 @@ id=id,
 container=container,
 spellID=overlay.spellID,
 unit=options.unit,
+filter=options.filterString,
 scale=overlay.scale,
 fontScale=3,
 positions=splitPositions(overlay.position),
@@ -92,10 +101,17 @@ visible=true,
 internallyEnabled=true,
 auraButtons={},
 slotKeys={},
+includeSpellIDs={[overlay.spellID]=true}
 }
 self.__index=nil
 setmetatable(item,self)
 self.__index=self
+local akaSpellIDs=SAO:GetAkaSpellIDsByEffectSpellID(overlay.spellID)
+if akaSpellIDs then
+for _,akaSpellID in ipairs(akaSpellIDs)do
+item.includeSpellIDs[akaSpellID]=true
+end
+end
 for index,position in ipairs(item.positions)do
 local slotKey="item_"..id.."_index_"..index
 local auraSlotOptions={
@@ -103,20 +119,15 @@ globalGeometry=options.globalGeometry,
 position=position,
 applications=options.nbAuraStacks,
 }
-local includeSpellIDs={[overlay.spellID]=true}
-local akaSpellIDs=SAO:GetAkaSpellIDsByEffectSpellID(overlay.spellID)
-if akaSpellIDs then
-for _,akaSpellID in ipairs(akaSpellIDs)do
-includeSpellIDs[akaSpellID]=true
-end
-end
-local auraButton=container:AddAuraSlot(slotKey, "HELPFUL",{
+local auraButton=container:AddAuraSlot(slotKey,options.filterString,{
 templateNames={"SAOAuraButtonTemplate"},
 initializeFrame=function(auraButton)
 item:initializeAuraButton(auraButton,auraSlotOptions)
 end,
+sortMethod=AuraContainerSortMethod.ExpirationOnly,
+sortDirection=AuraContainerSortDirection.Reverse,
 candidateFilters={
-includeSpellIDs=includeSpellIDs,
+includeSpellIDs=item.includeSpellIDs,
 },
 })
 item.auraButtons[index]=auraButton
@@ -317,7 +328,7 @@ end
 self.containers[hashInfo.container.key]=container
 return container
 end,
-registerOverlay=function(self,overlay)
+registerOverlay=function(self,overlay,extra)
 if not useAuraContainer then
 return nil
 end
@@ -325,10 +336,7 @@ if not self.initialized then
 SAO:Error(Module, "Registering an overlay of spell "..tostring(overlay.spellID).." before AuraContainer is initialized")
 return nil
 end
-if not SAO:IsSpellSecret(overlay.spellID)then
-return nil
-end
-local hashInfo=getInfoFromHash(SAO.Hash:new(overlay.hash),overlay.macroCondition,overlay.spellID)
+local hashInfo=getInfoFromHash(SAO.Hash:new(overlay.hash),overlay.macroCondition,overlay.spellID,extra)
 if not hashInfo then
 return nil
 end
@@ -346,6 +354,16 @@ buttonOptions.globalGeometry=self.globalGeometry.geometry
 local button=SAO.AuraContainerItem:new(id,container,overlay,buttonOptions)
 self.items[id]=button
 return button
+end,
+updateAll=function(self)
+if not useAuraContainer or not self.initialized then
+return
+end
+for _,container in pairs(self.containers)do
+SAO:RunNextFrame(function()
+container:UpdateAllAuras()
+end)
+end
 end,
 updateGeometry=function(self,globalGeometry)
 if not useAuraContainer or not self.initialized then

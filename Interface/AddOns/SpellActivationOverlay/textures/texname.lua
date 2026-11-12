@@ -106,7 +106,10 @@ or
 or
 (SAO.IsForever() and retailNumber <=2888300)
 ) and
-retailNumber~=450914 and retailNumber~=450915 then
+retailNumber~=450914 and retailNumber~=450915
+and
+retailNumber~=467696
+then
 fullTextureName=retailTexture
 end
 SAO.TexName[retailTexture]=fullTextureName

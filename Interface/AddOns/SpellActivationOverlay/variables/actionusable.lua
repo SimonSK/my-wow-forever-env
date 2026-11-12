@@ -102,6 +102,7 @@ end,
 event={
 isRequired=true,
 names={"PLAYER_ENTERING_WORLD", "SPELL_UPDATE_USABLE"},
+unitNames=nil,
 PLAYER_ENTERING_WORLD=function()
 C_Timer.NewTimer(1,function()
 SAO:CheckManuallyAllBuckets(SAO.TRIGGER_ACTION_USABLE)

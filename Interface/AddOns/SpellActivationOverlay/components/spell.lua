@@ -134,7 +134,7 @@ end
 end
 return false
 end
-function SAO.GetSpellEndTime(self,spellID,suggestedEndTime)
+function SAO.GetSpellEndTime(self,spellID,suggestedEndTime,extra)
 if type(suggestedEndTime)=='number'
 or type(suggestedEndTime)=='table' and type(suggestedEndTime.endTime)=='number' then
 return suggestedEndTime
@@ -142,6 +142,7 @@ end
 if (not self.Frame.useTimer)then
 return
 end
+if not extra or not extra.debuff then
 local duration,expirationTime=self:GetPlayerAuraDurationExpirationTimeBySpellIdOrName(spellID)
 if type(duration)=='number' and type(expirationTime)=='number' then
 local startTime,endTime=expirationTime-duration,expirationTime
@@ -149,6 +150,47 @@ return {startTime=startTime,endTime=endTime}
 elseif type(expirationTime)=='number' then
 return expirationTime
 end
+local highestExpirationTime=0
+local bestResult
+for _,akaSpellID in ipairs(SAO:GetAkaSpellIDsByEffectSpellID(spellID) or {})do
+local duration,expirationTime=self:GetPlayerAuraDurationExpirationTimeBySpellIdOrName(akaSpellID)
+if type(duration)=='number' and type(expirationTime)=='number' then
+local startTime,endTime=expirationTime-duration,expirationTime
+if expirationTime > highestExpirationTime then
+highestExpirationTime=expirationTime
+bestResult={startTime=startTime,endTime=endTime}
+end
+elseif type(expirationTime)=='number' then
+if expirationTime > highestExpirationTime then
+highestExpirationTime=expirationTime
+bestResult=expirationTime
+end
+end
+end
+return bestResult
+end
+if not C_UnitAuras or not C_UnitAuras.GetUnitAuras then
+return
+end
+local filter=extra.mineOnly and "HARMFUL|PLAYER" or "HARMFUL"
+local auras={}
+for _,aura in ipairs(C_UnitAuras.GetUnitAuras("target",filter,spellID) or {})do
+table.insert(auras,aura)
+end
+for _,akaSpellID in ipairs(SAO:GetAkaSpellIDsByEffectSpellID(spellID) or {})do
+for _,aura in ipairs(C_UnitAuras.GetUnitAuras("target",filter,akaSpellID) or {})do
+table.insert(auras,aura)
+end
+end
+local bestResult
+for _,aura in ipairs(auras)do
+if type(aura.expirationTime)=='number' then
+if aura.expirationTime > (bestResult and bestResult.endTime or 0)then
+bestResult={startTime=aura.expirationTime-aura.duration,endTime=aura.expirationTime}
+end
+end
+end
+return bestResult
 end
 function SAO.IsSpellSecret(self,spellID)
 if not GetSpellAuraSecrecy then

@@ -29,8 +29,8 @@ end
 local applyTextFunc=function(self)
 local retryApplyText
 local enabled=self:IsEnabled()
-local text=""
-text=text.." "..talentText
+local text=" "
+text=talentText
 local humanReadableHash=hashCalculator:toHumanReadableString()
 if humanReadableHash then
 text=text .. " ("..humanReadableHash..")"

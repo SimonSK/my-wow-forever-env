@@ -34,14 +34,12 @@ end
 SAO.AuraSoundLibrary={
 globalEnabled=true,
 enableItem=function(self,item)
-local spellID=item.spellID
+for spellID,_ in pairs(item.includeSpellIDs)do
 if not self[spellID] then
 self[spellID]={
 items={},
 auraSoundIDs=nil,
 }
-end
-if self[spellID].items[item.id] then
 end
 self[spellID].items[item.id]=item
 if not self[spellID].auraSoundIDs and self.globalEnabled then
@@ -49,17 +47,17 @@ local auraSoundID1,auraSoundID2=self:_internalAddSound(spellID,item.unit)
 SAO:Debug(Module, "Enabling sound for spell ID",spellID)
 self[spellID].auraSoundIDs={auraSoundID1,auraSoundID2}
 end
+end
 end,
 disableItem=function(self,item)
-local spellID=item.spellID
+for spellID,_ in pairs(item.includeSpellIDs)do
 if self[spellID] then
-if not self[spellID].items[item.id] then
-end
 self[spellID].items[item.id]=nil
 if next(self[spellID].items)==nil and self[spellID].auraSoundIDs then
 self:_internalRemoveSound(unpack(self[spellID].auraSoundIDs))
 SAO:Debug(Module, "Disabling sound for spell ID",spellID)
 self[spellID].auraSoundIDs=nil
+end
 end
 end
 end,

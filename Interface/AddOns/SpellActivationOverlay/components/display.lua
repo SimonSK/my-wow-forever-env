@@ -69,7 +69,10 @@ hash=overlay.hash,
 macroCondition=self.parent:craftMacroCondition(overlay.hash),
 auraContainerItem=nil,
 }
-_overlay.auraContainerItem=SAO.AuraContainer:registerOverlay(_overlay)
+if self.parent and self.parent.auraProps and self.parent.auraProps.hasSecretRestrictions then
+local extra=self:getExtra()
+_overlay.auraContainerItem=SAO.AuraContainer:registerOverlay(_overlay,extra)
+end
 tinsert(self.overlays,_overlay)
 end,
 addButton=function(self,button)
@@ -105,20 +108,33 @@ end
 end
 end
 end,
+getExtra=function(self,overlay)
+local extra
+if overlay and overlay.level then
+extra=extra or {}
+extra.level=overlay.level
+end
+if self.parent and self.parent.auraProps and self.parent.auraProps.debuff then
+extra=extra or {}
+extra.debuff=true
+end
+if self.parent and self.parent.auraProps and self.parent.auraProps.mineOnly then
+extra=extra or {}
+extra.mineOnly=true
+end
+return extra
+end,
 showOverlays=function(self,options)
 for _,overlay in ipairs(self.overlays)do
 local forcePulsePlay
 if options and options.mimicPulse then
 forcePulsePlay=overlay.autoPulse
 end
-local extra
-if overlay.level then
-extra={level=overlay.level}
-end
 if overlay.auraContainerItem then
 SpellActivationOverlayFrame_ResetCombatFade(SAO.Frame)
 overlay.auraContainerItem:setVisible(true)
 else
+local extra=self:getExtra(overlay)
 SAO:ActivateOverlay(self.hashData,overlay.spellID,overlay.texture,overlay.position,overlay.scale,overlay.r,overlay.g,overlay.b,overlay.a,overlay.autoPulse,forcePulsePlay,nil,overlay.combatOnly,extra)
 end
 end
@@ -167,7 +183,8 @@ self:setStatus('off')
 end,
 refresh=function(self)
 SAO:Debug(Module, "Refreshing aura of "..self.spellID.." "..SAO:GetSpellName(self.spellID, ""))
-SAO:RefreshOverlayTimer(self.spellID)
+local extra=self:getExtra()
+SAO:RefreshOverlayTimer(self.spellID,nil,extra)
 end,
 setStatus=function(self,status,options)
 local oldStatus,newStatus=self.status,status

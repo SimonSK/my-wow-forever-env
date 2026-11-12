@@ -11,10 +11,13 @@ local GetSpellTabInfo=GetSpellTabInfo
 local GetTalentInfo=GetTalentInfo
 local GetTalentTabInfo=GetTalentTabInfo
 local GetTime=GetTime
+local RunNextFrame=RunNextFrame
 local UnitAura=UnitAura
 local UnitClassBase=UnitClassBase
 local GetAuraDataBySpellName=C_UnitAuras and C_UnitAuras.GetAuraDataBySpellName
 local GetPlayerAuraBySpellID=C_UnitAuras and C_UnitAuras.GetPlayerAuraBySpellID
+local GetUnitAuraInstanceIDs=C_UnitAuras and C_UnitAuras.GetUnitAuraInstanceIDs
+local GetAuraDataByAuraInstanceID=C_UnitAuras and C_UnitAuras.GetAuraDataByAuraInstanceID
 local canUseModernTalentAPI=not SAO.IsTitan()
 local GetNumSpecializationsForClassID=C_SpecializationInfo and C_SpecializationInfo.GetNumSpecializationsForClassID
 local GetSpecializationInfo=C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo
@@ -203,7 +206,7 @@ else
 return FindPlayerAuraByID(id)~=nil
 end
 end
-function SAO:GetPlayerAuraStacksBySpellID(id)
+function SAO:GetPlayerAuraStacksBySpellID(id,includeAka)
 if GetPlayerAuraBySpellID then
 local aura=GetPlayerAuraBySpellID(id)
 if aura then
@@ -215,7 +218,34 @@ if exists then
 return count,nil
 end
 end
+if includeAka then
+for _,akaSpellID in ipairs(SAO:GetAkaSpellIDsByEffectSpellID(id) or {})do
+local aura,auraInstanceID=SAO:GetPlayerAuraStacksBySpellID(akaSpellID,false)
+if aura then
+return aura,auraInstanceID
+end
+end
+end
 return nil,nil
+end
+function SAO:GetUnitAuraStacksBySpellID(unit,filter,spellID,includeAka)
+if not GetUnitAuraInstanceIDs then
+return
+end
+for _,id in ipairs(GetUnitAuraInstanceIDs(unit,filter,spellID) or {})do
+local aura=GetAuraDataByAuraInstanceID(unit,id)
+if aura then
+return aura.applications,id
+end
+end
+if includeAka then
+for _,akaSpellID in ipairs(SAO:GetAkaSpellIDsByEffectSpellID(spellID) or {})do
+local aura,auraInstanceID=SAO:GetUnitAuraStacksBySpellID(unit,filter,akaSpellID,false)
+if aura then
+return aura,auraInstanceID
+end
+end
+end
 end
 function SAO:GetPlayerAuraDurationExpirationTimeBySpellIdOrName(spellIdOrName)
 if type(spellIdOrName)=='string' then
@@ -447,7 +477,7 @@ else
 return ""
 end
 end
-function SAO:RegisterEventHandler(handler,event,from)
+function SAO:RegisterEventHandler(handler,event,from,unitTarget)
 if event=="COMBAT_LOG_EVENT_UNFILTERED" and (SAO.IsForever() or SAO.IsRetail())then
 SAO:Warn(Module, "Skipping forbidden CLEU registration in Retail for "..getHandlerName(handler)..getFromDescription(from))
 return
@@ -459,15 +489,24 @@ if not eventHandlers[event] then
 eventHandlers[event]={}
 end
 table.insert(eventHandlers[event],handler)
+if unitTarget and handler.RegisterUnitEvent then
+handler:RegisterUnitEvent(event,unitTarget)
+else
+handler:RegisterEvent(event)
+end
 handler:RegisterEvent(event)
 SAO:Debug(Module, "Handling event "..tostring(event).." for "..getHandlerName(handler)..getFromDescription(from))
 end
-function SAO:UnregisterEventHandler(handler,event,from)
+function SAO:UnregisterEventHandler(handler,event,from,unitTarget)
 local found=false
 for i,h in ipairs(eventHandlers[event] or {})do
 if h==handler then
 table.remove(eventHandlers[event],i)
+if unitTarget and handler.UnregisterUnitEvent then
+handler:UnregisterUnitEvent(event,unitTarget)
+else
 handler:UnregisterEvent(event)
+end
 SAO:Debug(Module, "Un-handling event "..tostring(event).." for "..getHandlerName(handler)..getFromDescription(from))
 found=true
 break
@@ -501,6 +540,16 @@ op.func(unpack(op.args))
 end
 operations.executing=nil
 pendingOperations[category]={}
+end
+function SAO:RunNextFrame(func)
+if type(func)~="function" then
+return
+end
+if RunNextFrame then
+RunNextFrame(func)
+else
+C_Timer.After(0,function() func(); end)
+end
 end
 SAO.GlowInterface={
 bind=function(self,obj)

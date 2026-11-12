@@ -1,5 +1,5 @@
 ## Interface: 16001
-## Title: |TInterface/Icons/Spell_Frost_Stun:16:16:0:0:512:512:64:448:64:448|t SpellActivationOverlay |cff30c9d92.8.9|r |TInterface/Icons/inv_catskybornemount_c60_blue:16:16:0:0:512:512:96:416:96:416|t
+## Title: |TInterface/Icons/Spell_Frost_Stun:16:16:0:0:512:512:64:448:64:448|t SpellActivationOverlay |cff30c9d92.9.0|r |TInterface/Icons/inv_catskybornemount_c60_blue:16:16:0:0:512:512:96:416:96:416|t
 ## Notes: Display overlays and glow buttons to improve your gameplay!
 ## Notes-deDE: Zeigt Overlays und leuchtende Schaltflächen zur Verbesserung Ihres Gameplays an!
 ## Notes-frFR: Affiche des overlays et illumine des boutons pour améliorer votre expérience de jeu !
@@ -23,7 +23,7 @@
 ## Category-zhCN: 战斗改进
 ## Category-zhTW: 戰鬥改進
 ## Author: Vinny/Ennvina
-## Version: 2.8.9
+## Version: 2.9.0
 ## SavedVariables: SpellActivationOverlayDB
 ## IconTexture: Interface/AddOns/SpellActivationOverlay/textures/icon64
 ## X-SAO-Build: forever

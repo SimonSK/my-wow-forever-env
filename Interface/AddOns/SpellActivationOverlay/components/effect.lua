@@ -447,22 +447,20 @@ local skipOptions=effect.minor==true
 for _,overlay in ipairs((not skipOptions) and effect.overlays or {})do
 if overlay.option~=false and (not overlay.project or self.IsProject(overlay.project))then
 local buff=overlay.spellID or effect.spellID
-if type(overlay.option)=='table' then
-local setupHash=type(overlay.option.setupHash)=='string' and overlay.option.setupHash or self:HashNameFromHashNumber(overlay.hash)
-local testHash=(type(overlay.option.testHash)=='string' or type(overlay.option.testHash)=='table') and overlay.option.testHash or setupHash
-local subText=overlay.option.subText
-local variants=overlay.option.variants
-if type(subText)=='function' then
+local option=type(overlay.option)=='table' and overlay.option or {}
+local setupHash=type(option.setupHash)=='string' and option.setupHash or self:HashNameFromHashNumber(overlay.hash)
+local testHash=(type(option.testHash)=='string' or type(option.testHash)=='table') and option.testHash or setupHash
+local subText=option.subText
+local variants=option.variants
+if subText==nil and type(effect.auraProps)=='table' and effect.auraProps.debuff then
+subText=SAO:translateDebuff()
+elseif type(subText)=='function' then
 subText=subText()
 end
 if type(variants)=='function' then
 variants=variants()
 end
 self:AddOverlayOption(talent,buff,setupHash,subText,variants,testHash)
-else
-local setupHash=self:HashNameFromHashNumber(overlay.hash)
-self:AddOverlayOption(talent,buff,setupHash)
-end
 end
 end
 for _,button in ipairs((not skipOptions) and effect.buttons or {})do
@@ -639,6 +637,10 @@ end
 function SAO:GetAkaEffectName(spellID)
 local aka=AKAs[spellID]
 return aka and aka.name or nil
+end
+function SAO:GetAkaBucket(spellID)
+local aka=AKAs[spellID]
+return aka and aka.name and SAO:GetBucketByName(aka.name) or nil
 end
 function SAO:GetAkaSpellIDsByEffectSpellID(effectSpellID)
 local spellIDs={}

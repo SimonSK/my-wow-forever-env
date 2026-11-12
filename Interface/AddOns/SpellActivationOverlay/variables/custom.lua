@@ -71,6 +71,7 @@ end,
 event={
 isRequired=false,
 names={},
+unitNames=nil,
 },
 condition={
 noeVar="custom",
