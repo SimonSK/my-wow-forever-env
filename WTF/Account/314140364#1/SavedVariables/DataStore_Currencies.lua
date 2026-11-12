@@ -3,32 +3,32 @@ DataStore_Currencies_Characters = {
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794206026,
+["lastUpdate"] = 1794471102,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794167029,
+["lastUpdate"] = 1794296488,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794202064,
+["lastUpdate"] = 1794380270,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794167159,
+["lastUpdate"] = 1794466707,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794167093,
+["lastUpdate"] = 1794291555,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1794167219,
+["lastUpdate"] = 1794294370,
 },
 }
 DataStore_Currencies_Catalog = {

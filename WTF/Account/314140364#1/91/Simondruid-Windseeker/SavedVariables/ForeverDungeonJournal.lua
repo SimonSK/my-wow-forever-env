@@ -1,17 +1,28 @@
 
 ForeverDungeonJournalCharacterDB = {
-["rpgQuests"] = {
-},
 ["favouriteItems"] = {
+},
+["trackedDungeons"] = {
+},
+["trackerSlots"] = {
+},
+["rpgQuests"] = {
 },
 ["rpgKills"] = {
 },
-["trackedDungeons"] = {
+["hearthSpot"] = {
+["y"] = 0.7283053398132324,
+["mapID"] = 2521,
+["name"] = "Valanaar",
+["x"] = 0.6215968132019043,
 },
 ["hiddenDungeons"] = {
 },
 ["journalMode"] = "gamer",
-["trackerSlots"] = {
+["runLog"] = {
+["nextID"] = 1,
+["runs"] = {
+},
 },
 ["arrowChains"] = {
 },

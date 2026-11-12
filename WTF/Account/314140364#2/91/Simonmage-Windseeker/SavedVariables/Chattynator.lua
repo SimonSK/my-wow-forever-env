@@ -38,4 +38,6 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/g /ginvite Simonrogue windseeker",
 "/s /reload",
 "/p |cnIQ1:|Hitem:6328::::::::13:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+"/g gn",
+"/g gn fr",
 }

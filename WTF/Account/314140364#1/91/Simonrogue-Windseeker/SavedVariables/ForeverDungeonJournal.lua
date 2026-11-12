@@ -1,18 +1,23 @@
 
 ForeverDungeonJournalCharacterDB = {
-["rpgQuests"] = {
-},
 ["favouriteItems"] = {
+},
+["trackedDungeons"] = {
+},
+["trackerSlots"] = {
 },
 ["rpgKills"] = {
 },
-["trackedDungeons"] = {
+["arrowChains"] = {
 },
 ["hiddenDungeons"] = {
 },
 ["journalMode"] = "gamer",
-["trackerSlots"] = {
+["runLog"] = {
+["nextID"] = 1,
+["runs"] = {
 },
-["arrowChains"] = {
+},
+["rpgQuests"] = {
 },
 }

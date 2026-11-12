@@ -1,7 +1,7 @@
 
 DecursiveDB = {
 ["global"] = {
-["LastVersionAnnounce"] = 1794206035,
+["LastVersionAnnounce"] = 1794471111,
 ["NonRelease"] = "2.9.0-RC4",
 ["t_SpellIDsSoundReg"] = {
 [6751] = {
@@ -19,20 +19,30 @@ DecursiveDB = {
 ["spellType"] = 4,
 ["from"] = "history",
 },
-[14517] = {
+[1271513] = {
 ["enabled"] = true,
+["from"] = "history",
+["spellType"] = 8,
+},
+[6136] = {
+["enabled"] = true,
+["from"] = "history",
 ["spellType"] = 1,
+},
+[3150] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 16,
+},
+[7357] = {
+["enabled"] = true,
+["spellType"] = 8,
 ["from"] = "history",
 },
 [3237] = {
 ["enabled"] = true,
 ["spellType"] = 4,
 ["from"] = "history",
-},
-[3150] = {
-["enabled"] = true,
-["from"] = "history",
-["spellType"] = 16,
 },
 [1297068] = {
 ["enabled"] = true,
@@ -44,22 +54,32 @@ DecursiveDB = {
 ["from"] = "history",
 ["spellType"] = 16,
 },
-[6136] = {
+[853] = {
 ["enabled"] = true,
-["from"] = "history",
 ["spellType"] = 1,
+["from"] = "history",
+},
+[7272] = {
+["enabled"] = true,
+["spellType"] = 1,
+["from"] = "history",
+},
+[15039] = {
+["enabled"] = true,
+["spellType"] = 1,
+["from"] = "history",
 },
 [589] = {
 ["enabled"] = true,
 ["spellType"] = 1,
 ["from"] = "history",
 },
-[853] = {
-["enabled"] = true,
-["spellType"] = 1,
-["from"] = "history",
-},
 [9672] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 1,
+},
+[14517] = {
 ["enabled"] = true,
 ["spellType"] = 1,
 ["from"] = "history",

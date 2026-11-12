@@ -14,11 +14,11 @@ LRMDB = {
 ["point"] = "TOP",
 ["relativePoint"] = "TOP",
 },
-["scale"] = 1,
 ["LRM_AlertFrame_Anchor"] = {
 ["yOfs"] = 0,
 ["xOfs"] = 0,
 ["point"] = "CENTER",
 ["relativePoint"] = "CENTER",
 },
+["scale"] = 1,
 }

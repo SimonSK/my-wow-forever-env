@@ -22,9 +22,9 @@ W: 1
 H: 1
 Frame: AltoholicFrame
 FrameLevel: 1
-Anchor: BOTTOMRIGHT
-X: 104
-Y: 74
+Anchor: CENTER
+X: -125
+Y: 51
 W: 925
 H: 538
 Frame: PallyPowerBlessingsFrame
@@ -45,9 +45,9 @@ Frame: BagnonInventory1
 FrameLevel: 1
 Anchor: RIGHT
 X: -284
-Y: 21
+Y: 39
 W: 384
-H: 281
+H: 244
 Frame: GRM_CoreFrame
 FrameLevel: 1
 Anchor: CENTER

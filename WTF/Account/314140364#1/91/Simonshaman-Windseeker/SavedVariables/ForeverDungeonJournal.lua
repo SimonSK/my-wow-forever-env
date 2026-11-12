@@ -6,19 +6,32 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
+["flightPointsVersion"] = 2,
+["flightPoints"] = {
+["thunder bluff, mulgore"] = true,
+["orgrimmar, durotar"] = true,
+},
+["rpgQuests"] = {
+[5722] = true,
+[5723] = true,
+[962] = true,
+},
 ["rpgKills"] = {
 },
 ["hearthSpot"] = {
-["y"] = 0.433234453201294,
-["mapID"] = 2521,
-["name"] = "Shen'dar Village",
-["x"] = 0.4310234189033508,
+["y"] = 0.6853923797607422,
+["mapID"] = 1454,
+["name"] = "Orgrimmar",
+["x"] = 0.5426052808761597,
 },
 ["hiddenDungeons"] = {
 },
 ["journalMode"] = "gamer",
-["arrowChains"] = {
+["runLog"] = {
+["nextID"] = 1,
+["runs"] = {
 },
-["rpgQuests"] = {
+},
+["arrowChains"] = {
 },
 }

@@ -25,10 +25,14 @@ VER 3 0100000001000016 "Cleanse Spirit" "134400"
 /stopcasting
 /cast Cleanse Spirit
 END
-VER 3 010000000100000D "Earth Shock" "134400"
-#showtooltip [mod:shift] Purge; Earth Shock
+VER 3 010000000100002B "Earth Shock" "134400"
+#showtooltip [harm] Earth Shock; Healing Wave
+/cast [harm] Earth Shock; Healing Wave
+END
+VER 3 010000000100000D "Earth Shock(R1)" "134400"
+#showtooltip [mod:shift] Purge; Earth Shock(Rank 1)
 /stopcasting
-/cast [mod:shift] Purge; Earth Shock
+/cast [mod:shift] Purge; Earth Shock(Rank 1)
 END
 VER 3 010000000100002A "FB Weapon" "134400"
 #showtooltip Frostbrandr Weapon
@@ -41,6 +45,7 @@ VER 3 0100000001000018 "Fire Nova" "134400"
 END
 VER 3 0100000001000007 "Flame Shock" "134400"
 #showtooltip [help] Earth Shield; Flame Shock
+/startattack
 /cast [help] Earth Shield; [harm,nodead] Flame Shock
 END
 VER 3 010000000100000A "Frost Shock" "134400"

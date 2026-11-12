@@ -1,76 +1,76 @@
 
 DecursiveDB = {
 ["global"] = {
-["LastVersionAnnounce"] = 1794205063,
+["LastVersionAnnounce"] = 1794471209,
 ["NonRelease"] = "2.9.0-RC4",
 ["t_SpellIDsSoundReg"] = {
 [6751] = {
 ["enabled"] = true,
-["from"] = "history",
 ["spellType"] = 8,
+["from"] = "history",
 },
 [13322] = {
 ["enabled"] = true,
-["from"] = "history",
 ["spellType"] = 1,
+["from"] = "history",
 },
 [7713] = {
 ["enabled"] = true,
-["from"] = "history",
 ["spellType"] = 4,
+["from"] = "history",
 },
 [14517] = {
 ["enabled"] = true,
-["spellType"] = 1,
 ["from"] = "history",
+["spellType"] = 1,
 },
 [3237] = {
 ["enabled"] = true,
-["from"] = "history",
 ["spellType"] = 4,
+["from"] = "history",
 },
 [9991] = {
 ["enabled"] = true,
-["spellType"] = 8,
 ["from"] = "history",
+["spellType"] = 8,
 },
 [1297068] = {
 ["enabled"] = true,
-["from"] = "history",
 ["spellType"] = 1,
+["from"] = "history",
 },
 [1319539] = {
 ["enabled"] = true,
-["from"] = "history",
 ["spellType"] = 16,
-},
-[6866] = {
-["enabled"] = true,
 ["from"] = "history",
-["spellType"] = 1,
-},
-[589] = {
-["enabled"] = true,
-["from"] = "history",
-["spellType"] = 1,
-},
-[1306224] = {
-["enabled"] = true,
-["from"] = "history",
-["spellType"] = 1,
 },
 [744] = {
 ["enabled"] = true,
-["from"] = "history",
 ["spellType"] = 8,
+["from"] = "history",
+},
+[589] = {
+["enabled"] = true,
+["spellType"] = 1,
+["from"] = "history",
+},
+[1306224] = {
+["enabled"] = true,
+["spellType"] = 1,
+["from"] = "history",
+},
+[6866] = {
+["enabled"] = true,
+["spellType"] = 1,
+["from"] = "history",
 },
 },
 },
 ["profileKeys"] = {
 ["Simonwarlock Windseeker"] = "Default",
-["Simonpaladin Windseeker"] = "Default",
-["Simonpriest Windseeker"] = "Default",
 ["Simonmage Windseeker"] = "Default",
+["Simonpriest Windseeker"] = "Default",
+["Simonpaladin Windseeker"] = "Default",
 },
 ["profiles"] = {
 ["Default"] = {

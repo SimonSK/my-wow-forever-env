@@ -1,7 +1,8 @@
 
 DataStore_Reputations_Characters = {
 {
-["lastUpdate"] = 1794205059,
+["lastUpdate"] = 1794471205,
+["guildName"] = "The Lusty Argonian Maid",
 ["Factions"] = {
 [530] = 535872,
 [68] = 2274640,
@@ -10,11 +11,9 @@ DataStore_Reputations_Characters = {
 [76] = 535872,
 [81] = 151872,
 },
-["guildName"] = "The Lusty Argonian Maid",
 },
 {
 ["lastUpdate"] = 1794195826,
-["guildName"] = "The Lusty Argonian Maid",
 ["Factions"] = {
 [530] = 535872,
 [68] = 2313056,
@@ -23,9 +22,11 @@ DataStore_Reputations_Characters = {
 [76] = 535872,
 [81] = 151872,
 },
+["guildName"] = "The Lusty Argonian Maid",
 },
 {
-["lastUpdate"] = 1794195893,
+["lastUpdate"] = 1794283394,
+["guildName"] = "The Lusty Argonian Maid",
 ["Factions"] = {
 [530] = 535872,
 [68] = 2293840,
@@ -34,11 +35,9 @@ DataStore_Reputations_Characters = {
 [76] = 535872,
 [81] = 151872,
 },
-["guildName"] = "The Lusty Argonian Maid",
 },
 {
 ["lastUpdate"] = 1794166803,
-["guildName"] = "Simon",
 ["Factions"] = {
 [530] = 512064,
 [68] = 1024080,
@@ -46,5 +45,6 @@ DataStore_Reputations_Characters = {
 [76] = 512064,
 [81] = 128064,
 },
+["guildName"] = "Simon",
 },
 }

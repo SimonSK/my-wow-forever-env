@@ -1,18 +1,29 @@
 
 ForeverDungeonJournalCharacterDB = {
-["rpgQuests"] = {
-},
 ["favouriteItems"] = {
+},
+["trackedDungeons"] = {
+},
+["trackerSlots"] = {
+},
+["arrowChains"] = {
 },
 ["rpgKills"] = {
 },
-["trackerSlots"] = {
+["hearthSpot"] = {
+["y"] = 0.4327610731124878,
+["mapID"] = 2521,
+["name"] = "Shen'dar Village",
+["x"] = 0.4304481148719788,
 },
 ["hiddenDungeons"] = {
 },
 ["journalMode"] = "gamer",
-["trackedDungeons"] = {
+["runLog"] = {
+["nextID"] = 1,
+["runs"] = {
 },
-["arrowChains"] = {
+},
+["rpgQuests"] = {
 },
 }

@@ -1,0 +1,181 @@
+VER 3 0100000001000028 "Adrenaline Rush" "134400"
+#showtooltip Adrenaline Rush
+/cancelaura Hand of Protection
+/cast Adrenaline Rush
+/cast Shadow Blades
+END
+VER 3 0100000001000006 "Ambush" "INV_MISC_QUESTIONMARK"
+#showtooltip Ambush
+/cancelaura Hand of Protection
+/cast Ambush
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000004 "Cheap Shot" "INV_MISC_QUESTIONMARK"
+#showtooltip Cheap Shot
+/cancelaura Hand of Protection
+/cast Pick Pocket
+/cast Cheap Shot
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100002A "Crimson Tempest" "134400"
+#showtooltip Crimson Tempest
+/cancelaura Hand of Protection
+/startattack
+/cast Crimson Tempest
+END
+VER 3 0100000001000019 "Dismantle" "134400"
+#showtooltip Dismantle
+/cancelaura Hand of Protection
+/startattack
+/cast Dismantle
+END
+VER 3 010000000100001A "Evasion" "134400"
+#showtooltip Evasion
+/cancelaura Hand of Protection
+/startattack
+/cast Evasion
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000009 "Eviscerate" "INV_MISC_QUESTIONMARK"
+#showtooltip Eviscerate
+/cancelaura Blessing of Protection
+/startattack
+/cast Eviscerate
+END
+VER 3 010000000100001C "Expose Armor" "134400"
+#showtooltip Expose Armor
+/cancelaura Hand of Protection
+/startattack
+/cast Expose Armor
+END
+VER 3 010000000100001B "Fan of Knives" "134400"
+#showtooltip Fan of Knives
+/cancelaura Hand of Protection
+/startattack
+/cast Fan of Knives
+END
+VER 3 010000000100000D "Feint" "INV_MISC_QUESTIONMARK"
+#showtooltip Feint
+/cancelaura Hand of Protection
+/startattack
+/cast Feint
+END
+VER 3 0100000001000005 "Garrote" "INV_MISC_QUESTIONMARK"
+#showtooltip Garrote
+/cancelaura Hand of Protection
+/cast Pick Pocket
+/cast Garrote
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100000C "Gouge" "INV_MISC_QUESTIONMARK"
+#showtooltip Gouge
+/cancelaura Hand of Protection
+/startattack
+/cast Gouge
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000007 "Kick" "INV_MISC_QUESTIONMARK"
+#showtooltip Kick
+/cancelaura Hand of Protection
+/startattack
+/cast [@focus,exists,harm,nodead] Kick; Kick
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100000B "Kidney Shot" "INV_MISC_QUESTIONMARK"
+#showtooltip Kidney Shot
+/cancelaura Hand of Protection
+/startattack
+/cast Kidney Shot
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100002B "Mutilate" "134400"
+#showtooltip Mutilate
+/cancelaura Hand of Protection
+/startattack
+/cast Mutilate
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000024 "Pick Pocket" "134400"
+#showtooltip Pick Pocket
+/targetenemy [no harm][dead]
+/cancelaura Hand of Protection
+/cast Pick Pocket
+END
+VER 3 010000000100001E "Recuperate" "134400"
+#showtooltip Recuperate
+/cancelaura Hand of Protection
+/cast Recuperate
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000026 "Revealing Strike" "134400"
+#showtooltip Revealing Strike
+/cancelaura Hand of Protection
+/startattack
+/cast Revealing Strike
+END
+VER 3 0100000001000023 "Rupture" "134400"
+#showtooltip Rupture
+/cancelaura Hand of Protection
+/startattack
+/cast Rupture
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000010 "Sap" "134400"
+#showtooltip Sap
+/cancelaura Hand of Protection
+/stopattack
+/cast [exists,nocombat,nodead] Sap
+/cast Pick Pocket
+END
+VER 3 010000000100000E "Shiv" "INV_MISC_QUESTIONMARK"
+#showtooltip Shiv
+/cancelaura Hand of Protection
+/startattack
+/cast Shiv
+END
+VER 3 0100000001000003 "Sinister Strike" "INV_MISC_QUESTIONMARK"
+#showtooltip Sinister Strike
+/cancelaura Blesing of Protection
+/startattack
+/cast Sinister Strike
+END
+VER 3 0100000001000008 "Slice and Dice" "INV_MISC_QUESTIONMARK"
+#showtooltip Slice and Dice
+/cancelaura Hand of Protection
+/startattack
+/cast Slice and Dice
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000029 "Slow Fall" "134400"
+#showtooltip
+/cancelaura Slow Fall
+/cancelaura Levitate
+/equipslot 16 Golad, Twilight of Aspects
+/equipslot 17 Tiriosh, Nightmare of Ages
+/use 16
+END
+VER 3 0100000001000027 "Sprint" "134400"
+#showtooltip Sprint
+/cancelaura Hand of Protection
+/cast Sprint
+END
+VER 3 010000000100000F "Stealth" "134400"
+#showtooltip Stealth
+/cast !Stealth
+END
+VER 3 0100000001000014 "Tricks" "134400"
+#showtooltip Tricks of the Trade
+/cast Tricks of the Trade
+/cancelaura Tricks of the Trade
+END
+VER 3 0100000001000021 "Vanish" "134400"
+#showtooltip Vanish
+/cancelaura Hand of Protection
+/cast Vanish
+END
+VER 3 010000000100002C "Vendetta" "134400"
+#showtooltip Vendetta
+/cancelaura Hand of Protection
+/cast Vendetta
+/cast Shadow Blades
+END

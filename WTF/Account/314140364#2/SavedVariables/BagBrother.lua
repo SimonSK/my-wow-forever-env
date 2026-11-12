@@ -1,42 +1,85 @@
 
 BrotherBags = {
-["account"] = {
+["CAMWOWUS2Realm7PvE"] = {
+["Simon*"] = {
+},
+},
+["CAMWOWUS2Realm5PvE"] = {
+["The Lusty Argonian Maid*"] = {
+},
 },
 ["forever"] = {
 ["Simon*"] = {
+},
+["Simonpaladin Windseeker"] = {
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+[0] = {
+["items"] = {
+"4604;4",
+"6948::::::::1:1486::75:::::::",
+"159;2",
+},
+["size"] = 20,
+},
+["guild"] = {
+"Simon",
+"Guild Master",
+0,
+"CAMWOWUS2Realm7PvE",
+},
+["money"] = 0,
+["class"] = "PALADIN",
+["race"] = "Scourge",
+["faction"] = false,
+["currency"] = {
+[3499] = 10,
+[3498] = 10,
+["tracked"] = {
+},
+},
+["mail"] = {
+},
+["sex"] = 2,
+["equip"] = {
+[7] = "139::::::::1:1486::75:::::::",
+[8] = "140::::::::1:1486::75:::::::",
+[4] = "6125::::::::1:1486::75:::::::",
+[16] = "2361::::::::1:1486::75:::::::",
+},
+["level"] = 1,
+[-1] = {
+},
 },
 ["Simonmage Windseeker"] = {
 {
 ["items"] = {
 },
-["size"] = 6,
 ["link"] = "279939",
+["size"] = 6,
 },
 {
-["items"] = {
-},
-["size"] = 6,
-["link"] = "4238",
+["hidden"] = false,
 },
 {
-["items"] = {
-},
-["size"] = 6,
-["link"] = "4238",
 },
 {
-["items"] = {
-},
-["size"] = 6,
-["link"] = "4238",
 },
 {
 ["items"] = {
 "10938;6",
 "10940;9",
 },
-["size"] = 6,
 ["link"] = "253664",
+["size"] = 6,
 },
 {
 ["link"] = "242709",
@@ -52,8 +95,8 @@ BrotherBags = {
 },
 ["name"] = "Tab 1",
 ["ID"] = 6,
-["icon"] = 134400,
 ["depositFlags"] = 0,
+["icon"] = 134400,
 ["size"] = 48,
 },
 [0] = {
@@ -65,10 +108,6 @@ BrotherBags = {
 "4561::::::::13:1482:::1:12724::::::",
 "6256::::::::13:1482::14:::::::",
 "6218",
-"253664",
-"5572",
-"828",
-"828",
 "3238",
 },
 ["size"] = 20,
@@ -79,19 +118,17 @@ BrotherBags = {
 3,
 "CAMWOWUS2Realm5PvE",
 },
-["money"] = 5053,
+["money"] = 4843,
 ["class"] = "MAGE",
-["race"] = "Scourge",
-["faction"] = false,
 ["currency"] = {
 [3499] = 10,
 [3498] = 10,
 ["tracked"] = {
 },
 },
-["mail"] = {
+[-1] = {
 },
-["sex"] = 3,
+["race"] = "Scourge",
 ["equip"] = {
 nil,
 nil,
@@ -111,42 +148,30 @@ nil,
 "3446::::::::13:1482::11:::::::",
 [18] = "286743::::::::13:1482::11:::::::",
 },
+["faction"] = false,
+["mail"] = {
+},
 ["level"] = 13,
-[-1] = {
-},
-},
-["The Lusty Argonian Maid*"] = {
+["sex"] = 3,
 },
 ["Simonpriest Windseeker"] = {
 {
 ["items"] = {
 },
+["size"] = 6,
 ["link"] = "279939",
-["size"] = 6,
+},
+{
+},
+{
+},
+{
 },
 {
 ["items"] = {
 },
-["link"] = "4238",
-["size"] = 6,
-},
-{
-["items"] = {
-},
-["link"] = "4238",
-["size"] = 6,
-},
-{
-["items"] = {
-},
-["size"] = 6,
-["link"] = "4238",
-},
-{
-["items"] = {
-},
-["size"] = 6,
 ["link"] = "253664",
+["size"] = 6,
 },
 {
 ["link"] = "242709",
@@ -175,8 +200,8 @@ nil,
 },
 ["name"] = "Tab 1",
 ["ID"] = 6,
-["icon"] = 134400,
 ["depositFlags"] = 0,
+["icon"] = 134400,
 ["size"] = 48,
 },
 [0] = {
@@ -194,17 +219,20 @@ nil,
 3,
 "CAMWOWUS2Realm5PvE",
 },
-["money"] = 5592,
+["money"] = 5502,
 ["class"] = "PRIEST",
+["race"] = "Scourge",
+["sex"] = 3,
 ["currency"] = {
 [3499] = 10,
 [3498] = 10,
 ["tracked"] = {
 },
 },
+["mail"] = {
+},
 [-1] = {
 },
-["race"] = "Scourge",
 ["equip"] = {
 nil,
 nil,
@@ -224,11 +252,8 @@ nil,
 "277247::::::::13:1487::11:::::::",
 [18] = "286743::::::::13:1487::11:::::::",
 },
-["faction"] = false,
-["mail"] = {
-},
 ["level"] = 13,
-["sex"] = 3,
+["faction"] = false,
 },
 ["Simonwarlock Windseeker"] = {
 {
@@ -237,32 +262,32 @@ nil,
 "6265",
 "6265",
 },
-["size"] = 6,
 ["link"] = "279939",
+["size"] = 6,
 },
 {
 ["items"] = {
 },
+["size"] = 6,
 ["link"] = "805",
-["size"] = 6,
 },
 {
 ["items"] = {
 },
+["size"] = 6,
 ["link"] = "5572",
-["size"] = 6,
 },
 {
 ["items"] = {
 },
+["size"] = 6,
 ["link"] = "828",
-["size"] = 6,
 },
 {
 ["items"] = {
 },
-["link"] = "253664",
 ["size"] = 6,
+["link"] = "253664",
 },
 {
 ["link"] = "242709",
@@ -272,8 +297,8 @@ nil,
 },
 ["name"] = "Tab 1",
 ["ID"] = 6,
-["icon"] = 134400,
 ["depositFlags"] = 0,
+["icon"] = 134400,
 ["size"] = 48,
 },
 [0] = {
@@ -309,18 +334,14 @@ nil,
 },
 ["money"] = 7490,
 ["class"] = "WARLOCK",
-["race"] = "Scourge",
-["sex"] = 3,
 ["currency"] = {
 [3499] = 10,
 [3498] = 10,
 ["tracked"] = {
 },
 },
-["mail"] = {
-},
-[-1] = {
-},
+["faction"] = false,
+["race"] = "Scourge",
 ["equip"] = {
 [7] = "281283::::::::13:1490::11:::::::",
 [15] = "2580",
@@ -331,64 +352,16 @@ nil,
 [6] = "3442::::::::13:1490::11:::::::",
 [18] = "286743::::::::13:1490::11:::::::",
 },
-["level"] = 13,
-["faction"] = false,
-},
-["Simonpaladin Windseeker"] = {
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-[0] = {
-["items"] = {
-"4604;4",
-"6948::::::::1:1486::75:::::::",
-"159;2",
-},
-["size"] = 20,
-},
-["guild"] = {
-"Simon",
-"Guild Master",
-0,
-"CAMWOWUS2Realm7PvE",
-},
-["money"] = 0,
-["class"] = "PALADIN",
-["currency"] = {
-[3499] = 10,
-[3498] = 10,
-["tracked"] = {
-},
-},
-["sex"] = 2,
-["race"] = "Scourge",
-["equip"] = {
-[7] = "139::::::::1:1486::75:::::::",
-[8] = "140::::::::1:1486::75:::::::",
-[4] = "6125::::::::1:1486::75:::::::",
-[16] = "2361::::::::1:1486::75:::::::",
-},
-[-1] = {
-},
+["sex"] = 3,
 ["mail"] = {
 },
-["level"] = 1,
-["faction"] = false,
+["level"] = 13,
+[-1] = {
 },
 },
-["CAMWOWUS2Realm5PvE"] = {
 ["The Lusty Argonian Maid*"] = {
 },
 },
-["CAMWOWUS2Realm7PvE"] = {
-["Simon*"] = {
-},
+["account"] = {
 },
 }

@@ -1,0 +1,191 @@
+VER 3 0100000001000008 "Bash" "134400"
+#showtooltip Bash
+/cancelaura Hand of Protection
+/cancelaura Hand of Salvation
+/stopcasting
+/cast Bash
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000007 "Bear Charge" "132183"
+#showtooltip Feral Charge(Bear Form)
+/cancelaura Blessing of Protection
+/startattack
+/cast Feral Charge(Bear Form)
+/cast Faerie Fire (Feral)
+END
+VER 3 0100000001000001 "Bear Mangle" "132135"
+#showtooltip Mangle(Bear Form)
+/cancelaura Hand of Protection
+/cancelaura Hand of Salvation
+/startattack
+/cast Mangle(Bear Form)
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100000A "Bear Powershift" "134400"
+#showtooltip Bear Form
+/cast !Bear Form
+END
+VER 3 0100000001000016 "Bear Skull Bash" "134400"
+#showtooltip Skull Bash(Bear Form)
+/cancelaura Hand of Protection
+/cancelaura Hand of Salvation
+/stopcasting
+/cast Skull Bash(Bear Form)
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000002 "Bear Swipe" "134296"
+#showtooltip Swipe(Bear Form)
+/cancelaura Hand of Protection
+/cancelaura Hand of Salvation
+/startattack
+/cast Swipe(Bear Form)
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100000B "Berserk" "134400"
+#showtooltip Berserk
+/cancelaura Hand of Protection
+/cancelaura Hand of Salvation
+/startattack
+/cast Berserk
+/cast Enrage
+/cast Lifeblood
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000018 "Cat Charge" "134400"
+#showtooltip Feral Charge(Cat Form)
+/cancelaura Hand of Protection
+/startattack
+/cast Feral Charge(Cat Form)
+/cast Faerie Fire(Feral)
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000014 "Cat Mangle" "134400"
+#showtooltip Mangle(Cat Form)
+/cancelaura Hand of Protection
+/startattack
+/cast Mangle(Cat Form)
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000017 "Cat Skull Bash" "134400"
+#showtooltip Skull Bash(Cat Form)
+/cancelaura Hand of Protection
+/stopcasting
+/cast Skull Bash(Cat Form)
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100000F "Ferocious Bite" "134400"
+#showtooltip Ferocious Bite
+/cancelaura Hand of Protection
+/startattack
+/cast Ferocious Bite
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000009 "FF (Feral)" "134400"
+#showtooltip Faerie Fire (Feral)
+/cancelaura Hand of Protection
+/cancelaura Hand of Salvation
+/startattack
+/cast Faerie Fire (Feral)
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000019 "Frenzied" "134400"
+#showtooltip Frenzied Regeneration
+/cast Frenzied Regeneration
+END
+VER 3 0100000001000004 "Growl" "INV_MISC_QUESTIONMARK"
+#showtooltip Growl
+/cancelaura Blessing of Protection
+/startattack
+/cast Growl
+/cast Faerie Fire (Feral)
+END
+VER 3 0100000001000012 "Healing Touch" "134400"
+#showtooltip Healing Touch
+/cast Healing Touch
+END
+VER 3 0100000001000003 "Lacerate" "INV_MISC_QUESTIONMARK"
+#showtooltip Lacerate
+/cancelaura Hand of Protection
+/cancelaura Hand of Salvation
+/startattack
+/cast Lacerate
+/use [@player] Goblin Rocket Pack
+END
+VER 3 0100000001000010 "Maim" "134400"
+#showtooltip Maim
+/cancelaura Hand of Protection
+/startattack
+/cast Maim
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100001C "Mark of the Wild" "134400"
+#showtooltip Mark of the Wild
+/cast Mark of the Wild
+END
+VER 3 0100000001000005 "Maul" "INV_MISC_QUESTIONMARK"
+#showtooltip Maul
+/cancelaura Blessing of Protection
+/startattack
+/cast Maul
+END
+VER 3 010000000100001E "Moonfire" "134400"
+#showtooltip Moonfire
+/startattack
+/cast Moonfire
+END
+VER 3 0100000001000020 "Nature's Grasp" "134400"
+#showtooltip Nature's Grasp
+/cast Nature's Grasp
+END
+VER 3 0100000001000013 "Ravage" "134400"
+#showtooltip Ravage
+/cancelaura Hand of Protection
+/startattack
+/cast Ravage
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100001D "Rejuvenation" "134400"
+#showtooltip Rejuvenation
+/cast Rejuvenation
+END
+VER 3 010000000100000E "Rip" "134400"
+#showtooltip Rip
+/cancelaura Hand of Protection
+/startattack
+/cast Rip
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100000C "Shred" "134400"
+#showtooltip Shred
+/cancelaura Hand of Protection
+/startattack
+/cast Shred
+/use [@player] Goblin Rocket Pack
+END
+VER 3 010000000100001F "Thorns" "134400"
+#showtooltip Thorns
+/cast Thorns
+END
+VER 3 010000000100001A "Tranquility" "134400"
+#showtooltip Tranquility
+/cast Tranquility
+/yell I'M TRANQING
+/raid I'M TRANQING
+END
+VER 3 0100000001000011 "Travel" "134400"
+#showtooltip Swift Flight Form
+/cancelform
+/cast [swimming] Aquatic Form
+/cast [flyable] Swift Flight Form
+/cast [nomounted,combat,outdoors] Travel Form
+END
+VER 3 0100000001000015 "War Stomp" "134400"
+#showtooltip War Stomp
+/cast Barkskin
+/cast War Stomp
+END
+VER 3 010000000100001B "Wrath" "134400"
+#showtooltip Wrath
+/startattack
+/cast Wrath
+END

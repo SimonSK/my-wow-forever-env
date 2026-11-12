@@ -2,9 +2,9 @@
 PallyPowerDB = {
 ["profileKeys"] = {
 ["Simonwarlock Windseeker"] = "Other",
-["Simonpaladin Windseeker"] = "Simon",
-["Simonpriest Windseeker"] = "Other",
 ["Simonmage Windseeker"] = "Other",
+["Simonpriest Windseeker"] = "Other",
+["Simonpaladin Windseeker"] = "Simon",
 },
 ["profiles"] = {
 ["Other"] = {
@@ -35,10 +35,10 @@ PallyPowerDB = {
 ["ForeverSalvSplit"] = true,
 ["ForeverCountDefault"] = true,
 ["display"] = {
-["frameLocked"] = true,
-["offsetY"] = 63.33323287963867,
 ["HideCountText"] = true,
+["offsetY"] = 63.33323287963867,
 ["offsetX"] = 389.4999389648438,
+["frameLocked"] = true,
 },
 ["autobuff"] = {
 ["buffDuration"] = false,

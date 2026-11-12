@@ -11,7 +11,7 @@ ThreatPlatesDB = {
 ["Simon Windseeker"] = "Simon",
 },
 ["global"] = {
-["version"] = "13.3.7",
+["version"] = "13.3.8",
 },
 ["profiles"] = {
 ["Simon"] = {
@@ -38,9 +38,9 @@ ThreatPlatesDB = {
 ["settings"] = {
 ["frame"] = {
 ["heightFriend"] = 20,
-["widthFriend"] = 140,
-["height"] = 20,
 ["width"] = 140,
+["height"] = 20,
+["widthFriend"] = 140,
 },
 },
 },
@@ -48,9 +48,9 @@ ThreatPlatesDB = {
 ["settings"] = {
 ["frame"] = {
 ["heightFriend"] = 20,
-["widthFriend"] = 140,
-["height"] = 20,
 ["width"] = 140,
+["height"] = 20,
+["widthFriend"] = 140,
 },
 },
 },

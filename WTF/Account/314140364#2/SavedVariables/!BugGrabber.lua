@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
-["session"] = 102,
 ["lastSanitation"] = 3,
+["session"] = 109,
 ["errors"] = {
 {
 ["message"] = "...s/Altoholic_Summary/Columns_CharacterInformation.lua:564: bad argument #5 to 'format' (number expected, got nil)",
@@ -85,8 +85,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1054: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1050>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1050: in function 'InvokeOnAnyEditModeSystemAnchorChanged'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1036: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:206: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n",
-["time"] = 1794104484,
 ["session"] = 53,
+["time"] = 1794104484,
 ["counter"] = 5,
 },
 {

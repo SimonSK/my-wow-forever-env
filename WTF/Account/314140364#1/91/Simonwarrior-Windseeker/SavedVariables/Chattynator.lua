@@ -5,4 +5,5 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/s /tptp",
 "/s /reload",
 "/s /tptp",
+"/s lick/",
 }

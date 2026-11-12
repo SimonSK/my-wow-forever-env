@@ -1,6 +1,9 @@
 
 Bagnon_Sets = {
 ["latest"] = {
+["id"] = "12.1.9",
+["cooldown"] = 1794969493,
+["who"] = "Rayast Bavits",
 },
 ["global"] = {
 ["inventory"] = {
@@ -14,8 +17,8 @@ Bagnon_Sets = {
 ["point"] = "TOPRIGHT",
 ["color"] = {
 },
-["y"] = -231.0003963271166,
-["x"] = -292.0000400940583,
+["y"] = -235.0001521864916,
+["x"] = -170.0000400940583,
 ["spacing"] = 0,
 ["showBags"] = true,
 ["activeRules"] = {
@@ -92,15 +95,15 @@ Bagnon_Sets = {
 },
 ["soul"] = {
 },
-["fridge"] = {
+["reagent"] = {
 },
 ["mine"] = {
 },
 ["engineer"] = {
 },
-["leather"] = {
+["inscribe"] = {
 },
-["reagent"] = {
+["fridge"] = {
 },
 ["gem"] = {
 },
@@ -108,7 +111,7 @@ Bagnon_Sets = {
 },
 ["tackle"] = {
 },
-["inscribe"] = {
+["leather"] = {
 },
 ["normal"] = {
 },

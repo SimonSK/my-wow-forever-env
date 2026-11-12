@@ -2,14 +2,14 @@
 ThreatPlatesDB = {
 ["namespaces"] = {
 },
+["global"] = {
+["version"] = "13.3.8",
+},
 ["profileKeys"] = {
 ["Simonwarlock Windseeker"] = "Simon",
-["Simonpaladin Windseeker"] = "Simon",
-["Simonpriest Windseeker"] = "Simon",
 ["Simonmage Windseeker"] = "Simon",
-},
-["global"] = {
-["version"] = "13.3.7",
+["Simonpriest Windseeker"] = "Simon",
+["Simonpaladin Windseeker"] = "Simon",
 },
 ["profiles"] = {
 ["Default"] = {
@@ -21,9 +21,9 @@ ThreatPlatesDB = {
 ["settings"] = {
 ["frame"] = {
 ["heightFriend"] = 20,
-["width"] = 140,
-["height"] = 20,
 ["widthFriend"] = 140,
+["height"] = 20,
+["width"] = 140,
 },
 },
 },

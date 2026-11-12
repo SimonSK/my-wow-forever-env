@@ -1,0 +1,204 @@
+VER 3 0100000001000038 "Battle Shout" "134400"
+#showtooltip Battle Shout
+/cancelaura Blessing of Protection
+/cast Battle Shout
+/startattackk
+END
+VER 3 0100000001000013 "Berserker Rage" "134400"
+#showtooltip Berserker Rage
+/cancelaura Blessing of Protection
+/startattack [combat,harm,nodead]
+/cast [noform:3] Berserker Stance
+/cast Berserker Rage
+END
+VER 3 0100000001000039 "Bloodrage" "134400"
+#showtooltip Bloodrage
+/cancelaura Blessing of Protection
+/cast Bloodrage
+/startattack
+END
+VER 3 0100000001000002 "Bloodthirst" "INV_MISC_QUESTIONMARK"
+#showtooltip Bloodthirst
+/cancelaura Blessing of Protection
+/startattack
+/cast Bloodthirst
+END
+VER 3 0100000001000019 "ChallengingShout" "134400"
+#showtooltip Challenging Shout
+/cancelaura Blessing of Protection
+/startattack
+/cast Defensive Stance
+/cast Challenging Shout
+END
+VER 3 0100000001000014 "Charge" "134400"
+#showtooltip [help] Intervene; [combat] Intercept; Charge
+/cancelaura Blessing of Protection
+/cast [help] Intervene; [combat] Intercept; Charge
+/startattack
+/cast Rend
+END
+VER 3 0100000001000004 "Cleave" "INV_MISC_QUESTIONMARK"
+#showtooltip Cleave
+/cancelaura Blessing of Protection
+/startattack
+/cast Cleave
+/cast Victory Rush
+END
+VER 3 0100000001000028 "Demo Shout" "134400"
+#showtooltip Demoralizing Shout
+/cancelaura Blessing of Protection
+/startattack
+/cast Demoralizing Shout
+END
+VER 3 0100000001000037 "Disarm" "134400"
+#showtooltip Disarm
+/cancelaura Blessing of Protection
+/stopcasting
+/cast Defensive Stance
+/cast Disarm
+END
+VER 3 010000000100001A "Execute" "134400"
+#showtooltip Execute
+/cancelaura Blessing of Protection
+/startattack
+/cast [form:2] Berserker Stance
+/cast Execute
+END
+VER 3 0100000001000016 "Hamstring" "134400"
+#showtooltip Hamstring
+/cancelaura Blessing of Protection
+/startattack
+/cast [form:2] Battle Stance
+/cast Hamstring
+END
+VER 3 0100000001000003 "Heroic Strike" "INV_MISC_QUESTIONMARK"
+#showtooltip Heroic Strike
+/cancelaura Blessing of Protection
+/startattack
+/cast Heroic Strike
+/cast Victory Rush
+END
+VER 3 0100000001000034 "Intimidating" "134400"
+#showtooltip Intimidating Shout
+/cleartarget [dead][help]
+/targetenemy [noexists]
+/stopattack
+/cast Intimidating Shout
+END
+VER 3 010000000100002A "Mocking Blow" "134400"
+#showtooltip Mocking Blow
+/cancelaura Blessing of Protection
+/stopcasting
+/cast Battle Stance
+/cast Mocking Blow
+END
+VER 3 0100000001000005 "Mortal Strike" "INV_MISC_QUESTIONMARK"
+#showtooltip Mortal Strike
+/cancelaura Blessing of Protection
+/startattack
+/cast Mortal Strike
+END
+VER 3 0100000001000025 "Overpower" "134400"
+#showtooltip Overpower
+/cancelaura Blessing of Protection
+/startattack
+/cast [nostance:1] Battle Stance
+/cast Overpower
+END
+VER 3 010000000100000C "Pummel" "134400"
+#showtooltip Pummel
+/cancelaura Blessing of Protection
+/stopcasting
+/cast [form:1/2,worn:Shields] Shield Bash
+/cast [noworn:Shields] Berserker Stance
+/cast [form:3] Pummel
+END
+VER 3 010000000100002D "Recklessness" "134400"
+#showtooltip Recklessness
+/cancelaura Blessing of Protection
+/startattack
+/cast [nostance:3] Berserker Stance
+/cast [combat] Recklessness
+END
+VER 3 010000000100002F "Rend" "134400"
+#showtooltip Rend
+/cancelaura Blessing of Protection
+/startattack
+/cast [form:3] Battle Stance
+/cast Rend
+END
+VER 3 010000000100001D "Retaliation" "134400"
+#showtooltip Retaliation
+/cancelaura Blessing of Protection
+/startattack
+/cast [nostance:1] Battle Stance
+/cast [combat] Retaliation
+END
+VER 3 010000000100000B "Revenge" "INV_MISC_QUESTIONMARK"
+#showtooltip Revenge
+/cancelaura Blessing of Protection
+/startattack
+/cast Defensive Stance
+/cast Revenge
+END
+VER 3 0100000001000029 "Shield Block" "134400"
+#showtooltip Shield Block
+/cancelaura Blessing of Protection
+/equipset Shield
+/cast Defensive Stance
+/cast Shield Block
+END
+VER 3 0100000001000027 "Shield Slam" "134400"
+#showtooltip Shield Slam
+/cancelaura Blessing of Protection
+/startattack
+/cast Shield Slam
+END
+VER 3 0100000001000036 "Shield Wall" "134400"
+#showtooltip Shield Wall
+/cancelaura Blessing of Protection
+/equipset Shield
+/cast Defensive Stance
+/cast Shield Wall
+/cast Shield Block
+END
+VER 3 010000000100002C "Slam" "134400"
+#showtooltip Slam
+/cancelaura Blessing of Protection
+/cast Slam
+/stopcasting
+/startattack
+END
+VER 3 0100000001000030 "Sunder Armor" "134400"
+#showtooltip Sunder Armor
+/cancelaura Blessing of Protection
+/startattack
+/cast Sunder Armor
+END
+VER 3 010000000100000E "Sweeping Strikes" "INV_MISC_QUESTIONMARK"
+#showtooltip Sweeping Strikes
+/cancelaura Hand of Protection
+/startattack
+/cast Sweeping Strikes
+END
+VER 3 010000000100002B "Taunt" "134400"
+#showtooltip Taunt
+/cancelaura Blessing of Protection
+/startattack
+/cast Defensive Stance
+/cast Taunt
+END
+VER 3 0100000001000031 "Thunder Clap" "134400"
+#showtooltip Thunder Clap
+/cancelaura Blessing of Protection
+/startattack
+/cast [form:3] Defensive Stance
+/cast Thunder Clap
+END
+VER 3 010000000100000D "Whirlwind" "INV_MISC_QUESTIONMARK"
+#showtooltip Whirlwind
+/cancelaura Blessing of Protection
+/startattack
+/cast [nostance:3] Berserker Stance
+/cast Whirlwind
+END

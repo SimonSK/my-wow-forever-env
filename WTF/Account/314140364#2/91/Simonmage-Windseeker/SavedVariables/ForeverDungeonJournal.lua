@@ -6,18 +6,23 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
-["rpgKills"] = {
-},
 ["arrowChains"] = {
 },
-["hiddenDungeons"] = {
+["rpgKills"] = {
 },
-["journalMode"] = "gamer",
 ["hearthSpot"] = {
 ["y"] = 0.383094072341919,
 ["mapID"] = 1458,
 ["name"] = "Undercity",
 ["x"] = 0.6778280138969421,
+},
+["hiddenDungeons"] = {
+},
+["journalMode"] = "gamer",
+["runLog"] = {
+["nextID"] = 1,
+["runs"] = {
+},
 },
 ["rpgQuests"] = {
 [5725] = true,

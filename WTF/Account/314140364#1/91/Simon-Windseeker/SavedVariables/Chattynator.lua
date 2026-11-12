@@ -83,4 +83,6 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/p |cnIQ1:|Hitem:6325::::::::14:1486::14:::::::|h[Recipe: Brilliant Smallfish]|h|r|cnIQ1:|Hitem:6326::::::::14:1486::14:::::::|h[Recipe: Slitherskin Mackerel]|h|r",
 "/p /inv Simonwarlock Windseeker ",
 "/g gn",
+"/g i forgot something",
+"/g Curator daily inn stamp",
 }

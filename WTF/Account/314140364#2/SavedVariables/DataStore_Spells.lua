@@ -1,21 +1,21 @@
 
 DataStore_Spells_Characters = {
 {
-["lastUpdate"] = 1794205054,
+["lastUpdate"] = 1794471200,
 ["englishClass"] = "MAGE",
 ["Spells"] = {
+["Fire"] = {
+36608,
+546816,
+37120,
+34048,
+},
 ["Frost"] = {
 31232,
 29696,
 52480,
 43008,
 1868800,
-},
-["Fire"] = {
-36608,
-546816,
-37120,
-34048,
 },
 ["General"] = {
 1982464,
@@ -55,6 +55,13 @@ DataStore_Spells_Characters = {
 176128,
 178432,
 },
+["Destruction"] = {
+89088,
+180992,
+175616,
+177920,
+180480,
+},
 ["Affliction"] = {
 250880,
 44032,
@@ -74,34 +81,27 @@ DataStore_Spells_Characters = {
 322611456,
 1338112,
 },
-["Destruction"] = {
-89088,
-180992,
-175616,
-177920,
-180480,
-},
 },
 },
 {
-["lastUpdate"] = 1794195884,
+["lastUpdate"] = 1794283387,
 ["englishClass"] = "PRIEST",
 ["Spells"] = {
 ["Shadow Magic"] = {
+678912,
 150016,
+152064,
 2071552,
 150784,
-152064,
-678912,
 },
 ["Holy"] = {
+35584,
+525568,
+151296,
+149760,
 524800,
 525312,
-525568,
-35584,
 513536,
-149760,
-151296,
 },
 ["General"] = {
 1690368,
@@ -116,9 +116,9 @@ DataStore_Spells_Characters = {
 },
 ["Discipline"] = {
 150528,
-318208,
-318464,
 4352,
+318464,
+318208,
 151552,
 },
 },
@@ -152,9 +152,11 @@ DataStore_Spells_Tabs = {
 "Fire",
 "Arcane",
 },
-["PALADIN"] = {
+["PRIEST"] = {
 "General",
 "Holy",
+"Shadow Magic",
+"Discipline",
 },
 ["WARLOCK"] = {
 "General",
@@ -162,10 +164,8 @@ DataStore_Spells_Tabs = {
 "Affliction",
 "Destruction",
 },
-["PRIEST"] = {
+["PALADIN"] = {
 "General",
 "Holy",
-"Shadow Magic",
-"Discipline",
 },
 }
