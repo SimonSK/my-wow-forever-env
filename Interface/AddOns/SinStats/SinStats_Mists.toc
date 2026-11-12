@@ -2,7 +2,7 @@
 ## Title: |cff71FFC9SinStats|r
 ## Author: Sinba
 ## Notes : Character Stats
-## Version: 7.041
+## Version: 7.1002
 ## IconTexture: Interface\AddOns\SinStats\Textures\MiniMap.blp
 ## X-License: All Rights Reserved
 ## Category: Combat

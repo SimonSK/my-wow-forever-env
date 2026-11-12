@@ -174,8 +174,14 @@ local function KillStat(stat)
 	stat.widget.BarShown = false
 	stat.widget.BarCacheRatio = nil
 	stat.widget.BarCacheWidth = nil
+	stat.widget.BarCacheHeight = nil
+	stat.widget.BarCacheReverse = nil
+	stat.widget.BarCacheInvert = nil
 	stat.widget.AlignedBarWidth = nil
 	stat.widget._cachedBarWidth = nil
+	stat.widget._barHeight = nil
+	stat.widget._textHeight = nil
+	stat.widget._barOverflow = nil
 	stat.widget._staticOnly = false
 	if stat.widget.BarBg then
 		stat.widget.BarBg:Hide()
@@ -190,6 +196,58 @@ local function KillStat(stat)
 		stat.widget.ValueText:ClearAllPoints()
 		stat.widget.ValueText:SetText("")
 	end
+end
+
+------------------------------------------
+--	 Bar Top Shift (grow-down header)	--
+------------------------------------------
+
+local function ApplyBarTopShift(panelFrame, profile, shift)
+	shift = shift or 0
+	if profile.PanelDisplay and profile.PanelAttach then
+		-- Anchored to the character panel: fixed position, no dragging.
+		if not panelFrame._panelAttached then
+			panelFrame._panelAttached = true
+			panelFrame:EnableMouse(false)
+			panelFrame:RegisterForDrag()
+		end
+		profile._barTopShift = shift
+		panelFrame:ClearAllPoints()
+		panelFrame:SetPoint("TOPLEFT", PaperDollFrame, "TOPRIGHT", profile.PanelAttachX or 4, (profile.PanelAttachY or 0) + shift)
+		return
+	end
+	if panelFrame._panelAttached then
+		-- Free mode again: restore dragging and mouse.
+		panelFrame._panelAttached = nil
+		panelFrame:EnableMouse(true)
+		Ns.LWin.MakeDraggable(panelFrame)
+	end
+	local pos = profile.HUDPos or {}
+	local old = profile._barTopShift or 0
+	profile._barTopShift = shift
+	if old == 0 and shift == 0 then
+		return
+	end
+	if not panelFrame._barShiftHooked or panelFrame._barShiftHookScript ~= panelFrame:GetScript("OnDragStop") then
+		local origStop = panelFrame:GetScript("OnDragStop")
+		local wrapper = function(self, ...)
+			if origStop then origStop(self, ...) end
+			local s = profile._barTopShift or 0
+			if s ~= 0 and profile.HUDPos and profile.HUDPos.y then
+				-- LibWindow saved the shifted position; keep HUDPos as the base
+				profile.HUDPos.y = profile.HUDPos.y - s * (self:GetScale() or 1)
+			end
+		end
+		panelFrame._barShiftHooked = true
+		panelFrame._barShiftHookScript = wrapper
+		panelFrame:SetScript("OnDragStop", wrapper)
+	end
+	local point = pos.point or "CENTER"
+	local x = pos.x or 0
+	local y = pos.y or 0
+	local s = panelFrame:GetScale() or 1
+	panelFrame:ClearAllPoints()
+	panelFrame:SetPoint(point, panelFrame:GetParent(), point, x / s, y / s + shift)
 end
 
 ------------------------------------------
@@ -284,20 +342,34 @@ function Ns.StatMixin.UpdateBar(self, data, value, maxValue)
 		end
 	end
 
+	-- BarHeight: 0 = auto (fills the row), > 0 = fixed height, centered on the text line
+	-- (grows symmetrically above and below the text when taller than it)
+	local barH = self._barHeight or 0
+	local textH = self._textHeight or self:GetHeight()
+	local yOff = 0
+	if barH > 0 and textH > 0 then
+		yOff = (barH - textH) / 2 -- negative = below text top, positive = above
+	end
+
 	if not options.ShowBar then
 		-- clearing garbage..
-		if self.BarShown and self.BarCacheRatio == -1 and self.BarCacheWidth == totalWidth then
+		if self.BarShown and self.BarCacheRatio == -1 and self.BarCacheWidth == totalWidth and self.BarCacheHeight == barH then
 			return
 		end
 		self.Bar:ClearAllPoints()
-		self.Bar:SetPoint("TOPLEFT", self, "TOPLEFT")
-		self.Bar:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
+		self.Bar:SetPoint("TOPLEFT", self, "TOPLEFT", 0, yOff)
 		self.Bar:SetWidth(totalWidth)
+		if barH > 0 then
+			self.Bar:SetHeight(barH)
+		else
+			self.Bar:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
+		end
 		self.Bar:Show()
 		if self.BarBg then self.BarBg:Hide() end
 		self.BarShown = true
 		self.BarCacheRatio = -1
 		self.BarCacheWidth = totalWidth
+		self.BarCacheHeight = barH
 		return
 	end
 
@@ -312,13 +384,22 @@ function Ns.StatMixin.UpdateBar(self, data, value, maxValue)
 	end
 
 	local safeValue = (issecretvalue and issecretvalue(value)) and 0 or (value or 0)
-	local ratio = (maxVal > 0) and math.min(safeValue / maxVal, 1) or 0
+	local ratio = (maxVal > 0) and math.max(0, math.min(safeValue / maxVal, 1)) or 0
+	local invert = options.BarInvert and true or false
+	if invert then
+		-- value inversion: fill shows what's missing (max - value) instead
+		ratio = 1 - ratio
+	end
+	local reverse = options.BarReverse and true or false
 
-	if self.BarShown and self.BarCacheRatio == ratio and self.BarCacheWidth == totalWidth then
+	if self.BarShown and self.BarCacheRatio == ratio and self.BarCacheWidth == totalWidth and self.BarCacheHeight == barH and self.BarCacheReverse == reverse and self.BarCacheInvert == invert then
 		return
 	end
 	self.BarCacheRatio = ratio
 	self.BarCacheWidth = totalWidth
+	self.BarCacheHeight = barH
+	self.BarCacheReverse = reverse
+	self.BarCacheInvert = invert
 	self.BarShown = true
 
 	if options.BarAutoColor then
@@ -336,18 +417,45 @@ function Ns.StatMixin.UpdateBar(self, data, value, maxValue)
 
 	if self.BarBg then
 		self.BarBg:ClearAllPoints()
-		self.BarBg:SetPoint("TOPLEFT", self, "TOPLEFT")
-		self.BarBg:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
+		self.BarBg:SetPoint("TOPLEFT", self, "TOPLEFT", 0, yOff)
 		self.BarBg:SetWidth(totalWidth)
+		if barH > 0 then
+			self.BarBg:SetHeight(barH)
+		else
+			self.BarBg:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
+		end
 		self.BarBg:Show()
 	end
 
 	local barAreaWidth = totalWidth - iconOffset
-	local barWidth = ratio > 0 and (iconOffset + barAreaWidth * ratio) or 0
+	local barWidth
+	if reverse then
+		barWidth = ratio > 0 and (barAreaWidth * ratio) or 0
+	else
+		barWidth = ratio > 0 and (iconOffset + barAreaWidth * ratio) or 0
+	end
 	self.Bar:ClearAllPoints()
-	self.Bar:SetPoint("TOPLEFT", self, "TOPLEFT")
-	self.Bar:SetPoint("BOTTOMRIGHT", self, "BOTTOMLEFT", barWidth, 0)
-	self.Bar:Show()
+	if reverse then
+		self.Bar:SetPoint("TOPRIGHT", self, "TOPRIGHT", 0, yOff)
+	else
+		self.Bar:SetPoint("TOPLEFT", self, "TOPLEFT", 0, yOff)
+	end
+	self.Bar:SetWidth(barWidth)
+	if barH > 0 then
+		self.Bar:SetHeight(barH)
+	else
+		if reverse then
+			self.Bar:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT")
+		else
+			self.Bar:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
+		end
+	end
+	if barWidth <= 0 then
+		-- Tiled statusbar textures render one full tile at zero width; hide instead.
+		self.Bar:Hide()
+	else
+		self.Bar:Show()
+	end
 end
 
 Ns.OnUpdateList = {}
@@ -493,6 +601,12 @@ function Ns:InitStat(self, profile, statdata)
 
 	local statOpts = profile.Stats and profile.Stats[statdata.stat]
 	if self.Bar and statOpts and (statOpts.StaticBar or statOpts.ShowBar) then
+		local barHeight = statOpts.BarHeight or 0
+		self._barHeight = barHeight
+		self._textHeight = self:GetHeight() -- text line height, before any bar growth
+		if barHeight > self._textHeight then
+			self:SetHeight((self._textHeight + barHeight) / 2) -- reserve the bar's lower half
+		end
 		local barTexPath
 		if statOpts.BarTexture then
 			barTexPath = Ns.LSM:Fetch("statusbar", statOpts.BarTexture)
@@ -509,6 +623,7 @@ function Ns:InitStat(self, profile, statdata)
 		self.BarBg:Hide()
 		self._staticOnly = statOpts.StaticBar and not statdata.options.ShowBar
 	elseif self.Bar then
+		self._barHeight = 0
 		self.Bar:Hide()
 		self.BarBg:Hide()
 		self._staticOnly = false
@@ -597,11 +712,26 @@ function Ns.ResizeBackground(profile, panelFrame, NumCols, NumRows, onerow)
 		if issecretvalue and issecretvalue(w) then return profile.StatWidth or 150 end
 		return w
 	end
-	local function safeHeight(widget)
-		local h = widget:GetHeight()
+	-- Actual content extent: bars may stick out past the row top by _barOverflow
+	local function contentHeight()
+		local maxTop, minBottom
+		for _, v in ipairs(hud.StatList) do
+			local w = v.widget
+			local t = w:GetTop()
+			local b = w:GetBottom()
+			if t and not (issecretvalue and issecretvalue(t)) then
+				t = t + (w._barOverflow or 0)
+				if not maxTop or t > maxTop then maxTop = t end
+			end
+			if b and not (issecretvalue and issecretvalue(b)) and (not minBottom or b < minBottom) then
+				minBottom = b
+			end
+		end
+		if maxTop and minBottom then
+			return maxTop - minBottom + 2
+		end
 		local fh = profile.StatFontSize or 12
-		if (issecretvalue and issecretvalue(h)) or not h or h < fh then return fh end
-		return h
+		return (NumRows * fh) + (NumRows - 1) * (profile.StatSpacingV or 0) + 2
 	end
 	if onerow then
 		local r = hud.StatList[#hud.StatList].widget:GetRight()
@@ -614,7 +744,6 @@ function Ns.ResizeBackground(profile, panelFrame, NumCols, NumRows, onerow)
 			end
 			width = width + 25
 		end
-		height = NumRows * (safeHeight(hud.StatList[1].widget) + profile.StatSpacingV)
 	elseif NumCols > 1 then
 		local lastWidget = hud.StatList[#hud.StatList].widget
 		local lastWidth = safeWidth(lastWidget)
@@ -634,10 +763,7 @@ function Ns.ResizeBackground(profile, panelFrame, NumCols, NumRows, onerow)
 		end
 		width = width + profile.StatSpacingH + 15
 	end
-	if not onerow then
-		height = (NumRows * safeHeight(hud.StatList[1].widget)) + (NumRows - 1) * profile.StatSpacingV
-	end
-	height = height + 2
+	height = contentHeight()
 	if not noBackground then
 		hud.Background:SetSize(width, height)
 	end
@@ -1052,6 +1178,7 @@ function Ns:InitialisePanel(panelName)
 	local chainSpacingY = growUp and (profile.StatSpacingV) or (-profile.StatSpacingV)
 	local totalRows = #hud.StatList
 	local firstOnRow, lastAnchor
+	local fontH = profile.StatFontSize or 12
 	if totalRows > 0 then
 		local rows = profile.StatRows or 1
 
@@ -1061,18 +1188,33 @@ function Ns:InitialisePanel(panelName)
 				v.widget:SetWidth(profile.StatWidth or 100)
 				v.widget._cachedBarWidth = profile.StatWidth or 100
 			end
+			-- Bar overflow past the text line (half of the bar height growth)
+			local statOpts = profile.Stats[v.data.stat]
+			local barH = (statOpts and (statOpts.StaticBar or statOpts.ShowBar) and statOpts.BarHeight) or 0
+			local overflow = (barH > fontH) and (barH - fontH) / 2 or 0
+			v.widget._barOverflow = overflow
+
 			if k == 1 then
-				v.widget:SetPoint(firstPoint, panelFrame, firstRel)
+				-- shift the first row down (grow-down) so the bar clears the panel header
+				local firstY = growUp and 0 or -overflow
+				v.widget:SetPoint(firstPoint, panelFrame, firstRel, 0, firstY)
 				firstOnRow = v.widget
 				lastAnchor = v.widget
 			else
 				if v.newcolumn then
-					v.widget:SetPoint("LEFT", firstOnRow, "RIGHT", profile.StatSpacingH, 0)
+					-- columns sit at their own height so every first-row bar aligns with the panel edge
+					local colPoint = growUp and "BOTTOMLEFT" or "TOPLEFT"
+					local colRel   = growUp and "BOTTOMRIGHT" or "TOPRIGHT"
+					local colY = growUp and 0 or ((firstOnRow._barOverflow or 0) - overflow)
+					v.widget:SetPoint(colPoint, firstOnRow, colRel, profile.StatSpacingH, colY)
 					firstOnRow = v.widget
 					RowCount = 1
 				else
 					oneRow = false
-					v.widget:SetPoint(chainPoint, lastAnchor, chainRel, 0, chainSpacingY)
+					-- grow-down: clear this row's bar; grow-up: clear the previous row's bar
+					local prevOverflow = lastAnchor._barOverflow or 0
+					local extraY = growUp and prevOverflow or -overflow
+					v.widget:SetPoint(chainPoint, lastAnchor, chainRel, 0, chainSpacingY + extraY)
 					RowCount = RowCount + 1
 				end
 			end
@@ -1084,22 +1226,41 @@ function Ns:InitialisePanel(panelName)
 			Ns:InitStat(v.widget, profile, v.data)
 		end
 	end
+	-- Grow-down: push the drag bar UP by the first row's bar overflow so the
+	-- first stat's bar grows into the vacated space instead of over the header.
+	-- (Widgets are anchored to the panel, so they keep their relative layout;
+	-- the first row's anchor keeps its text exactly where it was.)
+	if growUp then
+		ApplyBarTopShift(panelFrame, profile, 0)
+	elseif hud.StatList[1] then
+		ApplyBarTopShift(panelFrame, profile, hud.StatList[1].widget._barOverflow or 0)
+	end
 	if NumCols == 1 and profile.StatAlignment ~= "TOPLEFT" then
 		local alignPoint = growUp and UpAlign[profile.StatAlignment] or profile.StatAlignment
 		local alignRel   = growUp and UpOpPoints[alignPoint] or OpPoints[profile.StatAlignment]
 		local spacingY   = growUp and profile.StatSpacingV or -profile.StatSpacingV
 		for i, v in ipairs(hud.StatList) do
 			v.widget:ClearAllPoints()
-			v.widget:SetPoint(alignPoint, i == 1 and panelFrame or hud.StatList[i-1].widget, alignRel, 0, i == 1 and 0 or spacingY)
+			local ov = v.widget._barOverflow or 0
+			if i == 1 then
+				local firstY = growUp and 0 or -ov
+				v.widget:SetPoint(alignPoint, panelFrame, alignRel, 0, firstY)
+			else
+				local prevOv = hud.StatList[i-1].widget._barOverflow or 0
+				local extraY = growUp and prevOv or -ov
+				v.widget:SetPoint(alignPoint, hud.StatList[i-1].widget, alignRel, 0, spacingY + extraY)
+			end
 		end
 	elseif oneRow and profile.StatAlignment == "TOPRIGHT" then
 		for i=#hud.StatList, 1, -1 do
 			local v = hud.StatList[i]
 			v.widget:ClearAllPoints()
+			local ov = v.widget._barOverflow or 0
 			if i == #hud.StatList then
-				v.widget:SetPoint("TOPRIGHT", panelFrame, "BOTTOMRIGHT", 0, 0)
+				v.widget:SetPoint("TOPRIGHT", panelFrame, "BOTTOMRIGHT", 0, -ov)
 			else
-				v.widget:SetPoint("RIGHT", hud.StatList[i + 1].widget, "LEFT", -profile.StatSpacingH, 0)
+				local nextOv = hud.StatList[i + 1].widget._barOverflow or 0
+				v.widget:SetPoint("TOPRIGHT", hud.StatList[i + 1].widget, "TOPLEFT", -profile.StatSpacingH, nextOv - ov)
 			end
 		end
 	end
@@ -1281,13 +1442,18 @@ function Ns:InitialiseAllPanels()
 					PaperDollFrame:HookScript("OnShow", PDFOnShow)
 					PaperDollFrame:HookScript("OnHide", PDFOnHide)
 				end
-				if not PaperDollFrame:IsVisible() then
+				Ns.CharPanel = true
+				if PaperDollFrame:IsVisible() then
+					-- already open: rebuilds must not leave the HUD hidden
+					-- (PDFOnShow only fires on the next open)
+					if not info.profile.LockHUD then
+						info.panelFrame:Show()
+					end
+					info.hud:Show()
+				else
 					info.panelFrame:Hide()
 					info.hud:Hide()
 				end
-				Ns.CharPanel = true
-				info.panelFrame:Hide()
-				info.hud:Hide()
 			else
 				Ns.CharPanel = false
 			end

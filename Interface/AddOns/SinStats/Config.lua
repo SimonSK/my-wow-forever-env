@@ -395,7 +395,11 @@ Ns.SettingsDisplayOrder = { ignoretoptabs=true,
 	{ stat="HUDBorderColor", icon="", spellclass="HUD", default={ r=0.1, g=0.1, b=0.1, }, widget={ type="ColorPicker", }, newline=true, },
 	{ stat="HUDBorderSize", icon="", spellclass="HUD", default=1, widget={ type="Slider", min=1, max=6, valuestep=1, width=185, }, newline=true, },
 	{ stat="HUDBorderInset", icon="", spellclass="HUD", default=0, widget={ type="Slider", min=-20, max=20, valuestep=1, width=185, }, newline=true, },
-	{ stat="PanelDisplay", icon="", spellclass="HUD", default=false, widget={ type="CheckBox", }, subgroup={ text="PanelMenu", icon="Attach" }, newline=true, },
+	{ stat="PanelDisplay", icon="", spellclass="HUD", default=false, widget={ type="CheckBox", }, linked={ "PanelAttach", false }, subgroup={ text="PanelMenu", icon="Attach" }, newline=true, },
+	{ stat="PanelAttach", icon="", spellclass="HUD", default=false, widget={ type="CheckBox", }, tooltip=true, linked={ "PanelAttachX", false, "PanelAttachY", false }, },
+	-- Anchor offsets: retail/Forever clear the paper doll's top-right sidebar tabs by default
+	{ stat="PanelAttachX", icon="", spellclass="HUD", default=4, widget={ type="Slider", min=-600, max=600, valuestep=1, width=185, }, tooltip=false, newline=true, },
+	{ stat="PanelAttachY", icon="", spellclass="HUD", default=0, widget={ type="Slider", min=-600, max=600, valuestep=1, width=185, }, tooltip=false, newline=true, },
 	{ stat="Minimap", icon="", spellclass="HUD", default={ Show=true, }, widget={ type="MinimapButton", }, subgroup={ text="MinimapGroupText", icon="MinimapMenu", }, newline=true, },
 	--{ stat="Minimap", icon="", spellclass="HUD", default={ Show=true, }, widget={ type="MinimapButton", }, subgroup={ text="MinimapGroupText", icon="MinimapIcon", }, newline=true, },
 	{ stat="CompButton", spellclass="HUD", icon="", default=true, widget={ type="CheckBox", }, newline=true, },
@@ -627,17 +631,24 @@ local function GlobalBar_DisableAllStats(spellclass)
 	ReExpandActiveMenu()
 end
 
-local function GlobalBar_RemoveAllBars(spellclass)
+local function SetAllBarsEnabled(spellclass, enabled)
 	ForEachStatInSpellClass(spellclass, function(entry, data)
-		if data.ShowBar  ~= nil then data.ShowBar  = false end
-		if data.StaticBar ~= nil then data.StaticBar = false end
+		if data.ShowBar  ~= nil then data.ShowBar  = enabled end
+		if data.StaticBar ~= nil then data.StaticBar = enabled end
 	end)
 	Ns:QueueProfileRefresh()
 	Ns:InitialiseAllPanels()
-	ReExpandActiveMenu()
 end
 
-local function GlobalBar_ResetTextColor(spellclass)
+local function EnableBarsOfType(spellclass, key)
+	ForEachStatInSpellClass(spellclass, function(entry, data)
+		if data[key] ~= nil then data[key] = true end
+	end)
+	Ns:QueueProfileRefresh()
+	Ns:InitialiseAllPanels()
+end
+
+local function ResetAllTextColors(spellclass)
 	ForEachStatInSpellClass(spellclass, function(entry, data)
 		if data.ColorCustom ~= nil then data.ColorCustom = false end
 		if type(data.ColorName) == "table" then
@@ -645,7 +656,6 @@ local function GlobalBar_ResetTextColor(spellclass)
 		end
 	end)
 	Ns:QueueProfileRefresh()
-	ReExpandActiveMenu()
 end
 
 local sinConfirmFrame
@@ -835,9 +845,8 @@ local function BuildGlobalSettingsBar(anchorframe, spellclass)
 
 	local btnEnable   = MakeBarButton(bar, "BtnEnable",  L["GlobalBar_EnableAll"]   or "Enable all stats")
 	local btnDisable  = MakeBarButton(bar, "BtnDisable", L["GlobalBar_DisableAll"]  or "Disable all stats")
-	local btnRemove   = MakeBarButton(bar, "BtnRemove",  L["GlobalBar_RemoveBars"]  or "Remove all bars")
 	local btnQColor   = MakeBarButton(bar, "BtnQColor",  L["GlobalBar_QuickColor"]  or "Quick color")
-	local btnReset    = MakeBarButton(bar, "BtnReset",   L["GlobalBar_ResetColor"]  or "Reset text color")
+	local btnQBars    = MakeBarButton(bar, "BtnQBars",   L["GlobalBar_QuickBars"]   or "Quick bars")
 
 	btnEnable:SetScript("OnMouseDown", function()
 		ConfirmThen(L["GlobalBar_ConfirmEnable"]  or "Enable every stat in this group?",
@@ -847,20 +856,16 @@ local function BuildGlobalSettingsBar(anchorframe, spellclass)
 		ConfirmThen(L["GlobalBar_ConfirmDisable"] or "Disable every stat in this group?",
 			function() GlobalBar_DisableAllStats(spellclass) end)
 	end)
-	btnRemove:SetScript("OnMouseDown", function()
-		ConfirmThen(L["GlobalBar_ConfirmRemove"]  or "Remove every bar in this group?",
-			function() GlobalBar_RemoveAllBars(spellclass) end)
-	end)
-	btnReset:SetScript("OnMouseDown", function()
-		ConfirmThen(L["GlobalBar_ConfirmReset"]   or "Reset text color for every stat in this group?",
-			function() GlobalBar_ResetTextColor(spellclass) end)
-	end)
 
 	btnQColor:SetScript("OnMouseDown", function()
 		Ns:ShowQuickColor(spellclass)
 	end)
 
-	local items = { btnEnable, btnDisable, btnQColor, btnRemove, btnReset }
+	btnQBars:SetScript("OnMouseDown", function()
+		Ns:ShowQuickBars(spellclass)
+	end)
+
+	local items = { btnEnable, btnDisable, btnQColor, btnQBars }
 	local total = 0
 	for i, item in ipairs(items) do
 		total = total + item:GetWidth()
@@ -1803,7 +1808,7 @@ local function InitConfig()
 	f.Close:SetScript('OnClick', function(self)
 		self:GetParent():Hide()
 	end)
-	f:HookScript("OnHide", function() if Ns.HideStatInfo then Ns:HideStatInfo() end if Ns.HideQuickColor then Ns:HideQuickColor() end end)
+	f:HookScript("OnHide", function() if Ns.HideStatInfo then Ns:HideStatInfo() end if Ns.HideQuickColor then Ns:HideQuickColor() end if Ns.HideQuickBars then Ns:HideQuickBars() end end)
 
 	f.Title = f:CreateFontString("$parentTitle", "OVERLAY")
 	f.Title:SetFont(Ns.ConfigDefaultFont, Ns.ConfigDefaultFontSize)
@@ -2069,6 +2074,29 @@ local QUICK_COLOR_PAD_H  = 20
 local QUICK_COLOR_ICON_S = 18
 local QUICK_COLOR_PANEL_W = K.INFO_FRAME_WIDTH
 
+local function MakeQuickCheckButton(parent, label)
+	local cb = CreateFrame("CheckButton", nil, parent)
+	cb:SetSize(K.CHECKBOX_SIZE, K.CHECKBOX_SIZE)
+	cb:SetNormalTexture("")
+	cb:SetPushedTexture("")
+	cb:SetHighlightTexture("")
+	cb.FrameTex = cb:CreateTexture(nil, "ARTWORK", nil, 0)
+	cb.FrameTex:SetAllPoints()
+	cb.FrameTex:SetTexture(K.CHECKBOX_FRAME_TEX)
+	cb:SetCheckedTexture(K.CHECKBOX_CHECK_TEX)
+	local checked = cb:GetCheckedTexture()
+	checked:SetBlendMode("BLEND")
+	if K.CHECKBOX_CHECK_SIZE and K.CHECKBOX_CHECK_SIZE > 0 then
+		checked:ClearAllPoints()
+		checked:SetPoint("CENTER")
+		checked:SetSize(K.CHECKBOX_CHECK_SIZE, K.CHECKBOX_CHECK_SIZE)
+	end
+	cb.Text = cb:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+	cb.Text:SetPoint("LEFT", cb, "RIGHT", 4, 1)
+	cb.Text:SetText(label)
+	return cb
+end
+
 local function CreateQuickColorPanel(parent)
 	local f = CreateFrame("Frame", nil, parent)
 	f:SetSize(QUICK_COLOR_PANEL_W, 300)
@@ -2102,26 +2130,19 @@ local function CreateQuickColorPanel(parent)
 		f.TitleBg:SetVertexColor(0.3, 0.3, 0.3, K.ACTIVE_HEADER_BG_A)
 	end
 
-	f.EnableAllCB = CreateFrame("CheckButton", nil, f)
-	f.EnableAllCB:SetSize(K.CHECKBOX_SIZE, K.CHECKBOX_SIZE)
-	f.EnableAllCB:SetPoint("TOPLEFT", 12, K.INFO_SCROLL_TOP_Y + 2)
-	f.EnableAllCB:SetNormalTexture("")
-	f.EnableAllCB:SetPushedTexture("")
-	f.EnableAllCB:SetHighlightTexture("")
-	f.EnableAllCB.FrameTex = f.EnableAllCB:CreateTexture(nil, "ARTWORK", nil, 0)
-	f.EnableAllCB.FrameTex:SetAllPoints()
-	f.EnableAllCB.FrameTex:SetTexture(K.CHECKBOX_FRAME_TEX)
-	f.EnableAllCB:SetCheckedTexture(K.CHECKBOX_CHECK_TEX)
-	local ecbChecked = f.EnableAllCB:GetCheckedTexture()
-	ecbChecked:SetBlendMode("BLEND")
-	if K.CHECKBOX_CHECK_SIZE and K.CHECKBOX_CHECK_SIZE > 0 then
-		ecbChecked:ClearAllPoints()
-		ecbChecked:SetPoint("CENTER")
-		ecbChecked:SetSize(K.CHECKBOX_CHECK_SIZE, K.CHECKBOX_CHECK_SIZE)
-	end
-	f.EnableAllCB.Text = f:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-	f.EnableAllCB.Text:SetPoint("LEFT", f.EnableAllCB, "RIGHT", 4, 1)
-	f.EnableAllCB.Text:SetText(L["QuickColor_EnableAll"] or "Enable individual colors")
+	-- Reset all text colors for the group (prompted button)
+	local btnResetColors = MakeBarButton(f, "BtnResetColors", L["GlobalBar_ResetColor"] or "Reset text color")
+	btnResetColors:SetPoint("TOPLEFT", 12, K.INFO_SCROLL_TOP_Y + 2)
+	btnResetColors:SetScript("OnMouseDown", function()
+		ConfirmThen(L["GlobalBar_ConfirmReset"] or "Reset text color for every stat in this group?",
+			function()
+				ResetAllTextColors(f._spellclass)
+				if f._spellclass then f:Populate(f._spellclass) end
+			end)
+	end)
+
+	f.EnableAllCB = MakeQuickCheckButton(f, L["QuickColor_EnableAll"] or "Enable individual colors")
+	f.EnableAllCB:SetPoint("TOPLEFT", btnResetColors, "BOTTOMLEFT", 0, -4)
 
 	f.EnableAllCB:SetScript("OnClick", function(cb)
 		local checked = cb:GetChecked()
@@ -2141,7 +2162,7 @@ local function CreateQuickColorPanel(parent)
 	end)
 
 	f.Scroll = CreateFrame("ScrollFrame", nil, f)
-	f.Scroll:SetPoint("TOPLEFT", 8, K.INFO_SCROLL_TOP_Y - 36)
+	f.Scroll:SetPoint("TOPLEFT", 8, K.INFO_SCROLL_TOP_Y - 56)
 	f.Scroll:SetPoint("BOTTOMRIGHT", -8, K.INFO_SCROLL_BOTTOM_PAD)
 	f.Scroll:EnableMouseWheel(true)
 	f.Scroll:SetClipsChildren(true)
@@ -2331,7 +2352,7 @@ local function CreateQuickColorPanel(parent)
 		self.EnableAllCB:SetChecked(allCustom)
 
 		child:SetHeight(math.max(1, -y + 8))
-		local desiredH = math.min(500, math.max(120, -y + 100))
+		local desiredH = math.min(500, math.max(120, -y + 138))
 		self:SetHeight(desiredH)
 		self.Scroll:SetVerticalScroll(0)
 	end
@@ -2358,6 +2379,9 @@ function Ns:ShowQuickColor(spellclass)
 	if Ns.ConfigFrame.InfoFrame then
 		Ns.ConfigFrame.InfoFrame:Hide()
 	end
+	if Ns.ConfigFrame.QuickBarsPanel then
+		Ns.ConfigFrame.QuickBarsPanel:Hide()
+	end
 	-- Toggle
 	if panel:IsShown() then
 		panel:Hide()
@@ -2373,12 +2397,286 @@ function Ns:HideQuickColor()
 	end
 end
 
+------------------------------------------
+--			Quick Bars Panel			--
+------------------------------------------
+local QUICK_BARS_PANEL_W = K.INFO_FRAME_WIDTH
+local QUICK_BARS_PANEL_H = 300
+local DEFAULT_BAR_COLOR = { r=0.2, g=0.6, b=0.2 }
+
+local function CreateQuickBarsPanel(parent)
+	local f = CreateFrame("Frame", nil, parent)
+	f:SetSize(QUICK_BARS_PANEL_W, QUICK_BARS_PANEL_H)
+	f:SetFrameStrata(parent:GetFrameStrata())
+	f:SetFrameLevel(parent:GetFrameLevel() + 5)
+	f:SetPoint("TOPLEFT", parent, "TOPRIGHT", 4, 0)
+	f:Hide()
+
+	f.Background = f:CreateTexture(nil, "BACKGROUND")
+	f.Background:SetAllPoints()
+	f.Background:SetTexture(K.INFO_FRAME_BG_TEX)
+	f.Background:SetVertexColor(0.1, 0.1, 0.1, 1)
+
+	-- Title
+	f.Title = f:CreateFontString(nil, "OVERLAY")
+	if K.INFO_TITLE_USE_MORPHEUS then
+		local morpheus = Ns.LSM:Fetch("font", "Morpheus")
+		f.Title:SetFont(morpheus or Ns.ConfigDefaultFont, K.INFO_TITLE_FONT_SIZE or 18)
+	else
+		f.Title:SetFont(Ns.ConfigDefaultFont, Ns.ConfigDefaultFontSize)
+	end
+	f.Title:SetPoint("TOP", 0, K.INFO_TITLE_TOP_Y)
+	f.Title:SetText(L["GlobalBar_QuickBars"] or "Quick bars")
+	f.Title:SetTextColor(orangeColor.r, orangeColor.g, orangeColor.b)
+
+	if K.ACTIVE_HEADER_BG_TEX ~= "" then
+		f.TitleBg = f:CreateTexture(nil, "BACKGROUND", nil, 1)
+		f.TitleBg:SetPoint("TOPLEFT",     f.Title, "TOPLEFT",     -K.ACTIVE_HEADER_BG_PAD_LEFT,  6)
+		f.TitleBg:SetPoint("BOTTOMRIGHT", f.Title, "BOTTOMRIGHT",  K.ACTIVE_HEADER_BG_PAD_RIGHT, -6)
+		f.TitleBg:SetTexture(K.ACTIVE_HEADER_BG_TEX)
+		f.TitleBg:SetVertexColor(0.3, 0.3, 0.3, K.ACTIVE_HEADER_BG_A)
+	end
+
+	-- Shared settings proxy: every write is broadcast to all stats in the group.
+	local shared = {}
+	local settings = setmetatable({}, {
+		__index = function(_, key)
+			return rawget(shared, key)
+		end,
+		__newindex = function(_, key, value)
+			rawset(shared, key, value)
+			local sc = f._spellclass
+			if sc then
+				ForEachStatInSpellClass(sc, function(entry, data)
+					data[key] = value
+				end)
+				Ns:QueueProfileRefresh()
+			end
+		end,
+	})
+	f.Settings = settings
+
+	-- Enable dynamic / static bars for the whole group (prompted buttons;
+	-- checkboxes were too easy to click by mistake). Removing all bars stays
+	-- on the global quick bar only.
+	local btnEnableDyn = MakeBarButton(f, "BtnEnableDyn", L["QuickBars_EnableDynamic"] or "Enable all dynamic bars")
+	btnEnableDyn:SetPoint("TOPLEFT", 12, K.INFO_SCROLL_TOP_Y + 2)
+	btnEnableDyn:SetScript("OnMouseDown", function()
+		ConfirmThen(L["QuickBars_ConfirmEnableDynamic"] or "Enable dynamic bars for every stat in this group?",
+			function() EnableBarsOfType(f._spellclass, "ShowBar") end)
+	end)
+
+	local btnEnableStatic = MakeBarButton(f, "BtnEnableStatic", L["QuickBars_EnableStatic"] or "Enable all static bars")
+	btnEnableStatic:SetPoint("TOPLEFT", btnEnableDyn, "BOTTOMLEFT", 0, -10)
+	btnEnableStatic:SetScript("OnMouseDown", function()
+		ConfirmThen(L["QuickBars_ConfirmEnableStatic"] or "Enable static bars for every stat in this group?",
+			function() EnableBarsOfType(f._spellclass, "StaticBar") end)
+	end)
+
+	local btnRemoveBars = MakeBarButton(f, "BtnRemoveBars", L["GlobalBar_RemoveBars"] or "Remove all bars")
+	btnRemoveBars:SetPoint("TOPLEFT", btnEnableStatic, "BOTTOMLEFT", 0, -10)
+	btnRemoveBars:SetScript("OnMouseDown", function()
+		ConfirmThen(L["GlobalBar_ConfirmRemove"] or "Remove every bar in this group?",
+			function() SetAllBarsEnabled(f._spellclass, false) end)
+	end)
+
+	-- Bar texture dropdown (LibSharedMedia statusbars)
+	local drop = Ns:GetWidget("DropList", f, 9901)
+	drop.MyInformation = { widget = { width = 140 } }
+	drop:SetFrameStrata("DIALOG")
+	drop:SetHeight(K.DROPLIST_HEIGHT)
+	drop.Label:SetText(L["BarTexture"] or "Texture")
+	drop.Label:SetWidth(0) -- pooled labels keep a stretched width from option pages
+	drop.Label:SetTextColor(K.WIDGET_LABEL_R, K.WIDGET_LABEL_G, K.WIDGET_LABEL_B, K.WIDGET_LABEL_A)
+	drop.Label:Show()
+	drop.BgAtlas:ClearAllPoints()
+	drop.BgAtlas:SetPoint("TOP",    drop,       "TOP",    0,  K.DROPLIST_BG_INSET_T)
+	drop.BgAtlas:SetPoint("BOTTOM", drop,       "BOTTOM", 0, -K.DROPLIST_BG_INSET_B)
+	drop.BgAtlas:SetPoint("LEFT",   drop.Label, "RIGHT",  K.WIDGET_LABEL_GAP - K.DROPLIST_BG_INSET_L, 0)
+	drop.BgAtlas:SetPoint("RIGHT",  drop,       "RIGHT",  K.DROPLIST_BG_INSET_R, 0)
+	local barTextures = {}
+	local hasDefaultTex
+	for _, name in ipairs(Ns.LSM:List("statusbar") or {}) do
+		barTextures[#barTextures+1] = { text = name, value = name }
+		if name == "Blizzard" then hasDefaultTex = true end
+	end
+	if not hasDefaultTex then
+		tinsert(barTextures, 1, { text = "Blizzard", value = "Blizzard" })
+	end
+	drop.DropButton.Data = barTextures
+	drop.DropButton.Settings = settings
+	drop.DropButton.Key = "BarTexture"
+	local labelW = ceil(drop.Label:GetStringWidth() or 0)
+	drop:SetWidth(labelW + K.WIDGET_LABEL_GAP + 140)
+	drop:SetPoint("TOPLEFT", btnRemoveBars, "BOTTOMLEFT", 0, -14)
+	drop:Show()
+
+	-- Bar color label + swatch
+	f.ColorLabel = f:CreateFontString(nil, "OVERLAY")
+	f.ColorLabel:SetFont(Ns.ConfigDefaultFont2, Ns.ConfigDefaultFontSize - 4)
+	f.ColorLabel:SetTextColor(K.WIDGET_LABEL_R, K.WIDGET_LABEL_G, K.WIDGET_LABEL_B, K.WIDGET_LABEL_A)
+	f.ColorLabel:SetText(L["BarColor"] or "Bar color")
+	f.ColorLabel:SetPoint("TOPLEFT", drop, "BOTTOMLEFT", 2, -18)
+
+	f.Swatch = CreateFrame("Button", nil, f)
+	f.Swatch:SetSize(QUICK_COLOR_PAD_W, QUICK_COLOR_PAD_H)
+	f.Swatch:SetPoint("LEFT", f.ColorLabel, "RIGHT", K.WIDGET_LABEL_GAP, 0)
+	f.Swatch.ColorTex = f.Swatch:CreateTexture(nil, "BACKGROUND")
+	f.Swatch.ColorTex:SetAllPoints()
+	f.Swatch.ColorTex:SetTexture(Ns.TexturePath.."ColorPad")
+	f.Swatch.Border = f.Swatch:CreateTexture(nil, "BACKGROUND", nil, 1)
+	f.Swatch.Border:SetPoint("TOPLEFT", -1, 1)
+	f.Swatch.Border:SetPoint("BOTTOMRIGHT", 1, -1)
+	f.Swatch.Border:SetColorTexture(0, 0, 0, 0.15)
+
+	local function ApplyBarColor(r, g, b)
+		local sc = f._spellclass
+		if not sc then return end
+		ForEachStatInSpellClass(sc, function(entry, data)
+			data.BarColor = { r=r, g=g, b=b }
+		end)
+		Ns:QueueProfileRefresh()
+		Ns:InitialiseAllPanels()
+	end
+
+	f.Swatch:SetScript("OnClick", function(sw, button)
+		local sc = f._spellclass
+		if not sc then return end
+		if button == "RightButton" then
+			ApplyBarColor(DEFAULT_BAR_COLOR.r, DEFAULT_BAR_COLOR.g, DEFAULT_BAR_COLOR.b)
+			sw.ColorTex:SetVertexColor(DEFAULT_BAR_COLOR.r, DEFAULT_BAR_COLOR.g, DEFAULT_BAR_COLOR.b)
+			return
+		end
+		local c
+		ForEachStatInSpellClass(sc, function(entry, data)
+			if not c and data.BarColor then c = data.BarColor end
+		end)
+		c = c or DEFAULT_BAR_COLOR
+
+		local function OnColorChange()
+			local r1, g1, b1 = ColorPickerFrame:GetColorRGB()
+			sw.ColorTex:SetVertexColor(r1, g1, b1)
+			ApplyBarColor(r1, g1, b1)
+		end
+
+		local function OnColorCancel()
+			local prev = ColorPickerFrame.previousValues
+			if prev then
+				sw.ColorTex:SetVertexColor(prev.r, prev.g, prev.b)
+				ApplyBarColor(prev.r, prev.g, prev.b)
+			else
+				Ns:QueueProfileRefresh()
+			end
+		end
+
+		ColorPickerFrame.previousValues = { r=c.r, g=c.g, b=c.b }
+		if ColorPickerFrame.SetupColorPickerAndShow then
+			local info = UIDropDownMenu_CreateInfo()
+			info.r, info.g, info.b = c.r, c.g, c.b
+			info.swatchFunc = OnColorChange
+			info.cancelFunc = OnColorCancel
+			ColorPickerFrame:SetupColorPickerAndShow(info)
+			if ColorPickerFrame.Content then
+				ColorPickerFrame.Content.ColorPicker:SetColorRGB(c.r, c.g, c.b)
+			else
+				ColorPickerFrame:SetColorRGB(c.r, c.g, c.b)
+			end
+		else
+			ColorPickerFrame.func = OnColorChange
+			ColorPickerFrame.cancelFunc = OnColorCancel
+			ColorPickerFrame.hasOpacity = false
+			ColorPickerFrame:SetColorRGB(c.r, c.g, c.b)
+			ColorPickerFrame:Show()
+		end
+	end)
+
+	-- Bar height slider (0 = auto fill, otherwise pixels)
+	local sw = Ns:GetWidget("Slider", f, 9902)
+	sw.MyInformation = { widget = { min=0, max=100, valuestep=1, width=145 } }
+	sw.Label:SetText(L["BarHeight"] or "Bar height")
+	sw.Label:SetWidth(0) -- pooled labels keep a stretched width from option pages
+	sw.Label:SetTextColor(K.WIDGET_LABEL_R, K.WIDGET_LABEL_G, K.WIDGET_LABEL_B, K.WIDGET_LABEL_A)
+	sw.Label:Show()
+	sw:SetPoint("TOPLEFT", f.ColorLabel, "BOTTOMLEFT", -2, -26)
+	local s = sw.Slider
+	s.Settings = settings
+	s.Key = "BarHeight"
+	s:SetMinMaxValues(0, 100)
+	s:SetValueStep(1)
+	s:SetWidth(145)
+	s.Min:SetText("0")
+	s.Max:SetText("100")
+	local swLabelW = ceil(sw.Label:GetStringWidth() or 0)
+	sw:SetWidth(swLabelW + K.WIDGET_LABEL_GAP + 145)
+	sw:Show()
+
+	function f:Populate(spellclass)
+		self._spellclass = spellclass
+
+		local tex, col, hgt
+		ForEachStatInSpellClass(spellclass, function(entry, data)
+			if not tex and data.BarTexture then tex = data.BarTexture end
+			if not col and data.BarColor then col = data.BarColor end
+			if not hgt and data.BarHeight then hgt = data.BarHeight end
+		end)
+		tex = tex or "Blizzard"
+		col = col or DEFAULT_BAR_COLOR
+		hgt = hgt or 0
+
+		-- seed the shared values so control updates don't re-write all stats
+		rawset(shared, "BarTexture", tex)
+		rawset(shared, "BarHeight", hgt)
+
+		drop:SetText(tex)
+		f.Swatch.ColorTex:SetVertexColor(col.r, col.g, col.b)
+		s:SetValue(hgt)
+		s.Edit:SetValue(hgt)
+	end
+
+	f:EnableMouse(true)
+	f:HookScript("OnHide", function(self)
+		self._spellclass = nil
+	end)
+
+	return f
+end
+
+function Ns:ShowQuickBars(spellclass)
+	if not Ns.ConfigFrame or not spellclass then return end
+	if not Ns.ConfigFrame.QuickBarsPanel then
+		Ns.ConfigFrame.QuickBarsPanel = CreateQuickBarsPanel(Ns.ConfigFrame)
+	end
+	local panel = Ns.ConfigFrame.QuickBarsPanel
+	if Ns.ConfigFrame.InfoFrame then
+		Ns.ConfigFrame.InfoFrame:Hide()
+	end
+	if Ns.ConfigFrame.QuickColorPanel then
+		Ns.ConfigFrame.QuickColorPanel:Hide()
+	end
+	-- Toggle
+	if panel:IsShown() then
+		panel:Hide()
+		return
+	end
+	panel:Populate(spellclass)
+	panel:Show()
+end
+
+function Ns:HideQuickBars()
+	if Ns.ConfigFrame and Ns.ConfigFrame.QuickBarsPanel then
+		Ns.ConfigFrame.QuickBarsPanel:Hide()
+	end
+end
+
 function Ns:ShowStatInfo(rawText, btn)
 	if not rawText or string.trim(rawText) == "" then return end
 	if not Ns.ConfigFrame then return end
 
 	if Ns.ConfigFrame.QuickColorPanel then
 		Ns.ConfigFrame.QuickColorPanel:Hide()
+	end
+	if Ns.ConfigFrame.QuickBarsPanel then
+		Ns.ConfigFrame.QuickBarsPanel:Hide()
 	end
 	if not Ns.ConfigFrame.InfoFrame then
 		Ns.ConfigFrame.InfoFrame = CreateInfoFrame(Ns.ConfigFrame)

@@ -796,6 +796,8 @@ function Mixins.functions.AnchorFrames.Reset(self)
 	if Ns.HideStatInfo then Ns:HideStatInfo() end
 	-- Quick Color side panel.. hide whenever options reset.
 	if Ns.HideQuickColor then Ns:HideQuickColor() end
+	-- Quick Bars side panel.. hide whenever options reset.
+	if Ns.HideQuickBars then Ns:HideQuickBars() end
 	-- Global Settings bar is per-stat-group.. hide whenever options reset.
 	if self.GlobalBar then self.GlobalBar:Hide() end
 end

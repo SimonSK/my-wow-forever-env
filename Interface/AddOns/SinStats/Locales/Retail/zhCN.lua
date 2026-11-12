@@ -93,6 +93,11 @@ L["Low"] = "低"
 L["Medium"] = "中"
 L["High"] = "高"
 L["Highest"] = "最高"
+L["PanelAttach"] = "锚定"
+L["PanelAttachTooltip"] = Ns.Colors.Green .. "锚定|r\n" .. "将 HUD 锚定到\n角色面板右侧|r"
+L["PanelAttachX"] = "锚定 X 偏移"
+L["PanelAttachY"] = "锚定 Y 偏移"
+
 
 L["OutlineMenu"] = "描边"
 L["StatFont"] = "字体"
@@ -340,6 +345,11 @@ L["Steady Flying"] = "稳定飞行"
 L["Skyriding"] = "御空飞行"
 L["On Foot"] = "步行"
 L["Mounted"] = "骑乘"
+L["BarReverse"] = "反向"
+L["BarReverseTooltip"] = Ns.Colors.Green .. "反向|r\n" .. "从右侧边缘而不是左侧边缘\n填充状态条。\n\n仅影响动态状态条"
+L["BarInvert"] = "反转"
+L["BarInvertTooltip"] = Ns.Colors.Green .. "反转|r\n" .. "数值减少时填充状态条，\n显示缺失量而不是当前数值。\n\n仅影响动态状态条"
+L["BarHeight"] = "状态条高度"
 
 -- Stat Bars
 L["StaticBar"] = "静态"

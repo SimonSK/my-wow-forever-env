@@ -390,9 +390,41 @@ f.HUD:SetScript("OnEvent", function (self, event, ...)
 	if event == "PLAYER_LOGIN" then
 		Ns:InitialiseVersionData()
 		Ns.Name = UnitName("player")
-		Ns.ProfileKey = Ns.Name .. "-" .. GetRealmName()
+		local realm = GetRealmName()
+
+		-- adding dual name to forever profiles
+		local charName = Ns.Name
+		local isForever = (WOW_PROJECT_ID == WOW_PROJECT_CAMELOT) or (WOW_PROJECT_ID == 14)
+		if isForever and UnitFullName then
+			local fullName, surname = UnitFullName("player")
+			if fullName and not (issecretvalue and (issecretvalue(fullName) or issecretvalue(surname))) then
+				if surname and surname ~= "" and surname ~= realm
+					and not strfind(fullName, surname, 1, true) then
+					charName = fullName .. "-" .. surname
+				else
+					charName = fullName
+				end
+			end
+		end
+		Ns.ProfileKey = charName .. "-" .. realm
 		Ns.Class = select(2, UnitClass("player"))
 		InitDefaults()
+
+		-- forever dual name check
+		if isForever then
+			local legacyKey = Ns.Name .. "-" .. realm
+			if Ns.ProfileKey ~= legacyKey
+				and not SinStatsDB.profileKeys[Ns.ProfileKey]
+				and SinStatsDB.profileKeys[legacyKey] then
+				SinStatsDB.profileKeys[Ns.ProfileKey] = SinStatsDB.profileKeys[legacyKey]
+				SinStatsDB.profileKeys[legacyKey] = nil
+				local legacySpec = SinStatsDB.specProfiles and SinStatsDB.specProfiles[legacyKey]
+				if legacySpec and not SinStatsDB.specProfiles[Ns.ProfileKey] then
+					SinStatsDB.specProfiles[Ns.ProfileKey] = legacySpec
+					SinStatsDB.specProfiles[legacyKey] = nil
+				end
+			end
+		end
 		if not SinStatsDB.profileKeys[Ns.ProfileKey] then
 			SinStatsDB.profileKeys[Ns.ProfileKey] = "Default"
 		end

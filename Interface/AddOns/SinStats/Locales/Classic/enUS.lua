@@ -238,6 +238,11 @@ L["GlobalBar_ConfirmDisable"] = "Disable every stat in this group?"
 L["GlobalBar_ConfirmRemove"] = "Remove every bar in this group?"
 L["GlobalBar_ConfirmReset"] = "Reset text color for every stat in this group?"
 L["GlobalBar_QuickColor"] = "Quick color"
+L["GlobalBar_QuickBars"] = "Quick bars"
+L["QuickBars_EnableDynamic"] = "Enable all dynamic bars"
+L["QuickBars_ConfirmEnableDynamic"] = "Enable dynamic bars for every stat in this group?"
+L["QuickBars_EnableStatic"] = "Enable all static bars"
+L["QuickBars_ConfirmEnableStatic"] = "Enable static bars for every stat in this group?"
 L["QuickColor_EnableAll"] = "Enable individual colors"
 
 -- Layout
@@ -368,6 +373,16 @@ L["Steady Flying"] = "Steady Flying"
 L["Skyriding"] = "Skyriding"
 L["On Foot"] = "On Foot"
 L["Mounted"] = "Mounted"
+L["PanelAttach"] = "Anchor"
+L["PanelAttachTooltip"] = Ns.Colors.Green .. "Anchor |r\n" .. "Anchor the HUD to the right " .. "\nside of the character panel|r"
+L["PanelAttachX"] = "Anchor offset X"
+L["PanelAttachY"] = "Anchor offset Y"
+L["BarHeight"] = "Bar height"
+L["BarHeightTip"] = ""
+L["BarReverse"] = "Reverse"
+L["BarReverseTooltip"] = Ns.Colors.Green .. "Reverse|r\n" .. "Fill the bar from the right edge \ninstead of the left. \n\nOnly affects dynamic bars"
+L["BarInvert"] = "Invert"
+L["BarInvertTooltip"] = Ns.Colors.Green .. "Invert|r\n" .. "Fill the bar as the value decreases, \nshowing what is missing instead of \nthe current amount. \n\nOnly affects dynamic bars"
 
 
 

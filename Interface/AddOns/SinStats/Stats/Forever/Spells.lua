@@ -477,36 +477,37 @@ function Ns.FunctionList.HasteCaster(HUD, data, options, ...)
 end
 ------------------------------------------------
 
-------------------------------------------------
+--------------------
 -- Mana regeneration
-------------------------------------------------
--- Forever: the client reports mana regeneration per second, both out of combat and while casting.
--- Scaling that to per-2s or per-5s is arithmetic, so the results are secret in restricted content
--- and the last readable values are kept.
+--------------------
+
 local cachedRegenBase, cachedRegenCasting = 0, 0
 
-local function GetManaRegenPerSecond()
-	local base, casting = GetManaRegen()
-
+local function CacheManaRegen(base, casting)
 	if not issecretvalue(base) and not issecretvalue(casting) then
 		cachedRegenBase, cachedRegenCasting = base, casting
+		return base, casting
 	end
-
 	return cachedRegenBase, cachedRegenCasting
 end
 
--- scale is 2 for MP2 and 5 for MP5
 local function FormatManaRegen(options, scale)
-	local EB = options.Regen_Normal_Casting
-	local base, casting = GetManaRegenPerSecond()
+	local base, casting = GetManaRegen()
+	local mode = options.Auto_Switch and Casting or options.Regen_Normal_Casting
+
+	if not options.Combat_Mode then
+		base, casting = CacheManaRegen(base, casting)
+		base, casting = base * scale, casting * scale
+	end
+
 	local decimals = Ns.DecimalFormat(options.Decimals_Two)
 
-	if Ns.Band(EB, Both) then
-		return (decimals):format(base * scale) .. " (" .. (decimals):format(casting * scale) .. ")"
-	elseif Ns.Band(EB, Casting) then
-		return (decimals):format(casting * scale)
+	if mode == Both then
+		return (decimals):format(base) .. " (" .. (decimals):format(casting) .. ")"
+	elseif mode == Casting then
+		return (decimals):format(casting)
 	end
-	return (decimals):format(base * scale)
+	return (decimals):format(base)
 end
 
 -- MP2

@@ -97,6 +97,10 @@ L["Low"] = "낮음"
 L["Medium"] = "중간"
 L["High"] = "높음"
 L["Highest"] = "최상"
+L["PanelAttach"] = "고정"
+L["PanelAttachTooltip"] = Ns.Colors.Green .. "고정|r\n" .. "HUD를 캐릭터 창의\n오른쪽에 고정합니다|r"
+L["PanelAttachX"] = "고정 X 오프셋"
+L["PanelAttachY"] = "고정 Y 오프셋"
 
 -- Text
 L["OutlineMenu"] = "외곽선"
@@ -400,6 +404,12 @@ L["On Foot"] = "도보"
 L["Mounted"] = "탈것 탑승"
 L["CurrText"] = "현재 통화: "
 L["RenoText"] = "명성 순위를 표시합니다 "
+L["BarReverse"] = "반전"
+L["BarReverseTooltip"] = Ns.Colors.Green .. "반전|r\n" .. "막대를 왼쪽 대신 오른쪽 끝에서부터\n채웁니다.\n\n동적 바에만 적용됩니다"
+L["BarInvert"] = "채우기 반전"
+L["BarInvertTooltip"] = Ns.Colors.Green .. "채우기 반전|r\n" .. "값이 감소할수록 막대가 채워져,\n현재 수치 대신 부족한 양을\n표시합니다.\n\n동적 바에만 적용됩니다"
+L["BarHeight"] = "막대 높이"
+
 
 L["ScalingText"] = Ns.Colors.Green .. "\n[대상 스케일링] |r\n"
 L["TipsAndInfo"] = Ns.Colors.Green .. "팁과 정보! |r\n\n"

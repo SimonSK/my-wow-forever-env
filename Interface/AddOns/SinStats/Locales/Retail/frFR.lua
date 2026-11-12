@@ -94,6 +94,10 @@ L["Low"] = "Bas"
 L["Medium"] = "Moyen"
 L["High"] = "Élevé"
 L["Highest"] = "Très élevé"
+L["PanelAttach"] = "Ancrage"
+L["PanelAttachTooltip"] = Ns.Colors.Green .. "Ancrage|r\n" .. "Ancre le HUD sur le côté droit\nde la fenêtre de personnage|r"
+L["PanelAttachX"] = "Décalage X de l'ancrage"
+L["PanelAttachY"] = "Décalage Y de l'ancrage"
 
 -- Text
 L["OutlineMenu"] = "Contour"
@@ -345,6 +349,13 @@ L["Steady Flying"] = "Vol stable"
 L["Skyriding"] = "Vol céleste"
 L["On Foot"] = "À pied"
 L["Mounted"] = "Monté"
+L["BarReverse"] = "Inverser"
+L["BarReverseTooltip"] = Ns.Colors.Green .. "Inverser|r\n" .. "Remplit la barre depuis le bord droit\nau lieu du bord gauche.\n\nN'affecte que les barres dynamiques"
+L["BarInvert"] = "Inverser le remplissage"
+L["BarInvertTooltip"] = Ns.Colors.Green .. "Inverser le remplissage|r\n" .. "Remplit la barre à mesure que la valeur\ndiminue, en affichant ce qui manque\nplutôt que la quantité actuelle.\n\nN'affecte que les barres dynamiques"
+L["BarHeight"] = "Hauteur de la barre"
+
+
 
 L["Decimals_Default"] = "Séparateur de milliers"
 L["Decimals_DefaultTip"] = ""

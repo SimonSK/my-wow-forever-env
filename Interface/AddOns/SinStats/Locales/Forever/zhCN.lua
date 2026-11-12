@@ -93,6 +93,17 @@ L["Low"] = "低"
 L["Medium"] = "中"
 L["High"] = "高"
 L["Highest"] = "最高"
+L["BarReverse"] = "反向"
+L["BarReverseTooltip"] = Ns.Colors.Green .. "反向|r\n" .. "从右侧边缘而不是左侧边缘\n填充状态条。\n\n仅影响动态状态条"
+L["BarInvert"] = "反转"
+L["BarInvertTooltip"] = Ns.Colors.Green .. "反转|r\n" .. "数值减少时填充状态条，\n显示缺失量而不是当前数值。\n\n仅影响动态状态条"
+L["BarHeight"] = "状态条高度"
+L["BarHeightTip"] = ""
+L["BarHeightTooltip"] = ""
+L["PanelAttach"] = "锚定"
+L["PanelAttachTooltip"] = Ns.Colors.Green .. "锚定|r\n" .. "将 HUD 锚定到\n角色面板右侧|r"
+L["PanelAttachX"] = "锚定 X 偏移"
+L["PanelAttachY"] = "锚定 Y 偏移"
 
 L["OutlineMenu"] = "描边"
 L["StatFont"] = "字体"
@@ -400,6 +411,19 @@ L["Regen_Normal_CastingTooltip"] = Ns.Colors.Green .. "正常|r\n" ..
 "未施法时的法力回复,处于 5 秒规则之外 \n\n" ..
 Ns.Colors.Green .. "施法中|r\n" ..
 "施法时的法力回复,处于 5 秒规则之内"
+
+L["Auto_Switch"] = "战斗模式"
+L["Auto_SwitchTip"] = ""
+L["Auto_SwitchTooltip"] = Ns.Colors.Green .. "战斗模式|r\n" ..
+"自动切换为战斗中的法力回复, \n即处于 5 秒规则之内 \n\n" ..
+"会覆盖上方的 正常 - 施法中 设置"
+
+L["Combat_Mode"] = "实时模式"
+L["Combat_ModeTip"] = ""
+L["Combat_ModeTooltip"] = Ns.Colors.Green .. "实时模式|r\n" ..
+"以每秒为单位显示数值, \n并遵循上方的 正常 - 施法中 设置 \n\n" ..
+"它永不冻结: 即使游戏隐藏玩家属性, \n数值仍会持续更新 \n\n" ..
+"由于是每秒数值, 数字会远小于 \n属性本身: 每5秒 30 点即每秒 6 点"
 
 L["World_RealmTooltip"] = Ns.Colors.Green .. "服务器|r\n" ..
 "从你的电脑到暴雪服务器的平均延迟(毫秒）\n\n" ..

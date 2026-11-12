@@ -181,10 +181,13 @@ Ns.Options = {
 	{ stat="BarMaxMode", group=5, spellclass="BarMaxMode", widget={ type="DropList", data="BarMaxMode", width=120, }, default=1, onchange="OnBarMaxModeChange", baropt=true, barmode="Default", newline=true, },
 	{ stat="SpeedBar", group=5, spellclass="SpeedBar", widget={ type="DropList", data="SpeedBar", width=120, }, default=1, baropt=true, barmode="Speed", newline=true, },
 	{ stat="BarMaxCustom", group=5, spellclass="BarMaxCustom", default=100, tooltip=true, widget={ type="EditBox", width=60, height=20, numeric=true, format="%.0f", }, baropt=true, barmode="Default,Speed", },
+	{ stat="BarReverse", group=5, spellclass="BarReverse", widget={ type="CheckBox", }, tooltip=true, default=false, labels={ "BarReverse"}, baropt=true, newline=true, },
+	{ stat="BarInvert", group=5, spellclass="BarInvert", widget={ type="CheckBox", }, tooltip=true, default=false, labels={ "BarInvert"}, baropt=true, },	
 	{ stat="BarTexture", group=5, spellclass="BarTexture", widget={ type="DropList", data="BarTextures", width=170, }, default="Blizzard", baropt=true, staticopt=true, newline=true, },
 	{ stat="BarColor", group=5, spellclass="BarColor", default={ r=0.2, g=0.6, b=0.2, }, widget={ type="ColorPicker", }, baropt=true, staticopt=true, newline=true, },
 	{ stat="BarAutoColor", group=5, spellclass="BarAutoColor", widget={ type="CheckBox", }, tooltip=true, default=false, labels={ "BarAutoColor"}, baropt=true, linked={ "BarColor", true, }, },
 	{ stat="BarAlpha", group=5, spellclass="BarAlpha", default=1, widget={ type="Slider", min=0, max=1, valuestep=0.01, width=145, }, baropt=true, staticopt=true, newline=true, },
+	{ stat="BarHeight", group=5, spellclass="BarHeight", default=0, widget={ type="Slider", min=0, max=100, valuestep=1, width=145, }, tooltip=false, baropt=true, staticopt=true, newline=true, },
 	{ stat="BarBgColor", group=5, spellclass="BarBgColor", default={ r=0.1, g=0.1, b=0.1, }, widget={ type="ColorPicker", }, baropt=true, newline=true, },
 	{ stat="BarBgAlpha", group=5, spellclass="BarBgAlpha", default=1, widget={ type="Slider", min=0, max=1, valuestep=0.01, width=145, }, baropt=true, newline=true, },
 }
