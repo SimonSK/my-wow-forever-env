@@ -1,4 +1,13 @@
-﻿1.60.28 - 5th November 2026
+﻿1.60.31 - 12th November 2026
+- Updated dungeon maps.
+
+1.60.30 - 11th November 2026
+- Added new 'Simple map frame' themes called 'Glass', 'Retro TV' with functional controls and 'Games' which includes a playable minigame called Gemfall.  Why?  Because it's a games deck.
+- Added a new option 'Set keybindings' which replaces the previous way of setting addon related keybindings.
+- Updated the 'Enhance battlefield map' panel design.  Removed the 'Center map on player' setting from 'Enhance battlefield map' to prevent issues.  Updated battlefield map reveal code for same reason.
+- Fixed a minor issue with the clickable icons in 'Show points of interest' which sometimes made it difficult to click the icons if zone labels were underneath.
+
+1.60.28 - 5th November 2026
 - Added support for Leatrix Plus 'Show info cards' option ('Interface') for dungeon icons.
 - For 'Use simple map frame', fixed the Blizzard theme left border, zone menu background and coordinates background textures.
 - For 'Unlock map frame', the map can now be dragged completely off-screen while dragging.  It will bounce back a little when you let go of the mouse button.

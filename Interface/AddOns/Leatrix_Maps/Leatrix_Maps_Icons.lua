@@ -256,6 +256,7 @@
 
 		},
 		--[[Riverglades]] [2548] = {
+			{"Dungeon", 37.5, 37.3, L["Krol'dok Stronghold"], L["Dungeon"], dnTex, 40, 45},
 			{"FlightA", 60.6, 81.6, L["Farholde Keep"] .. ", " .. L["Riverglades"], nil, tATex, nil, nil},
 			{"FlightH", 59.6, 45.1, L["Rog'mar"] .. ", " .. L["Riverglades"], nil, tHTex, nil, nil},
 			{"TravelH", 80.6, 54.6, L["Boat to"] .. " " .. L["Tanaris"], nil, fHTex, nil, nil, nil, nil, nil, 0, 1446},
@@ -384,6 +385,7 @@
 			-- {"Dungeon", 77.1, 36.9, L["Dire Maul (East)"], L["The Hidden Reach (requires Crescent Key)"], dnTex, 56, 60},
 		},
 		--[[Dustwallow Marsh]] [1445] = {
+			{"Dungeon", 75.3, 14.1, L["Alcaz Prison"], L["Dungeon"], dnTex, 48, 53},
 			{"Raid", 52.6, 76.8, L["Onyxia's Lair"], L["Raid"], rdTex, 60, 60},
 			{"FlightA", 67.5, 51.2, L["Theramore"] .. ", " .. L["Dustwallow Marsh"], nil, tATex, nil, nil},
 			{"FlightH", 35.6, 31.8, L["Brackenwall Village"] .. ", " .. L["Dustwallow Marsh"], nil, tHTex, nil, nil},
@@ -402,6 +404,7 @@
 			{"TravelH", 68.6, 23.0, L["Boat to"] .. " " .. L["Riverglades"], nil, fHTex, nil, nil, nil, nil, nil, 0, 2548},
 		},
 		--[[Azshara]] [1447] = {
+			{"Dungeon", 38.6, 33.2, L["Blackmaw Hold"], L["Dungeon"], dnTex, 55, 60},
 			{"FlightA", 11.9, 77.5, L["Talrendis Point"] .. ", " .. L["Azshara"], nil, tATex, nil, nil},
 			{"FlightH", 22.0, 49.7, L["Valormok"] .. ", " .. L["Azshara"], nil, tHTex, nil, nil},
 			{"Spirit", 14.5, 78.5, L["Spirit Healer"], nil, spTex, nil, nil},
@@ -419,6 +422,7 @@
 		},
 		--[[Un'Goro Crater]] [1449] = {
 			{"FlightN", 45.3, 6.0, L["Marshal's Refuge"] .. ", " .. L["Un'Goro Crater"], nil, tNTex, nil, nil},
+			{"Dungeon", 48.1, 6.1, L["Shaper's Terrace"], L["Dungeon"], dnTex, 58, 60},
 			{"Spirit", 80.0, 49.8, L["Spirit Healer"], nil, spTex, nil, nil},
 			{"Arrow", 70.5, 78.6, L["Tanaris"], nil, arTex, nil, nil, nil, nil, nil, 3.3, 1446},
 			{"Arrow", 29.4, 22.3, L["Silithus"], nil, arTex, nil, nil, nil, nil, nil, 0.9, 1451},
@@ -478,9 +482,3 @@
 		},
 
 	}
-
-	-- More Forever
-	-- Blackmaw Hold (North Azshara, 55-60)
-	-- Krol'dok Stronghold (Riverglades, 40-45)
-	-- Alcaz Prison (Alcaz Island, Dustwallow Marsh, 48-53)
-	-- The Shapers Terrace (Un'goro, 58-60)
