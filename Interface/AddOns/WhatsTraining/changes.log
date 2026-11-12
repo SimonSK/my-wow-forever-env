@@ -1,3 +1,20 @@
+* 11.4.5
+    - Fix some recipes that were mixed up with some older versions from Era/SoD
+    - Fix clashing of Professions tab when SkillupForever is installed
+
+* 11.4.4
+    - Fix Lacerate ranks showing up as "Available but missing requirements"
+    - Add option to disable profession tabs in Era/Anniversary
+
+* 11.4.3
+    - Fix Auctionator prices showing up on professions tab
+    - Fix Classic Era/Anniversary professions with expanded profession frames
+
+* 11.4.2
+    - Fix minimap icon showing back up in some "minimap button frame" or minimap mods
+    - Fix Bear Form showing up as available after learning Dire Bear Form
+        - Also fix Lacerate rank 2 showing up as available
+
 * 11.4.1
     - Add "hide minimap" to Era and Anniversary
 
