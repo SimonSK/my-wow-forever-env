@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- 	Leatrix Plus 1.60.29 (6th November 2026)
+-- 	Leatrix Plus 1.60.30 (11th November 2026)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks,  03:Restart 40:Player
@@ -18,7 +18,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.60.29"
+	LeaPlusLC["AddonVer"] = "1.60.30"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -56,11 +56,6 @@
 	local LpEvt = CreateFrame("FRAME")
 	LpEvt:RegisterEvent("ADDON_LOADED")
 	LpEvt:RegisterEvent("PLAYER_LOGIN")
-
-	-- Set bindings translations
-	_G.BINDING_NAME_LEATRIX_PLUS_GLOBAL_TOGGLE = L["Toggle panel"]
-	_G.BINDING_NAME_LEATRIX_PLUS_GLOBAL_RARE = L["Announce rare"]
-	_G.BINDING_NAME_LEATRIX_PLUS_GLOBAL_MOUNTSPECIAL = L["Mount special"]
 
 	-- Disable sticky editbox
 	-- Open 2 chat windows
@@ -608,6 +603,7 @@
 		LeaPlusLC:LockOption("FasterLooting", "FasterLootingBtn", true)				-- Faster auto loot
 		LeaPlusLC:LockOption("NoTransforms", "NoTransformsBtn", false)				-- Remove transforms
 		LeaPlusLC:LockOption("SetEditModeLayout", "SetEditModeLayoutBtn", false)	-- Set edit mode layout
+		LeaPlusLC:LockOption("SetKeybindings", "SetKeybindingsBtn", false)			-- Set keybindings
 	end
 
 ----------------------------------------------------------------------
@@ -845,7 +841,7 @@
 					local card = LeaPlusLC.IDCard
 					local view = info and info.view
 					local viewer = LeaPlusLC.IDViewer
-					if not view then if viewer then viewer:Hide() end return end
+					if not view or (card and card.noModels) then if viewer then viewer:Hide() end return end
 					if not viewer then
 						viewer = CreateFrame("Frame", nil, card, "BackdropTemplate")
 						viewer:Hide()
@@ -858,7 +854,11 @@
 						viewer:SetBackdropColor(0.06, 0.06, 0.08, 0.96)
 						-- Drawn into its own buffer, so 3D models open behind it (such as the character frame's model) cannot show through the model as a silhouette
 						-- (set once here and left on, as turning it off again leaves the model blank)
-						if viewer.SetIsFrameBuffer then viewer:SetIsFrameBuffer(true) end
+						-- (the frame must flatten its render layers for the buffer to work: without it, models in the buffer can be blank, such as in WoW Forever after starting the game with a render scale higher than 100%)
+						if viewer.SetIsFrameBuffer then
+							if viewer.SetFlattensRenderLayers then viewer:SetFlattensRenderLayers(true) end
+							viewer:SetIsFrameBuffer(true)
+						end
 						viewer.title = viewer:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
 						viewer.title:SetPoint("TOPLEFT", viewer, "TOPLEFT", 14, -14)
 						viewer.title:SetPoint("RIGHT", viewer, "RIGHT", -110, 0)
@@ -2220,13 +2220,64 @@
 						card.modelCheck.label:SetPoint("LEFT", card.modelCheck, "RIGHT", 6, 0)
 						card.modelCheck.label:SetText(L["3D model"])
 						function card.modelCheck:Update()
-							local on = LeaPlusLC.IDModelOn
+							local on = LeaPlusLC.IDModelOn and not card.noModels
 							self.tick:SetShown(on)
-							self.label:SetTextColor(on and 0.85 or 0.5, on and 0.85 or 0.5, on and 0.85 or 0.5)
+							local shade = card.noModels and 0.3 or on and 0.85 or 0.5 -- Dimmed further when it cannot be used
+							self.label:SetTextColor(shade, shade, shade)
 						end
-						card.modelCheck:SetScript("OnEnter", function(self) self.label:SetTextColor(1, 1, 1) end)
+						card.modelCheck:SetScript("OnEnter", function(self) if not card.noModels then self.label:SetTextColor(1, 1, 1) end end)
 						card.modelCheck:SetScript("OnLeave", function(self) self:Update() end)
+						-- Message shown above the card when the 3D model box is clicked but 3D models cannot be shown (clicking the box again hides it)
+						function card:ToggleModelMessage()
+							local msg = self.modelMsg
+							if msg and msg:IsShown() then msg:Hide() return end
+							if not msg then
+								msg = CreateFrame("Frame", nil, self, "BackdropTemplate")
+								self.modelMsg = msg
+								msg:Hide()
+								msg:SetBackdrop({bgFile = "Interface\\Buttons\\WHITE8X8", edgeFile = "Interface\\Buttons\\WHITE8X8", edgeSize = OnePixel()})
+								msg:SetBackdropColor(0.06, 0.06, 0.08, 0.96)
+								msg:EnableMouse(true)
+								msg:SetClampedToScreen(true) -- Stays on the screen when a tall buff list pushes it up
+								msg:SetScript("OnMouseDown", function(self) self:Hide() end) -- Clicking the message closes it
+								msg.title = msg:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+								msg.title:SetPoint("TOPLEFT", msg, "TOPLEFT", 16, -12)
+								msg.title:SetJustifyH("LEFT")
+								msg.title:SetText(L["3D model"])
+								msg.text = msg:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+								msg.text:SetPoint("TOPLEFT", msg.title, "BOTTOMLEFT", 0, -6)
+								msg.text:SetJustifyH("LEFT")
+								msg.text:SetText(L["3D models can only be shown when the render scale is set to 100%."])
+								msg.text2 = msg:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+								msg.text2:SetPoint("TOPLEFT", msg.text, "BOTTOMLEFT", 0, -4)
+								msg.text2:SetJustifyH("LEFT")
+								msg.text2:SetText(L["You can change the render scale in the game options (System, Graphics)."])
+								-- Clicking anywhere else closes it (only watched while it is showing)
+								msg:SetScript("OnShow", function(self) self:RegisterEvent("GLOBAL_MOUSE_DOWN") end)
+								msg:SetScript("OnHide", function(self) self:UnregisterEvent("GLOBAL_MOUSE_DOWN") end)
+								msg:SetScript("OnEvent", function(self)
+									if not self:IsMouseOver() and not card.modelCheck:IsMouseOver(4, -4, -2, 80) then self:Hide() end -- (the box and its label are left to the box itself)
+								end)
+							end
+							-- Accent colour and size to match the card
+							local r, g, b = unpack(self.info and self.info.color or {1, 0.82, 0})
+							msg:SetBackdropBorderColor(r, g, b, 0.55)
+							msg.title:SetTextColor(r, g, b)
+							local width = self:GetWidth()
+							msg:SetWidth(width)
+							msg.title:SetWidth(width - 32)
+							msg.text:SetWidth(width - 32)
+							msg.text2:SetWidth(width - 32)
+							msg:SetHeight(12 + msg.title:GetStringHeight() + 6 + msg.text:GetStringHeight() + 4 + msg.text2:GetStringHeight() + 13)
+							msg:ClearAllPoints()
+							-- Above the card, or above the buff list if that is showing above the card
+							local picker = LeaPlusLC.AuraPicker
+							msg:SetPoint("BOTTOM", (picker and picker:IsShown()) and picker or self, "TOP", 0, 6)
+							msg:Show()
+						end
 						card.modelCheck:SetScript("OnClick", function(self)
+							-- 3D models cannot be shown, so say why
+							if card.noModels then card:ToggleModelMessage() return end
 							LeaPlusLC.IDModelOn = not LeaPlusLC.IDModelOn
 							if LeaPlusDB then LeaPlusDB["IDModelOn"] = LeaPlusLC.IDModelOn end
 							self:Update()
@@ -2370,6 +2421,10 @@
 					elseif info.icon == "Interface\\TargetingFrame\\UI-Classes-Circles" and info.iconCoords then
 						card.icon:SetTexture(info.icon)
 						card.icon:SetTexCoord(InnerSquare(unpack(info.iconCoords)))
+					elseif not info.icon and info.view and type(info.view.displayID) == "number" and not info.view.isPlayer and SetPortraitTextureFromCreatureDisplayID then
+						-- Flat portrait from a display ID (such as Leatrix Maps boss icons, which have no unit), shown when there is no 3D portrait
+						SetPortraitTextureFromCreatureDisplayID(card.icon, info.view.displayID)
+						card.icon:SetTexCoord(InnerSquare(0, 1, 0, 1))
 					else
 						card.icon:SetTexture(info.icon or 134400)
 						card.icon:SetTexCoord(unpack(info.iconCoords or {0.08, 0.92, 0.08, 0.92}))
@@ -2395,6 +2450,11 @@
 					-- Model viewer (only for things that can be shown as a 3D model, kept up to date while it is open)
 					if info.view and info.view.mode == "icon" then info.view = nil end
 					card.info = info
+					if card.modelMsg then card.modelMsg:Hide() end -- A new card closes the render scale message
+					-- Temporary workaround: 3D models do not show when the render scale is not 100%, so then the portrait is flat and the model viewer cannot be used
+					-- (/ltp infotest turns the check off until the next reload, to test whether the game has fixed this)
+					local renderScale = tonumber(GetCVar("RenderScale"))
+					card.noModels = not LeaPlusLC.IDInfoTest and renderScale ~= nil and renderScale ~= 1
 					card.close:SetAccent(r, g, b)
 					-- Link (some cards, such as players on Forever, have no link)
 					card.url = info.url
@@ -2433,7 +2493,9 @@
 					local portrait = card.portrait
 					portrait.loadID = (portrait.loadID or 0) + 1
 					-- (only for characters you can see: loading a model for someone far away can make the game pause)
-					if info.unit and UnitExists(info.unit) and Safe(UnitIsVisible(info.unit)) and not (info.iconCoords) then
+					if card.noModels then
+						portrait:Hide()
+					elseif info.unit and UnitExists(info.unit) and Safe(UnitIsVisible(info.unit)) and not (info.iconCoords) then
 						portrait:Show()
 						portrait:SetUnit(info.unit)
 					elseif info.view and info.view.displayID and not info.view.isPlayer then
@@ -3945,6 +4007,13 @@
 					return
 				end
 				local combo = (IsAltKeyDown() and "ALT-" or "") .. (IsControlKeyDown() and "CTRL-" or "") .. (IsShiftKeyDown() and "SHIFT-" or "") .. (IsMetaKeyDown and IsMetaKeyDown() and "META-" or "") .. key
+				-- Do not use a key that is set in Set keybindings
+				local usedBy = LeaPlusLC.KeybindingsKeyInUse and LeaPlusLC.KeybindingsKeyInUse(combo)
+				if usedBy then
+					LeaPlusLC:Print(KeyName(combo) .. " " .. L["is already used by"] .. " " .. usedBy .. ".")
+					StopListening()
+					return
+				end
 				local oldAction = GetBindingAction(combo)
 				LeaPlusLC["InfoCardKey"] = combo
 				ApplyKey()
@@ -4007,6 +4076,9 @@
 
 			-- Set the key now
 			ApplyKey()
+
+			-- Apply the key (used by Set keybindings)
+			LeaPlusLC.InfoCardApplyKey = ApplyKey
 
 			-- Help and reset buttons hidden
 			InfoCardPanel.h:Hide()
@@ -4445,6 +4517,288 @@
 				else
 					-- Show panel
 					LayoutPanel:Show()
+					LeaPlusLC:HideFrames()
+				end
+			end)
+
+		end
+
+		----------------------------------------------------------------------
+		-- Set keybindings (no reload required)
+		----------------------------------------------------------------------
+
+		do
+
+			-- Create configuration panel
+			local KeyPanel = LeaPlusLC:CreatePanel("Set keybindings", "KeyPanel")
+
+			-- Hidden buttons that the keys click (the keys are bound to them in the addon code so the game keybindings menu is not tainted)
+			local function MakeKeyButton(name, func)
+				local btn = CreateFrame("Button", name, UIParent)
+				btn:Hide()
+				btn:RegisterForClicks("AnyDown")
+				btn:SetScript("OnClick", func)
+			end
+
+			MakeKeyButton("LeaPlusGlobalKeyToggle", function() SlashCmdList["Leatrix_Plus"]() end)
+			MakeKeyButton("LeaPlusGlobalKeyRare", function() SlashCmdList["Leatrix_Plus"]("ra") end)
+			MakeKeyButton("LeaPlusGlobalKeyRecentChat", function() SlashCmdList["Leatrix_Plus"]("recentchat") end)
+			MakeKeyButton("LeaPlusGlobalKeyMountSpecial", function()
+				if C_RestrictedActions and C_RestrictedActions.IsAddOnRestrictionActive(Enum.AddOnRestrictionType.Chat) then return end
+				DoEmote("mountspecial")
+			end)
+
+			-- Keys (var is the saved setting, button is the button the key clicks, the flare buttons are created in the flares section)
+			local actions = {
+				{var = "KeyBindToggle", button = "LeaPlusGlobalKeyToggle", label = "Toggle panel", tip = "Open or close the Leatrix Plus options panel."},
+				{var = "KeyBindRare", button = "LeaPlusGlobalKeyRare", label = "Announce rare", tip = "Announce your target with a map pin in the General chat channel (if you are in it)."},
+				{var = "KeyBindRecentChat", button = "LeaPlusGlobalKeyRecentChat", label = "Recent chat window", tip = "Show recent chat in a copy-friendly window."},
+				{var = "KeyBindMountSpecial", button = "LeaPlusGlobalKeyMountSpecial", label = "Mount special", tip = "While mounted, perform your mount's special animation."},
+				{var = "KeyBindFlare8", button = "LeaPlusGlobalFlare8", label = "Flare: Skull", tip = "Place a skull marker on the ground.  This only works in a group."},
+				{var = "KeyBindFlare4", button = "LeaPlusGlobalFlare4", label = "Flare: Cross", tip = "Place a cross marker on the ground.  This only works in a group."},
+				{var = "KeyBindFlare2", button = "LeaPlusGlobalFlare2", label = "Flare: Triangle", tip = "Place a triangle marker on the ground.  This only works in a group."},
+				{var = "KeyBindFlare7", button = "LeaPlusGlobalFlare7", label = "Flare: Moon", tip = "Place a moon marker on the ground.  This only works in a group."},
+				{var = "KeyBindFlare1", button = "LeaPlusGlobalFlare1", label = "Flare: Square", tip = "Place a square marker on the ground.  This only works in a group."},
+				{var = "KeyBindFlare6", button = "LeaPlusGlobalFlare6", label = "Flare: Circle", tip = "Place a circle marker on the ground.  This only works in a group."},
+				{var = "KeyBindFlare5", button = "LeaPlusGlobalFlare5", label = "Flare: Star", tip = "Place a star marker on the ground.  This only works in a group."},
+				{var = "KeyBindFlare3", button = "LeaPlusGlobalFlare3", label = "Flare: Diamond", tip = "Place a diamond marker on the ground.  This only works in a group."},
+				{var = "KeyBindFlare9", button = "LeaPlusGlobalFlare9", label = "Flare: Clear all", tip = "Remove all markers from the ground.  This only works in a group."},
+				{var = "InfoCardKey", label = "Show info cards", infoCard = true, tip = "Point at almost anything and press this key to show information about it and a Wowhead link."}, -- Key is applied by show info cards
+			}
+
+			-- Preset keys
+			local presetKeys = {
+				KeyBindToggle = "CTRL-Z", KeyBindRare = "CTRL-T", KeyBindRecentChat = "CTRL-Q", KeyBindMountSpecial = "CTRL-SPACE",
+				KeyBindFlare8 = "SHIFT-1", KeyBindFlare4 = "SHIFT-2", KeyBindFlare2 = "SHIFT-3", KeyBindFlare7 = "SHIFT-4", KeyBindFlare1 = "SHIFT-5",
+				KeyBindFlare6 = "SHIFT-6", KeyBindFlare5 = "SHIFT-7", KeyBindFlare3 = "SHIFT-8", KeyBindFlare9 = "SHIFT-9",
+			}
+
+			-- Headings and rows (left column for Leatrix Plus, chat and emotes, right column for flares)
+			LeaPlusLC:MakeTx(KeyPanel, "Leatrix Plus", 16, -72)
+			LeaPlusLC:MakeTx(KeyPanel, "Chat", 16, -124)
+			LeaPlusLC:MakeTx(KeyPanel, "Emotes", 16, -198)
+			LeaPlusLC:MakeTx(KeyPanel, "Flares", 290, -72)
+			LeaPlusLC:MakeTx(KeyPanel, "Info Cards", 16, -250)
+			local rowPos = {{16, -92}, {16, -144}, {16, -166}, {16, -218}}
+			for i = 5, 13 do rowPos[i] = {290, -92 - (i - 5) * 22} end
+			rowPos[14] = {16, -270}
+
+			-- Show info cards key can be set if the option is on and no reload is pending
+			local function InfoCardsAvailable()
+				return LeaPlusLC["ShowInfoCards"] == "On" and LeaPlusDB["ShowInfoCards"] == "On" and LeaPlusLC.InfoCardApplyKey and true or false
+			end
+
+			local function KeyName(key)
+				return GetBindingText and GetBindingText(key) or key
+			end
+
+			local listening -- Index of the row waiting for a key
+			local applyPending = false
+
+			-- Apply the keys
+			local function ApplyKeys()
+				if InCombatLockdown() then
+					applyPending = true
+					return
+				end
+				applyPending = false
+				ClearOverrideBindings(KeyPanel)
+				if LeaPlusLC["SetKeybindings"] == "On" then
+					for i = 1, #actions do
+						local key = LeaPlusLC[actions[i].var]
+						if key ~= "" and not actions[i].infoCard then
+							SetOverrideBindingClick(KeyPanel, false, key, actions[i].button, "LeftButton")
+						end
+					end
+				end
+			end
+
+			-- Return the name of the key's action if the key is set here (used by show info cards)
+			LeaPlusLC.KeybindingsKeyInUse = function(combo)
+				if LeaPlusLC["SetKeybindings"] ~= "On" then return end
+				for i = 1, #actions do
+					if not actions[i].infoCard and LeaPlusLC[actions[i].var] == combo then return L[actions[i].label] end
+				end
+			end
+
+			-- Show the keys
+			local function Refresh()
+				for i = 1, #actions do
+					local btn = actions[i].btn
+					if actions[i].infoCard and not InfoCardsAvailable() then
+						LeaPlusLC:LockItem(btn, true)
+						btn.tiptext = L["Show info cards is not enabled."]
+						btn:SetText(L["Not enabled"])
+					elseif listening == i then
+						btn:SetText(L["Press a key"])
+					elseif LeaPlusLC[actions[i].var] ~= "" then
+						btn:SetText("|cff00ff00" .. KeyName(LeaPlusLC[actions[i].var]) .. "|r")
+					else
+						btn:SetText("|cff808080" .. L["None"] .. "|r")
+					end
+					if actions[i].infoCard and InfoCardsAvailable() then
+						LeaPlusLC:LockItem(btn, false)
+						btn.tiptext = btn.keyTip
+					end
+				end
+			end
+
+			-- Apply the keys for a row
+			local function ApplyRow(action)
+				if action.infoCard then
+					LeaPlusLC.InfoCardApplyKey()
+				else
+					ApplyKeys()
+				end
+			end
+
+			local function StopListening()
+				if listening then
+					actions[listening].btn:EnableKeyboard(false)
+					listening = nil
+				end
+				Refresh()
+			end
+
+			local modifierKeys = {LSHIFT = true, RSHIFT = true, LCTRL = true, RCTRL = true, LALT = true, RALT = true, LMETA = true, RMETA = true}
+
+			-- Create the rows
+			for i = 1, #actions do
+				local action = actions[i]
+				local x, y = rowPos[i][1], rowPos[i][2]
+
+				local label = LeaPlusLC:MakeWD(KeyPanel, action.label, x, y)
+				label:SetWidth(130)
+				label:SetWordWrap(false)
+
+				local btn = LeaPlusLC:CreateButton("KeyBind" .. i .. "Btn", KeyPanel, "None", "TOPLEFT", x + 136, y + 4, 120, 20, true, action.tip)
+				btn.tiptext = L[action.tip] .. "|n|n" .. L["Click, then press a key (you can include Shift, Ctrl or Alt).  Press Escape to cancel or right-click to remove the key."]
+				btn:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+				if action.infoCard then
+					btn.tiptext = btn.tiptext .. "|n|n" .. L["You can also set this key in the Show info cards panel."]
+				end
+				btn.keyTip = btn.tiptext
+				action.btn = btn
+
+				-- Capture the next key pressed
+				btn:SetScript("OnKeyDown", function(self, key)
+					if listening ~= i then return end
+					if modifierKeys[key] then return end
+					if key == "ESCAPE" then
+						StopListening()
+						return
+					end
+					if InCombatLockdown() then
+						StopListening()
+						LeaPlusLC:Print("You cannot do that in combat.")
+						return
+					end
+					local combo = (IsAltKeyDown() and "ALT-" or "") .. (IsControlKeyDown() and "CTRL-" or "") .. (IsShiftKeyDown() and "SHIFT-" or "") .. (IsMetaKeyDown and IsMetaKeyDown() and "META-" or "") .. key
+					-- Do not use the info card key
+					if not action.infoCard and LeaPlusLC["ShowInfoCards"] == "On" and LeaPlusLC["InfoCardKey"] == combo then
+						LeaPlusLC:Print(KeyName(combo) .. " " .. L["is already used by"] .. " " .. L["Show info cards"] .. ".")
+						StopListening()
+						return
+					end
+					-- Take the key from any other row that uses it
+					for j = 1, #actions do
+						if j ~= i and not actions[j].infoCard and LeaPlusLC[actions[j].var] == combo then
+							LeaPlusLC[actions[j].var] = ""
+						end
+					end
+					LeaPlusLC[action.var] = combo
+					ApplyKeys()
+					if action.infoCard then ApplyRow(action) end
+					StopListening()
+				end)
+
+				-- Setting a key script turns keyboard input on by itself, so turn it off until the button is clicked
+				btn:EnableKeyboard(false)
+
+				btn:SetScript("OnClick", function(self, mouseButton)
+					if action.infoCard and not InfoCardsAvailable() then return end
+					if InCombatLockdown() then
+						StopListening()
+						LeaPlusLC:Print("You cannot do that in combat.")
+						return
+					end
+					if mouseButton == "RightButton" then
+						-- Remove the key
+						StopListening()
+						LeaPlusLC[action.var] = ""
+						ApplyRow(action)
+						Refresh()
+						return
+					end
+					if listening == i then
+						StopListening()
+					else
+						StopListening()
+						listening = i
+						btn:EnableKeyboard(true)
+						btn:SetPropagateKeyboardInput(false)
+						Refresh()
+					end
+				end)
+			end
+
+			-- Turning the option on or off sets or removes the keys
+			LeaPlusCB["SetKeybindings"]:HookScript("OnClick", ApplyKeys)
+
+			KeyPanel:HookScript("OnShow", Refresh)
+			KeyPanel:HookScript("OnHide", StopListening)
+			KeyPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
+			KeyPanel:RegisterEvent("PLAYER_REGEN_ENABLED")
+			KeyPanel:SetScript("OnEvent", function(self, event)
+				if event == "PLAYER_REGEN_DISABLED" then
+					-- Entering combat, stop listening so key presses reach the game
+					if listening then StopListening() end
+				elseif event == "PLAYER_REGEN_ENABLED" then
+					-- Set the keys if they could not be set during combat
+					if applyPending then ApplyKeys() end
+				end
+			end)
+
+			-- Set the keys once startup has finished (the flare buttons are created later in startup)
+			C_Timer.After(0, ApplyKeys)
+
+			-- Help button hidden
+			KeyPanel.h:Hide()
+
+			-- Back button handler
+			KeyPanel.b:SetScript("OnClick", function()
+				KeyPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page8"]:Show()
+				return
+			end)
+
+			-- Reset button handler
+			KeyPanel.r:SetScript("OnClick", function()
+				if InCombatLockdown() then
+					LeaPlusLC:Print("You cannot do that in combat.")
+					return
+				end
+				StopListening()
+				for i = 1, #actions do
+					if not actions[i].infoCard then
+						LeaPlusLC[actions[i].var] = ""
+					end
+				end
+				ApplyKeys()
+				Refresh()
+			end)
+
+			-- Show configuration panel when options panel button is clicked
+			LeaPlusCB["SetKeybindingsBtn"]:SetScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					StopListening()
+					for var, key in pairs(presetKeys) do
+						LeaPlusLC[var] = key
+					end
+					ApplyKeys()
+					Refresh()
+				else
+					KeyPanel:Show()
 					LeaPlusLC:HideFrames()
 				end
 			end)
@@ -8275,9 +8629,9 @@
 				-- Reset checkboxes
 				LeaPlusLC["ClassColPlayer"] = "On"
 				LeaPlusLC["ClassColTarget"] = "On"
-				LeaPlusLC["ClassColPlayerBorder"] = "Off"
-				LeaPlusLC["ClassColTargetBorder"] = "Off"
-				LeaPlusLC["ClassColChain"] = "Off"
+				LeaPlusLC["ClassColPlayerBorder"] = "On"
+				LeaPlusLC["ClassColTargetBorder"] = "On"
+				LeaPlusLC["ClassColChain"] = "On"
 
 				-- Update colors and refresh configuration panel
 				SetClassColFrames()
@@ -8291,9 +8645,9 @@
 					-- Preset profile
 					LeaPlusLC["ClassColPlayer"] = "On"
 					LeaPlusLC["ClassColTarget"] = "On"
-					LeaPlusLC["ClassColPlayerBorder"] = "Off"
-					LeaPlusLC["ClassColTargetBorder"] = "Off"
-					LeaPlusLC["ClassColChain"] = "Off"
+					LeaPlusLC["ClassColPlayerBorder"] = "On"
+					LeaPlusLC["ClassColTargetBorder"] = "On"
+					LeaPlusLC["ClassColChain"] = "On"
 					SetClassColFrames()
 				else
 					ClassFrame:Show()
@@ -9807,6 +10161,7 @@
 			LeaPlusLC:MakeCB(SideMinimap, "SquareMinimap", "Square minimap", 16, -132, true, "If checked, the minimap shape will be square.|n|nMinimap rotation (a setting in Edit Mode) is not recommended with a square minimap.")
 			LeaPlusLC:MakeCB(SideMinimap, "HideMiniAddonMenu", "Hide addon menu", 16, -152, true, "If checked, the addon menu will be hidden.|n|nThe addon menu appears as a number in the corner of the minimap if you have any addons installed which make use of it.")
 			LeaPlusLC:MakeCB(SideMinimap, "UnclampMinimap", "Unclamp minimap cluster", 16, -172, true, "If checked, you will be able to drag the minimap cluster to the edge of the screen using Edit Mode.|n|nWhile positioning the minimap with Edit Mode, you may need to disable Snap to position the minimap precisely.")
+			LeaPlusLC:MakeCB(SideMinimap, "MiniHeaderOnHover", "Show header on hover", 16, -192, false, "If checked, the minimap header (zone name, tracking, clock and calendar) will only be shown while the pointer is over the minimap or the header.|n|nIf you want the header below the minimap, you can set this in Edit Mode.")
 
 			-- Add excluded button
 			local MiniExcludedButton = LeaPlusLC:CreateButton("MiniExcludedButton", SideMinimap, "Buttons", "TOPLEFT", 16, -72, 0, 25, true, "Click to toggle the addon buttons editor.")
@@ -9832,6 +10187,16 @@
 
 			LeaPlusLC:MakeTx(SideMinimap, "Cluster scale", 356, -192)
 			LeaPlusLC:MakeSL(SideMinimap, "MiniClusterScale", "Drag to set the cluster scale.", 0.5, 2, 0.1, 356, -202, "%.2f")
+
+			LeaPlusLC:MakeTx(SideMinimap, "Header opacity", 356, -242)
+			LeaPlusLC:MakeSL(SideMinimap, "MiniHeaderAlpha", "Drag to set the minimap header background opacity.", 0, 1, 0.05, 356, -252, "%.2f")
+
+			-- Show header opacity as a percentage
+			local function SetHeaderAlphaText()
+				LeaPlusCB["MiniHeaderAlpha"].f:SetFormattedText("%.0f%%", LeaPlusLC["MiniHeaderAlpha"] * 100)
+			end
+			LeaPlusCB["MiniHeaderAlpha"]:HookScript("OnValueChanged", SetHeaderAlphaText)
+			LeaPlusCB["MiniHeaderAlpha"]:HookScript("OnShow", SetHeaderAlphaText)
 
 			----------------------------------------------------------------------
 			-- Hide addon menu
@@ -10425,6 +10790,9 @@
 			-- Square minimap
 			----------------------------------------------------------------------
 
+			-- Square minimap header bar and its slide function (set by square minimap, used by show header on hover)
+			local miniHeaderBar, miniHeaderMove
+
 			if LeaPlusLC["SquareMinimap"] == "On" then
 
 				-- Set button layout
@@ -10572,11 +10940,468 @@
 				-- Hide the day and night indicator
 				MinimapCluster.DielFrame:Hide()
 
+				----------------------------------------------------------------------
+				-- Square minimap header
+				----------------------------------------------------------------------
+
+				-- The header is rebuilt as a slim bar the same width as the square minimap border.
+				-- Blizzard's header pieces are only re-anchored, rescaled and have their alpha set
+				-- (no Blizzard functions are replaced, no fields are written to Blizzard frames).
+
+				do
+
+					local zoneButton, tracking = MinimapCluster.ZoneTextButton, MinimapCluster.Tracking
+					local HEADER_HEIGHT = 20 -- Inner height of the header bar (minimap units)
+					local ICON_SCALE = 0.8 -- Scale of the tracking and calendar buttons (native size is 23)
+					local CLOCK_SPACE = 44 -- Space reserved for the clock at the right of the zone text
+					local headerUnderneath = false
+					local headerOffset = 0
+
+					-- Create header bar (child of the minimap so it follows the Edit Mode minimap size)
+					local headerBar = CreateFrame("Frame", nil, Minimap, "BackdropTemplate")
+					headerBar:SetFrameLevel(8)
+					headerBar:EnableMouse(true)
+					miniHeaderBar = headerBar
+
+					-- Raise tracking and calendar buttons above the header bar (zone button is 10, clock is 11)
+					tracking:SetFrameLevel(10)
+					GameTimeFrame:SetFrameLevel(10)
+
+					-- Function to get the scale which makes Blizzard header pieces match the minimap scale
+					local function GetHeaderScale()
+						local clusterScale = MinimapCluster:GetEffectiveScale()
+						if not clusterScale or clusterScale <= 0 then return 1 end
+						return Minimap:GetEffectiveScale() / clusterScale
+					end
+
+					-- Function to position the header bar against the minimap border (offset moves it away from the minimap)
+					local function PositionHeaderBar()
+						local bw = LeaPlusLC["MinimapBorderWidth"]
+						headerBar:ClearAllPoints()
+						if headerUnderneath then
+							headerBar:SetPoint("TOPLEFT", miniBorder, "BOTTOMLEFT", 0, bw - headerOffset)
+							headerBar:SetPoint("TOPRIGHT", miniBorder, "BOTTOMRIGHT", 0, bw - headerOffset)
+						else
+							headerBar:SetPoint("BOTTOMLEFT", miniBorder, "TOPLEFT", 0, -bw + headerOffset)
+							headerBar:SetPoint("BOTTOMRIGHT", miniBorder, "TOPRIGHT", 0, -bw + headerOffset)
+						end
+					end
+
+					-- Function to position the player coordinates (Blizzard setting)
+					-- When the header is underneath, they sit below the header while it is shown and move up
+					-- under the minimap while it is hidden (headerShown is 0 to 1, set by show header on hover)
+					local coords = MinimapCluster.MinimapContainer and MinimapCluster.MinimapContainer.PlayerCoords
+					local headerShown = 1
+					local function PositionCoords()
+						if not coords then return end
+						miniFrame.ClearAllPoints(coords)
+						if headerUnderneath then
+							local bw = LeaPlusLC["MinimapBorderWidth"]
+							local hiddenY = math.min(bw - 8, -2) -- Same place as Blizzard's default
+							local shownY = -(HEADER_HEIGHT + bw) - 4 -- Below the header bar
+							coords:SetPoint("TOP", miniBorder, "BOTTOM", 0, hiddenY + (shownY - hiddenY) * headerShown)
+						else
+							coords:SetPoint("BOTTOM", Minimap, "BOTTOM", 0, -18)
+						end
+					end
+
+					-- Function to set the header bar opacity (background and border)
+					local function SetHeaderOpacity()
+						local alpha = LeaPlusLC["MiniHeaderAlpha"]
+						headerBar:SetBackdropColor(0, 0, 0, alpha)
+						headerBar:SetBackdropBorderColor(1, 1, 1, alpha)
+					end
+
+					-- Function to set the zone text width (uses the clock space only when the clock is shown)
+					local function SetZoneTextWidth()
+						local clockSpace = 4
+						if TimeManagerClockButton and TimeManagerClockButton:IsShown() then clockSpace = CLOCK_SPACE end
+						MinimapZoneText:ClearAllPoints()
+						MinimapZoneText:SetPoint("LEFT", zoneButton, "LEFT", 2, 0)
+						MinimapZoneText:SetPoint("RIGHT", zoneButton, "RIGHT", -clockSpace, 0)
+					end
+
+					-- Function to lay out the header
+					local function LayoutHeader()
+						if InCombatLockdown() and (zoneButton:IsProtected() or headerBar:IsProtected()) then
+							-- Header pieces are protected in combat so lay out the header after combat
+							headerBar:RegisterEvent("PLAYER_REGEN_ENABLED")
+							return
+						end
+						local bw = LeaPlusLC["MinimapBorderWidth"]
+						local scale = GetHeaderScale()
+
+						-- Header bar (same border as the minimap with a dark background)
+						headerBar:SetHeight(HEADER_HEIGHT + bw * 2)
+						headerBar:SetBackdrop({
+							bgFile = "Interface\\ChatFrame\\ChatFrameBackground",
+							edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark",
+							edgeSize = bw,
+							insets = {left = bw, right = bw, top = bw, bottom = bw},
+						})
+						SetHeaderOpacity()
+						PositionHeaderBar()
+
+						-- Offsets are given in each piece's own scale so they line up with the header bar
+						local iconInset = (bw + 2 + 11.5 * ICON_SCALE) / ICON_SCALE
+
+						-- Tracking button (left side)
+						tracking:SetScale(scale * ICON_SCALE)
+						miniFrame.ClearAllPoints(tracking)
+						tracking:SetPoint("CENTER", headerBar, "LEFT", iconInset, 0)
+
+						-- Calendar button (right side)
+						GameTimeFrame:SetScale(scale * ICON_SCALE)
+						miniFrame.ClearAllPoints(GameTimeFrame)
+						GameTimeFrame:SetPoint("CENTER", headerBar, "RIGHT", -iconInset, 0)
+
+						-- Zone button fills the space between them (the clock is anchored to it by Blizzard)
+						local side = bw + 4 + 23 * ICON_SCALE
+						zoneButton:SetScale(scale)
+						miniFrame.ClearAllPoints(zoneButton)
+						zoneButton:SetPoint("TOPLEFT", headerBar, "TOPLEFT", side, -bw)
+						zoneButton:SetPoint("BOTTOMRIGHT", headerBar, "BOTTOMRIGHT", -side, bw)
+						if TimeManagerClockButton then TimeManagerClockButton:SetScale(scale) end
+						SetZoneTextWidth()
+
+						PositionCoords()
+					end
+
+					-- Lay out the header after combat if it was blocked during combat
+					headerBar:SetScript("OnEvent", function(self)
+						self:UnregisterEvent("PLAYER_REGEN_ENABLED")
+						LayoutHeader()
+					end)
+
+					-- Hide the original header texture and stretch the hover highlight across the zone button
+					zoneButton.StateTexture:SetAlpha(0)
+					zoneButton.AddTexture:ClearAllPoints()
+					zoneButton.AddTexture:SetAllPoints(zoneButton)
+
+					-- Set header position from the current anchor (in case Edit Mode has already placed it)
+					headerUnderneath = zoneButton:GetPoint(1) == "BOTTOM"
+					LayoutHeader()
+
+					-- Lay out the header again when Blizzard moves it or rescales the minimap
+					hooksecurefunc(MinimapCluster, "SetHeaderUnderneath", function(self, underneath)
+						headerUnderneath = underneath and true or false
+						LayoutHeader()
+					end)
+					hooksecurefunc(MinimapCluster, "SetEditModeScale", LayoutHeader)
+
+					-- Lay out the header again when the border width changes
+					LeaPlusCB["MinimapBorderWidth"]:HookScript("OnValueChanged", LayoutHeader)
+
+					-- Set the header opacity when the slider changes (addon frame only)
+					LeaPlusCB["MiniHeaderAlpha"]:HookScript("OnValueChanged", SetHeaderOpacity)
+
+					-- Clock is load on demand
+					EventUtil.ContinueOnAddOnLoaded("Blizzard_TimeManager", function()
+						TimeManagerClockButton:SetScale(GetHeaderScale())
+						TimeManagerClockButton:HookScript("OnShow", SetZoneTextWidth)
+						TimeManagerClockButton:HookScript("OnHide", SetZoneTextWidth)
+						SetZoneTextWidth()
+					end)
+
+					-- Function to slide the header (used by show header on hover)
+					miniHeaderMove = function(offset, shown)
+						headerOffset = offset
+						PositionHeaderBar()
+						headerShown = shown or 1
+						if headerUnderneath then PositionCoords() end
+					end
+
+				end
+
 			else
 
 				-- Square minimap is disabled so disable border width slider
 				LeaPlusLC:LockItem(LeaPlusCB["MinimapBorderWidth"], true)
 				LeaPlusCB["MinimapBorderWidth"].tiptext = LeaPlusCB["MinimapBorderWidth"].tiptext .. "|cff00AAFF|n|n" .. L["This slider requires 'Square minimap' to be enabled."] .. "|r"
+
+				-- Header opacity (round minimap: Blizzard's header strip behind the zone text)
+				-- Blizzard only changes the strip's atlas (never its alpha) so the alpha set here stays
+				local function SetRoundHeaderOpacity()
+					MinimapCluster.ZoneTextButton.StateTexture:SetAlpha(LeaPlusLC["MiniHeaderAlpha"])
+				end
+				LeaPlusCB["MiniHeaderAlpha"]:HookScript("OnValueChanged", SetRoundHeaderOpacity)
+				SetRoundHeaderOpacity()
+
+			end
+
+			----------------------------------------------------------------------
+			-- Show header on hover
+			----------------------------------------------------------------------
+
+			-- Header pieces only have their alpha and anchor offset changed.  A short ticker checks the
+			-- pointer only while it is near the minimap and an OnUpdate runs only while the header animates.
+
+			do
+
+				local zoneButton, tracking = MinimapCluster.ZoneTextButton, MinimapCluster.Tracking
+				local SLIDE = 8 -- Slide distance
+				local TIME_IN, TIME_OUT = 0.2, 0.25 -- Fade in and fade out durations
+				local headerFrames = {zoneButton, tracking, GameTimeFrame}
+				if miniHeaderBar then tinsert(headerFrames, miniHeaderBar) end
+				local progress, target = 1, 1
+				local hoverTicker
+				local currentOffset = 0 -- Current slide offset (in header units)
+
+				-- Frames that make up the hover area (square: the header bar contains every piece and shares
+				-- the slide units; round: the pieces are unscaled so they share the zone button's units)
+				-- (round: the tracking button is larger than its holder frame so both are included)
+				local hoverFrames = miniHeaderBar and {miniHeaderBar} or {zoneButton, tracking, GameTimeFrame}
+				if not miniHeaderBar and tracking.Button then tinsert(hoverFrames, tracking.Button) end
+
+				-- Function to slide the header
+				local MoveHeader
+				if miniHeaderMove then
+					-- Square minimap (header pieces are anchored to the header bar so only the bar moves)
+					MoveHeader = miniHeaderMove
+				else
+					-- Round minimap (the other header pieces are anchored to the zone button by Blizzard)
+					-- Blizzard places the header about 11 pixels left of the minimap when it is underneath, so the
+					-- zone button is also centred under the minimap in that position (measured, not hard-coded)
+					local basePoint, baseRel, baseRelPoint, baseX, baseY, underneath, centred
+					local roundOffset = 0
+					local roundFrame = CreateFrame("Frame")
+
+					-- Function to work out the zone button offset which centres it under the minimap
+					local function CentreUnderMinimap()
+						local mapX = Minimap:GetCenter()
+						local clusterX = MinimapCluster:GetCenter()
+						local buttonScale = zoneButton:GetEffectiveScale()
+						if not mapX or not clusterX or not buttonScale or buttonScale <= 0 then return false end
+						baseX = (mapX * Minimap:GetEffectiveScale() - clusterX * MinimapCluster:GetEffectiveScale()) / buttonScale
+						return true
+					end
+
+					-- Function to anchor the zone button (Blizzard's anchor, centred when underneath, plus the slide offset)
+					local function ApplyRoundAnchor()
+						if not basePoint then return end
+						if InCombatLockdown() and zoneButton:IsProtected() then
+							-- Zone button is protected in combat so anchor it after combat
+							roundFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+							return
+						end
+						zoneButton:SetPoint(basePoint, baseRel, baseRelPoint, baseX, baseY + (underneath and -roundOffset or roundOffset))
+					end
+
+					-- Anchor the zone button after combat if it was blocked during combat
+					roundFrame:SetScript("OnEvent", function(self)
+						self:UnregisterEvent("PLAYER_REGEN_ENABLED")
+						ApplyRoundAnchor()
+					end)
+
+					-- Function to read Blizzard's anchor (only called straight after Blizzard sets it)
+					local function CaptureBase(headerUnderneath)
+						basePoint, baseRel, baseRelPoint, baseX, baseY = zoneButton:GetPoint(1)
+						if headerUnderneath ~= nil then
+							underneath = headerUnderneath
+						else
+							underneath = basePoint == "BOTTOM"
+						end
+						-- Centre only if Blizzard's underneath anchor is the one expected (cluster bottom)
+						centred = false
+						if underneath and basePoint == "BOTTOM" and baseRelPoint == "BOTTOM" and baseRel == MinimapCluster then
+							centred = CentreUnderMinimap()
+							-- Check again on the next frame in case positions were not ready yet
+							-- (only the minimap and cluster positions are read, which this code never moves)
+							C_Timer.After(0, function()
+								if underneath and basePoint == "BOTTOM" and baseRel == MinimapCluster and CentreUnderMinimap() then
+									centred = true
+									ApplyRoundAnchor()
+								end
+							end)
+						end
+					end
+
+					-- Set the anchor on startup if the header is underneath
+					CaptureBase()
+					if underneath then ApplyRoundAnchor() end
+
+					-- Function to slide the header
+					MoveHeader = function(offset)
+						roundOffset = offset
+						ApplyRoundAnchor()
+					end
+
+					-- Blizzard resets the header anchor when Edit Mode changes it so capture the new anchor
+					-- (the header is only touched when it is underneath or part way through a slide)
+					hooksecurefunc(MinimapCluster, "SetHeaderUnderneath", function(self, headerUnderneath)
+						CaptureBase(headerUnderneath)
+						if underneath or roundOffset ~= 0 then ApplyRoundAnchor() end
+					end)
+
+					-- Centre the header again when the Edit Mode minimap size changes
+					hooksecurefunc(MinimapCluster, "SetEditModeScale", function()
+						if underneath and basePoint == "BOTTOM" and baseRel == MinimapCluster and CentreUnderMinimap() then
+							centred = true
+							ApplyRoundAnchor()
+						end
+					end)
+				end
+
+				-- Function to apply the current animation state
+				local function ApplyHeader()
+					local eased = progress * progress * (3 - 2 * progress)
+					for i = 1, #headerFrames do
+						headerFrames[i]:SetAlpha(eased)
+					end
+					-- Alpha is always allowed but anchors are not if the header ever becomes protected in combat
+					if InCombatLockdown() and (zoneButton:IsProtected() or (miniHeaderBar and miniHeaderBar:IsProtected())) then return end
+					currentOffset = (1 - eased) * SLIDE
+					MoveHeader(currentOffset, eased)
+				end
+
+				-- Animation driver (shown only while animating)
+				local animFrame = CreateFrame("Frame")
+				animFrame:Hide()
+				animFrame:SetScript("OnUpdate", function(self, elapsed)
+					if target > progress then
+						progress = progress + elapsed / TIME_IN
+						if progress > target then progress = target end
+					else
+						progress = progress - elapsed / TIME_OUT
+						if progress < target then progress = target end
+					end
+					ApplyHeader()
+					if progress == target then self:Hide() end
+				end)
+
+				-- Function to set the animation target (1 is shown, 0 is hidden)
+				local function SetTarget(value)
+					target = value
+					if progress ~= target then animFrame:Show() end
+				end
+
+				-- Function to check if the pointer is over the minimap or header
+				-- Header pieces are checked at their resting position (not where the slide has moved them)
+				-- so the hover area never moves with the animation (otherwise it can bounce endlessly)
+				-- The area also reaches a little past the header's outer edge (away from the minimap), so pushing the
+				-- pointer against the screen edge beyond the header still counts (the area stays fixed during the slide)
+				-- A little side padding also closes hairline gaps between header pieces
+				local OUTER_PAD, SIDE_PAD = 10, 4
+				local function IsOverRestingPlace(frame)
+					if not frame:IsVisible() then return false end
+					local offset = currentOffset
+					local void, frameY = frame:GetCenter()
+					local void, mapY = Minimap:GetCenter()
+					if not frameY or not mapY then return false end
+					if frameY * frame:GetEffectiveScale() < mapY * Minimap:GetEffectiveScale() then
+						-- Header is below the minimap so it has slid down (resting place is higher)
+						return frame:IsMouseOver(offset, offset - OUTER_PAD, -SIDE_PAD, SIDE_PAD)
+					else
+						-- Header is above the minimap so it has slid up (resting place is lower)
+						return frame:IsMouseOver(-offset + OUTER_PAD, -offset, -SIDE_PAD, SIDE_PAD)
+					end
+				end
+
+				-- Round minimap: the area between the minimap and the header's resting place (the gap and ring)
+				-- also counts, so moving from the minimap to the header does not pass through a dead zone
+				-- (uses the resting place, so the area does not move with the slide)
+				local function IsOverMinimapToHeader()
+					local mapScale, buttonScale = Minimap:GetEffectiveScale(), zoneButton:GetEffectiveScale()
+					local mapTop, mapBottom = Minimap:GetTop(), Minimap:GetBottom()
+					local buttonTop, buttonBottom = zoneButton:GetTop(), zoneButton:GetBottom()
+					if not mapTop or not mapBottom or not buttonTop or not buttonBottom or mapScale <= 0 then return false end
+					mapTop, mapBottom = mapTop * mapScale, mapBottom * mapScale
+					buttonTop, buttonBottom = buttonTop * buttonScale, buttonBottom * buttonScale
+					local offset = currentOffset * buttonScale
+					if buttonTop + buttonBottom > mapTop + mapBottom then
+						-- Header is above the minimap (it slides up so its resting place is lower)
+						local reach = (buttonTop - offset - mapTop) / mapScale
+						return Minimap:IsMouseOver(math.max(8, reach), -8, -8, 8)
+					else
+						-- Header is below the minimap (it slides down so its resting place is higher)
+						local reach = (buttonBottom + offset - mapBottom) / mapScale
+						return Minimap:IsMouseOver(8, math.min(-8, reach), -8, 8)
+					end
+				end
+
+				local function IsPointerNear()
+					if Minimap:IsMouseOver(8, -8, -8, 8) then return true end
+					if not miniHeaderBar and IsOverMinimapToHeader() then return true end
+					for i = 1, #hoverFrames do
+						if IsOverRestingPlace(hoverFrames[i]) then return true end
+					end
+					-- Keep the header shown while the tracking menu is open
+					local trackingButton = tracking.Button
+					if trackingButton and trackingButton.IsMenuOpen and trackingButton:IsMenuOpen() then return true end
+					return false
+				end
+
+				-- Function to stop checking the pointer
+				local function StopHoverCheck()
+					if hoverTicker then hoverTicker:Cancel(); hoverTicker = nil end
+				end
+
+				-- Function to check the pointer (runs every 0.1 seconds only while the pointer is near or over the minimap cluster)
+				local function HoverCheck()
+					if LeaPlusLC["MiniHeaderOnHover"] ~= "On" then StopHoverCheck() return end
+					if IsPointerNear() then
+						SetTarget(1)
+					else
+						SetTarget(0)
+						-- Keep checking while the pointer is still over the cluster (it may move into the hover area)
+						if not MinimapCluster:IsMouseOver() then StopHoverCheck() end
+					end
+				end
+
+				-- Function to show the header when the pointer enters the minimap or header
+				local function HoverEnter()
+					if LeaPlusLC["MiniHeaderOnHover"] ~= "On" then return end
+					-- A sliding header can move under a still pointer and fire OnEnter so check the resting place first
+					if IsPointerNear() then SetTarget(1) end
+					-- Start checking (stops by itself once the pointer is away from the minimap cluster)
+					if not hoverTicker then hoverTicker = C_Timer.NewTicker(0.1, HoverCheck) end
+				end
+
+				-- Show header when the pointer enters the minimap or a header piece
+				Minimap:HookScript("OnEnter", HoverEnter)
+				-- The minimap cluster takes the mouse, so this also fires when the pointer enters an empty part
+				-- of the hover area (such as the gap between the round minimap and the header) from outside
+				MinimapCluster:HookScript("OnEnter", HoverEnter)
+				zoneButton:HookScript("OnEnter", HoverEnter)
+				GameTimeFrame:HookScript("OnEnter", HoverEnter)
+				if tracking.Button then tracking.Button:HookScript("OnEnter", HoverEnter) end
+				if miniHeaderBar then miniHeaderBar:SetScript("OnEnter", HoverEnter) end
+
+				-- Clock is load on demand
+				EventUtil.ContinueOnAddOnLoaded("Blizzard_TimeManager", function()
+					tinsert(headerFrames, TimeManagerClockButton)
+					if not miniHeaderBar then tinsert(hoverFrames, TimeManagerClockButton) end
+					TimeManagerClockButton:HookScript("OnEnter", HoverEnter)
+					TimeManagerClockButton:SetAlpha(progress * progress * (3 - 2 * progress))
+				end)
+
+				-- Function to set the header hover state
+				local function SetMiniHeaderHover()
+					StopHoverCheck()
+					if LeaPlusLC["MiniHeaderOnHover"] == "On" then
+						if IsPointerNear() then
+							HoverEnter()
+						else
+							SetTarget(0)
+						end
+					else
+						-- Show the header instantly
+						target, progress = 1, 1
+						animFrame:Hide()
+						ApplyHeader()
+					end
+				end
+
+				-- Assign file level scope (it's used in reset)
+				LeaPlusLC.SetMiniHeaderHover = SetMiniHeaderHover
+
+				-- Set header hover state when option is clicked and on startup
+				LeaPlusCB["MiniHeaderOnHover"]:HookScript("OnClick", SetMiniHeaderHover)
+				if LeaPlusLC["MiniHeaderOnHover"] == "On" then
+					-- Start hidden
+					target, progress = 0, 0
+					ApplyHeader()
+				end
 
 			end
 
@@ -10891,6 +11716,8 @@
 				LeaPlusLC["HideMiniAddonButtons"] = "On"; if LeaPlusLC.SetHideButtons then LeaPlusLC:SetHideButtons() end
 				LeaPlusLC["MiniClusterScale"] = 1; SetClusterScale()
 				LeaPlusLC["MinimapBorderWidth"] = 3
+				LeaPlusLC["MiniHeaderAlpha"] = 0.5
+				LeaPlusLC["MiniHeaderOnHover"] = "Off"; if LeaPlusLC.SetMiniHeaderHover then LeaPlusLC.SetMiniHeaderHover() end
 				-- Refresh panel
 				SideMinimap:Hide(); SideMinimap:Show()
 			end)
@@ -10908,6 +11735,7 @@
 						LeaPlusLC["MiniClusterScale"] = 1; SetClusterScale()
 						LeaPlusLC["UnclampMinimap"] = "On"
 						LeaPlusLC["MinimapBorderWidth"] = 3
+						LeaPlusLC["MiniHeaderAlpha"] = 0
 						LeaPlusLC:ReloadCheck() -- Special reload check
 					else
 						-- Show configuration panel
@@ -11131,7 +11959,7 @@
 			local GetTime, UnitOnTaxi, format, floor, ceil, max = GetTime, UnitOnTaxi, string.format, math.floor, math.ceil, math.max
 
 			-- Set game title as shown in incorrect flight details window
-			local gameTitle = L["Forever"]
+			local gameTitle = "Forever"
 
 			-- Function to get continent
 			local function getContinent()
@@ -11765,6 +12593,13 @@
 				frame.report = MakeCopyBox(frame, px)
 				frame.report:SetPoint("TOPLEFT", frame.reportLabel, "BOTTOMLEFT", 0, -4)
 				frame.report:SetPoint("RIGHT", -16, 0)
+				-- Report has a details line, a blank line and the flight data line
+				frame.report:SetMultiLine(true)
+				frame.report:SetTextInsets(8, 8, 6, 6)
+				-- Hidden font string used to measure the report height (box width 404 less 16 for insets)
+				frame.reportMeasure = frame:CreateFontString(nil, "ARTWORK", "ChatFontNormal")
+				frame.reportMeasure:SetWidth(388)
+				frame.reportMeasure:Hide()
 
 				-- Copy hint
 				frame.hint = frame:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
@@ -11795,11 +12630,19 @@
 				if info.frequentFlier then
 					summary = summary .. " " .. L["Frequent Flier was active, so this time has been converted to normal flight speed."]
 					savedText = savedText .. ", Frequent Flier"
+				else
+					savedText = savedText .. ", no Frequent Flier"
 				end
 				reportFrame.summary:SetText(summary)
-				-- Fit the height to the text (summary and steps can wrap)
-				reportFrame:SetHeight(86 + reportFrame.summary:GetStringHeight() + reportFrame.steps:GetStringHeight() + 156)
-				SetCopyText(reportFrame.report, faction .. " (" .. gameTitle .. "): " .. '["' .. info.route .. '"] = ' .. info.taken .. ", -- " .. info.names .. " (" .. savedText .. ")")
+				-- Report is a details line, a blank line and a ready-to-paste flight data line with the same indent as the flight data files
+				local detailsLine = faction .. " (" .. gameTitle .. "): " .. savedText
+				local flightLine = '["' .. info.route .. '"] = ' .. info.taken .. ", -- " .. info.names
+				-- Fit the report box to its text (the flight line can wrap) and the window to everything
+				reportFrame.reportMeasure:SetText(detailsLine .. "\n\n" .. flightLine)
+				local boxHeight = max(24, ceil(reportFrame.reportMeasure:GetStringHeight()) + 12)
+				reportFrame.report:SetHeight(boxHeight)
+				reportFrame:SetHeight(86 + reportFrame.summary:GetStringHeight() + reportFrame.steps:GetStringHeight() + 132 + boxHeight)
+				SetCopyText(reportFrame.report, detailsLine .. "\n\n\t\t\t\t" .. flightLine)
 				reportFrame:Show()
 			end
 
@@ -11814,7 +12657,7 @@
 				if faction == "Alliance" then fromMap, toMap = 1455, 1432 end -- Ironforge, Loch Modan
 				local fromInfo, toInfo = C_Map.GetMapInfo(fromMap), C_Map.GetMapInfo(toMap)
 				local from, to = fromInfo and fromInfo.name or "", toInfo and toInfo.name or ""
-				ShowReport({from = from, to = to, taken = 134, saved = 112, route = "0.50:0.50:0.60:0.60", names = from .. ", " .. to})
+				ShowReport({from = from, to = to, taken = 134, saved = 112, route = "0.50:0.50:0.60:0.60", names = from .. ", " .. to, frequentFlier = HasFrequentFlier()})
 			end
 
 			----------------------------------------------------------------------
@@ -13797,70 +14640,542 @@
 
 		if LeaPlusLC["RecentChatWindow"] == "On" and not LeaLockList["RecentChatWindow"] then
 
-			-- Create recent chat frame
-			local editFrame = CreateFrame("ScrollFrame", nil, UIParent, "LeaPlusRecentChatScrollFrameTemplate")
+			-- Window layout
+			local headerHeight = 28
+			local winWidth = 700
+			local defHeight = 192 -- Height below the title bar (includes the footer)
+			local footerHeight = 22
+			local accentR, accentG, accentB = 1, 0.82, 0
 
-			-- Set frame parameters
-			editFrame:ClearAllPoints()
-			editFrame:SetPoint("BOTTOM", 0, 130)
-			editFrame:SetSize(600, LeaPlusLC["RecentChatSize"])
-			editFrame:SetFrameStrata("MEDIUM")
-			editFrame:SetToplevel(true)
-			editFrame:Hide()
+			-- Create window (drag the title bar to size it, hold Alt and drag to move it)
+			local win = CreateFrame("Frame", LeaPlusLC:CreateRandomName(), UIParent)
+			win:SetSize(winWidth, LeaPlusLC["RecentChatSize"] + headerHeight)
+			win:SetPoint(LeaPlusLC["RecentChatA"], UIParent, LeaPlusLC["RecentChatR"], LeaPlusLC["RecentChatX"], LeaPlusLC["RecentChatY"])
+			win:SetFrameStrata("MEDIUM")
+			win:SetToplevel(true)
+			win:SetClampedToScreen(true)
+			win:SetMovable(true)
+			win:SetResizable(true)
+			win:SetResizeBounds(winWidth, 192 + headerHeight, winWidth, 800 + headerHeight)
+			win:EnableMouse(true)
+			win:Hide()
 
-			-- Add background color
-			editFrame.t = editFrame:CreateTexture(nil, "BACKGROUND")
-			editFrame.t:SetAllPoints()
-			editFrame.t:SetColorTexture(0.00, 0.00, 0.0, 0.6)
+			-- Close with escape
+			table.insert(UISpecialFrames, win:GetName())
 
-			-- Create title bar
-			local titleFrame = CreateFrame("Frame", nil, editFrame)
-			titleFrame:ClearAllPoints()
-			titleFrame:SetPoint("TOP", 0, 24)
-			titleFrame:SetSize(600, 24)
-			titleFrame:SetFrameStrata("MEDIUM")
-			titleFrame:SetToplevel(true)
-			titleFrame:SetHitRectInsets(-6, -6, -6, -6)
-			titleFrame.t = titleFrame:CreateTexture(nil, "BACKGROUND")
+			-- Background and hairline border
+			local px = PixelUtil and PixelUtil.GetPixelToUIUnitFactor() / win:GetEffectiveScale() or 1
+			win.bg = win:CreateTexture(nil, "BACKGROUND")
+			win.bg:SetAllPoints()
+			win.bg:SetColorTexture(0.06, 0.06, 0.08, 0.92)
+			local edges = {}
+			for i = 1, 4 do
+				edges[i] = win:CreateTexture(nil, "BORDER")
+				edges[i]:SetColorTexture(1, 1, 1, 0.12)
+			end
+			edges[1]:SetPoint("TOPLEFT"); edges[1]:SetPoint("TOPRIGHT"); edges[1]:SetHeight(px)
+			edges[2]:SetPoint("BOTTOMLEFT"); edges[2]:SetPoint("BOTTOMRIGHT"); edges[2]:SetHeight(px)
+			edges[3]:SetPoint("TOPLEFT"); edges[3]:SetPoint("BOTTOMLEFT"); edges[3]:SetWidth(px)
+			edges[4]:SetPoint("TOPRIGHT"); edges[4]:SetPoint("BOTTOMRIGHT"); edges[4]:SetWidth(px)
+
+			-- Accent line along the top (a quiet hairline)
+			win.accent = win:CreateTexture(nil, "ARTWORK")
+			win.accent:SetPoint("TOPLEFT"); win.accent:SetPoint("TOPRIGHT")
+			win.accent:SetHeight(px)
+			win.accent:SetColorTexture(accentR, accentG, accentB, 0.6)
+
+			-- Title bar
+			local titleFrame = CreateFrame("Frame", nil, win)
+			titleFrame:SetPoint("TOPLEFT", 0, 0)
+			titleFrame:SetPoint("TOPRIGHT", 0, 0)
+			titleFrame:SetHeight(headerHeight)
+			titleFrame:EnableMouse(true)
+			titleFrame.t = titleFrame:CreateTexture(nil, "BACKGROUND", nil, 1)
 			titleFrame.t:SetAllPoints()
-			titleFrame.t:SetColorTexture(0.00, 0.00, 0.0, 0.8)
+			titleFrame.t:SetColorTexture(1, 1, 1, 0.03)
+			titleFrame.line = titleFrame:CreateTexture(nil, "ARTWORK")
+			titleFrame.line:SetPoint("BOTTOMLEFT", 10, 0)
+			titleFrame.line:SetPoint("BOTTOMRIGHT", -10, 0)
+			titleFrame.line:SetHeight(px)
+			titleFrame.line:SetColorTexture(1, 1, 1, 0.1)
 
-			-- Add message count
-			titleFrame.m = titleFrame:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
-			titleFrame.m:SetPoint("LEFT", 4, 0)
-			titleFrame.m:SetText(L["Messages"] .. ": 0")
-			titleFrame.m:SetFont(titleFrame.m:GetFont(), 16, nil)
+			-- Footer (search, match arrows, what the button you are pointing at does, and the message count)
+			local footer = CreateFrame("Frame", nil, win)
+			footer:SetPoint("BOTTOMLEFT", win, "BOTTOMLEFT", px, px)
+			footer:SetPoint("BOTTOMRIGHT", win, "BOTTOMRIGHT", -px, px)
+			footer:SetHeight(footerHeight)
+			footer:EnableMouse(true)
+			footer.t = footer:CreateTexture(nil, "BACKGROUND", nil, 1)
+			footer.t:SetAllPoints()
+			footer.t:SetColorTexture(1, 1, 1, 0.03)
+			footer.line = footer:CreateTexture(nil, "ARTWORK")
+			footer.line:SetPoint("TOPLEFT", 10, 0)
+			footer.line:SetPoint("TOPRIGHT", -10, 0)
+			footer.line:SetHeight(px)
+			footer.line:SetColorTexture(1, 1, 1, 0.1)
 
-			-- Add right-click to close message
-			titleFrame.x = titleFrame:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
-			titleFrame.x:SetPoint("RIGHT", -4, 0)
-			titleFrame.x:SetText(L["Drag to size"] .. " | " .. L["Right-click to close"])
-			titleFrame.x:SetFont(titleFrame.x:GetFont(), 16, nil)
-			titleFrame.x:SetWidth(600 - titleFrame.m:GetStringWidth() - 30)
-			titleFrame.x:SetWordWrap(false)
-			titleFrame.x:SetJustifyH("RIGHT")
+			-- Function to create a flat title bar button (accent colored icon, accent hover box with a white icon, like the Leatrix Maps simple map frame)
+			local function HeaderButton()
+				local button = CreateFrame("Button", nil, titleFrame)
+				button:SetSize(20, 20)
+				button.box = button:CreateTexture(nil, "BACKGROUND")
+				button.box:SetAllPoints()
+				button.box:SetColorTexture(accentR, accentG, accentB, 0.6)
+				button.box:Hide()
+				button.parts = {}
+				function button:Tint(r, g, b)
+					for i, part in ipairs(self.parts) do
+						if part.SetTextColor then part:SetTextColor(r, g, b) else part:SetVertexColor(r, g, b) end
+					end
+				end
+				function button:SetLit(lit)
+					self.box:SetShown(lit)
+					if lit then self:Tint(1, 1, 1) else self:Tint(accentR, accentG, accentB) end
+				end
+				button:SetScript("OnEnter", function(self) self:SetLit(true) end)
+				button:SetScript("OnLeave", function(self) self:SetLit(self.active == true) end)
+				return button
+			end
 
-			-- Drag to resize
-			editFrame:SetResizable(true)
-			editFrame:SetResizeBounds(600, 170, 600, 560)
+			-- Icons for the title bar buttons (also used in the help panel, the parts are added to frame.parts so they can be tinted)
+			local function IconLine(frame, width, height, x, y, angle)
+				local line = frame:CreateTexture(nil, "OVERLAY")
+				line:SetTexture("Interface\\Buttons\\WHITE8X8")
+				line:SetSize(width, height)
+				line:SetPoint("CENTER", x or 0, y or 0)
+				if angle then line:SetRotation(math.rad(angle)) end
+				frame.parts[#frame.parts + 1] = line
+			end
+			local Icons = {}
+			-- Close: a cross drawn from two lines
+			function Icons.close(frame)
+				IconLine(frame, 12, 2, 0, 0, 45)
+				IconLine(frame, 12, 2, 0, 0, -45)
+			end
+			-- Refresh: the game's circular arrow (made grey so it can be tinted)
+			function Icons.refresh(frame)
+				local icon = frame:CreateTexture(nil, "OVERLAY")
+				icon:SetSize(14, 14)
+				icon:SetPoint("CENTER")
+				icon:SetTexture("Interface\\Buttons\\UI-RefreshButton")
+				icon:SetDesaturated(true)
+				frame.parts[#frame.parts + 1] = icon
+			end
+			-- Copy everything: two overlapping squares (sized to match the other icons)
+			function Icons.copy(frame)
+				for i, offset in ipairs({{-1.5, 1.5}, {1.5, -1.5}}) do
+					local x, y, size, thick = offset[1], offset[2], 6, 1
+					IconLine(frame, size, thick, x, y + size / 2)
+					IconLine(frame, size, thick, x, y - size / 2)
+					IconLine(frame, thick, size, x - size / 2, y)
+					IconLine(frame, thick, size, x + size / 2, y)
+				end
+			end
+			-- Previous and next match: chevrons drawn from two lines
+			function Icons.up(frame)
+				IconLine(frame, 6, 1.5, -2, 0, 45)
+				IconLine(frame, 6, 1.5, 2, 0, -45)
+			end
+			function Icons.down(frame)
+				IconLine(frame, 6, 1.5, -2, 0, -45)
+				IconLine(frame, 6, 1.5, 2, 0, 45)
+			end
 
-			titleFrame:HookScript("OnMouseDown", function(self, btn)
+			-- Close button
+			local closeBtn = HeaderButton()
+			closeBtn:SetPoint("RIGHT", -4, 0)
+			Icons.close(closeBtn)
+			closeBtn:SetLit(false)
+			closeBtn:SetScript("OnClick", function() win:Hide() end)
+
+			-- Help button (shows the controls in the window)
+			local helpBtn = HeaderButton()
+			helpBtn:SetPoint("RIGHT", closeBtn, "LEFT", -2, 0)
+			helpBtn.label = helpBtn:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+			helpBtn.label:SetPoint("CENTER", 0, 0)
+			helpBtn.label:SetFont(helpBtn.label:GetFont(), 14, "")
+			helpBtn.label:SetText("?")
+			helpBtn.parts[1] = helpBtn.label
+			helpBtn:SetLit(false)
+
+			-- Refresh button (shows new messages without closing the window)
+			local refreshBtn = HeaderButton()
+			refreshBtn:SetPoint("RIGHT", helpBtn, "LEFT", -2, 0)
+			Icons.refresh(refreshBtn)
+			refreshBtn:SetLit(false)
+
+			-- Copy everything button (selects all the text, ready to copy), the icon is two overlapping squares
+			local copyAllBtn = HeaderButton()
+			copyAllBtn:SetPoint("RIGHT", refreshBtn, "LEFT", -2, 0)
+			Icons.copy(copyAllBtn)
+			copyAllBtn:SetLit(false)
+
+			-- Message count (right side, before the buttons)
+			-- Made of separate pieces with fixed-width number slots, so only the digits change and nothing slides around:
+			-- [match number] [Messages: / of / No matches] [count]  -  [hidden count] hidden
+			titleFrame.m = CreateFrame("Frame", nil, footer)
+			titleFrame.m:SetPoint("RIGHT", footer, "RIGHT", -10, 0)
+			titleFrame.m:SetHeight(footerHeight)
+			local function CountText(justify, width)
+				local fs = titleFrame.m:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
+				fs:SetJustifyH(justify)
+				fs:SetWordWrap(false)
+				if width then fs:SetWidth(width) end
+				return fs
+			end
+			local measure = CountText("LEFT")
+			local function TextWidth(text) measure:SetText(text) return math.ceil(measure:GetStringWidth()) end
+			local slot = TextWidth("888") + 2 -- Room for three digits (chat windows keep fewer than 1000 lines)
+			local labelWidth = math.max(TextWidth(L["Messages"] .. ":"), TextWidth(L["of"]), TextWidth(L["No matches"]))
+			measure:Hide()
+			titleFrame.m.hiddenLabel = CountText("LEFT")
+			titleFrame.m.hiddenLabel:SetPoint("RIGHT", titleFrame.m, "RIGHT", 0, 0)
+			titleFrame.m.hiddenLabel:SetText(L["hidden"])
+			titleFrame.m.hidden = CountText("RIGHT", slot)
+			titleFrame.m.hidden:SetPoint("RIGHT", titleFrame.m.hiddenLabel, "LEFT", -3, 0)
+			titleFrame.m.sep = CountText("CENTER")
+			titleFrame.m.sep:SetPoint("RIGHT", titleFrame.m.hidden, "LEFT", -6, 0)
+			titleFrame.m.sep:SetText("|cff606060-|r")
+			titleFrame.m.count = CountText("LEFT", slot)
+			titleFrame.m.count:SetPoint("RIGHT", titleFrame.m.sep, "LEFT", -6, 0)
+			titleFrame.m.label = CountText("RIGHT", labelWidth)
+			titleFrame.m.label:SetPoint("RIGHT", titleFrame.m.count, "LEFT", -3, 0)
+			titleFrame.m.match = CountText("RIGHT", slot)
+			titleFrame.m.match:SetPoint("RIGHT", titleFrame.m.label, "LEFT", -3, 0)
+			titleFrame.m:SetWidth(slot * 3 + labelWidth + TextWidth(L["hidden"]) + TextWidth("-") + 3 + 3 + 6 + 6 + 3)
+			-- Function to set the count pieces
+			function titleFrame.m:Set(match, label, count, hidden)
+				self.match:SetText(match)
+				self.label:SetText(label)
+				self.count:SetText(count)
+				self.hidden:SetText(hidden)
+			end
+			titleFrame.m:Set("", L["Messages"] .. ":", 0, 0)
+
+			-- Text size button (footer, left of the count), shows the text size in use and opens a list of sizes
+			local sizeBtn = HeaderButton()
+			sizeBtn:SetParent(footer)
+			sizeBtn:SetPoint("RIGHT", titleFrame.m, "LEFT", -10, 0)
+			sizeBtn.label = sizeBtn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+			sizeBtn.label:SetPoint("CENTER", 0, 0)
+			-- Sizes are shown the same way as the game's chat font size menu (such as 14 pt, in the game's language)
+			local sizeFormat = FONT_SIZE_TEMPLATE or "%d pt"
+			sizeBtn.label:SetText(format(sizeFormat, 88))
+			sizeBtn:SetSize(math.ceil(sizeBtn.label:GetStringWidth()) + 14, 18) -- Fixed width (room for two digits) so it never moves
+			sizeBtn.label:SetText("Aa")
+			sizeBtn.parts[1] = sizeBtn.label
+			sizeBtn:SetLit(false)
+
+			-- Search box (shows only the lines with the text typed in it)
+			local searchBox = CreateFrame("EditBox", nil, footer)
+			searchBox:SetSize(250, 16)
+			searchBox:SetPoint("LEFT", footer, "LEFT", 6, 0)
+			searchBox:SetAutoFocus(false)
+			searchBox:SetFontObject("GameFontHighlightSmall")
+			searchBox:SetTextInsets(19, 18, 0, 0)
+			searchBox:SetAltArrowKeyMode(false)
+			searchBox:SetMaxLetters(40)
+			searchBox.bg = searchBox:CreateTexture(nil, "BACKGROUND")
+			searchBox.bg:SetAllPoints()
+			searchBox.bg:SetColorTexture(0, 0, 0, 0.4)
+			searchBox.edges = {}
+			for i = 1, 4 do
+				searchBox.edges[i] = searchBox:CreateTexture(nil, "BORDER")
+				searchBox.edges[i]:SetColorTexture(1, 1, 1, 0.12)
+			end
+			searchBox.edges[1]:SetPoint("TOPLEFT"); searchBox.edges[1]:SetPoint("TOPRIGHT"); searchBox.edges[1]:SetHeight(px)
+			searchBox.edges[2]:SetPoint("BOTTOMLEFT"); searchBox.edges[2]:SetPoint("BOTTOMRIGHT"); searchBox.edges[2]:SetHeight(px)
+			searchBox.edges[3]:SetPoint("TOPLEFT"); searchBox.edges[3]:SetPoint("BOTTOMLEFT"); searchBox.edges[3]:SetWidth(px)
+			searchBox.edges[4]:SetPoint("TOPRIGHT"); searchBox.edges[4]:SetPoint("BOTTOMRIGHT"); searchBox.edges[4]:SetWidth(px)
+			local function SetSearchEdges(r, g, b, a)
+				for i = 1, 4 do searchBox.edges[i]:SetColorTexture(r, g, b, a) end
+			end
+			searchBox.icon = searchBox:CreateTexture(nil, "ARTWORK")
+			searchBox.icon:SetSize(12, 12)
+			searchBox.icon:SetPoint("LEFT", 5, 0)
+			searchBox.icon:SetTexture("Interface\\Common\\UI-Searchbox-Icon")
+			searchBox.icon:SetVertexColor(0.6, 0.6, 0.6)
+			searchBox.hint = searchBox:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
+			searchBox.hint:SetPoint("LEFT", 19, 0)
+			searchBox.hint:SetText(L["Search"])
+
+			-- Clear button (the game's usual round cross used in search boxes, shown when there is search text)
+			searchBox.clear = CreateFrame("Button", nil, searchBox)
+			searchBox.clear:SetSize(14, 14)
+			searchBox.clear:SetPoint("RIGHT", -3, 0)
+			searchBox.clear:SetFrameLevel(searchBox:GetFrameLevel() + 2)
+			searchBox.clear.icon = searchBox.clear:CreateTexture(nil, "OVERLAY")
+			searchBox.clear.icon:SetSize(14, 14)
+			searchBox.clear.icon:SetPoint("CENTER")
+			searchBox.clear.icon:SetTexture("Interface\\FriendsFrame\\ClearBroadcastIcon")
+			searchBox.clear.icon:SetAlpha(0.5)
+			searchBox.clear:SetScript("OnEnter", function(self) self.icon:SetAlpha(1) end)
+			searchBox.clear:SetScript("OnLeave", function(self) self.icon:SetAlpha(0.5) end)
+			searchBox.clear:SetScript("OnMouseDown", function(self) self.icon:SetPoint("CENTER", 1, -1) end)
+			searchBox.clear:SetScript("OnMouseUp", function(self) self.icon:SetPoint("CENTER", 0, 0) end)
+			searchBox.clear:Hide()
+
+			-- Previous and next match buttons (chevrons drawn from two lines, shown while searching)
+			local function ChevronButton(up)
+				local button = HeaderButton()
+				button:SetSize(16, 16)
+				if up then Icons.up(button) else Icons.down(button) end
+				button:SetLit(false)
+				button:Hide()
+				return button
+			end
+			local prevBtn = ChevronButton(true) -- Previous match (further up)
+			prevBtn:SetParent(footer)
+			prevBtn:SetPoint("LEFT", searchBox, "RIGHT", 4, 0)
+			local nextBtn = ChevronButton(false) -- Next match (further down)
+			nextBtn:SetParent(footer)
+			nextBtn:SetPoint("LEFT", prevBtn, "RIGHT", 1, 0)
+
+			-- What the title bar item being pointed at does (fades in and out in the space left of the buttons, right-aligned, kept clear of the title)
+			local function MakeStatus(parent, justify)
+				local status = CreateFrame("Frame", nil, parent)
+				status:SetAlpha(0)
+				status.text = status:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
+				status.text:SetAllPoints()
+				status.text:SetJustifyH(justify)
+				status.text:SetWordWrap(false)
+				status.fade = status:CreateAnimationGroup()
+				status.fadeAnim = status.fade:CreateAnimation("Alpha")
+				status.fadeAnim:SetDuration(0.15)
+				status.fade:SetScript("OnFinished", function() status:SetAlpha(status.target or 0) end)
+				function status:FadeTo(target)
+					self.fade:Stop()
+					self.target = target
+					self.fadeAnim:SetFromAlpha(self:GetAlpha())
+					self.fadeAnim:SetToAlpha(target)
+					self.fade:Play()
+				end
+				return status
+			end
+			local headerStatus = MakeStatus(titleFrame, "RIGHT")
+			headerStatus:SetPoint("RIGHT", copyAllBtn, "LEFT", -10, 0)
+			headerStatus:SetHeight(headerHeight)
+
+			-- Button area at the right of the title bar (the buttons and the gaps between them count as one area,
+			-- so the title bar's own description does not flash up between buttons)
+			local buttonStrip = CreateFrame("Frame", nil, titleFrame)
+			buttonStrip:SetPoint("TOPRIGHT", titleFrame, "TOPRIGHT", 0, 0)
+			buttonStrip:SetPoint("BOTTOMRIGHT", titleFrame, "BOTTOMRIGHT", 0, 0)
+			buttonStrip:SetPoint("LEFT", copyAllBtn, "LEFT", -4, 0)
+			buttonStrip:SetFrameLevel(titleFrame:GetFrameLevel() + 1)
+			buttonStrip:EnableMouse(true)
+			for i, button in ipairs({copyAllBtn, refreshBtn, helpBtn, closeBtn}) do
+				button:SetFrameLevel(titleFrame:GetFrameLevel() + 3) -- Above the button area
+			end
+			buttonStrip:SetScript("OnLeave", function(self)
+				if not self:IsMouseOver() then headerStatus:FadeTo(0) end
+			end)
+			buttonStrip:SetScript("OnMouseDown", function(self, btn)
+				if btn == "RightButton" then win:Hide() end
+			end)
+
+			-- Function to show a description while a frame is pointed at
+			local function SetHoverText(frame, text, status)
+				frame:HookScript("OnEnter", function()
+					-- No title bar description while over the button area
+					if frame == titleFrame and buttonStrip:IsMouseOver() then return end
+					if status == headerStatus then
+						-- Use the space between the end of the title and the buttons
+						local left = 12 + titleFrame.title:GetStringWidth() + 16
+						status:SetPoint("LEFT", titleFrame, "LEFT", left, 0)
+					end
+					status.text:SetText(text)
+					status:FadeTo(1)
+				end)
+				frame:HookScript("OnLeave", function()
+					-- Moving from a button into a gap keeps its description showing (the button area hides it when left)
+					if status == headerStatus and frame ~= titleFrame and buttonStrip:IsMouseOver() then return end
+					status:FadeTo(0)
+				end)
+			end
+			SetHoverText(copyAllBtn, L["Select everything, ready to copy"], headerStatus)
+			SetHoverText(refreshBtn, L["Show new messages"], headerStatus)
+			SetHoverText(helpBtn, L["Show how to use this window"], headerStatus)
+			SetHoverText(closeBtn, L["Close the window"], headerStatus)
+			SetHoverText(titleFrame, L["Drag to change the height, hold Alt and drag to move"], headerStatus)
+
+			-- Title and chat tab name
+			titleFrame.title = titleFrame:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+			titleFrame.title:SetPoint("LEFT", 12, 0)
+			titleFrame.title:SetPoint("RIGHT", copyAllBtn, "LEFT", -10, 0)
+			titleFrame.title:SetJustifyH("LEFT")
+			titleFrame.title:SetWordWrap(false)
+			titleFrame.title:SetText(L["Recent chat window"])
+
+			-- Save window position and size
+			local function SaveLayout()
+				local a, void, r, x, y = win:GetPoint()
+				LeaPlusLC["RecentChatA"], LeaPlusLC["RecentChatR"], LeaPlusLC["RecentChatX"], LeaPlusLC["RecentChatY"] = a, r, x, y
+				LeaPlusLC["RecentChatSize"] = win:GetHeight() - headerHeight
+			end
+
+			-- Start moving (Alt held) or sizing from the top, and stop again
+			local function StartDrag(sizeFromTop)
+				if win.moving or win.sizing then return end
+				if IsAltKeyDown() then
+					win.moving = true
+					win:StartMoving()
+					win:SetAlpha(0.85)
+				elseif sizeFromTop then
+					-- Only let the window grow as far as the top of the screen (otherwise the screen clamp pushes the window down instead)
+					local room = win:GetBottom() and UIParent:GetTop() and (UIParent:GetTop() - win:GetBottom()) or (800 + headerHeight)
+					win:SetResizeBounds(winWidth, 192 + headerHeight, winWidth, math.max(192 + headerHeight, math.min(800 + headerHeight, room)))
+					win.sizing = true
+					win:StartSizing("TOP")
+				else
+					return
+				end
+				win:SetUserPlaced(false)
+			end
+			local function StopDrag()
+				if not (win.moving or win.sizing) then return end
+				win.moving, win.sizing = nil, nil
+				win:StopMovingOrSizing()
+				win:SetAlpha(1)
+				if not titleFrame:IsMouseOver() then titleFrame.t:SetColorTexture(1, 1, 1, 0.03) end
+				SaveLayout()
+			end
+
+			-- Title bar highlights when pointed at so it reads as a handle (hooked so the footer description still shows)
+			titleFrame:HookScript("OnEnter", function(self) self.t:SetColorTexture(1, 1, 1, 0.07) end)
+			titleFrame:HookScript("OnLeave", function(self) if not (win.moving or win.sizing) then self.t:SetColorTexture(1, 1, 1, 0.03) end end)
+
+			-- Help panel (covers the chat text, click it or the help button again to hide it)
+			local help = CreateFrame("Frame", nil, win)
+			help:SetPoint("TOPLEFT", win, "TOPLEFT", px, -headerHeight)
+			help:SetPoint("BOTTOMRIGHT", footer, "TOPRIGHT", 0, 0)
+			help:SetFrameLevel(titleFrame:GetFrameLevel() + 10)
+			help:EnableMouse(true)
+			help:Hide()
+			help.bg = help:CreateTexture(nil, "BACKGROUND")
+			help.bg:SetAllPoints()
+			help.bg:SetColorTexture(0.06, 0.06, 0.08, 0.97)
+			-- Two columns: what you can do with the window, and how to copy from it
+			local helpColumns = {
+				{L["Window"], {
+					{L["Drag the title bar"], L["Change the height"]},
+					{L["Alt and drag"], L["Move the window"]},
+					{L["Middle-click title bar"], L["Reset size and position"]},
+					{L["Shift and scroll"], L["Page up or down"]},
+					{L["CTRL and scroll"], L["Jump to top or bottom"]},
+					{L["Refresh"], L["Show new messages"], {"refresh"}},
+					{L["Text size"], L["Choose the text size"], {"textsize"}},
+					{L["Right-click or Escape"], L["Close"], {"close"}},
+					{L["Open with a key"], L["Set it in Key Bindings"]},
+				}},
+				{L["Finding and copying"], {
+					{L["Type in the search box"], L["Find text in the chat"]},
+					{L["or Enter"], L["Next match (Shift to go back)"], {"up", "down"}},
+					{L["Select text"], L["Then press CTRL/C"]},
+					{L["Click anything in blue"], L["Opens the copy bar"]},
+					{L["Click a player name"], L["Copy the name"]},
+					{L["Copy everything"], L["Select all, ready to copy"], {"copy"}},
+				}, L["Web links, email addresses and BattleTags are shown in blue."]},
+			}
+			local colWidth, keyWidth = math.floor((winWidth - 56) / 2), 150
+			for c, column in ipairs(helpColumns) do
+				local header = help:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+				header:SetPoint("TOPLEFT", help, "TOPLEFT", 16 + (c - 1) * (colWidth + 24), -12)
+				header:SetText(column[1])
+				local prev = header
+				for i, row in ipairs(column[2]) do
+					-- Each row: [button icons] key, then what it does
+					local rowFrame = CreateFrame("Frame", nil, help)
+					rowFrame:SetSize(colWidth, 12)
+					rowFrame:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, i == 1 and -8 or -3)
+					local iconWidth = 0
+					if row[3] and row[3][1] == "textsize" then
+						-- Text size: shows what the text size button shows (such as 14 pt), updated when the help panel is shown
+						local label = rowFrame:CreateFontString(nil, "ARTWORK", "GameFontNormalSmall")
+						label:SetPoint("LEFT", rowFrame, "LEFT", 0, 0)
+						label:SetText(format(sizeFormat, 88))
+						local width = math.ceil(label:GetStringWidth())
+						label:SetWidth(width)
+						label:SetJustifyH("LEFT")
+						label:SetTextColor(accentR, accentG, accentB)
+						help.sizeLabel = label
+						iconWidth = width + 6
+					elseif row[3] then
+						for j, name in ipairs(row[3]) do
+							-- Icon drawn like its button (at three quarters size) in the accent color
+							local icon = CreateFrame("Frame", nil, rowFrame)
+							icon:SetSize(20, 20)
+							icon:SetScale(0.75)
+							icon:SetPoint("LEFT", rowFrame, "LEFT", iconWidth / 0.75, 0)
+							icon.parts = {}
+							Icons[name](icon)
+							for k, part in ipairs(icon.parts) do
+								if part.SetTextColor then part:SetTextColor(accentR, accentG, accentB) else part:SetVertexColor(accentR, accentG, accentB) end
+							end
+							iconWidth = iconWidth + 15
+						end
+						iconWidth = iconWidth + 3
+					end
+					local key = rowFrame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+					key:SetPoint("LEFT", rowFrame, "LEFT", iconWidth, 0)
+					key:SetWidth(keyWidth - iconWidth)
+					key:SetJustifyH("LEFT")
+					key:SetWordWrap(false)
+					key:SetText(row[1])
+					local action = rowFrame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+					action:SetPoint("LEFT", rowFrame, "LEFT", keyWidth + 8, 0)
+					action:SetWidth(colWidth - keyWidth - 8)
+					action:SetJustifyH("LEFT")
+					action:SetWordWrap(false)
+					action:SetTextColor(0.7, 0.7, 0.7)
+					action:SetText(row[2])
+					prev = rowFrame
+				end
+				if column[3] then
+					local note = help:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
+					note:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
+					note:SetWidth(colWidth)
+					note:SetJustifyH("LEFT")
+					note:SetText(column[3])
+				end
+			end
+			local function SetHelpShown(show)
+				if show and help.sizeLabel then help.sizeLabel:SetText(sizeBtn.label:GetText()) end
+				help:SetShown(show)
+				helpBtn.active = show
+				helpBtn:SetLit(show or helpBtn:IsMouseOver())
+			end
+			helpBtn:SetScript("OnClick", function() SetHelpShown(not help:IsShown()) end)
+			help:SetScript("OnMouseDown", function(self, btn)
+				if btn == "RightButton" then win:Hide() else StartDrag(false) end
+			end)
+			help:SetScript("OnMouseUp", function(self, btn)
+				if win.moving then StopDrag() elseif btn == "LeftButton" then SetHelpShown(false) end
+			end)
+
+			-- Title bar: drag to size, Alt-drag to move, middle-click to reset, right-click to close
+			titleFrame:SetScript("OnMouseDown", function(self, btn)
 				if btn == "LeftButton" then
-					editFrame:StartSizing("TOP")
+					StartDrag(true)
+				elseif btn == "RightButton" then
+					win:Hide()
 				end
 			end)
-			titleFrame:HookScript("OnMouseUp", function(self, btn)
+			titleFrame:SetScript("OnMouseUp", function(self, btn)
 				if btn == "LeftButton" then
-					editFrame:StopMovingOrSizing()
-					LeaPlusLC["RecentChatSize"] = editFrame:GetHeight()
+					StopDrag()
 				elseif btn == "MiddleButton" then
-					-- Reset frame size
-					LeaPlusLC["RecentChatSize"] = 170
-					editFrame:SetSize(600, LeaPlusLC["RecentChatSize"])
-					editFrame:ClearAllPoints()
-					editFrame:SetPoint("BOTTOM", 0, 130)
+					win:ClearAllPoints()
+					win:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 130)
+					win:SetHeight(defHeight + headerHeight)
+					SaveLayout()
 				end
 			end)
+
+			-- Create recent chat frame (scrolling text area inside the window)
+			local editFrame = CreateFrame("ScrollFrame", nil, win, "LeaPlusRecentChatScrollFrameTemplate")
+			editFrame:SetPoint("TOPLEFT", win, "TOPLEFT", 4, -headerHeight - 2)
+			editFrame:SetPoint("BOTTOMRIGHT", win, "BOTTOMRIGHT", -4, footerHeight + 4)
 
 			-- Create character count
 			editFrame.CharCount = editFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
@@ -13869,53 +15184,529 @@
 			-- Create editbox
 			local editBox = editFrame.EditBox
 			editBox:SetAltArrowKeyMode(false)
-			editBox:SetTextInsets(4, 4, 4, 4)
+			editBox:SetTextInsets(6, 6, 4, 4)
 			editBox:SetWidth(editFrame:GetWidth() - 30)
 			editBox:SetSecurityDisablePaste()
 			editBox:SetMaxLetters(0)
 
 			editFrame:SetScrollChild(editBox)
 
-			-- Manage focus
-			editBox:HookScript("OnEditFocusLost", function()
-				if titleFrame:IsMouseOver() and IsMouseButtonDown("LeftButton") then
-					editBox:SetFocus()
+			-- Keep the chat in the same place from the bottom while the title bar is dragged to change the height
+			-- (the bottom of the window does not move, so the text should not either)
+			local fromBottom
+			titleFrame:HookScript("OnMouseDown", function()
+				if win.sizing then fromBottom = editFrame:GetVerticalScrollRange() - editFrame:GetVerticalScroll() end
+			end)
+			local function KeepFromBottom(self)
+				if win.sizing and fromBottom then
+					self:SetVerticalScroll(math.max(0, self:GetVerticalScrollRange() - fromBottom))
+				end
+			end
+			editFrame:HookScript("OnScrollRangeChanged", KeepFromBottom)
+			editFrame:HookScript("OnSizeChanged", KeepFromBottom)
+
+			-- Mouse wheel: Shift scrolls a page at a time, CTRL jumps to the top or bottom (otherwise the normal scrolling is used)
+			local defaultWheel = editFrame:GetScript("OnMouseWheel")
+			editFrame:SetScript("OnMouseWheel", function(self, delta)
+				if IsControlKeyDown() then
+					if delta > 0 then self.ScrollBar:ScrollToBegin() else self.ScrollBar:ScrollToEnd() end
+				elseif IsShiftKeyDown() or not defaultWheel then
+					local line = select(2, editBox:GetFont()) or 14
+					local step = line -- One line (if there is no normal scrolling to use)
+					if IsShiftKeyDown() then step = math.max(line, self:GetHeight() - line) end -- A page with one line of overlap so you do not lose your place
+					local pos = self:GetVerticalScroll() - delta * step
+					self:SetVerticalScroll(math.max(0, math.min(pos, self:GetVerticalScrollRange())))
+				else
+					defaultWheel(self, delta)
 				end
 			end)
 
-			-- Close frame with right-click of editframe or editbox
-			local function CloseRecentChatWindow()
+			-- Fade in when shown
+			local fadeIn = win:CreateAnimationGroup()
+			local fade = fadeIn:CreateAnimation("Alpha")
+			fade:SetFromAlpha(0)
+			fade:SetToAlpha(1)
+			fade:SetDuration(0.12)
+			win:SetScript("OnShow", function() fadeIn:Play() end)
+
+			-- Clear text and help when closed (also when closed with escape or the close button)
+			win:SetScript("OnHide", function()
+				StopDrag()
+				SetHelpShown(false)
 				editBox:SetText("")
 				editBox:ClearFocus()
-				editFrame:Hide()
+			end)
+
+			-- Close with right-click and move with Alt-drag anywhere in the window
+			for i, frame in ipairs({win, editFrame, editBox, footer}) do
+				frame:SetScript("OnMouseDown", function(self, btn)
+					if btn == "RightButton" then win:Hide() elseif btn == "LeftButton" then StartDrag(false) end
+				end)
+				frame:SetScript("OnMouseUp", function(self, btn)
+					if btn == "LeftButton" then StopDrag() end
+				end)
 			end
 
-			editFrame:SetScript("OnMouseDown", function(self, btn)
-				if btn == "RightButton" then CloseRecentChatWindow() end
+			----------------------------------------------------------------------
+			-- Web links and email addresses (shown in blue, click one to copy it)
+			----------------------------------------------------------------------
+
+			-- Color used to mark links (a sky blue that stands out from chat, chat type and class colors)
+			local linkColor = "|cff4da6ff"
+
+			-- Web endings that count as a link without http or www (common words such as to, it, me, be, at, no and us are left out)
+			local webEndings = {}
+			for i, v in ipairs({"com", "net", "org", "edu", "gov", "info", "biz", "io", "gg", "tv", "co", "uk", "eu", "de", "fr", "nl", "es", "pl", "se", "dk", "fi", "ru", "br", "au", "ca", "ch", "nz", "ie", "cz", "pt", "ly", "fm", "gl", "app", "dev", "xyz", "link", "live", "online", "site", "store", "tech", "wiki", "blog", "news", "club"}) do
+				webEndings[v] = true
+			end
+
+			-- Well-known short sites whose endings are left out above because they are common words (such as will.be and for.me)
+			local knownSites = {["youtu.be"] = true, ["t.me"] = true}
+
+			-- Function to check if a word is a web address, an email address or a BattleTag
+			local function IsWebAddress(word)
+				-- BattleTag (name starting with a letter, then # and 4 or 5 digits, such as Name#1234)
+				if strfind(word, "^[%a\128-\255][%w\128-\255]+#%d%d%d%d%d?$") then return true end
+				local lower = strlower(word)
+				if strfind(lower, "^https?://%w") or strfind(lower, "^www%.%w") then return true end
+				-- Email address (the @ makes it clear, so any ending of two or more letters is fine)
+				local user, domain = strmatch(lower, "^([%w%._%%%+%-]+)@([%w%-%.]+)$")
+				if user then
+					return not strfind(domain, "%.%.") and strfind(domain, "^%w[%w%-%.]*%.%a%a+$") and true or false
+				end
+				local host = strmatch(lower, "^([^/%?#:]+)")
+				if not host or strfind(host, "%.%.") or not strfind(host, "^%w[%w%-%.]*%w$") then return false end
+				if knownSites[host] or knownSites[strmatch(host, "^www%.(.+)$") or ""] then return true end
+				local ending = strmatch(host, "%.(%a+)$")
+				return ending and webEndings[ending] and true or false
+			end
+
+			-- Function to mark the web links in a message (game links such as items and players are left alone)
+			local function MarkLinks(msg, colorCode)
+				if not strfind(msg, ".", 1, true) and not strfind(msg, "#", 1, true) then return msg end -- Nothing that could be a link
+				local saved = {}
+				msg = gsub(msg, "|H.-|h.-|h", function(link)
+					saved[#saved + 1] = link
+					return "\001" .. #saved .. "\001"
+				end)
+				msg = gsub(msg, "%S+", function(word)
+					local lead, core, trail = strmatch(word, "^([%(%[<\"']*)(.-)([%.,;:!%?%)%]>\"']*)$")
+					if core and core ~= "" and IsWebAddress(core) then
+						-- Colors are kept balanced (close the line color, show the link, then open the line color again)
+						-- Otherwise every link leaves a color open and after enough of them the game ignores any more color changes
+						if colorCode then
+							return lead .. "|r" .. linkColor .. core .. "|r" .. colorCode .. trail
+						else
+							return lead .. linkColor .. core .. "|r" .. trail
+						end
+					end
+				end)
+				if #saved > 0 then
+					msg = gsub(msg, "\001(%d+)\001", function(n) return saved[tonumber(n)] end)
+				end
+				return msg
+			end
+
+			-- Function to get the player name at a cursor position in the window text (from the player link, so it includes the realm if there is one)
+			local function NameAt(pos)
+				local text, search = editBox:GetText(), 1
+				while true do
+					local s, e, data = strfind(text, "|Hplayer:(.-)|h", search)
+					if not s or e > pos then break end
+					-- The name shown for the link runs from after its |h to the next |h
+					local close = strfind(text, "|h", e + 1, true)
+					if close and pos <= close - 1 then
+						local name = strmatch(data, "^([^:]+)")
+						if name and name ~= "" then return name end
+						return
+					end
+					search = e + 1
+				end
+			end
+
+			-- Function to get the link at a cursor position in the window text
+			local function LinkAt(pos)
+				local text = editBox:GetText()
+				local start, search = nil, 1
+				while true do
+					local s, e = strfind(text, linkColor, search, true)
+					if not s or e > pos then break end
+					start, search = e + 1, e + 1
+				end
+				if not start then return end
+				local finish = strfind(text, "|r", start, true)
+				if not finish or pos > finish - 1 then return end
+				return strsub(text, start, finish - 1)
+			end
+
+			-- Copy bar (along the bottom of the window, the link is selected ready to copy)
+			local copyBar = CreateFrame("Frame", nil, win)
+			copyBar:SetPoint("BOTTOMLEFT", footer, "TOPLEFT", 0, 0)
+			copyBar:SetPoint("BOTTOMRIGHT", footer, "TOPRIGHT", 0, 0)
+			copyBar:SetHeight(34)
+			copyBar:SetFrameLevel(titleFrame:GetFrameLevel() + 5) -- Above the text, below the help panel
+			copyBar:EnableMouse(true)
+			copyBar:Hide()
+			copyBar.bg = copyBar:CreateTexture(nil, "BACKGROUND")
+			copyBar.bg:SetAllPoints()
+			copyBar.bg:SetColorTexture(0.09, 0.09, 0.11, 0.98)
+			copyBar.line = copyBar:CreateTexture(nil, "ARTWORK")
+			copyBar.line:SetPoint("TOPLEFT"); copyBar.line:SetPoint("TOPRIGHT")
+			copyBar.line:SetHeight(px)
+			copyBar.line:SetColorTexture(1, 1, 1, 0.12)
+
+			copyBar.hint = copyBar:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
+			copyBar.hint:SetPoint("RIGHT", -12, 0)
+			copyBar.hint:SetText(L["Press CTRL/C to copy"])
+
+			local copyBox = CreateFrame("EditBox", nil, copyBar)
+			copyBox:SetPoint("LEFT", copyBar, "LEFT", 8, 0)
+			copyBox:SetPoint("RIGHT", copyBar.hint, "LEFT", -12, 0)
+			copyBox:SetHeight(22)
+			copyBox:SetAutoFocus(false)
+			copyBox:SetFontObject("ChatFontNormal")
+			copyBox:SetTextColor(0.30, 0.65, 1) -- Same blue as the links
+			copyBox:SetTextInsets(8, 8, 0, 0)
+			copyBox:SetAltArrowKeyMode(false)
+			copyBox.bg = copyBox:CreateTexture(nil, "BACKGROUND")
+			copyBox.bg:SetAllPoints()
+			copyBox.bg:SetColorTexture(0, 0, 0, 0.5)
+			copyBox.edges = {}
+			for i = 1, 4 do
+				copyBox.edges[i] = copyBox:CreateTexture(nil, "BORDER")
+				copyBox.edges[i]:SetColorTexture(1, 1, 1, 0.15)
+			end
+			copyBox.edges[1]:SetPoint("TOPLEFT"); copyBox.edges[1]:SetPoint("TOPRIGHT"); copyBox.edges[1]:SetHeight(px)
+			copyBox.edges[2]:SetPoint("BOTTOMLEFT"); copyBox.edges[2]:SetPoint("BOTTOMRIGHT"); copyBox.edges[2]:SetHeight(px)
+			copyBox.edges[3]:SetPoint("TOPLEFT"); copyBox.edges[3]:SetPoint("BOTTOMLEFT"); copyBox.edges[3]:SetWidth(px)
+			copyBox.edges[4]:SetPoint("TOPRIGHT"); copyBox.edges[4]:SetPoint("BOTTOMRIGHT"); copyBox.edges[4]:SetWidth(px)
+
+			-- Function to hide the copy bar
+			local function HideCopyBar()
+				copyBar.msgID = (copyBar.msgID or 0) + 1
+				copyBar:Hide()
+				copyBox:ClearFocus()
+			end
+
+			-- Function to show the copy bar with a link
+			local function ShowCopyBar(url)
+				SetHelpShown(false)
+				copyBar.msgID = (copyBar.msgID or 0) + 1
+				copyBar.hint:SetText(L["Press CTRL/C to copy"])
+				copyBox.copyText = url
+				copyBox:SetText(url)
+				copyBox:SetCursorPosition(0)
+				copyBar:Show()
+				copyBox:SetFocus()
+				copyBox:HighlightText()
+			end
+
+			-- Keep the link selected and put it back if it gets changed
+			copyBox:SetScript("OnEditFocusGained", function(self) self:HighlightText() end)
+			copyBox:SetScript("OnMouseUp", function(self) self:HighlightText() end)
+			copyBox:SetScript("OnTextChanged", function(self, userInput)
+				if userInput then self:SetText(self.copyText or ""); self:HighlightText() end
+			end)
+			copyBox:SetScript("OnEnterPressed", function(self) self:HighlightText() end)
+			copyBox:SetScript("OnEscapePressed", function() HideCopyBar() end)
+
+			-- Clicking somewhere else closes the copy bar
+			copyBox:SetScript("OnEditFocusLost", function(self)
+				self:HighlightText(0, 0)
+				if not copyBar:IsMouseOver() then HideCopyBar() end
 			end)
 
-			editBox:SetScript("OnMouseDown", function(self, btn)
-				if btn == "RightButton" then CloseRecentChatWindow() end
+			-- After CTRL/C, say it was copied and close the copy bar
+			copyBox:SetScript("OnKeyDown", function(self, key)
+				if key == "C" and IsControlKeyDown() then
+					copyBar.msgID = (copyBar.msgID or 0) + 1
+					local id = copyBar.msgID
+					copyBar.hint:SetText("|cffffd200" .. L["Copied"] .. "|r")
+					C_Timer.After(0.8, function()
+						if copyBar.msgID == id then HideCopyBar() end
+					end)
+				end
 			end)
 
-			titleFrame:HookScript("OnMouseDown", function(self, btn)
-				if btn == "RightButton" then CloseRecentChatWindow() end
+			-- Close the copy bar with the window
+			win:HookScript("OnHide", HideCopyBar)
+
+			-- Click a link to copy it (a click, not a drag to select text, and not Alt for moving)
+			local downPos
+			editBox:HookScript("OnMouseDown", function(self, btn)
+				downPos = nil
+				if btn ~= "LeftButton" or IsAltKeyDown() then return end
+				C_Timer.After(0, function() downPos = editBox:GetCursorPosition() end)
+			end)
+			editBox:HookScript("OnMouseUp", function(self, btn)
+				if btn ~= "LeftButton" or IsAltKeyDown() then return end
+				C_Timer.After(0, function()
+					local pos = editBox:GetCursorPosition()
+					if downPos and pos == downPos then
+						local url = LinkAt(pos) or NameAt(pos)
+						if url then ShowCopyBar(url) end
+					end
+				end)
 			end)
 
 			-- Disable text changes while still allowing editing controls to work
 			editBox:EnableKeyboard(false)
 			editBox:SetScript("OnKeyDown", function() end)
 
+			----------------------------------------------------------------------
+			-- Search
+			----------------------------------------------------------------------
+
+			-- Search text (lower case, empty when not searching) and the chat tab that is showing
+			local searchTerm, currentChatFrame = "", nil
+			local ShowChatbox -- Set further down
+
+			-- Function to get the plain text of a line (no codes, lower case) to search in
+			local function PlainText(msg)
+				msg = gsub(msg, "|H.-|h", "")
+				msg = gsub(msg, "|h", "")
+				msg = gsub(msg, "|c%x%x%x%x%x%x%x%x", "")
+				msg = gsub(msg, "|r", "")
+				return strlower(msg)
+			end
+
+			-- Function to show the search text in gold (including names and other text shown for game links, blue links and codes are left alone, colors are kept balanced)
+			local highlightColor = "|cffffd201" -- Gold (one step off the game's own gold so matches can be found in the text without mixing them up)
+			local function HighlightMatches(msg, colorCode)
+				local out, pos, len = {}, 1, #msg
+				-- Plain text: close the line color, show the match in gold, then open the line color again
+				local function Highlight(text)
+					local lower, start = strlower(text), 1
+					while true do
+						local s, e = strfind(lower, searchTerm, start, true)
+						if not s then break end
+						out[#out + 1] = strsub(text, start, s - 1)
+						if colorCode then
+							out[#out + 1] = "|r" .. highlightColor .. strsub(text, s, e) .. "|r" .. colorCode
+						else
+							out[#out + 1] = highlightColor .. strsub(text, s, e) .. "|r"
+						end
+						start = e + 1
+					end
+					out[#out + 1] = strsub(text, start)
+				end
+				-- Text shown for a game link (such as a name or channel): the match is shown in gold and the link's own color carries on after it
+				local function HighlightLinkText(text)
+					local parts, p = {}, 1
+					local function Add(plain)
+						local lower, start = strlower(plain), 1
+						while true do
+							local s, e = strfind(lower, searchTerm, start, true)
+							if not s then break end
+							parts[#parts + 1] = strsub(plain, start, s - 1) .. highlightColor .. strsub(plain, s, e) .. "|r"
+							start = e + 1
+						end
+						parts[#parts + 1] = strsub(plain, start)
+					end
+					while p <= #text do
+						-- Leave codes alone (Battle.net names, colors and other codes)
+						local s, e = strfind(text, "|K.-|k", p)
+						local s2, e2 = strfind(text, "|c%x%x%x%x%x%x%x%x", p)
+						if s2 and (not s or s2 < s) then s, e = s2, e2 end
+						local s3, e3 = strfind(text, "|.", p)
+						if s3 and (not s or s3 < s) then s, e = s3, e3 end
+						if not s then Add(strsub(text, p)) break end
+						if s > p then Add(strsub(text, p, s - 1)) end
+						parts[#parts + 1] = strsub(text, s, e)
+						p = e + 1
+					end
+					return table.concat(parts)
+				end
+				while pos <= len do
+					-- Find the next part to handle separately (game link, blue link, color code or other code)
+					local kind = "code"
+					local s, e = strfind(msg, "|H.-|h.-|h", pos)
+					if s then kind = "link" end
+					local s2, e2 = strfind(msg, linkColor .. ".-|r", pos)
+					if s2 and (not s or s2 < s) then s, e, kind = s2, e2, "code" end
+					local s3, e3 = strfind(msg, "|c%x%x%x%x%x%x%x%x", pos)
+					if s3 and (not s or s3 < s) then s, e, kind = s3, e3, "code" end
+					local s4, e4 = strfind(msg, "|.", pos)
+					if s4 and (not s or s4 < s) then s, e, kind = s4, e4, "code" end
+					if not s then
+						Highlight(strsub(msg, pos))
+						break
+					end
+					if s > pos then Highlight(strsub(msg, pos, s - 1)) end
+					if kind == "link" then
+						-- Game link: the hidden part is left alone, the text shown for it can be highlighted
+						local head, shown = strmatch(strsub(msg, s, e), "^(|H.-|h)(.-)|h$")
+						if head then
+							out[#out + 1] = head .. HighlightLinkText(shown) .. "|h"
+						else
+							out[#out + 1] = strsub(msg, s, e)
+						end
+					else
+						-- Blue links and codes are left alone
+						out[#out + 1] = strsub(msg, s, e)
+					end
+					pos = e + 1
+				end
+				return table.concat(out)
+			end
+
+			-- Matches in the window text (cursor positions) and the one being shown
+			local matchPositions, currentMatch = {}, 0
+			local lastMsgCount, lastHiddenCount = 0, 0
+			local jumpPending
+
+			-- Function to find where each match is in the window text
+			local function FindMatches()
+				wipe(matchPositions)
+				currentMatch = 0
+				if searchTerm == "" then return end
+				local text, search = editBox:GetText(), 1
+				while true do
+					local s, e = strfind(text, highlightColor, search, true)
+					if not s then break end
+					matchPositions[#matchPositions + 1] = e -- Cursor position just before the match
+					search = e + 1
+				end
+			end
+
+			-- Function to show the message count, or which match is showing while searching
+			local function UpdateCount()
+				-- The hidden count is always shown (even when 0) so the title bar stays the same
+				if searchTerm ~= "" then
+					if #matchPositions > 0 then
+						titleFrame.m:Set(currentMatch, L["of"], #matchPositions, lastHiddenCount)
+					else
+						titleFrame.m:Set("", L["No matches"], "", lastHiddenCount)
+					end
+				else
+					titleFrame.m:Set("", L["Messages"] .. ":", lastMsgCount, lastHiddenCount)
+				end
+				prevBtn:SetShown(searchTerm ~= "")
+				nextBtn:SetShown(searchTerm ~= "")
+				prevBtn:SetEnabled(#matchPositions > 1)
+				nextBtn:SetEnabled(#matchPositions > 1)
+				prevBtn:SetAlpha(#matchPositions > 1 and 1 or 0.4)
+				nextBtn:SetAlpha(#matchPositions > 1 and 1 or 0.4)
+			end
+
+			-- Function to go to a match (it wraps around at either end and selects the match)
+			local function JumpToMatch(i)
+				local count = #matchPositions
+				if count == 0 then return end
+				if i < 1 then i = count elseif i > count then i = 1 end
+				currentMatch = i
+				local pos = matchPositions[i]
+				jumpPending = true
+				editBox:SetCursorPosition(pos)
+				editBox:HighlightText(pos, pos + #searchTerm)
+				UpdateCount()
+			end
+
+			-- When the cursor moves to a match, scroll so the match is a third of the way down (to read what follows it)
+			editBox:HookScript("OnCursorChanged", function(self, x, y, w, h)
+				if not jumpPending then return end
+				jumpPending = nil
+				local target = -y - editFrame:GetHeight() / 3
+				editFrame:SetVerticalScroll(math.max(0, math.min(target, editFrame:GetVerticalScrollRange())))
+			end)
+
+			-- Arrow buttons go to the previous (up) and next (down) match
+			prevBtn:SetScript("OnClick", function() JumpToMatch(currentMatch - 1) end)
+			nextBtn:SetScript("OnClick", function() JumpToMatch(currentMatch + 1) end)
+
+			-- Function to show or hide the search hint and clear button, and light up the box while it is used
+			local function UpdateSearchLook()
+				local hasText = searchBox:GetText() ~= ""
+				searchBox.hint:SetShown(not hasText and not searchBox:HasFocus())
+				searchBox.clear:SetShown(hasText)
+				if searchBox:HasFocus() or hasText then
+					SetSearchEdges(accentR, accentG, accentB, 0.5)
+					searchBox.icon:SetVertexColor(accentR, accentG, accentB)
+				else
+					SetSearchEdges(1, 1, 1, 0.12)
+					searchBox.icon:SetVertexColor(0.6, 0.6, 0.6)
+				end
+			end
+
+			-- Function to search again with the text in the box (keeps the chat tab that is showing)
+			local function RunSearch()
+				local text = strtrim(searchBox:GetText() or "")
+				searchTerm = strlower(text)
+				if currentChatFrame then ShowChatbox(currentChatFrame, true) end
+			end
+
+			-- Search a moment after typing stops (so fast typing does not rebuild the window for every key)
+			searchBox:SetScript("OnTextChanged", function(self, userInput)
+				UpdateSearchLook()
+				if not userInput then return end
+				self.searchID = (self.searchID or 0) + 1
+				local id = self.searchID
+				C_Timer.After(0.2, function()
+					if self.searchID == id and win:IsShown() then RunSearch() end
+				end)
+			end)
+			searchBox:SetScript("OnEditFocusGained", UpdateSearchLook)
+			searchBox:SetScript("OnEditFocusLost", UpdateSearchLook)
+			searchBox:SetScript("OnEnterPressed", function(self)
+				if strlower(strtrim(self:GetText() or "")) ~= searchTerm then
+					self.searchID = (self.searchID or 0) + 1 -- Cancel the waiting search
+					RunSearch()
+				elseif IsShiftKeyDown() then
+					JumpToMatch(currentMatch - 1) -- Shift goes back up
+				else
+					JumpToMatch(currentMatch + 1) -- Enter goes down to the next match
+				end
+			end)
+			searchBox:SetScript("OnEscapePressed", function(self)
+				-- Escape stops typing in the box (the search is kept, the cross clears it)
+				self:ClearFocus()
+			end)
+			searchBox.clear:SetScript("OnClick", function()
+				-- Clear the search and keep typing in the box
+				searchBox:SetText("")
+				RunSearch()
+				searchBox:SetFocus()
+			end)
+
+			-- Clear the search when the window closes
+			win:HookScript("OnHide", function()
+				searchBox:ClearFocus()
+			end)
+
 			-- Populate recent chat frame with chat messages
-			local function ShowChatbox(chtfrm)
+			function ShowChatbox(chtfrm, keepSearch, keepScroll)
+				-- When refreshing, remember where the window was scrolled to (or if it was at the bottom)
+				local oldScroll = editFrame:GetVerticalScroll()
+				local wasAtBottom = oldScroll >= editFrame:GetVerticalScrollRange() - 2
+				local oldMatch = currentMatch
+				SetHelpShown(false)
+				HideCopyBar()
+				currentChatFrame = chtfrm
+				if not keepSearch then
+					-- Opening a chat tab starts without a search
+					searchTerm = ""
+					searchBox:SetText("")
+					searchBox:ClearFocus()
+					UpdateSearchLook()
+				end
 				editBox:SetText("")
+				local tab = chtfrm:GetName() and _G[chtfrm:GetName() .. "Tab"]
+				local tabName = tab and tab:GetText()
+				if tabName and tabName ~= "" then
+					titleFrame.title:SetText(L["Recent chat window"] .. "  |cff808080-|r  |cffffffff" .. tabName .. "|r")
+				else
+					titleFrame.title:SetText(L["Recent chat window"])
+				end
 				local NumMsg = chtfrm:GetNumMessages()
 				local StartMsg = 1
 				if NumMsg > 256 then StartMsg = NumMsg - 255 end
-				local totalMsgCount = 0
+				local totalMsgCount, hiddenMsgCount = 0, 0
 				for iMsg = StartMsg, NumMsg do
 					local chatMessage, r, g, b, chatTypeID = chtfrm:GetMessageInfo(iMsg)
-					if chatMessage and canaccessvalue(chatMessage) then
+					if not canaccessvalue(chatMessage) then
+						-- Secret messages cannot be read so they are left out (and counted as hidden)
+						hiddenMsgCount = hiddenMsgCount + 1
+					elseif chatMessage then
 
 						-- Handle Battle.net messages
 						if string.match(chatMessage, "k:(%d+):(%d+):BN_WHISPER:")
@@ -13943,24 +15734,199 @@
 							end
 						end
 
+						chatMessage = gsub(chatMessage, "|T.-|t", "") -- Remove textures
+						chatMessage = gsub(chatMessage, "|A.-|a", "") -- Remove atlases
+
+						-- Search (lines with the search text get it shown in gold)
+						local hasMatch = searchTerm ~= "" and strfind(PlainText(chatMessage), searchTerm, 1, true)
+
 						-- Handle colors
+						local colorCode
 						if r and g and b then
-							local colorCode = RGBToColorCode(r, g, b)
+							colorCode = RGBToColorCode(r, g, b)
+						end
+
+						-- Show web links in blue so they can be clicked and copied
+						chatMessage = MarkLinks(chatMessage, colorCode)
+
+						-- Show the search text in gold
+						if hasMatch then
+							chatMessage = HighlightMatches(chatMessage, colorCode)
+						end
+
+						if colorCode then
 							chatMessage = colorCode .. chatMessage
 						end
 
-						chatMessage = gsub(chatMessage, "|T.-|t", "") -- Remove textures
-						chatMessage = gsub(chatMessage, "|A.-|a", "") -- Remove atlases
 						editBox:Insert(chatMessage .. "|r|n")
+						totalMsgCount = totalMsgCount + 1
 
 					end
-					totalMsgCount = totalMsgCount + 1
 				end
-				titleFrame.m:SetText(L["Messages"] .. ": " .. totalMsgCount)
-				editFrame:SetVerticalScroll(0)
-				editFrame.ScrollBar:ScrollToEnd()
-				editFrame:Show()
+				lastMsgCount, lastHiddenCount = totalMsgCount, hiddenMsgCount
+				win:Show()
 				editBox:ClearFocus()
+				FindMatches()
+				if keepScroll then
+					-- Refresh: stay where you were (or at the bottom if you were there, to see the new messages)
+					currentMatch = math.min(oldMatch, #matchPositions)
+					UpdateCount()
+					C_Timer.After(0, function()
+						if wasAtBottom then
+							editFrame.ScrollBar:ScrollToEnd()
+						else
+							editFrame:SetVerticalScroll(math.min(oldScroll, editFrame:GetVerticalScrollRange()))
+						end
+					end)
+				else
+					-- Opened from a chat tab or a new search: start at the bottom, or at the first match from the top
+					editFrame:SetVerticalScroll(0)
+					editFrame.ScrollBar:ScrollToEnd()
+					UpdateCount()
+					if #matchPositions > 0 then
+						C_Timer.After(0, function() JumpToMatch(1) end)
+					end
+				end
+			end
+
+			-- Copy everything button: select all the text so it can be copied with CTRL/C
+			copyAllBtn:SetScript("OnClick", function()
+				HideCopyBar()
+				SetHelpShown(false)
+				editBox:SetFocus()
+				editBox:HighlightText()
+			end)
+
+			-- Refresh button
+			refreshBtn:SetScript("OnClick", function()
+				if currentChatFrame then ShowChatbox(currentChatFrame, true, true) end
+			end)
+
+			-- Function to use the chat tab's font, at the chosen text size (or the chat tab's size)
+			local function ApplyFont(chatFrame)
+				local font, size, flags = chatFrame:GetFont()
+				local chosen = LeaPlusLC["RecentChatFontSize"]
+				if chosen == 0 or not font or (issecretvalue and issecretvalue(font)) then
+					-- Same as the chat tab (also used if the font cannot be read)
+					editBox:SetFont(chatFrame:GetFont())
+					editFrame:SetPanExtent(select(2, chatFrame:GetFont()))
+					-- The button shows the chat tab's size (or Aa if it cannot be read)
+					if size and not (issecretvalue and issecretvalue(size)) then
+						sizeBtn.label:SetText(format(sizeFormat, math.floor(size + 0.5)))
+					else
+						sizeBtn.label:SetText("Aa")
+					end
+					return
+				end
+				editBox:SetFont(font, chosen, flags)
+				editFrame:SetPanExtent(chosen)
+				sizeBtn.label:SetText(format(sizeFormat, chosen))
+			end
+
+			-- Text size list (pops up above the text size button)
+			local sizeList = {0, 10, 12, 14, 16, 18, 20, 22, 24}
+			local sizePopup = CreateFrame("Frame", nil, win)
+			sizePopup:SetFrameLevel(titleFrame:GetFrameLevel() + 20) -- Above everything else in the window
+			sizePopup:SetPoint("BOTTOMRIGHT", sizeBtn, "TOPRIGHT", 0, 4)
+			sizePopup:SetClampedToScreen(true)
+			sizePopup:EnableMouse(true)
+			sizePopup:Hide()
+			sizePopup.bg = sizePopup:CreateTexture(nil, "BACKGROUND")
+			sizePopup.bg:SetAllPoints()
+			sizePopup.bg:SetColorTexture(0.06, 0.06, 0.08, 0.97)
+			sizePopup.edges = {}
+			for i = 1, 4 do
+				sizePopup.edges[i] = sizePopup:CreateTexture(nil, "BORDER")
+				sizePopup.edges[i]:SetColorTexture(1, 1, 1, 0.15)
+			end
+			sizePopup.edges[1]:SetPoint("TOPLEFT"); sizePopup.edges[1]:SetPoint("TOPRIGHT"); sizePopup.edges[1]:SetHeight(px)
+			sizePopup.edges[2]:SetPoint("BOTTOMLEFT"); sizePopup.edges[2]:SetPoint("BOTTOMRIGHT"); sizePopup.edges[2]:SetHeight(px)
+			sizePopup.edges[3]:SetPoint("TOPLEFT"); sizePopup.edges[3]:SetPoint("BOTTOMLEFT"); sizePopup.edges[3]:SetWidth(px)
+			sizePopup.edges[4]:SetPoint("TOPRIGHT"); sizePopup.edges[4]:SetPoint("BOTTOMRIGHT"); sizePopup.edges[4]:SetWidth(px)
+			sizePopup.rows = {}
+			local fontPath = ChatFontNormal:GetFont()
+			local popupHeight, popupWidth = 4, 0
+			for i, size in ipairs(sizeList) do
+				-- Each size is shown at that size
+				local row = CreateFrame("Button", nil, sizePopup)
+				local shown = size == 0 and 12 or size
+				row:SetHeight(shown + 8)
+				row:SetPoint("TOPLEFT", sizePopup, "TOPLEFT", 2, -popupHeight)
+				row:SetPoint("RIGHT", sizePopup, "RIGHT", -2, 0)
+				row.hl = row:CreateTexture(nil, "BACKGROUND")
+				row.hl:SetAllPoints()
+				row.hl:SetColorTexture(accentR, accentG, accentB, 0.25)
+				row.hl:Hide()
+				row.label = row:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+				row.label:SetPoint("LEFT", 10, 0)
+				row.label:SetFont(fontPath, shown, "")
+				row.label:SetText(size == 0 and L["Same as chat"] or format(sizeFormat, size))
+				row.size = size
+				row:SetScript("OnEnter", function(self) self.hl:Show() end)
+				row:SetScript("OnLeave", function(self) self.hl:Hide() end)
+				popupWidth = math.max(popupWidth, row.label:GetStringWidth() + 24)
+				popupHeight = popupHeight + shown + 8
+				sizePopup.rows[i] = row
+			end
+			sizePopup:SetSize(math.ceil(popupWidth) + 4, popupHeight + 4)
+
+			-- The size in use is shown in gold
+			local function UpdateSizeRows()
+				for i, row in ipairs(sizePopup.rows) do
+					if row.size == LeaPlusLC["RecentChatFontSize"] then
+						row.label:SetTextColor(accentR, accentG, accentB)
+					else
+						row.label:SetTextColor(1, 1, 1)
+					end
+				end
+			end
+
+			-- Show and hide the list (the button stays lit while it is open, clicking anywhere else closes it)
+			local function SetSizePopupShown(show)
+				sizePopup:SetShown(show)
+				sizeBtn.active = show
+				sizeBtn:SetLit(show or sizeBtn:IsMouseOver())
+				if show then
+					UpdateSizeRows()
+					if C_EventUtils and C_EventUtils.IsEventValid and C_EventUtils.IsEventValid("GLOBAL_MOUSE_DOWN") then
+						sizePopup:RegisterEvent("GLOBAL_MOUSE_DOWN")
+					end
+				else
+					sizePopup:UnregisterEvent("GLOBAL_MOUSE_DOWN")
+				end
+			end
+			sizePopup:SetScript("OnEvent", function(self)
+				if not self:IsMouseOver() and not sizeBtn:IsMouseOver() then SetSizePopupShown(false) end
+			end)
+			sizeBtn:SetScript("OnClick", function() SetSizePopupShown(not sizePopup:IsShown()) end)
+			win:HookScript("OnHide", function() SetSizePopupShown(false) end)
+
+			-- Choose a size
+			for i, row in ipairs(sizePopup.rows) do
+				row:SetScript("OnClick", function(self)
+					LeaPlusLC["RecentChatFontSize"] = self.size
+					SetSizePopupShown(false)
+					if currentChatFrame then
+						ApplyFont(currentChatFrame)
+						ShowChatbox(currentChatFrame, true, true)
+					end
+				end)
+			end
+
+			-- Open or close the window for the chat tab that is showing (key binding)
+			LeaPlusLC.RecentChatToggle = function()
+				if win:IsShown() then
+					win:Hide()
+				else
+					-- The chat tab that is showing (the one last clicked), or the main chat window's selected tab
+					local chatFrame = SELECTED_CHAT_FRAME
+					if not chatFrame and FCFDock_GetSelectedWindow and GENERAL_CHAT_DOCK then
+						chatFrame = FCFDock_GetSelectedWindow(GENERAL_CHAT_DOCK)
+					end
+					chatFrame = chatFrame or DEFAULT_CHAT_FRAME
+					ApplyFont(chatFrame)
+					ShowChatbox(chatFrame)
+				end
 			end
 
 			-- Hook normal chat frame tab clicks
@@ -13968,8 +15934,7 @@
 				if _G["ChatFrame" .. i] then
 					_G["ChatFrame" .. i .. "Tab"]:HookScript("OnClick", function()
 						if IsControlKeyDown() then
-							editBox:SetFont(_G["ChatFrame" .. i]:GetFont())
-							editFrame:SetPanExtent(select(2, _G["ChatFrame" .. i]:GetFont()))
+							ApplyFont(_G["ChatFrame" .. i])
 							ShowChatbox(_G["ChatFrame" .. i])
 						end
 					end)
@@ -13982,24 +15947,11 @@
 				if cf then
 					_G[cf .. "Tab"]:HookScript("OnClick", function()
 						if IsControlKeyDown() then
-							editBox:SetFont(_G[cf]:GetFont())
-							editFrame:SetPanExtent(select(2, _G[cf]:GetFont()))
+							ApplyFont(_G[cf])
 							ShowChatbox(_G[cf])
 						end
 					end)
 				end
-			end)
-
-			-- Add entry to chat menu to show recent chat window
-			Menu.ModifyMenu("MENU_FCF_TAB", function(self, rootDescription, contextData)
-				rootDescription:CreateDivider()
-				rootDescription:CreateTitle(L["Leatrix Plus"])
-				local recentChatButton = rootDescription:CreateButton(L["Recent chat window"], function()
-					local currentChatFrame = FCF_GetCurrentChatFrame()
-					editBox:SetFont(currentChatFrame:GetFont())
-					editFrame:SetPanExtent(select(2, currentChatFrame:GetFont()))
-					ShowChatbox(currentChatFrame)
-				end)
 			end)
 
 		end
@@ -14947,9 +16899,7 @@
 		----------------------------------------------------------------------
 
 		do
-			local raidTable = {L["Flare: Square"], L["Flare: Triangle"], L["Flare: Diamond"], L["Flare: Cross"], L["Flare: Star"], L["Flare: Circle"], L["Flare: Moon"], L["Flare: Skull"], L["Flare: Clear all"]}
 			for i = 1, 9 do
-				_G["BINDING_NAME_CLICK " .. "LeaPlusGlobalFlare" .. i ..":LeftButton"] = raidTable[i]
 				local btn = CreateFrame("Button", "LeaPlusGlobalFlare" .. i, nil, "SecureActionButtonTemplate")
 				btn:SetAttribute("type", "macro")
 				if i == 9 then
@@ -15939,7 +17889,12 @@
 				LeaPlusLC:LoadVarChk("NoChatFade", "Off")					-- Disable chat fade
 				LeaPlusLC:LoadVarChk("UnivGroupColor", "Off")				-- Universal group color
 				LeaPlusLC:LoadVarChk("RecentChatWindow", "Off")				-- Recent chat window
-				LeaPlusLC:LoadVarNum("RecentChatSize", 170, 170, 600)		-- Recent chat size
+				LeaPlusLC:LoadVarNum("RecentChatSize", 192, 192, 800)		-- Recent chat size
+				LeaPlusLC:LoadVarAnc("RecentChatA", "BOTTOM")				-- Recent chat anchor
+				LeaPlusLC:LoadVarAnc("RecentChatR", "BOTTOM")				-- Recent chat relative
+				LeaPlusLC:LoadVarNum("RecentChatX", 0, -5000, 5000)			-- Recent chat position X
+				LeaPlusLC:LoadVarNum("RecentChatY", 130, -5000, 5000)		-- Recent chat position Y
+				LeaPlusLC:LoadVarNum("RecentChatFontSize", 0, 0, 24)		-- Recent chat text size (0 is the same as the chat tab)
 				LeaPlusLC:LoadVarChk("FilterChatMessages", "Off")			-- Filter chat messages
 				LeaPlusLC:LoadVarChk("BlockSpellLinks", "Off")				-- Block spell links
 				LeaPlusLC:LoadVarChk("BlockDrunkenSpam", "Off")				-- Block drunken spam
@@ -15964,7 +17919,9 @@
 				LeaPlusLC:LoadVarChk("MinimapButtonBag", "Off")				-- Minimap button bag
 				LeaPlusLC:LoadVarStr("MiniExcludeList", "")					-- Minimap exclude list
 				LeaPlusLC:LoadVarChk("HideMiniAddonButtons", "On")			-- Hide addon buttons
+				LeaPlusLC:LoadVarChk("MiniHeaderOnHover", "Off")			-- Show header on hover
 				LeaPlusLC:LoadVarNum("MinimapBorderWidth", 3, 1, 10)		-- Minimap border width
+				LeaPlusLC:LoadVarNum("MiniHeaderAlpha", 0.5, 0, 1)			-- Minimap header opacity
 				LeaPlusLC:LoadVarNum("MiniClusterScale", 1, 0.5, 2)			-- Minimap cluster scale
 				LeaPlusLC:LoadVarNum("MinimapEffect", 1, 1, 33)				-- Minimap effect
 
@@ -16029,9 +17986,9 @@
 				LeaPlusLC:LoadVarChk("ClassColFrames", "Off")				-- Class colored frames
 				LeaPlusLC:LoadVarChk("ClassColPlayer", "On")				-- Class colored player frame
 				LeaPlusLC:LoadVarChk("ClassColTarget", "On")				-- Class colored target frame
-				LeaPlusLC:LoadVarChk("ClassColPlayerBorder", "Off")			-- Class colored player frame border
-				LeaPlusLC:LoadVarChk("ClassColTargetBorder", "Off")			-- Class colored target frame border
-				LeaPlusLC:LoadVarChk("ClassColChain", "Off")				-- Class colored player chain
+				LeaPlusLC:LoadVarChk("ClassColPlayerBorder", "On")			-- Class colored player frame border
+				LeaPlusLC:LoadVarChk("ClassColTargetBorder", "On")			-- Class colored target frame border
+				LeaPlusLC:LoadVarChk("ClassColChain", "On")				-- Class colored player chain
 
 				LeaPlusLC:LoadVarChk("NoAlerts", "Off")						-- Hide alerts
 				LeaPlusLC:LoadVarChk("HideCleanupBtns", "Off")				-- Hide clean-up buttons
@@ -16085,6 +18042,14 @@
 				LeaPlusLC:LoadVarChk("SetEditModeLayout", "Off")			-- Set edit mode layout
 				LeaPlusLC["EditModeLayoutName"]	= LeaPlusDB["EditModeLayoutName"] or ""			-- Edit mode layout name
 				LeaPlusLC:LoadVarChk("SimpleAddonListing", "Off")			-- Simple addon listing
+				LeaPlusLC:LoadVarChk("SetKeybindings", "Off")				-- Set keybindings
+				LeaPlusLC:LoadVarStr("KeyBindToggle", "")					-- Set keybindings toggle panel
+				LeaPlusLC:LoadVarStr("KeyBindRare", "")						-- Set keybindings announce rare
+				LeaPlusLC:LoadVarStr("KeyBindRecentChat", "")				-- Set keybindings recent chat window
+				LeaPlusLC:LoadVarStr("KeyBindMountSpecial", "")				-- Set keybindings mount special
+				for i = 1, 9 do
+					LeaPlusLC:LoadVarStr("KeyBindFlare" .. i, "")			-- Set keybindings flares
+				end
 
 				LeaPlusLC:LoadVarNum("PlusPanelScale", 1, 1, 2)				-- Panel scale
 				LeaPlusLC:LoadVarNum("PlusPanelAlpha", 0, 0, 1)				-- Panel alpha
@@ -16300,6 +18265,11 @@
 			LeaPlusDB["UnivGroupColor"]			= LeaPlusLC["UnivGroupColor"]
 			LeaPlusDB["RecentChatWindow"]		= LeaPlusLC["RecentChatWindow"]
 			LeaPlusDB["RecentChatSize"]			= LeaPlusLC["RecentChatSize"]
+			LeaPlusDB["RecentChatA"]			= LeaPlusLC["RecentChatA"]
+			LeaPlusDB["RecentChatR"]			= LeaPlusLC["RecentChatR"]
+			LeaPlusDB["RecentChatX"]			= LeaPlusLC["RecentChatX"]
+			LeaPlusDB["RecentChatY"]			= LeaPlusLC["RecentChatY"]
+			LeaPlusDB["RecentChatFontSize"]		= LeaPlusLC["RecentChatFontSize"]
 			LeaPlusDB["FilterChatMessages"]		= LeaPlusLC["FilterChatMessages"]
 			LeaPlusDB["BlockSpellLinks"]		= LeaPlusLC["BlockSpellLinks"]
 			LeaPlusDB["BlockDrunkenSpam"]		= LeaPlusLC["BlockDrunkenSpam"]
@@ -16324,7 +18294,9 @@
 			LeaPlusDB["MinimapButtonBag"]		= LeaPlusLC["MinimapButtonBag"]
 			LeaPlusDB["MiniExcludeList"] 		= LeaPlusLC["MiniExcludeList"]
 			LeaPlusDB["HideMiniAddonButtons"]	= LeaPlusLC["HideMiniAddonButtons"]
+			LeaPlusDB["MiniHeaderOnHover"]		= LeaPlusLC["MiniHeaderOnHover"]
 			LeaPlusDB["MinimapBorderWidth"]		= LeaPlusLC["MinimapBorderWidth"]
+			LeaPlusDB["MiniHeaderAlpha"]		= LeaPlusLC["MiniHeaderAlpha"]
 			LeaPlusDB["MiniClusterScale"]		= LeaPlusLC["MiniClusterScale"]
 			LeaPlusDB["MinimapEffect"]			= LeaPlusLC["MinimapEffect"]
 
@@ -16445,6 +18417,14 @@
 			LeaPlusDB["SetEditModeLayout"] 		= LeaPlusLC["SetEditModeLayout"]
 			LeaPlusDB["EditModeLayoutName"] 	= LeaPlusLC["EditModeLayoutName"]
 			LeaPlusDB["SimpleAddonListing"] 	= LeaPlusLC["SimpleAddonListing"]
+			LeaPlusDB["SetKeybindings"] 		= LeaPlusLC["SetKeybindings"]
+			LeaPlusDB["KeyBindToggle"] 			= LeaPlusLC["KeyBindToggle"]
+			LeaPlusDB["KeyBindRare"] 			= LeaPlusLC["KeyBindRare"]
+			LeaPlusDB["KeyBindRecentChat"] 		= LeaPlusLC["KeyBindRecentChat"]
+			LeaPlusDB["KeyBindMountSpecial"] 	= LeaPlusLC["KeyBindMountSpecial"]
+			for i = 1, 9 do
+				LeaPlusDB["KeyBindFlare" .. i] 	= LeaPlusLC["KeyBindFlare" .. i]
+			end
 
 			LeaPlusDB["PlusPanelScale"] 		= LeaPlusLC["PlusPanelScale"]
 			LeaPlusDB["PlusPanelAlpha"] 		= LeaPlusLC["PlusPanelAlpha"]
@@ -17243,9 +19223,24 @@
 			local str, arg1, arg2, arg3 = strsplit(" ", string.lower(str:gsub("%s+", " ")))
 			-- Traverse parameters
 			if str == "wipe" then
+				-- Keep Set keybindings (enabled status and keys) unless wipe all is used
+				local keepKeys
+				if arg1 ~= "all" then
+					keepKeys = {}
+					keepKeys["SetKeybindings"] = LeaPlusLC["SetKeybindings"]
+					for k, v in pairs(LeaPlusLC) do
+						if type(k) == "string" and type(v) == "string" and strfind(k, "^KeyBind") then
+							keepKeys[k] = v
+						end
+					end
+				end
 				-- Wipe settings
 				LeaPlusLC:PlayerLogout(true) -- Run logout function with wipe parameter
 				wipe(LeaPlusDB)
+				-- Put back Set keybindings
+				if keepKeys then
+					for k, v in pairs(keepKeys) do LeaPlusDB[k] = v end
+				end
 				LpEvt:UnregisterAllEvents(); -- Don't save any settings
 				ReloadUI();
 			elseif str == "nosave" then
@@ -17405,6 +19400,11 @@
 				else
 					LeaPlusLC:Print(errmsg)
 				end
+				return
+			elseif str == "infotest" then
+				-- Toggle the info card render scale check until the next reload (to test whether 3D models show at other render scales yet)
+				LeaPlusLC.IDInfoTest = not LeaPlusLC.IDInfoTest
+				LeaPlusLC:Print("Info card render scale check: |cffffffff" .. (LeaPlusLC.IDInfoTest and "Off" or "On") .. "|r (until next reload).")
 				return
 			elseif str == "rest" then
 				-- Show rested bubbles
@@ -18038,7 +20038,7 @@
 				-- Help panel
 				if not LeaPlusLC.HelpFrame then
 					local frame = CreateFrame("FRAME", nil, UIParent)
-					frame:SetSize(570, 360); frame:SetFrameStrata("FULLSCREEN_DIALOG"); frame:SetFrameLevel(100)
+					frame:SetSize(570, 380); frame:SetFrameStrata("FULLSCREEN_DIALOG"); frame:SetFrameLevel(100)
 					frame.tex = frame:CreateTexture(nil, "BACKGROUND"); frame.tex:SetAllPoints(); frame.tex:SetColorTexture(0.05, 0.05, 0.05, 0.9)
 					frame.close = LeaPlusLC:CreateCloseButton(frame, 30, 30, "TOPRIGHT", 0, 0)
 					frame.close:SetScript("OnClick", function() frame:Hide() end)
@@ -18051,7 +20051,7 @@
 					frame:SetScript("OnDragStart", frame.StartMoving)
 					frame:SetScript("OnDragStop", function() frame:StopMovingOrSizing() frame:SetUserPlaced(false) end)
 					frame:Hide()
-					LeaPlusLC:CreateBar("HelpPanelMainTexture", frame, 570, 360, "TOPRIGHT", 0.7, 0.7, 0.7, 0.7,  "Interface\\ACHIEVEMENTFRAME\\UI-GuildAchievement-Parchment-Horizontal-Desaturated.png")
+					LeaPlusLC:CreateBar("HelpPanelMainTexture", frame, 570, 380, "TOPRIGHT", 0.7, 0.7, 0.7, 0.7,  "Interface\\ACHIEVEMENTFRAME\\UI-GuildAchievement-Parchment-Horizontal-Desaturated.png")
 					-- Panel contents
 					local col1, col2, color1 = 10, 120, "|cffffffaa"
 					LeaPlusLC:MakeTx(frame, "Leatrix Plus Help", col1, -10)
@@ -18060,33 +20060,35 @@
 					LeaPlusLC:MakeWD(frame, color1 .. "/ltp reset", col1, -50)
 					LeaPlusLC:MakeWD(frame, "Reset addon panel position and scale.", col2, -50)
 					LeaPlusLC:MakeWD(frame, color1 .. "/ltp wipe", col1, -70)
-					LeaPlusLC:MakeWD(frame, "Wipe all addon settings (reloads UI).", col2, -70)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp realm", col1, -90)
-					LeaPlusLC:MakeWD(frame, "Show realms connected to yours.", col2, -90)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp rest", col1, -110)
-					LeaPlusLC:MakeWD(frame, "Show number of rested XP bubbles remaining.", col2, -110)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp quest <id>", col1, -130)
-					LeaPlusLC:MakeWD(frame, "Show quest completion status for <quest id>.", col2, -130)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp quest wipe", col1, -150)
-					LeaPlusLC:MakeWD(frame, "Wipe your quest log.", col2, -150)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp hk", col1, -170)
-					LeaPlusLC:MakeWD(frame, "Show your lifetime honorable kills.", col2, -170)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp grid", col1, -190)
-					LeaPlusLC:MakeWD(frame, "Toggle a frame alignment grid.", col2, -190)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp zygor", col1, -210)
-					LeaPlusLC:MakeWD(frame, "Toggle the Zygor addon (reloads UI).", col2, -210)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp movie <id>", col1, -230)
-					LeaPlusLC:MakeWD(frame, "Play a movie by its ID.", col2, -230)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp enigma", col1, -250)
-					LeaPlusLC:MakeWD(frame, "Toggle the Enigmatic quest solver.", col2, -250)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp rsnd", col1, -270)
-					LeaPlusLC:MakeWD(frame, "Restart the sound system.", col2, -270)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp ra", col1, -290)
-					LeaPlusLC:MakeWD(frame, "Announce target in General chat channel (useful for rares).", col2, -290)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp con", col1, -310)
-					LeaPlusLC:MakeWD(frame, "Launch the developer console with a large font.", col2, -310)
-					LeaPlusLC:MakeWD(frame, color1 .. "/rl", col1, -330)
-					LeaPlusLC:MakeWD(frame, "Reload the UI.", col2, -330)
+					LeaPlusLC:MakeWD(frame, "Wipe all addon settings except Set keybindings (reloads UI).", col2, -70)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp wipe all", col1, -90)
+					LeaPlusLC:MakeWD(frame, "Wipe all addon settings including Set keybindings (reloads UI).", col2, -90)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp realm", col1, -110)
+					LeaPlusLC:MakeWD(frame, "Show realms connected to yours.", col2, -110)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp rest", col1, -130)
+					LeaPlusLC:MakeWD(frame, "Show number of rested XP bubbles remaining.", col2, -130)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp quest <id>", col1, -150)
+					LeaPlusLC:MakeWD(frame, "Show quest completion status for <quest id>.", col2, -150)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp quest wipe", col1, -170)
+					LeaPlusLC:MakeWD(frame, "Wipe your quest log.", col2, -170)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp hk", col1, -190)
+					LeaPlusLC:MakeWD(frame, "Show your lifetime honorable kills.", col2, -190)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp grid", col1, -210)
+					LeaPlusLC:MakeWD(frame, "Toggle a frame alignment grid.", col2, -210)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp zygor", col1, -230)
+					LeaPlusLC:MakeWD(frame, "Toggle the Zygor addon (reloads UI).", col2, -230)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp movie <id>", col1, -250)
+					LeaPlusLC:MakeWD(frame, "Play a movie by its ID.", col2, -250)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp enigma", col1, -270)
+					LeaPlusLC:MakeWD(frame, "Toggle the Enigmatic quest solver.", col2, -270)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp rsnd", col1, -290)
+					LeaPlusLC:MakeWD(frame, "Restart the sound system.", col2, -290)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp ra", col1, -310)
+					LeaPlusLC:MakeWD(frame, "Announce target in General chat channel (useful for rares).", col2, -310)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp con", col1, -330)
+					LeaPlusLC:MakeWD(frame, "Launch the developer console with a large font.", col2, -330)
+					LeaPlusLC:MakeWD(frame, color1 .. "/rl", col1, -350)
+					LeaPlusLC:MakeWD(frame, "Reload the UI.", col2, -350)
 					LeaPlusLC.HelpFrame = frame
 					_G["LeaPlusGlobalHelpPanel"] = frame
 					table.insert(UISpecialFrames, "LeaPlusGlobalHelpPanel")
@@ -18884,6 +20886,47 @@
 				SetCVar("addonChallengeModeRestrictionsForced", "0")
 				LeaPlusLC:Print("Addon restrictions are no longer enforced.")
 				return
+			elseif str == "recentchat" then
+				-- Open or close the recent chat window for the chat tab that is showing (used by the key binding)
+				if LeaPlusLC.RecentChatToggle then
+					LeaPlusLC.RecentChatToggle()
+				else
+					LeaPlusLC:Print("Recent chat window is not enabled.")
+				end
+				return
+			elseif str == "chattest" then
+				-- Add sample whispers with web links to the main chat window for testing the recent chat window (only shown in your chat, nothing is sent)
+				local name = UnitName("player") or ""
+				local info = ChatTypeInfo and ChatTypeInfo["WHISPER"]
+				local r, g, b = 1, 0.5, 1
+				if info then r, g, b = info.r, info.g, info.b end
+				local who = "|Hplayer:" .. name .. "|h[" .. name .. "]|h whispers: "
+				local item = "|cffffffff|Hitem:6948::::::::::::::|h[Hearthstone]|h|r"
+				local lines = {
+					-- Should be links
+					"check bbc.co.uk for news",
+					"guide here: wowhead.com/item=19019 and the raider.io page",
+					"join discord.gg/abc123 tonight",
+					"full link https://www.curseforge.com/wow/addons/leatrix-plus works too",
+					"(see www.example.org) or bbc.co.uk/sport, both fine.",
+					"Grüße aus Köln, schau mal auf spiegel.de/sport nach",
+					"this is a much longer message with lots of words before the link so we can test clicking later in a line that probably wraps onto the next row of the window github.com/leatrix",
+					item .. " at wowhead.com/item=6948",
+					"my email is bob@mail.com",
+					"mail someone.name+raid@proton.me or guild-officers@my-guild.co.uk.",
+					"watch youtu.be/dQw4w9WgXcQ or join t.me/somechannel",
+					"add me Testera#1234 or my alt Grüße#21987!",
+					-- Should not be links
+					"e.g. this, 1.5 seconds, lol.. and Mr.Smith",
+					"meet at 12.30 and go.to the inn, do.it now",
+					"meet @ 8 and say hi to @Bob",
+					"I'm #1 dps, ticket #1234 and that will.be fine for.me",
+				}
+				for i, line in ipairs(lines) do
+					DEFAULT_CHAT_FRAME:AddMessage(who .. line, r, g, b)
+				end
+				LeaPlusLC:Print("Test whispers added to chat (nothing was sent).  The first 12 have links, emails or BattleTags, the last 4 should not.  CTRL-click the chat tab to open the recent chat window.")
+				return
 			elseif str == "flightpopup" then
 				-- Show a sample flight time report window
 				if LeaPlusLC.ShowFlightReportTest then
@@ -18956,7 +20999,12 @@
 				LeaPlusDB["NoChatFade"] = "On"					-- Disable chat fade
 				LeaPlusDB["UnivGroupColor"] = "On"				-- Universal group color
 				LeaPlusDB["RecentChatWindow"] = "On"			-- Recent chat window
-				LeaPlusDB["RecentChatSize"] = 170				-- Recent chat size
+				LeaPlusDB["RecentChatSize"] = 192				-- Recent chat size
+				LeaPlusDB["RecentChatA"] = "BOTTOM"				-- Recent chat anchor
+				LeaPlusDB["RecentChatR"] = "BOTTOM"				-- Recent chat relative
+				LeaPlusDB["RecentChatX"] = 0					-- Recent chat position X
+				LeaPlusDB["RecentChatY"] = 130					-- Recent chat position Y
+				LeaPlusDB["RecentChatFontSize"] = 0				-- Recent chat text size
 				LeaPlusDB["FilterChatMessages"] = "On"			-- Filter chat messages
 				LeaPlusDB["BlockSpellLinks"] = "On"				-- Block spell links
 				LeaPlusDB["BlockDrunkenSpam"] = "On"			-- Block drunken spam
@@ -18980,6 +21028,8 @@
 				LeaPlusDB["MinimapButtonBag"] = "On"			-- Minimap button bag
 				LeaPlusDB["MiniExcludeList"] = "BugSack, Leatrix_Plus" -- Excluded addon list
 				LeaPlusDB["MinimapBorderWidth"] = 3				-- Minimap border width
+				LeaPlusDB["MiniHeaderAlpha"] = 0				-- Minimap header opacity
+				LeaPlusDB["MiniHeaderOnHover"] = "Off"			-- Show header on hover
 				LeaPlusDB["MiniClusterScale"] = 1				-- Minimap cluster scale
 				LeaPlusDB["MinimapEffect"] = 1					-- Minimap effect
 
@@ -19071,6 +21121,20 @@
 				LeaPlusDB["SetEditModeLayout"] = "On"			-- Set edit mode layout
 				LeaPlusDB["EditModeLayoutName"] = "Main"		-- Edit mode layout name
 				LeaPlusDB["SimpleAddonListing"] = "On"			-- Simple addon listing
+				LeaPlusDB["SetKeybindings"] = "On"				-- Set keybindings
+				LeaPlusDB["KeyBindToggle"] = "CTRL-Z"			-- Set keybindings toggle panel
+				LeaPlusDB["KeyBindRare"] = "CTRL-T"			-- Set keybindings announce rare
+				LeaPlusDB["KeyBindRecentChat"] = "CTRL-Q"		-- Set keybindings recent chat window
+				LeaPlusDB["KeyBindMountSpecial"] = "CTRL-SPACE"	-- Set keybindings mount special
+				LeaPlusDB["KeyBindFlare8"] = "SHIFT-1"			-- Set keybindings skull
+				LeaPlusDB["KeyBindFlare4"] = "SHIFT-2"			-- Set keybindings cross
+				LeaPlusDB["KeyBindFlare2"] = "SHIFT-3"			-- Set keybindings triangle
+				LeaPlusDB["KeyBindFlare7"] = "SHIFT-4"			-- Set keybindings moon
+				LeaPlusDB["KeyBindFlare1"] = "SHIFT-5"			-- Set keybindings square
+				LeaPlusDB["KeyBindFlare6"] = "SHIFT-6"			-- Set keybindings circle
+				LeaPlusDB["KeyBindFlare5"] = "SHIFT-7"			-- Set keybindings star
+				LeaPlusDB["KeyBindFlare3"] = "SHIFT-8"			-- Set keybindings diamond
+				LeaPlusDB["KeyBindFlare9"] = "SHIFT-9"			-- Set keybindings clear all
 
 				-- Mute game sounds (LeaPlusLC["MuteGameSounds"])
 				for k, v in pairs(LeaPlusLC["muteTable"]) do
@@ -20033,6 +22097,7 @@
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Miscellaneous"				, 146, -132)
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "SetEditModeLayout"			, "Set edit mode layout"			, 146, -152,	false,	"If checked, you can specify an edit mode layout that will always be applied when you login to any character.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "SimpleAddonListing"		, "Simple addon listing"			, 146, -172,	true,	"If checked, the addon listing will be shown in alphabetical order without categories.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "SetKeybindings"			, "Set keybindings"					, 146, -192,	false,	"If checked, you can set keys for Leatrix Plus actions such as toggling the options panel, announcing rares and placing flares.")
 
 	LeaPlusLC:CreateDropdown("AddonLanguage", "Language", 146, "TOPLEFT", LeaPlusLC[pg], "TOPLEFT", 340, -92, true, {{L["Automatic"], 1}, {L["English"], 2}, {L["Deutsch"], 3}, {L["Español (EU)"], 4}, {L["Español (AL)"], 5}, {L["Français"], 6}, {L["Italiano"], 7}, {L["Português"], 8}, {L["Русский"], 9}, {L["한국어"], 10}, {L["简体中文"], 11}, {L["繁體中文"], 12}})
 
@@ -20043,3 +22108,4 @@
 	LeaPlusLC:MakeSL(LeaPlusLC[pg], "PlusPanelAlpha", "Drag to set the transparency of the Leatrix Plus panel.", 0, 1, 0.1, 340, -222, "%.1f")
 
 	LeaPlusLC:CfgBtn("SetEditModeLayoutBtn", LeaPlusCB["SetEditModeLayout"])
+	LeaPlusLC:CfgBtn("SetKeybindingsBtn", LeaPlusCB["SetKeybindings"])

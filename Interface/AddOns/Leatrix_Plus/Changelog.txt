@@ -1,4 +1,11 @@
-﻿1.60.29 - 6th November 2026
+﻿1.60.30 - 11th November 2026
+- Added a new option 'Set keybindings' ('Settings') which replaces the previous way of setting addon related keybindings.
+- For 'Enhance minimap' ('Interface'), added 'Show header on hover'.  If checked, the header will only be shown while the pointer is over the minimap or header.  Also added 'Header opacity' slider.  Also tidied the header bar up a bit.
+- For 'Recent chat window' ('Chat') the window design has been updated.  It now shows the chat tab name and number of hidden messages, you can hold alt and drag the title bar to move the window, you can hold shift to scroll a page at a time or control to jump to the top or bottom of the chat history and there is a help button to remind you of the controls.  Web links, emails and battletags are now highlighted, you can click them and press CTRL/C to copy them to the clipboard.  You can click character names to copy them too.  You can now expand the window size to the top of your screen.  You can search recent chat using a new search box.  Added a refresh button to show new messages and a select all messages button.  Added a font size menu for the recent chat window.  You can now set a keybind to toggle the recent chat window.  Removed the chat tab right-click entry for recent chat window.
+- For 'Show info card' ('Interface'), the 3D model checkbox can no longer be used when the game render scale is set to anything other than 100%.  This is caused by a game bug which will hopefully be fixed at some point.
+- Updated flight times.  Thank you to the hundreds of players who sent them in.
+
+1.60.29 - 6th November 2026
 - Fixed a minor issue with the Blizzard internal realm name showing next to guild names in tooltips (for 'Enhance tooltip') and in info cards (for 'Show info cards').  Thank you for the reports.
 - Updated translations.
 
