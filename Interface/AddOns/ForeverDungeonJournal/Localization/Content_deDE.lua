@@ -8,7 +8,7 @@ FDJ.ContentLocales.deDE = FDJ.ContentLocales.deDE or {}
 
 FDJ.ContentLocales.deDE.dungeons = {
     ["Hall of Thanes"] = {
-        ["name"] = "Halle der Thane",
+        ["name"] = "Die Halle der Thanen",
         ["location"] = "Unter Eisenschmiede, Dun Morogh",
         ["description"] = "Jemand ist in die königliche zwergische Grabkammer unter Eisenschmiede eingedrungen.",
     },
@@ -18,7 +18,7 @@ FDJ.ContentLocales.deDE.dungeons = {
         ["description"] = "Troggs und Kultisten der Brennenden Klinge verseuchen die glühenden Höhlen unter Orgrimmar.",
     },
     ["Ruins of Lordaeron"] = {
-        ["name"] = "Ruinen von Lordaeron",
+        ["name"] = "Die Ruinen von Lordaeron",
         ["location"] = "Die zerstörte Stadt Lordaeron",
         ["description"] = "Streitkräfte der Geißel suchen die zerstörte Hauptstadt noch immer heim, während ein Nekromant innerhalb der Stadt an Macht gewinnt.",
     },
@@ -28,7 +28,7 @@ FDJ.ContentLocales.deDE.dungeons = {
         ["description"] = "Die Bruderschaft der Defias baut in den Minen unter Mondbruch ein Kriegsschiff.",
     },
     ["Wailing Caverns"] = {
-        ["name"] = "Die Höhlen des Wehklagens",
+        ["name"] = "Höhlen des Wehklagens",
         ["location"] = "Nördliches Brachland",
         ["description"] = "Tief unter dem Brachland bewachen Druiden und Giftzahnlords den schlafenden Naralex, während verdrehte Bestien durch die Höhlen streifen.",
     },
@@ -62,7 +62,7 @@ FDJ.ContentLocales.deDE.quests = {
     },
     [96403] = {
         ["name"] = "Wichtige Erbstücke",
-        ["objective"] = "Sammelt 8 zwergische Erbstücke in der Halle der Thane.",
+        ["objective"] = "Sammelt 8 zwergische Erbstücke in der Halle der Thanen.",
     },
     [96394] = {
         ["name"] = "Die ruhelosen Toten",
@@ -71,7 +71,7 @@ FDJ.ContentLocales.deDE.quests = {
     },
     [96393] = {
         ["name"] = "Vorstoß ins alte Eisenschmiede",
-        ["objective"] = "Betretet die Halle der Thane und beschafft Durgen Düsterhammers Kopf.",
+        ["objective"] = "Betretet die Halle der Thanen und beschafft Durgen Düsterhammers Kopf.",
         ["note"] = "Die Questreihe beginnt mit der Dunkeleisenkarte, die von Dunkeleisenspionen in Dun Morogh fallen gelassen wird.",
     },
     [98423] = {
@@ -426,6 +426,10 @@ FDJ.ContentLocales.deDE.quests = {
 
 FDJ.ContentLocales.deDE.bosses = {
     ["Trash Drops"] = "Trashbeute",
+    -- 2.0.3: bosses with no encounter event (Wowhead Forever, German).
+    ["Obsidian Sentinel"] = "Obsidianschildwache",
+    ["Spirestone Battle Lord"] = "Kampflord der Felsspitzoger",
+    ["Spirestone Lord Magus"] = "Maguslord der Felsspitzoger",
     ["Lordaeron Captain"] = "Hauptmann von Lordaeron",
     -- Official client names (Wowhead Forever database, 2026-10-03).
     ["Plunder"] = "Schleppweg",
@@ -458,6 +462,26 @@ FDJ.ContentLocales.deDE.bosses = {
     ["Relic Guardian"] = "Reliktwächter",
     ["Lyn the Ignored"] = "Lyn der Ignorierte",
     ["Shade of the Archmage"] = "Schemen des Erzmagiers",
+    -- Forever dungeon bosses (Wowhead Forever, German, Nov 2026).
+    ["Atrexis the Grave Knight"] = "Atrexis der Grabritter",
+    ["Arcane Anomaly"] = "Arkananomalie",
+    ["Fel Ancient"] = "Teufelsurtum",
+    ["Unstable Sentinel"] = "Instabile Schildwache",
+    ["Mana Devourer"] = "Manaschlinger",
+    ["Arcanic Enigma"] = "Arkanes Mysterium",
+    ["Saltspine"] = "Salzrücken",
+    ["Shadetooth"] = "Schemenzahn",
+    ["\"Pyromancer\" Braxton"] = "\"Pyromant\" Braxton",
+    ["Min'loth the Serpent"] = "Min'loth die Schlange",
+    ["Slavecrusher Grox"] = "Sklavenbrecher Grox",
+    ["Twilight Commander Zarmok"] = "Twilight-Kommandant Zarmok",
+    ["War Handler Ashka"] = "Kriegswärterin Ashka",
+    ["Nar'gurk"] = "Nar'guk",
+    ["Bossman Toof"] = "Bossmann Toof",
+    ["Overlord Mugg"] = "Oberanführer Mugg",
+    ["Moontouched Wanderer"] = "Mondbestrahlter Wanderer",
+    ["Gortek the Apprentice"] = "Gortek der Lehrling",
+    ["Tunnelweb Matriarch"] = "Tunnelnetzmatriarchin",
     ["Viscous Fallout"] = "Verflüssigte Ablagerung",
     ["Electrocutioner 6000"] = "Elektrokutionator 6000",
     ["Crowd Pummeler 9-60"] = "Meute-Verprügler 9-60",
@@ -491,6 +515,8 @@ FDJ.ContentLocales.deDE.slotParts = {
     ["Finger"] = "Finger",
     ["Trinket"] = "Schmuck",
     ["Bag"] = "Tasche",
+    ["Quiver"] = "Köcher",
+    ["Ammo Pouch"] = "Munitionsbeutel",
     ["One-Hand"] = "Einhändig",
     ["Main Hand"] = "Waffenhand",
     ["Off Hand"] = "Schildhand",
@@ -639,14 +665,14 @@ FDJ.ContentLocales.deDE.replacements = {
     {"inside Shadowfang Keep", "in Burg Schattenfang"},
     {"inside Ragefire Chasm", "im Flammenschlund"},
     {"inside Ruins of Lordaeron", "in den Ruinen von Lordaeron"},
-    {"inside Hall of Thanes", "in der Halle der Thane"},
+    {"inside Hall of Thanes", "in der Halle der Thanen"},
     {"inside the Deadmines", "in den Todesminen"},
     {"Wailing Caverns", "Höhlen des Wehklagens"},
     {"Blackfathom Deeps", "Tiefschwarze Grotte"},
     {"Shadowfang Keep", "Burg Schattenfang"},
     {"Ragefire Chasm", "Flammenschlund"},
     {"Ruins of Lordaeron", "Ruinen von Lordaeron"},
-    {"Hall of Thanes", "Halle der Thane"},
+    {"Hall of Thanes", "Halle der Thanen"},
     {"The Deadmines", "Die Todesminen"},
     {"Deadmines", "Todesminen"},
     {"Item start:", "Queststart-Gegenstand:"},

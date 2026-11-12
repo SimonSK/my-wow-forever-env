@@ -8,7 +8,7 @@ FDJ.ContentLocales.zhCN = FDJ.ContentLocales.zhCN or {}
 
 FDJ.ContentLocales.zhCN.dungeons = {
     ["Hall of Thanes"] = {
-        ["name"] = "领主之厅",
+        ["name"] = "领主大厅",
         ["location"] = "铁炉堡地下，丹莫罗",
         ["description"] = "有人闯入了铁炉堡地下的矮人王室墓室。",
     },
@@ -43,7 +43,7 @@ FDJ.ContentLocales.zhCN.dungeons = {
         ["description"] = "佐拉姆海岸一座被淹没的暗夜精灵遗迹，被纳迦、鱼人和效忠阿库麦尔的暮光之锤教徒占据。",
     },
     ["The Stockade"] = {
-        ["name"] = "暴风城监狱",
+        ["name"] = "监狱",
         ["location"] = "暴风城",
         ["description"] = "暴乱的迪菲亚囚犯占领了暴风城的监狱。",
     },
@@ -53,7 +53,7 @@ FDJ.ContentLocales.zhCN.slotParts = {
     ["Chest"] = "胸部", ["Leather"] = "皮甲", ["Wrist"] = "手腕", ["Cloth"] = "布甲",
     ["Back"] = "背部", ["Waist"] = "腰部", ["Mail"] = "锁甲", ["Hands"] = "手",
     ["Feet"] = "脚", ["Legs"] = "腿部", ["Neck"] = "颈部", ["Finger"] = "手指",
-    ["Trinket"] = "饰品", ["Bag"] = "背包", ["One-Hand"] = "单手", ["Main Hand"] = "主手",
+    ["Trinket"] = "饰品", ["Bag"] = "背包", ["Quiver"] = "箭袋", ["Ammo Pouch"] = "弹药袋", ["One-Hand"] = "单手", ["Main Hand"] = "主手",
     ["Off Hand"] = "副手", ["Two-Hand"] = "双手", ["Dagger"] = "匕首", ["Sword"] = "剑",
     ["Axe"] = "斧", ["Mace"] = "锤", ["Staff"] = "法杖", ["Shield"] = "盾牌",
     ["Polearm"] = "长柄武器", ["Ranged"] = "远程", ["Wand"] = "魔杖", ["Thrown"] = "投掷武器",

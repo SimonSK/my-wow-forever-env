@@ -7,6 +7,8 @@ if not FDJ or not FDJ.DB then return end
 -- that can drop any of them gets a folded "Show Shared Loot (N)" divider below
 -- its loot (see RefreshLoot in Core/Journal.lua).
 local BFD, STOCKS, RFK, SMGY = "Blackfathom Deeps", "The Stockade", "Razorfen Kraul", "Scarlet Monastery: Graveyard"
+local DROWNED = "The Drowned City"
+
 
 local SHARED = {
     { 252512, "Brawler's Leather Helm", {
@@ -43,6 +45,14 @@ local SHARED = {
         [STOCKS] = { "Kam Deepfury", "Bazil Thredd", "Dextren Ward" },
         [RFK] = { "Death Speaker Jargba", "Overlord Ramtusk", "Charlga Razorflank" },
     } },
+    -- Wowhead Forever: every Drowned City boss (Zul'Alai 8/936, Var'Taka 1/546,
+    -- Captain Dreadrise 5/809, Deathless Marrow 4/586, Min'loth 8/594, Primeval
+    -- Elemental 6/350, the rare Gill 1/46). Primeval Elemental's page is made
+    -- in Data/QuestUpdates.lua, which adds it there.
+    { 271718, "Linken's Boots of Iron", {
+        [DROWNED] = { "Zul'Alai", "Var'Taka", "Captain Dreadrise", "Deathless Marrow", "Min'loth the Serpent", "Gill" },
+    }, "Feet, Mail" },
+
 }
 
 FDJ.SHARED_LOOT_IDS = FDJ.SHARED_LOOT_IDS or {}
@@ -87,12 +97,12 @@ for dungeonName, dungeon in pairs(FDJ.DB) do
 end
 
 for _, entry in ipairs(SHARED) do
-    local itemID, itemName, drops = entry[1], entry[2], entry[3]
+    local itemID, itemName, drops, itemType = entry[1], entry[2], entry[3], entry[4]
     for dungeonName, bosses in pairs(drops) do
         local dungeon = FDJ.DB[dungeonName]
         for _, bossName in ipairs(bosses) do
             if dungeon and FindBoss(dungeon, bossName) then
-                AddShared(dungeonName, bossName, { itemID, itemName, "Head, Leather", 3 })
+                AddShared(dungeonName, bossName, { itemID, itemName, itemType or "Head, Leather", 3 })
             else
                 FDJ.sharedLootMissing[#FDJ.sharedLootMissing + 1] = dungeonName .. " / " .. bossName
             end

@@ -138,6 +138,8 @@ FDJ.QUEST_PREREQ_CHAINS = {
     -- Gnomeregan: Data Rescue needs the Prismatic Punch Card, built up card
     -- by card through four Matrix Punchograph terminals. These are item
     -- steps (placeholder IDs), shown so players know the whole route.
+    -- NOT a prerequisite: Data Rescue is picked up straight away. These
+    -- are shown as a How to complete guide (QUEST_GUIDE_CHAINS below).
     [2930] = {
         { id = 2930001, name = "White Punch Card", itemStep = true },
         { id = 2930002, name = "Yellow Punch Card (Punchograph 3005-A)", itemStep = true },
@@ -329,6 +331,13 @@ FDJ.QUEST_PREREQ_CHAINS = {
     },
     [7046] = {
         { id = 7044, name = "Legends of Maraudon" },
+    },
+    -- Forever Maraudon: Word of the Woods (93594) is the direct prerequisite
+    -- for Rot and Regret (93404), as listed in the Forever quest series.
+    -- Hub-unlock prerequisites are not yet independently verified; use the
+    -- temporary map placeholder on the Word of the Woods chain step.
+    [93404] = {
+        { id = 93594, name = "Word of the Woods", level = 43, requires = 35 },
     },
     [4263] = {
         { id = 4262, name = "Overmaster Pyron" },
@@ -573,6 +582,24 @@ FDJ.QUEST_PREREQ_CHAINS = {
 }
 
 FDJ.QUEST_PREREQ_DETAILS = {
+    -- Maraudon (Forever): temporary, offline-safe first-step page while
+    -- the Shen'dralas quest-hub unlock requirements are being researched.
+    [93594] = {
+        level = 43,
+        requires = 35,
+        -- Temporary instruction page until the complete hub-unlock chain is verified.
+        hubPlaceholder = true,
+        objective = "Need to unlock |cffffd36bShen'dralas|r quest hub.\nUpdating soon with full details",
+        -- Evenshade's Overlook: documented location of Mordent Evenshade.
+        -- This marks a known Shen'dralas questing landmark, not a verified
+        -- exact pickup NPC for Word of the Woods.
+        hubMap = {
+            mapID = 2652, x = 0.350, y = 0.466,
+            label = "Shen'dralas quest hub - Evenshade's Overlook",
+            detail = "Evenshade's Overlook, Shen'dralas (35.0, 46.6); temporary hub marker",
+        },
+    },
+
     -- Pre-quests for the dungeons added in 1.6.5.
 
     [261] = {
@@ -1966,6 +1993,13 @@ FDJ.QUEST_PREREQ_DETAILS = {
     [2930005] = { level = 30, requires = 25, objective = "Use Matrix Punchograph 3005-D with the Red Punch Card to get the Prismatic Punch Card, then bring it to Master Mechanic Castpipe in Ironforge.", pickup = "Matrix Punchograph 3005-D, west side of the lower level of the Engineering Labs", turnin = "Master Mechanic Castpipe, Tinker Town, Ironforge", description = "Take the elevator down; the terminal is in the first passage on the right.", startItem = {9316, "Prismatic Punch Card", 1, "From Matrix Punchograph 3005-D"} },
 
 }
+
+-- questguide: chains that are HOW to complete the quest, not quests needed
+-- before it. The journal shows them behind a red Guide button (quest list)
+-- and a How to complete button (quest page) instead of the chain icon and
+-- "Requires a quest chain first.".
+FDJ.QUEST_GUIDE_CHAINS = FDJ.QUEST_GUIDE_CHAINS or {}
+FDJ.QUEST_GUIDE_CHAINS[2930] = true -- Data Rescue: the punch cards
 
 -- Pre-quests that also start a dungeon quest elsewhere in the journal reuse
 -- that quest's giver location for their Show on Map button.
