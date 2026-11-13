@@ -1,10 +1,10 @@
 
 DataStore_Agenda_Characters = {
 {
-["lastUpdate"] = 1794471200,
+["lastUpdate"] = 1794563495,
 },
 {
-["lastUpdate"] = 1794195819,
+["lastUpdate"] = 1794534015,
 },
 {
 ["lastUpdate"] = 1794283387,

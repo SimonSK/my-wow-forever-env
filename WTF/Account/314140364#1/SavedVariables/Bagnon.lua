@@ -17,14 +17,14 @@ Bagnon_Sets = {
 ["point"] = "TOPRIGHT",
 ["color"] = {
 },
-["y"] = -235.0001521864916,
-["x"] = -170.0000400940583,
+["y"] = -220.0000301161791,
+["x"] = -340.9991856018708,
 ["spacing"] = 0,
-["showBags"] = true,
-["activeRules"] = {
-},
 ["borderColor"] = {
 },
+["activeRules"] = {
+},
+["showBags"] = true,
 },
 ["vault"] = {
 ["color"] = {
@@ -79,43 +79,43 @@ Bagnon_Sets = {
 },
 ["color"] = {
 },
-["showBags"] = true,
+["x"] = 247.0002899169922,
 ["activeRules"] = {
 },
-["x"] = 247.0002899169922,
+["showBags"] = true,
 },
 },
 ["countGuild"] = true,
 ["color"] = {
 ["quiver"] = {
 },
-["account"] = {
+["herb"] = {
 },
-["enchant"] = {
+["normal"] = {
 },
 ["soul"] = {
 },
-["reagent"] = {
+["leather"] = {
 },
 ["mine"] = {
 },
-["engineer"] = {
+["gem"] = {
 },
 ["inscribe"] = {
 },
-["fridge"] = {
+["reagent"] = {
 },
-["gem"] = {
+["engineer"] = {
 },
 ["key"] = {
 },
 ["tackle"] = {
 },
-["leather"] = {
+["fridge"] = {
 },
-["normal"] = {
+["enchant"] = {
 },
-["herb"] = {
+["account"] = {
 },
 },
 ["profiles"] = {

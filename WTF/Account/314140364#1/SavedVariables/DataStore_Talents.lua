@@ -35,24 +35,15 @@ DataStore_Talents_Specializations = {
 }
 DataStore_Talents_SpecializationInfos = {
 ["Roles"] = {
-["Set"] = {
-["DAMAGER"] = 1,
-},
-["Count"] = 1,
 ["List"] = {
 "DAMAGER",
 },
+["Count"] = 1,
+["Set"] = {
+["DAMAGER"] = 1,
+},
 },
 ["Names"] = {
-["Set"] = {
-["Warrior"] = 5,
-["Druid"] = 4,
-["Shaman"] = 3,
-["Rogue"] = 2,
-["Hunter"] = 6,
-["Paladin"] = 1,
-},
-["Count"] = 6,
 ["List"] = {
 "Paladin",
 "Rogue",
@@ -60,6 +51,15 @@ DataStore_Talents_SpecializationInfos = {
 "Druid",
 "Warrior",
 "Hunter",
+},
+["Count"] = 6,
+["Set"] = {
+["Warrior"] = 5,
+["Druid"] = 4,
+["Shaman"] = 3,
+["Rogue"] = 2,
+["Hunter"] = 6,
+["Paladin"] = 1,
 },
 },
 }

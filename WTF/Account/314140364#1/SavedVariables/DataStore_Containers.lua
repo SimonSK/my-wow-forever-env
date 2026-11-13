@@ -2,18 +2,24 @@
 DataStore_Containers_Characters = {
 {
 ["bankInfo"] = 1094802,
-["lastUpdate"] = 1794471104,
-["bagInfo"] = 27686,
-["Cooldowns"] = {
-},
+["lastUpdate"] = 1794563382,
+["bagInfo"] = 38962,
 ["Containers"] = {
 {
 ["items"] = {
 },
-["link"] = "|cnIQ1:|Hitem:279939::::::::14:1486:::::::::|h[Collecting Basket]|h|r",
-["info"] = 995186710577,
 ["links"] = {
 },
+["info"] = 995186710577,
+["link"] = "|cnIQ1:|Hitem:279939::::::::14:1486:::::::::|h[Collecting Basket]|h|r",
+},
+{
+["items"] = {
+},
+["links"] = {
+},
+["info"] = 560501626929,
+["link"] = "|cnIQ1:|Hitem:4496::::::::14:1486:::::::::|h[Small Brown Pouch]|h|r",
 },
 {
 ["items"] = {
@@ -26,24 +32,20 @@ DataStore_Containers_Characters = {
 {
 ["items"] = {
 },
-["info"] = 0,
+["link"] = "|cnIQ1:|Hitem:5571::::::::14:1486:::::::::|h[Small Black Pouch]|h|r",
+["info"] = 560505821233,
 ["links"] = {
 },
 },
 {
 ["items"] = {
+451477506,
 },
-["info"] = 0,
-["links"] = {
-},
-},
-{
-["items"] = {
-},
-["links"] = {
-},
-["info"] = 1461798836273,
 ["link"] = "|cnIQ1:|Hitem:253664::::::::14:1486::::::::Player-6933-005A94FC:|h[Linen Reagent Bag]|h|r",
+["info"] = 1461798835249,
+["links"] = {
+"|cnIQ1:|Hitem:6889::::::::14:1486:::::::::|h[Small Egg]|h|r",
+},
 },
 {
 ["items"] = {
@@ -83,8 +85,6 @@ DataStore_Containers_Characters = {
 185794580,
 185794574,
 },
-["link"] = "|cnIQ1:|Hitem:242709::::::::14:1486:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
-["info"] = 556852589953,
 ["links"] = {
 "|cnIQ1:|Hitem:3434::::::::14:1486:::::::::|h[Slumber Sand]|h|r",
 "|cnIQ1:|Hitem:252032::::::::14:1486:::::::::|h[Red Delicious Stormapple]|h|r",
@@ -122,6 +122,8 @@ DataStore_Containers_Characters = {
 "|cnIQ1:|Hitem:2835::::::::14:1486:::::::::|h[Rough Stone]|h|r",
 "|cnIQ1:|Hitem:2835::::::::14:1486:::::::::|h[Rough Stone]|h|r",
 },
+["info"] = 556852589953,
+["link"] = "|cnIQ1:|Hitem:242709::::::::14:1486:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
 },
 {
 ["items"] = {
@@ -172,6 +174,8 @@ DataStore_Containers_Characters = {
 409993217,
 212205569,
 },
+["link"] = false,
+["info"] = 9376,
 ["links"] = {
 "|cnIQ1:|Hitem:6948::::::::14:1486:::::::::|h[Hearthstone]|h|r",
 "|cnIQ1:|Hitem:2581::::::::14:1486:::::::::|h[Heavy Linen Bandage]|h|r",
@@ -185,8 +189,6 @@ DataStore_Containers_Characters = {
 "|cnIQ1:|Hitem:6256::::::::14:1486::14:::::::|h[Fishing Pole]|h|r",
 "|cnIQ1:|Hitem:3238::::::::14:1486:::::::::|h[Johaan's Findings]|h|r",
 },
-["info"] = 9376,
-["link"] = false,
 },
 [-5] = {
 ["items"] = {
@@ -209,11 +211,13 @@ DataStore_Containers_Characters = {
 [-1] = {
 ["items"] = {
 },
+["link"] = false,
+["info"] = 33024,
 ["links"] = {
 },
-["info"] = 33024,
-["link"] = false,
 },
+},
+["Cooldowns"] = {
 },
 },
 {
@@ -223,26 +227,26 @@ DataStore_Containers_Characters = {
 {
 ["items"] = {
 },
+["link"] = "|cnIQ1:|Hitem:4238::::::::3:1488::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
+["info"] = 560451295281,
 ["links"] = {
 },
-["info"] = 560451295281,
-["link"] = "|cnIQ1:|Hitem:4238::::::::3:1488::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
 },
 {
 ["items"] = {
 },
+["link"] = "|cnIQ1:|Hitem:4238::::::::3:1488::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
+["info"] = 560451295281,
 ["links"] = {
 },
-["info"] = 560451295281,
-["link"] = "|cnIQ1:|Hitem:4238::::::::3:1488::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
 },
 {
 ["items"] = {
 },
+["link"] = "|cnIQ1:|Hitem:4238::::::::3:1488::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
+["info"] = 560451295281,
 ["links"] = {
 },
-["info"] = 560451295281,
-["link"] = "|cnIQ1:|Hitem:4238::::::::3:1488::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
 },
 {
 ["items"] = {
@@ -267,6 +271,8 @@ DataStore_Containers_Characters = {
 412286992,
 175112193,
 },
+["link"] = false,
+["info"] = 14496,
 ["links"] = {
 "|cnIQ1:|Hitem:6948::::::::3:1488::75:::::::|h[Hearthstone]|h|r",
 "|cnIQ1:|Hitem:7005::::::::3:1488::14:::::::|h[Skinning Knife]|h|r",
@@ -275,8 +281,6 @@ DataStore_Containers_Characters = {
 "|cnIQ1:|Hitem:6291::::::::3:1488:::::::::|h[Raw Brilliant Smallfish]|h|r",
 "|cnIQ1:|Hitem:2672::::::::3:1488:::::::::|h[Stringy Wolf Meat]|h|r",
 },
-["info"] = 14496,
-["link"] = false,
 },
 [-5] = {
 ["items"] = {
@@ -299,63 +303,65 @@ DataStore_Containers_Characters = {
 [-1] = {
 ["items"] = {
 },
+["link"] = false,
+["info"] = 33024,
 ["links"] = {
 },
-["info"] = 33024,
-["link"] = false,
 },
 },
-["lastUpdate"] = 1794297746,
 ["bagInfo"] = 32806,
+["lastUpdate"] = 1794297746,
 },
 {
 ["bankInfo"] = 1100946,
-["lastUpdate"] = 1794381635,
+["lastUpdate"] = 1794533381,
 ["bagInfo"] = 33842,
+["Cooldowns"] = {
+},
 ["Containers"] = {
 {
 ["items"] = {
 },
-["links"] = {
-},
-["info"] = 21645062314033,
 ["link"] = "|cnIQ1:|Hitem:256935::::::::14:1489:::::::::|h[Simple Leather Satchel]|h|r",
+["info"] = 21645062314033,
+["links"] = {
+},
 },
 {
 ["items"] = {
 },
-["links"] = {
-},
-["info"] = 560514209841,
 ["link"] = "|cnIQ1:|Hitem:5572::::::::14:1489:::::::::|h[Small Green Pouch]|h|r",
+["info"] = 560514209841,
+["links"] = {
+},
 },
 {
 ["items"] = {
 },
+["link"] = "|cnIQ1:|Hitem:828::::::::14:1489:::::::::|h[Small Blue Pouch]|h|r",
+["info"] = 560510015537,
 ["links"] = {
 },
-["info"] = 560510015537,
-["link"] = "|cnIQ1:|Hitem:828::::::::14:1489:::::::::|h[Small Blue Pouch]|h|r",
 },
 {
 ["items"] = {
 },
+["link"] = "|cnIQ1:|Hitem:828::::::::14:1489:::::::::|h[Small Blue Pouch]|h|r",
+["info"] = 560510015537,
 ["links"] = {
 },
-["info"] = 560510015537,
-["link"] = "|cnIQ1:|Hitem:828::::::::14:1489:::::::::|h[Small Blue Pouch]|h|r",
 },
 {
 ["items"] = {
 716832771,
 181534722,
 },
+["link"] = "|cnIQ1:|Hitem:253664::::::::14:1489::::::::Player-6933-005A94FC:|h[Linen Reagent Bag]|h|r",
+["info"] = 1461798834225,
 ["links"] = {
 "|cnIQ2:|Hitem:10938::::::::14:1489:::::::::|h[Lesser Magic Essence]|h|r",
 "|cnIQ1:|Hitem:2770::::::::14:1489:::::::::|h[Copper Ore]|h|r",
 },
-["info"] = 1461798834225,
-["link"] = "|cnIQ1:|Hitem:253664::::::::14:1489::::::::Player-6933-005A94FC:|h[Linen Reagent Bag]|h|r",
 },
 {
 ["items"] = {
@@ -390,6 +396,8 @@ DataStore_Containers_Characters = {
 16958816267,
 18418237445,
 },
+["link"] = "|cnIQ1:|Hitem:242709::::::::14:1489:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
+["info"] = 556852595073,
 ["links"] = {
 "|cnIQ1:|Hitem:263512::::::::14:1489:::::::::|h[Pincer Bites]|h|r",
 "|cnIQ1:|Hitem:263509::::::::14:1489:::::::::|h[Skywall Souffle]|h|r",
@@ -422,8 +430,6 @@ DataStore_Containers_Characters = {
 "|cnIQ1:|Hitem:258771::::::::14:1489:::::::::|h[Al'Aketh Cultist's Ear]|h|r",
 "|cnIQ1:|Hitem:281040::::::::14:1489:::::::::|h[Prepared Incense]|h|r",
 },
-["info"] = 556852595073,
-["link"] = "|cnIQ1:|Hitem:242709::::::::14:1489:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
 },
 {
 ["items"] = {
@@ -478,8 +484,6 @@ DataStore_Containers_Characters = {
 13879214081,
 10420234,
 },
-["link"] = false,
-["info"] = 5280,
 ["links"] = {
 "|cnIQ1:|Hitem:6948::::::::14:1489:::::::::|h[Hearthstone]|h|r",
 "|cnIQ1:|Hitem:255663::::::::14:1489:::::::::|h[Windstone]|h|r",
@@ -497,6 +501,8 @@ DataStore_Containers_Characters = {
 "|cnIQ1:|Hitem:211780::::::::14:1489:::::::::|h[Scroll: KWYJIBO]|h|r",
 "|cnIQ1:|Hitem:159::::::::14:1489:::::::::|h[Refreshing Spring Water]|h|r",
 },
+["info"] = 5280,
+["link"] = false,
 },
 [-5] = {
 ["items"] = {
@@ -519,45 +525,25 @@ DataStore_Containers_Characters = {
 [-1] = {
 ["items"] = {
 },
+["link"] = false,
+["info"] = 33024,
 ["links"] = {
 },
-["info"] = 33024,
-["link"] = false,
 },
-},
-["Cooldowns"] = {
 },
 },
 {
 ["bankInfo"] = 1110162,
 ["lastUpdate"] = 1794471018,
 ["bagInfo"] = 35884,
-["Cooldowns"] = {
-},
 ["Containers"] = {
 {
 ["items"] = {
 },
-["link"] = "|cnIQ1:|Hitem:256935::::::::11:1484:::::::::|h[Simple Leather Satchel]|h|r",
+["links"] = {
+},
 ["info"] = 21645062314033,
-["links"] = {
-},
-},
-{
-["items"] = {
-},
-["link"] = "|cnIQ1:|Hitem:4238::::::::10:1484::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
-["info"] = 560451295281,
-["links"] = {
-},
-},
-{
-["items"] = {
-},
-["link"] = "|cnIQ1:|Hitem:4238::::::::10:1484::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
-["info"] = 560451295281,
-["links"] = {
-},
+["link"] = "|cnIQ1:|Hitem:256935::::::::11:1484:::::::::|h[Simple Leather Satchel]|h|r",
 },
 {
 ["items"] = {
@@ -566,6 +552,22 @@ DataStore_Containers_Characters = {
 },
 ["info"] = 560451295281,
 ["link"] = "|cnIQ1:|Hitem:4238::::::::10:1484::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
+},
+{
+["items"] = {
+},
+["links"] = {
+},
+["info"] = 560451295281,
+["link"] = "|cnIQ1:|Hitem:4238::::::::10:1484::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
+},
+{
+["items"] = {
+},
+["link"] = "|cnIQ1:|Hitem:4238::::::::10:1484::::::::Player-6933-005A94FC:|h[Linen Bag]|h|r",
+["info"] = 560451295281,
+["links"] = {
+},
 },
 {
 ["items"] = {
@@ -597,8 +599,6 @@ DataStore_Containers_Characters = {
 17269587969,
 17269456897,
 },
-["link"] = "|cnIQ1:|Hitem:242709::::::::11:1484:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
-["info"] = 556852605313,
 ["links"] = {
 "|cnIQ1:|Hitem:263512::::::::11:1484:::::::::|h[Pincer Bites]|h|r",
 "|cnIQ1:|Hitem:263509::::::::11:1484:::::::::|h[Skywall Souffle]|h|r",
@@ -621,6 +621,8 @@ DataStore_Containers_Characters = {
 "|cnIQ1:|Hitem:263513::::::::11:1484::11:::::::|h[Recipe: Pincer Bites]|h|r",
 "|cnIQ1:|Hitem:263511::::::::11:1484::11:::::::|h[Recipe: Skywall Souffle]|h|r",
 },
+["info"] = 556852605313,
+["link"] = "|cnIQ1:|Hitem:242709::::::::11:1484:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
 },
 {
 ["items"] = {
@@ -669,6 +671,8 @@ DataStore_Containers_Characters = {
 409993217,
 716963842,
 },
+["link"] = false,
+["info"] = 11424,
 ["links"] = {
 "|cnIQ1:|Hitem:255663::::::::11:1484:::::::::|h[Windstone]|h|r",
 "|cnIQ1:|Hitem:250339::::::::11:1484:::::::::|h[Minor Mageblood Elixir]|h|r",
@@ -680,8 +684,6 @@ DataStore_Containers_Characters = {
 "|cnIQ1:|Hitem:6256::::::::11:1484::14:::::::|h[Fishing Pole]|h|r",
 "|cnIQ1:|Hitem:10940::::::::11:1484:::::::::|h[Strange Dust]|h|r",
 },
-["info"] = 11424,
-["link"] = false,
 },
 [-5] = {
 ["items"] = {
@@ -704,11 +706,13 @@ DataStore_Containers_Characters = {
 [-1] = {
 ["items"] = {
 },
-["link"] = false,
-["info"] = 33024,
 ["links"] = {
 },
+["info"] = 33024,
+["link"] = false,
 },
+},
+["Cooldowns"] = {
 },
 },
 {
@@ -718,36 +722,36 @@ DataStore_Containers_Characters = {
 {
 ["items"] = {
 },
-["link"] = "|cnIQ1:|Hitem:256935::::::::8:1491:::::::::|h[Simple Leather Satchel]|h|r",
+["links"] = {
+},
 ["info"] = 21645062314033,
-["links"] = {
-},
-},
-{
-["items"] = {
-},
-["link"] = "|cnIQ1:|Hitem:5572::::::::8:1491:::::::::|h[Small Green Pouch]|h|r",
-["info"] = 560514209841,
-["links"] = {
-},
+["link"] = "|cnIQ1:|Hitem:256935::::::::8:1491:::::::::|h[Simple Leather Satchel]|h|r",
 },
 {
 ["items"] = {
 },
-["link"] = "|cnIQ1:|Hitem:5572::::::::8:1491:::::::::|h[Small Green Pouch]|h|r",
-["info"] = 560514209841,
 ["links"] = {
 },
+["info"] = 560514209841,
+["link"] = "|cnIQ1:|Hitem:5572::::::::8:1491:::::::::|h[Small Green Pouch]|h|r",
+},
+{
+["items"] = {
+},
+["links"] = {
+},
+["info"] = 560514209841,
+["link"] = "|cnIQ1:|Hitem:5572::::::::8:1491:::::::::|h[Small Green Pouch]|h|r",
 },
 {
 ["items"] = {
 [6] = 92536833,
 },
-["link"] = "|cnIQ1:|Hitem:5572::::::::8:1491:::::::::|h[Small Green Pouch]|h|r",
-["info"] = 560514208817,
 ["links"] = {
 [6] = "|cnIQ0:|Hitem:1412::::::::8:1491:::::::::|h[Crude Bastard Sword]|h|r",
 },
+["info"] = 560514208817,
+["link"] = "|cnIQ1:|Hitem:5572::::::::8:1491:::::::::|h[Small Green Pouch]|h|r",
 },
 {
 ["items"] = {
@@ -771,8 +775,6 @@ DataStore_Containers_Characters = {
 169672719,
 17269456897,
 },
-["link"] = false,
-["info"] = 8352,
 ["links"] = {
 "|cnIQ1:|Hitem:6948::::::::8:1491::75:::::::|h[Hearthstone]|h|r",
 "|cnIQ1:|Hitem:255663::::::::8:1491:::::::::|h[Windstone]|h|r",
@@ -787,6 +789,8 @@ DataStore_Containers_Characters = {
 "|cnIQ1:|Hitem:2589::::::::8:1491:::::::::|h[Linen Cloth]|h|r",
 "|cnIQ1:|Hitem:263511::::::::8:1491::11:::::::|h[Recipe: Skywall Souffle]|h|r",
 },
+["info"] = 8352,
+["link"] = false,
 },
 [-5] = {
 ["items"] = {
@@ -809,23 +813,34 @@ DataStore_Containers_Characters = {
 [-1] = {
 ["items"] = {
 },
-["link"] = false,
-["info"] = 33024,
 ["links"] = {
 },
+["info"] = 33024,
+["link"] = false,
 },
 },
-["bagInfo"] = 31788,
 ["lastUpdate"] = 1794292050,
+["bagInfo"] = 31788,
 },
 {
+["bankInfo"] = 1087634,
+["lastUpdate"] = 1794563060,
+["bagInfo"] = 30768,
 ["Cooldowns"] = {
 },
 ["Containers"] = {
 {
 ["items"] = {
 },
-["link"] = "|cnIQ1:|Hitem:5571::::::::4:1485:::::::::|h[Small Black Pouch]|h|r",
+["links"] = {
+},
+["info"] = 21645062314033,
+["link"] = "|cnIQ1:|Hitem:256935::::::::14:1485:::::::::|h[Simple Leather Satchel]|h|r",
+},
+{
+["items"] = {
+},
+["link"] = "|cnIQ1:|Hitem:5571::::::::14:1485:::::::::|h[Small Black Pouch]|h|r",
 ["info"] = 560505821233,
 ["links"] = {
 },
@@ -836,15 +851,7 @@ DataStore_Containers_Characters = {
 ["links"] = {
 },
 ["info"] = 560505821233,
-["link"] = "|cnIQ1:|Hitem:5571::::::::4:1485:::::::::|h[Small Black Pouch]|h|r",
-},
-{
-["items"] = {
-},
-["link"] = "|cnIQ1:|Hitem:5571::::::::4:1485:::::::::|h[Small Black Pouch]|h|r",
-["info"] = 560505821233,
-["links"] = {
-},
+["link"] = "|cnIQ1:|Hitem:5571::::::::14:1485:::::::::|h[Small Black Pouch]|h|r",
 },
 {
 ["items"] = {
@@ -853,18 +860,150 @@ DataStore_Containers_Characters = {
 164626632,
 164626632,
 164626632,
-164626534,
+164626477,
 },
-["links"] = {
-"|cnIQ1:|Hitem:2512::::::::4:1485:::::::::|h[Rough Arrow]|h|r",
-"|cnIQ1:|Hitem:2512::::::::4:1485:::::::::|h[Rough Arrow]|h|r",
-"|cnIQ1:|Hitem:2512::::::::4:1485:::::::::|h[Rough Arrow]|h|r",
-"|cnIQ1:|Hitem:2512::::::::4:1485:::::::::|h[Rough Arrow]|h|r",
-"|cnIQ1:|Hitem:2512::::::::4:1485:::::::::|h[Rough Arrow]|h|r",
-"|cnIQ1:|Hitem:2512::::::::4:1485:::::::::|h[Rough Arrow]|h|r",
-},
+["link"] = "|cnIQ1:|Hitem:2101::::::::14:1485:::::::::|h[Light Quiver]|h|r",
 ["info"] = 563752206385,
-["link"] = "|cnIQ1:|Hitem:2101::::::::4:1485:::::::::|h[Light Quiver]|h|r",
+["links"] = {
+"|cnIQ1:|Hitem:2512::::::::14:1485:::::::::|h[Rough Arrow]|h|r",
+"|cnIQ1:|Hitem:2512::::::::14:1485:::::::::|h[Rough Arrow]|h|r",
+"|cnIQ1:|Hitem:2512::::::::14:1485:::::::::|h[Rough Arrow]|h|r",
+"|cnIQ1:|Hitem:2512::::::::14:1485:::::::::|h[Rough Arrow]|h|r",
+"|cnIQ1:|Hitem:2512::::::::14:1485:::::::::|h[Rough Arrow]|h|r",
+"|cnIQ1:|Hitem:2512::::::::14:1485:::::::::|h[Rough Arrow]|h|r",
+},
+},
+{
+["items"] = {
+459079681,
+},
+["links"] = {
+"|cnIQ1:|Hitem:7005::::::::14:1485::14:::::::|h[Skinning Knife]|h|r",
+},
+["info"] = 560504900641,
+["link"] = "|cnIQ1:|Hitem:277114::::::::14:1485:::::::::|h[Apprentice's Skinning Satchel]|h|r",
+},
+{
+["items"] = {
+16517169172,
+16517169172,
+16517169157,
+16517038099,
+17529176081,
+16516907016,
+16516513805,
+297533453,
+10420238,
+13879607297,
+13879541761,
+716832774,
+716963842,
+369295361,
+50724867,
+412155912,
+175308807,
+358416387,
+451477516,
+412286987,
+175112200,
+151912468,
+151912468,
+151912459,
+192282644,
+192282644,
+192282644,
+192282644,
+192282644,
+192282644,
+192282644,
+192282644,
+192282629,
+169672724,
+169672724,
+169672724,
+169672716,
+17269587969,
+17269456897,
+157810689,
+16958816264,
+1117782017,
+18418237445,
+},
+["link"] = "|cnIQ1:|Hitem:242709::::::::14:1485:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
+["info"] = 556852581761,
+["links"] = {
+"|cnIQ1:|Hitem:252032::::::::14:1485:::::::::|h[Red Delicious Stormapple]|h|r",
+"|cnIQ1:|Hitem:252032::::::::14:1485:::::::::|h[Red Delicious Stormapple]|h|r",
+"|cnIQ1:|Hitem:252032::::::::14:1485:::::::::|h[Red Delicious Stormapple]|h|r",
+"|cnIQ1:|Hitem:252030::::::::14:1485:::::::::|h[Pungent Skycheddar]|h|r",
+"|cnIQ1:|Hitem:267474::::::::14:1485:::::::::|h[Galeswept Forestshroom]|h|r",
+"|cnIQ1:|Hitem:252028::::::::14:1485:::::::::|h[Fresh Gustberry Bread]|h|r",
+"|cnIQ1:|Hitem:252022::::::::14:1485:::::::::|h[Galestrider Jerky]|h|r",
+"|cnIQ1:|Hitem:4540::::::::14:1485:::::::::|h[Tough Hunk of Bread]|h|r",
+"|cnIQ1:|Hitem:159::::::::14:1485:::::::::|h[Refreshing Spring Water]|h|r",
+"|cnIQ1:|Hitem:211786::::::::14:1485:::::::::|h[Scroll: CHAP BALK WELLES]|h|r",
+"|cnIQ1:|Hitem:211785::::::::14:1485:::::::::|h[Scroll: CWAL]|h|r",
+"|cnIQ2:|Hitem:10938::::::::14:1485:::::::::|h[Lesser Magic Essence]|h|r",
+"|cnIQ1:|Hitem:10940::::::::14:1485:::::::::|h[Strange Dust]|h|r",
+"|cnIQ1:|Hitem:5635::::::::14:1485:::::::::|h[Sharp Claw]|h|r",
+"|cnIQ2:|Hitem:774::::::::14:1485:::::::::|h[Malachite]|h|r",
+"|cnIQ1:|Hitem:6289::::::::14:1485:::::::::|h[Raw Longjaw Mud Snapper]|h|r",
+"|cnIQ1:|Hitem:2675::::::::14:1485:::::::::|h[Crawler Claw]|h|r",
+"|cnIQ1:|Hitem:5469::::::::14:1485:::::::::|h[Strider Meat]|h|r",
+"|cnIQ1:|Hitem:6889::::::::14:1485:::::::::|h[Small Egg]|h|r",
+"|cnIQ1:|Hitem:6291::::::::14:1485:::::::::|h[Raw Brilliant Smallfish]|h|r",
+"|cnIQ1:|Hitem:2672::::::::14:1485:::::::::|h[Stringy Wolf Meat]|h|r",
+"|cnIQ1:|Hitem:2318::::::::14:1485:::::::::|h[Light Leather]|h|r",
+"|cnIQ1:|Hitem:2318::::::::14:1485:::::::::|h[Light Leather]|h|r",
+"|cnIQ1:|Hitem:2318::::::::14:1485:::::::::|h[Light Leather]|h|r",
+"|cnIQ1:|Hitem:2934::::::::14:1485:::::::::|h[Ruined Leather Scraps]|h|r",
+"|cnIQ1:|Hitem:2934::::::::14:1485:::::::::|h[Ruined Leather Scraps]|h|r",
+"|cnIQ1:|Hitem:2934::::::::14:1485:::::::::|h[Ruined Leather Scraps]|h|r",
+"|cnIQ1:|Hitem:2934::::::::14:1485:::::::::|h[Ruined Leather Scraps]|h|r",
+"|cnIQ1:|Hitem:2934::::::::14:1485:::::::::|h[Ruined Leather Scraps]|h|r",
+"|cnIQ1:|Hitem:2934::::::::14:1485:::::::::|h[Ruined Leather Scraps]|h|r",
+"|cnIQ1:|Hitem:2934::::::::14:1485:::::::::|h[Ruined Leather Scraps]|h|r",
+"|cnIQ1:|Hitem:2934::::::::14:1485:::::::::|h[Ruined Leather Scraps]|h|r",
+"|cnIQ1:|Hitem:2934::::::::14:1485:::::::::|h[Ruined Leather Scraps]|h|r",
+"|cnIQ1:|Hitem:2589::::::::14:1485:::::::::|h[Linen Cloth]|h|r",
+"|cnIQ1:|Hitem:2589::::::::14:1485:::::::::|h[Linen Cloth]|h|r",
+"|cnIQ1:|Hitem:2589::::::::14:1485:::::::::|h[Linen Cloth]|h|r",
+"|cnIQ1:|Hitem:2589::::::::14:1485:::::::::|h[Linen Cloth]|h|r",
+"|cnIQ1:|Hitem:263513::::::::14:1485::11:::::::|h[Recipe: Pincer Bites]|h|r",
+"|cnIQ1:|Hitem:263511::::::::14:1485::11:::::::|h[Recipe: Skywall Souffle]|h|r",
+"|cnIQ2:|Hitem:2408::::::::14:1485:::::::::|h[Pattern: Fine Leather Gloves]|h|r",
+"|cnIQ1:|Hitem:258771::::::::14:1485:::::::::|h[Al'Aketh Cultist's Ear]|h|r",
+"|cnIQ1:|Hitem:17056::::::::14:1485:::::::::|h[Light Feather]|h|r",
+"|cnIQ1:|Hitem:281040::::::::14:1485:::::::::|h[Prepared Incense]|h|r",
+},
+},
+{
+["items"] = {
+},
+["info"] = 0,
+["links"] = {
+},
+},
+{
+["items"] = {
+},
+["info"] = 0,
+["links"] = {
+},
+},
+{
+["items"] = {
+},
+["info"] = 0,
+["links"] = {
+},
+},
+{
+["items"] = {
+},
+["info"] = 0,
+["links"] = {
+},
 },
 {
 ["items"] = {
@@ -875,35 +1014,33 @@ DataStore_Containers_Characters = {
 },
 [0] = {
 ["items"] = {
-455344129,
-16755130371,
-10420227,
-459079681,
+16755130391,
+17269522437,
+16517169158,
+16517038097,
+17529176074,
+16516907028,
+16516513812,
 409993217,
-412155912,
-358416385,
-451477507,
-412286987,
-175112193,
-169672709,
-16509698050,
+402718721,
+18701156353,
+455344129,
 },
-["link"] = false,
-["info"] = 8352,
 ["links"] = {
-"|cnIQ1:|Hitem:6948::::::::4:1485::75:::::::|h[Hearthstone]|h|r",
-"|cnIQ1:|Hitem:255663::::::::4:1485:::::::::|h[Windstone]|h|r",
-"|cnIQ1:|Hitem:159::::::::4:1485:::::::::|h[Refreshing Spring Water]|h|r",
-"|cnIQ1:|Hitem:7005::::::::4:1485::14:::::::|h[Skinning Knife]|h|r",
-"|cnIQ1:|Hitem:6256::::::::4:1485::14:::::::|h[Fishing Pole]|h|r",
-"|cnIQ1:|Hitem:6289::::::::4:1485:::::::::|h[Raw Longjaw Mud Snapper]|h|r",
-"|cnIQ1:|Hitem:5469::::::::4:1485:::::::::|h[Strider Meat]|h|r",
-"|cnIQ1:|Hitem:6889::::::::4:1485:::::::::|h[Small Egg]|h|r",
-"|cnIQ1:|Hitem:6291::::::::4:1485:::::::::|h[Raw Brilliant Smallfish]|h|r",
-"|cnIQ1:|Hitem:2672::::::::4:1485:::::::::|h[Stringy Wolf Meat]|h|r",
-"|cnIQ1:|Hitem:2589::::::::4:1485:::::::::|h[Linen Cloth]|h|r",
-"|cnIQ1:|Hitem:251918::::::::4:1485:::::::::|h[Scrawny Ursera Claw]|h|r",
+"|cnIQ1:|Hitem:255663::::::::14:1485:::::::::|h[Windstone]|h|r",
+"|cnIQ1:|Hitem:263512::::::::14:1485:::::::::|h[Pincer Bites]|h|r",
+"|cnIQ1:|Hitem:252032::::::::14:1485:::::::::|h[Red Delicious Stormapple]|h|r",
+"|cnIQ1:|Hitem:252030::::::::14:1485:::::::::|h[Pungent Skycheddar]|h|r",
+"|cnIQ1:|Hitem:267474::::::::14:1485:::::::::|h[Galeswept Forestshroom]|h|r",
+"|cnIQ1:|Hitem:252028::::::::14:1485:::::::::|h[Fresh Gustberry Bread]|h|r",
+"|cnIQ1:|Hitem:252022::::::::14:1485:::::::::|h[Galestrider Jerky]|h|r",
+"|cnIQ1:|Hitem:6256::::::::14:1485::14:::::::|h[Fishing Pole]|h|r",
+"|cnIQ1:|Hitem:6145::::::::14:1485::11:::::::|h[Clarice's Pendant]|h|r",
+"|cnIQ1:|Hitem:285357::::::::14:1485:::::::::|h[Advisor Nazgrel's Instructions]|h|r",
+"|cnIQ1:|Hitem:6948::::::::14:1485:::::::::|h[Hearthstone]|h|r",
 },
+["info"] = 9376,
+["link"] = false,
 },
 [-5] = {
 ["items"] = {
@@ -926,14 +1063,12 @@ DataStore_Containers_Characters = {
 [-1] = {
 ["items"] = {
 },
+["link"] = false,
+["info"] = 33024,
 ["links"] = {
 },
-["info"] = 33024,
-["link"] = false,
 },
 },
-["bagInfo"] = 26668,
-["lastUpdate"] = 1794296462,
 },
 }
 DataStore_Containers_Banks = {
@@ -941,10 +1076,10 @@ DataStore_Containers_Banks = {
 ["items"] = {
 15906177025,
 },
-["freeslots"] = 0,
 ["links"] = {
 "|cnIQ1:|Hitem:242709::::::::14:1486:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
 },
+["freeslots"] = 0,
 },
 {
 ["items"] = {
@@ -956,10 +1091,25 @@ DataStore_Containers_Banks = {
 ["items"] = {
 15906177025,
 },
+["freeslots"] = 0,
 ["links"] = {
 "|cnIQ1:|Hitem:242709::::::::14:1489:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
 },
+},
+{
+["items"] = {
+15906177025,
+},
+["links"] = {
+"|cnIQ1:|Hitem:242709::::::::11:1484:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
+},
 ["freeslots"] = 0,
+},
+{
+["items"] = {
+},
+["links"] = {
+},
 },
 {
 ["items"] = {
@@ -967,19 +1117,7 @@ DataStore_Containers_Banks = {
 },
 ["freeslots"] = 0,
 ["links"] = {
-"|cnIQ1:|Hitem:242709::::::::11:1484:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
-},
-},
-{
-["items"] = {
-},
-["links"] = {
-},
-},
-{
-["items"] = {
-},
-["links"] = {
+"|cnIQ1:|Hitem:242709::::::::14:1485:::::::::|h[Character Bank Tab Bag (DNT)]|h|r",
 },
 },
 }
@@ -997,8 +1135,8 @@ DataStore_Containers_Guilds = {
 },
 ["ClientMinute"] = 36,
 ["ServerMinute"] = 36,
-["ClientHour"] = 4,
 ["ServerHour"] = 5,
+["ClientHour"] = 4,
 },
 },
 ["faction"] = "Horde",
@@ -1008,8 +1146,23 @@ DataStore_Containers_Guilds = {
 },
 },
 {
+["money"] = 0,
 ["Tabs"] = {
+{
+["ClientDate"] = "11/13/2026",
+["ClientTime"] = 1794562027,
+["visitedBy"] = "Simonhunter Windseeker",
+["links"] = {
 },
+["items"] = {
+},
+["ClientMinute"] = 27,
+["ServerMinute"] = 26,
+["ClientHour"] = 2,
+["ServerHour"] = 3,
+},
+},
+["faction"] = "Horde",
 },
 }
 DataStore_Containers_Reagents = nil

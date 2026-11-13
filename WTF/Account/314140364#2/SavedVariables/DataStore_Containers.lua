@@ -2,7 +2,7 @@
 DataStore_Containers_Characters = {
 {
 ["bankInfo"] = 1123474,
-["lastUpdate"] = 1794471202,
+["lastUpdate"] = 1794563497,
 ["bagInfo"] = 22560,
 ["Containers"] = {
 {
@@ -159,7 +159,7 @@ DataStore_Containers_Characters = {
 },
 {
 ["bankInfo"] = 1129618,
-["lastUpdate"] = 1794195854,
+["lastUpdate"] = 1794534015,
 ["bagInfo"] = 27698,
 ["Containers"] = {
 {
@@ -329,10 +329,6 @@ DataStore_Containers_Characters = {
 },
 },
 ["Cooldowns"] = {
-{
-["duration"] = 3600,
-["startTime"] = 30580.001,
-},
 },
 },
 {

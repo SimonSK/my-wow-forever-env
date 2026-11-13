@@ -1,11 +1,13 @@
 VER 3 010000000100001C "Aimed Shot" "134400"
 #showtooltip Aimed Shot
 /cancelaura Blessing of Protection
+/startattack
 /cast Aimed Shot
 END
 VER 3 0100000001000002 "Arcane Shot" "134400"
 #showtooltip Arcane Shot
 /cancelaura Blessing of Protection
+/startattack
 /cast Arcane Shot
 END
 VER 3 0100000001000028 "Aspect Cheetah" "134400"
@@ -19,6 +21,12 @@ END
 VER 3 0100000001000026 "Aspect Monkey" "134400"
 #showtooltip Aspect of the Monkey
 /cast Aspect of the Monkey
+END
+VER 3 0100000001000014 "Concussive Shot" "134400"
+#showtooltip Concussive Shot
+/cancelaura Blessing of Protection
+/petdefensive
+/cast Concussive Shot
 END
 VER 3 0100000001000010 "Counter Shot" "134400"
 #showtooltip [mod:shift] Tranquilizing Shot; Counter Shot
@@ -50,12 +58,6 @@ VER 3 0100000001000023 "Explosive Trap" "134400"
 /cancelaura Blessing of Protection
 /cast Explosive Trap
 END
-VER 3 0100000001000014 "Expolsive Shot" "134400"
-#showtooltip Explosive Shot
-/cancelaura Hand of Protection
-/petdefensive
-/cast Explosive Shot
-END
 VER 3 0100000001000008 "Feign Death" "134400"
 #showtooltip Feign Death
 /stopattack
@@ -79,16 +81,11 @@ VER 3 0100000001000004 "Hunter's Mark" "134400"
 /cleartarget [dead]
 /targetenemy [noharm][dead]
 /cast Hunter's Mark
-/petattack [harm,nodead]
 END
 VER 3 010000000100001A "Immolation Trap" "134400"
 #showtooltip Immolation Trap
 /cancelaura Blessing of Protection
 /cast Immolation Trap
-END
-VER 3 0100000001000007 "Mend Pet" "134400"
-#showtooltip Mend Pet
-/cast Mend Pet
 END
 VER 3 0100000001000015 "Mongoose Bite" "134400"
 #showtooltip Mongoose Bite
@@ -105,6 +102,7 @@ END
 VER 3 010000000100000A "Multi-Shot" "134400"
 #showtooltip Multi-Shot
 /cancelaura Blessing of Protection
+/startattack
 /cast Multi-Shot
 END
 VER 3 010000000100000D "OT MD" "134400"
@@ -120,26 +118,37 @@ VER 3 010000000100001F "Raptor Strike" "134400"
 /cast Raptor Strike
 /cast Mongoose Bite
 END
+VER 3 0100000001000007 "Scare Beast" "134400"
+#showtooltip Scare Beast
+/cancelaura Blessing of Protection
+/stopattack
+/stopcasting
+/petpassive
+/cast Scare Beast
+END
 VER 3 0100000001000025 "Scorpid Sting" "134400"
 #showtooltip Scorpid Sting
 /cancelaura Blessing of Protection
+/startattack
 /cast Scorpid Sting
 END
 VER 3 0100000001000017 "Serpent Sting" "134400"
 #showtooltip Serpent Sting
 /cancelaura Blessing of Protection
-/petassist
+/startattack
+/petattack
 /cast Serpent Sting
 END
 VER 3 0100000001000020 "Sniper Shot" "134400"
 #showtooltip Sniper Shot
 /cancelaura Blessing of Protection
+/startattack
 /cast Sniper Shot
 END
 VER 3 0100000001000018 "Summon Hawk" "134400"
 #showtooltip Summon Hawk
 /cancelaura Blessing of Protection
-/petassist
+/petattack
 /cast Summon Hawk
 END
 VER 3 0100000001000013 "Trueshot Aura" "134400"
@@ -149,6 +158,7 @@ END
 VER 3 0100000001000009 "Viper Sting" "134400"
 #showtooltip Viper Sting
 /cancelaura Blessing of Protection
+/startattack
 /cast Viper Sting
 END
 VER 3 0100000001000024 "Volley" "134400"
@@ -159,7 +169,6 @@ END
 VER 3 0100000001000022 "Wing Clip" "134400"
 #showtooltip Wing Clip
 /cancelaura Blessing of Protection
-/petassist
 /startattack
 /cast Wing Clip
 END

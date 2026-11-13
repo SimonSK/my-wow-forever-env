@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
 ["lastSanitation"] = 3,
-["session"] = 109,
+["session"] = 113,
 ["errors"] = {
 {
 ["message"] = "...s/Altoholic_Summary/Columns_CharacterInformation.lua:564: bad argument #5 to 'format' (number expected, got nil)",

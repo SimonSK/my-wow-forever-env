@@ -10,6 +10,8 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["rpgKills"] = {
 },
+["runTracker"] = {
+},
 ["hearthSpot"] = {
 ["y"] = 0.383094072341919,
 ["mapID"] = 1458,

@@ -1,7 +1,7 @@
 
 DataStore_Quests_Characters = {
 {
-["lastUpdate"] = 1794471200,
+["lastUpdate"] = 1794563495,
 ["QuestHeaders"] = {
 "Ragefire Chasm",
 "Tirisfal Glades",
@@ -10,20 +10,18 @@ DataStore_Quests_Characters = {
 },
 ["Rewards"] = {
 [4] = "s|1230643",
-[5] = "s|1230117",
 },
 ["Quests"] = {
 366402,
 4194332484,
 18455473158,
 6269000,
-6269128,
 },
 ["Emissaries"] = {
 },
 },
 {
-["lastUpdate"] = 1794195818,
+["lastUpdate"] = 1794530428,
 ["QuestHeaders"] = {
 "Ragefire Chasm",
 "Tirisfal Glades",
@@ -31,7 +29,6 @@ DataStore_Quests_Characters = {
 "Camping",
 },
 ["Rewards"] = {
-"c|15449|1|1,c|15450|1|0,c|15451|1|0",
 [4] = "s|1230643",
 [5] = "s|1230117",
 },
@@ -82,7 +79,7 @@ DataStore_Quests_Characters = {
 }
 DataStore_Quests_History = {
 {
-["LastUpdate"] = 1794471204,
+["LastUpdate"] = 1794563499,
 ["Size"] = 112,
 ["Quests"] = {
 256,
@@ -93,8 +90,8 @@ DataStore_Quests_History = {
 [1236] = 3.602879701896397e+16,
 [1549] = 4.611686018427388e+18,
 [1550] = 1245536,
+[1521] = 64,
 [1490] = 4295229440,
-[10] = 16384,
 [30] = 369098752,
 [1356] = 1,
 [1556] = 4.611686018427388e+18,
@@ -114,12 +111,12 @@ DataStore_Quests_History = {
 [1538] = 2097152,
 [8] = 17592186044416,
 [1540] = 562949953421312,
-[1521] = 64,
+[10] = 16384,
 },
 ["Build"] = "70888",
 },
 {
-["LastUpdate"] = 1794195822,
+["LastUpdate"] = 1794534017,
 ["Size"] = 105,
 ["Quests"] = {
 256,
@@ -153,7 +150,7 @@ DataStore_Quests_History = {
 [1540] = 562949953421312,
 [10] = 16384,
 },
-["Build"] = "70862",
+["Build"] = "70888",
 },
 {
 ["LastUpdate"] = 1794283391,

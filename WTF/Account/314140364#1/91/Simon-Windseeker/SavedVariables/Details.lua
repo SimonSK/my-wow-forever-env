@@ -31,7 +31,8 @@ _detalhes_database = {
 ["_ActorTable"] = {
 },
 },
-["boss_hp"] = 1,
+["raid_roster"] = {
+},
 ["CombatStartedAt"] = 93096.285,
 ["tempo_start"] = 33368.364,
 ["last_events_tables"] = {
@@ -43,7 +44,8 @@ _detalhes_database = {
 ["cleu_events"] = {
 ["n"] = 1,
 },
-["playing_solo"] = true,
+["playerTalents"] = {
+},
 ["totals"] = {
 0,
 0,
@@ -116,8 +118,7 @@ _detalhes_database = {
 ["is_challenge"] = false,
 ["spells_cast_timeline"] = {
 },
-["raid_roster"] = {
-},
+["boss_hp"] = 1,
 ["combat_counter"] = 6,
 ["player_last_events"] = {
 },
@@ -142,20 +143,19 @@ _detalhes_database = {
 ["start_time"] = 0,
 ["TimeData"] = {
 },
-["playerTalents"] = {
-},
+["playing_solo"] = true,
 },
 },
 },
 ["apocalypse_savedsegments"] = {
 },
 ["ocd_tracker"] = {
-["show_title"] = true,
+["enabled"] = false,
 ["current_cooldowns"] = {
 },
 ["lines_per_column"] = 12,
 ["group_frames"] = true,
-["show_options"] = false,
+["width"] = 120,
 ["frames"] = {
 ["defensive-raid"] = {
 },
@@ -170,12 +170,11 @@ _detalhes_database = {
 ["defensive-personal"] = {
 },
 },
-["width"] = 120,
+["show_options"] = false,
 ["ignored_cooldowns"] = {
 },
+["height"] = 18,
 ["framme_locked"] = false,
-["cooldowns"] = {
-},
 ["own_frame"] = {
 ["defensive-raid"] = false,
 ["ofensive"] = false,
@@ -183,12 +182,13 @@ _detalhes_database = {
 ["utility"] = false,
 ["defensive-personal"] = false,
 },
-["height"] = 18,
+["cooldowns"] = {
+},
 ["show_conditions"] = {
 ["only_inside_instance"] = true,
 ["only_in_group"] = true,
 },
-["enabled"] = false,
+["show_title"] = true,
 ["filters"] = {
 ["itemutil"] = false,
 ["itempower"] = false,
@@ -209,7 +209,8 @@ _detalhes_database = {
 },
 ["arena_data_compressed"] = {
 },
-["last_instance_time"] = 0,
+["mythic_plus_log"] = {
+},
 ["arena_data_index_selected"] = 1,
 ["coach"] = {
 ["enabled"] = false,
@@ -218,10 +219,7 @@ _detalhes_database = {
 ["last_coach_name"] = false,
 },
 ["on_death_menu"] = false,
-["announce_damagerecord"] = {
-["enabled"] = true,
-["channel"] = "SELF",
-},
+["auto_combatlog"] = false,
 ["damage_meter_sessions"] = {
 },
 ["nick_tag_cache"] = {
@@ -232,10 +230,10 @@ _detalhes_database = {
 ["data_harvest_for_charsts"] = {
 ["players"] = {
 {
-["playerKey"] = "total",
-["combatObjectContainer"] = 1,
 ["name"] = "Damage of Each Individual Player",
 ["playerOnly"] = true,
+["playerKey"] = "total",
+["combatObjectContainer"] = 1,
 },
 },
 ["totals"] = {
@@ -253,42 +251,39 @@ _detalhes_database = {
 ["custom"] = "",
 ["next"] = "",
 },
+["last_instance_time"] = 0,
+["active_profile"] = "Simon",
+["last_realversion"] = 172,
 ["announce_prepots"] = {
 ["enabled"] = false,
 ["channel"] = "SELF",
 ["reverse"] = false,
 },
-["active_profile"] = "Simon",
-["last_realversion"] = 172,
-["announce_firsthit"] = {
-["enabled"] = true,
-["channel"] = "SELF",
-},
 ["ignore_nicktag"] = false,
-["data_harvested_for_charts"] = {
-},
-["arena_data_headers"] = {
+["last_day"] = "13",
+["apocalypes_info"] = {
 },
 ["combat_log"] = {
 ["inverse_deathlog_overalldata"] = false,
-["merge_gemstones_1007"] = false,
 ["track_hunter_frenzy"] = false,
+["merge_gemstones_1007"] = false,
 ["merge_critical_heals"] = false,
 ["inverse_deathlog_raid"] = false,
 ["calc_evoker_damage"] = true,
 ["evoker_show_realtimedps"] = false,
 ["inverse_deathlog_mplus"] = false,
 },
-["cached_talents"] = {
+["character_data"] = {
+["logons"] = 123,
 },
 ["plugin_database"] = {
 ["DETAILS_PLUGIN_TINY_THREAT"] = {
 ["enabled"] = true,
 ["only_my_group"] = false,
 ["animate"] = false,
-["useclasscolors"] = false,
+["updatespeed"] = 1,
 ["hide_pull_bar"] = false,
-["author"] = "Terciob",
+["useclasscolors"] = false,
 ["playercolor"] = {
 1,
 1,
@@ -302,7 +297,7 @@ _detalhes_database = {
 ["absolute_mode"] = false,
 ["show_party_pets"] = false,
 ["playSoundFile"] = "Details Threat Warning Volume 3",
-["updatespeed"] = 1,
+["author"] = "Terciob",
 },
 ["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
 ["enabled"] = true,
@@ -324,15 +319,15 @@ _detalhes_database = {
 ["tank_block_size"] = 150,
 ["bar_height"] = 24,
 ["tank_block_texture"] = "Details Serenity",
-["show_inc_bars"] = true,
-["tank_block_powerbar_size_height"] = 10,
-["tank_block_height"] = 40,
 ["tank_block_color"] = {
 0.074509,
 0.035294,
 0.035294,
 0.832845,
 },
+["tank_block_height"] = 40,
+["tank_block_powerbar_size_height"] = 10,
+["show_inc_bars"] = true,
 },
 ["DETAILS_PLUGIN_ENCOUNTER_DETAILS"] = {
 ["enabled"] = true,
@@ -342,11 +337,11 @@ _detalhes_database = {
 ["last_section_selected"] = "main",
 ["author"] = "Terciob",
 ["window_scale"] = 1,
-["hide_on_combat"] = false,
-["show_icon"] = 5,
-["opened"] = 0,
 ["encounter_timers_dbm"] = {
 },
+["show_icon"] = 5,
+["opened"] = 0,
+["hide_on_combat"] = false,
 },
 ["DETAILS_PLUGIN_STREAM_OVERLAY"] = {
 ["use_square_mode"] = false,
@@ -357,41 +352,31 @@ _detalhes_database = {
 1,
 0.5,
 },
+["scale"] = 1,
 ["main_frame_size"] = {
 300.0000305175781,
 500,
 },
-["arrow_anchor_y"] = 0,
 ["minimap"] = {
 ["minimapPos"] = 160,
 ["radius"] = 160,
 ["hide"] = true,
 },
-["main_frame_locked"] = false,
+["row_height"] = 20,
 ["arrow_anchor_x"] = 0,
-["author"] = "Terciob",
+["font_color"] = {
+1,
+1,
+1,
+1,
+},
 ["row_texture"] = "Details Serenity",
 ["square_grow_direction"] = "right",
-["font_size"] = 10,
-["row_color"] = {
-0.1,
-0.1,
-0.1,
-0.4,
-},
+["point"] = "CENTER",
+["main_frame_strata"] = "LOW",
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
-["use_spark"] = true,
-["row_spacement"] = 21,
-["main_frame_color"] = {
-0,
-0,
-0,
-0.2,
-},
-["main_frame_strata"] = "LOW",
-["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -399,30 +384,62 @@ _detalhes_database = {
 ["font_shadow"] = true,
 ["y"] = -0.000335693359375,
 ["x"] = 9.1552734375e-05,
-["attribute_type"] = 1,
-["update_speed"] = 0.05,
 ["size"] = 32,
+["update_speed"] = 0.05,
+["attribute_type"] = 1,
 },
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["author"] = "Terciob",
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
 ["y"] = -1.52587890625e-05,
+["font_size"] = 10,
 ["x"] = -3.0517578125e-05,
 ["font_face"] = "Friz Quadrata TT",
 ["square_size"] = 32,
-["point"] = "CENTER",
-["font_color"] = {
-1,
-1,
-1,
-1,
+["use_spark"] = true,
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
 },
-["row_height"] = 20,
-["scale"] = 1,
+["main_frame_locked"] = false,
+["arrow_anchor_y"] = 0,
 },
+},
+["cached_talents"] = {
 },
 ["benchmark_db"] = {
 ["frame"] = {
 },
 },
-["cached_roles"] = {
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["damage_meter_session_info"] = {
+},
+["apocalypse_hashes"] = {
+},
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["last_version"] = "1.60.1 15410",
+["combat_id"] = 0,
+["savedStyles"] = {
 },
 ["local_instances_config"] = {
 {
@@ -448,10 +465,10 @@ _detalhes_database = {
 ["attribute"] = 1,
 ["pos"] = {
 ["normal"] = {
-["y"] = -337.3481597900391,
-["x"] = 550.0009765625,
-["w"] = 180.0002746582031,
-["h"] = 81.00003051757812,
+["y"] = -336.8481597900391,
+["x"] = 674.0010986328125,
+["w"] = 150.0000152587891,
+["h"] = 82.00001525878906,
 },
 ["solo"] = {
 ["y"] = 1.999969482421875,
@@ -484,8 +501,8 @@ _detalhes_database = {
 ["pos"] = {
 ["normal"] = {
 ["y"] = -451.1740989685059,
-["x"] = 550.0009765625,
-["w"] = 180.0002746582031,
+["x"] = 674.0010986328125,
+["w"] = 150.0000152587891,
 ["h"] = 106.6519241333008,
 },
 ["solo"] = {
@@ -497,29 +514,7 @@ _detalhes_database = {
 },
 },
 },
-["mythic_plus_log"] = {
-},
-["apocalypse_hashes"] = {
-},
-["SoloTablesSaved"] = {
-["Mode"] = 1,
-},
-["last_version"] = "1.60.1 15410",
-["combat_id"] = 0,
-["savedStyles"] = {
-},
-["damage_meter_session_info"] = {
-},
-["mythic_dungeon_currentsaved"] = {
-["dungeon_name"] = "",
-["started"] = false,
-["segment_id"] = 0,
-["ej_id"] = 0,
-["started_at"] = 0,
-["run_id"] = 0,
-["level"] = 0,
-["dungeon_zone_id"] = 0,
-["previous_boss_killed_at"] = 0,
+["cached_roles"] = {
 },
 ["announce_deaths"] = {
 ["enabled"] = false,
@@ -561,7 +556,9 @@ _detalhes_database = {
 },
 ["bossTimers"] = {
 },
-["combat_counter"] = 5,
+["cleu_events"] = {
+["n"] = 1,
+},
 ["playerTalents"] = {
 },
 ["totals"] = {
@@ -641,18 +638,16 @@ _detalhes_database = {
 ["mapId"] = 0,
 ["raid_roster"] = {
 },
-["frags"] = {
+["player_last_events"] = {
 },
 ["is_challenge"] = false,
 ["spells_cast_timeline"] = {
 },
-["cleu_events"] = {
-["n"] = 1,
-},
+["combat_counter"] = 5,
 ["overall_enemy_name"] = "Unknown",
-["player_last_events"] = {
-},
 ["data_inicio"] = 0,
+["frags"] = {
+},
 ["start_time"] = 0,
 ["TimeData"] = {
 },
@@ -665,16 +660,18 @@ _detalhes_database = {
 },
 },
 },
-["character_data"] = {
-["logons"] = 122,
+["data_harvested_for_charts"] = {
 },
-["apocalypes_info"] = {
+["arena_data_headers"] = {
 },
-["last_day"] = "12",
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
 ["announce_cooldowns"] = {
+["enabled"] = false,
 ["ignored_cooldowns"] = {
 },
-["enabled"] = false,
 ["custom"] = "",
 ["channel"] = "RAID",
 },
@@ -682,7 +679,10 @@ _detalhes_database = {
 ["last_difficulty"] = 15,
 ["last_raid"] = "",
 },
-["auto_combatlog"] = false,
+["announce_damagerecord"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
 ["cached_specs"] = {
 ["Player-6933-00151DB5"] = 1486,
 },

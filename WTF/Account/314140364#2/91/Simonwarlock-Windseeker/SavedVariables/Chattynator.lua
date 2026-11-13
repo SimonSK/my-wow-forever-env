@@ -22,4 +22,8 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/s /ltp",
 "/s i do not",
 "/s /inv Simon Windseeker ",
+"/s /align",
+"/s /bartender4",
+"/s /align",
+"/s /ss",
 }

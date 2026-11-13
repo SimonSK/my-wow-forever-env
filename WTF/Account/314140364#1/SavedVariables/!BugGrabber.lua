@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
-["session"] = 198,
 ["lastSanitation"] = 3,
+["session"] = 215,
 ["errors"] = {
 {
 ["message"] = "[ADDON_ACTION_FORBIDDEN] AddOn 'Decursive' tried to call the protected function 'ClearTarget()'.",
@@ -21,14 +21,14 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: ...face/AddOns/Blizzard_TextStatusBar/TextStatusBar.lua:110: attempt to compare a secret number value (execution tainted by 'Decursive')\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1487: in function 'UpdateSystems'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1025: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1672: in function 'RevertAllChanges'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1569: in function 'MakeNewLayout'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1255: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1253>\n[tail call]: ?\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua]:132: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua:130>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/Shared/Button/UIButtonTemplate.lua]:16: in function <...lizzard_SharedXML/Shared/Button/UIButtonTemplate.lua:12>\n",
-["session"] = 1,
 ["time"] = 1793847199,
+["session"] = 1,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: ...face/AddOns/Blizzard_TextStatusBar/TextStatusBar.lua:110: attempt to compare a secret number value (execution tainted by 'Decursive')\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1487: in function 'UpdateSystems'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1025: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:197: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:196>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:196: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n[C]: in function 'OnLayoutAdded'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1587: in function 'MakeNewLayout'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1255: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1253>\n[tail call]: ?\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua]:132: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua:130>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/Shared/Button/UIButtonTemplate.lua]:16: in function <...lizzard_SharedXML/Shared/Button/UIButtonTemplate.lua:12>\n",
-["session"] = 1,
 ["time"] = 1793847199,
+["session"] = 1,
 ["counter"] = 1,
 },
 {
@@ -176,26 +176,26 @@ BugGrabberDB = {
 ["counter"] = 3,
 },
 {
-["message"] = "LUA_WARNING: GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1054: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1050>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1050: in function 'InvokeOnAnyEditModeSystemAnchorChanged'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1036: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:206: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n",
-["session"] = 181,
-["time"] = 1794291528,
-["counter"] = 1,
-},
-{
-["message"] = "GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator",
-["time"] = 1794291528,
-["locals"] = "",
-["stack"] = "[Interface/AddOns/Blizzard_MawBuffs/Blizzard_MawBuffs.lua]:4: in function 'ShouldShowMawBuffs'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ScenarioObjectiveTracker.lua]:187: in function 'LayoutContents'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerModule.lua]:147: in function 'Update'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.lua]:82: in function 'Update'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua]:70: in function <...zzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua:62>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/MixinUtil.lua]:341: in function <Interface/AddOns/Blizzard_SharedXML/MixinUtil.lua:340>\n",
-["session"] = 181,
-["counter"] = 1,
-},
-{
 ["message"] = "[ADDON_ACTION_BLOCKED] AddOn 'Bartender4' tried to call the protected function 'MultiCastActionBarFrame:ClearAllPoints()'.",
 ["time"] = 1794375783,
 ["locals"] = "self=<table>\nevent=\"ADDON_ACTION_BLOCKED\"\naddonName=\"Bartender4\"\naddonFunc=\"MultiCastActionBarFrame:ClearAllPoints()\"\nname=\"Bartender4\"\nbadAddons=<table>{\n Bartender4=true\n}\nL=<table>{\n NO_DISPLAY_2=\"|cffffff00The standard display is called BugSack, and can probably be found on the same site where you found !BugGrabber.|r\"\n ERROR_DETECTED=\"%s |cffffff00captured, click the link for more information.|r\"\n BUGGRABBER_STOPPED=\"|cffffff00There are too many errors in your UI. As a result, your game experience may be degraded. Disable or update the failing addons if you don't want to see this message again.|r\"\n USAGE=\"|cffffff00Usage: /buggrabber <1-%d>.|r\"\n STOP_NAG=\"|cffffff00!BugGrabber will not nag about missing a display addon again until next patch.|r\"\n NO_DISPLAY_STOP=\"|cffffff00If you don't want to be reminded about this again, run /stopnag.|r\"\n NO_DISPLAY_1=\"|cffffff00You seem to be running !BugGrabber with no display addon to go along with it. Although a slash command is provided for accessing error reports, a display can help you manage these errors in a more convenient way.|r\"\n ERROR_UNABLE=\"|cffffff00!BugGrabber is unable to retrieve errors from other players by itself. Please install BugSack or a similar display addon that might give you this functionality.|r\"\n ADDON_CALL_PROTECTED=\"[%s] AddOn '%s' tried to call the protected function '%s'.\"\n}\n",
 ["stack"] = "[Interface/AddOns/!BugGrabber/BugGrabber.lua]:554: in function '?'\n[Interface/AddOns/!BugGrabber/BugGrabber.lua]:538: in function <Interface/AddOns/!BugGrabber/BugGrabber.lua:538>\n[C]: in function 'ClearAllPoints'\n[Interface/AddOns/Bartender4/MultiCastBar.lua]:91: in function 'PerformLayout'\n[Interface/AddOns/Bartender4/MultiCastBar.lua]:67: in function <Interface/AddOns/Bartender4/MultiCastBar.lua:66>\n[tail call]: ?\n[C]: in function 'UpdateBottomActionBarPositions'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:587: in function 'UpdateActionBarLayout'\n[Interface/AddOns/Blizzard_ActionBar/Shared/ActionBar.lua]:373: in function 'UpdateVisibility'\n[Interface/AddOns/Blizzard_ActionBar/Shared/ActionBar.lua]:173: in function 'SetShowGrid'\n[Interface/AddOns/Blizzard_ActionBar/Shared/ActionBar.lua]:59: in function <...rface/AddOns/Blizzard_ActionBar/Shared/ActionBar.lua:57>\n[C]: ?\n[C]: ?\n[C]: in function 'PickupAction'\n[Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua]:135: in function <...izzard_RestrictedAddOnEnvironment/SecureHandlers.lua:128>\n[Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua]:367: in function <...izzard_RestrictedAddOnEnvironment/SecureHandlers.lua:353>\n[tail call]: ?\n[C]: ?\n[Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua]:259: in function <...izzard_RestrictedAddOnEnvironment/SecureHandlers.lua:256>\n[C]: ?\n[Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua]:373: in function <...izzard_RestrictedAddOnEnvironment/SecureHandlers.lua:353>\n[tail call]: ?\n",
 ["session"] = 193,
 ["counter"] = 7,
+},
+{
+["message"] = "LUA_WARNING: GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1054: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1050>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1050: in function 'InvokeOnAnyEditModeSystemAnchorChanged'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1036: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:206: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n",
+["time"] = 1794548485,
+["session"] = 212,
+["counter"] = 4,
+},
+{
+["message"] = "GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator",
+["time"] = 1794548485,
+["locals"] = "",
+["stack"] = "[Interface/AddOns/Blizzard_MawBuffs/Blizzard_MawBuffs.lua]:4: in function 'ShouldShowMawBuffs'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ScenarioObjectiveTracker.lua]:187: in function 'LayoutContents'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerModule.lua]:147: in function 'Update'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.lua]:82: in function 'Update'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua]:70: in function <...zzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua:62>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/MixinUtil.lua]:341: in function <Interface/AddOns/Blizzard_SharedXML/MixinUtil.lua:340>\n",
+["session"] = 212,
+["counter"] = 3,
 },
 },
 }

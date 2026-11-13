@@ -20,7 +20,7 @@ nil,
 "|cnIQ2:|Hitem:3446::::::::13:1482::11:::::::|h[Darkwood Staff]|h|r",
 [18] = "|cnIQ2:|Hitem:286743::::::::13:1482::11:::::::|h[Riptear's Spare Arm]|h|r",
 },
-["lastUpdate"] = 1794471204,
+["lastUpdate"] = 1794563499,
 ["averageItemLvl"] = 4.4375,
 ["overallAIL"] = 4.5625,
 ["EquipmentInfo"] = 0,
@@ -31,12 +31,12 @@ nil,
 [7] = "|cnIQ2:|Hitem:281283::::::::13:1490::11:::::::|h[Patchwing Pants]|h|r",
 [15] = "|cnIQ2:|Hitem:2580::::::::13:1490::::::::Player-6923-005A94FC:|h[Reinforced Linen Cape]|h|r",
 [18] = "|cnIQ2:|Hitem:286743::::::::13:1490::11:::::::|h[Riptear's Spare Arm]|h|r",
-[9] = "|cnIQ0:|Hitem:3375::::::::13:1490:::::::::|h[Calico Bracers]|h|r",
+[17] = "|cnIQ1:|Hitem:6292::::::::13:1490:::::::::|h[10 Pound Mud Snapper]|h|r",
 [16] = "|cnIQ2:|Hitem:2140::::::::13:1490:::1:12729::::::|h[Carving Knife of Intellect]|h|r",
 [5] = "|cnIQ0:|Hitem:1433::::::::13:1490:::::::::|h[Patchwork Armor]|h|r",
-[17] = "|cnIQ1:|Hitem:6292::::::::13:1490:::::::::|h[10 Pound Mud Snapper]|h|r",
+[9] = "|cnIQ0:|Hitem:3375::::::::13:1490:::::::::|h[Calico Bracers]|h|r",
 },
-["lastUpdate"] = 1794195822,
+["lastUpdate"] = 1794534017,
 ["averageItemLvl"] = 3,
 ["overallAIL"] = 3,
 ["EquipmentInfo"] = 0,
@@ -117,7 +117,7 @@ DataStore_Inventory_Guilds = {
 {
 ["Members"] = {
 ["Simonhunter Windseeker"] = {
-["averageItemLvl"] = 1,
+["averageItemLvl"] = 6,
 },
 ["Simonrogue Windseeker"] = {
 ["averageItemLvl"] = 0,
@@ -129,7 +129,7 @@ DataStore_Inventory_Guilds = {
 ["averageItemLvl"] = 3,
 },
 ["Simonshaman Windseeker"] = {
-["averageItemLvl"] = 1,
+["averageItemLvl"] = 6,
 },
 ["Simonwarlock Windseeker"] = {
 ["averageItemLvl"] = 3,

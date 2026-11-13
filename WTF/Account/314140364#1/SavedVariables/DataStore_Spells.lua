@@ -1,7 +1,7 @@
 
 DataStore_Spells_Characters = {
 {
-["lastUpdate"] = 1794471102,
+["lastUpdate"] = 1794563109,
 ["englishClass"] = "PALADIN",
 ["Spells"] = {
 ["Protection"] = {
@@ -51,9 +51,6 @@ DataStore_Spells_Characters = {
 ["lastUpdate"] = 1794296488,
 ["englishClass"] = "ROGUE",
 ["Spells"] = {
-["Combat"] = {
-448512,
-},
 ["General"] = {
 1690368,
 634880,
@@ -66,13 +63,16 @@ DataStore_Spells_Characters = {
 331176192,
 322485760,
 },
+["Combat"] = {
+448512,
+},
 ["Assassination"] = {
 537088,
 },
 },
 },
 {
-["lastUpdate"] = 1794380267,
+["lastUpdate"] = 1794533381,
 ["englishClass"] = "SHAMAN",
 ["Spells"] = {
 ["Enhancement"] = {
@@ -177,24 +177,50 @@ DataStore_Spells_Characters = {
 },
 },
 {
-["lastUpdate"] = 1794294370,
+["lastUpdate"] = 1794561271,
 ["englishClass"] = "HUNTER",
 ["Spells"] = {
 ["Marksmanship"] = {
+779264,
+3655936,
 19200,
+1309696,
+5308416,
+289280,
+506368,
+3468544,
+},
+["Beast Mastery"] = {
+3370240,
+3369728,
+226048,
+676096,
+1586432,
+256512,
+1789696,
+34816,
+251392,
+387328,
+387840,
 },
 ["General"] = {
 1690368,
+1318144,
 322479616,
 322410496,
 331190272,
 20736,
 322484992,
 331176192,
+800512,
 322485760,
 },
 ["Survival"] = {
 761088,
+3650560,
+382464,
+5090048,
+761344,
 },
 },
 },
@@ -202,6 +228,7 @@ DataStore_Spells_Characters = {
 DataStore_Spells_Tabs = {
 ["HUNTER"] = {
 "General",
+"Beast Mastery",
 "Survival",
 "Marksmanship",
 },
@@ -220,16 +247,16 @@ DataStore_Spells_Tabs = {
 "Restoration",
 "Balance",
 },
-["SHAMAN"] = {
-"General",
-"Enhancement",
-"Restoration",
-"Elemental Combat",
-},
 ["PALADIN"] = {
 "General",
 "Retribution",
 "Protection",
 "Holy",
+},
+["SHAMAN"] = {
+"General",
+"Enhancement",
+"Restoration",
+"Elemental Combat",
 },
 }

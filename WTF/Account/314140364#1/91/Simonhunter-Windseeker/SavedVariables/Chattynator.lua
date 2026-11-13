@@ -5,4 +5,5 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/s /tptp",
 "/s /chatlist",
 "/s /reload",
+"/s /bartender4",
 }

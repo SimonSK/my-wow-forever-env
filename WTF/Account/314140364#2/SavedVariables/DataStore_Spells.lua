@@ -1,7 +1,7 @@
 
 DataStore_Spells_Characters = {
 {
-["lastUpdate"] = 1794471200,
+["lastUpdate"] = 1794563495,
 ["englishClass"] = "MAGE",
 ["Spells"] = {
 ["Fire"] = {
@@ -44,7 +44,7 @@ DataStore_Spells_Characters = {
 },
 },
 {
-["lastUpdate"] = 1794195818,
+["lastUpdate"] = 1794534015,
 ["englishClass"] = "WARLOCK",
 ["Spells"] = {
 ["Demonology"] = {
@@ -54,6 +54,17 @@ DataStore_Spells_Characters = {
 193280,
 176128,
 178432,
+},
+["General"] = {
+1690368,
+5267712,
+1284864,
+1982464,
+331190272,
+20736,
+331176192,
+322611456,
+1338112,
 },
 ["Destruction"] = {
 89088,
@@ -69,17 +80,6 @@ DataStore_Spells_Characters = {
 286720,
 1480192,
 372224,
-},
-["General"] = {
-1690368,
-5267712,
-1284864,
-1982464,
-331190272,
-20736,
-331176192,
-322611456,
-1338112,
 },
 },
 },

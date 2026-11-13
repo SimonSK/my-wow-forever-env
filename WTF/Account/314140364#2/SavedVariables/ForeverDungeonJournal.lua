@@ -9,12 +9,17 @@ ForeverDungeonJournalDB = {
 ["hide"] = false,
 },
 ["displayIDs"] = {
-[270882] = 144475,
-[270884] = 142144,
-[270888] = 144023,
-[270885] = 142245,
-[258924] = 144487,
 [260274] = 142322,
+[7023] = 5285,
+[262297] = 143122,
+[270885] = 142245,
+[270882] = 144475,
+[258924] = 144487,
+[250034] = 2424,
+[16059] = 15981,
+[270888] = 144023,
+[270884] = 142144,
+[261974] = 143035,
 },
 ["fdjOptionsDump"] = {
 "CategoryRow#1.Background [Texture] atlas=Options_CategoryHeader_1 199x144",
@@ -236,10 +241,9 @@ ForeverDungeonJournalDB = {
 "SettingsPanel.SearchBox.clearButton.Icon [Texture] atlas=common-search-clearbutton 10x10",
 "SettingsPanel.SearchBox.searchIcon [Texture] atlas=common-search-magnifyingglass 10x10",
 },
-["newestSeenAt"] = 1794471211,
-["newestSeenVersion"] = "2.0.2",
+["bossHintShown"] = true,
+["newestSeenVersion"] = "2.0.4",
 ["questFaction"] = "Horde",
-["lastMode"] = "bosses",
 ["lootFilter"] = {
 ["enabled"] = false,
 ["classOnly"] = false,
@@ -258,10 +262,14 @@ ForeverDungeonJournalDB = {
 },
 ["learnedQuestIDs"] = {
 },
-["lastQuest"] = 6,
-["lastDungeon"] = "Ragefire Chasm",
+["lastMode"] = "bosses",
+["newestSeenAt"] = 1794563504,
 ["showAllClassQuests"] = true,
 ["learnedItemIDs"] = {
+["expeditionary legplates"] = {
+["id"] = 279901,
+["name"] = "Expeditionary Legplates",
+},
 ["grips of control"] = {
 ["id"] = 276733,
 ["name"] = "Grips of Control",
@@ -282,29 +290,17 @@ ForeverDungeonJournalDB = {
 ["id"] = 280056,
 ["name"] = "Flameslash Crescent",
 },
-["bleak eye shoulderplates"] = {
-["id"] = 280075,
-["name"] = "Bleak Eye Shoulderplates",
+["shamanic wristguards"] = {
+["id"] = 280069,
+["name"] = "Shamanic Wristguards",
 },
 ["cutthroat chestguard"] = {
 ["id"] = 276739,
 ["name"] = "Cutthroat Chestguard",
 },
-["veilpiercer girdle"] = {
-["id"] = 280070,
-["name"] = "Veilpiercer Girdle",
-},
-["lucky shovelnose tuft"] = {
-["id"] = 280060,
-["name"] = "Lucky Shovelnose Tuft",
-},
-["trousers of the ebon giant"] = {
-["id"] = 280066,
-["name"] = "Trousers of the Ebon Giant",
-},
-["shamanic wristguards"] = {
-["id"] = 280069,
-["name"] = "Shamanic Wristguards",
+["bleak eye shoulderplates"] = {
+["id"] = 280075,
+["name"] = "Bleak Eye Shoulderplates",
 },
 ["behemoth bones"] = {
 ["id"] = 280065,
@@ -314,9 +310,32 @@ ForeverDungeonJournalDB = {
 ["id"] = 276735,
 ["name"] = "Tidesong Wand",
 },
+["lucky shovelnose tuft"] = {
+["id"] = 280060,
+["name"] = "Lucky Shovelnose Tuft",
 },
+["trousers of the ebon giant"] = {
+["id"] = 280066,
+["name"] = "Trousers of the Ebon Giant",
+},
+["lost researcher's hood"] = {
+["id"] = 279931,
+["name"] = "Lost Researcher's Hood",
+},
+["reward voucher"] = {
+["id"] = 8070,
+["name"] = "Reward Voucher",
+},
+["veilpiercer girdle"] = {
+["id"] = 280070,
+["name"] = "Veilpiercer Girdle",
+},
+},
+["lastDungeon"] = "Ragefire Chasm",
 ["mapFloors"] = {
 },
+["trackerHintShown"] = true,
+["lastQuest"] = 6,
 ["portraitTexturesByNpcID"] = {
 },
 ["questText"] = {
