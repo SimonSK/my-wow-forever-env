@@ -1,3 +1,8 @@
+# Raid Markers 1.1.18
+
+- New setting: Swap Click Buttons (in /raidbar settings). Choose whether left or right click places the world marker on each marker button; the other click stamps the target icon. Default is unchanged (left = world marker). The tooltip follows your choice. If you change it in combat it applies when combat ends.
+- New: Window Style option for the settings window. Forever (brown and gold, matching Grind Tracker and Animated Blizzard Portraits) or Default (slate). It starts on Forever on the Forever client, once, and switching it reloads the UI. The bar itself keeps its own border and background settings.
+
 # Raid Markers 1.1.17
 
 - Hide Blizzard raid UI now also hides the left-edge strip and arrow toggles (CompactRaidFrameManagerToggleButtonForward/Back and any other manager chrome) that newer clients added. The protected raid container is left untouched.

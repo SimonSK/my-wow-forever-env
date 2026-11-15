@@ -106,27 +106,38 @@ local function BuildClearMarkersMacro()
     return string.format("%s %s\n%s", SLASH_CLEAR_WORLD_MARKER1 or "/cwm", ALL or "all", target)
 end
 
+-- Optional setting: swap which mouse button places the world marker and which
+-- stamps the target icon. Default (off) keeps Left = world marker, Right = icon.
+local function WorldMarkerClick()
+    return (RaidBarDB and RaidBarDB.swapClicks) and "RightButton" or "LeftButton"
+end
+
 local function ConfigureMarkerButton(btn, worldMarkerIndex, targetMarkerIndex)
     btn:RegisterForClicks("AnyDown")
     btn:SetAttribute("type", nil)
     btn:SetAttribute("type1", nil)
     btn:SetAttribute("type2", nil)
     btn:SetAttribute("action1", nil)
+    btn:SetAttribute("action2", nil)
     btn:SetAttribute("marker", nil)
     btn:SetAttribute("macrotext1", nil)
     btn:SetAttribute("macrotext2", nil)
 
+    local swapped = (WorldMarkerClick() == "RightButton")
+    local worldN = swapped and "2" or "1"   -- button that places the world marker
+    local iconN  = swapped and "1" or "2"   -- button that stamps the target icon
+
     if HAS_WORLD_MARKERS then
-        btn:SetAttribute("type1", "worldmarker")
+        btn:SetAttribute("type" .. worldN, "worldmarker")
         btn:SetAttribute("marker", tostring(worldMarkerIndex))
-        btn:SetAttribute("action1", "set")
+        btn:SetAttribute("action" .. worldN, "set")
     else
-        btn:SetAttribute("type1", "macro")
-        btn:SetAttribute("macrotext1", BuildTargetMarkerMacro(targetMarkerIndex))
+        btn:SetAttribute("type" .. worldN, "macro")
+        btn:SetAttribute("macrotext" .. worldN, BuildTargetMarkerMacro(targetMarkerIndex))
     end
 
-    btn:SetAttribute("type2", "macro")
-    btn:SetAttribute("macrotext2", BuildTargetMarkerMacro(targetMarkerIndex))
+    btn:SetAttribute("type" .. iconN, "macro")
+    btn:SetAttribute("macrotext" .. iconN, BuildTargetMarkerMacro(targetMarkerIndex))
 end
 
 local function SetButtonAvailable(btn, available)
@@ -204,6 +215,36 @@ local function DB(k, v)
     if v ~= nil then RaidBarDB[k] = v end
     return RaidBarDB[k]
 end
+
+-------------------------------------------------------------------------------
+-- Settings window skin. "forever" is the brown and gold look used by Grind Tracker and Animated
+-- Blizzard Portraits; it only restyles the settings window (the bar keeps its own border and
+-- background presets). It starts on for the Forever client, once, and is switched in the settings
+-- window (it reloads the UI because the window is built at load).
+-------------------------------------------------------------------------------
+local function IsForeverClient()
+    local build = (GetBuildInfo and select(4, GetBuildInfo())) or 0
+    local mainline = WOW_PROJECT_MAINLINE ~= nil and WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+    return build < 40000 and not mainline
+        and PlayerFrame ~= nil and PlayerFrame.PlayerFrameContainer ~= nil
+end
+if not RaidBarDB.settingsSkinInit and PlayerFrame ~= nil then
+    if IsForeverClient() and not RaidBarDB.settingsSkin then RaidBarDB.settingsSkin = "forever" end
+    RaidBarDB.settingsSkinInit = true
+end
+local SKIN_FOREVER = RaidBarDB.settingsSkin == "forever"
+local FOREVER = {
+    bg       = { r=0.105, g=0.070, b=0.032, a=0.97 },
+    panel    = { r=0.175, g=0.105, b=0.035, a=0.94 },
+    border   = { r=0.58,  g=0.40,  b=0.15 },
+    inactive = { r=0.105, g=0.068, b=0.028 },
+    hover    = { r=0.29,  g=0.19,  b=0.065 },
+    down     = { r=0.065, g=0.040, b=0.015 },
+}
+local SW_EDGE = SKIN_FOREVER and FOREVER.border or MODERN_BORDER   -- swatch / option-button edge
+local FOREVER_BG_SWATCH = { {0.24, 0.16, 0.07}, {0.14, 0.09, 0.04}, {0.07, 0.045, 0.02} }  -- Ghost, Slate, Solid
+local SF_HEX  = SKIN_FOREVER and "F0E6CC" or "D8DDE6"
+local SF_TEXT = SKIN_FOREVER and { 0.94, 0.90, 0.80, 1 } or GOLD
 
 -- Returns the active border preset table (handles preset 0 = custom).
 local function GetBorderPreset()
@@ -368,6 +409,10 @@ local function SetModernButtonState(btn, state)
         color = MODERN_DOWN
     end
     local bp = GetModernButtonBorder(btn)
+    if btn._rbSettings and SKIN_FOREVER then
+        color = state == "hover" and FOREVER.hover or (state == "down" and FOREVER.down or FOREVER.inactive)
+        bp = FOREVER.border
+    end
     btn:SetBackdropColor(color.r, color.g, color.b, 0.95)
     btn:SetBackdropBorderColor(bp.r, bp.g, bp.b, state == "hover" and 1 or 0.9)
 end
@@ -375,17 +420,20 @@ end
 local function StyleModernButton(btn)
     if not btn or not btn.SetBackdrop then return end
     btn._rbModernButton = true
+    btn._rbSettings = (_G.RaidBarSettingsFrame ~= nil and btn:GetParent() == _G.RaidBarSettingsFrame)
     modernButtons[#modernButtons+1] = btn
     ApplyModernBackdrop(btn, 0.95)
     btn:SetBackdropColor(MODERN_INACTIVE.r, MODERN_INACTIVE.g, MODERN_INACTIVE.b, 0.95)
     local hi = btn:CreateTexture(nil, "HIGHLIGHT")
     hi:SetAllPoints()
-    hi:SetColorTexture(MODERN_HOVER.r, MODERN_HOVER.g, MODERN_HOVER.b, 0.22)
+    local hov = (btn._rbSettings and SKIN_FOREVER) and FOREVER.hover or MODERN_HOVER
+    hi:SetColorTexture(hov.r, hov.g, hov.b, 0.22)
     btn:SetHighlightTexture(hi, "ADD")
     btn._rbHighlightTexture = hi
     local pushed = btn:CreateTexture(nil, "BACKGROUND")
     pushed:SetAllPoints()
-    pushed:SetColorTexture(MODERN_DOWN.r, MODERN_DOWN.g, MODERN_DOWN.b, 0.70)
+    local dn = (btn._rbSettings and SKIN_FOREVER) and FOREVER.down or MODERN_DOWN
+    pushed:SetColorTexture(dn.r, dn.g, dn.b, 0.70)
     btn:SetPushedTexture(pushed)
     btn._rbPushedTexture = pushed
     btn:SetScript("OnEnter", function(self)
@@ -506,7 +554,8 @@ local function Tip(w, title, sub)
         if not AreTooltipsEnabled() then return end
         GameTooltip:SetOwner(self, "ANCHOR_TOP")
         GameTooltip:SetText(title, 1, 1, 1)
-        if sub then GameTooltip:AddLine(sub, 0.7, 0.7, 0.7, true) end
+        local line = type(sub) == "function" and sub() or sub
+        if line then GameTooltip:AddLine(line, 0.7, 0.7, 0.7, true) end
         GameTooltip:Show()
     end)
     w:SetScript("OnLeave", function(self)
@@ -831,8 +880,12 @@ for i, m in ipairs(MARKERS) do
     local btn = AddBtn("RaidBarMarker"..i, "SecureActionButtonTemplate", "markers")
     btn.icon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..tmIdx)
     if HAS_WORLD_MARKERS then
-        Tip(btn, mName.." Marker",
-            "Left: Place world marker  |  Right: Stamp target icon")
+        Tip(btn, mName.." Marker", function()
+            if WorldMarkerClick() == "RightButton" then
+                return "Right: Place world marker  |  Left: Stamp target icon"
+            end
+            return "Left: Place world marker  |  Right: Stamp target icon"
+        end)
     else
         Tip(btn, mName.." Marker",
             "World markers are unavailable on this client.\nLeft/Right: Stamp target icon")
@@ -846,7 +899,7 @@ for i, m in ipairs(MARKERS) do
     glow:Hide()
     btn.activeGlow = glow
     btn:HookScript("OnMouseDown", function(self, button)
-        if HAS_WORLD_MARKERS and button == "LeftButton" then
+        if HAS_WORLD_MARKERS and button == WorldMarkerClick() then
             wmActive[wmIdx] = not wmActive[wmIdx]
             SetWMGlow(self, wmActive[wmIdx])
         end
@@ -1072,7 +1125,7 @@ end
 -- Settings panel
 -------------------------------------------------------------------------------
 local SF_W   = 280
-local SF_H   = 574
+local SF_H   = 626
 local SF_PAD = 10
 
 local settingsFrame = CreateFrame("Frame", "RaidBarSettingsFrame", UIParent, WithBackdropTemplate())
@@ -1092,25 +1145,44 @@ do
     settingsFrame:SetBackdropColor(bg.r, bg.g, bg.b, bg.a)
     settingsFrame:SetBackdropBorderColor(bp.r, bp.g, bp.b, 0.95)
 end
-modernPanelFrames[#modernPanelFrames+1] = settingsFrame
+if SKIN_FOREVER then
+    settingsFrame:SetBackdrop({
+        bgFile = "Interface/DialogFrame/UI-DialogBox-Background-Dark",
+        edgeFile = "Interface/DialogFrame/UI-DialogBox-Border",
+        tile = true, tileSize = 32, edgeSize = 24,
+        insets = { left = 8, right = 8, top = 8, bottom = 8 },
+    })
+    settingsFrame:SetBackdropColor(FOREVER.bg.r, FOREVER.bg.g, FOREVER.bg.b, FOREVER.bg.a)
+    settingsFrame:SetBackdropBorderColor(FOREVER.border.r, FOREVER.border.g, FOREVER.border.b, 1)
+else
+    modernPanelFrames[#modernPanelFrames+1] = settingsFrame
+end
 
 local sfHeaderBg = settingsFrame:CreateTexture(nil, "BACKGROUND")
-sfHeaderBg:SetPoint("TOPLEFT", 6, -6)
-sfHeaderBg:SetPoint("TOPRIGHT", -6, -6)
-sfHeaderBg:SetHeight(36)
-sfHeaderBg:SetColorTexture(MODERN_PANEL.r, MODERN_PANEL.g, MODERN_PANEL.b, MODERN_PANEL.a)
+local sfInset = SKIN_FOREVER and 10 or 6   -- the dialog border art is thicker than the slate edge
+sfHeaderBg:SetPoint("TOPLEFT", sfInset, -sfInset)
+sfHeaderBg:SetPoint("TOPRIGHT", -sfInset, -sfInset)
+sfHeaderBg:SetHeight(SKIN_FOREVER and 32 or 36)
+do
+    local hp = SKIN_FOREVER and FOREVER.panel or MODERN_PANEL
+    sfHeaderBg:SetColorTexture(hp.r, hp.g, hp.b, hp.a)
+end
 
 local sfHeaderRule = settingsFrame:CreateTexture(nil, "BORDER")
-sfHeaderRule:SetPoint("TOPLEFT", settingsFrame, "TOPLEFT", 6, -42)
-sfHeaderRule:SetPoint("TOPRIGHT", settingsFrame, "TOPRIGHT", -6, -42)
+sfHeaderRule:SetPoint("TOPLEFT", settingsFrame, "TOPLEFT", sfInset, -42)
+sfHeaderRule:SetPoint("TOPRIGHT", settingsFrame, "TOPRIGHT", -sfInset, -42)
 sfHeaderRule:SetHeight(1)
-sfHeaderRule:SetColorTexture(MODERN_BORDER.r, MODERN_BORDER.g, MODERN_BORDER.b, 0.72)
-themedRules[#themedRules+1] = sfHeaderRule
+if SKIN_FOREVER then
+    sfHeaderRule:SetColorTexture(FOREVER.border.r, FOREVER.border.g, FOREVER.border.b, 0.9)
+else
+    sfHeaderRule:SetColorTexture(MODERN_BORDER.r, MODERN_BORDER.g, MODERN_BORDER.b, 0.72)
+    themedRules[#themedRules+1] = sfHeaderRule
+end
 
 -- Title
 local sfTitle = settingsFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 sfTitle:SetPoint("TOP", settingsFrame, "TOP", 0, -12)
-sfTitle:SetText("|cFFD8DDE6RaidBar Settings|r")
+sfTitle:SetText("|cFF" .. SF_HEX .. "RaidBar Settings|r")
 
 -- Close [X] button
 local sfClose = CreateFrame("Button", nil, settingsFrame, WithBackdropTemplate())
@@ -1119,7 +1191,7 @@ sfClose:SetPoint("TOPRIGHT", settingsFrame, "TOPRIGHT", -10, -10)
 StyleModernButton(sfClose)
 local sfCloseLbl = sfClose:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 sfCloseLbl:SetAllPoints()
-sfCloseLbl:SetText("|cFFD8DDE6X|r")
+sfCloseLbl:SetText("|cFF" .. SF_HEX .. "X|r")
 sfCloseLbl:SetJustifyH("CENTER"); sfCloseLbl:SetJustifyV("MIDDLE")
 sfClose:SetScript("OnClick", function() settingsFrame:Hide() end)
 Tip(sfClose, "Close Settings")
@@ -1128,7 +1200,7 @@ Tip(sfClose, "Close Settings")
 local function SFHeader(text, yOff)
     local fs = settingsFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     fs:SetPoint("TOPLEFT", settingsFrame, "TOPLEFT", SF_PAD, yOff)
-    fs:SetText("|cFFD8DDE6" .. text .. "|r")
+    fs:SetText("|cFF" .. SF_HEX .. text .. "|r")
 end
 
 -- Action button helper (LEFT or RIGHT anchor, two-column layout)
@@ -1144,7 +1216,7 @@ local function SFBtn(label, w, yOff, xMode, onClick)
     local fs = btn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     fs:SetAllPoints()
     fs:SetText(label)
-    fs:SetTextColor(unpack(GOLD))
+    fs:SetTextColor(unpack(SF_TEXT))
     fs:SetJustifyH("CENTER"); fs:SetJustifyV("MIDDLE")
     btn.label = fs
     if onClick then btn:SetScript("OnClick", onClick) end
@@ -1170,11 +1242,11 @@ for i, p in ipairs(BORDER_PRESETS) do
         insets   = {left=1, right=1, top=1, bottom=1},
     })
     sw:SetBackdropColor(p.r, p.g, p.b, 1)
-    sw:SetBackdropBorderColor(MODERN_BORDER.r, MODERN_BORDER.g, MODERN_BORDER.b, 0.80)
+    sw:SetBackdropBorderColor(SW_EDGE.r, SW_EDGE.g, SW_EDGE.b, 0.80)
     Tip(sw, p.name .. " Border")
     -- setSelected: white border = active, dark = inactive
     sw.setSelected = function(sel)
-        sw:SetBackdropBorderColor(sel and 1 or MODERN_BORDER.r, sel and 1 or MODERN_BORDER.g, sel and 1 or MODERN_BORDER.b, sel and 1 or 0.8)
+        sw:SetBackdropBorderColor(sel and 1 or SW_EDGE.r, sel and 1 or SW_EDGE.g, sel and 1 or SW_EDGE.b, sel and 1 or 0.8)
     end
     borderSwatches[i] = sw
     sw:SetScript("OnClick", function()
@@ -1238,9 +1310,9 @@ for i, p in ipairs(BG_PRESETS) do
         edgeSize = 1,
         insets   = {left=1, right=1, top=1, bottom=1},
     })
-    local d = p.display
+    local d = SKIN_FOREVER and FOREVER_BG_SWATCH[i] or p.display
     sw:SetBackdropColor(d[1], d[2], d[3], 1)
-    sw:SetBackdropBorderColor(MODERN_BORDER.r, MODERN_BORDER.g, MODERN_BORDER.b, 0.80)
+    sw:SetBackdropBorderColor(SW_EDGE.r, SW_EDGE.g, SW_EDGE.b, 0.80)
     local lbl = sw:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     lbl:SetAllPoints()
     lbl:SetText(p.name)
@@ -1248,7 +1320,7 @@ for i, p in ipairs(BG_PRESETS) do
     lbl:SetJustifyH("CENTER"); lbl:SetJustifyV("MIDDLE")
     Tip(sw, p.name .. " Background")
     sw.setSelected = function(sel)
-        sw:SetBackdropBorderColor(sel and 1 or MODERN_BORDER.r, sel and 1 or MODERN_BORDER.g, sel and 1 or MODERN_BORDER.b, sel and 1 or 0.8)
+        sw:SetBackdropBorderColor(sel and 1 or SW_EDGE.r, sel and 1 or SW_EDGE.g, sel and 1 or SW_EDGE.b, sel and 1 or 0.8)
     end
     bgSwatches[i] = sw
     sw:SetScript("OnClick", function()
@@ -1269,8 +1341,8 @@ do  -- gradient: lighter left → darker right (suggests color+opacity control)
     grad:SetTexture("Interface\\Buttons\\WHITE8x8")
     if CreateColor then
         grad:SetGradient("HORIZONTAL",
-            CreateColor(0.50, 0.50, 0.50, 1),
-            CreateColor(0.08, 0.08, 0.08, 1))
+            SKIN_FOREVER and CreateColor(0.42, 0.28, 0.10, 1) or CreateColor(0.50, 0.50, 0.50, 1),
+            SKIN_FOREVER and CreateColor(0.07, 0.045, 0.02, 1) or CreateColor(0.08, 0.08, 0.08, 1))
     else
         grad:SetVertexColor(0.30, 0.30, 0.30, 1)
     end
@@ -1399,7 +1471,7 @@ local updatingScaleSlider = false
 
 local scaleValueLabel = settingsFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 scaleValueLabel:SetPoint("TOP", settingsFrame, "TOP", 0, -292)
-scaleValueLabel:SetTextColor(unpack(GOLD))
+scaleValueLabel:SetTextColor(unpack(SF_TEXT))
 scaleValueLabel:SetJustifyH("CENTER")
 
 local scaleSlider = CreateFrame("Slider", "RaidBarScaleSlider", settingsFrame, "OptionsSliderTemplate")
@@ -1440,7 +1512,7 @@ local updatingIconSizeSlider = false
 
 local iconSizeValueLabel = settingsFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 iconSizeValueLabel:SetPoint("TOP", settingsFrame, "TOP", 0, -360)
-iconSizeValueLabel:SetTextColor(unpack(GOLD))
+iconSizeValueLabel:SetTextColor(unpack(SF_TEXT))
 iconSizeValueLabel:SetJustifyH("CENTER")
 
 local iconSizeSlider = CreateFrame("Slider", "RaidBarIconSizeSlider", settingsFrame, "OptionsSliderTemplate")
@@ -1480,7 +1552,7 @@ local updatingSpacingSlider = false
 
 local spacingValueLabel = settingsFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 spacingValueLabel:SetPoint("TOP", settingsFrame, "TOP", 0, -428)
-spacingValueLabel:SetTextColor(unpack(GOLD))
+spacingValueLabel:SetTextColor(unpack(SF_TEXT))
 spacingValueLabel:SetJustifyH("CENTER")
 
 local spacingSlider = CreateFrame("Slider", "RaidBarSpacingSlider", settingsFrame, "OptionsSliderTemplate")
@@ -1531,7 +1603,7 @@ local function UpdateLockBtn()
     if DB("locked") then
         lockBtnLabel:SetText("|cFF00FF00Position: Locked|r")
     else
-        lockBtnLabel:SetText("|cFFD8DDE6Position: Unlocked|r")
+        lockBtnLabel:SetText("|cFF" .. SF_HEX .. "Position: Unlocked|r")
     end
 end
 UpdateLockBtn()
@@ -1561,6 +1633,60 @@ end)
 
 -- Row 2: Toggle Blizz UI | Reset All
 SFBtn("Toggle Blizz UI", ACT_W, -522, "LEFT", ToggleBlizzRaidUI)
+
+-- Row 3: swap which click places the world marker (re-wires the secure buttons,
+-- so it waits for combat to end)
+local pendingSwapWiring = false
+local swapClicksBtn
+local function WireMarkerButtons()
+    for i, m in ipairs(MARKERS) do
+        local btn = _G["RaidBarMarker"..i]
+        if btn then ConfigureMarkerButton(btn, m[1], m[2]) end
+    end
+end
+local function UpdateSwapClicksBtn()
+    if not swapClicksBtn then return end
+    if RaidBarDB.swapClicks then
+        swapClicksBtn.label:SetText("Clicks: Right = World Marker")
+    else
+        swapClicksBtn.label:SetText("Clicks: Left = World Marker")
+    end
+end
+swapClicksBtn = SFBtn("", SF_W - SF_PAD * 2, -548, "LEFT", function()
+    RaidBarDB.swapClicks = not RaidBarDB.swapClicks or nil
+    UpdateSwapClicksBtn()
+    if InCombatLockdown() then
+        pendingSwapWiring = true
+        print("|cFFD8DDE6RaidBar:|r Click swap will apply after combat.")
+    else
+        WireMarkerButtons()
+    end
+end)
+-- Row 4: settings window style (reloads the UI; the window is built at load)
+StaticPopupDialogs["RAIDBAR_SKIN_RELOAD"] = {
+    text = "Window style changed. Reload the UI to apply it?",
+    button1 = "Reload", button2 = "Later",
+    OnAccept = function() ReloadUI() end,
+    timeout = 0, whileDead = true, hideOnEscape = true,
+}
+local skinBtn = SFBtn(SKIN_FOREVER and "Window Style: Forever" or "Window Style: Default",
+    SF_W - SF_PAD * 2, -574, "LEFT", function()
+    RaidBarDB.settingsSkin = SKIN_FOREVER and "default" or "forever"
+    StaticPopup_Show("RAIDBAR_SKIN_RELOAD")
+end)
+Tip(skinBtn, "Window Style", "Switch the settings window between the default slate look and the Forever brown and gold look. Needs a UI reload.")
+
+Tip(swapClicksBtn, "Swap Click Buttons",
+    "Choose whether left or right click places the world marker. The other click stamps the target icon.")
+UpdateSwapClicksBtn()
+local swapWireWatcher = CreateFrame("Frame")
+swapWireWatcher:RegisterEvent("PLAYER_REGEN_ENABLED")
+swapWireWatcher:SetScript("OnEvent", function()
+    if pendingSwapWiring then
+        pendingSwapWiring = false
+        WireMarkerButtons()
+    end
+end)
 
 SFBtn("|cFFFF6666Reset All|r", ACT_W, -522, "RIGHT", function()
     StaticPopup_Show("RAIDBAR_RESET_CONFIRM")
@@ -1598,7 +1724,7 @@ SlashCmdList["RAIDBAR"] = function(msg)
     -- Copy this line into support reports to identify the addon and client.
     if type(msg) == "string" and msg:match("^%s*(.-)%s*$"):lower() == "version" then
         local getMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
-        local installedVersion = getMetadata and getMetadata("RaidBar", "Version") or "1.1.17"
+        local installedVersion = getMetadata and getMetadata("RaidBar", "Version") or "1.1.18"
         local clientVersion, clientBuild = "unknown", "unknown"
         if type(GetBuildInfo) == "function" then clientVersion, clientBuild = GetBuildInfo() end
         print("Raid Markers " .. tostring(installedVersion) .. " | WoW " .. tostring(clientVersion) .. " (build " .. tostring(clientBuild) .. ")")
