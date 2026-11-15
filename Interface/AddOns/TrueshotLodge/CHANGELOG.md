@@ -1,5 +1,121 @@
 # Changelog
 
+## [1.60.1.45] - 2026-11-15
+
+- A data update: the creatures, tames and attack speeds TrueshotLodge hunters have shared since the last release.
+- Data since 1.60.1.44:
+  - 8 new tames (354 in all)
+  - 2 new creatures (787 in all)
+  - 0 new sightings
+  - 0 new ability tames
+  - 4 new attack speeds
+  - 2 new levels
+  - 3 new zones
+  - 0 new looks (164 in all)
+
+**Still missing** (as of this release):
+
+- 85 of 787 creatures have no known attack speed, 58 no level and 44 no zone (169 have no map points)
+
+## [1.60.1.44] - 2026-11-14
+
+- The 3D models (the Looks tab and a pet's profile) show the game's model buttons along the top when you hover them:
+  zoom in and out, turn left and right (hold to keep turning) and reset, as on the stable's pet. The "Drag to turn"
+  line under them is gone; dragging, right-dragging and the mouse wheel still work.
+- Bounties: Uniques without Source is now Unique Ability Targets. It lists every rank of each family's unique
+  ability, not only those no known creature has, each with the untamed creatures in its level range that might have
+  it, and how many known creatures have it already. As on the website.
+- A rank's count of creatures turns green once every one of them has been tamed, as on the website.
+- A grey eye after a creature's name means a TrueshotLodge hunter has seen it in the wild and uploaded the
+  sighting, but nobody has tamed it yet (a tamed creature keeps its green dot). Its profile says so too.
+- Fixed: learning a pet ability rank now marks it known straight away, as 1.60.1.42 meant it to. It did not notice the
+  game's "You have learned a new spell" line at all. The line links your own spell for the rank, not the pet's, and
+  often shows no rank ("[Web]" was Rank 2), so the addon now knows which rank each of those spells teaches, from the
+  game's own data.
+- Data since 1.60.1.43:
+  - 0 new tames (346 in all)
+  - 0 new creatures (785 in all)
+  - 0 new sightings
+  - 0 new ability tames
+  - 0 new attack speeds
+  - 0 new levels
+  - 0 new zones
+  - 0 new looks (164 in all)
+
+**Still missing** (as of this release):
+
+- 87 of 785 creatures have no known attack speed, 58 no level and 45 no zone (167 have no map points)
+
+## [1.60.1.43] - 2026-11-14
+
+- **NEW FEATURE:** The addon is unaware of all the hard work a Hunter has done prior to its download. This new feature will give you the ability to mark abilities as known until it can be verified by the addon itself. Unfortately there is nothing exposed by Blizzard to allow us to read every ability you may have previously learned - only whats available in the spell book or what you actively learn while you have the addon.
+- A new option, Known Ability Edit (Options, Advanced): while it is on, click an ability's icon (at the top of its
+  details, on the Unique, Common and Passive tabs) to mark that rank known by hand, for one you learned before the
+  addon could see it (click again to take the mark back). It is on for that session only, and off again when you log
+  out. A rank your Beast Training has shown stays known for good: a rank cannot be unlearned. Help (the ? by the close
+  button) has a new Known Abilities entry that explains all this.
+- The abilities you have learned are never cleared any more. A hunter cannot unlearn a Beast Training rank, so once a
+  rank is marked known it stays known for that character.
+- Data since 1.60.1.42:
+  - 14 new tames (346 in all)
+  - 7 new creatures (785 in all)
+  - 0 new sightings
+  - 2 new ability tames
+  - 11 new attack speeds
+  - 10 new levels
+  - 9 new zones
+  - 0 new looks (164 in all)
+
+**Still missing** (as of this release):
+
+- 87 of 785 creatures have no known attack speed, 58 no level and 45 no zone (167 have no map points)
+
+## [1.60.1.42] - 2026-11-14
+
+- The Bounties tab has a new section, The Untamables: the creatures hunters have uploaded that we keep out of the
+  guide. There is nothing to claim; it is there so you can see everything uploads have brought in, including what we
+  left out. The same list is at TrueshotLodge.com/bounties/untamables
+- Learning a pet ability rank now marks it as known right away, without opening Beast Training. Ranks you learned
+  before still need one look in Beast Training, once with each pet family you own.
+- The Bounties tab has a new pet bounty, Missing Model: the creatures whose look nobody knows yet, as on the website.
+  Each bounty's creatures now show their family too, and a creature the game refuses to tame is no longer wanted by
+  any bounty.
+- A creature the game refuses to tame says "Not tameable" in red: after its name in the lists, in its tooltip (on the
+  map, in the window and in the world) and on its profile.
+- An ability a trainer teaches now shows the price the trainer charges for the rank. Growl says where it comes from
+  ("Known by every pet" for Rank 1, a Hunter or Pet Trainer for the rest) instead of an empty list of creatures.
+- On the Trainers tab the Zone filter now lists only your zone's trainers. In a zone without one it lists none; it
+  used to list every trainer then, which looked as if the filter was off.
+- On a pet's profile, the Map button is now at the top of the left pane, across from Back, and the model fills the
+  right pane. A tamed creature's row reads "Tamed by" and the hunter's name; hover it for the date.
+- Fixed: right-dragging the model on a pet's profile made the creature vanish.
+- A new filter button, Rares, above Pet: wherever creatures are listed (the ability tabs, Families, Looks and
+  Bounties) it shows only the rare ones, and only the ranks, families and looks that have one.
+- The search box now searches creatures, not the names on the left. Type part of a creature's name on the ability
+  tabs, Families, Looks or Bounties: the left side keeps only the ranks, families, looks and bounties that have a
+  creature matching it (opened, with their number of matches), and the right side lists just those creatures. On the
+  tabs without creatures (Passive, Trainers, Options, Help, Collected Data) it searches the list as before.
+- With the Zone filter on, the ability tabs' list now follows it too: only the ranks (and attack speeds) that a
+  creature in your zone has are listed, each with its number of creatures there. Ranks a trainer teaches stay.
+  The Families tab does the same with the Zone and Level filters: a family with no creature left is not listed.
+- The addon and the website now use the same colors for the same things: creature names are the website's light blue,
+  and hints are one grey everywhere.
+- Your collected data file now carries a random id, so when you upload it again after more hunting, we can tell it is a
+  newer copy of the same file. The id says nothing about you or your characters.
+- Data since 1.60.1.41:
+  - 54 new tames (332 in all)
+  - 1 new creature (778 in all)
+  - 0 new sightings
+  - 12 new ability tames
+  - 2 new attack speeds
+  - 1 new level
+  - 1 new zone
+  - 0 new looks (164 in all)
+
+**Still missing** (as of this release):
+
+- 91 of 778 creatures have no known attack speed, 61 no level and 47 no zone (160 have no map points)
+
 ## [1.60.1.41] - 2026-11-11
 
 - Data since 1.60.1.40:

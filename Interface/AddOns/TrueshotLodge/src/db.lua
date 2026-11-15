@@ -39,6 +39,7 @@ local defaults = {
     filter_by_faction = false,
     zone_filter = false, -- the Zone Filter checkbox in the window's title bar (src/ui/zone-filter.lua)
     filter_by_pet = false,
+    filter_rares = false, -- the Rares button: only the rare creatures, wherever creatures are listed
     last_tab = "UNIQUE",
     selections = {}, -- tab -> { ability = slug, rank = n } or the trainer's id
     bounty_sort = {}, -- Bounties tab: heading key -> "count" when sorted by number of entries (right-click the heading)
@@ -104,15 +105,9 @@ function DB:Initialize()
   ApplyDefaults(saved.char[charKey], defaults.char)
   ApplyDefaults(collected, defaults.collected)
 
-  -- Earlier versions saved ranks that were never learned: every rank a trainer window listed, and then everything in
-  -- a pet's spellbook (known_ids), which includes what a beast arrives with. Cleared once; opening Beast Training marks
-  -- the real ones again.
-  local char = saved.char[charKey]
-  if (char.trained_version or 1) < 3 then
-    char.trained, char.trained_ids = {}, {}
-    char.known_ids = nil
-    char.trained_version = 3
-  end
+  -- The ranks the hunter has learned (trained, trained_ids) are never cleared: a hunter cannot unlearn a Beast Training
+  -- rank, so the list only grows (src/training.lua). (1.60.1.40 cleared it once, when it switched to what Beast Training
+  -- lists; that is gone. known_ids and trained_version, left in some files by those versions, are no longer read.)
 
   self.global = saved.global
   self.char = saved.char[charKey]

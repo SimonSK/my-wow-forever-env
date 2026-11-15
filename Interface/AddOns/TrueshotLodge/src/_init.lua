@@ -165,6 +165,28 @@ end
 -- The green dot (the game's own "online" status icon, as in the friends list): a creature someone has tamed, the
 -- stable slot of the pet that is out.
 Addon.GREEN_DOT = FRIENDS_TEXTURE_ONLINE or "Interface\\FriendsFrame\\StatusIcon-Online"
+-- The eye, the website's own (media/eye.tga, drawn white by the web project's .tools/build/make_logo_icons.py and
+-- tinted the site's grey here): a creature a hunter has seen in the wild but nobody has tamed yet.
+Addon.SIGHTED_EYE = "Interface\\AddOns\\" .. ADDON_NAME .. "\\media\\eye"
+
+-- The mark after a creature's name: "tamed" (someone has tamed it: the green dot), "sighted" (only seen in the wild,
+-- in an upload: the grey eye), or nil. A tame says more than a sighting, so a tamed creature shows only its dot.
+function Addon:NPCMark(npc)
+  if type(npc.tamed) == "string" and npc.tamed ~= "" then return "tamed" end
+  if npc.sighted then return "sighted" end
+  return nil
+end
+
+-- Draws a mark (NPCMark) on a texture: the green dot, or the eye in the website's grey (Colors.Muted).
+function Addon:SetNPCMarkTexture(texture, mark)
+  if mark == "sighted" then
+    texture:SetTexture(self.SIGHTED_EYE)
+    texture:SetVertexColor(self:GetModule("Colors").Muted:GetRGB())
+  else
+    texture:SetTexture(self.GREEN_DOT)
+    texture:SetVertexColor(1, 1, 1)
+  end
+end
 -- The logo alone (transparent, with a soft shadow): the window's portrait without its ring.
 Addon.LOGO = "Interface\\AddOns\\" .. ADDON_NAME .. "\\media\\logo"
 
@@ -205,7 +227,23 @@ do -- Addon:Debug()
     local area = Area((...))
     -- (an area the list does not name prints whenever Debug Mode is on)
     if area and DEBUG_AREA[area] and not (global.debug_on and global.debug_on[area]) then return end
-    print("|cFFFF8800[" .. Addon.TITLE .. " debug]|r", ...)
+    Addon:DebugPrint(...)
+  end
+
+  -- A debug line in chat, whatever Debug Mode says (the `/tsl debug` commands print with it).
+  function Addon:DebugPrint(...)
+    print(Addon:GetModule("Colors").Debug("[" .. Addon.TITLE .. " debug]"), ...)
+  end
+
+  -- A line in chat from the addon: "TrueshotLodge: <text>", its name in the title's teal.
+  function Addon:Print(...)
+    print(Addon:GetModule("Colors").Primary(Addon.TITLE) .. ":", ...)
+  end
+
+  -- The same with a word after the name saying which part is speaking ("TrueshotLodge stable: ..."), for the
+  -- `/tsl debug` commands.
+  function Addon:PrintAs(label, ...)
+    print(Addon:GetModule("Colors").Primary(Addon.TITLE) .. " " .. label .. ":", ...)
   end
 end
 

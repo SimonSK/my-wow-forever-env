@@ -70,6 +70,11 @@ local function Groups()
     } },
     -- Last, for development.
     { key = "options:advanced", name = L.ADVANCED, settings = {
+      -- Known Ability Edit: a click on an ability's icon marks the rank known by hand (tab-abilities.lua). Never
+      -- saved: it is on for this session only, and off again after logging out (or a /reload).
+      Setting("known_edit", L.KNOWN_EDIT, L.KNOWN_EDIT_TOOLTIP, "Interface\\Icons\\Ability_Hunter_BeastTraining",
+        function() return Window.knownEdit == true end,
+        function(value) Window.knownEdit = value or nil end),
       GlobalSetting("debug", L.DEBUG_MODE, L.DEBUG_MODE_TOOLTIP, "Interface\\Icons\\INV_Misc_Wrench_01", false),
     } },
   }
@@ -97,19 +102,8 @@ end
 function Window:InitOptionButton(button, setting)
   button.Label:SetText(setting.label)
   button.Label:SetVertexColor(Colors.State.Default:GetRGB())
-  button.SkillUps:Hide()
-  button.LockedIcon:Hide()
-  local text, color = StateText(setting)
-  button.Count:ClearAllPoints()
-  button.Count:SetPoint("RIGHT", button, "RIGHT", -8, 0)
-  button.Count:SetText(text)
-  button.Count:SetTextColor(color:GetRGB())
-  button.Count:SetShown(text ~= "")
-  button.Label:SetWidth(button:GetWidth() - (text ~= "" and 60 or 20))
-
-  local selected = self.selectedOption == setting.key
-  button.SelectedOverlay:SetShown(selected)
-  button.HighlightOverlay:SetShown(not selected)
+  self:SetRowCount(button, StateText(setting)) -- "On" (green), "Off" (grey), "100%"
+  self:SetRowSelected(button, self.selectedOption == setting.key)
 
   button.ftSetting = setting
   button:RegisterForClicks("LeftButtonUp")
@@ -291,7 +285,7 @@ function Window:UpdateOptionDetails()
   self.name:SetText(setting.label)
   self.subtitle:SetText(setting.group or "")
   local text, color = StateText(setting)
-  self.facts:SetText(text ~= "" and ("%s: %s"):format(Colors.Label(L.STATUS), color:WrapTextInColorCode(text)) or "")
+  self.facts:SetText(text ~= "" and ("%s: %s"):format(Colors.Label(L.STATUS), color(text)) or "")
   -- A description can be a function, worked out when it is shown (Send Name's example badge).
   local description = setting.description
   if type(description) == "function" then description = description() end
