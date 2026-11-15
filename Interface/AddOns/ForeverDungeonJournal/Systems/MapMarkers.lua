@@ -2048,7 +2048,7 @@ do
         local turnedIn = FDJ.QuestTurnedIn or function() return false end
         -- hidequests (2.0.15): Hide quests ticked: only the spot a quest's
         -- Show on Map just opened the map on (its quest, else where it is).
-        local hideAll = FDJ.MapQuestsHidden and FDJ.MapQuestsHidden()
+        local hideAll = FDJ.MapQuestsHidden and FDJ.MapQuestsHidden(dungeonName)
         local focus = FDJ.dungeonMapFocus
         if focus and ((GetTime and GetTime()) or 0) > (focus.untilT or 0) then focus = nil end
         local function Wanted(pin)
@@ -2067,11 +2067,13 @@ do
             if (pin.floor or 1) == floorIndex and Wanted(pin) then
                 local spots, start, firstQuest = {}, false, nil
                 local logged, available, firstLogged = false, false, nil -- pinlog
+                local allRepeat = true -- repeaticon (2.0.44)
                 for _, spot in ipairs(pin.spots or {}) do
                     local shown = {}
                     for _, q in ipairs(spot.quests or {}) do
                         if q.id ~= skip and Shown(q, faction) then
                             shown[#shown + 1] = q
+                            if not (FDJ.IsRepeatableQuest and FDJ.IsRepeatableQuest(q.id)) then allRepeat = false end
                             firstQuest = firstQuest or q
                             local have = inLog(q.id) and true or false
                             for _, act in ipairs(q.acts or {}) do
@@ -2108,7 +2110,12 @@ do
                     if b:GetParent() ~= holder then b:SetParent(holder) end
                     b.fdjSpots, b.fdjFirst, b.fdjStart = spots, firstQuest, bang
                     b.fdjFloor, b.fdjX, b.fdjY = pin.floor or 1, pin.x, pin.y -- mapfocus
-                    b.icon:SetTexture(bang and "Interface\\GossipFrame\\AvailableQuestIcon" or "Interface\\GossipFrame\\ActiveQuestIcon")
+                    -- repeaticon (2.0.44): only repeatable quests there: the blue ?
+                    if FDJ.SetQuestIconTexture then
+                        FDJ.SetQuestIconTexture(b.icon, allRepeat, bang and "Interface\\GossipFrame\\AvailableQuestIcon" or "Interface\\GossipFrame\\ActiveQuestIcon")
+                    else
+                        b.icon:SetTexture(bang and "Interface\\GossipFrame\\AvailableQuestIcon" or "Interface\\GossipFrame\\ActiveQuestIcon")
+                    end
                     if b.icon.SetDesaturated then b.icon:SetDesaturated(idle) end
                     b.icon:SetAlpha(idle and 0.75 or 1)
                     local size = math.max(22, math.floor((baseH or 0) * 0.07))
@@ -2123,6 +2130,49 @@ do
         end
         for i = n + 1, #pool do pool[i]:Hide() end
         return n
+    end
+
+    -- autohidequests (2.0.52, inside only 2.0.53): true when every quest
+    -- with a mark on this dungeon's map (the character's own: faction,
+    -- class, profession) is done as far as the inside goes: handed in, or
+    -- in the log with its objectives complete and no hand-in inside. A
+    -- quest still to start, do or hand in inside keeps the marks. False
+    -- when the map has no quest of the character's at all.
+    function FDJ.MapQuestsAllDoneInside(dungeonName)
+        local list = dungeonName and FDJ.MAP_QUEST_PINS and FDJ.MAP_QUEST_PINS[dungeonName]
+        if type(list) ~= "table" then return false end
+        local faction = UnitFactionGroup and select(1, UnitFactionGroup("player")) or nil
+        local inLog = FDJ.IsQuestInLog or function() return false end
+        local turnedIn = FDJ.QuestTurnedIn or function() return false end
+        local function Complete(id)
+            if C_QuestLog and C_QuestLog.IsComplete then
+                local ok, done = pcall(C_QuestLog.IsComplete, id)
+                if ok and done ~= nil then return done == true end
+            end
+            if IsQuestComplete then
+                local ok, done = pcall(IsQuestComplete, id)
+                if ok then return done == true or done == 1 end
+            end
+            return false
+        end
+        local seen = 0
+        for _, pin in ipairs(list) do
+            for _, spot in ipairs(pin.spots or {}) do
+                for _, q in ipairs(spot.quests or {}) do
+                    if q.id and Shown(q, faction) then
+                        seen = seen + 1
+                        if not turnedIn(q.id) then
+                            if not inLog(q.id) then return false end -- still to take (or to do)
+                            for _, act in ipairs(q.acts or {}) do
+                                if act == "end" then return false end -- handed in inside
+                            end
+                            if not Complete(q.id) then return false end
+                        end
+                    end
+                end
+            end
+        end
+        return seen > 0
     end
 
     -- The quest tracker's ? taken off the map (right-click): its quest's
@@ -2232,26 +2282,26 @@ do
                 ARROW_BOAT = "搭船前往%s", ARROW_ZEPPELIN = "搭乘飛艇前往%s", ARROW_FLY = "飛往%s" },
         }
         local more = {
-            enUS = { ARROW_FLYING = "Flying to %s", ARROW_BELOW = "Below ground: find the way down", ARROW_ABOVE = "Upstairs: find the way up", ARROW_TIP_MAP = "Click to show it on the map.",
-                ARROW_PORTAL = "Take the portal to %s", ARROW_HEARTH = "Hearth to %s" },
-            deDE = { ARROW_FLYING = "Flug nach %s", ARROW_BELOW = "Unter der Erde: such den Weg nach unten", ARROW_ABOVE = "Weiter oben: such den Weg nach oben", ARROW_TIP_MAP = "Klicken zeigt es auf der Karte.",
-                ARROW_PORTAL = "Nimm das Portal nach %s", ARROW_HEARTH = "Ruhestein nach %s" },
-            frFR = { ARROW_FLYING = "Vol vers %s", ARROW_BELOW = "Sous terre : trouvez le chemin pour descendre", ARROW_ABOVE = "En hauteur : trouvez le chemin pour monter", ARROW_TIP_MAP = "Cliquez pour l'afficher sur la carte.",
-                ARROW_PORTAL = "Prenez le portail vers %s", ARROW_HEARTH = "Pierre de foyer vers %s" },
-            esES = { ARROW_FLYING = "Volando a %s", ARROW_BELOW = "Bajo tierra: busca el camino para bajar", ARROW_ABOVE = "Arriba: busca el camino para subir", ARROW_TIP_MAP = "Haz clic para verlo en el mapa.",
-                ARROW_PORTAL = "Toma el portal a %s", ARROW_HEARTH = "Piedra de hogar a %s" },
-            itIT = { ARROW_FLYING = "In volo verso %s", ARROW_BELOW = "Sottoterra: trova la via per scendere", ARROW_ABOVE = "Più in alto: trova la via per salire", ARROW_TIP_MAP = "Clicca per vederlo sulla mappa.",
-                ARROW_PORTAL = "Prendi il portale per %s", ARROW_HEARTH = "Pietra del ritorno: %s" },
-            ptBR = { ARROW_FLYING = "Voando para %s", ARROW_BELOW = "No subsolo: encontre o caminho para descer", ARROW_ABOVE = "Mais acima: encontre o caminho para subir", ARROW_TIP_MAP = "Clique para ver no mapa.",
-                ARROW_PORTAL = "Pegue o portal para %s", ARROW_HEARTH = "Pedra de regresso para %s" },
-            ruRU = { ARROW_FLYING = "Полёт: %s", ARROW_BELOW = "Под землёй: найдите спуск", ARROW_ABOVE = "Выше: найдите подъём", ARROW_TIP_MAP = "Щелкните, чтобы показать на карте.",
-                ARROW_PORTAL = "Портал: %s", ARROW_HEARTH = "Камень возвращения: %s" },
-            koKR = { ARROW_FLYING = "%s(으)로 비행 중", ARROW_BELOW = "지하: 내려가는 길을 찾으세요", ARROW_ABOVE = "위층: 올라가는 길을 찾으세요", ARROW_TIP_MAP = "클릭하면 지도에 표시합니다.",
-                ARROW_PORTAL = "%s행 차원문을 타세요", ARROW_HEARTH = "귀환석: %s" },
-            zhCN = { ARROW_FLYING = "正在飞往%s", ARROW_BELOW = "在地下：找路下去", ARROW_ABOVE = "在上方：找路上去", ARROW_TIP_MAP = "点击在地图上显示。",
-                ARROW_PORTAL = "使用传送门前往%s", ARROW_HEARTH = "炉石回到%s" },
-            zhTW = { ARROW_FLYING = "正在飛往%s", ARROW_BELOW = "在地下：找路下去", ARROW_ABOVE = "在上方：找路上去", ARROW_TIP_MAP = "點擊在地圖上顯示。",
-                ARROW_PORTAL = "使用傳送門前往%s", ARROW_HEARTH = "爐石回到%s" },
+            enUS = { ARROW_GET_TO = "Get to %s", ARROW_FLYING = "Flying to %s", ARROW_BELOW = "Below ground: find the way down", ARROW_ABOVE = "Upstairs: find the way up", ARROW_TIP_MAP = "Click to show it on the map.",
+                ARROW_PORTAL = "Take the portal to %s", ARROW_HEARTH = "Hearth to %s", ARROW_ELEVATOR = "Take the elevator up" },
+            deDE = { ARROW_GET_TO = "Begib dich nach %s", ARROW_FLYING = "Flug nach %s", ARROW_BELOW = "Unter der Erde: such den Weg nach unten", ARROW_ABOVE = "Weiter oben: such den Weg nach oben", ARROW_TIP_MAP = "Klicken zeigt es auf der Karte.",
+                ARROW_PORTAL = "Nimm das Portal nach %s", ARROW_HEARTH = "Ruhestein nach %s", ARROW_ELEVATOR = "Nimm den Aufzug nach oben" },
+            frFR = { ARROW_GET_TO = "Rendez-vous à %s", ARROW_FLYING = "Vol vers %s", ARROW_BELOW = "Sous terre : trouvez le chemin pour descendre", ARROW_ABOVE = "En hauteur : trouvez le chemin pour monter", ARROW_TIP_MAP = "Cliquez pour l'afficher sur la carte.",
+                ARROW_PORTAL = "Prenez le portail vers %s", ARROW_HEARTH = "Pierre de foyer vers %s", ARROW_ELEVATOR = "Prenez l'ascenseur pour monter" },
+            esES = { ARROW_GET_TO = "Ve a %s", ARROW_FLYING = "Volando a %s", ARROW_BELOW = "Bajo tierra: busca el camino para bajar", ARROW_ABOVE = "Arriba: busca el camino para subir", ARROW_TIP_MAP = "Haz clic para verlo en el mapa.",
+                ARROW_PORTAL = "Toma el portal a %s", ARROW_HEARTH = "Piedra de hogar a %s", ARROW_ELEVATOR = "Toma el ascensor para subir" },
+            itIT = { ARROW_GET_TO = "Raggiungi %s", ARROW_FLYING = "In volo verso %s", ARROW_BELOW = "Sottoterra: trova la via per scendere", ARROW_ABOVE = "Più in alto: trova la via per salire", ARROW_TIP_MAP = "Clicca per vederlo sulla mappa.",
+                ARROW_PORTAL = "Prendi il portale per %s", ARROW_HEARTH = "Pietra del ritorno: %s", ARROW_ELEVATOR = "Prendi l'ascensore per salire" },
+            ptBR = { ARROW_GET_TO = "Vá para %s", ARROW_FLYING = "Voando para %s", ARROW_BELOW = "No subsolo: encontre o caminho para descer", ARROW_ABOVE = "Mais acima: encontre o caminho para subir", ARROW_TIP_MAP = "Clique para ver no mapa.",
+                ARROW_PORTAL = "Pegue o portal para %s", ARROW_HEARTH = "Pedra de regresso para %s", ARROW_ELEVATOR = "Pegue o elevador para subir" },
+            ruRU = { ARROW_GET_TO = "Доберитесь: %s", ARROW_FLYING = "Полёт: %s", ARROW_BELOW = "Под землёй: найдите спуск", ARROW_ABOVE = "Выше: найдите подъём", ARROW_TIP_MAP = "Щелкните, чтобы показать на карте.",
+                ARROW_PORTAL = "Портал: %s", ARROW_HEARTH = "Камень возвращения: %s", ARROW_ELEVATOR = "Поднимитесь на лифте" },
+            koKR = { ARROW_GET_TO = "%s(으)로 가세요", ARROW_FLYING = "%s(으)로 비행 중", ARROW_BELOW = "지하: 내려가는 길을 찾으세요", ARROW_ABOVE = "위층: 올라가는 길을 찾으세요", ARROW_TIP_MAP = "클릭하면 지도에 표시합니다.",
+                ARROW_PORTAL = "%s행 차원문을 타세요", ARROW_HEARTH = "귀환석: %s", ARROW_ELEVATOR = "승강기를 타고 올라가세요" },
+            zhCN = { ARROW_GET_TO = "前往%s", ARROW_FLYING = "正在飞往%s", ARROW_BELOW = "在地下：找路下去", ARROW_ABOVE = "在上方：找路上去", ARROW_TIP_MAP = "点击在地图上显示。",
+                ARROW_PORTAL = "使用传送门前往%s", ARROW_HEARTH = "炉石回到%s", ARROW_ELEVATOR = "乘升降梯上去" },
+            zhTW = { ARROW_GET_TO = "前往%s", ARROW_FLYING = "正在飛往%s", ARROW_BELOW = "在地下：找路下去", ARROW_ABOVE = "在上方：找路上去", ARROW_TIP_MAP = "點擊在地圖上顯示。",
+                ARROW_PORTAL = "使用傳送門前往%s", ARROW_HEARTH = "爐石回到%s", ARROW_ELEVATOR = "搭升降梯上去" },
         }
         for locale, entries in pairs(more) do
             for key, value in pairs(entries) do strings[locale][key] = value end
@@ -3412,6 +3462,98 @@ do
         return found or nil
     end
 
+    -- getto (2.0.22): "Get to Dalaran" under the yards, while the spot is in a
+    -- city or a named town and the player is not there yet. A spot out in
+    -- the open says nothing: its zone alone would be too broad. The place:
+    -- the city whose map the spot is on; else a town named in the spot's own
+    -- label ("Magus Olvek — Dalaran") or detail; else the flight point
+    -- right by it (the game's own name). Gone once inside: the city's map,
+    -- the place's name as the game calls where one stands, or close by.
+    Way.GET_TO_CITY = { [1453] = true, [1454] = true, [1455] = true, [1456] = true, [1457] = true, [1458] = true }
+    Way.GET_TO_PLACES = {
+        "Dalaran", "Southshore", "Tarren Mill", "Hammerfall", "Refuge Pointe", "Kargath", "Ratchet",
+        "The Crossroads", "Camp Taurajo", "Sen'jin Village", "Razor Hill", "Bloodhoof Village", "Brill",
+        "The Sepulcher", "Pyrewood Village", "Kharanos", "Thelsamar", "Goldshire", "Darkshire", "Lakeshire",
+        "Booty Bay", "Grom'gol Base Camp", "Rebel Camp", "Sentinel Hill", "Moonbrook", "Menethil Harbor",
+        "Dun Modr", "Freewind Post", "Sun Rock Retreat", "Thalanaar", "Theramore", "Brackenwall Village",
+        "Valormok", "Farholde Keep", "Rog'mar", "Bandarion Keep", "Chillwind Camp", "Light's Hope Chapel",
+        "Aerie Peak", "Revantusk Village", "Nethergarde Keep", "Stonard", "Morgan's Vigil", "Flame Crest",
+        "Thorium Point", "Gadgetzan", "Everlook", "Marshal's Refuge", "Nijel's Point", "Shadowprey Village",
+        "Ghost Walker Post", "Camp Mojache", "Feathermoon Stronghold", "Astranaar", "Splintertree Post",
+        "Auberdine", "Stonetalon Peak", "Talonbranch Glade", "Bloodvenom Post", "Nighthaven", "Cenarion Hold",
+        "Dolanaar", "Stonewatch", "Raven Hill", "Westbrook Garrison", "Steamwheedle Port", "Mudsprocket",
+    }
+    Way.GET_TO_NODE = 200 -- yards: a flight point this close to the spot names its place
+    Way.GET_TO_IN = 150   -- yards: this close to the spot counts as there
+    Way.GET_TO_OUT = 220  -- yards: and this far, as gone again
+    function Way.GetTo(entry)
+        local spot = entry and entry.spot
+        if type(spot) ~= "table" then return "" end
+        if entry.getTo == nil then
+            local found = false
+            local city = tonumber(spot.mapID)
+            if city and Way.GET_TO_CITY[city] then
+                local name = ZoneName(city)
+                if name ~= "" then found = { name = name, city = city } end
+            else
+                local best
+                local label = type(spot.label) == "string" and spot.label:match("\226\128\148%s*(.+)$") or nil
+                for _, text in ipairs({ label or "", type(spot.detail) == "string" and spot.detail or "" }) do
+                    local lower = string.lower(text)
+                    for _, place in ipairs(Way.GET_TO_PLACES) do
+                        if (not best or #place > #best) and string.find(lower, string.lower(place), 1, true) then best = place end
+                    end
+                    if best then break end
+                end
+                if best then
+                    found = { name = FreeText(best) or best, english = best }
+                else
+                    local w = SpotWorld(spot)
+                    local near
+                    if w then
+                        for _, node in ipairs(Way.AllNodes()) do
+                            if node[3] == w[3] and type(node.name) == "string" and node.name ~= "" then
+                                local d = Yards(node[1], node[2], w[1], w[2])
+                                if d <= Way.GET_TO_NODE and (not near or d < near) then near, found = d, { name = node.name } end
+                            end
+                        end
+                    end
+                end
+            end
+            entry.getTo = found
+        end
+        local place = entry.getTo
+        if not place then return "" end
+        if place.city then
+            local okMap, mapID = false, nil
+            if C_Map and type(C_Map.GetBestMapForUnit) == "function" then okMap, mapID = pcall(C_Map.GetBestMapForUnit, "player") end
+            if okMap and Number(mapID) == place.city then return "" end
+        else
+            for _, fn in ipairs({ GetSubZoneText, GetMinimapZoneText, GetRealZoneText, GetZoneText }) do
+                if type(fn) == "function" then
+                    local okT, text = pcall(fn)
+                    if okT and type(text) == "string" and text ~= "" and not (type(issecretvalue) == "function" and issecretvalue(text)) then
+                        local lower = string.lower(text)
+                        if string.find(lower, string.lower(place.name), 1, true)
+                            or (place.english and string.find(lower, string.lower(place.english), 1, true)) then
+                            return ""
+                        end
+                    end
+                end
+            end
+            local w = SpotWorld(spot)
+            local px, py, here = PlayerWorld()
+            if w and px and here == w[3] then
+                local d = Yards(px, py, w[1], w[2])
+                if d <= Way.GET_TO_IN then entry.getToThere = true elseif d >= Way.GET_TO_OUT then entry.getToThere = nil end
+            else
+                entry.getToThere = nil
+            end
+            if entry.getToThere then return "" end
+        end
+        return FDJ.L("ARROW_GET_TO", place.name)
+    end
+
     -- The plan's next thing to do, in words ("" when it is just walking).
     local function Doing(plan)
         if not plan then return "" end
@@ -3527,6 +3669,171 @@ do
             f:EnableMouse(not hide)
         end
         ClickTargets(f, (not hide and final and distance and distance <= NEAR_NPC) and entry.spot or nil)
+        -- npcicon (2.0.13)
+        if f.npc then
+            local on = (f.fdjTargets and not hide) and true or false
+            if on ~= (f.fdjNpcOn or false) then
+                f.fdjNpcOn, f.fdjNpcUnit, f.fdjNpcAt = on, nil, nil
+                f.npc:SetShown(on)
+                f.title:SetText((on and "" or (f.fdjMark or "")) .. (f.fdjName or ""))
+                -- npcbig (2.0.16): the picture is bigger (32, was 22), left of the
+                -- name and level with it; a short name moves it out past the
+                -- distance line under it, so the two never overlap.
+                local half = (tonumber(f.title:GetStringWidth()) or 110) / 2
+                local out = math.max(0, ((tonumber(f.distance:GetStringWidth()) or 0) / 2) - half)
+                f.npc:ClearAllPoints()
+                f.npc:SetPoint("RIGHT", f.title, "LEFT", -3 - out, 0)
+                -- The picture and the name take the click too, not only the arrow.
+                -- (The picture sits left of the name, past the frame's own
+                -- edge when the name is long: the hit area reaches out to it.)
+                if f.SetHitRectInsets and not (InCombatLockdown and InCombatLockdown()) then
+                    if on then
+                        local tall = tonumber(f.title:GetStringHeight()) or 14
+                        f:SetHitRectInsets(75 - (half + out + 39), 75 - (half + 2), 0,
+                            math.max(0, math.floor(84 - (53 + tall / 2 + 18))))
+                    else
+                        f:SetHitRectInsets(49, 49, 0, 32)
+                    end
+                end
+                -- npchover (2.0.16, picture only 2.0.17): the mouse already on the
+                -- arrow when the NPC comes in reach (or goes): the next frame's
+                -- check picks the glow (on the picture) or the tooltip again,
+                -- the tooltip rebuilt for the new click.
+                if f.npcHl and not on then f.npcHl:Hide() end
+                f.fdjHoverState = nil
+            end
+            -- portraitfirst (2.0.14): the NPC's portrait before any click, as the
+            -- journal's boss portraits are made: a hidden model of the NPC
+            -- (FDJ.ARROW_NPC_IDS, by name) tells its display, whose portrait
+            -- the game draws. Looked up as soon as the arrow leads to the NPC,
+            -- so it is there by the time the NPC is in reach.
+            do
+                local npcID = FDJ.ARROW_NPC_IDS and FDJ.ARROW_NPC_IDS[NPC(entry.spot) or ""]
+                FDJ.arrowDisplayIDs = FDJ.arrowDisplayIDs or {}
+                -- loadpause (2.0.7): not during a loading screen or the first
+                -- seconds after it (FDJ.PauseArrowLookup puts the model away).
+                -- portraitretry (2.0.18): a look another page already learned
+                -- (saved) is used at once; a lookup that gave up is tried again
+                -- half a minute later instead of never.
+                if npcID and FDJ.arrowDisplayIDs[npcID] == nil and type(ForeverDungeonJournalDB) == "table"
+                    and type(ForeverDungeonJournalDB.displayIDs) == "table"
+                    and tonumber(ForeverDungeonJournalDB.displayIDs[npcID]) then
+                    FDJ.arrowDisplayIDs[npcID] = tonumber(ForeverDungeonJournalDB.displayIDs[npcID])
+                    f.fdjNpcUnit, f.fdjNpcAt = nil, nil
+                end
+                if npcID and FDJ.arrowDisplayIDs[npcID] == false and FDJ.arrowDisplayRetry
+                    and ((GetTime and GetTime()) or 0) >= (FDJ.arrowDisplayRetry[npcID] or math.huge) then
+                    FDJ.arrowDisplayIDs[npcID], FDJ.arrowDisplayRetry[npcID] = nil, nil
+                end
+                if npcID and FDJ.arrowDisplayIDs[npcID] == nil and type(SetPortraitTextureFromCreatureDisplayID) == "function"
+                    and not (FDJ.LookupsPaused and FDJ.LookupsPaused()) then
+                    local now = (GetTime and GetTime()) or 0
+                    if f.fdjResolving ~= npcID then
+                        f.fdjResolving, f.fdjResolveAt, f.fdjResolveTries = npcID, now, 1
+                        if not f.model then
+                            local okM, model = pcall(CreateFrame, "PlayerModel", nil, UIParent)
+                            if okM and model then
+                                model:SetSize(1, 1)
+                                model:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+                                model:SetAlpha(0)
+                                f.model = model
+                                FDJ.arrowLookupFrame = f
+                            end
+                        end
+                        if f.model then
+                            f.model:Show()
+                            if f.model.ClearModel then pcall(f.model.ClearModel, f.model) end
+                            if not pcall(f.model.SetCreature, f.model, npcID) then FDJ.arrowDisplayIDs[npcID] = false end
+                        else
+                            FDJ.arrowDisplayIDs[npcID] = false
+                        end
+                    elseif f.model then
+                        local okD, display = pcall(f.model.GetDisplayInfo, f.model)
+                        if okD and type(display) == "number" and display > 0 then
+                            FDJ.arrowDisplayIDs[npcID] = display
+                            f.fdjResolving, f.fdjNpcUnit, f.fdjNpcAt = nil, nil, nil
+                            if type(ForeverDungeonJournalDB) == "table" then -- portraitretry: kept for next time
+                                ForeverDungeonJournalDB.displayIDs = ForeverDungeonJournalDB.displayIDs or {}
+                                ForeverDungeonJournalDB.displayIDs[npcID] = display
+                            end
+                            if f.model.ClearModel then pcall(f.model.ClearModel, f.model) end
+                            f.model:Hide()
+                        elseif now - (f.fdjResolveAt or now) >= 2.5 then
+                            -- portraitretry (2.0.18): ask again, as the trash mob
+                            -- portraits do: an NPC this client has not met comes
+                            -- in a moment after the server answers, and one ask
+                            -- was never answered. 12 asks, then the mark for
+                            -- half a minute and the asking starts over.
+                            f.fdjResolveTries = (f.fdjResolveTries or 1) + 1
+                            f.fdjResolveAt = now
+                            local asked = false
+                            if f.fdjResolveTries <= 12 then
+                                if f.model.ClearModel then pcall(f.model.ClearModel, f.model) end
+                                asked = pcall(f.model.SetCreature, f.model, npcID)
+                            end
+                            if not asked then
+                                FDJ.arrowDisplayIDs[npcID] = false -- the mark meanwhile
+                                FDJ.arrowDisplayRetry = FDJ.arrowDisplayRetry or {}
+                                FDJ.arrowDisplayRetry[npcID] = now + 30
+                                f.fdjResolving = nil
+                                f.model:Hide()
+                            end
+                        end
+                    end
+                end
+            end
+            if on then
+                local now = (GetTime and GetTime()) or 0
+                if not f.fdjNpcAt or now - f.fdjNpcAt >= 0.5 then
+                    f.fdjNpcAt = now
+                    local name = NPC(entry.spot)
+                    local unit
+                    local function Is(token)
+                        if type(token) ~= "string" or type(UnitExists) ~= "function" then return false end
+                        local okE, exists = pcall(UnitExists, token)
+                        if not okE or not exists then return false end
+                        local okN, unitName = pcall(UnitName, token)
+                        if not okN or type(unitName) ~= "string" then return false end
+                        if type(issecretvalue) == "function" and issecretvalue(unitName) then return false end
+                        return unitName == name
+                    end
+                    if name then
+                        if Is("target") then unit = "target" elseif Is("mouseover") then unit = "mouseover" end
+                        if not unit and C_NamePlate and type(C_NamePlate.GetNamePlates) == "function" then
+                            local okP, plates = pcall(C_NamePlate.GetNamePlates)
+                            for _, plate in ipairs(okP and type(plates) == "table" and plates or {}) do
+                                local token = plate and plate.namePlateUnitToken
+                                if Is(token) then unit = token break end
+                            end
+                        end
+                    end
+                    local npcID = name and FDJ.ARROW_NPC_IDS and FDJ.ARROW_NPC_IDS[name]
+                    local display = npcID and FDJ.arrowDisplayIDs and FDJ.arrowDisplayIDs[npcID] or nil
+                    local key = unit or (display and ("display" .. display)) or "none"
+                    if key ~= f.fdjNpcUnit or unit then
+                        f.fdjNpcUnit = key
+                        local drawn = false
+                        if unit and type(SetPortraitTexture) == "function" then
+                            f.npc:SetTexCoord(0, 1, 0, 1)
+                            drawn = pcall(SetPortraitTexture, f.npc, unit)
+                        end
+                        if not drawn and display then -- portraitfirst
+                            f.npc:SetTexCoord(0, 1, 0, 1)
+                            drawn = pcall(SetPortraitTextureFromCreatureDisplayID, f.npc, display)
+                        end
+                        if not drawn then
+                            local index = entry.spot.raidMarkIndex or RaidMarkIndexForTarget(entry.spot)
+                            if tonumber(index) then
+                                f.npc:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_" .. tonumber(index))
+                            else
+                                f.npc:SetTexture("Interface\\CharacterFrame\\TempPortrait")
+                            end
+                            f.npc:SetTexCoord(0, 1, 0, 1)
+                        end
+                    end
+                end
+            end
+        end
         if hide then return end
         local doing = Doing(plan)
         -- way: the hearthstone, when it is the quicker way: a line of its
@@ -3540,11 +3847,15 @@ do
             f.distance:SetText(FDJ.L("ARROW_DISTANCE", math.floor(distance + 0.5)))
             local step = (below and FDJ.L("ARROW_BELOW")) or (above and FDJ.L("ARROW_ABOVE")) or doing
             if step == "" and hearth ~= "" then step, hearth = "|cff8fd0ff" .. hearth .. "|r", "" end
+            -- getto (2.0.22): the place to get to, on its own line under the
+            -- yards, the next step (if any) under it.
+            local getTo = Way.GetTo(entry)
+            if getTo ~= "" then step = (step ~= "" and (getTo .. "\n" .. step)) or getTo end
             f.route:SetText(step)
             f.hearth:SetText(hearth)
         else
             f.distance:SetText(entry.zone)
-            f.route:SetText("")
+            f.route:SetText(Way.GetTo(entry)) -- getto (2.0.22)
             f.hearth:SetText("")
         end
         if turn then
@@ -3605,6 +3916,21 @@ do
         f.title:SetPoint("TOP", f.arrow, "BOTTOM", 0, -1)
         f.distance = f:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlightSmall")
         f.distance:SetPoint("TOP", f.title, "BOTTOM", 0, -2)
+        -- npcicon (2.0.13): the NPC in reach of a click: in place of the !
+        -- or ?, the NPC's own picture (once the game shows the unit: target,
+        -- mouseover or nameplate), else the mark the click puts on it.
+        f.npc = f:CreateTexture(nil, "OVERLAY")
+        f.npc:SetSize(32, 32) -- npcbig (2.0.16): was 22
+        f.npc:SetPoint("RIGHT", f.title, "LEFT", -3, 0)
+        f.npc:Hide()
+        -- npchover (2.0.16): the soft glow the journal's round icons get under
+        -- the mouse (the Onyxia and Sleeping Bag icons), over the NPC's picture.
+        f.npcHl = f:CreateTexture(nil, "OVERLAY", nil, 7)
+        f.npcHl:SetTexture("Interface\\CharacterFrame\\TempPortraitAlphaMask")
+        f.npcHl:SetBlendMode("ADD")
+        f.npcHl:SetAlpha(0.25)
+        f.npcHl:SetAllPoints(f.npc)
+        f.npcHl:Hide()
         f.route = f:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlightSmall")
         f.route:SetPoint("TOP", f.distance, "BOTTOM", 0, -2)
         -- way: "Hearth to Auberdine", in the hearthstone's blue.
@@ -3633,7 +3959,9 @@ do
                 ShowOnMap(shown)
             end
         end)
-        f:SetScript("OnEnter", function(self)
+        -- The arrow's tooltip (its spot, the quest, what a click does, move,
+        -- right-click to hide).
+        local function ShowTip(self)
             local entry = shown
             if not entry then return end
             GameTooltip:SetOwner(self, "ANCHOR_BOTTOM")
@@ -3650,9 +3978,55 @@ do
             GameTooltip:AddLine(FDJ.L("ARROW_TIP_MOVE"), 0.55, 0.55, 0.55)
             GameTooltip:AddLine(FDJ.L("ARROW_TIP_HIDE"), 0.55, 0.55, 0.55)
             GameTooltip:Show()
+        end
+        -- npchover (2.0.17): is the mouse on the NPC's picture itself (not the
+        -- arrow, not the name)?
+        local function OnPicture(self)
+            local pic = self.npc
+            if not (self.fdjNpcOn and pic and pic:IsShown()) or type(GetCursorPosition) ~= "function" then return false end
+            local l, r, t, b = pic:GetLeft(), pic:GetRight(), pic:GetTop(), pic:GetBottom()
+            if not (l and r and t and b) then return false end
+            local x, y = GetCursorPosition()
+            local scale = (self.GetEffectiveScale and self:GetEffectiveScale()) or 1
+            if not (x and y) or scale <= 0 then return false end
+            x, y = x / scale, y / scale
+            return x >= l - 1 and x <= r + 1 and y >= b - 1 and y <= t + 1
+        end
+        -- npchover (2.0.17): the glow only on the NPC's picture (no tooltip
+        -- there: a click targets and marks); the arrow and the name keep the
+        -- arrow's tooltip (right-click to hide, ...). Checked every frame
+        -- while the mouse is on the arrow.
+        local function Hover(self)
+            local want
+            if not self.fdjMouseIn or self.fdjHidden or not shown then
+                want = "none"
+            elseif OnPicture(self) then
+                want = "picture"
+            else
+                want = "tip"
+            end
+            if want == self.fdjHoverState then return end
+            self.fdjHoverState = want
+            if self.npcHl then self.npcHl:SetShown(want == "picture") end
+            if want == "tip" then
+                ShowTip(self)
+            elseif GameTooltip:GetOwner() == self then
+                GameTooltip:Hide()
+            end
+        end
+        f:SetScript("OnEnter", function(self)
+            self.fdjMouseIn = true
+            self.fdjHoverState = nil
+            Hover(self)
         end)
-        f:SetScript("OnLeave", function() GameTooltip:Hide() end)
+        f:SetScript("OnLeave", function(self)
+            self.fdjMouseIn = nil
+            self.fdjHoverState = nil
+            if self.npcHl then self.npcHl:Hide() end
+            GameTooltip:Hide()
+        end)
         f:SetScript("OnUpdate", function(self, elapsed)
+            if self.fdjMouseIn then Hover(self) end
             self.fdjWait = (self.fdjWait or 0) - (elapsed or 0)
             if self.fdjWait > 0 then return end
             self.fdjWait = STEP
@@ -3683,12 +4057,20 @@ do
         -- in its tooltip.
         local quest = QuestName(pick.spot)
         local mark = ""
-        if pick.spot.turnIn then
+        -- repeaticon (2.0.44): the arrow to a repeatable quest: the blue ?
+        local repeatOnly = FDJ.IsRepeatableQuest ~= nil and pick.spot.fdjAutoQuest ~= nil
+            and FDJ.IsRepeatableQuest(pick.spot.fdjAutoQuest)
+        if repeatOnly and (pick.spot.turnIn or quest) then
+            mark = "|T" .. FDJ.REPEATABLE_QUEST_TEXTURE .. ":0|t "
+        elseif pick.spot.turnIn then
             mark = "|TInterface\\GossipFrame\\ActiveQuestIcon:0|t "
         elseif quest then
             mark = "|TInterface\\GossipFrame\\AvailableQuestIcon:0|t "
         end
-        f.title:SetText(mark .. (quest or SpotName(pick.spot)))
+        f.fdjMark, f.fdjName = mark, (quest or SpotName(pick.spot))
+        f.fdjNpcOn, f.fdjNpcUnit, f.fdjNpcAt = nil, nil, nil
+        if f.npc then f.npc:Hide() end
+        f.title:SetText(mark .. f.fdjName)
         pick.zone = pick.zone or ZoneName(pick.spot.mapID)
         pick.plan, pick.plannedAt, pick.plannedX, pick.plannedY = nil, nil, nil, nil
         f.fdjWait, f.fdjNear = 0, nil
@@ -3754,5 +4136,27 @@ do
     function FDJ.WaypointArrowTarget()
         return shown and shown.spot or nil, shown and shown.source or nil
     end
+
+    -- Where the arrow leads right now (world yards) and, on the way round
+    -- something, that point's label (2.0.12; for tests and /dj debugging).
+    function FDJ.WaypointArrowAim()
+        local plan = shown and shown.plan
+        if not plan then return nil end
+        return plan.x, plan.y, plan.via and plan.via.label or nil
+    end
+    -- A route switched on again: its arrow comes back if it was hidden.
+    function FDJ.ResetWaypointDone(source)
+        if source ~= nil then Done()[source] = nil end
+    end
 end
 -- END arrow
+
+-- loadpause (2.0.7): a loading screen starts: the arrow's hidden NPC model
+-- is put away; the lookup starts over a few seconds after arriving.
+function FDJ.PauseArrowLookup()
+    local f = FDJ.arrowLookupFrame
+    if not (f and f.model) then return end
+    if f.model.ClearModel then pcall(f.model.ClearModel, f.model) end
+    f.model:Hide()
+    f.fdjResolving = nil
+end

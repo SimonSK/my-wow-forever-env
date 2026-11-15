@@ -88,6 +88,22 @@ local function IsCloak(item)
     local first = slot:match("^%s*([^,]+)")
     return first ~= nil and first:gsub("%s+$", "") == "Back"
 end
+-- untypedarmor (2.0.12): an armor piece the data gives no armor type
+-- ("Head" for Blindwatcher's Sight) counts as every type: whichever armor
+-- type is ticked, it shows. (Before, with Cloak / Ring / Neck / Trinket
+-- ticked too, it was left out; reported on Discord by oviar.)
+local ARMOR_SLOTS = { Head = true, Shoulder = true, Chest = true, Wrist = true, Hands = true, Waist = true, Legs = true, Feet = true }
+local function UntypedArmor(item)
+    local slot = type(item) == "table" and item[3]
+    if type(slot) ~= "string" then return false end
+    local first, kind = slot:match("^%s*([^,]+),?%s*(.*)$")
+    first = first and first:gsub("%s+$", "")
+    return first ~= nil and ARMOR_SLOTS[first] == true and (kind == nil or kind:match("^%s*$") ~= nil)
+end
+local function AnyArmorTypeTicked(t)
+    for _, key in ipairs(ARMOR_TYPES) do if t[key] then return true end end
+    return false
+end
 local function ArmorType(item)
     local slot = type(item) == "table" and item[3]
     if type(slot) ~= "string" then return nil end
@@ -379,6 +395,81 @@ local function StatInText(stat, lines)
     return false
 end
 
+-- statsapi (2.0.11): the stats past the five primary ones are matched on the
+-- English tooltip wording above, which only an English game client shows: on
+-- a Chinese, German, French... client Healing, Spell Damage, Attack Power,
+-- Critical Strike, Hit, Defense, MP5 and HP5 found nothing (reported on
+-- Discord by Sunday, zhTW). There they are read from the game's own item
+-- stats instead (C_Item.GetItemStats: names like
+-- ITEM_MOD_SPELL_HEALING_DONE_SHORT, the same in every language; checked on
+-- the Forever client with Deep Ritual Girdle: healing 16, spell damage 6).
+-- English clients: unchanged, the tooltip wording only.
+local function EnglishClient()
+    local locale = GetLocale and GetLocale() or "enUS"
+    return locale == "enUS" or locale == "enGB"
+end
+local statCache = {}
+local function ClientStats(itemID)
+    if statCache[itemID] then return statCache[itemID] end
+    local fn = (C_Item and C_Item.GetItemStats) or GetItemStats
+    if type(fn) ~= "function" then return nil end
+    local ok, stats = pcall(fn, "item:" .. itemID)
+    if not ok or type(stats) ~= "table" or next(stats) == nil then return nil end -- not loaded yet
+    local plain = {}
+    for key, value in pairs(stats) do
+        if type(key) == "string" and type(value) == "number" then plain[key] = value end
+    end
+    statCache[itemID] = plain
+    return plain
+end
+-- The total of every stat whose name holds one of the words.
+local function StatSum(stats, ...)
+    local total = 0
+    for key, value in pairs(stats) do
+        for i = 1, select("#", ...) do
+            if key:find((select(i, ...)), 1, true) then total = total + value break end
+        end
+    end
+    return total
+end
+-- As the English wording counts them: Healing only when healing leads ("Increases
+-- healing done by up to 16 and damage done by up to 6"); "damage and healing
+-- done" (both the same) is Spell Damage.
+-- schoolstats (2.0.13): one school's damage is a stat of its own
+-- (ITEM_MOD_FIRE_DAMAGE_DONE_SHORT=9 on Flamestarter's Signet, HOLY_ on
+-- Heartflame Gauntlets, ARCANE_ on Sparklance Wand; checked on the Forever
+-- client): it counts as Spell Damage, and the schools picked under Spell
+-- Damage's arrow are matched on it.
+local SCHOOL_STAT = {
+    FIRE = "FIRE_DAMAGE_DONE", FROST = "FROST_DAMAGE_DONE", NATURE = "NATURE_DAMAGE_DONE",
+    SHADOW = "SHADOW_DAMAGE_DONE", ARCANE = "ARCANE_DAMAGE_DONE", HOLY = "HOLY_DAMAGE_DONE",
+}
+local function SpellFromGame(s)
+    -- Schools picked: only "+X <school> damage" of those schools (as in English).
+    if schoolsWanted then
+        for school, on in pairs(schoolsWanted) do
+            if on and SCHOOL_STAT[school] and StatSum(s, SCHOOL_STAT[school]) > 0 then return true end
+        end
+        return false
+    end
+    local dmg = StatSum(s, "SPELL_DAMAGE", "SPELL_POWER")
+    if dmg > 0 and dmg >= StatSum(s, "HEALING") then return true end
+    for _, key in pairs(SCHOOL_STAT) do
+        if StatSum(s, key) > 0 then return true end
+    end
+    return false
+end
+local STAT_FROM_GAME = {
+    HEAL = function(s) local heal = StatSum(s, "HEALING") return heal > 0 and heal > StatSum(s, "SPELL_DAMAGE", "SPELL_POWER") end,
+    SPELL = SpellFromGame,
+    AP = function(s) return StatSum(s, "ATTACK_POWER") > 0 end,
+    CRIT = function(s) return StatSum(s, "_CRIT") > 0 end,
+    HIT = function(s) return StatSum(s, "_HIT_") > 0 end,
+    DEF = function(s) return StatSum(s, "DEFENSE") > 0 end,
+    MP5 = function(s) return StatSum(s, "MANA_REGEN", "POWER_REGEN0") > 0 end,
+    HP5 = function(s) return StatSum(s, "HEALTH_REGEN") > 0 end,
+}
+
 -- kroldok: an item whose ID is not known yet is matched on the stats the
 -- game showed for it (its tip lines in the data).
 local function TipText(item)
@@ -410,10 +501,16 @@ local function HasAnyStat(item, wanted, matchAll)
     end
     local schools = Settings().schools
     schoolsWanted = (schools and next(schools)) and schools or nil
+    -- statsapi: the game's own stats, on a client in another language.
+    local gameStats = (id and id > 0 and not EnglishClient()) and ClientStats(id) or nil
     local found = false
     for _, stat in ipairs(STATS) do
         if wanted[stat.key] then
-            if StatInText(stat, text) then
+            local has = StatInText(stat, text)
+            if not has and gameStats and STAT_FROM_GAME[stat.key] then
+                has = STAT_FROM_GAME[stat.key](gameStats)
+            end
+            if has then
                 if not matchAll then return true end
                 found = true
             elseif matchAll then
@@ -478,6 +575,84 @@ end
 -- Instead of repeating the same recipes on every boss, each dungeon whose
 -- bosses drop recipes gets one extra entry at the end of its boss list that
 -- holds each recipe once, with the portraits of the bosses that drop it.
+-- uniquefirst (2.0.29): a recipe that drops in its own dungeon, not one of
+-- the Forever sets found everywhere: the old game's recipes (item IDs below
+-- 250000), and Forever's own one-offs listed here.
+FDJ.UNIQUE_RECIPES = FDJ.UNIQUE_RECIPES or {
+    [252893] = true, -- Pattern: Timbermaw Tunic (Blackmaw Hold)
+    [251453] = true, -- Plans: Breastplate of Salvation (Blackmaw Hold)
+    [274049] = true, -- Schematic: 9-60 Battery Pack (Gnomeregan, 2.0.35)
+    [251451] = true, -- Plans: Stalwart Helm (Lower Blackrock Spire, Bloodaxe Veteran; 2.0.7)
+    [252940] = true, -- Pattern: Pristine Scorpid Leggings (Scholomance, Spectral Researcher; 2.0.7)
+}
+function FDJ.IsUniqueRecipe(itemID)
+    itemID = tonumber(itemID)
+    if not itemID then return false end
+    return itemID < 250000 or FDJ.UNIQUE_RECIPES[itemID] == true
+end
+
+-- crowdedrecipes (2.0.7): a Recipes & Patterns page holding many of the
+-- Forever recipe sets that drop all over (10 or more: the gloves, boots,
+-- cords, helms...) draws no portraits: the same faces on every row, up to
+-- 180 of them on one page, and each drawn live. Like Dire Maul: North, it
+-- goes to two columns when long, with the bosses on the row and in its
+-- tooltip ("Drops from"). Epic recipes keep their bosses' portraits.
+-- Pages of a dungeon's own recipes (Blackrock Depths...) are unchanged.
+FDJ.CROWDED_RECIPE_PAGE = 10
+function FDJ.IsCrowdedRecipePage(boss)
+    if type(boss) ~= "table" or not boss.recipeTab or type(boss.loot) ~= "table" then return false end
+    if boss.fdjCrowded == nil then
+        local shared = 0
+        for _, item in ipairs(boss.loot) do
+            if type(item) == "table" and not FDJ.IsUniqueRecipe(item[1]) then shared = shared + 1 end
+        end
+        boss.fdjCrowded = shared >= FDJ.CROWDED_RECIPE_PAGE
+    end
+    return boss.fdjCrowded
+end
+function FDJ.RecipeRowKeepsPortrait(item)
+    return type(item) == "table" and (tonumber(item[4]) or 0) >= 4
+end
+
+-- recipeprof (2.0.7): the professions a Recipes & Patterns page holds, for
+-- the row of profession icons on its "N items" line (the game's own
+-- profession icons; a click shows that profession's recipes only). Only
+-- the professions the page has recipes of, and only when it has two or more.
+FDJ.RECIPE_PROF_ORDER = { "Alchemy", "Blacksmithing", "Enchanting", "Engineering", "Leatherworking", "Tailoring", "Cooking", "First Aid", "Fishing", "Mining", "Herbalism", "Skinning" }
+FDJ.RECIPE_PROF_ICONS = {
+    ["Alchemy"] = "Interface\\Icons\\Trade_Alchemy",
+    ["Blacksmithing"] = "Interface\\Icons\\Trade_BlackSmithing",
+    ["Enchanting"] = "Interface\\Icons\\Trade_Engraving",
+    ["Engineering"] = "Interface\\Icons\\Trade_Engineering",
+    ["Leatherworking"] = "Interface\\Icons\\Trade_LeatherWorking",
+    ["Tailoring"] = "Interface\\Icons\\Trade_Tailoring",
+    ["Cooking"] = "Interface\\Icons\\INV_Misc_Food_15",
+    ["First Aid"] = "Interface\\Icons\\Spell_Holy_SealOfSacrifice",
+    ["Fishing"] = "Interface\\Icons\\Trade_Fishing",
+    ["Mining"] = "Interface\\Icons\\Trade_Mining",
+    ["Herbalism"] = "Interface\\Icons\\Trade_Herbalism",
+    ["Skinning"] = "Interface\\Icons\\INV_Misc_Pelt_Wolf_01",
+}
+function FDJ.RecipeProfession(item)
+    local kind = type(item) == "table" and item[3]
+    return type(kind) == "string" and kind:match("^Recipe,%s*(.+)$") or nil
+end
+function FDJ.RecipeTabProfessions(tab)
+    if type(tab) ~= "table" or not tab.recipeTab or type(tab.loot) ~= "table" then return nil end
+    if not tab.fdjProfs then
+        local has, list = {}, {}
+        for _, item in ipairs(tab.loot) do
+            local prof = FDJ.RecipeProfession(item)
+            if prof and FDJ.RECIPE_PROF_ICONS[prof] then has[prof] = true end
+        end
+        for _, prof in ipairs(FDJ.RECIPE_PROF_ORDER) do
+            if has[prof] then list[#list + 1] = prof end
+        end
+        tab.fdjProfs = { has = has, list = list }
+    end
+    return tab.fdjProfs
+end
+
 FDJ.RECIPE_TAB_NAME = "Recipes & Patterns"
 do
     for dungeonName, dungeon in pairs(FDJ.DB or {}) do
@@ -522,6 +697,20 @@ do
                     end
                 end
             end
+            -- uniquefirst (2.0.29): the dungeon's own recipes (Green Dragonscale
+            -- Leggings, Dark Iron Plate...) at the top, above the usual Forever
+            -- sets that drop all over (the Filigreed, Silvered, Leather ...
+            -- patterns): each group keeps its order.
+            if #order > 1 then
+                local mine, shared = {}, {}
+                for _, entry in ipairs(order) do
+                    if FDJ.IsUniqueRecipe(entry[1]) then mine[#mine + 1] = entry else shared[#shared + 1] = entry end
+                end
+                if #mine > 0 and #shared > 0 then
+                    for _, entry in ipairs(shared) do mine[#mine + 1] = entry end
+                    order = mine
+                end
+            end
             if #order > 0 then
                 dungeon.bosses[#dungeon.bosses + 1] = { name = FDJ.RECIPE_TAB_NAME, trash = true, recipeTab = true, loot = order }
             end
@@ -560,6 +749,7 @@ function FDJ.FilterBossLoot(boss)
                     if jewel then
                         if not armor[jewel] then keep = false end
                     elseif not itemArmor
+                        and not (UntypedArmor(item) and AnyArmorTypeTicked(armor)) -- untypedarmor
                         and not (weapons and WeaponType(item)) then
                         keep = false
                     end
@@ -569,7 +759,8 @@ function FDJ.FilterBossLoot(boss)
                 local itemWeapon = WeaponType(item)
                 if itemWeapon then
                     if not weapons[itemWeapon] then keep = false end
-                elseif not (armor and (ArmorType(item) or IsCloak(item) or armor[JewelryType(item) or ""])) then
+                elseif not (armor and (ArmorType(item) or IsCloak(item) or armor[JewelryType(item) or ""]
+                    or (UntypedArmor(item) and AnyArmorTypeTicked(armor)))) then -- untypedarmor
                     keep = false
                 end
             end
@@ -1679,7 +1870,9 @@ local function BuildPage()
         local dungeon = FDJ.DB and FDJ.DB[dungeonName]
         if FDJ.IsDungeonLocked and FDJ.IsDungeonLocked(dungeonName) then dungeon = nil end
         for _, boss in ipairs((dungeon and dungeon.bosses) or {}) do
-            local shown = FDJ.FilterBossLoot(boss).loot or {}
+            -- altarbosses (2.0.24): a group's children drop what the group
+            -- lists; the group is listed once, not each child again.
+            local shown = (not boss.childOf) and (FDJ.FilterBossLoot(boss).loot or {}) or {}
             if recipesOnly then
                 -- Only "Show recipe drops" is ticked: list the recipes alone.
                 local recipes = {}
@@ -1870,18 +2063,221 @@ end
 -- On a Trash Drops row, the mobs that drop the item are drawn as small
 -- portraits on the right; hovering one shows its name. Returns true when the
 -- portraits replace the source text (every named mob has a known portrait).
-function FDJ.SetRowMobs(row, sourceText)
-    row.fdjMobButtons = row.fdjMobButtons or {}
+-- The mobs a row's source names, when every one of them has a portrait
+-- (else none: the row keeps the names as text).
+function FDJ.RowMobNames(sourceText)
     local names = {}
     if type(sourceText) == "string" and FDJ.TRASH_MOB_DISPLAY_IDS and type(SetPortraitTextureFromCreatureDisplayID) == "function" then
         for name in (sourceText .. " / "):gmatch("(.-) / ") do
             name = name:gsub("^%s+", ""):gsub("%s+$", "")
             if name ~= "" then
-                if not FDJ.TRASH_MOB_DISPLAY_IDS[name] then names = {} break end
+                if not FDJ.TRASH_MOB_DISPLAY_IDS[name]
+                    and not (FDJ.TRASH_MOB_NPC_IDS and FDJ.TRASH_MOB_NPC_IDS[name]) then return {} end
                 names[#names + 1] = name
             end
         end
     end
+    return names
+end
+
+-- moborder (2.0.25; 2.0.24 gave each mob a fixed column, which left gaps):
+-- rows stay packed to the right, but the mobs keep one order across the
+-- page: the mob on the most rows rightmost, then the next, and so on (ties:
+-- the one met first). (The 2.0.25 hover glow across rows went in 2.0.26.)
+function FDJ.PlanMobSlots(loot)
+    FDJ.mobSlots = nil
+    if type(loot) ~= "table" then return end
+    local count, first, order = {}, {}, {}
+    for index, item in ipairs(loot) do
+        for at, name in ipairs(FDJ.RowMobNames(type(item) == "table" and item[5] or nil)) do
+            if not count[name] then
+                count[name], first[name] = 0, index * 100 + at -- ties: met first, then as written
+                order[#order + 1] = name
+            end
+            count[name] = count[name] + 1
+        end
+    end
+    if #order == 0 then return end
+    table.sort(order, function(x, y)
+        if count[x] ~= count[y] then return count[x] > count[y] end
+        return first[x] < first[y]
+    end)
+    local rank = {}
+    for i, name in ipairs(order) do rank[name] = i end
+    FDJ.mobSlots = { rank = rank }
+end
+
+-- mobfast (2.0.31): the looks of trash mobs known by NPC ID only, found
+-- all at once instead of one after another behind the bosses: a hidden
+-- model of each NPC tells its display, which is saved with the journal's
+-- other portraits (ForeverDungeonJournalDB.displayIDs), so after the first
+-- time they are drawn at once. Started a few seconds after logging in and
+-- again when a page shows them; a portrait waiting for one is drawn the
+-- moment it is found.
+FDJ.mobLooks = FDJ.mobLooks or { pending = {}, waiting = {}, models = {} }
+-- loadpause (2.0.7): a few looked up at a time, not all of them at once, and
+-- none during a loading screen (FDJ.LookupsPaused, Core/Journal.lua).
+local LOOKS_AT_ONCE = 4
+-- mobmiss (2.0.7): mobs whose look the game didn't give after every try
+-- are remembered (ForeverDungeonJournalDB.displayMiss, NPC ID -> when), so
+-- the lookups after logging in skip them for a week instead of trying them
+-- again at every login (hidden models for minutes after each login and
+-- zoning). Opening a page that shows one still tries it, and a mob found
+-- later is taken off the list.
+local MISS_DAYS = 7
+local function MissStore()
+    if type(ForeverDungeonJournalDB) ~= "table" then return nil end
+    if type(ForeverDungeonJournalDB.displayMiss) ~= "table" then ForeverDungeonJournalDB.displayMiss = {} end
+    return ForeverDungeonJournalDB.displayMiss
+end
+local function NowSeconds()
+    return (GetServerTime and GetServerTime()) or (time and time()) or 0
+end
+function FDJ.MobRecentlyMissed(npcID)
+    local store = MissStore()
+    local at = store and tonumber(store[npcID])
+    return at ~= nil and NowSeconds() - at < MISS_DAYS * 86400
+end
+function FDJ.MobDisplay(npcID)
+    local saved = type(ForeverDungeonJournalDB) == "table" and type(ForeverDungeonJournalDB.displayIDs) == "table"
+        and ForeverDungeonJournalDB.displayIDs[npcID]
+    return type(saved) == "number" and saved > 0 and saved or nil
+end
+function FDJ.DrawMobPortrait(texture, displayID)
+    local okPortrait, shown = false, false
+    if FDJ.AcquirePortrait then okPortrait, shown = pcall(FDJ.AcquirePortrait, texture, displayID) end
+    if not (okPortrait and shown) and type(SetPortraitTextureFromCreatureDisplayID) == "function" then
+        pcall(SetPortraitTextureFromCreatureDisplayID, texture, displayID)
+    end
+    texture:SetVertexColor(1, 1, 1, 1)
+end
+function FDJ.ResolveMobDisplays(npcIDs)
+    local looks = FDJ.mobLooks
+    if type(CreateFrame) ~= "function" then return end
+    local now = (GetTime and GetTime()) or 0
+    for _, npcID in ipairs(npcIDs or {}) do
+        if type(npcID) == "number" and not FDJ.MobDisplay(npcID) and not looks.pending[npcID] then
+            looks.pending[npcID] = { tries = 0, at = now - 10 }
+        end
+    end
+    if not next(looks.pending) then return end
+    if not looks.driver then
+        looks.driver = CreateFrame("Frame")
+        looks.driver:SetScript("OnUpdate", function(self)
+            if FDJ.portraitZoning then return end
+            if FDJ.LookupsPaused and FDJ.LookupsPaused() then return end -- loadpause (2.0.7)
+            -- journalopen (2.0.7): only while the journal window is open (the
+            -- page that asked is on screen); closed, the hidden models are put
+            -- away and the mobs not found yet are asked again when it opens.
+            local journal = _G.ForeverDungeonJournalFrame
+            if not (journal and journal.IsShown and journal:IsShown()) then
+                if not looks.closedPause then looks.closedPause = true if FDJ.PauseMobLooks then FDJ.PauseMobLooks() end end
+                return
+            end
+            looks.closedPause = nil
+            local t = (GetTime and GetTime()) or 0
+            local busy, asking = false, 0
+            for _, job in pairs(looks.pending) do
+                if job.tries > 0 then asking = asking + 1 end
+            end
+            for npcID, job in pairs(looks.pending) do
+                busy = true
+                -- Not asked yet, and LOOKS_AT_ONCE already asking: its turn later.
+                if job.tries == 0 and asking >= LOOKS_AT_ONCE then
+                    -- waits
+                else
+                    if job.tries == 0 then asking = asking + 1 end
+                    local model = looks.models[npcID]
+                    if not model then
+                        local ok, made = pcall(CreateFrame, "PlayerModel", nil, UIParent)
+                        if ok and made then
+                            made:SetSize(1, 1)
+                            made:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+                            made:SetAlpha(0)
+                            looks.models[npcID] = made
+                            model = made
+                        end
+                    end
+                    if not model then
+                        looks.pending[npcID] = nil
+                    elseif t - job.at >= 2.5 then
+                        -- Ask (again): an NPC this client has not met comes in a
+                        -- moment after the server answers.
+                        job.tries, job.at = job.tries + 1, t
+                        if job.tries > 12 then
+                            looks.pending[npcID] = nil
+                            model:Hide()
+                            local store = MissStore() -- mobmiss (2.0.7)
+                            if store then store[npcID] = NowSeconds() end
+                        else
+                            model:Show()
+                            if model.ClearModel then pcall(model.ClearModel, model) end
+                            if not pcall(model.SetCreature, model, npcID) then looks.pending[npcID] = nil end
+                        end
+                    else
+                        local ok, display = pcall(model.GetDisplayInfo, model)
+                        if ok and type(display) == "number" and display > 0 then
+                            looks.pending[npcID] = nil
+                            if type(ForeverDungeonJournalDB) == "table" then
+                                ForeverDungeonJournalDB.displayIDs = ForeverDungeonJournalDB.displayIDs or {}
+                                ForeverDungeonJournalDB.displayIDs[npcID] = display
+                            end
+                            local store = MissStore() -- mobmiss (2.0.7): found after all
+                            if store then store[npcID] = nil end
+                            if model.ClearModel then pcall(model.ClearModel, model) end
+                            model:Hide()
+                            for button in pairs(looks.waiting) do
+                                if button.fdjMobNpc == npcID then
+                                    looks.waiting[button] = nil
+                                    FDJ.DrawMobPortrait(button.portrait, display)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            if not busy then self:Hide() end
+        end)
+    end
+    looks.driver:Show()
+end
+-- loadpause (2.0.7): a loading screen starts: the hidden models put away;
+-- the mobs not found yet are asked again a few seconds after arriving.
+function FDJ.PauseMobLooks()
+    local looks = FDJ.mobLooks
+    for npcID, model in pairs(looks.models) do
+        local job = looks.pending[npcID]
+        if job then job.at = 0 end
+        if model.ClearModel then pcall(model.ClearModel, model) end
+        model:Hide()
+    end
+end
+-- All of them, a few seconds after logging in (once a session).
+function FDJ.WarmMobDisplays()
+    if FDJ.mobLooks.warmed then return end
+    FDJ.mobLooks.warmed = true
+    local ids = {}
+    for _, npcID in pairs(FDJ.TRASH_MOB_NPC_IDS or {}) do
+        -- mobmiss (2.0.7): not the ones the game didn't give in the last week
+        if not FDJ.MobRecentlyMissed(npcID) then ids[#ids + 1] = npcID end
+    end
+    FDJ.ResolveMobDisplays(ids)
+end
+-- noinstance (2.0.7): no longer started by itself after logging in. With the
+-- 38 mobs 2.0.6 added (most never met by most characters) it kept hidden
+-- models busy for minutes after each login, and a loading screen in or out
+-- of a dungeon could then flicker for ever. A mob is now looked up when a
+-- page shows it (FDJ.SetRowMobs), outside dungeons only.
+
+function FDJ.SetRowMobs(row, sourceText)
+    row.fdjMobButtons = row.fdjMobButtons or {}
+    local names = FDJ.RowMobNames(sourceText)
+    local plan = FDJ.mobSlots
+    -- moborder: the page's order, its first mob rightmost.
+    if plan and plan.rank and #names > 1 then
+        table.sort(names, function(x, y) return (plan.rank[x] or 999) < (plan.rank[y] or 999) end)
+    end
+    row.fdjMobSpan = 0
     for i, name in ipairs(names) do
         local button = row.fdjMobButtons[i]
         if not button then
@@ -1899,22 +2295,49 @@ function FDJ.SetRowMobs(row, sourceText)
             row.fdjMobButtons[i] = button
         end
         button.fdjMobName = name
+        button.fdjMobNpc = nil
+        FDJ.mobLooks.waiting[button] = nil
         button:ClearAllPoints()
-        button:SetPoint("RIGHT", row, "RIGHT", -10 - (#names - i) * 38, 0)
+        -- moborder: packed to the right, in the page's order (no gaps); with
+        -- no page order, in the source's order as before.
+        local column = (plan and plan.rank) and (i - 1) or (#names - i)
+        button:SetPoint("RIGHT", row, "RIGHT", -10 - column * 38, 0)
+        if column + 1 > row.fdjMobSpan then row.fdjMobSpan = column + 1 end
         local mobDisplayID = FDJ.TRASH_MOB_DISPLAY_IDS[name]
-        -- Bundled picture, else the off-screen portrait pool like the bosses
-        -- (no black square while it loads; warmed after login).
-        local okPortrait, shown = false, false
-        if FDJ.AcquirePortrait then okPortrait, shown = pcall(FDJ.AcquirePortrait, button.portrait, mobDisplayID) end
-        if not (okPortrait and shown) then
-            pcall(SetPortraitTextureFromCreatureDisplayID, button.portrait, mobDisplayID)
+        if mobDisplayID then
+            -- Bundled picture, else the off-screen portrait pool like the bosses
+            -- (no black square while it loads; warmed after login).
+            local okPortrait, shown = false, false
+            if FDJ.AcquirePortrait then okPortrait, shown = pcall(FDJ.AcquirePortrait, button.portrait, mobDisplayID) end
+            if not (okPortrait and shown) then
+                pcall(SetPortraitTextureFromCreatureDisplayID, button.portrait, mobDisplayID)
+            end
+            button.portrait:SetVertexColor(1, 1, 1, 1)
+        else
+            -- trashnpc (2.0.22): known by NPC ID only. mobfast (2.0.31): its
+            -- look saved from an earlier lookup is drawn at once; else it is
+            -- looked up now (all of the page's together) and drawn the moment
+            -- it is found, a plain dark disc until then (no "?").
+            local npcID = FDJ.TRASH_MOB_NPC_IDS[name]
+            local display = FDJ.MobDisplay(npcID)
+            if display then
+                FDJ.DrawMobPortrait(button.portrait, display)
+            else
+                if FDJ.ReleasePortrait then pcall(FDJ.ReleasePortrait, button.portrait) end
+                button.portrait:SetTexture("Interface\\CharacterFrame\\TempPortraitAlphaMask")
+                button.portrait:SetTexCoord(0, 1, 0, 1)
+                button.portrait:SetVertexColor(0.08, 0.07, 0.06, 0.85)
+                button.fdjMobNpc = npcID
+                FDJ.mobLooks.waiting[button] = true
+                FDJ.ResolveMobDisplays({ npcID })
+            end
         end
         button:Show()
     end
     for i = #names + 1, #row.fdjMobButtons do row.fdjMobButtons[i]:Hide() end
     -- Keep the item name clear of the portraits.
     if row.name and row.name.SetPoint then
-        row.name:SetPoint("RIGHT", row, "RIGHT", -10 - #names * 38, 0)
+        row.name:SetPoint("RIGHT", row, "RIGHT", -10 - row.fdjMobSpan * 38, 0)
     end
     return #names > 0
 end

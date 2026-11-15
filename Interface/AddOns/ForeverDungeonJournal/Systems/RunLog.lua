@@ -170,7 +170,12 @@ local function Bosses(dungeon)
     c = { byNpc = {}, byName = {}, finalNpc = nil, finalNames = {} }
     local d = FDJ.DB and FDJ.DB[dungeon]
     for _, b in ipairs((d and d.bosses) or {}) do
-        if type(b) == "table" and not b.trash and not b.recipeTab and type(b.name) == "string" then
+        -- altarbosses (2.0.24): a journal group ("Altar Bosses") and its
+        -- children are not run bosses; their kills stay trash, as before.
+        -- felsteedoff (2.0.7): runLogHidden (the Shadowfang Keep horses):
+        -- no run boss either; their kills are trash.
+        if type(b) == "table" and not b.trash and not b.recipeTab and type(b.name) == "string"
+            and not b.childOf and not b.children and not b.runLogHidden then
             if b.npcID then c.byNpc[b.npcID] = b end
             local names = { b.name }
             if FDJ.LocalizeBossName then
@@ -178,15 +183,26 @@ local function Bosses(dungeon)
                 if ok and type(loc) == "string" then names[#names + 1] = loc end
             end
             for _, alias in ipairs(b.aliases or {}) do names[#names + 1] = alias end
-            -- bossnames: its name in the client's language, learned in the
-            -- game (units seen, the Encounter Journal). Kills told by name
-            -- only (the boss kill event, "dies" lines) match it too.
-            if b.npcID then
-                local acc = Account()
-                if type(acc.runLogNames[b.npcID]) == "string" then names[#names + 1] = acc.runLogNames[b.npcID] end
-                for alias in pairs(acc.runLogBossAliases[b.npcID] or {}) do names[#names + 1] = alias end
-            end
             for _, n in ipairs(names) do
+                local lower = Lower(n)
+                if lower and not c.byName[lower] then c.byName[lower] = b end
+            end
+        end
+    end
+    -- bossnames: its name in the client's language, learned in the game
+    -- (units seen, the Encounter Journal). Kills told by name only (the
+    -- boss kill event, "dies" lines) match it too. rendgyth (2.0.34): taken
+    -- after every boss's own names, so a learned name can never take
+    -- another boss's own name (Gyth had learned "Warchief Rend Blackhand"
+    -- from the encounter event and, coming first, took Rend's kills).
+    for _, b in ipairs((d and d.bosses) or {}) do
+        if type(b) == "table" and not b.trash and not b.recipeTab and type(b.name) == "string"
+            and not b.childOf and not b.children and not b.runLogHidden and b.npcID then
+            local acc = Account()
+            local learned = {}
+            if type(acc.runLogNames[b.npcID]) == "string" then learned[#learned + 1] = acc.runLogNames[b.npcID] end
+            for alias in pairs(acc.runLogBossAliases[b.npcID] or {}) do learned[#learned + 1] = alias end
+            for _, n in ipairs(learned) do
                 local lower = Lower(n)
                 if lower and not c.byName[lower] then c.byName[lower] = b end
             end
@@ -234,6 +250,63 @@ local function FightGroup(dungeon, name)
         end
     end
     return nil
+end
+
+-- ringoflaw (2.0.8): which of a fight's bosses a unit is, from what Forever
+-- still tells about it inside a dungeon, where names and IDs are hidden: its
+-- level and creature type (data: fightSig on each boss). nil when it could be
+-- more than one (Grizzle and Eviscerator are both level 54 humanoids).
+local CREATURE_TYPE_IDS = { Beast = 1, Undead = 6, Humanoid = 7 }
+local CREATURE_TYPE_NAMES = {
+    Beast = { "Beast", "Wildtier", "Bête", "Bestia", "Fera", "Животное", "야수", "野兽", "野獸" },
+    Undead = { "Undead", "Untoter", "Mort-vivant", "No-muerto", "Non Morto", "Morto-vivo", "Нежить", "언데드", "亡灵", "不死族" },
+    Humanoid = { "Humanoid", "Humanoïde", "Humanoide", "Umanoide", "Гуманоид", "인간형", "人型生物" },
+}
+local function TypeIs(name, id, want)
+    if type(id) == "number" and CREATURE_TYPE_IDS[want] then return id == CREATURE_TYPE_IDS[want] end
+    if type(name) ~= "string" then return false end
+    for _, n in ipairs(CREATURE_TYPE_NAMES[want] or {}) do
+        if Lower(n) == Lower(name) then return true end
+    end
+    return false
+end
+local function FightMemberOfUnit(dungeon, group, unit)
+    local d = dungeon and FDJ.DB and FDJ.DB[dungeon]
+    if not d or type(group) ~= "string" then return nil end
+    local okL, lvl = pcall(UnitLevel, unit)
+    lvl = okL and Plain(lvl) or nil
+    local okT, typeName, typeID = pcall(UnitCreatureType, unit)
+    typeName, typeID = okT and Plain(typeName) or nil, okT and Plain(typeID) or nil
+    if type(lvl) ~= "number" or (type(typeName) ~= "string" and type(typeID) ~= "number") then return nil end
+    local pick
+    for _, b in ipairs(d.bosses or {}) do
+        local sig = type(b) == "table" and b.fightGroup == group and b.fightSig
+        if type(sig) == "table" and sig.level == lvl and TypeIs(typeName, typeID, sig.type) then
+            if pick then return nil end
+            pick = b
+        end
+    end
+    return pick
+end
+-- A kill told under the fight's own name ("Ring of Law", the boss event):
+-- which of its bosses it was, from the dead target, else from the boss the
+-- fight was seen to bring.
+local function RefineFightKill(run, dungeon, k)
+    if not (k and k.b) then return end
+    local group, member = FightGroup(dungeon, k.b)
+    if not group or member then return end
+    local pick
+    local okD, dead = pcall(UnitIsDead, "target")
+    if okD and Plain(dead) then pick = FightMemberOfUnit(dungeon, group, "target") end
+    if not pick and run and run.groupPick and run.groupPick[group] then
+        for _, b in ipairs((FDJ.DB[dungeon] and FDJ.DB[dungeon].bosses) or {}) do
+            if type(b) == "table" and b.name == run.groupPick[group] and b.fightGroup == group then pick = b end
+        end
+    end
+    if pick then
+        k.b = pick.name
+        k.n = k.n or pick.npcID
+    end
 end
 
 local function IsFinal(dungeon, npc, name, boss)
@@ -792,7 +865,24 @@ function FDJ.RunLogEncounterName(id, name)
         insideDungeon = dungeon
         if current and not current.dungeon then current.dungeon = dungeon end
     end
-    if type(name) == "string" and name ~= "" and Lower(name) ~= Lower(bossName) then
+    -- rendgyth (2.0.34): not when the game's name is another boss's own
+    -- name here (the event's name and the journal's boss can differ).
+    local othersName = false
+    if type(name) == "string" and name ~= "" then
+        for _, b in ipairs(d.bosses or {}) do
+            if type(b) == "table" and type(b.name) == "string" and b.name ~= bossName then
+                if Lower(b.name) == Lower(name) then othersName = true break end
+                for _, alias in ipairs(b.aliases or {}) do
+                    if Lower(alias) == Lower(name) then othersName = true end
+                end
+                if FDJ.LocalizeBossName then
+                    local ok, loc = pcall(FDJ.LocalizeBossName, b.name)
+                    if ok and type(loc) == "string" and Lower(loc) == Lower(name) then othersName = true end
+                end
+            end
+        end
+    end
+    if not othersName and type(name) == "string" and name ~= "" and Lower(name) ~= Lower(bossName) then
         for _, b in ipairs(d.bosses or {}) do
             if type(b) == "table" and b.name == bossName then
                 if b.npcID and AddBossAlias(b.npcID, name) and FixBossKillsAll then FixBossKillsAll() end
@@ -801,6 +891,23 @@ function FDJ.RunLogEncounterName(id, name)
         end
     end
     return bossName
+end
+
+-- rendgyth (2.0.34): bosses an encounter's end counts besides its own
+-- (data: also = { ... }), each only if not already killed since you last
+-- came into the dungeon.
+function FDJ.RunLogEncounterAlso(id)
+    local hit = tonumber(id) and FDJ.RUNLOG_ENCOUNTERS and FDJ.RUNLOG_ENCOUNTERS[tonumber(id)]
+    return type(hit) == "table" and type(hit.also) == "table" and hit.also or nil
+end
+function FDJ.RunLogKilledThisVisit(run, bossName)
+    if not run or type(bossName) ~= "string" then return false end
+    local last = type(run.exits) == "table" and run.exits[#run.exits] or nil
+    local since = (last and last.t) or 0
+    for _, k in ipairs(run.kills or {}) do
+        if k.b == bossName and (k.t or 0) >= since then return true end
+    end
+    return false
 end
 
 -- resetsplit (2.0.3): a boss that died before you last left the dungeon dies
@@ -1102,6 +1209,17 @@ local function AddKill(guid, name, how)
             end
             if k.n and k.m then LearnName(k.n, k.m) end
             if not k.b then ClassifyKill(run, k) if k.b then SetKillTimes(run, k) end end
+            -- ringoflaw (2.0.8): the boss event of a fight ("Ring of Law"), which
+            -- is no boss's own name, came after the group's kill (PARTY_KILL,
+            -- hidden): it names that kill. Only a new kill was named before, so
+            -- the Ring of Law never counted.
+            if how == "boss" and not k.b and name then
+                k.b, k.wb = name, nil
+                RefineFightKill(run, dungeon, k)
+                SetKillTimes(run, k)
+            elseif how == "boss" and k.b then
+                RefineFightKill(run, dungeon, k)
+            end
             -- ruuzlu: the boss event ends a fight with partners
             if how == "boss" and boss and type(boss.killWith) == "table" and (k.wb == boss.name or k.b == boss.name) then
                 local waiting = k.wb == boss.name
@@ -1143,6 +1261,7 @@ local function AddKill(guid, name, how)
     if how == "party" and not npc and not name then kill.a = 1 end
     ClassifyKill(run, kill)
     if how == "boss" and not kill.b and name then kill.b = name kill.wb = nil end
+    if how == "boss" then RefineFightKill(run, dungeon, kill) end -- ringoflaw (2.0.8)
     if how == "boss" and boss and type(boss.killWith) == "table" and kill.b == boss.name then
         EventEndsFight(run, kill, boss) -- ruuzlu
     end
@@ -1307,6 +1426,22 @@ local function OnUnit(unit)
     local test = FDJ.RUNLOG_TEST_RARES and FDJ.RUNLOG_TEST_RARES[dungeon]
     local found = {}
     local boss = (npc or name) and BossFor(dungeon, npc, name)
+    -- ringoflaw (2.0.8): name and ID hidden (inside a Forever dungeon): a
+    -- unit the game flags as a boss whose level and type fit only one of a
+    -- fight's bosses is that boss. (The fight's waves before it are no boss.)
+    if not boss and not npc and not name and current and type(UnitIsBossMob) == "function" then
+        local okB, isBoss = pcall(UnitIsBossMob, unit)
+        if okB and Plain(isBoss) == true then
+            local seenGroup = {}
+            for _, b in ipairs((FDJ.DB[dungeon] and FDJ.DB[dungeon].bosses) or {}) do
+                if type(b) == "table" and type(b.fightGroup) == "string" and not seenGroup[b.fightGroup] then
+                    seenGroup[b.fightGroup] = true
+                    boss = FightMemberOfUnit(dungeon, b.fightGroup, unit)
+                    if boss then break end
+                end
+            end
+        end
+    end
     -- ringoflaw: the challenger the fight brought (targeted or seen): the
     -- tracker's Ring of Law entry shows that boss.
     if boss and type(boss.fightGroup) == "string" and current then
@@ -1532,10 +1667,114 @@ local function RollOf(id, name)
     return t and type(name) == "string" and t[name:lower()] or nil
 end
 
+-- lootkill (2.0.7): a boss's own loot is proof it died. Inside a dungeon
+-- Forever hides which mob died; a boss with no "fight over" event, or a
+-- character it gives no XP, killed it unseen (the Ring of Law stayed a
+-- skull while the group rolled on Ok'thor's Ban'thok Sash). An item that
+-- only one boss of the dungeon drops (not its trash, not the shared loot,
+-- no recipe: those come from many) counts that boss as killed, the moment
+-- it is rolled on, looted or seen in a loot window.
+local lootOwners = {}   -- dungeon -> itemID -> boss entry, or false (several)
+local function LootOwner(dungeon, itemID)
+    local d = dungeon and FDJ.DB and FDJ.DB[dungeon]
+    if not d or not itemID then return nil end
+    local index = lootOwners[dungeon]
+    if not index then
+        index = {}
+        local banned = {}
+        for _, b in ipairs(d.bosses or {}) do
+            if type(b) == "table" then
+                if b.trash and not b.recipeTab then
+                    for _, list in ipairs({ b.loot or {}, b.probableLoot or {} }) do
+                        for _, item in ipairs(list) do
+                            if type(item) == "table" and tonumber(item[1]) then banned[tonumber(item[1])] = true end
+                        end
+                    end
+                elseif not b.trash and not b.recipeTab and type(b.name) == "string" then
+                    for _, item in ipairs((FDJ.GetBossSharedLoot and FDJ.GetBossSharedLoot(dungeon, b)) or {}) do
+                        if type(item) == "table" and tonumber(item[1]) then banned[tonumber(item[1])] = true end
+                    end
+                    for _, list in ipairs({ b.loot or {}, b.probableLoot or {} }) do
+                        for _, item in ipairs(list) do
+                            local id = type(item) == "table" and tonumber(item[1])
+                            local kind = type(item) == "table" and item[3]
+                            if id and id > 0 then
+                                if type(kind) == "string" and kind:find("^Recipe") then
+                                    banned[id] = true
+                                elseif index[id] == nil then
+                                    index[id] = b
+                                elseif index[id] ~= b then
+                                    index[id] = false
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        for id in pairs(banned) do index[id] = false end
+        lootOwners[dungeon] = index
+    end
+    local b = index[itemID]
+    -- Journal groups and their trolls, and bosses that are none of a run's
+    -- (runLogHidden), are left as they are.
+    if not b or b.childOf or b.children or b.runLogHidden then return nil end
+    return b
+end
+
+local function KillFromLoot(link)
+    local run = current
+    local id = ItemIDOf(link)
+    if not inside or not run or run.closed or not id then return nil end
+    local dungeon = run.dungeon or insideDungeon
+    local boss = LootOwner(dungeon, id)
+    if not boss then return nil end
+    RunSets(run)
+    -- this visit (a boss killed before a reset doesn't count, as in
+    -- FDJ.RunLogKilledThisVisit)
+    local last = type(run.exits) == "table" and run.exits[#run.exits] or nil
+    local since = (last and last.t) or 0
+    local group = type(boss.fightGroup) == "string" and boss.fightGroup or nil
+    for _, k in ipairs(run.kills) do
+        if (k.t or 0) >= since then
+            if k.b == boss.name then return nil end -- already counted
+            -- ringoflaw: the fight's kill (or a guess at its challenger) is
+            -- this challenger's
+            if group and k.b and (k.b == group or FightGroup(dungeon, k.b) == group) then
+                k.b, k.n = boss.name, boss.npcID or k.n
+                Changed()
+                return k
+            end
+        end
+    end
+    -- Its death was counted unnamed a moment ago: that kill is the boss's.
+    local now = Now()
+    local kill
+    for i = #run.kills, 1, -1 do
+        local k = run.kills[i]
+        if now - (k.t or 0) > 180 then break end
+        if not k.b and not k.m and not k.wb and not k.p then kill = k break end
+    end
+    if kill then
+        kill.b, kill.n = boss.name, kill.n or boss.npcID
+    else
+        kill = { t = now, b = boss.name, n = boss.npcID }
+        table.insert(run.kills, kill)
+    end
+    kill.lt = 1
+    kill.r = boss.rare and 1 or nil
+    if not kill.r and IsFinal(dungeon, kill.n, boss.name, boss) then kill.f = 1 end
+    SetKillTimes(run, kill)
+    Changed()
+    return kill
+end
+FDJ.RunLogKillFromLoot = function(link) return KillFromLoot(link) end
+
 local function AddBossLoot(link, sourceNpc, winner, fromRoll)
     local run = current
     local id = ItemIDOf(link)
     if not run or not id then return end
+    if not sourceNpc then KillFromLoot(link) end -- lootkill (2.0.7)
     -- Already listed under a boss (the roll came first): add who won it.
     for i = #run.kills, 1, -1 do
         for _, e in ipairs(run.kills[i].loot or {}) do
@@ -1596,7 +1835,9 @@ local function OnLootWindow()
         if type(link) == "string" and GetLootSourceInfo then
             local okS, guid = pcall(GetLootSourceInfo, slot)
             local npc = ParseGUID(okS and guid or nil)
-            if npc then AddBossLoot(link, npc) end
+            if npc then AddBossLoot(link, npc) else KillFromLoot(link) end -- lootkill (2.0.7)
+        elseif type(link) == "string" then
+            KillFromLoot(link)
         end
     end
 end
@@ -2030,10 +2271,15 @@ events:SetScript("OnEvent", function(_, event, ...)
             e.last = Now()
             db.bossEvents[tonumber(id)] = e
         end
+        local encounterID = id
         if FDJ.RunLogEncounterName then name = FDJ.RunLogEncounterName(id, name) end
         if (success == 1 or success == true) and type(name) == "string" then
             FDJ.RunLogSignals.boss = FDJ.RunLogSignals.boss + 1
             AddKill(nil, name, "boss")
+            -- rendgyth (2.0.34): the encounter's other bosses (Gyth with Rend)
+            for _, extra in ipairs((FDJ.RunLogEncounterAlso and FDJ.RunLogEncounterAlso(encounterID)) or {}) do
+                if not FDJ.RunLogKilledThisVisit(current, extra) then AddKill(nil, extra, "boss") end
+            end
         end
     elseif event == "CHAT_MSG_COMBAT_XP_GAIN" then
         FDJ.RunLogSignals.xp = FDJ.RunLogSignals.xp + 1

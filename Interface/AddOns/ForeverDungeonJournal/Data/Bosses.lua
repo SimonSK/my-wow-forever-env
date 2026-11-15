@@ -119,6 +119,14 @@ FDJ.BOSS_LEVELS = {
         ["Chief Ukorz Sandscalp"] = "48",
     },
     ["Sunken Temple"] = {
+        -- altarbosses (2.0.24): Wowhead Forever levels (the group itself shows
+        -- none, 2.0.25).
+        ["Gasher"] = "51",
+        ["Loro"] = "51",
+        ["Zolo"] = "51",
+        ["Hukku"] = "52",
+        ["Mijan"] = "52",
+        ["Zul'Lor"] = "52",
         ["Atal'alarion"] = "50",
         ["Dreamscythe & Weaver"] = "51-53",
         ["Avatar of Hakkar"] = "55",
@@ -579,6 +587,13 @@ FDJ.STATIC_DISPLAY_IDS = {
     [10440] = 10729,  -- Baron Rivendare
 
     -- Sunken Temple
+    -- altarbosses (2.0.24): the six troll guardians (Wowhead Forever display IDs).
+    [5713] = 6698,   -- Gasher
+    [5715] = 6702,   -- Hukku
+    [5714] = 6700,   -- Loro
+    [5717] = 6707,   -- Mijan
+    [5712] = 6699,   -- Zolo
+    [5716] = 6701,   -- Zul'Lor
     [8580] = 7873,   -- Atal'alarion
     [5721] = 7553,   -- Dreamscythe
     [5720] = 6375,   -- Weaver
@@ -745,4 +760,96 @@ FDJ.TRASH_MOB_DISPLAY_IDS = {
     ["Strashaz Soldier"] = 4764, -- npc 255995
     ["Slavering Hound"] = 6195, -- npc 255267
     ["Defias Truthfinder"] = 144356, -- npc 255271
+    -- sttrash (2.0.28): Sunken Temple
+    ["Spawn of Hakkar"] = 4065, -- npc 5708
+    ["Murk Worm"] = 7549, -- npc 5226
+    -- (Atal'ai Witch Doctor: by NPC ID below, 2.0.29; Wowhead's display 56741
+    -- drew nothing in the game.)
+    -- brdrecipes / lbrsrecipes (2.0.7): the mobs that drop Blackrock Depths' and
+    -- Lower Blackrock Spire's trash recipes (display IDs: octowow.st Classic
+    -- database, https://octowow.st/db/?npc=<id>)
+    ["Weapon Technician"] = 8894, -- npc 8920
+    ["Doomforge Craftsman"] = 8803, -- npc 8897
+    ["Doomforge Arcanasmith"] = 8812, -- npc 8900
+    ["Ribbly's Crony"] = 9233, -- npc 10043
+    ["Hammered Patron"] = 8681, -- npc 9554
+    ["Bloodaxe Veteran"] = 9633, -- npc 9583
+    ["Firebrand Pyromancer"] = 9656, -- npc 9264
+    ["Firebrand Legionnaire"] = 9660, -- npc 9260
+    ["Spirestone Warlord"] = 11582, -- npc 9216
+    ["Spirestone Mystic"] = 11579, -- npc 9198
+    -- ubrsrecipes (2.0.7): Upper Blackrock Spire
+    ["Blackhand Elite"] = 9734, -- npc 10317
+}
+
+-- trashnpc (2.0.22): trash mobs whose look is not known yet, by NPC ID
+-- (Wowhead Forever and Icy Veins Forever NPC pages). Their portraits are
+-- found in the game as the bosses' are (a hidden model of the NPC tells its
+-- display), then drawn on the loot row like the ones above.
+FDJ.TRASH_MOB_NPC_IDS = {
+    -- Sunken Temple (2.0.29)
+    ["Atal'ai Witch Doctor"] = 5259,
+    -- City of Dalaran
+    ["Mana Echo"] = 246600,
+    ["Arcane Elemental"] = 246888,
+    ["Phantasm"] = 246990,
+    ["Arcane Echo"] = 246992,
+    ["Mana Stalker"] = 246993,
+    ["Saturated Remnant"] = 247001,
+    ["Seeking Remnant"] = 247003,
+    ["Mindless Horror"] = 255068,
+    ["Fallen Warrior"] = 255069,
+    ["Skeletal Warder"] = 255070,
+    -- Stratholme (strattrash, 2.0.6; Wowhead Forever / Icy Veins Forever NPC IDs;
+    -- Shrieking Banshee and Plague Ghoul: already drawn above, by their look)
+    ["Crimson Guardsman"] = 10418,
+    ["Crimson Conjuror"] = 10419,
+    ["Crimson Initiate"] = 10420,
+    ["Crimson Defender"] = 10421,
+    ["Crimson Sorcerer"] = 10422,
+    ["Crimson Priest"] = 10423,
+    ["Crimson Gallant"] = 10424,
+    ["Crimson Battle Mage"] = 10425,
+    ["Crimson Inquisitor"] = 10426,
+    ["Crimson Monk"] = 11043,
+    ["Rockwing Gargoyle"] = 10408,
+    ["Rockwing Screecher"] = 10409,
+    ["Wailing Banshee"] = 10464,
+    ["Ghoul Ravener"] = 10406,
+    ["Fleshflayer Ghoul"] = 10407,
+    ["Crypt Crawler"] = 10412,
+    ["Crypt Beast"] = 10413,
+    ["Thuzadin Necromancer"] = 10400,
+    ["Thuzadin Shadowcaster"] = 10398,
+    ["Bile Spewer"] = 10416,
+    ["Venom Belcher"] = 10417,
+    ["Patchwork Horror"] = 10414,
+    ["Spectral Citizen"] = 10384,
+    -- Blackmaw Hold (2.0.6; Wowhead Forever "Dropped by" NPC IDs)
+    ["Legashi Summoner"] = 247248,
+    ["Blackmaw Druid"] = 258516,
+    -- Scholomance (scholotrash, 2.0.6; Wowhead Forever / Icy Veins Forever NPC IDs)
+    ["Scholomance Adept"] = 10469,
+    ["Scholomance Necromancer"] = 10477,
+    ["Scholomance Occultist"] = 10472,
+    ["Scholomance Dark Summoner"] = 11582,
+    ["Scholomance Handler"] = 11257,
+    ["Diseased Ghoul"] = 10495,
+    ["Spectral Researcher"] = 10499,
+    ["Spectral Teacher"] = 10500,
+    ["Splintered Skeleton"] = 10478,
+    ["Risen Construct"] = 10488,
+    ["Risen Bonewarder"] = 10491,
+    ["Risen Warrior"] = 10486,
+    ["Risen Protector"] = 10487,
+    -- Excavation Site: Wetlands (2.0.30; Polestar forever-db npc table)
+    ["Highland Lurker"] = 260804,
+    ["Marsh Crocolisk"] = 260796,
+    ["Highland Spider"] = 260803,
+    ["Thicket Hunter"] = 260801,
+    ["Marsh Skulker"] = 274715,
+    ["Thicket Matriarch"] = 260802,
+    ["Thicket Lurker"] = 260800,
+    ["Young Riptooth"] = 260799,
+    ["Highland Snapper"] = 260810,
 }

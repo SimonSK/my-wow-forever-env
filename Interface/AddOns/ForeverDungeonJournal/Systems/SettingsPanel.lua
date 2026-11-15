@@ -114,6 +114,14 @@ local OPTIONS = {
         set = function(on) Store().itemSourceStrip = not on end,
     },
     {
+        -- autocompare (2.0.6): the journal's item tooltips compare with the
+        -- equipped item without Shift (off by default: Shift as before).
+        label = "OPT_AUTO_COMPARE",
+        tip = "OPT_AUTO_COMPARE_TIP",
+        get = function() return Store().autoCompare == true end,
+        set = function(on) Store().autoCompare = on and true or nil end,
+    },
+    {
         label = "OPT_HIDE_MINIMAP",
         tip = "OPT_HIDE_MINIMAP_TIP",
         get = function() return Store().minimapHidden == true end,
@@ -138,12 +146,15 @@ local OPTIONS = {
         set = function(on) if FDJ.SetSleepingBagHidden then FDJ.SetSleepingBagHidden(on) end end,
     },
     {
-        -- The Onyxia Attunement icon (Systems/OnyxiaAttunement.lua): ticked by
-        -- itself once the character can start the chain; any level may tick it.
-        label = "OPT_SHOW_ONYXIA",
-        tip = "OPT_SHOW_ONYXIA_TIP",
-        get = function() return FDJ.IsOnyxiaIconShown and FDJ.IsOnyxiaIconShown() or false end,
-        set = function(on) if FDJ.SetOnyxiaIconShown then FDJ.SetOnyxiaIconShown(on) end end,
+        -- The Onyxia Attunement icon (Systems/OnyxiaAttunement.lua).
+        -- hideonyxia (2.0.15): a Hide option like the others (it was "Show").
+        -- Ticked (hidden) by default until the character can start the chain,
+        -- then it unticks by itself; any level may untick it to see it sooner.
+        -- Ticking it again below the level goes back to that default.
+        label = "OPT_HIDE_ONYXIA",
+        tip = "OPT_HIDE_ONYXIA_TIP",
+        get = function() return not (FDJ.IsOnyxiaIconShown and FDJ.IsOnyxiaIconShown()) end,
+        set = function(on) if FDJ.SetOnyxiaIconShown then FDJ.SetOnyxiaIconShown(not on) end end,
         refreshHome = true,
     },
     {

@@ -255,6 +255,8 @@ FDJ.DB = {
                     {6460, "Cobrahn's Grasp", "Waist, Mail", 3},
                     {10410, "Leggings of the Fang", "Legs, Leather", 3},
                     {6465, "Robe of the Moccasin", "Chest, Cloth", 3},
+                    -- recipeaudit (2.0.21): recipe audit of 14 Nov 2026, checked on Icy Veins / ForeverDB (SOURCES.txt).
+                    {252782, "Pattern: Wisdom's Leather Gloves", "Recipe, Leatherworking", 3},
                 },
             },
             {
@@ -266,6 +268,8 @@ FDJ.DB = {
                     {5404, "Serpent's Shoulders", "Shoulder, Leather", 3},
                     {6446, "Snakeskin Bag", "Bag", 2},
                     {273088, "Snake Eye Kaleidoscope", "Neck", 3},
+                    -- recipeaudit (2.0.21): recipe audit of 14 Nov 2026, checked on Icy Veins / ForeverDB (SOURCES.txt).
+                    {273098, "Blueprint: Field Guide", "Blueprint", 2},
                 },
             },
             {
@@ -286,6 +290,10 @@ FDJ.DB = {
                     {6472, "Stinging Viper", "One-Hand, Mace", 3},
                     {6473, "Armor of the Fang", "Chest, Leather", 3},
                     {273089, "Slither Cord", "Waist, Cloth", 3},
+                    -- recipeaudit (2.0.21): recipe audit of 14 Nov 2026, checked on Icy Veins / ForeverDB (SOURCES.txt).
+                    {253938, "Pattern: Filigreed Pristine Leggings", "Recipe, Tailoring", 3},
+                    {253940, "Pattern: Filigreed Silky Leggings", "Recipe, Tailoring", 3},
+                    {253946, "Pattern: Filigreed Pearly Leggings", "Recipe, Tailoring", 3},
                 },
             },
             {
@@ -296,6 +304,8 @@ FDJ.DB = {
                     {6449, "Glowing Lizardscale Cloak", "Back, Cloth", 3},
                     {6448, "Tail Spike", "One-Hand, Dagger", 3},
                     {273137, "Skum's Bucket", "Held In Off-hand", 3},
+                    -- recipeaudit (2.0.21): recipe audit of 14 Nov 2026, checked on Icy Veins / ForeverDB (SOURCES.txt).
+                    {253944, "Pattern: Filigreed Shadow Leggings", "Recipe, Tailoring", 3},
                 },
             },
             {
@@ -309,6 +319,8 @@ FDJ.DB = {
                     {6459, "Savage Trodders", "Feet, Mail", 3},
                     -- Seen dropping (Discord, Nov 2026); Wowhead Forever lists Lord Serpentis as its only source.
                     {273087, "Blueprint: Journeyman Campfire", "Blueprint", 2},
+                    -- recipeaudit (2.0.21): recipe audit of 14 Nov 2026, checked on Icy Veins / ForeverDB (SOURCES.txt).
+                    {253942, "Pattern: Filigreed Flame Leggings", "Recipe, Tailoring", 3},
                 },
             },
             {
@@ -319,6 +331,8 @@ FDJ.DB = {
                     {6630, "Seedcloud Buckler", "Off Hand, Shield", 3},
                     {6631, "Living Root", "Two-Hand, Staff", 3},
                     {6629, "Sporid Cape", "Back, Cloth", 2},
+                    -- recipeaudit (2.0.21): recipe audit of 14 Nov 2026, checked on Icy Veins / ForeverDB (SOURCES.txt).
+                    {253948, "Pattern: Filigreed Shining Leggings", "Recipe, Tailoring", 3},
                 },
             },
             {
@@ -330,6 +344,8 @@ FDJ.DB = {
                     {6627, "Mutant Scale Breastplate", "Chest, Mail", 3},
                     {6463, "Deep Fathom Ring", "Finger", 3},
                     {10441, "Glowing Shard", "Quest Item", 1},
+                    -- recipeaudit (2.0.21): recipe audit of 14 Nov 2026, checked on Icy Veins / ForeverDB (SOURCES.txt).
+                    {252798, "Pattern: Brawler's Leather Hood", "Recipe, Leatherworking", 3},
                 },
             },
             {
@@ -583,8 +599,12 @@ FDJ.DB = {
                     {6641, "Haunting Blade", "Two-Hand, Sword", 3},
                     {6642, "Phantom Armor", "Chest, Mail", 3},
                 },
-                description = "Rare spawn.",
+                description = "Rare spawn. Friendly to the Alliance: only the Horde can kill him.",
                 rare = true,
+                -- captainhorde (2.0.11): friendly to Alliance characters (Wowhead
+                -- Forever comments, Icy Veins, Overgear; reported on Discord by
+                -- Zardilann): HORDE ONLY tag, and off the Alliance's tracker.
+                factionOnly = "Horde",
                 customIcon = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\LordaeronCaptainPortrait.tga",
             },
             {
@@ -594,9 +614,16 @@ FDJ.DB = {
                 loot = {
                     {286981, "Death Bindings", "Wrist, Mail", 3, "Skeleton / Skeletal Soldier / Skeletal Mage / Fallen Necromancer"},
                     {286977, "Sword of the Fallen", "Two-Hand, Sword", 3, "Ghoul / Ragged Ghoul / Plague Ghoul"},
-                    {286978, "Rotmender's Garb", "Chest, Cloth", 3, "Flesh Golem"},
-                    {286979, "Rotmender's Gloves", "Hands, Cloth", 3, "Stone Watcher"},
-                    {286980, "Rotmender's Sash", "Waist, Cloth", 3, "Shrieking Banshee"},
+                    -- alltrash (2.0.9): the Rotmender pieces drop from every trash mob
+                    -- here, not one mob each (seen in game by M, Nov 2026; Wowhead had
+                    -- Flesh Golem / Stone Watcher / Shrieking Banshee). The ALL TRASH
+                    -- label taken off again in 2.0.20 at M's word (obvious already):
+                    -- no mob and no label, as in Alcaz Prison. alltrashtip (2.0.6):
+                    -- the page also has items from certain mobs, so the tooltip
+                    -- says "Drops from: ALL Trash" (allTrash; no label on the row).
+                    {286978, "Rotmender's Garb", "Chest, Cloth", 3, allTrash = true},
+                    {286979, "Rotmender's Gloves", "Hands, Cloth", 3, allTrash = true},
+                    {286980, "Rotmender's Sash", "Waist, Cloth", 3, allTrash = true},
                 },
             },
         },
@@ -745,7 +772,8 @@ DB["The Deadmines"] = {
     bosses = {{
             name = "Rhahk'Zor",
             aliases = {"Rhahk'Zor"},
-            loot = {{872, "Rockslicer", "Two-Hand, Axe", 3}, {5187, "Rhahk'Zor's Hammer", "Two-Hand, Mace", 3}, {273289, "Ogre Loincloth", "Legs, Cloth", 3}, {251362, "Plans: Protector's Gloves", "Recipe, Blacksmithing", 3}, {251364, "Plans: Crusader's Gloves", "Recipe, Blacksmithing", 3}, {253906, "Pattern: Filigreed Flame Gown", "Recipe, Tailoring", 3}},
+            -- recipeaudit (2.0.17): the recipes after the gear (recipe audit of 14 Nov 2026; SOURCES.txt).
+            loot = {{872, "Rockslicer", "Two-Hand, Axe", 3}, {5187, "Rhahk'Zor's Hammer", "Two-Hand, Mace", 3}, {273289, "Ogre Loincloth", "Legs, Cloth", 3}, {251362, "Plans: Protector's Gloves", "Recipe, Blacksmithing", 3}, {251364, "Plans: Crusader's Gloves", "Recipe, Blacksmithing", 3}, {253906, "Pattern: Filigreed Flame Gown", "Recipe, Tailoring", 3}, {251363, "Plans: Acolyte's Gloves", "Recipe, Blacksmithing", 3}},
             npcID = 644,
         }, {
             name = "Miner Johnson",
@@ -766,12 +794,14 @@ DB["The Deadmines"] = {
             -- Dungeon Tracker counts the Shredder killed with him (it has no
             -- boss event of its own).
             killedBefore = { "Sneed's Shredder", 642 },
-            loot = {{5194, "Taskmaster Axe", "Two-Hand, Axe", 3}, {5195, "Gold-flecked Gloves", "Hands, Cloth", 3}, {273293, "Bandsaw Wristbands", "Wrist, Mail", 3}, {273092, "Blueprint: Repair Bot", "Engineering", 2}, {251360, "Plans: Veteran's Gloves", "Recipe, Blacksmithing", 3}, {251364, "Plans: Crusader's Gloves", "Recipe, Blacksmithing", 3}, {253902, "Pattern: Filigreed Pristine Gown", "Recipe, Tailoring", 3}},
+            -- recipeaudit (2.0.17): the recipes after the gear (recipe audit of 14 Nov 2026; SOURCES.txt).
+            loot = {{5194, "Taskmaster Axe", "Two-Hand, Axe", 3}, {5195, "Gold-flecked Gloves", "Hands, Cloth", 3}, {273293, "Bandsaw Wristbands", "Wrist, Mail", 3}, {273092, "Blueprint: Repair Bot", "Engineering", 2}, {251360, "Plans: Veteran's Gloves", "Recipe, Blacksmithing", 3}, {251364, "Plans: Crusader's Gloves", "Recipe, Blacksmithing", 3}, {253902, "Pattern: Filigreed Pristine Gown", "Recipe, Tailoring", 3}, {251361, "Plans: Guard's Gloves", "Recipe, Blacksmithing", 3}},
             npcID = 643,
         }, {
             name = "Gilnid",
             aliases = {"Gilnid"},
-            loot = {{1156, "Lavishly Jeweled Ring", "Finger", 3}, {5199, "Smelting Pants", "Legs, Leather", 3}, {273297, "Goblin Hammer", "Main Hand, Mace", 3}, {252777, "Pattern: Brawler's Leather Gloves", "Recipe, Leatherworking", 3}, {252778, "Pattern: Trapper's Leather Gloves", "Recipe, Leatherworking", 3}, {252780, "Pattern: Totemic Leather Gloves", "Recipe, Leatherworking", 3}, {252782, "Pattern: Wisdom's Leather Gloves", "Recipe, Leatherworking", 3}, {253904, "Pattern: Filigreed Silky Gown", "Recipe, Tailoring", 3}, {253906, "Pattern: Filigreed Flame Gown", "Recipe, Tailoring", 3}, {273086, "Blueprint: Anvil", "Blueprint", 2}},
+            -- recipeaudit (2.0.17): the recipes after the gear (recipe audit of 14 Nov 2026; SOURCES.txt).
+            loot = {{1156, "Lavishly Jeweled Ring", "Finger", 3}, {5199, "Smelting Pants", "Legs, Leather", 3}, {273297, "Goblin Hammer", "Main Hand, Mace", 3}, {252777, "Pattern: Brawler's Leather Gloves", "Recipe, Leatherworking", 3}, {252778, "Pattern: Trapper's Leather Gloves", "Recipe, Leatherworking", 3}, {252780, "Pattern: Totemic Leather Gloves", "Recipe, Leatherworking", 3}, {252782, "Pattern: Wisdom's Leather Gloves", "Recipe, Leatherworking", 3}, {253904, "Pattern: Filigreed Silky Gown", "Recipe, Tailoring", 3}, {253906, "Pattern: Filigreed Flame Gown", "Recipe, Tailoring", 3}, {273086, "Blueprint: Anvil", "Blueprint", 2}, {251340, "Plans: Veteran's Chain Shirt", "Recipe, Blacksmithing", 3}, {251341, "Plans: Guard's Chain Shirt", "Recipe, Blacksmithing", 3}, {251342, "Plans: Protector's Chain Shirt", "Recipe, Blacksmithing", 3}, {251343, "Plans: Acolyte's Chain Shirt", "Recipe, Blacksmithing", 3}, {251344, "Plans: Crusader's Chain Shirt", "Recipe, Blacksmithing", 3}, {252771, "Pattern: Brawler's Leather Armor", "Recipe, Leatherworking", 3}, {252772, "Pattern: Trapper's Leather Armor", "Recipe, Leatherworking", 3}, {252773, "Pattern: Defender's Leather Armor", "Recipe, Leatherworking", 3}, {252774, "Pattern: Totemic Leather Armor", "Recipe, Leatherworking", 3}, {252775, "Pattern: Stormrider's Leather Armor", "Recipe, Leatherworking", 3}, {252776, "Pattern: Wisdom's Leather Armor", "Recipe, Leatherworking", 3}, {253908, "Pattern: Filigreed Shadow Gown", "Recipe, Tailoring", 3}},
             npcID = 1763,
         }, {
             name = "Mr. Smite",
@@ -786,7 +816,8 @@ DB["The Deadmines"] = {
         }, {
             name = "Edwin VanCleef",
             aliases = {"Edwin VanCleef"},
-            loot = {{5193, "Cape of the Brotherhood", "Back, Cloth", 3}, {5202, "Corsair's Overshirt", "Chest, Cloth", 3}, {10399, "Blackened Defias Armor", "Chest, Leather", 3}, {5191, "Cruel Barb", "One-Hand, Sword", 3}, {2874, "An Unsent Letter", "Quest Item", 1}, {252799, "Pattern: Trapper's Leather Hood", "Recipe, Leatherworking", 3}, {252800, "Pattern: Defender's Leather Hood", "Recipe, Leatherworking", 3}, {252801, "Pattern: Totemic Leather Hood", "Recipe, Leatherworking", 3}, {252803, "Pattern: Wisdom's Leather Hood", "Recipe, Leatherworking", 3}, {253938, "Pattern: Filigreed Pristine Leggings", "Recipe, Tailoring", 3}, {253948, "Pattern: Filigreed Shining Leggings", "Recipe, Tailoring", 3}},
+            -- recipeaudit (2.0.17): the recipes after the gear (recipe audit of 14 Nov 2026; SOURCES.txt).
+            loot = {{5193, "Cape of the Brotherhood", "Back, Cloth", 3}, {5202, "Corsair's Overshirt", "Chest, Cloth", 3}, {10399, "Blackened Defias Armor", "Chest, Leather", 3}, {5191, "Cruel Barb", "One-Hand, Sword", 3}, {2874, "An Unsent Letter", "Quest Item", 1}, {252799, "Pattern: Trapper's Leather Hood", "Recipe, Leatherworking", 3}, {252800, "Pattern: Defender's Leather Hood", "Recipe, Leatherworking", 3}, {252801, "Pattern: Totemic Leather Hood", "Recipe, Leatherworking", 3}, {252803, "Pattern: Wisdom's Leather Hood", "Recipe, Leatherworking", 3}, {253938, "Pattern: Filigreed Pristine Leggings", "Recipe, Tailoring", 3}, {253948, "Pattern: Filigreed Shining Leggings", "Recipe, Tailoring", 3}, {251345, "Plans: Veteran's Chain Leggings", "Recipe, Blacksmithing", 3}, {251346, "Plans: Guard's Chain Leggings", "Recipe, Blacksmithing", 3}, {251347, "Plans: Protector's Chain Leggings", "Recipe, Blacksmithing", 3}, {251348, "Plans: Acolyte's Chain Leggings", "Recipe, Blacksmithing", 3}, {251349, "Plans: Crusader's Chain Leggings", "Recipe, Blacksmithing", 3}, {251383, "Plans: Acolyte's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {252792, "Pattern: Brawler's Leather Pants", "Recipe, Leatherworking", 3}, {252793, "Pattern: Trapper's Leather Pants", "Recipe, Leatherworking", 3}, {252794, "Pattern: Defender's Leather Pants", "Recipe, Leatherworking", 3}, {252795, "Pattern: Totemic Leather Pants", "Recipe, Leatherworking", 3}, {252796, "Pattern: Stormrider's Leather Pants", "Recipe, Leatherworking", 3}, {252797, "Pattern: Wisdom's Leather Pants", "Recipe, Leatherworking", 3}, {253940, "Pattern: Filigreed Silky Leggings", "Recipe, Tailoring", 3}, {253942, "Pattern: Filigreed Flame Leggings", "Recipe, Tailoring", 3}, {253944, "Pattern: Filigreed Shadow Leggings", "Recipe, Tailoring", 3}, {253946, "Pattern: Filigreed Pearly Leggings", "Recipe, Tailoring", 3}},
             npcID = 639,
         }, {
             name = "Cookie",
@@ -1072,43 +1103,61 @@ DB["Blackfathom Deeps"] = {
             name = "Ghamoo-ra",
             npcID = 4887,
             aliases = {"Ghamoo-ra"},
-            loot = {{6907, "Tortoise Armor", "Chest, Mail", 3}, {6908, "Ghamoo-ra's Bind", "Waist, Cloth", 3}, {273839, "Spiked Shell Band", "Finger", 3}, {251382, "Plans: Protector's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {252801, "Pattern: Totemic Leather Hood", "Recipe, Leatherworking", 3}, {253940, "Pattern: Filigreed Silky Leggings", "Recipe, Tailoring", 3}, {253942, "Pattern: Filigreed Flame Leggings", "Recipe, Tailoring", 3}},
+            -- recipeaudit (2.0.26): the recipes after the last (BFD recipe audit of 14 Nov 2026; SOURCES.txt).
+            -- recipeall (2.0.27): then every other recipe the game's Encounter Journal lists for this boss (Wowhead Forever dungeon journal; SOURCES.txt).
+            -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+            loot = {{6907, "Tortoise Armor", "Chest, Mail", 3}, {6908, "Ghamoo-ra's Bind", "Waist, Cloth", 3}, {273839, "Spiked Shell Band", "Finger", 3}, {251382, "Plans: Protector's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {252801, "Pattern: Totemic Leather Hood", "Recipe, Leatherworking", 3}, {253940, "Pattern: Filigreed Silky Leggings", "Recipe, Tailoring", 3}, {253942, "Pattern: Filigreed Flame Leggings", "Recipe, Tailoring", 3}, {251384, "Plans: Crusader's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {252800, "Pattern: Defender's Leather Hood", "Recipe, Leatherworking", 3}, {253938, "Pattern: Filigreed Pristine Leggings", "Recipe, Tailoring", 3}, {252798, "Pattern: Brawler's Leather Hood", "Recipe, Leatherworking", 3}, {253946, "Pattern: Filigreed Pearly Leggings", "Recipe, Tailoring", 3}, {251381, "Plans: Guard's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {251380, "Plans: Veteran's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {252803, "Pattern: Wisdom's Leather Hood", "Recipe, Leatherworking", 3}, {253944, "Pattern: Filigreed Shadow Leggings", "Recipe, Tailoring", 3}, {251383, "Plans: Acolyte's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {251345, "Plans: Veteran's Chain Leggings", "Recipe, Blacksmithing", 3}, {251346, "Plans: Guard's Chain Leggings", "Recipe, Blacksmithing", 3}, {251347, "Plans: Protector's Chain Leggings", "Recipe, Blacksmithing", 3}, {251348, "Plans: Acolyte's Chain Leggings", "Recipe, Blacksmithing", 3}, {251349, "Plans: Crusader's Chain Leggings", "Recipe, Blacksmithing", 3}, {252792, "Pattern: Brawler's Leather Pants", "Recipe, Leatherworking", 3}, {252793, "Pattern: Trapper's Leather Pants", "Recipe, Leatherworking", 3}, {252794, "Pattern: Defender's Leather Pants", "Recipe, Leatherworking", 3}, {252795, "Pattern: Totemic Leather Pants", "Recipe, Leatherworking", 3}, {252796, "Pattern: Stormrider's Leather Pants", "Recipe, Leatherworking", 3}, {252797, "Pattern: Wisdom's Leather Pants", "Recipe, Leatherworking", 3}, {253948, "Pattern: Filigreed Shining Leggings", "Recipe, Tailoring", 3}},
         },
         {
             name = "Lady Sarevess",
             npcID = 4831,
             aliases = {"Lady Sarevess"},
-            loot = {{888, "Naga Battle Gloves", "Hands, Leather", 3}, {3078, "Naga Heartpiercer", "Ranged, Bow", 2}, {11121, "Darkwater Talwar", "Main Hand, Sword", 2}, {252798, "Pattern: Brawler's Leather Hood", "Leatherworking Recipe", 3}, {251382, "Plans: Protector's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {251383, "Plans: Acolyte's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {253944, "Pattern: Filigreed Shadow Leggings", "Recipe, Tailoring", 3}},
+            -- recipeaudit (2.0.26): the recipes after the last (BFD recipe audit of 14 Nov 2026; SOURCES.txt).
+            -- recipeall (2.0.27): then every other recipe the game's Encounter Journal lists for this boss (Wowhead Forever dungeon journal; SOURCES.txt).
+            -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+            loot = {{888, "Naga Battle Gloves", "Hands, Leather", 3}, {3078, "Naga Heartpiercer", "Ranged, Bow", 2}, {11121, "Darkwater Talwar", "Main Hand, Sword", 2}, {252798, "Pattern: Brawler's Leather Hood", "Leatherworking Recipe", 3}, {251382, "Plans: Protector's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {251383, "Plans: Acolyte's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {253944, "Pattern: Filigreed Shadow Leggings", "Recipe, Tailoring", 3}, {251380, "Plans: Veteran's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {251381, "Plans: Guard's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {252802, "Pattern: Stormrider's Leather Hood", "Recipe, Leatherworking", 3}, {252803, "Pattern: Wisdom's Leather Hood", "Recipe, Leatherworking", 3}, {252799, "Pattern: Trapper's Leather Hood", "Recipe, Leatherworking", 3}, {253946, "Pattern: Filigreed Pearly Leggings", "Recipe, Tailoring", 3}, {253948, "Pattern: Filigreed Shining Leggings", "Recipe, Tailoring", 3}, {253942, "Pattern: Filigreed Flame Leggings", "Recipe, Tailoring", 3}, {251384, "Plans: Crusader's Silvered Chain Helm", "Recipe, Blacksmithing", 3}, {253940, "Pattern: Filigreed Silky Leggings", "Recipe, Tailoring", 3}, {252800, "Pattern: Defender's Leather Hood", "Recipe, Leatherworking", 3}, {253938, "Pattern: Filigreed Pristine Leggings", "Recipe, Tailoring", 3}, {251345, "Plans: Veteran's Chain Leggings", "Recipe, Blacksmithing", 3}, {251346, "Plans: Guard's Chain Leggings", "Recipe, Blacksmithing", 3}, {251347, "Plans: Protector's Chain Leggings", "Recipe, Blacksmithing", 3}, {251348, "Plans: Acolyte's Chain Leggings", "Recipe, Blacksmithing", 3}, {251349, "Plans: Crusader's Chain Leggings", "Recipe, Blacksmithing", 3}, {252792, "Pattern: Brawler's Leather Pants", "Recipe, Leatherworking", 3}, {252793, "Pattern: Trapper's Leather Pants", "Recipe, Leatherworking", 3}, {252794, "Pattern: Defender's Leather Pants", "Recipe, Leatherworking", 3}, {252795, "Pattern: Totemic Leather Pants", "Recipe, Leatherworking", 3}, {252796, "Pattern: Stormrider's Leather Pants", "Recipe, Leatherworking", 3}, {252797, "Pattern: Wisdom's Leather Pants", "Recipe, Leatherworking", 3}},
         },
         {
             name = "Gelihast",
             npcID = 6243,
             aliases = {"Gelihast", "Geilhast"},
-            loot = {{6906, "Algae Fists", "Hands, Mail", 3}, {6905, "Reef Axe", "Two-Hand, Axe", 3}, {1470, "Murloc Skin Bag", "Bag", 1}, {273840, "Cursed Murloc Eye", "Trinket", 3}, {251375, "Plans: Veteran's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251377, "Plans: Protector's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252820, "Pattern: Brawler's Leather Legguards", "Recipe, Leatherworking", 3}, {252821, "Pattern: Trapper's Leather Legguards", "Recipe, Leatherworking", 3}, {252825, "Pattern: Wisdom's Leather Leggings", "Recipe, Leatherworking", 3}, {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3}, {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3}, {273141, "Blueprint: Fishing Rack", "Blueprint", 2}},
+            -- recipeaudit (2.0.26): the recipes after the last (BFD recipe audit of 14 Nov 2026; SOURCES.txt).
+            -- recipeall (2.0.27): then every other recipe the game's Encounter Journal lists for this boss (Wowhead Forever dungeon journal; SOURCES.txt).
+            -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+            loot = {{6906, "Algae Fists", "Hands, Mail", 3}, {6905, "Reef Axe", "Two-Hand, Axe", 3}, {1470, "Murloc Skin Bag", "Bag", 1}, {273840, "Cursed Murloc Eye", "Trinket", 3}, {251375, "Plans: Veteran's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251377, "Plans: Protector's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252820, "Pattern: Brawler's Leather Legguards", "Recipe, Leatherworking", 3}, {252821, "Pattern: Trapper's Leather Legguards", "Recipe, Leatherworking", 3}, {252825, "Pattern: Wisdom's Leather Leggings", "Recipe, Leatherworking", 3}, {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3}, {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3}, {273141, "Blueprint: Fishing Rack", "Blueprint", 2}, {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3}, {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3}, {251376, "Plans: Guard's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251378, "Plans: Acolyte's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251379, "Plans: Crusader's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252822, "Pattern: Defender's Leather Kilt", "Recipe, Leatherworking", 3}, {252823, "Pattern: Totemic Leather Leggings", "Recipe, Leatherworking", 3}, {252824, "Pattern: Stormrider's Leather Kilt", "Recipe, Leatherworking", 3}, {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3}, {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3}, {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3}, {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3}, {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3}, {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3}, {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3}, {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3}, {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3}, {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3}, {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3}, {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3}, {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3}},
         },
         {
             name = "Lorgus Jett",
             npcID = 12902,
             aliases = {"Lorgus Jett"},
-            loot = {{273843, "Fallenroot Longbow", "Ranged, Bow", 3}, {273841, "Twilight Maul", "Two-Hand, Mace", 3}, {273842, "Treacherous Treads", "Feet, Mail", 3}, {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3}, {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3}, {251377, "Plans: Protector's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}},
+            -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+            loot = {{273843, "Fallenroot Longbow", "Ranged, Bow", 3}, {273841, "Twilight Maul", "Two-Hand, Mace", 3}, {273842, "Treacherous Treads", "Feet, Mail", 3}, {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3}, {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3}, {251377, "Plans: Protector's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3}, {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3}, {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3}, {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3}, {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3}, {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3}, {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3}, {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3}, {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3}, {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3}, {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3}, {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3}, {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3}, {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3}, {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3}},
         },
         {
             name = "Old Serra'kis",
             npcID = 4830,
             aliases = {"Old Serra'kis", "Old Serra’kis"},
-            loot = {{6901, "Glowing Thresher Cape", "Back, Cloth", 3}, {6904, "Bite of Serra'kis", "One-Hand, Dagger", 3}, {6902, "Bands of Serra'kis", "Wrist, Leather", 3}, {251375, "Plans: Veteran's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252825, "Pattern: Wisdom's Leather Leggings", "Recipe, Leatherworking", 3}, {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3}, {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3}},
+            -- recipeaudit (2.0.26): the recipes after the last (BFD recipe audit of 14 Nov 2026; SOURCES.txt).
+            -- recipeall (2.0.27): then every other recipe the game's Encounter Journal lists for this boss (Wowhead Forever dungeon journal; SOURCES.txt).
+            -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+            loot = {{6901, "Glowing Thresher Cape", "Back, Cloth", 3}, {6904, "Bite of Serra'kis", "One-Hand, Dagger", 3}, {6902, "Bands of Serra'kis", "Wrist, Leather", 3}, {251375, "Plans: Veteran's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252825, "Pattern: Wisdom's Leather Leggings", "Recipe, Leatherworking", 3}, {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3}, {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3}, {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3}, {252820, "Pattern: Brawler's Leather Legguards", "Recipe, Leatherworking", 3}, {251379, "Plans: Crusader's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251376, "Plans: Guard's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251377, "Plans: Protector's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252823, "Pattern: Totemic Leather Leggings", "Recipe, Leatherworking", 3}, {251378, "Plans: Acolyte's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252821, "Pattern: Trapper's Leather Legguards", "Recipe, Leatherworking", 3}, {252822, "Pattern: Defender's Leather Kilt", "Recipe, Leatherworking", 3}, {252824, "Pattern: Stormrider's Leather Kilt", "Recipe, Leatherworking", 3}, {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3}, {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3}, {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3}, {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3}, {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3}, {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3}, {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3}, {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3}, {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3}, {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3}, {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3}, {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3}, {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3}, {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3}},
         },
         {
             name = "Twilight Lord Kelris",
             npcID = 4832,
             aliases = {"Twilight Lord Kelris"},
-            loot = {{1155, "Rod of the Sleepwalker", "Two-Hand, Staff", 3}, {6903, "Gaze Dreamer Pants", "Legs, Cloth", 3}, {273846, "Twilight Lord Girdle", "Waist, Mail", 3}, {252820, "Pattern: Brawler's Leather Legguards", "Recipe, Leatherworking", 3}, {252821, "Pattern: Trapper's Leather Legguards", "Recipe, Leatherworking", 3}, {252822, "Pattern: Defender's Leather Kilt", "Recipe, Leatherworking", 3}, {252823, "Pattern: Totemic Leather Leggings", "Recipe, Leatherworking", 3}, {252825, "Pattern: Wisdom's Leather Leggings", "Recipe, Leatherworking", 3}, {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3}},
+            -- recipeaudit (2.0.26): the recipes after the last (BFD recipe audit of 14 Nov 2026; SOURCES.txt).
+            -- recipeall (2.0.27): then every other recipe the game's Encounter Journal lists for this boss (Wowhead Forever dungeon journal; SOURCES.txt).
+            -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+            loot = {{1155, "Rod of the Sleepwalker", "Two-Hand, Staff", 3}, {6903, "Gaze Dreamer Pants", "Legs, Cloth", 3}, {273846, "Twilight Lord Girdle", "Waist, Mail", 3}, {252820, "Pattern: Brawler's Leather Legguards", "Recipe, Leatherworking", 3}, {252821, "Pattern: Trapper's Leather Legguards", "Recipe, Leatherworking", 3}, {252822, "Pattern: Defender's Leather Kilt", "Recipe, Leatherworking", 3}, {252823, "Pattern: Totemic Leather Leggings", "Recipe, Leatherworking", 3}, {252825, "Pattern: Wisdom's Leather Leggings", "Recipe, Leatherworking", 3}, {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3}, {251379, "Plans: Crusader's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252824, "Pattern: Stormrider's Leather Kilt", "Recipe, Leatherworking", 3}, {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3}, {251378, "Plans: Acolyte's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3}, {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3}, {251377, "Plans: Protector's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3}, {251375, "Plans: Veteran's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251376, "Plans: Guard's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3}, {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3}, {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3}, {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3}, {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3}, {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3}, {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3}, {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3}, {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3}, {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3}, {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3}, {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3}},
         },
         {
             name = "Aku'mai",
             npcID = 4829,
             aliases = {"Aku'mai", "Aku’mai"},
-            loot = {{6911, "Moss Cinch", "Waist, Leather", 3}, {6910, "Leech Pants", "Legs, Cloth", 3}, {6909, "Strike of the Hydra", "Two-Hand, Sword", 3}, {251376, "Plans: Guard's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251377, "Plans: Protector's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251378, "Plans: Acolyte's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252821, "Pattern: Trapper's Leather Legguards", "Recipe, Leatherworking", 3}, {252824, "Pattern: Stormrider's Leather Kilt", "Recipe, Leatherworking", 3}, {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3}, {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3}},
+            -- recipeall (2.0.27): then every other recipe the game's Encounter Journal lists for this boss (Wowhead Forever dungeon journal; SOURCES.txt).
+            -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+            loot = {{6911, "Moss Cinch", "Waist, Leather", 3}, {6910, "Leech Pants", "Legs, Cloth", 3}, {6909, "Strike of the Hydra", "Two-Hand, Sword", 3}, {251376, "Plans: Guard's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251377, "Plans: Protector's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {251378, "Plans: Acolyte's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252821, "Pattern: Trapper's Leather Legguards", "Recipe, Leatherworking", 3}, {252824, "Pattern: Stormrider's Leather Kilt", "Recipe, Leatherworking", 3}, {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3}, {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3}, {251379, "Plans: Crusader's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252820, "Pattern: Brawler's Leather Legguards", "Recipe, Leatherworking", 3}, {252822, "Pattern: Defender's Leather Kilt", "Recipe, Leatherworking", 3}, {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3}, {251375, "Plans: Veteran's Silvered Chain Leggings", "Recipe, Blacksmithing", 3}, {252823, "Pattern: Totemic Leather Leggings", "Recipe, Leatherworking", 3}, {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3}, {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3}, {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3}, {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3}, {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3}, {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3}, {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3}, {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3}, {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3}, {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3}, {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3}, {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3}, {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3}, {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3}},
         },
         {
             -- Blackfathom Deeps-specific BoE zone drops. Keep this restricted
@@ -1392,6 +1441,16 @@ DB["Shadowfang Keep"] = {
             name = "Fel Steed / Shadow Charger",
             npcID = 3864,
             aliases = {"Fel Steed", "Shadow Charger", "Fel Steed / Shadow Charger"},
+            -- felsteedoptional (2.0.7): stable mobs, not a boss fight: a run
+            -- is complete without them (it stayed "In progress"; Discord, 14
+            -- Nov 2026). felsteedoff (2.0.7, M): off the Dungeon Tracker and
+            -- the run pages altogether (runLogHidden), their kills are trash
+            -- there. No boss fight is announced for them, and inside a dungeon
+            -- Forever names a dying mob only in the XP line, so a character
+            -- they give no XP killed them unseen ("not killed" was wrong).
+            -- They stay in the journal with their loot.
+            optional = true,
+            runLogHidden = true,
             loot = {
                 {6341, "Eerie Stable Lantern", "Held In Off-hand", 3},
                 {932, "Fel Steed Saddlebags", "Bag", 2},
@@ -1426,6 +1485,10 @@ DB["Shadowfang Keep"] = {
                 {6226, "Bloody Apron", "Chest, Cloth", 3},
                 {6633, "Butcher's Slicer", "One-Hand, Sword", 3},
                 {273096, "Blueprint: Tanning Rack", "Blueprint", 2}, -- Wowhead Forever: Razorclaw the Butcher 192/2533; seen dropping (KramS, Discord)
+                -- recipeaudit (2.0.21): recipe audit of 14 Nov 2026, checked on Icy Veins / ForeverDB (SOURCES.txt).
+                {253938, "Pattern: Filigreed Pristine Leggings", "Recipe, Tailoring", 3},
+                {253942, "Pattern: Filigreed Flame Leggings", "Recipe, Tailoring", 3},
+                {253944, "Pattern: Filigreed Shadow Leggings", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -1635,6 +1698,23 @@ FDJ.DB["The Stockade"] = {
                 {251380, "Plans: Veteran's Silvered Chain Helm", "Recipe, Blacksmithing", 3},
                 {251382, "Plans: Protector's Silvered Chain Helm", "Recipe, Blacksmithing", 3},
                 {253942, "Pattern: Filigreed Flame Leggings", "Recipe, Tailoring", 3},
+                -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251345, "Plans: Veteran's Chain Leggings", "Recipe, Blacksmithing", 3},
+                {251346, "Plans: Guard's Chain Leggings", "Recipe, Blacksmithing", 3},
+                {251347, "Plans: Protector's Chain Leggings", "Recipe, Blacksmithing", 3},
+                {251348, "Plans: Acolyte's Chain Leggings", "Recipe, Blacksmithing", 3},
+                {251349, "Plans: Crusader's Chain Leggings", "Recipe, Blacksmithing", 3},
+                {252792, "Pattern: Brawler's Leather Pants", "Recipe, Leatherworking", 3},
+                {252793, "Pattern: Trapper's Leather Pants", "Recipe, Leatherworking", 3},
+                {252794, "Pattern: Defender's Leather Pants", "Recipe, Leatherworking", 3},
+                {252795, "Pattern: Totemic Leather Pants", "Recipe, Leatherworking", 3},
+                {252796, "Pattern: Stormrider's Leather Pants", "Recipe, Leatherworking", 3},
+                {252797, "Pattern: Wisdom's Leather Pants", "Recipe, Leatherworking", 3},
+                {253938, "Pattern: Filigreed Pristine Leggings", "Recipe, Tailoring", 3},
+                {253940, "Pattern: Filigreed Silky Leggings", "Recipe, Tailoring", 3},
+                {253944, "Pattern: Filigreed Shadow Leggings", "Recipe, Tailoring", 3},
+                {253946, "Pattern: Filigreed Pearly Leggings", "Recipe, Tailoring", 3},
+                {253948, "Pattern: Filigreed Shining Leggings", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -1648,6 +1728,23 @@ FDJ.DB["The Stockade"] = {
                 {251379, "Plans: Crusader's Silvered Chain Leggings", "Recipe, Blacksmithing", 3},
                 {252825, "Pattern: Wisdom's Leather Leggings", "Recipe, Leatherworking", 3},
                 {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3}, -- seen dropping (Nov 2026)
+                -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -1659,6 +1756,24 @@ FDJ.DB["The Stockade"] = {
                 {273810, "Ogre Grips", "Hands, Mail", 3},
                 {273811, "Repurposed Rack", "Off Hand, Shield", 3},
                 {251377, "Plans: Protector's Silvered Chain Leggings", "Recipe, Blacksmithing", 3},
+                -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -1673,6 +1788,24 @@ FDJ.DB["The Stockade"] = {
                 {251376, "Plans: Guard's Silvered Chain Leggings", "Recipe, Blacksmithing", 3},
                 {252820, "Pattern: Brawler's Leather Legguards", "Recipe, Leatherworking", 3},
                 {252821, "Pattern: Trapper's Leather Legguards", "Recipe, Leatherworking", 3},
+                -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -1687,6 +1820,22 @@ FDJ.DB["The Stockade"] = {
                 {252824, "Pattern: Stormrider's Leather Kilt", "Recipe, Leatherworking", 3},
                 {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
                 {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
+                -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -1699,6 +1848,22 @@ FDJ.DB["The Stockade"] = {
                 {3228, "Jimmied Handcuffs", "Wrist, Mail", 3},
                 {2941, "Prison Shank", "One-Hand, Dagger", 3},
                 {2942, "Iron Knuckles", "One-Hand, Fist Weapon", 3},
+                -- recorded (2.0.33): then every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -1729,12 +1894,14 @@ FDJ.DB["Excavation Site: Wetlands"] = {
         rewardItems = {{271740, "Knife-Polishing Rag", 3}, {271732, "Dirt-Heavy Bracers", 3}},
         liveXPFallback = 7158,
         rewardChoice = true,
+        -- excavhorde (2.0.7): where he stands (Wowhead Forever: 51.4, 59.2), the
+        -- same spot his turn-ins already had; this said 47.8, 56.3 (the door).
         startMap = {
-            y = 0.563,
+            y = 0.592,
             mapID = 1437,
-            label = "Deathstalker Agent — outside Excavation Site: Wetlands",
+            label = "Deathstalker Agent — Wetlands",
             targetName = "Deathstalker Agent",
-            x = 0.478,
+            x = 0.514,
         },
         name = "Open the Maw",
         faction = "Horde",
@@ -1915,6 +2082,21 @@ FDJ.DB["Excavation Site: Wetlands"] = {
                 {273097, "Blueprint: Rock Garden", "Blueprint", 2},
             },
         },
+        -- excavationtrash (2.0.30): the dungeon's own trash blues (M's audit of
+        -- 13 Nov 2026: Wowhead Forever item pages and Icy Veins Forever NPC
+        -- drop tables). Sources: mobs recorded dropping it, not the only ones.
+        {
+            name = "Trash Drops",
+            trash = true,
+            loot = {
+                {286982, "Unearthed Barrier", "Off Hand, Shield", 3, "Highland Lurker / Marsh Crocolisk / Highland Spider"},
+                {286983, "Ancient Cleaver", "Two-Hand, Axe", 3, "Highland Lurker / Thicket Hunter / Highland Spider"},
+                {286984, "Mark of the Marsh", "Neck", 3, "Marsh Skulker / Marsh Crocolisk / Thicket Hunter"},
+                {286985, "Thicket Bindings", "Wrist, Leather", 3, "Thicket Matriarch / Highland Lurker / Thicket Hunter"},
+                {286986, "Abandoned Leggings", "Legs, Cloth", 3, "Highland Spider / Thicket Lurker / Young Riptooth"},
+                {287068, "Excavated Dagger", "Thrown", 3, "Highland Snapper / Highland Spider / Thicket Lurker"},
+            },
+        },
     },
 }
 
@@ -1967,7 +2149,7 @@ FDJ.DB["City of Dalaran"] = {
         note = "There may not be enough of these mobs inside to finish it in one run.",
         rewardChoice = true,
         rewardItems = {{279837, "Fallen Guard's Pendant", 3}, {279838, "Arcane Infused Rod", 3}},
-        startMap = { mapID = 1416, x = 0.092, y = 0.600, label = "Image of Archmage Modera — Lordamere Lake near Dalaran", targetName = "Image of Archmage Modera" },
+        startMap = { mapID = 1416, x = 0.077, y = 0.588, label = "Image of Archmage Modera — Lordamere Lake near Dalaran", targetName = "Image of Archmage Modera" },
     }, {
         id = 92458,
         name = "Heart of Disruption",
@@ -1983,7 +2165,7 @@ FDJ.DB["City of Dalaran"] = {
         rewardSummary = "Kirin Tor +100",
         rewardChoice = true,
         rewardItems = {{279839, "Spellguard Pauldrons", 3}, {279840, "Renewing Footpads", 3}, {279841, "Defender of Dalaran", 3}},
-        startMap = { mapID = 1416, x = 0.092, y = 0.600, label = "Image of Archmage Modera — Lordamere Lake", targetName = "Image of Archmage Modera" },
+        startMap = { mapID = 1416, x = 0.077, y = 0.588, label = "Image of Archmage Modera — Lordamere Lake", targetName = "Image of Archmage Modera" },
     }, {
         id = 96984,
         name = "Heart of Disruption",
@@ -2000,7 +2182,7 @@ FDJ.DB["City of Dalaran"] = {
         rewardChoice = true,
         rewardItems = {{279842, "Battle Spaulders", 3}, {279843, "Enchanted Sandals", 3}, {279844, "Striking Staff", 3}},
         note = "Horde Dalaran attunement. Stone Tokens and Bracers of Binding can be done alongside the chain, but they are optional and are not required for attunement.",
-        startMap = { mapID = 1416, x = 0.092, y = 0.600, label = "Image of Archmage Modera — Lordamere Lake near Dalaran", targetName = "Image of Archmage Modera" },
+        startMap = { mapID = 1416, x = 0.077, y = 0.588, label = "Image of Archmage Modera — Lordamere Lake near Dalaran", targetName = "Image of Archmage Modera" },
     }, {
         id = 96987,
         name = "Opportunistic Education",
@@ -2089,8 +2271,8 @@ FDJ.DB["City of Dalaran"] = {
             aliases = {"Unstable Sentinel"},
             description = "An arcane golem by the Magus Commerce Exchange, with Angry Tomes. Malfunction hits everyone within 25 yards.",
             loot = {
-                {273046, "Guardian's Dualblade", "Weapon", 3},
-                {273047, "Unstable Crystalline Shoulderpads", "Shoulder", 3},
+                {273046, "Guardian's Dualblade", "Two-Hand, Axe", 3}, -- type from Wowhead Forever (2.0.12)
+                {273047, "Unstable Crystalline Shoulderpads", "Shoulder, Leather", 3}, -- type from Wowhead Forever (2.0.12)
                 {273048, "Refractory Scaleguards", "Legs, Mail", 3},
                 {273099, "Blueprint: Spinning Wheel", "Blueprint", 2},
             },
@@ -2153,6 +2335,15 @@ FDJ.DB["City of Dalaran"] = {
                 {286988, "Violet Sorcerer's Leggings", "Legs, Cloth", 3, "Fallen Mage / Dark Caster"},
                 -- Seen dropping from a Fragmented Sentry (Discord, Nov 2026).
                 {286995, "Guardian's Emblem", "Neck", 3, "Fragmented Sentry"},
+                -- dalarantrash (2.0.22): the rest of the city's own trash blues
+                -- (Wowhead Forever and Icy Veins drop tables, Nov 2026). Sources:
+                -- the mobs that drop it most, not the only ones.
+                {286990, "Arcane Remnant Leggings", "Legs, Leather", 3, "Dark Caster / Saturated Remnant / Mindless Horror"},
+                {286991, "Roused Nature Footwraps", "Feet, Leather", 3, "Saturated Remnant / Fallen Mage / Seeking Remnant"},
+                {286992, "Construct's Grips", "Hands, Mail", 3, "Fragmented Sentry"},
+                {286993, "Suffused Bindings", "Waist, Mail", 3, "Phantasm / Arcane Elemental / Seeking Remnant"},
+                {286994, "Tattered Kirin Tor Cloak", "Back", 3, "Mana Stalker / Dark Caster / Arcane Echo"},
+                {286996, "City Guard's Tarnished Blade", "One-Hand, Sword", 3, "Mana Echo / Dark Caster / Kirin Tor Necromancer"},
             },
         },
     },
@@ -2194,6 +2385,7 @@ FDJ.DB["Gnomeregan"] = {
         faction = "Alliance",
         -- Given by Ozzie when the quest is accepted (Wowhead Forever item 9364).
         providedItem = {9364, "Heavy Leaden Collection Phial", 1, "Use on an alive Irradiated Slime or Corrosive Lurker"},
+        warning = "It might take several tries: keep using it on a living Slime until it works.", -- greenglow (2.0.10)
         pickup = "Ozzie Togglevolt, Kharanos, Dun Morogh",
         level = 30,
         requires = 20,
@@ -2335,6 +2527,24 @@ FDJ.DB["Gnomeregan"] = {
                 {9445, "Grubbis Paws", "Hands, Mail", 3},
                 {274043, "Irradiated Shield", "Off Hand, Shield", 3},
                 {274042, "Skullduggery Belt", "Waist, Leather", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2346,6 +2556,25 @@ FDJ.DB["Gnomeregan"] = {
                 {9452, "Hydrocane", "Two-Hand, Staff", 3},
                 {9453, "Toxic Revenger", "One-Hand, Dagger", 3},
                 {9454, "Acidic Walkers", "Feet, Cloth", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {7091, "Pattern: Truefaith Gloves", "Recipe, Tailoring", 2},
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2357,6 +2586,24 @@ FDJ.DB["Gnomeregan"] = {
                 {9446, "Electrocutioner Leg", "Main Hand, Sword", 3},
                 {9447, "Electrocutioner Lagnut", "Finger", 3},
                 {9448, "Spidertank Oilrag", "Wrist, Cloth", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2368,6 +2615,25 @@ FDJ.DB["Gnomeregan"] = {
                 {9449, "Manual Crowd Pummeler", "Two-Hand, Mace", 3},
                 {9450, "Gnomebot Operating Boots", "Feet, Leather", 3},
                 {274068, "Thermaplugg Medal of Honor", "Neck", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {274049, "Schematic: 9-60 Battery Pack", "Recipe, Engineering", 2},
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2380,6 +2646,39 @@ FDJ.DB["Gnomeregan"] = {
                 {9459, "Thermaplugg's Left Arm", "Two-Hand, Axe", 3},
                 {9461, "Charged Gear", "Finger", 3, "", "RANDOM_ENCHANT"},
                 {9492, "Electromagnetic Gigaflux Reactivator", "Head, Cloth", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {4408, "Schematic: Mechanical Squirrel", "Recipe, Engineering", 2},
+                {4409, "Schematic: Small Seaforium Charge", "Recipe, Engineering", 2},
+                {4410, "Schematic: Shadow Goggles", "Recipe, Engineering", 2},
+                {4411, "Schematic: Flame Deflector", "Recipe, Engineering", 2},
+                {4412, "Schematic: Moonsight Rifle", "Recipe, Engineering", 2},
+                {4413, "Schematic: Discombobulator Ray", "Recipe, Engineering", 2},
+                {4414, "Schematic: Portable Bronze Mortar", "Recipe, Engineering", 2},
+                {4415, "Schematic: Craftsman's Monocle", "Recipe, Engineering", 3},
+                {4416, "Schematic: Goblin Land Mine", "Recipe, Engineering", 2},
+                {4417, "Schematic: Large Seaforium Charge", "Recipe, Engineering", 2},
+                {6672, "Schematic: Flash Bomb", "Recipe, Engineering", 2},
+                {6716, "Schematic: EZ-Thro Dynamite", "Recipe, Engineering", 2},
+                {7192, "Schematic: Goblin Rocket Boots", "Recipe, Engineering", 2},
+                {7742, "Schematic: Gnomish Cloaking Device", "Recipe, Engineering", 1},
+                {7560, "Schematic: Gnomish Universal Remote", "Recipe, Engineering", 1},
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2392,6 +2691,17 @@ FDJ.DB["Gnomeregan"] = {
                 {9455, "Emissary Cuffs", "Wrist, Mail", 3},
                 {9456, "Glass Shooter", "Ranged, Gun", 3},
                 {9457, "Royal Diplomatic Scepter", "Main Hand, Mace", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2424,6 +2734,8 @@ FDJ.DB["Razorfen Kraul"] = {
         rewardSummary = "A Small Container of Gems",
         id = 1221,
         name = "Blueleaf Tubers",
+        -- 2.0.50: the three quest items wait beside the quest giver.
+        warning = "Before you go in, pick up the Crate with Holes, the Snufflenose Command Stick and the Snufflenose Owner's Manual. They are right next to the quest giver, Mebok Mizzyrix, in Ratchet.",
         faction = "Both",
         pickup = "Mebok Mizzyrix, Ratchet, The Barrens",
         level = 26,
@@ -2524,6 +2836,24 @@ FDJ.DB["Razorfen Kraul"] = {
                     "Quest Item",
                     "Warrior quests Fire Hardened Mail and Brutal Armor",
                 }},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2535,6 +2865,24 @@ FDJ.DB["Razorfen Kraul"] = {
                 {274158, "Death Prophet Spine", "Two-Hand, Staff", 3},
                 {274159, "Thorncursed Grips", "Hands, Leather", 3},
                 {252820, "Pattern: Brawler's Leather Legguards", "Recipe, Leatherworking", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2545,6 +2893,24 @@ FDJ.DB["Razorfen Kraul"] = {
                 {2816, "Death Speaker Scepter", "Main Hand, Mace", 3},
                 {6685, "Death Speaker Mantle", "Shoulder, Cloth", 3},
                 {6682, "Death Speaker Robes", "Chest, Cloth", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2557,6 +2923,24 @@ FDJ.DB["Razorfen Kraul"] = {
                 {274161, "Quillord Mail Leggings", "Legs, Mail", 3},
                 {251379, "Plans: Crusader's Silvered Chain Leggings", "Recipe, Blacksmithing", 3},
                 {252821, "Pattern: Trapper's Leather Legguards", "Recipe, Leatherworking", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2568,6 +2952,24 @@ FDJ.DB["Razorfen Kraul"] = {
                 {6690, "Ferine Leggings", "Legs, Leather", 3},
                 {274160, "Quilrager Throwing Axe", "Thrown", 3},
                 {251378, "Plans: Acolyte's Silvered Chain Leggings", "Recipe, Blacksmithing", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2588,6 +2990,24 @@ FDJ.DB["Razorfen Kraul"] = {
                     "Requires Level 30",
                     "Shaman quest Elemental Aid",
                 }},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2600,6 +3020,21 @@ FDJ.DB["Razorfen Kraul"] = {
                 {6695, "Stygian Bone Amulet", "Neck", 3},
                 {6697, "Batwing Mantle", "Shoulder, Cloth", 3},
                 {6696, "Nightstalker Bow", "Ranged, Bow", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2611,6 +3046,16 @@ FDJ.DB["Razorfen Kraul"] = {
             loot = {
                 {6689, "Wind Spirit Staff", "Two-Hand, Staff", 3},
                 {6688, "Whisperwind Headdress", "Head, Leather", 3},
+                -- recorded (2.0.35): every recipe Wowhead / Icy Veins Forever have recorded this boss dropping (SOURCES.txt).
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2691,6 +3136,25 @@ FDJ.DB["Scarlet Monastery: Graveyard"] = {
                 {7683, "Bloody Brass Knuckles", "One-Hand, Fist Weapon", 3},
                 {274290, "Painwalker Buckler", "Off Hand, Shield", 3},
                 {252513, "Trapper's Leather Helm", "Head, Leather", 3}, -- shared drop: also seen on Fallen Champion
+                -- smrecipes (2.0.7): recipes recorded dropping from this boss (Icy Veins
+                -- and Wowhead WoW Forever drop records; SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2703,6 +3167,23 @@ FDJ.DB["Scarlet Monastery: Graveyard"] = {
                 {7709, "Blighted Leggings", "Legs, Cloth", 3},
                 {7708, "Necrotic Wand", "Ranged, Wand", 3},
                 {7731, "Ghostshard Talisman", "Neck", 3},
+                -- smrecipes (2.0.7): recipes recorded dropping from this boss (Icy Veins
+                -- and Wowhead WoW Forever drop records; SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2716,6 +3197,17 @@ FDJ.DB["Scarlet Monastery: Graveyard"] = {
                 {7690, "Ebon Vise", "Hands, Leather", 3},
                 {7689, "Morbid Dawn", "Two-Hand, Sword", 3},
                 {252513, "Trapper's Leather Helm", "Head, Leather", 3}, -- shared drop: also seen on Interrogator Vishas
+                -- smrecipes (2.0.7): recipes recorded dropping from this boss (Icy Veins
+                -- and Wowhead WoW Forever drop records; SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2728,6 +3220,23 @@ FDJ.DB["Scarlet Monastery: Graveyard"] = {
                 {7688, "Ironspine's Ribcage", "Chest, Mail", 3},
                 {7687, "Ironspine's Fist", "One-Hand, Mace", 3},
                 {7686, "Ironspine's Eye", "Finger", 3},
+                -- smrecipes (2.0.7): recipes recorded dropping from this boss (Icy Veins
+                -- and Wowhead WoW Forever drop records; SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2740,6 +3249,25 @@ FDJ.DB["Scarlet Monastery: Graveyard"] = {
                 {7684, "Bloodmage Mantle", "Shoulder, Cloth", 3},
                 {274291, "Polished Skullcap", "Head, Mail", 3},
                 {252822, "Pattern: Defender's Leather Kilt", "Recipe, Leatherworking", 3},
+                -- smrecipes (2.0.7): recipes recorded dropping from this boss (Icy Veins
+                -- and Wowhead WoW Forever drop records; SOURCES.txt).
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2805,6 +3333,7 @@ FDJ.DB["Scarlet Monastery: Library"] = {
         rewardChoice = true,
         rewardItems = {{7747, "Vile Protector", 3}, {17508, "Forcestone Buckler", 3}, {7749, "Omega Orb", 3}},
         warning = "Undead cannot take this quest",
+        unavailableRaces = { Scourge = true }, -- raceunavailable (2.0.9): greyed out and not counted for Undead
         turnin = "Sage Truthseeker, Thunder Bluff",
         liveXPFallback = 3550,
     }, {
@@ -2924,6 +3453,26 @@ FDJ.DB["Scarlet Monastery: Library"] = {
                 {3456, "Dog Whistle", "Trinket", 3},
                 {7710, "Loksey's Training Stick", "Two-Hand, Staff", 3},
                 {274292, "Houndmaster Boomerang", "Thrown", 3},
+                -- smrecipes (2.0.7): recipes recorded dropping from this boss (Icy Veins
+                -- and Wowhead WoW Forever drop records; SOURCES.txt).
+                {273109, "Blueprint: Trapper's Workbench", "Blueprint", 2},
+                {251350, "Plans: Veteran's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251351, "Plans: Guard's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251352, "Plans: Protector's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251353, "Plans: Acolyte's Chain Helm", "Recipe, Blacksmithing", 3},
+                {251354, "Plans: Crusader's Chain Helm", "Recipe, Blacksmithing", 3},
+                {252814, "Pattern: Brawler's Leather Helm", "Recipe, Leatherworking", 3},
+                {252815, "Pattern: Trapper's Leather Helm", "Recipe, Leatherworking", 3},
+                {252816, "Pattern: Defender's Leather Helm", "Recipe, Leatherworking", 3},
+                {252817, "Pattern: Totemic Leather Helm", "Recipe, Leatherworking", 3},
+                {252818, "Pattern: Stormrider's Leather Helm", "Recipe, Leatherworking", 3},
+                {252819, "Pattern: Wisdom's Leather Helm", "Recipe, Leatherworking", 3},
+                {253976, "Pattern: Filigreed Pristine Circlet", "Recipe, Tailoring", 3},
+                {253978, "Pattern: Filigreed Silky Circlet", "Recipe, Tailoring", 3},
+                {253980, "Pattern: Filigreed Flame Circlet", "Recipe, Tailoring", 3},
+                {253982, "Pattern: Filigreed Shadow Circlet", "Recipe, Tailoring", 3},
+                {253984, "Pattern: Filigreed Pearly Circlet", "Recipe, Tailoring", 3},
+                {253986, "Pattern: Filigreed Shining Circlet", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -2939,6 +3488,28 @@ FDJ.DB["Scarlet Monastery: Library"] = {
                 {7711, "Robe of Doan", "Chest, Cloth", 2},
                 {274294, "Library Walkers", "Feet, Cloth", 2},
                 {7146, "The Scarlet Key", "Key", 2},
+                -- smrecipes (2.0.7): recipes recorded dropping from this boss (Icy Veins
+                -- and Wowhead WoW Forever drop records; SOURCES.txt).
+                {251398, "Plans: Officer's Boots", "Recipe, Blacksmithing", 3},
+                {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
+                {251401, "Plans: Prefect's Boots", "Recipe, Blacksmithing", 3},
+                {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252844, "Pattern: Skulker's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252846, "Pattern: Skycaller's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252847, "Pattern: Mender's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                {252897, "Pattern: Skycaller's Mail Boots", "Recipe, Leatherworking", 3},
+                {252898, "Pattern: Skirmisher's Mail Boots", "Recipe, Leatherworking", 3},
+                {252899, "Pattern: Mender's Mail Boots", "Recipe, Leatherworking", 3},
+                {254038, "Pattern: Gilded Cord", "Recipe, Tailoring", 3},
+                {254040, "Pattern: Frothing Cord", "Recipe, Tailoring", 3},
+                {254042, "Pattern: Fiery Cord", "Recipe, Tailoring", 3},
+                {254044, "Pattern: Black Cord", "Recipe, Tailoring", 3},
+                {254046, "Pattern: Golden Cord", "Recipe, Tailoring", 3},
+                {254048, "Pattern: Radiant Cord", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -3034,6 +3605,28 @@ FDJ.DB["Scarlet Monastery: Armory"] = {
                 {7717, "Ravager", "Two-Hand, Axe", 3},
                 {10330, "Scarlet Leggings", "Legs, Mail", 3},
                 {274295, "Band of Crimson Light", "Finger", 3},
+                -- armoryrecipes (2.0.7): recipes recorded dropping from Herod (Icy Veins
+                -- WoW Forever drop records; SOURCES.txt).
+                {251398, "Plans: Officer's Boots", "Recipe, Blacksmithing", 3},
+                {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
+                {251401, "Plans: Prefect's Boots", "Recipe, Blacksmithing", 3},
+                {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252844, "Pattern: Skulker's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252846, "Pattern: Skycaller's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252847, "Pattern: Mender's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                {252897, "Pattern: Skycaller's Mail Boots", "Recipe, Leatherworking", 3},
+                {252898, "Pattern: Skirmisher's Mail Boots", "Recipe, Leatherworking", 3},
+                {252899, "Pattern: Mender's Mail Boots", "Recipe, Leatherworking", 3},
+                {254038, "Pattern: Gilded Cord", "Recipe, Tailoring", 3},
+                {254040, "Pattern: Frothing Cord", "Recipe, Tailoring", 3},
+                {254042, "Pattern: Fiery Cord", "Recipe, Tailoring", 3},
+                {254044, "Pattern: Black Cord", "Recipe, Tailoring", 3},
+                {254046, "Pattern: Golden Cord", "Recipe, Tailoring", 3},
+                {254048, "Pattern: Radiant Cord", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -3129,6 +3722,27 @@ FDJ.DB["Scarlet Monastery: Cathedral"] = {
                 {19507, "Inquisitor's Shawl", "Shoulder, Cloth", 3},
                 {19508, "Branded Leather Bracers", "Wrist, Leather", 3},
                 {19509, "Dusty Mail Boots", "Feet, Mail", 3},
+                -- cathrecipes (2.0.7): recipes recorded dropping from this boss (Icy Veins
+                -- WoW Forever drop records; SOURCES.txt).
+                {251398, "Plans: Officer's Boots", "Recipe, Blacksmithing", 3},
+                {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
+                {251401, "Plans: Prefect's Boots", "Recipe, Blacksmithing", 3},
+                {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252844, "Pattern: Skulker's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252846, "Pattern: Skycaller's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252847, "Pattern: Mender's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                {252897, "Pattern: Skycaller's Mail Boots", "Recipe, Leatherworking", 3},
+                {252898, "Pattern: Skirmisher's Mail Boots", "Recipe, Leatherworking", 3},
+                {252899, "Pattern: Mender's Mail Boots", "Recipe, Leatherworking", 3},
+                {254038, "Pattern: Gilded Cord", "Recipe, Tailoring", 3},
+                {254040, "Pattern: Frothing Cord", "Recipe, Tailoring", 3},
+                {254042, "Pattern: Fiery Cord", "Recipe, Tailoring", 3},
+                {254046, "Pattern: Golden Cord", "Recipe, Tailoring", 3},
+                {254048, "Pattern: Radiant Cord", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -3141,6 +3755,28 @@ FDJ.DB["Scarlet Monastery: Cathedral"] = {
                 {7724, "Gauntlets of Divinity", "Hands, Mail", 3},
                 {7723, "Mograine's Might", "Two-Hand, Mace", 3},
                 {10330, "Scarlet Leggings", "Legs, Mail", 3},
+                -- cathrecipes (2.0.7): recipes recorded dropping from this boss (Icy Veins
+                -- WoW Forever drop records; SOURCES.txt).
+                {251398, "Plans: Officer's Boots", "Recipe, Blacksmithing", 3},
+                {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
+                {251401, "Plans: Prefect's Boots", "Recipe, Blacksmithing", 3},
+                {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252844, "Pattern: Skulker's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252846, "Pattern: Skycaller's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252847, "Pattern: Mender's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                {252897, "Pattern: Skycaller's Mail Boots", "Recipe, Leatherworking", 3},
+                {252898, "Pattern: Skirmisher's Mail Boots", "Recipe, Leatherworking", 3},
+                {252899, "Pattern: Mender's Mail Boots", "Recipe, Leatherworking", 3},
+                {254038, "Pattern: Gilded Cord", "Recipe, Tailoring", 3},
+                {254040, "Pattern: Frothing Cord", "Recipe, Tailoring", 3},
+                {254042, "Pattern: Fiery Cord", "Recipe, Tailoring", 3},
+                {254044, "Pattern: Black Cord", "Recipe, Tailoring", 3},
+                {254046, "Pattern: Golden Cord", "Recipe, Tailoring", 3},
+                {254048, "Pattern: Radiant Cord", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -3152,6 +3788,26 @@ FDJ.DB["Scarlet Monastery: Cathedral"] = {
                 {7722, "Triune Amulet", "Neck", 3},
                 {7720, "Whitemane's Chapeau", "Head, Cloth", 3},
                 {7721, "Hand of Righteousness", "Main Hand, Mace", 3},
+                -- cathrecipes (2.0.7): recipes recorded dropping from this boss (Icy Veins
+                -- WoW Forever drop records; SOURCES.txt).
+                {251398, "Plans: Officer's Boots", "Recipe, Blacksmithing", 3},
+                {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
+                {251401, "Plans: Prefect's Boots", "Recipe, Blacksmithing", 3},
+                {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252844, "Pattern: Skulker's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252846, "Pattern: Skycaller's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252847, "Pattern: Mender's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                {252898, "Pattern: Skirmisher's Mail Boots", "Recipe, Leatherworking", 3},
+                {252899, "Pattern: Mender's Mail Boots", "Recipe, Leatherworking", 3},
+                {254040, "Pattern: Frothing Cord", "Recipe, Tailoring", 3},
+                {254042, "Pattern: Fiery Cord", "Recipe, Tailoring", 3},
+                {254044, "Pattern: Black Cord", "Recipe, Tailoring", 3},
+                {254046, "Pattern: Golden Cord", "Recipe, Tailoring", 3},
+                {254048, "Pattern: Radiant Cord", "Recipe, Tailoring", 3},
             },
         },
         {
@@ -3260,6 +3916,23 @@ FDJ.DB["Razorfen Downs"] = {
                 {10776, "Silky Spider Cape", "Back", 3},
                 {10775, "Carapace of Tuten'kash", "Chest, Plate", 3},
                 {10777, "Arachnid Gloves", "Hands, Leather", 3},
+                -- rfdrecipes (2.0.7): recorded from this boss (Icy Veins NPC 7355)
+                {251398, "Plans: Officer's Boots", "Recipe, Blacksmithing", 3},
+                {254042, "Pattern: Fiery Cord", "Recipe, Tailoring", 3},
+                {254040, "Pattern: Frothing Cord", "Recipe, Tailoring", 3},
+                {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3},
+                {254038, "Pattern: Gilded Cord", "Recipe, Tailoring", 3},
+                {254046, "Pattern: Golden Cord", "Recipe, Tailoring", 3},
+                {252844, "Pattern: Skulker's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252846, "Pattern: Skycaller's Leather Shoes", "Recipe, Leatherworking", 3},
+                {251401, "Plans: Prefect's Boots", "Recipe, Blacksmithing", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                {252847, "Pattern: Mender's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {254048, "Pattern: Radiant Cord", "Recipe, Tailoring", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
+                {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -3274,6 +3947,24 @@ FDJ.DB["Razorfen Downs"] = {
                 {10766, "Plaguerot Sprig", "Ranged, Wand", 3},
                 -- New in Forever, seen dropping (a player, Nov 2026).
                 {274380, "Decaying Flesh Bands", "Wrist, Cloth", 3},
+                -- rfdrecipes (2.0.7): recorded from this boss (Icy Veins NPC 7356)
+                {254042, "Pattern: Fiery Cord", "Recipe, Tailoring", 3},
+                {254038, "Pattern: Gilded Cord", "Recipe, Tailoring", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
+                {254044, "Pattern: Black Cord", "Recipe, Tailoring", 3},
+                {254040, "Pattern: Frothing Cord", "Recipe, Tailoring", 3},
+                {251398, "Plans: Officer's Boots", "Recipe, Blacksmithing", 3},
+                {251401, "Plans: Prefect's Boots", "Recipe, Blacksmithing", 3},
+                {252844, "Pattern: Skulker's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252897, "Pattern: Skycaller's Mail Boots", "Recipe, Leatherworking", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                {252847, "Pattern: Mender's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252899, "Pattern: Mender's Mail Boots", "Recipe, Leatherworking", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252898, "Pattern: Skirmisher's Mail Boots", "Recipe, Leatherworking", 3},
+                {252846, "Pattern: Skycaller's Leather Shoes", "Recipe, Leatherworking", 3},
+                {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -3285,6 +3976,25 @@ FDJ.DB["Razorfen Downs"] = {
                 {10770, "Mordresh's Lifeless Skull", "Held In Off-hand", 3},
                 {10769, "Glowing Eye of Mordresh", "Neck", 3},
                 {10771, "Deathmage Sash", "Waist, Cloth", 3},
+                -- rfdrecipes (2.0.7): recorded from this boss (Icy Veins NPC 7357)
+                {254044, "Pattern: Black Cord", "Recipe, Tailoring", 3},
+                {254042, "Pattern: Fiery Cord", "Recipe, Tailoring", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3},
+                {254040, "Pattern: Frothing Cord", "Recipe, Tailoring", 3},
+                {252847, "Pattern: Mender's Leather Shoes", "Recipe, Leatherworking", 3},
+                {254048, "Pattern: Radiant Cord", "Recipe, Tailoring", 3},
+                {252898, "Pattern: Skirmisher's Mail Boots", "Recipe, Leatherworking", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                {254046, "Pattern: Golden Cord", "Recipe, Tailoring", 3},
+                {252897, "Pattern: Skycaller's Mail Boots", "Recipe, Leatherworking", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
+                {251398, "Plans: Officer's Boots", "Recipe, Blacksmithing", 3},
+                {251401, "Plans: Prefect's Boots", "Recipe, Blacksmithing", 3},
+                {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
+                {254038, "Pattern: Gilded Cord", "Recipe, Tailoring", 3},
+                {252846, "Pattern: Skycaller's Leather Shoes", "Recipe, Leatherworking", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -3297,6 +4007,23 @@ FDJ.DB["Razorfen Downs"] = {
                 {10774, "Fleshhide Shoulders", "Shoulder, Leather", 3},
                 {274385, "Abomination Chain", "Neck", 3}, -- confirmed (a player, Nov 2026)
                 {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3}, -- confirmed (a player, Nov 2026)
+                -- rfdrecipes (2.0.7): recorded from this boss (Icy Veins NPC 8567)
+                {252846, "Pattern: Skycaller's Leather Shoes", "Recipe, Leatherworking", 3},
+                {254038, "Pattern: Gilded Cord", "Recipe, Tailoring", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252897, "Pattern: Skycaller's Mail Boots", "Recipe, Leatherworking", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
+                {254044, "Pattern: Black Cord", "Recipe, Tailoring", 3},
+                {252847, "Pattern: Mender's Leather Shoes", "Recipe, Leatherworking", 3},
+                {254048, "Pattern: Radiant Cord", "Recipe, Tailoring", 3},
+                {252844, "Pattern: Skulker's Leather Shoes", "Recipe, Leatherworking", 3},
+                {254042, "Pattern: Fiery Cord", "Recipe, Tailoring", 3},
+                {254046, "Pattern: Golden Cord", "Recipe, Tailoring", 3},
+                {252899, "Pattern: Mender's Mail Boots", "Recipe, Leatherworking", 3},
+                {251398, "Plans: Officer's Boots", "Recipe, Blacksmithing", 3},
+                {251401, "Plans: Prefect's Boots", "Recipe, Blacksmithing", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -3311,6 +4038,13 @@ FDJ.DB["Razorfen Downs"] = {
                 {10767, "Savage Boar's Guard", "Off Hand, Shield", 3},
                 {10768, "Boar Champion's Belt", "Waist, Mail", 3},
                 {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
+                -- rfdrecipes (2.0.7): recorded from this boss (Icy Veins NPC 7354)
+                {252897, "Pattern: Skycaller's Mail Boots", "Recipe, Leatherworking", 3},
+                {254038, "Pattern: Gilded Cord", "Recipe, Tailoring", 3},
+                {252899, "Pattern: Mender's Mail Boots", "Recipe, Leatherworking", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252898, "Pattern: Skirmisher's Mail Boots", "Recipe, Leatherworking", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
             },
         },
         {
@@ -3325,6 +4059,44 @@ FDJ.DB["Razorfen Downs"] = {
                 {10765, "Bonefingers", "Hands, Leather", 3},
                 {10761, "Coldrage Dagger", "One-Hand, Dagger", 3},
                 {274381, "Coldbringer Spine", "Two-Hand, Staff", 3}, -- seen dropping (Nov 2026)
+                -- rfdrecipes (2.0.7): recorded from this boss (Icy Veins NPC 7358)
+                {252899, "Pattern: Mender's Mail Boots", "Recipe, Leatherworking", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3},
+                {254044, "Pattern: Black Cord", "Recipe, Tailoring", 3},
+                {254042, "Pattern: Fiery Cord", "Recipe, Tailoring", 3},
+                {252847, "Pattern: Mender's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252843, "Pattern: Prowler's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252845, "Pattern: Warden's Leather Shoes", "Recipe, Leatherworking", 3},
+                {251401, "Plans: Prefect's Boots", "Recipe, Blacksmithing", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
+                {254040, "Pattern: Frothing Cord", "Recipe, Tailoring", 3},
+                {252898, "Pattern: Skirmisher's Mail Boots", "Recipe, Leatherworking", 3},
+                {252846, "Pattern: Skycaller's Leather Shoes", "Recipe, Leatherworking", 3},
+                {252897, "Pattern: Skycaller's Mail Boots", "Recipe, Leatherworking", 3},
+                {251398, "Plans: Officer's Boots", "Recipe, Blacksmithing", 3},
+            },
+        },
+        {
+            -- rfdtrash (2.0.35): Razorfen Downs' own trash blues, Classic data
+            -- (M's audit of 13 Nov 2026; warcraft.wiki.gg's Razorfen Downs
+            -- page and wowtbc.gg's Forever loot table list the same pool).
+            -- Not yet seen dropping on Forever: added like Gnomeregan's and
+            -- Uldaman's Classic trash. Briar Tredders: the audit's list only.
+            name = "Trash Drops",
+            trash = true,
+            loot = {
+                {10574, "Corpseshroud", "Head, Cloth", 3, "Razorfen Downs trash (Classic)"},
+                {10581, "Death's Head Vestment", "Chest, Cloth", 3, "Razorfen Downs trash (Classic)"},
+                {10583, "Quillward Harness", "Chest, Leather", 3, "Razorfen Downs trash (Classic)"},
+                {10584, "Stormgale Fists", "Hands, Mail", 3, "Razorfen Downs trash (Classic)"},
+                {10578, "Thoughtcast Boots", "Feet, Cloth", 3, "Razorfen Downs trash (Classic)"},
+                {10582, "Briar Tredders", "Feet, Leather", 3, "Razorfen Downs trash (Classic)"},
+                {10572, "Freezing Shard", "Ranged, Wand", 3, "Razorfen Downs trash (Classic)"},
+                {10567, "Quillshooter", "Ranged, Bow", 3, "Razorfen Downs trash (Classic)"},
+                {10571, "Ebony Boneclub", "One-Hand, Mace", 3, "Razorfen Downs trash (Classic)"},
+                {10570, "Manslayer", "Two-Hand, Axe", 3, "Razorfen Downs trash (Classic)"},
+                {10573, "Boneslasher", "Two-Hand, Sword", 3, "Razorfen Downs trash (Classic)"},
             },
         },
     },
@@ -3684,6 +4456,9 @@ FDJ.DB["Uldaman"] = {
                 {9403, "Battered Viking Shield", "Off Hand, Shield", 3},
                 {9404, "Olaf's All Purpose Shield", "Off Hand, Shield", 3},
                 {9399, "Precision Arrow", "Projectile, Arrow", 2},
+                -- uldrecipes (2.0.7): recorded from Eric "The Swift" (Icy Veins NPC 6907, 1.49% each)
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
+                {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
             },
         },
         {
@@ -3735,6 +4510,7 @@ FDJ.DB["Uldaman"] = {
                 {11310, "Flameseer Mantle", "Shoulder, Cloth", 3},
                 {9419, "Galgann's Firehammer", "Main Hand, Mace", 3},
                 {9412, "Galgann's Fireblaster", "Ranged, Gun", 3},
+                {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3}, -- uldrecipes (2.0.7): Icy Veins NPC 7291, 0.719%
             },
         },
         {
@@ -3758,6 +4534,16 @@ FDJ.DB["Uldaman"] = {
                 {9413, "The Rockpounder", "Two-Hand, Mace", 3},
                 {9418, "Stoneslayer", "Two-Hand, Sword", 3},
                 {274432, "Stone Keeper Spire", "Two-Hand, Staff", 3}, -- Player-confirmed Archaedas drop (Nov 2026)
+                -- uldrecipes (2.0.7): recorded from Archaedas (Icy Veins NPC 2748)
+                {252868, "Pattern: Skulker's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {254100, "Pattern: Fiery Gloves", "Recipe, Tailoring", 3},
+                {252871, "Pattern: Mender's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {254096, "Pattern: Gilded Gloves", "Recipe, Tailoring", 3},
+                {254106, "Pattern: Radiant Gloves", "Recipe, Tailoring", 3},
+                {252870, "Pattern: Skycaller's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252919, "Pattern: Skycaller's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {251404, "Plans: Sentinel's Gloves", "Recipe, Blacksmithing", 3},
+                {251405, "Plans: Warder's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -4017,6 +4803,11 @@ FDJ.DB["Zul'Farrak"] = {
                     "Requires Level 42",
                     "Sell Price: 99|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 1|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
                 }},
+                -- zfrecipes (2.0.7): recorded from Theka the Martyr (Icy Veins NPC 7272)
+                {254098, "Pattern: Frothing Gloves", "Recipe, Tailoring", 3},
+                {254096, "Pattern: Gilded Gloves", "Recipe, Tailoring", 3},
+                {252920, "Pattern: Skirmisher's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {251403, "Plans: Officer's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -4029,6 +4820,14 @@ FDJ.DB["Zul'Farrak"] = {
                 {9639, "The Hand of Antu'sul", "Main Hand, Mace", 3},
                 {9641, "Lifeblood Amulet", "Neck", 3},
                 {9379, "Sang'thraze the Deflector", "One-Hand, Sword", 3},
+                -- zfrecipes (2.0.7): recorded from Antu'sul (Icy Veins NPC 8127)
+                {251407, "Plans: Justicar's Gloves", "Recipe, Blacksmithing", 3},
+                {252920, "Pattern: Skirmisher's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {252869, "Pattern: Warden's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252868, "Pattern: Skulker's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252870, "Pattern: Skycaller's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {251403, "Plans: Officer's Gloves", "Recipe, Blacksmithing", 3},
+                {251405, "Plans: Warder's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -4049,6 +4848,16 @@ FDJ.DB["Zul'Farrak"] = {
                     "Requires Level 43",
                     "Sell Price: 96|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 7|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
                 }},
+                -- zfrecipes (2.0.7): recorded from Witch Doctor Zum'rah (Icy Veins NPC 7271)
+                {252868, "Pattern: Skulker's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252918, "Pattern: Stalker's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {252869, "Pattern: Warden's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {251403, "Plans: Officer's Gloves", "Recipe, Blacksmithing", 3},
+                {252871, "Pattern: Mender's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {254106, "Pattern: Radiant Gloves", "Recipe, Tailoring", 3},
+                {252870, "Pattern: Skycaller's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {251404, "Plans: Sentinel's Gloves", "Recipe, Blacksmithing", 3},
+                {251405, "Plans: Warder's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -4081,6 +4890,10 @@ FDJ.DB["Zul'Farrak"] = {
                     "Sell Price: 72|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 86|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
                 }},
                 {274643, "Gutcutter Hatchet", "Thrown", 3}, -- Wowhead Forever: Nekrum Gutchewer 51/151
+                -- zfrecipes (2.0.7): recorded from Nekrum Gutchewer (Icy Veins NPC 7796)
+                {252871, "Pattern: Mender's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252868, "Pattern: Skulker's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -4093,6 +4906,14 @@ FDJ.DB["Zul'Farrak"] = {
                 {9473, "Jinxed Hoodoo Skin", "Chest, Leather", 3},
                 {9474, "Jinxed Hoodoo Kilt", "Legs, Leather", 3},
                 {9475, "Diabolic Skiver", "Two-Hand, Polearm", 3},
+                -- zfrecipes (2.0.7): recorded from Shadowpriest Sezz'ziz (Icy Veins NPC 7275)
+                {254102, "Pattern: Black Gloves", "Recipe, Tailoring", 3},
+                {251404, "Plans: Sentinel's Gloves", "Recipe, Blacksmithing", 3},
+                {254098, "Pattern: Frothing Gloves", "Recipe, Tailoring", 3},
+                {252919, "Pattern: Skycaller's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {252918, "Pattern: Stalker's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {251407, "Plans: Justicar's Gloves", "Recipe, Blacksmithing", 3},
+                {251403, "Plans: Officer's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -4117,10 +4938,15 @@ FDJ.DB["Zul'Farrak"] = {
                     "Unique",
                 }},
                 {252896, "Pattern: Stalker's Mail Boots", "Recipe, Leatherworking", 3},
+                -- zfrecipes (2.0.7): recorded from Sergeant Bly (Icy Veins NPC 7604)
+                {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
+                {251402, "Plans: Justicar's Boots", "Recipe, Blacksmithing", 3},
             },
         },
         {
-            -- Player-confirmed Forever drop (screenshot, 10 Nov 2026).
+            -- Player-confirmed Forever drop (screenshot, 10 Nov 2026); the
+            -- other two from Wowhead Forever (2.0.42).
             name = "Hydromancer Velratha",
             npcID = 7795,
             aliases = {"Hydromancer Velratha"},
@@ -4136,6 +4962,27 @@ FDJ.DB["Zul'Farrak"] = {
                     "Requires Level 43",
                     "Sell Price: 76|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 97|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
                 }},
+                -- 2.0.42, Wowhead Forever (Hydromancer Velratha's drops, 412 kills:
+                -- 30.3 and 29.4 per cent, from no other NPC); stats also on forg.gg.
+                {274651, "Zealot Plate", "Chest, Plate", 3, tip = {
+                    "Binds when picked up",
+                    {"Chest", "Plate"},
+                    "509 Armor",
+                    "+13 Strength",
+                    "|cff1eff00Equip: When struck in combat, has a chance to energize you for 66 to 110 mana. This effect cannot occur more than once every 15 sec.|r",
+                    "Requires Level 43",
+                    "Sell Price: 1|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t 78|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 34|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
+                }},
+                {274652, "Wall of Water", "Off Hand, Shield", 3, tip = {
+                    "Binds when picked up",
+                    {"Off Hand", "Shield"},
+                    "1676 Armor",
+                    "27 Block",
+                    "|cff1eff00Equip: Restores 3 mana per 5 sec.|r",
+                    "|cff1eff00Equip: Increases damage and healing done by magical spells and effects by up to 14.|r",
+                    "Requires Level 43",
+                    "Sell Price: 1|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t 63|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 62|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
+                }},
             },
         },
         {
@@ -4147,6 +4994,14 @@ FDJ.DB["Zul'Farrak"] = {
                 {9467, "Gahz'rilla Fang", "One-Hand, Dagger", 3},
                 {9469, "Gahz'rilla Scale Armor", "Chest, Mail", 3},
                 {274657, "Hydra Leather Legs", "Legs, Leather", 3}, -- Wowhead Forever: Gahz'rilla 51/130
+                -- zfrecipes (2.0.7): recorded from Gahz'rilla (Icy Veins NPC 7273)
+                {254096, "Pattern: Gilded Gloves", "Recipe, Tailoring", 3},
+                {252871, "Pattern: Mender's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {254106, "Pattern: Radiant Gloves", "Recipe, Tailoring", 3},
+                {254098, "Pattern: Frothing Gloves", "Recipe, Tailoring", 3},
+                {252867, "Pattern: Prowler's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252868, "Pattern: Skulker's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252869, "Pattern: Warden's Leather Gauntlets", "Recipe, Leatherworking", 3},
             },
         },
         {
@@ -4169,6 +5024,8 @@ FDJ.DB["Zul'Farrak"] = {
                     "Sell Price: 2|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t 19|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 3|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
                 }},
                 {12470, "Sandstalker Ankleguards", "Feet, Leather", 3},
+                -- zfrecipes (2.0.7): recorded from Zerillis (Icy Veins NPC 10082)
+                {251400, "Plans: Warder's Boots", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -4192,6 +5049,8 @@ FDJ.DB["Zul'Farrak"] = {
             loot = {
                 {12471, "Desertwalker Cane", "Held In Off-hand", 3}, -- Wowhead Forever
                 {12469, "Mutilator", "Two-Hand, Sword", 3}, -- Wowhead Forever: Dustwraith 11/20
+                -- zfrecipes (2.0.7): recorded from Dustwraith (Icy Veins NPC 10081)
+                {251399, "Plans: Sentinel's Boots", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -4206,6 +5065,16 @@ FDJ.DB["Zul'Farrak"] = {
             loot = {
                 {274654, "Sandfury Guillotine", "Two-Hand, Axe", 3},
                 {274655, "Peacekeeper Wand", "Ranged, Wand", 3},
+                -- zfrecipes (2.0.7): recorded from Ruuzlu (Icy Veins NPC 7797)
+                {252919, "Pattern: Skycaller's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {254100, "Pattern: Fiery Gloves", "Recipe, Tailoring", 3},
+                {252869, "Pattern: Warden's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {254102, "Pattern: Black Gloves", "Recipe, Tailoring", 3},
+                {254096, "Pattern: Gilded Gloves", "Recipe, Tailoring", 3},
+                {252870, "Pattern: Skycaller's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252918, "Pattern: Stalker's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {251407, "Plans: Justicar's Gloves", "Recipe, Blacksmithing", 3},
+                {251405, "Plans: Warder's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -4222,6 +5091,17 @@ FDJ.DB["Zul'Farrak"] = {
                 {9478, "Ripsaw", "Main Hand, Axe", 3},
                 {9479, "Embrace of the Lycan", "Head, Leather", 3},
                 {11086, "Jang'thraze the Protector", "Main Hand, Sword", 3},
+                -- zfrecipes (2.0.7): recorded from Chief Ukorz Sandscalp (Icy Veins NPC 7267)
+                {254100, "Pattern: Fiery Gloves", "Recipe, Tailoring", 3},
+                {254096, "Pattern: Gilded Gloves", "Recipe, Tailoring", 3},
+                {254102, "Pattern: Black Gloves", "Recipe, Tailoring", 3},
+                {251407, "Plans: Justicar's Gloves", "Recipe, Blacksmithing", 3},
+                {254098, "Pattern: Frothing Gloves", "Recipe, Tailoring", 3},
+                {252871, "Pattern: Mender's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252867, "Pattern: Prowler's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {254106, "Pattern: Radiant Gloves", "Recipe, Tailoring", 3},
+                {251404, "Plans: Sentinel's Gloves", "Recipe, Blacksmithing", 3},
+                {251405, "Plans: Warder's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
     },
@@ -4679,7 +5559,7 @@ FDJ.DB["Krol'dok Stronghold"] = {
             aliases = {"War Handler Ashka", "Handler Ashka"},
             loot = {
                 {275001, "Bloodied Gutslicer", "Two-Hand, Sword", 3},
-                {275002, "War Handler's Gaze", "Head", 3}, -- confirmed (Nov 2026)
+                {275002, "War Handler's Gaze", "Head, Leather", 3}, -- confirmed (Nov 2026); type from Wowhead Forever (2.0.12)
                 {275003, "Worgbinder's Treads", "Feet, Plate", 3}, -- player loot screenshot (Nov 2026)
             },
         },
@@ -4871,19 +5751,22 @@ FDJ.DB["Alcaz Prison"] = {
             -- 2026). Wowhead Forever: the Prowlers from Alcaz Chaplain, Alcaz
             -- Jailer and Strashaz Soldier, the Mask from Slavering Hound,
             -- Strashaz Soldier and Alcaz Jailer, Compound Gloves from Defias
-            -- Truthfinder. The Chest (the last piece of the Defias Enforcer's
-            -- Garb) has no drop recorded yet.
+            -- Truthfinder.
             -- Sentimental Locket and the Legguards drop from Katerina the
             -- Cleaner and Blazeroar (listed there).
+            -- alcaztrash (2.0.10): every trash mob here drops all of these
+            -- (M, Nov 2026), so the rows name no mob (no portraits, no tag).
+            -- The Chest is confirmed (was "probably drops"): Wowhead Forever
+            -- has it from 8 trash mobs (Alcaz Chaplain, Alcaz Jailer, Defias
+            -- Mercenary, Slavering Hound, Defias Bounty Hunter, Defias
+            -- Truthfinder, Strashaz Soldier), about 1% each.
             name = "Trash Drops",
             trash = true,
             loot = {
-                {287021, "Defias Enforcer's Prowlers", "Feet, Leather", 3, "Alcaz Chaplain / Alcaz Jailer / Strashaz Soldier"},
-                {287019, "Defias Enforcer's Mask", "Head, Leather", 3, "Slavering Hound / Strashaz Soldier / Alcaz Jailer"},
-                {287018, "Compound Gloves", "Hands, Cloth", 3, "Defias Truthfinder"}, -- Wowhead Forever: Defias Truthfinder, Alcaz Prison
-            },
-            probableLoot = {
+                {287021, "Defias Enforcer's Prowlers", "Feet, Leather", 3},
+                {287019, "Defias Enforcer's Mask", "Head, Leather", 3},
                 {287020, "Defias Enforcer's Chest", "Chest, Leather", 3},
+                {287018, "Compound Gloves", "Hands, Cloth", 3},
             },
         },
     },
@@ -4935,35 +5818,33 @@ FDJ.DB["Blackmaw Hold"] = {
         level = 59,
         requires = 52,
         faction = "Alliance",
-        pickup = "Not known yet (probably a mage in Dalaran)",
+        pickup = "Archmage Timear, Dalaran (15.4, 74.0)", -- blackmawaudit (2.0.36)
         objective = "Obtain a Blackmaw Ritual Totem from Elder Shaman Bloodmane in Blackmaw Hold.",
-        turnin = "Not known yet",
+        turnin = "Archmage Timear, Dalaran (15.4, 74.0)", -- confirmed by M (2.0.37)
         liveXPFallback = 12800,
         rewardSummary = "90s  •  Kirin Tor +300  •  Darnassus +150",
         requiredItem = {276893, "Blackmaw Ritual Totem", 1, 1, "From Elder Shaman Bloodmane in Blackmaw Hold"},
-        note = "Quest giver not known yet.",
     }, {
         id = 97198,
         name = "Blackmaw Magic",
         level = 59,
         requires = 52,
         faction = "Horde",
-        pickup = "Not known yet (perhaps Alaana Stormwalker, Mulgore)",
+        pickup = "Muln Earthfury, Mulgore (33.4, 22.5)", -- blackmawaudit (2.0.36)
         objective = "Obtain a Blackmaw Ritual Totem from Elder Shaman Bloodmane in Blackmaw Hold.",
-        turnin = "Not known yet",
+        turnin = "Muln Earthfury, Mulgore (33.4, 22.5)",
         liveXPFallback = 16100,
         rewardSummary = "90s  •  Earthen Ring +300  •  Thunder Bluff +150",
         requiredItem = {276893, "Blackmaw Ritual Totem", 1, 1, "From Elder Shaman Bloodmane in Blackmaw Hold"},
-        note = "Quest giver not known yet.",
     }, {
         id = 92069,
         name = "Claws That Rend, Tusks that Gore",
         level = 58,
         requires = 45,
         faction = "Both",
-        pickup = "Ogtinc, Azshara (42.4, 42.6) (probably)",
+        pickup = "Ogtinc, Azshara (42.4, 42.7)", -- blackmawaudit (2.0.36): he starts and ends it
         objective = "Bring the Claws of the Great Bear and the Tusks of the Unbroken to Ogtinc in Azshara.",
-        turnin = "Ogtinc, Azshara (42.4, 42.6)",
+        turnin = "Ogtinc, Azshara (42.4, 42.7)",
         liveXPFallback = 12400,
         rewardSummary = "Timbermaw Hold +150",
         rewardItems = {{260213, "Great Bear Claw", 2}, {260214, "Staff of Wild Beasts", 2}, {260215, "Wild Malleus", 2}},
@@ -4976,8 +5857,8 @@ FDJ.DB["Blackmaw Hold"] = {
     }, {
         -- Item-start quest seen in game, 10 Nov 2026. Quest #92070 is
         -- initiated by Feathered Charm Necklace (item #249698). The reward
-        -- is confirmed by the in-game quest offer screenshot; the owner's
-        -- identity and exact hand-in location have not yet been confirmed.
+        -- is confirmed by the in-game quest offer screenshot. Unele takes it
+        -- (2.0.37); satyrs and imps drop the necklace (M, 2.0.38).
         id = 92070,
         name = "A Lost Memento",
         level = 55, -- Wowhead Forever (2.0.3); the necklace requires level 47
@@ -4985,11 +5866,10 @@ FDJ.DB["Blackmaw Hold"] = {
         faction = "Both",
         pickup = "Item start: Feathered Charm Necklace, looted in Blackmaw Hold",
         startsInDungeon = true,
-        startItem = {249698, "Feathered Charm Necklace", 1, "Looted in Blackmaw Hold; specific drop source not yet confirmed"},
+        startItem = {249698, "Feathered Charm Necklace", 1, "Looted from satyrs and imps in Blackmaw Hold"}, -- M, in game (2.0.38)
         objective = "Find the owner of the Feathered Charm Necklace.",
-        turnin = "The necklace's original Blackmaw owner (location not yet confirmed)",
+        turnin = "Unele, Ursolan, Azshara (43.4, 17.4)", -- confirmed by M (2.0.37)
         rewardItems = {{279893, "Nama's Cherished Necklace", 3}},
-        note = "Item-start quest. The necklace is a handmade furbolg keepsake. The exact NPC and hand-in location are still being verified.",
     }},
     bosses = {
         {
@@ -5175,7 +6055,8 @@ FDJ.DB["Blackmaw Hold"] = {
                 -- Seen in-game (Nov 2026); item ID not known yet (0, filled in
                 -- by ItemIdLearner). The tooltip was cut off: armor type,
                 -- required level and sell price not seen.
-                {280064, "Withering Grips", "Hands", 3, tip = {
+                -- 2.0.12: Leather (Wowhead Forever; the tooltip seen showed no type).
+                {280064, "Withering Grips", "Hands, Leather", 3, tip = {
                     "Hands",
                     "106 Armor",
                     "+14 Stamina",
@@ -5201,8 +6082,8 @@ FDJ.DB["Blackmaw Hold"] = {
                     "Requires Level 56",
                     "Sell Price: 1|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t 37|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 96|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
                 }},
-                -- Seen dropping (a player, Nov 2026); item ID not known yet (0, filled in by ItemIdLearner).
-                {0, "Shamanic Wristguards", "Wrist, Mail", 3, tip = {
+                -- Seen dropping (a player, Nov 2026); item ID from Wowhead Forever (2.0.7).
+                {280069, "Shamanic Wristguards", "Wrist, Mail", 3, tip = {
                     "Binds when picked up",
                     {"Wrist", "Mail"},
                     "157 Armor",
@@ -5352,7 +6233,8 @@ FDJ.DB["Blackmaw Hold"] = {
                 -- Confirmed in Blackmaw Hold trash, 10 Nov 2026 (specific mobs TBD).
                 -- Epic Blacksmithing plans. Shown in the dungeon-wide
                 -- Recipes & Patterns tab, sourced from Blackmaw Hold trash.
-                {251453, "Plans: Breastplate of Salvation", "Recipe, Blacksmithing", 4, "Blackmaw Hold trash", tip = {
+                -- 2.0.6: Legashi Summoner (Wowhead Forever, NPC 247248, 1/30).
+                {251453, "Plans: Breastplate of Salvation", "Recipe, Blacksmithing", 4, "Legashi Summoner", tip = {
                     "Binds when picked up",
                     "Requires Blacksmithing (300)",
                     "|cff1eff00Use: Teaches you how to craft Breastplate of Salvation.|r",
@@ -5383,8 +6265,8 @@ FDJ.DB["Blackmaw Hold"] = {
                     "Sell Price: 94|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 34|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
                 }},
                 -- Seen dropping from a Legashi Ritualist (Nov 2026); item ID
-                -- not known yet (0, filled in by ItemIdLearner).
-                {0, "Satyr's Touch", "Ranged, Wand", 3, "Legashi Ritualist", tip = {
+                -- from Wowhead Forever (2.0.7).
+                {287036, "Satyr's Touch", "Ranged, Wand", 3, "Legashi Ritualist", tip = {
                     "Binds when equipped",
                     {"Ranged", "Wand"},
                     {"111 Damage", "Speed 1.90"},
@@ -5394,6 +6276,20 @@ FDJ.DB["Blackmaw Hold"] = {
                     "Requires Level 54",
                     "Sell Price: 3|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t 46|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 34|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
                 }},
+                -- trashaudit (2.0.14): Blackmaw Hold trash drops (audit of 14 Nov
+                -- 2026, cross-checked): Wowhead Forever "Dropped by" names the
+                -- mobs; OneForAll's Blackmaw Hold list has the same IDs.
+                {287029, "Nature Guardian's Legguards", "Legs, Leather", 3, "Blackmaw Berserker / Blackmaw Thrall"},
+                {287030, "Blackmaw Bindings", "Wrist, Mail", 3, "Legashi Subjugator"},
+                {287033, "Furbolg Berserker's Boots", "Feet, Plate", 3, "Blackmaw Devotee / Blackmaw Berserker / Legashi Slayer"},
+                -- Epic Leatherworking pattern (Recipes & Patterns tab).
+                {252893, "Pattern: Timbermaw Tunic", "Recipe, Leatherworking", 4, "Blackmaw Druid"},
+            },
+            -- trashaudit (2.0.14): in Blackmaw Hold's item ID block (Wowhead
+            -- Forever, OneForAll) but no drop recorded yet: "probably drops".
+            probableLoot = {
+                {287031, "Spearfisher's Waders", "Legs, Mail", 3},
+                {287035, "Demon Worshipper's Necklace", "Neck", 3},
             },
         },
     },
@@ -5745,6 +6641,22 @@ FDJ.DB["Shaper's Terrace"] = {
                     "Requires Level 55",
                     "Sell Price: 1|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t 94|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 69|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
                 }},
+                -- trashaudit (2.0.14): Shaper's Terrace trash drops (audit of 14
+                -- Nov 2026, cross-checked): Wowhead Forever "Dropped by" names
+                -- the mobs; OneForAll's Shaper's Terrace list has the same IDs.
+                {287044, "Predator's Shroud", "Back", 3, "Stegodon Young"},
+                {287045, "Ancient Mattock", "One-Hand, Axe", 3, "Ravasaur Juvenile"},
+            },
+            -- trashaudit (2.0.14): in Shaper's Terrace's item ID block (Wowhead
+            -- Forever, OneForAll) but no drop recorded yet: "probably drops".
+            probableLoot = {
+                {287038, "Naturopathy Footpads", "Feet, Cloth", 3},
+                {287039, "Tattered Explorer's Cuffs", "Wrist, Leather", 3},
+                {287040, "Dinosaur Hide Belt", "Waist, Leather", 3},
+                {287041, "Time-Forgotten Bindings", "Wrist, Mail", 3},
+                {287042, "Pauldrons of the Stone Guardian", "Shoulder, Plate", 3},
+                {287043, "Predaceous Band", "Finger", 3},
+                {287046, "Pylon Poker", "Two-Hand, Staff", 3},
             },
         },
     },
@@ -5908,7 +6820,8 @@ FDJ.DB["Sunken Temple"] = {
         pickup = "Torwa Pathfinder, Un'Goro Crater",
         level = 52,
         requires = 50,
-        rewardChoice = true,
+        -- 2.0.48: all the rewards are given on Forever, no choice.
+        rewardChoice = false,
         rewardItems = {{22274, "Grizzled Pelt", 3}, {22272, "Forest's Embrace", 3}, {22458, "Moonshadow Stave", 3}},
         note = "Druid class quest. The Putrid Vine drops from Atal'alarion in the temple basement.\n\nOptional introductory quest:",
         noteQuestLink = { id = 9063, name = "Torwa Pathfinder" },
@@ -5940,7 +6853,8 @@ FDJ.DB["Sunken Temple"] = {
         pickup = "Ogtinc, Azshara",
         level = 52,
         requires = 50,
-        rewardChoice = true,
+        -- 2.0.48: all the rewards are given on Forever, no choice.
+        rewardChoice = false,
         rewardItems = {{20083, "Hunting Spear", 3}, {19991, "Devilsaur Eye", 3}, {19992, "Devilsaur Tooth", 3}},
         note = "Hunter class quest. The Tooth of Morphaz drops from Morphaz.\n\nOptional introductory quest:",
         noteQuestLink = { id = 8151, name = "The Hunter's Charm" },
@@ -5972,7 +6886,9 @@ FDJ.DB["Sunken Temple"] = {
         pickup = "Archmage Xylem, Azshara",
         level = 52,
         requires = 50,
-        rewardChoice = true,
+        -- 2.0.47: on Forever all three are given, no choice (a player's
+        -- reward window, Discord, 13 Nov 2026).
+        rewardChoice = false,
         rewardItems = {{20035, "Glacial Spike", 3}, {20037, "Arcane Crystal Pendant", 3}, {20036, "Fire Ruby", 3}},
         note = "Mage class quest. The Arcane Shard drops from Morphaz.\n\nOptional introductory quest:",
         noteQuestLink = { id = 8250, name = "Magecraft" },
@@ -6004,7 +6920,8 @@ FDJ.DB["Sunken Temple"] = {
         pickup = "Commander Ashlam Valorfist, Chillwind Camp, Western Plaguelands",
         level = 52,
         requires = 50,
-        rewardChoice = true,
+        -- 2.0.48: all the rewards are given on Forever, no choice.
+        rewardChoice = false,
         rewardItems = {{20504, "Lightforged Blade", 3}, {20512, "Sanctified Orb", 3}, {20505, "Chivalrous Signet", 3}, {20620, "Holy Mightstone", 1}},
         note = "Paladin class quest. Needs 2 amber, 2 blue and 2 green Voodoo Feathers from the six troll guardians: Gasher, Mijan, Zolo, Hukku, Zul'Lor and Loro.\n\nOptional introductory quest:",
         noteQuestLink = { id = 8415, name = "Chillwind Point" },
@@ -6036,7 +6953,8 @@ FDJ.DB["Sunken Temple"] = {
         pickup = "Ogtinc, Azshara",
         level = 52,
         requires = 50,
-        rewardChoice = true,
+        -- 2.0.48: all the rewards are given on Forever, no choice.
+        rewardChoice = false,
         rewardItems = {{19990, "Blessed Prayer Beads", 3}, {20082, "Woestave", 3}, {20006, "Circle of Hope", 3}},
         note = "Priest class quest. Morphaz's blood is turned in to Greta Mosshoof, not Ogtinc.\n\nOptional introductory quest:",
         noteQuestLink = { id = 8254, name = "Cenarion Aid" },
@@ -6068,7 +6986,8 @@ FDJ.DB["Sunken Temple"] = {
         pickup = "Archmage Xylem, Azshara",
         level = 52,
         requires = 50,
-        rewardChoice = true,
+        -- 2.0.48: all the rewards are given on Forever, no choice.
+        rewardChoice = false,
         rewardItems = {{19984, "Ebon Mask", 3}, {20255, "Whisperwalk Boots", 3}, {19982, "Duskbat Drape", 3}},
         note = "Rogue class quest. The Azure Key drops from Morphaz.\n\nOptional introductory quest:",
         noteQuestLink = { id = 8233, name = "A Simple Request" },
@@ -6085,7 +7004,8 @@ FDJ.DB["Sunken Temple"] = {
         pickup = "Bath'rah the Windwatcher, Alterac Mountains",
         level = 52,
         requires = 50,
-        rewardChoice = true,
+        -- 2.0.48: all the rewards are given on Forever, no choice.
+        rewardChoice = false,
         rewardItems = {{20369, "Azurite Fists", 3}, {20503, "Enamored Water Spirit", 3}, {20556, "Wildstaff", 3}},
         note = "Shaman class quest. Needs 2 amber, 2 blue and 2 green Voodoo Feathers from the six troll guardians: Gasher, Mijan, Zolo, Hukku, Zul'Lor and Loro.",
         turnin = "Bath'rah the Windwatcher, Alterac Mountains",
@@ -6101,7 +7021,8 @@ FDJ.DB["Sunken Temple"] = {
         pickup = "Impsy, Bloodvenom Falls, Felwood",
         level = 52,
         requires = 50,
-        rewardChoice = true,
+        -- 2.0.48: all the rewards are given on Forever, no choice.
+        rewardChoice = false,
         rewardItems = {{20536, "Soul Harvester", 3}, {20534, "Abyss Shard", 3}, {20530, "Robes of Servitude", 3}},
         note = "Warlock class quest. Needs 2 amber, 2 blue and 2 green Voodoo Feathers from the six troll guardians: Gasher, Mijan, Zolo, Hukku, Zul'Lor and Loro.",
         turnin = "Impsy, Bloodvenom Falls, Felwood",
@@ -6132,7 +7053,8 @@ FDJ.DB["Sunken Temple"] = {
         pickup = "Fallen Hero of the Horde, Swamp of Sorrows",
         level = 52,
         requires = 50,
-        rewardChoice = true,
+        -- 2.0.48: all the rewards are given on Forever, no choice.
+        rewardChoice = false,
         rewardItems = {{20521, "Fury Visor", 3}, {20130, "Diamond Flask", 3}, {20517, "Razorsteel Shoulders", 3}},
         note = "Warrior class quest for both factions. Needs 2 amber, 2 blue and 2 green Voodoo Feathers from the six troll guardians: Gasher, Mijan, Zolo, Hukku, Zul'Lor and Loro.\n\nOptional introductory quest:",
         noteQuestLink = { id = 8417, name = "A Troubled Spirit" },
@@ -6141,6 +7063,125 @@ FDJ.DB["Sunken Temple"] = {
     },
     },
     bosses = {
+        -- altarbosses (2.0.24): the six Atal'ai troll guardians on the balconies
+        -- round the ring, under one entry with a row of their own each (the
+        -- children, childOf). Wowhead Forever (NPCs 5712-5717, 28-52 kills
+        -- each): all six drop the same six Atal'ai pieces, every one Binds
+        -- when picked up with <Random enchantment> (blue: Spaulders,
+        -- Breastplate, Gloves; green: Leggings, Boots, Girdle).
+        -- altartracker (2.0.49): on the Dungeon Tracker as one portrait (its
+        -- + opens a row of the six, each crossed out when killed); the six
+        -- stay off it as portraits of their own (trackerHidden).
+        {
+            name = "Altar Bosses",
+            children = { 5713, 5715, 5714, 5717, 5712, 5716 },
+            portraitNpcID = 5713,
+            description = "The six Atal'ai troll guardians on the balconies round the ring: Gasher, Hukku, Loro, Mijan, Zolo and Zul'Lor. All six must die before Jammal'an the Prophet comes down. They share one loot table.",
+            loot = {
+                {10783, "Atal'ai Spaulders", "Shoulder, Leather", 3, "", "RANDOM_ENCHANT"},
+                {10784, "Atal'ai Breastplate", "Chest, Mail", 3, "", "RANDOM_ENCHANT"},
+                {10787, "Atal'ai Gloves", "Hands, Cloth", 3, "", "RANDOM_ENCHANT"},
+                {10785, "Atal'ai Leggings", "Legs, Leather", 2, "", "RANDOM_ENCHANT"},
+                {10786, "Atal'ai Boots", "Feet, Mail", 2, "", "RANDOM_ENCHANT"},
+                {10788, "Atal'ai Girdle", "Waist, Plate", 2, "", "RANDOM_ENCHANT"},
+            },
+        },
+        {
+            name = "Gasher",
+            npcID = 5713,
+            aliases = {"Gasher"},
+            childOf = "Altar Bosses",
+            trackerHidden = true,
+            description = "One of the six Atal'ai troll guardians (Altar Bosses) on the balconies round the ring.",
+            loot = {
+                {10783, "Atal'ai Spaulders", "Shoulder, Leather", 3, "", "RANDOM_ENCHANT"},
+                {10784, "Atal'ai Breastplate", "Chest, Mail", 3, "", "RANDOM_ENCHANT"},
+                {10787, "Atal'ai Gloves", "Hands, Cloth", 3, "", "RANDOM_ENCHANT"},
+                {10785, "Atal'ai Leggings", "Legs, Leather", 2, "", "RANDOM_ENCHANT"},
+                {10786, "Atal'ai Boots", "Feet, Mail", 2, "", "RANDOM_ENCHANT"},
+                {10788, "Atal'ai Girdle", "Waist, Plate", 2, "", "RANDOM_ENCHANT"},
+            },
+        },
+        {
+            name = "Hukku",
+            npcID = 5715,
+            aliases = {"Hukku"},
+            childOf = "Altar Bosses",
+            trackerHidden = true,
+            description = "One of the six Atal'ai troll guardians (Altar Bosses) on the balconies round the ring.",
+            loot = {
+                {10783, "Atal'ai Spaulders", "Shoulder, Leather", 3, "", "RANDOM_ENCHANT"},
+                {10784, "Atal'ai Breastplate", "Chest, Mail", 3, "", "RANDOM_ENCHANT"},
+                {10787, "Atal'ai Gloves", "Hands, Cloth", 3, "", "RANDOM_ENCHANT"},
+                {10785, "Atal'ai Leggings", "Legs, Leather", 2, "", "RANDOM_ENCHANT"},
+                {10786, "Atal'ai Boots", "Feet, Mail", 2, "", "RANDOM_ENCHANT"},
+                {10788, "Atal'ai Girdle", "Waist, Plate", 2, "", "RANDOM_ENCHANT"},
+            },
+        },
+        {
+            name = "Loro",
+            npcID = 5714,
+            aliases = {"Loro"},
+            childOf = "Altar Bosses",
+            trackerHidden = true,
+            description = "One of the six Atal'ai troll guardians (Altar Bosses) on the balconies round the ring.",
+            loot = {
+                {10783, "Atal'ai Spaulders", "Shoulder, Leather", 3, "", "RANDOM_ENCHANT"},
+                {10784, "Atal'ai Breastplate", "Chest, Mail", 3, "", "RANDOM_ENCHANT"},
+                {10787, "Atal'ai Gloves", "Hands, Cloth", 3, "", "RANDOM_ENCHANT"},
+                {10785, "Atal'ai Leggings", "Legs, Leather", 2, "", "RANDOM_ENCHANT"},
+                {10786, "Atal'ai Boots", "Feet, Mail", 2, "", "RANDOM_ENCHANT"},
+                {10788, "Atal'ai Girdle", "Waist, Plate", 2, "", "RANDOM_ENCHANT"},
+            },
+        },
+        {
+            name = "Mijan",
+            npcID = 5717,
+            aliases = {"Mijan"},
+            childOf = "Altar Bosses",
+            trackerHidden = true,
+            description = "One of the six Atal'ai troll guardians (Altar Bosses) on the balconies round the ring.",
+            loot = {
+                {10783, "Atal'ai Spaulders", "Shoulder, Leather", 3, "", "RANDOM_ENCHANT"},
+                {10784, "Atal'ai Breastplate", "Chest, Mail", 3, "", "RANDOM_ENCHANT"},
+                {10787, "Atal'ai Gloves", "Hands, Cloth", 3, "", "RANDOM_ENCHANT"},
+                {10785, "Atal'ai Leggings", "Legs, Leather", 2, "", "RANDOM_ENCHANT"},
+                {10786, "Atal'ai Boots", "Feet, Mail", 2, "", "RANDOM_ENCHANT"},
+                {10788, "Atal'ai Girdle", "Waist, Plate", 2, "", "RANDOM_ENCHANT"},
+            },
+        },
+        {
+            name = "Zolo",
+            npcID = 5712,
+            aliases = {"Zolo"},
+            childOf = "Altar Bosses",
+            trackerHidden = true,
+            description = "One of the six Atal'ai troll guardians (Altar Bosses) on the balconies round the ring.",
+            loot = {
+                {10783, "Atal'ai Spaulders", "Shoulder, Leather", 3, "", "RANDOM_ENCHANT"},
+                {10784, "Atal'ai Breastplate", "Chest, Mail", 3, "", "RANDOM_ENCHANT"},
+                {10787, "Atal'ai Gloves", "Hands, Cloth", 3, "", "RANDOM_ENCHANT"},
+                {10785, "Atal'ai Leggings", "Legs, Leather", 2, "", "RANDOM_ENCHANT"},
+                {10786, "Atal'ai Boots", "Feet, Mail", 2, "", "RANDOM_ENCHANT"},
+                {10788, "Atal'ai Girdle", "Waist, Plate", 2, "", "RANDOM_ENCHANT"},
+            },
+        },
+        {
+            name = "Zul'Lor",
+            npcID = 5716,
+            aliases = {"Zul'Lor"},
+            childOf = "Altar Bosses",
+            trackerHidden = true,
+            description = "One of the six Atal'ai troll guardians (Altar Bosses) on the balconies round the ring.",
+            loot = {
+                {10783, "Atal'ai Spaulders", "Shoulder, Leather", 3, "", "RANDOM_ENCHANT"},
+                {10784, "Atal'ai Breastplate", "Chest, Mail", 3, "", "RANDOM_ENCHANT"},
+                {10787, "Atal'ai Gloves", "Hands, Cloth", 3, "", "RANDOM_ENCHANT"},
+                {10785, "Atal'ai Leggings", "Legs, Leather", 2, "", "RANDOM_ENCHANT"},
+                {10786, "Atal'ai Boots", "Feet, Mail", 2, "", "RANDOM_ENCHANT"},
+                {10788, "Atal'ai Girdle", "Waist, Plate", 2, "", "RANDOM_ENCHANT"},
+            },
+        },
         {
             name = "Atal'alarion",
             npcID = 8580,
@@ -6184,6 +7225,14 @@ FDJ.DB["Sunken Temple"] = {
                 {10806, "Vestments of the Atal'ai Prophet", "Chest, Cloth", 3},
                 {10807, "Kilt of the Atal'ai Prophet", "Legs, Cloth", 3},
                 {10808, "Gloves of the Atal'ai Prophet", "Hands, Cloth", 3},
+                -- strecipes (2.0.7): recorded from Jammal'an (Icy Veins NPC 5710, 3.33% each)
+                {254102, "Pattern: Black Gloves", "Recipe, Tailoring", 3},
+                {252919, "Pattern: Skycaller's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {252918, "Pattern: Stalker's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {252869, "Pattern: Warden's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {251405, "Plans: Warder's Gloves", "Recipe, Blacksmithing", 3},
+                -- Icy Veins Forever camping guide (13 Nov 2026): drops from Jammal'an
+                {273119, "Blueprint: Fishing Hut", "Blueprint", 2},
             },
         },
         {
@@ -6228,6 +7277,14 @@ FDJ.DB["Sunken Temple"] = {
                 {10836, "Rod of Corrosion", "Ranged, Wand", 3},
                 {10828, "Dire Nail", "One-Hand, Dagger", 3},
                 {10837, "Tooth of Eranikus", "Main Hand, Axe", 3},
+                -- shadeloot (2.0.7), Wowhead Forever (NPC 5709, 48 kills): Dragon's
+                -- Call 1/48 (his own, as in Classic Era); the three recipes 1/48
+                -- each (they also drop from other bosses); the Essence 29/48.
+                {10847, "Dragon's Call", "One-Hand, Sword", 4},
+                {254106, "Pattern: Radiant Gloves", "Recipe, Tailoring", 3},
+                {252919, "Pattern: Skycaller's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {251403, "Plans: Officer's Gloves", "Recipe, Blacksmithing", 3},
+                {10454, "Essence of Eranikus", "Quest Item", 2},
             },
         },
         {
@@ -6256,6 +7313,33 @@ FDJ.DB["Sunken Temple"] = {
                 {10845, "Warrior's Embrace", "Chest, Plate", 3},
                 {10846, "Bloodshot Greaves", "Feet, Mail", 3},
                 {10663, "Essence of Hakkar", "Quest Item", 1},
+            },
+        },
+        {
+            -- sttrash (2.0.28): Sunken Temple trash (trash loot audit of 14 Nov
+            -- 2026, checked on Wowhead Forever and Icy Veins Forever; SOURCES.txt).
+            -- The twelve rare BoEs come from all kinds of trash here (a dozen
+            -- different mobs each), so no mob is named; the boots and the two
+            -- recipes come from one mob each.
+            -- alltrashtip (2.0.6): the twelve: "Drops from: ALL Trash" (allTrash).
+            name = "Trash Drops",
+            trash = true,
+            loot = {
+                {10630, "Soulcatcher Halo", "Head, Cloth", 3, allTrash = true},
+                {10629, "Mistwalker Boots", "Feet, Cloth", 3, allTrash = true},
+                {10631, "Murkwater Gauntlets", "Hands, Mail", 3, allTrash = true},
+                {10632, "Slimescale Bracers", "Wrist, Mail", 3, allTrash = true},
+                {10633, "Silvershell Leggings", "Legs, Plate", 3, allTrash = true},
+                {10634, "Mindseye Circle", "Finger", 3, allTrash = true},
+                {10623, "Winter's Bite", "Main Hand, Axe", 3, allTrash = true},
+                {10625, "Stealthblade", "Main Hand, Dagger", 3, allTrash = true},
+                {10626, "Ragehammer", "Two-Hand, Mace", 3, allTrash = true},
+                {10628, "Deathblow", "Two-Hand, Sword", 3, allTrash = true},
+                {10627, "Bludgeon of the Grinning Dog", "Two-Hand, Staff", 3, allTrash = true},
+                {10624, "Stinging Bow", "Ranged, Bow", 3, allTrash = true},
+                {10801, "Slitherscale Boots", "Feet, Leather", 3, "Spawn of Hakkar"},
+                {15733, "Pattern: Green Dragonscale Leggings", "Recipe, Leatherworking", 3, "Murk Worm"},
+                {16216, "Formula: Enchant Cloak - Greater Resistance", "Recipe, Enchanting", 2, "Atal'ai Witch Doctor"},
             },
         },
     },
@@ -6507,6 +7591,8 @@ FDJ.DB["Scholomance"] = {
                 {14522, "Maelstrom Leggings", "Legs, Mail", 3},
                 {14525, "Boneclenched Gauntlets", "Hands, Plate", 3},
                 {18693, "Shivery Handwraps", "Hands, Cloth", 3},
+                {13521, "Recipe: Flask of Supreme Power", "Recipe, Alchemy", 2}, -- scholorecipes (2.0.7): senseos, Zockify
+                {273112, "Blueprint: Alchemy Laboratory", "Blueprint", 2}, -- scholorecipes (2.0.7): Wowhead Forever, dropped by Ras Frostwhisper 2.56% (M, 14 Nov 2026)
             },
         },
         {
@@ -6745,6 +7831,42 @@ FDJ.DB["Scholomance"] = {
                 {13953, "Silent Fang", "Main Hand, Sword", 3},
                 {13964, "Witchblade", "One-Hand, Dagger", 3},
                 {22433, "Don Mauricio's Band of Domination", "Finger", 3},
+                -- scholorecipes (2.0.7): senseos, Zockify
+                {14514, "Pattern: Robe of the Void", "Recipe, Tailoring", 4},
+                {13501, "Recipe: Major Mana Potion", "Recipe, Alchemy", 2},
+            },
+        },
+        {
+            -- scholotrash (2.0.6): Scholomance trash (trash loot audit of 14 Nov
+            -- 2026, cross-checked on Wowhead Forever and Icy Veins Forever;
+            -- SOURCES.txt). All confirmed by M (14 Nov 2026: on Forever's
+            -- auction house). The seven rare BoEs drop from a dozen kinds of
+            -- trash each: no mob named. Healthy Dragon Scale left out (M).
+            -- alltrashtip (2.0.6): the seven: "Drops from: ALL Trash" (allTrash).
+            name = "Trash Drops",
+            trash = true,
+            loot = {
+                {16685, "Magister's Belt", "Waist, Cloth", 3, "Scholomance Adept"},
+                {16702, "Dreadmist Belt", "Waist, Cloth", 3, "Scholomance Necromancer"},
+                {16714, "Wildheart Bracers", "Wrist, Leather", 3, "Diseased Ghoul"},
+                {16710, "Shadowcraft Bracers", "Wrist, Leather", 3, "Scholomance Occultist / Risen Construct"},
+                {16716, "Wildheart Belt", "Waist, Leather", 3, "Spectral Researcher / Spectral Teacher / Scholomance Handler"},
+                {16671, "Bindings of Elements", "Wrist, Mail", 3, "Splintered Skeleton"},
+                {16722, "Lightforge Bracers", "Wrist, Plate", 3, "Risen Warrior / Risen Protector"},
+                {18697, "Coldstone Slippers", "Feet, Cloth", 3, allTrash = true},
+                {18698, "Tattered Leather Hood", "Head, Leather", 3, allTrash = true},
+                {18699, "Icy Tomb Spaulders", "Shoulder, Leather", 3, allTrash = true},
+                {18700, "Malefic Bracers", "Wrist, Leather", 3, allTrash = true},
+                {18701, "Innervating Band", "Finger", 3, allTrash = true},
+                {18702, "Belt of the Ordained", "Waist, Plate", 3, allTrash = true},
+                {14536, "Bonebrace Hauberk", "Chest, Mail", 3, allTrash = true},
+                {16254, "Formula: Enchant Weapon - Lifestealing", "Recipe, Enchanting", 3, "Spectral Researcher"},
+                {16255, "Formula: Enchant 2H Weapon - Major Spirit", "Recipe, Enchanting", 2, "Scholomance Adept"},
+                {15776, "Pattern: Runic Leather Armor", "Recipe, Leatherworking", 2, "Scholomance Dark Summoner"},
+                {15773, "Pattern: Wicked Leather Armor", "Recipe, Leatherworking", 2, "Spectral Researcher"},
+                {252940, "Pattern: Pristine Scorpid Leggings", "Recipe, Leatherworking", 4, "Spectral Researcher"}, -- scholorecipes (2.0.7): Wowhead Forever (audit) only
+                {20520, "Dark Rune", "Consumable", 2, "Scholomance Necromancer / Scholomance Dark Summoner"},
+                {12753, "Skin of Shadow", "Reagent", 2, "Risen Construct / Risen Bonewarder"},
             },
         },
     },
@@ -6957,6 +8079,11 @@ FDJ.DB["Maraudon"] = {
                 {17744, "Heart of Noxxion", "Trinket", 3},
                 {17746, "Noxxion's Shackles", "Wrist, Plate", 3},
                 {17745, "Noxious Shooter", "Ranged, Wand", 3},
+                -- zfrecipes (2.0.7): recorded from Noxxion (Icy Veins NPC 13282)
+                {254100, "Pattern: Fiery Gloves", "Recipe, Tailoring", 3},
+                {254096, "Pattern: Gilded Gloves", "Recipe, Tailoring", 3},
+                {252918, "Pattern: Stalker's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {251405, "Plans: Warder's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -6969,6 +8096,12 @@ FDJ.DB["Maraudon"] = {
                 {17749, "Phytoskin Spaulders", "Shoulder, Leather", 3},
                 {17750, "Chloromesh Girdle", "Waist, Cloth", 3},
                 {17751, "Brusslehide Leggings", "Legs, Leather", 3},
+                -- zfrecipes (2.0.7): recorded from Razorlash (Icy Veins NPC 12258)
+                {252869, "Pattern: Warden's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {254100, "Pattern: Fiery Gloves", "Recipe, Tailoring", 3},
+                {254096, "Pattern: Gilded Gloves", "Recipe, Tailoring", 3},
+                {252871, "Pattern: Mender's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {251407, "Plans: Justicar's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -6992,6 +8125,8 @@ FDJ.DB["Maraudon"] = {
                 {17767, "Bloomsprout Headpiece", "Head, Mail", 3},
                 {17741, "Nature's Embrace", "Chest, Cloth", 3},
                 {17742, "Fungus Shroud Armor", "Chest, Leather", 3},
+                -- zfrecipes (2.0.7): recorded from Meshlok the Harvester (Icy Veins NPC 12237)
+                {251407, "Plans: Justicar's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -7003,6 +8138,11 @@ FDJ.DB["Maraudon"] = {
                 {17738, "Claw of Celebras", "Off Hand, Fist Weapon", 3},
                 {17739, "Grovekeeper's Drape", "Back", 3},
                 {17740, "Soothsayer's Headdress", "Head, Leather", 3},
+                -- zfrecipes (2.0.7): recorded from Celebras the Cursed (Icy Veins NPC 12225)
+                {251405, "Plans: Warder's Gloves", "Recipe, Blacksmithing", 3},
+                {254098, "Pattern: Frothing Gloves", "Recipe, Tailoring", 3},
+                {252920, "Pattern: Skirmisher's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {252868, "Pattern: Skulker's Leather Gauntlets", "Recipe, Leatherworking", 3},
             },
         },
         {
@@ -7015,6 +8155,15 @@ FDJ.DB["Maraudon"] = {
                 {17736, "Rockgrip Gauntlets", "Hands, Mail", 3},
                 {17737, "Cloud Stone", "Held In Off-hand", 3},
                 {17734, "Helm of the Mountain", "Head, Plate", 3},
+                -- zfrecipes (2.0.7): recorded from Landslide (Icy Veins NPC 12203)
+                {252868, "Pattern: Skulker's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252918, "Pattern: Stalker's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {254098, "Pattern: Frothing Gloves", "Recipe, Tailoring", 3},
+                {252867, "Pattern: Prowler's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {254106, "Pattern: Radiant Gloves", "Recipe, Tailoring", 3},
+                {252920, "Pattern: Skirmisher's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {252919, "Pattern: Skycaller's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {251404, "Plans: Sentinel's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -7026,6 +8175,13 @@ FDJ.DB["Maraudon"] = {
                 {17717, "Megashot Rifle", "Ranged, Gun", 3},
                 {17718, "Gizlock's Hypertech Buckler", "Off Hand, Shield", 3},
                 {17719, "Inventor's Focal Sword", "One-Hand, Sword", 3},
+                -- zfrecipes (2.0.7): recorded from Tinkerer Gizlock (Icy Veins NPC 13601)
+                {254098, "Pattern: Frothing Gloves", "Recipe, Tailoring", 3},
+                {252867, "Pattern: Prowler's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {254106, "Pattern: Radiant Gloves", "Recipe, Tailoring", 3},
+                {252920, "Pattern: Skirmisher's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {252868, "Pattern: Skulker's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {251404, "Plans: Sentinel's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
         {
@@ -7037,6 +8193,11 @@ FDJ.DB["Maraudon"] = {
                 {17732, "Rotgrip Mantle", "Shoulder, Cloth", 3},
                 {17728, "Albino Crocscale Boots", "Feet, Leather", 3},
                 {17730, "Gatorbite Axe", "Two-Hand, Axe", 3},
+                -- zfrecipes (2.0.7): recorded from Rotgrip (Icy Veins NPC 13596)
+                {252918, "Pattern: Stalker's Mail Gauntlets", "Recipe, Leatherworking", 3},
+                {254102, "Pattern: Black Gloves", "Recipe, Tailoring", 3},
+                {254100, "Pattern: Fiery Gloves", "Recipe, Tailoring", 3},
+                {252919, "Pattern: Skycaller's Mail Gauntlets", "Recipe, Leatherworking", 3},
             },
         },
         {
@@ -7053,6 +8214,12 @@ FDJ.DB["Maraudon"] = {
                 {17710, "Charstone Dirk", "Main Hand, Dagger", 3},
                 {17711, "Elemental Rockridge Leggings", "Legs, Plate", 3},
                 {17780, "Blade of Eternal Darkness", "Main Hand, Dagger", 4},
+                -- zfrecipes (2.0.7): recorded from Princess Theradras (Icy Veins NPC 12201)
+                {254100, "Pattern: Fiery Gloves", "Recipe, Tailoring", 3},
+                {252868, "Pattern: Skulker's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {252869, "Pattern: Warden's Leather Gauntlets", "Recipe, Leatherworking", 3},
+                {251407, "Plans: Justicar's Gloves", "Recipe, Blacksmithing", 3},
+                {251403, "Plans: Officer's Gloves", "Recipe, Blacksmithing", 3},
             },
         },
     },
@@ -7204,6 +8371,7 @@ FDJ.DB["Dire Maul: East"] = {
                 {18322, "Waterspout Boots", "Feet, Leather", 3},
                 {18317, "Tempest Talisman", "Neck", 3},
                 {18324, "Waveslicer", "Two-Hand, Axe", 3},
+                {7091, "Pattern: Truefaith Gloves", "Recipe, Tailoring", 2}, -- dmerecipes (2.0.7): Wowhead Forever DM East guide (audit); also a world drop
             },
         },
         {
@@ -7392,6 +8560,7 @@ FDJ.DB["Dire Maul: West"] = {
                 {18374, "Flamescarred Shoulders", "Shoulder, Leather", 3},
                 {18397, "Elder Magus Pendant", "Neck", 3},
                 {18371, "Mindtap Talisman", "Trinket", 3},
+                {22309, "Pattern: Big Bag of Enchantment", "Recipe, Tailoring", 2}, -- dmwnrecipes (2.0.7): Icy Veins NPC 11487, senseos, Zockify
             },
         },
         {
@@ -7884,6 +9053,29 @@ FDJ.DB["Dire Maul: North"] = {
                 {8952, "Roasted Quail", "Consumable, Food", 1},
             },
         },
+        {
+            -- dmwnrecipes (2.0.7): the crate Knot Thimblejack leaves when Free Knot!
+            -- is done (object 179501). Not a kill, not the Gordok Tribute. Patterns
+            -- only, so it has no row in the list (listHidden); they are on the
+            -- Recipes & Patterns page with the cache as their source.
+            name = "Knot Thimblejack's Cache",
+            trash = true,
+            lootChest = true,
+            listHidden = true,
+            loot = {
+                {18414, "Pattern: Belt of the Archmage", "Recipe, Tailoring", 4},
+                {18517, "Pattern: Chromatic Cloak", "Recipe, Leatherworking", 4},
+                {18518, "Pattern: Hide of the Wild", "Recipe, Leatherworking", 4},
+                {18519, "Pattern: Shifting Cloak", "Recipe, Leatherworking", 4},
+                {18415, "Pattern: Felcloth Gloves", "Recipe, Tailoring", 3},
+                {18416, "Pattern: Inferno Gloves", "Recipe, Tailoring", 3},
+                {18417, "Pattern: Mooncloth Gloves", "Recipe, Tailoring", 3},
+                {18418, "Pattern: Cloak of Warding", "Recipe, Tailoring", 3},
+                {18514, "Pattern: Girdle of Insight", "Recipe, Leatherworking", 3},
+                {18515, "Pattern: Mongoose Boots", "Recipe, Leatherworking", 3},
+                {18516, "Pattern: Swift Flight Bracers", "Recipe, Leatherworking", 3},
+            },
+        },
     },
 }
 
@@ -8123,6 +9315,7 @@ FDJ.DB["Stratholme: Living"] = {
                 {22405, "Mantle of the Scarlet Crusade", "Shoulder, Cloth", 3},
                 {22404, "Willey's Back Scratcher", "Main Hand, Fist Weapon", 3},
                 {22406, "Redemption", "Two-Hand, Staff", 3},
+                {12839, "Plans: Heartseeker", "Recipe, Blacksmithing", 3}, -- stratrecipes (2.0.7): Weaponsmith; Icy Veins NPC 10997, senseos, Zockify
             },
         },
         {
@@ -8155,6 +9348,44 @@ FDJ.DB["Stratholme: Living"] = {
                 {18717, "Hammer of the Grand Crusader", "Two-Hand, Mace", 3},
                 {13369, "Fire Striders", "Feet, Cloth", 3},
                 {16725, "Lightforge Boots", "Feet, Plate", 3},
+                -- stratrecipes (2.0.7): senseos, Zockify, Wowhead Forever guide (audit)
+                {14512, "Pattern: Truefaith Vestments", "Recipe, Tailoring", 4},
+                {13520, "Recipe: Flask of Distilled Wisdom", "Recipe, Alchemy", 2},
+            },
+        },
+        {
+            -- strattrash (2.0.6): Stratholme trash (trash loot audit of 14 Nov
+            -- 2026, cross-checked on Wowhead Forever and Icy Veins Forever;
+            -- SOURCES.txt). Living side: its Scarlet Crusade (Crimson) mobs and
+            -- the mobs of both sides (ghouls, gargoyles, banshees) named.
+            name = "Trash Drops",
+            trash = true,
+            loot = {
+                {16685, "Magister's Belt", "Waist, Cloth", 3, "Crimson Conjuror / Crimson Sorcerer / Crimson Battle Mage"},
+                {16702, "Dreadmist Belt", "Waist, Cloth", 3, "Crimson Sorcerer / Crimson Conjuror"},
+                {16697, "Devout Bracers", "Wrist, Cloth", 3, "Crimson Conjuror / Crimson Initiate / Crimson Priest"},
+                {16714, "Wildheart Bracers", "Wrist, Leather", 3, "Crimson Inquisitor / Shrieking Banshee / Wailing Banshee"},
+                {16710, "Shadowcraft Bracers", "Wrist, Leather", 3, "Plague Ghoul"},
+                {16681, "Beaststalker's Bindings", "Wrist, Mail", 3, "Crimson Defender / Ghoul Ravener / Fleshflayer Ghoul"},
+                {16671, "Bindings of Elements", "Wrist, Mail", 3, "Crimson Monk"},
+                {16723, "Lightforge Belt", "Waist, Plate", 3, "Crimson Guardsman / Crimson Gallant / Rockwing Gargoyle / Rockwing Screecher"},
+                -- The seven rare BoEs of all of Stratholme's trash (both sides,
+                -- 9 to 27 kinds of mobs each): "Drops from: ALL Trash".
+                {18743, "Gracious Cape", "Back", 3, allTrash = true},
+                {18745, "Sacred Cloth Leggings", "Legs, Cloth", 3, allTrash = true},
+                {18736, "Plaguehound Leggings", "Legs, Leather", 3, allTrash = true},
+                {18741, "Morlune's Bracer", "Wrist, Plate", 3, allTrash = true},
+                {18742, "Stratholme Militia Shoulderguard", "Shoulder, Mail", 3, allTrash = true},
+                {18744, "Plaguebat Fur Gloves", "Hands, Leather", 3, allTrash = true},
+                {17061, "Juno's Shadow", "Back", 3, allTrash = true},
+                {16249, "Formula: Enchant 2H Weapon - Major Intellect", "Recipe, Enchanting", 2, "Crimson Sorcerer"},
+                {15777, "Pattern: Runic Leather Shoulders", "Recipe, Leatherworking", 2, "Crimson Battle Mage"},
+                {18658, "Schematic: Ultra-Flash Shadow Reflector", "Recipe, Engineering", 2, "Crimson Inquisitor"},
+                {16052, "Schematic: Voice Amplification Modulator", "Recipe, Engineering", 2, "Crimson Inquisitor"},
+                -- stratrecipes (2.0.7): in the Blacksmithing Plans (object 176325) on the
+                -- Scarlet side, not on the Crimson Hammersmith they call (Master Hammersmith).
+                {12827, "Plans: Serenity", "Recipe, Blacksmithing", 2, "Blacksmithing Plans"},
+                {12811, "Righteous Orb", "Reagent", 2, "All Scarlet Crusade mobs"},
             },
         },
     },
@@ -8348,6 +9579,7 @@ FDJ.DB["Stratholme: Undead"] = {
                 {13524, "Skull of Burning Shadows", "Held In Off-hand", 3},
                 {18734, "Pale Moon Cloak", "Back", 3},
                 {18735, "Maleki's Footwraps", "Feet, Cloth", 3},
+                {12833, "Plans: Hammer of the Titans", "Recipe, Blacksmithing", 3}, -- stratrecipes (2.0.7): Master Hammersmith; senseos, Zockify
             },
         },
         {
@@ -8398,6 +9630,44 @@ FDJ.DB["Stratholme: Undead"] = {
                 {16687, "Magister's Leggings", "Legs, Cloth", 3},
                 {16694, "Devout Skirt", "Legs, Cloth", 3},
                 {16709, "Shadowcraft Pants", "Legs, Leather", 3},
+                -- 2.0.6: epic two-hand sword, Wowhead Forever: dropped by Baron
+                -- Rivendare (9 of 8730 kills, its Classic Era drop data).
+                {13505, "Runeblade of Baron Rivendare", "Two-Hand, Sword", 4},
+            },
+        },
+        {
+            -- strattrash (2.0.6): Stratholme trash (trash loot audit of 14 Nov
+            -- 2026, cross-checked on Wowhead Forever and Icy Veins Forever;
+            -- SOURCES.txt). Undead side: its Scourge mobs (Thuzadin, crypt
+            -- fiends, abominations) and the mobs of both sides named.
+            name = "Trash Drops",
+            trash = true,
+            loot = {
+                {16685, "Magister's Belt", "Waist, Cloth", 3, "Thuzadin Shadowcaster / Thuzadin Necromancer"},
+                {16702, "Dreadmist Belt", "Waist, Cloth", 3, "Thuzadin Necromancer / Thuzadin Shadowcaster"},
+                {16697, "Devout Bracers", "Wrist, Cloth", 3, "Thuzadin Necromancer / Thuzadin Shadowcaster"},
+                {16714, "Wildheart Bracers", "Wrist, Leather", 3, "Shrieking Banshee / Wailing Banshee"},
+                {16710, "Shadowcraft Bracers", "Wrist, Leather", 3, "Plague Ghoul"},
+                {16681, "Beaststalker's Bindings", "Wrist, Mail", 3, "Ghoul Ravener / Fleshflayer Ghoul"},
+                {16671, "Bindings of Elements", "Wrist, Mail", 3, "Crypt Crawler / Crypt Beast"},
+                {16723, "Lightforge Belt", "Waist, Plate", 3, "Rockwing Gargoyle / Rockwing Screecher"},
+                {16736, "Belt of Valor", "Waist, Plate", 3, "Patchwork Horror / Venom Belcher / Bile Spewer"},
+                -- The seven rare BoEs of all of Stratholme's trash (both sides,
+                -- 9 to 27 kinds of mobs each): "Drops from: ALL Trash".
+                {18743, "Gracious Cape", "Back", 3, allTrash = true},
+                {18745, "Sacred Cloth Leggings", "Legs, Cloth", 3, allTrash = true},
+                {18736, "Plaguehound Leggings", "Legs, Leather", 3, allTrash = true},
+                {18741, "Morlune's Bracer", "Wrist, Plate", 3, allTrash = true},
+                {18742, "Stratholme Militia Shoulderguard", "Shoulder, Mail", 3, allTrash = true},
+                {18744, "Plaguebat Fur Gloves", "Hands, Leather", 3, allTrash = true},
+                {17061, "Juno's Shadow", "Back", 3, allTrash = true},
+                {16248, "Formula: Enchant Weapon - Unholy Weapon", "Recipe, Enchanting", 2, "Thuzadin Shadowcaster"},
+                {14495, "Pattern: Ghostweave Pants", "Recipe, Tailoring", 2, "Spectral Citizen"},
+                {15768, "Pattern: Wicked Leather Belt", "Recipe, Leatherworking", 2, "Ghoul Ravener"},
+                -- stratrecipes (2.0.7): in the Blacksmithing Plans on the Service Gate side (Master
+                -- Swordsmith), not on the Black Guard Swordsmith they call.
+                {12830, "Plans: Corruption", "Recipe, Blacksmithing", 1, "Blacksmithing Plans"},
+                {12735, "Frayed Abomination Stitching", "Quest Item", 2, "Patchwork Horror / Bile Spewer / Venom Belcher"},
             },
         },
     },
@@ -8765,20 +10035,7 @@ FDJ.DB["Blackrock Depths"] = {
         turnin = "Lokhtos Darkbargainer, Grim Guzzler, Blackrock Depths",
         liveXPFallback = 0,
     },
-    {
-        objective = "Bring Private Rocknot two Dark Iron Ale Mugs.",
-        rewardSummary = "",
-        id = 4295,
-        name = "Rocknot's Ale",
-        faction = "Both",
-        pickup = "Private Rocknot, Grim Guzzler, Blackrock Depths",
-        startsInDungeon = true,
-        level = 55,
-        requires = 50,
-        note = "Buy Dark Iron Ale Mugs from Plugger Spazzring and keep handing them to Rocknot. The drunken event opens the bar route and can turn Phalanx hostile.",
-        turnin = "Private Rocknot, Grim Guzzler, Blackrock Depths",
-        liveXPFallback = 0,
-    },
+    -- Rocknot's Ale (4295) taken out in 2.0.19 at the author's word: pointless.
     },
     bosses = {
         {
@@ -8804,6 +10061,7 @@ FDJ.DB["Blackrock Depths"] = {
                 {22234, "Mantle of Lost Hope", "Shoulder, Cloth", 3},
                 {22397, "Idol of Ferocity", "Relic, Idol", 3},
                 {11630, "Rockshard Pellets", "Projectile, Bullet", 3},
+                {11813, "Formula: Smoking Heart of the Mountain", "Recipe, Enchanting", 2}, -- brdrecipes (2.0.7): Icy Veins NPC 9025
             },
         },
         {
@@ -8821,6 +10079,7 @@ FDJ.DB["Blackrock Depths"] = {
         {
             name = "Gorosh the Dervish",
             fightGroup = "Ring of Law", -- Dungeon Tracker: one entry for the fight
+            fightSig = { level = 56, type = "Humanoid" }, -- 2.0.8: told apart where names are hidden
             npcID = 9027,
             aliases = {"Gorosh the Dervish"},
             description = "Ring of Law: one of six possible challengers.",
@@ -8834,6 +10093,7 @@ FDJ.DB["Blackrock Depths"] = {
         {
             name = "Grizzle",
             fightGroup = "Ring of Law", -- Dungeon Tracker: one entry for the fight
+            fightSig = { level = 54, type = "Humanoid" }, -- 2.0.8: told apart where names are hidden
             npcID = 9028,
             aliases = {"Grizzle"},
             description = "Ring of Law: one of six possible challengers.",
@@ -8848,6 +10108,7 @@ FDJ.DB["Blackrock Depths"] = {
         {
             name = "Eviscerator",
             fightGroup = "Ring of Law", -- Dungeon Tracker: one entry for the fight
+            fightSig = { level = 54, type = "Humanoid" }, -- 2.0.8: told apart where names are hidden
             npcID = 9029,
             aliases = {"Eviscerator"},
             description = "Ring of Law: one of six possible challengers.",
@@ -8861,6 +10122,7 @@ FDJ.DB["Blackrock Depths"] = {
         {
             name = "Ok'thor the Breaker",
             fightGroup = "Ring of Law", -- Dungeon Tracker: one entry for the fight
+            fightSig = { level = 53, type = "Humanoid" }, -- 2.0.8: told apart where names are hidden
             npcID = 9030,
             aliases = {"Ok'thor the Breaker"},
             description = "Ring of Law: one of six possible challengers.",
@@ -8874,6 +10136,7 @@ FDJ.DB["Blackrock Depths"] = {
         {
             name = "Anub'shiah",
             fightGroup = "Ring of Law", -- Dungeon Tracker: one entry for the fight
+            fightSig = { level = 54, type = "Undead" }, -- 2.0.8: told apart where names are hidden
             npcID = 9031,
             aliases = {"Anub'shiah"},
             description = "Ring of Law: one of six possible challengers.",
@@ -8887,6 +10150,7 @@ FDJ.DB["Blackrock Depths"] = {
         {
             name = "Hedrum the Creeper",
             fightGroup = "Ring of Law", -- Dungeon Tracker: one entry for the fight
+            fightSig = { level = 53, type = "Beast" }, -- 2.0.8: told apart where names are hidden
             npcID = 9032,
             aliases = {"Hedrum the Creeper"},
             description = "Ring of Law: one of six possible challengers.",
@@ -8926,6 +10190,7 @@ FDJ.DB["Blackrock Depths"] = {
                 {11748, "Pyric Caduceus", "Ranged, Wand", 3},
                 {11749, "Searingscale Leggings", "Legs, Mail", 3},
                 {11750, "Kindling Stave", "Two-Hand, Staff", 3},
+                {11207, "Formula: Enchant Weapon - Fiery Weapon", "Recipe, Enchanting", 2}, -- brdrecipes (2.0.7): Icy Veins NPC 9024
             },
         },
         {
@@ -9017,6 +10282,7 @@ FDJ.DB["Blackrock Depths"] = {
                 {11823, "Luminary Kilt", "Legs, Leather", 3},
                 {11669, "Naglering", "Finger", 3},
                 {11819, "Second Wind", "Trinket", 3},
+                {273113, "Blueprint: Master Forge", "Blueprint", 2}, -- brdrecipes (2.0.7): Icy Veins camping guide; Wowhead Forever 6/87 (audit)
             },
         },
         {
@@ -9065,6 +10331,7 @@ FDJ.DB["Blackrock Depths"] = {
             loot = {
                 {12793, "Mixologist's Tunic", "Chest, Leather", 3},
                 {12791, "Barman Shanker", "Main Hand, Dagger", 3},
+                {18653, "Schematic: Goblin Jumper Cables XL", "Recipe, Engineering", 2}, -- brdrecipes (2.0.7): senseos, Zockify; Wowhead Forever 17% (audit)
             },
         },
         {
@@ -9120,6 +10387,9 @@ FDJ.DB["Blackrock Depths"] = {
                 {22395, "Totem of Rage", "Relic, Totem", 3},
                 {22400, "Libram of Truth", "Relic, Libram", 3},
                 {11746, "Golem Skull Helm", "Head, Plate", 3},
+                -- fragmentmagmus (2.0.7): for the Horde quest Fragment of the Firelands;
+                -- Wowhead Forever: dropped by Magmus, 20.48%.
+                {277129, "Fragment of the Firelands", "Quest Item", 1},
             },
         },
         {
@@ -9175,6 +10445,15 @@ FDJ.DB["Blackrock Depths"] = {
                 {12531, "Searing Needle", "One-Hand, Dagger", 3},
                 {12528, "The Judge's Gavel", "Two-Hand, Mace", 3},
                 {12532, "Spire of the Stoneshaper", "Two-Hand, Staff", 3},
+                -- brdrecipes (2.0.7): recipes from named Blackrock Depths trash and the Blacksmithing Plans objects
+                {11611, "Plans: Dark Iron Sunderer", "Recipe, Blacksmithing", 3, "Ribbly's Crony / Hammered Patron"},
+                {11614, "Plans: Dark Iron Mail", "Recipe, Blacksmithing", 2, "Blacksmithing Plans"},
+                {11615, "Plans: Dark Iron Shoulders", "Recipe, Blacksmithing", 2, "Blacksmithing Plans"},
+                {16049, "Schematic: Dark Iron Bomb", "Recipe, Engineering", 2, "Weapon Technician"},
+                {16048, "Schematic: Dark Iron Rifle", "Recipe, Engineering", 2, "Doomforge Craftsman"},
+                {18654, "Schematic: Gnomish Alarm-O-Bot", "Recipe, Engineering", 2, "Weapon Technician"},
+                {16053, "Schematic: Master Engineer's Goggles", "Recipe, Engineering", 2, "Doomforge Arcanasmith"},
+                {18661, "Schematic: World Enlarger", "Recipe, Engineering", 2, "Weapon Technician"},
             },
         },
     },
@@ -9417,6 +10696,7 @@ FDJ.DB["Upper Blackrock Spire"] = {
                 {12927, "Truestrike Shoulders", "Shoulder, Leather", 3},
                 {12929, "Emberfury Talisman", "Neck", 3},
                 {16672, "Gauntlets of Elements", "Hands, Mail", 3},
+                {249520, "Formula: Molten Heart of the Mountain", "Recipe, Enchanting", 3}, -- ubrsrecipes (2.0.7): Icy Veins NPC 9816, Zockify
             },
         },
         {
@@ -9430,6 +10710,7 @@ FDJ.DB["Upper Blackrock Spire"] = {
                 {12606, "Crystallized Girdle", "Waist, Leather", 3},
                 {12609, "Polychromatic Visionwrap", "Chest, Cloth", 3},
                 {16695, "Devout Mantle", "Shoulder, Cloth", 3},
+                {18657, "Schematic: Hyper-Radiant Flame Reflector", "Recipe, Engineering", 2}, -- ubrsrecipes (2.0.7): Zockify; Wowhead Forever (audit)
             },
         },
         {
@@ -9456,6 +10737,7 @@ FDJ.DB["Upper Blackrock Spire"] = {
                 {13502, "Handcrafted Mastersmith Girdle", "Waist, Plate", 3},
                 {12834, "Plans: Arcanite Champion", "Recipe, Blacksmithing", 3},
                 {12837, "Plans: Masterwork Stormhammer", "Recipe, Blacksmithing", 3},
+                {12728, "Pattern: Invulnerable Mail", "Recipe, Leatherworking", 4}, -- ubrsrecipes (2.0.7): Elemental Leatherworking; Wowhead Forever (audit), Zockify calls it a world drop
             },
         },
         {
@@ -9469,6 +10751,7 @@ FDJ.DB["Upper Blackrock Spire"] = {
                 {12960, "Tribal War Feathers", "Head, Leather", 3},
                 {16669, "Pauldrons of Elements", "Shoulder, Mail", 3},
                 {22225, "Dragonskin Cowl", "Head, Cloth", 3},
+                {13522, "Recipe: Flask of Chromatic Resistance", "Recipe, Alchemy", 2}, -- ubrsrecipes (2.0.7): Zockify; Wowhead Forever (audit)
             },
         },
         {
@@ -9551,6 +10834,18 @@ FDJ.DB["Upper Blackrock Spire"] = {
                 {16690, "Devout Robe", "Chest, Cloth", 3},
                 {16700, "Dreadmist Robe", "Chest, Cloth", 3},
                 {15730, "Pattern: Red Dragonscale Breastplate", "Recipe, Leatherworking", 3},
+                {13519, "Recipe: Flask of the Titans", "Recipe, Alchemy", 2}, -- ubrsrecipes (2.0.7): Zockify; Wowhead Forever (audit)
+            },
+        },
+        {
+            -- ubrsrecipes (2.0.7): recipes from named Upper Blackrock Spire trash.
+            -- Recipes only, so it has no row in the list (listHidden); they are
+            -- on the Recipes & Patterns page with their mobs.
+            name = "Trash Drops",
+            trash = true,
+            listHidden = true,
+            loot = {
+                {16247, "Formula: Enchant 2H Weapon - Superior Impact", "Recipe, Enchanting", 2, "Blackhand Elite"},
             },
         },
     },
@@ -9842,6 +11137,7 @@ FDJ.DB["Lower Blackrock Spire"] = {
                 {16715, "Wildheart Boots", "Feet, Leather", 3},
                 {13213, "Smolderweb's Eye", "Trinket", 3},
                 {13183, "Venomspitter", "One-Hand, Mace", 3},
+                {249521, "Formula: Dormant Heart of the Mountain", "Recipe, Enchanting", 3}, -- lbrsrecipes (2.0.7): Icy Veins NPC 10596
             },
         },
         {
@@ -9891,6 +11187,7 @@ FDJ.DB["Lower Blackrock Spire"] = {
                 {13252, "Cloudrunner Girdle", "Waist, Leather", 3},
                 {13253, "Hands of Power", "Hands, Cloth", 3},
                 {12835, "Plans: Annihilator", "Recipe, Blacksmithing", 3},
+                {273115, "Blueprint: Iron Oven", "Blueprint", 2}, -- lbrsrecipes (2.0.7): Icy Veins camping guide; Wowhead Forever 3/41 (audit)
             },
         },
         {
@@ -9942,6 +11239,24 @@ FDJ.DB["Lower Blackrock Spire"] = {
                 {13164, "Heart of the Scale", "Trinket", 3},
                 {16679, "Beaststalker's Mantle", "Shoulder, Mail", 3},
                 {22321, "Heart of Wyrmthalak", "Trinket", 3},
+                -- 2.0.15: epic ring, Wowhead Forever: dropped by Overlord
+                -- Wyrmthalak (1.7%, its Classic Era drop data).
+                {13143, "Mark of the Dragon Lord", "Finger", 4},
+            },
+        },
+        {
+            -- lbrsrecipes (2.0.7): recipes from named Lower Blackrock Spire trash.
+            -- Recipes only, so it has no row in the list (listHidden); they are
+            -- on the Recipes & Patterns page with their mobs.
+            name = "Trash Drops",
+            trash = true,
+            listHidden = true,
+            loot = {
+                {14513, "Pattern: Robe of the Archmage", "Recipe, Tailoring", 4, "Firebrand Pyromancer"},
+                {251451, "Plans: Stalwart Helm", "Recipe, Blacksmithing", 4, "Bloodaxe Veteran"},
+                {15775, "Pattern: Volcanic Shoulders", "Recipe, Leatherworking", 2, "Firebrand Legionnaire"},
+                {16250, "Formula: Enchant Weapon - Superior Striking", "Recipe, Enchanting", 2, "Spirestone Warlord"},
+                {16244, "Formula: Enchant Gloves - Greater Strength", "Recipe, Enchanting", 2, "Spirestone Mystic"},
             },
         },
     },
