@@ -1,10 +1,10 @@
 
 RaidBarDB = {
 ["minimized"] = true,
-["floating"] = false,
 ["buttonSize"] = 28,
+["floating"] = false,
 ["scale"] = 0.75,
-["y"] = 1099,
+["lx"] = 26,
 ["tooltips"] = false,
 ["orientation"] = "horizontal",
 ["hideLeave"] = true,
@@ -13,6 +13,6 @@ RaidBarDB = {
 ["spacing"] = 2,
 ["locked"] = true,
 ["bgPreset"] = 2,
-["lx"] = 26,
+["y"] = 1099,
 ["blizzui"] = true,
 }

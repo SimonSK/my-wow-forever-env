@@ -6,22 +6,22 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
+["arrowChains"] = {
+},
 ["flightPointsVersion"] = 2,
 ["flightPoints"] = {
 ["thunder bluff, mulgore"] = true,
 ["orgrimmar, durotar"] = true,
-},
-["arrowChains"] = {
 },
 ["runTracker"] = {
 },
 ["rpgKills"] = {
 },
 ["hearthSpot"] = {
-["y"] = 0.6866771578788757,
+["y"] = 0.6888788938522339,
 ["mapID"] = 1454,
 ["name"] = "Orgrimmar",
-["x"] = 0.540683925151825,
+["x"] = 0.540526270866394,
 },
 ["hiddenDungeons"] = {
 },
@@ -34,6 +34,7 @@ ForeverDungeonJournalCharacterDB = {
 ["rpgQuests"] = {
 [5728] = true,
 [5723] = true,
+[5725] = true,
 [5722] = true,
 [962] = true,
 [5761] = true,

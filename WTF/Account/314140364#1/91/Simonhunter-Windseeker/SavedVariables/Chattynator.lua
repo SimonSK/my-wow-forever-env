@@ -6,4 +6,6 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/s /chatlist",
 "/s /reload",
 "/s /bartender4",
+"/g how do i find zephras isle in the world map",
+"/s /ss",
 }

@@ -1,9 +1,9 @@
 
 Bagnon_Sets = {
 ["latest"] = {
-["id"] = "12.1.9",
+["id"] = "12.1.10",
 ["cooldown"] = 1794969493,
-["who"] = "Rayast Bavits",
+["who"] = "Aes Bavits",
 },
 ["global"] = {
 ["inventory"] = {
@@ -17,14 +17,14 @@ Bagnon_Sets = {
 ["point"] = "TOPRIGHT",
 ["color"] = {
 },
-["y"] = -220.0000301161791,
-["x"] = -340.9991856018708,
+["y"] = -300.0005183974291,
+["x"] = -25.99918560187075,
 ["spacing"] = 0,
-["borderColor"] = {
-},
+["showBags"] = true,
 ["activeRules"] = {
 },
-["showBags"] = true,
+["borderColor"] = {
+},
 },
 ["vault"] = {
 ["color"] = {
@@ -63,7 +63,7 @@ Bagnon_Sets = {
 },
 },
 ["bank"] = {
-["y"] = -132.0000301161791,
+["y"] = -69.00057943258537,
 ["rules"] = {
 ["sidebar"] = {
 "all",
@@ -74,48 +74,48 @@ Bagnon_Sets = {
 "miscellaneous",
 },
 },
-["point"] = "TOPLEFT",
+["point"] = "TOPRIGHT",
 ["borderColor"] = {
 },
 ["color"] = {
 },
-["x"] = 247.0002899169922,
+["showBags"] = true,
 ["activeRules"] = {
 },
-["showBags"] = true,
+["x"] = -160.9993076721833,
 },
 },
 ["countGuild"] = true,
 ["color"] = {
 ["quiver"] = {
 },
-["herb"] = {
+["account"] = {
 },
-["normal"] = {
+["enchant"] = {
 },
 ["soul"] = {
 },
-["leather"] = {
+["reagent"] = {
 },
 ["mine"] = {
 },
-["gem"] = {
+["engineer"] = {
 },
 ["inscribe"] = {
 },
-["reagent"] = {
+["fridge"] = {
 },
-["engineer"] = {
+["gem"] = {
 },
 ["key"] = {
 },
 ["tackle"] = {
 },
-["fridge"] = {
+["leather"] = {
 },
-["enchant"] = {
+["normal"] = {
 },
-["account"] = {
+["herb"] = {
 },
 },
 ["profiles"] = {

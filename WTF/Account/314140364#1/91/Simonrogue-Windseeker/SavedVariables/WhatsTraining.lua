@@ -8,8 +8,11 @@ WT_PriceFaction = "auto"
 WT_HideWeaponSkillSwitcher = false
 WT_Crafting = {
 ["selectedProfessions"] = {
-[356] = true,
 [333] = true,
+[356] = true,
+[393] = true,
+[185] = true,
+[129] = true,
 },
 ["expandedProfessions"] = {
 {

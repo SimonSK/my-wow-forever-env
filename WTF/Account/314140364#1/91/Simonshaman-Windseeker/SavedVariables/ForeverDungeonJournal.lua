@@ -6,13 +6,22 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
-["arrowChains"] = {
+["rpgQuests"] = {
+[5728] = true,
+[5723] = true,
+[5725] = true,
+[5722] = true,
+[962] = true,
+[5761] = true,
 },
 ["flightPointsVersion"] = 2,
-["journalMode"] = "gamer",
-["runTracker"] = {
+["flightPoints"] = {
+["thunder bluff, mulgore"] = true,
+["orgrimmar, durotar"] = true,
 },
 ["rpgKills"] = {
+},
+["runTracker"] = {
 },
 ["hearthSpot"] = {
 ["y"] = 0.6853923797607422,
@@ -22,18 +31,12 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["hiddenDungeons"] = {
 },
-["flightPoints"] = {
-["thunder bluff, mulgore"] = true,
-["orgrimmar, durotar"] = true,
-},
+["journalMode"] = "gamer",
 ["runLog"] = {
 ["nextID"] = 1,
 ["runs"] = {
 },
 },
-["rpgQuests"] = {
-[5722] = true,
-[5723] = true,
-[962] = true,
+["arrowChains"] = {
 },
 }

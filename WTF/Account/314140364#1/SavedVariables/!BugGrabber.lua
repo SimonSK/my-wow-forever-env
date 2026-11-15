@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
+["session"] = 314,
 ["lastSanitation"] = 3,
-["session"] = 215,
 ["errors"] = {
 {
 ["message"] = "[ADDON_ACTION_FORBIDDEN] AddOn 'Decursive' tried to call the protected function 'ClearTarget()'.",
@@ -21,14 +21,14 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: ...face/AddOns/Blizzard_TextStatusBar/TextStatusBar.lua:110: attempt to compare a secret number value (execution tainted by 'Decursive')\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1487: in function 'UpdateSystems'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1025: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1672: in function 'RevertAllChanges'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1569: in function 'MakeNewLayout'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1255: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1253>\n[tail call]: ?\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua]:132: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua:130>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/Shared/Button/UIButtonTemplate.lua]:16: in function <...lizzard_SharedXML/Shared/Button/UIButtonTemplate.lua:12>\n",
-["time"] = 1793847199,
 ["session"] = 1,
+["time"] = 1793847199,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: ...face/AddOns/Blizzard_TextStatusBar/TextStatusBar.lua:110: attempt to compare a secret number value (execution tainted by 'Decursive')\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1487: in function 'UpdateSystems'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1025: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:197: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:196>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:196: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n[C]: in function 'OnLayoutAdded'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1587: in function 'MakeNewLayout'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1255: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1253>\n[tail call]: ?\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua]:132: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua:130>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/Shared/Button/UIButtonTemplate.lua]:16: in function <...lizzard_SharedXML/Shared/Button/UIButtonTemplate.lua:12>\n",
-["time"] = 1793847199,
 ["session"] = 1,
+["time"] = 1793847199,
 ["counter"] = 1,
 },
 {
@@ -185,17 +185,33 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1054: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1050>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1050: in function 'InvokeOnAnyEditModeSystemAnchorChanged'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1036: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:206: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n",
-["time"] = 1794548485,
-["session"] = 212,
-["counter"] = 4,
+["session"] = 227,
+["time"] = 1794621832,
+["counter"] = 5,
 },
 {
 ["message"] = "GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator",
-["time"] = 1794548485,
+["time"] = 1794621832,
 ["locals"] = "",
 ["stack"] = "[Interface/AddOns/Blizzard_MawBuffs/Blizzard_MawBuffs.lua]:4: in function 'ShouldShowMawBuffs'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ScenarioObjectiveTracker.lua]:187: in function 'LayoutContents'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerModule.lua]:147: in function 'Update'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.lua]:82: in function 'Update'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua]:70: in function <...zzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua:62>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/MixinUtil.lua]:341: in function <Interface/AddOns/Blizzard_SharedXML/MixinUtil.lua:340>\n",
-["session"] = 212,
-["counter"] = 3,
+["session"] = 227,
+["counter"] = 4,
+},
+{
+["message"] = "[ADDON_ACTION_FORBIDDEN] AddOn 'SilverDragon_History' tried to call the protected function 'RunMacroText()'.",
+["time"] = 1794684102,
+["locals"] = "self=<table>\nevent=\"ADDON_ACTION_FORBIDDEN\"\naddonName=\"SilverDragon_History\"\naddonFunc=\"RunMacroText()\"\nname=\"SilverDragon_History\"\nbadAddons=<table>{\n SilverDragon_History=true\n}\nL=<table>{\n NO_DISPLAY_2=\"|cffffff00The standard display is called BugSack, and can probably be found on the same site where you found !BugGrabber.|r\"\n ERROR_DETECTED=\"%s |cffffff00captured, click the link for more information.|r\"\n BUGGRABBER_STOPPED=\"|cffffff00There are too many errors in your UI. As a result, your game experience may be degraded. Disable or update the failing addons if you don't want to see this message again.|r\"\n USAGE=\"|cffffff00Usage: /buggrabber <1-%d>.|r\"\n STOP_NAG=\"|cffffff00!BugGrabber will not nag about missing a display addon again until next patch.|r\"\n NO_DISPLAY_STOP=\"|cffffff00If you don't want to be reminded about this again, run /stopnag.|r\"\n NO_DISPLAY_1=\"|cffffff00You seem to be running !BugGrabber with no display addon to go along with it. Although a slash command is provided for accessing error reports, a display can help you manage these errors in a more convenient way.|r\"\n ERROR_UNABLE=\"|cffffff00!BugGrabber is unable to retrieve errors from other players by itself. Please install BugSack or a similar display addon that might give you this functionality.|r\"\n ADDON_CALL_PROTECTED=\"[%s] AddOn '%s' tried to call the protected function '%s'.\"\n}\n",
+["stack"] = "[Interface/AddOns/!BugGrabber/BugGrabber.lua]:554: in function '?'\n[Interface/AddOns/!BugGrabber/BugGrabber.lua]:538: in function <Interface/AddOns/!BugGrabber/BugGrabber.lua:538>\n[C]: in function 'RunMacroText'\n[Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua]:461: in function 'handler'\n[Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua]:752: in function <...terface/AddOns/Blizzard_FrameXML/SecureTemplates.lua:730>\n[Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua]:766: in function <...terface/AddOns/Blizzard_FrameXML/SecureTemplates.lua:759>\n[Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua]:818: in function 'SecureActionButton_OnClick'\n[*SecureTemplates.xml:16_OnClick]:1: in function <[string \"*SecureTemplates.xml:16_OnClick\"]:1>\n",
+["session"] = 262,
+["counter"] = 1,
+},
+{
+["message"] = "...tender4/libs/LibButtonGlow-1.0/LibButtonGlow-1.0.lua:67: attempt to compare a secret number value (execution tainted by 'Bartender4')",
+["time"] = 1794689754,
+["locals"] = "self=ButtonGlowOverlay1 <LibButtonGlow-1.0.lua:133>{\n spark=ButtonGlowOverlay1Spark <LibButtonGlow-1.0.lua:136>\n outerGlowOver=ButtonGlowOverlay1OuterGlowOver <LibButtonGlow-1.0.lua:165>\n innerGlow=ButtonGlowOverlay1InnerGlow <LibButtonGlow-1.0.lua:143>\n __LBGVersion=10\n outerGlow=ButtonGlowOverlay1OuterGlow <LibButtonGlow-1.0.lua:158>\n animOut=AnimationGroup <UnknownFile:0>\n animIn=AnimationGroup <UnknownFile:0>\n innerGlowOver=ButtonGlowOverlay1InnerGlowOver <LibButtonGlow-1.0.lua:150>\n ants=ButtonGlowOverlay1Ants <LibButtonGlow-1.0.lua:173>\n}\nelapsed=0.017000\ncooldown=BT4Button5Cooldown <ActionButtonTemplate.xml:111>\n(*temporary)=<secret number>\n(*temporary)=BT4Button5Cooldown <ActionButtonTemplate.xml:111>\n(*temporary)=<secret number>\n(*temporary)=48\n(*temporary)=48\n(*temporary)=22\n(*temporary)=0.017000\n(*temporary)=0.010000\n(*temporary)=\"attempt to compare a secret number value (execution tainted by 'Bartender4')\"\nMidnight=false\n",
+["stack"] = "[Interface/AddOns/Bartender4/libs/LibButtonGlow-1.0/LibButtonGlow-1.0.lua]:67: in function <...tender4/libs/LibButtonGlow-1.0/LibButtonGlow-1.0.lua:62>\n",
+["session"] = 263,
+["counter"] = 236,
 },
 },
 }

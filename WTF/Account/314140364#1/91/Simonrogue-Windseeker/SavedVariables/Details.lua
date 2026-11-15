@@ -33,7 +33,7 @@ _detalhes_database = {
 },
 ["raid_roster"] = {
 },
-["CombatStartedAt"] = 23372.044,
+["CombatStartedAt"] = 40585.859,
 ["tempo_start"] = 23108.864,
 ["last_events_tables"] = {
 },
@@ -59,10 +59,10 @@ _detalhes_database = {
 {
 ["buff_uptime"] = 0,
 ["ress"] = 0,
-["debuff_uptime"] = 0,
 ["cooldowns_defensive"] = 0,
-["interrupt"] = 0,
 ["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
 ["cc_break"] = 0,
 ["dead"] = 0,
 },
@@ -82,10 +82,10 @@ _detalhes_database = {
 {
 ["buff_uptime"] = 0,
 ["ress"] = 0,
-["debuff_uptime"] = 0,
 ["cooldowns_defensive"] = 0,
-["interrupt"] = 0,
 ["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
 ["cc_break"] = 0,
 ["dead"] = 0,
 },
@@ -103,8 +103,8 @@ _detalhes_database = {
 ["enemy"] = "Unknown",
 ["trinketProcs"] = {
 },
-["TotalElapsedCombatTime"] = 4.565999999998894,
-["CombatEndedAt"] = 23376.61,
+["TotalElapsedCombatTime"] = 33.39899999999761,
+["CombatEndedAt"] = 40619.258,
 ["aura_timeline"] = {
 },
 ["compressed_charts"] = {
@@ -113,9 +113,10 @@ _detalhes_database = {
 ["end_time"] = 23215.983,
 ["mapId"] = 2991,
 ["overall_added"] = true,
-["playing_solo"] = true,
-["is_challenge"] = false,
 ["frags"] = {
+},
+["is_challenge"] = false,
+["spells_cast_timeline"] = {
 },
 ["boss_hp"] = 1,
 ["combat_counter"] = 20,
@@ -126,13 +127,13 @@ _detalhes_database = {
 1,
 1,
 },
+["damage_section"] = {
+},
 ["heal_section"] = {
 },
 ["heal"] = {
 {
 },
-},
-["damage_section"] = {
 },
 ["damage"] = {
 {
@@ -142,8 +143,7 @@ _detalhes_database = {
 ["start_time"] = 0,
 ["TimeData"] = {
 },
-["spells_cast_timeline"] = {
-},
+["playing_solo"] = true,
 },
 },
 },
@@ -209,253 +209,6 @@ _detalhes_database = {
 },
 ["arena_data_compressed"] = {
 },
-["coach"] = {
-["enabled"] = false,
-["welcome_panel_pos"] = {
-},
-["last_coach_name"] = false,
-},
-["arena_data_index_selected"] = 1,
-["damage_meter_sessions"] = {
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296590,
-["sessionId"] = 1,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:43:10",
-["startUnixTime"] = 1794296583,
-["endTime"] = 23216.283,
-["sessionName"] = "Juvenile Vuldren",
-["startDate"] = "00:43:03",
-["startTime"] = 23208.817,
-["alreadyAdded"] = false,
-["detailsId"] = "Juvenile Vuldren1",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296601,
-["sessionId"] = 2,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:43:21",
-["startUnixTime"] = 1794296597,
-["endTime"] = 23227.616,
-["sessionName"] = "Juvenile Vuldren",
-["startDate"] = "00:43:17",
-["startTime"] = 23223.266,
-["alreadyAdded"] = false,
-["detailsId"] = "Juvenile Vuldren2",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296613,
-["sessionId"] = 3,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:43:33",
-["startUnixTime"] = 1794296605,
-["endTime"] = 23239.374,
-["sessionName"] = "Juvenile Vuldren",
-["startDate"] = "00:43:25",
-["startTime"] = 23230.818,
-["alreadyAdded"] = false,
-["detailsId"] = "Juvenile Vuldren3",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296627,
-["sessionId"] = 4,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:43:47",
-["startUnixTime"] = 1794296619,
-["endTime"] = 23252.725,
-["sessionName"] = "Pesky Cirrusfly",
-["startDate"] = "00:43:39",
-["startTime"] = 23245.007,
-["alreadyAdded"] = false,
-["detailsId"] = "Pesky Cirrusfly4",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296635,
-["sessionId"] = 5,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:43:55",
-["startUnixTime"] = 1794296630,
-["endTime"] = 23261.641,
-["sessionName"] = "Juvenile Vuldren",
-["startDate"] = "00:43:50",
-["startTime"] = 23256.575,
-["alreadyAdded"] = false,
-["detailsId"] = "Juvenile Vuldren5",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296646,
-["sessionId"] = 6,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:44:06",
-["startUnixTime"] = 1794296641,
-["endTime"] = 23272.574,
-["sessionName"] = "Pesky Cirrusfly",
-["startDate"] = "00:44:01",
-["startTime"] = 23267.641,
-["alreadyAdded"] = false,
-["detailsId"] = "Pesky Cirrusfly6",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296658,
-["sessionId"] = 7,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:44:18",
-["startUnixTime"] = 1794296650,
-["endTime"] = 23284.688,
-["sessionName"] = "Juvenile Vuldren",
-["startDate"] = "00:44:10",
-["startTime"] = 23276.174,
-["alreadyAdded"] = false,
-["detailsId"] = "Juvenile Vuldren7",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296668,
-["sessionId"] = 8,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:44:28",
-["startUnixTime"] = 1794296664,
-["endTime"] = 23294.387,
-["sessionName"] = "Pesky Cirrusfly",
-["startDate"] = "00:44:24",
-["startTime"] = 23290.554,
-["alreadyAdded"] = false,
-["detailsId"] = "Pesky Cirrusfly8",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296680,
-["sessionId"] = 9,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:44:40",
-["startUnixTime"] = 1794296672,
-["endTime"] = 23306.204,
-["sessionName"] = "Juvenile Vuldren",
-["startDate"] = "00:44:32",
-["startTime"] = 23298.437,
-["alreadyAdded"] = false,
-["detailsId"] = "Juvenile Vuldren9",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296688,
-["sessionId"] = 10,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:44:48",
-["startUnixTime"] = 1794296684,
-["endTime"] = 23314.605,
-["sessionName"] = "Pesky Cirrusfly",
-["startDate"] = "00:44:44",
-["startTime"] = 23310.454,
-["alreadyAdded"] = false,
-["detailsId"] = "Pesky Cirrusfly10",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296700,
-["sessionId"] = 11,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:45:00",
-["startUnixTime"] = 1794296694,
-["endTime"] = 23326.693,
-["sessionName"] = "Juvenile Vuldren",
-["startDate"] = "00:44:54",
-["startTime"] = 23320.071,
-["alreadyAdded"] = false,
-["detailsId"] = "Juvenile Vuldren11",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296711,
-["sessionId"] = 12,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:45:11",
-["startUnixTime"] = 1794296705,
-["endTime"] = 23337.645,
-["sessionName"] = "Pesky Cirrusfly",
-["startDate"] = "00:45:05",
-["startTime"] = 23331.043,
-["alreadyAdded"] = false,
-["detailsId"] = "Pesky Cirrusfly12",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296731,
-["sessionId"] = 13,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:45:31",
-["startUnixTime"] = 1794296724,
-["endTime"] = 23357.145,
-["sessionName"] = "Pesky Cirrusfly",
-["startDate"] = "00:45:24",
-["startTime"] = 23350.361,
-["alreadyAdded"] = false,
-["detailsId"] = "Pesky Cirrusfly13",
-},
-{
-["playerCasts"] = {
-},
-["endUnixTime"] = 1794296743,
-["sessionId"] = 14,
-["added"] = false,
-["playerAuras"] = {
-},
-["endDate"] = "00:45:43",
-["startUnixTime"] = 1794296736,
-["endTime"] = 23369.661,
-["sessionName"] = "Pesky Cirrusfly",
-["startDate"] = "00:45:36",
-["startTime"] = 23361.878,
-["alreadyAdded"] = false,
-["detailsId"] = "Pesky Cirrusfly14",
-},
-},
 ["local_instances_config"] = {
 {
 ["modo"] = 4,
@@ -480,10 +233,10 @@ _detalhes_database = {
 ["attribute"] = 1,
 ["pos"] = {
 ["normal"] = {
-["y"] = -337.3481597900391,
-["x"] = 550.0009765625,
-["w"] = 180.0002746582031,
-["h"] = 81.00003051757812,
+["y"] = -336.8481597900391,
+["x"] = 674.0010986328125,
+["w"] = 150.0000152587891,
+["h"] = 82.00001525878906,
 },
 ["solo"] = {
 ["y"] = 1.999969482421875,
@@ -516,8 +269,8 @@ _detalhes_database = {
 ["pos"] = {
 ["normal"] = {
 ["y"] = -451.1740989685059,
-["x"] = 550.0009765625,
-["w"] = 180.0002746582031,
+["x"] = 674.0010986328125,
+["w"] = 150.0000152587891,
 ["h"] = 106.6519241333008,
 },
 ["solo"] = {
@@ -529,13 +282,20 @@ _detalhes_database = {
 },
 },
 },
-["cached_roles"] = {
+["arena_data_index_selected"] = 1,
+["damage_meter_sessions"] = {
 },
+["on_death_menu"] = false,
 ["announce_damagerecord"] = {
 ["enabled"] = true,
 ["channel"] = "SELF",
 },
-["cached_talents"] = {
+["character_data"] = {
+["logons"] = 28,
+},
+["nick_tag_cache"] = {
+["nextreset"] = 1795161162,
+["last_version"] = 16,
 },
 ["last_instance_id"] = 0,
 ["data_harvest_for_charsts"] = {
@@ -568,24 +328,11 @@ _detalhes_database = {
 ["reverse"] = false,
 },
 ["active_profile"] = "Simon",
-["mythic_dungeon_currentsaved"] = {
-["dungeon_name"] = "",
-["started"] = false,
-["segment_id"] = 0,
-["ej_id"] = 0,
-["started_at"] = 0,
-["run_id"] = 0,
-["level"] = 0,
-["dungeon_zone_id"] = 0,
-["previous_boss_killed_at"] = 0,
-},
-["nick_tag_cache"] = {
-["nextreset"] = 1795161162,
-["last_version"] = 16,
-},
+["last_realversion"] = 172,
+["last_instance_time"] = 0,
+["ignore_nicktag"] = false,
 ["data_harvested_for_charts"] = {
 },
-["last_realversion"] = 172,
 ["apocalypes_info"] = {
 },
 ["combat_log"] = {
@@ -598,35 +345,41 @@ _detalhes_database = {
 ["evoker_show_realtimedps"] = false,
 ["inverse_deathlog_mplus"] = false,
 },
-["character_data"] = {
-["logons"] = 10,
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
 },
 ["mythic_plus_log"] = {
 },
-["damage_meter_session_info"] = {
+["benchmark_db"] = {
+["frame"] = {
+},
+},
+["last_day"] = "15",
+["cached_roles"] = {
 },
 ["plugin_database"] = {
 ["DETAILS_PLUGIN_TINY_THREAT"] = {
 ["enabled"] = true,
 ["only_my_group"] = false,
 ["animate"] = false,
-["disable_gouge"] = false,
+["updatespeed"] = 1,
 ["hide_pull_bar"] = false,
-["author"] = "Terciob",
+["useclasscolors"] = false,
 ["playercolor"] = {
 1,
 1,
 1,
 },
 ["usefocus"] = false,
-["updatespeed"] = 1,
+["disable_gouge"] = false,
 ["playSound"] = false,
 ["showamount"] = false,
 ["useplayercolor"] = false,
 ["absolute_mode"] = false,
 ["show_party_pets"] = false,
 ["playSoundFile"] = "Details Threat Warning Volume 3",
-["useclasscolors"] = false,
+["author"] = "Terciob",
 },
 ["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
 ["enabled"] = true,
@@ -682,7 +435,10 @@ _detalhes_database = {
 0.5,
 },
 ["scale"] = 1,
-["arrow_anchor_y"] = 0,
+["main_frame_size"] = {
+300.0000305175781,
+500,
+},
 ["minimap"] = {
 ["minimapPos"] = 160,
 ["radius"] = 160,
@@ -703,7 +459,7 @@ _detalhes_database = {
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
-["font_size"] = 10,
+["use_spark"] = true,
 ["row_spacement"] = 21,
 ["main_frame_color"] = {
 0,
@@ -711,13 +467,13 @@ _detalhes_database = {
 0,
 0.2,
 },
-["row_color"] = {
-0.1,
-0.1,
-0.1,
-0.4,
-},
+["author"] = "Terciob",
 ["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["font_size"] = 10,
+["y"] = -1.52587890625e-05,
+["x"] = -3.0517578125e-05,
+["font_face"] = "Friz Quadrata TT",
+["square_size"] = 32,
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -729,24 +485,16 @@ _detalhes_database = {
 ["update_speed"] = 0.05,
 ["attribute_type"] = 1,
 },
-["use_spark"] = true,
-["x"] = -3.0517578125e-05,
-["font_face"] = "Friz Quadrata TT",
-["square_size"] = 32,
-["y"] = -1.52587890625e-05,
-["author"] = "Terciob",
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
+},
 ["main_frame_locked"] = false,
-["main_frame_size"] = {
-300.0000305175781,
-500,
+["arrow_anchor_y"] = 0,
 },
 },
-},
-["benchmark_db"] = {
-["frame"] = {
-},
-},
-["on_death_menu"] = false,
 ["apocalypse_hashes"] = {
 },
 ["SoloTablesSaved"] = {
@@ -756,8 +504,19 @@ _detalhes_database = {
 ["combat_id"] = 0,
 ["savedStyles"] = {
 },
-["ignore_nicktag"] = false,
-["last_instance_time"] = 0,
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["cached_talents"] = {
+},
 ["announce_deaths"] = {
 ["enabled"] = false,
 ["last_hits"] = 1,
@@ -790,8 +549,7 @@ _detalhes_database = {
 ["_ActorTable"] = {
 },
 },
-["raid_roster"] = {
-},
+["boss_hp"] = 1,
 ["tempo_start"] = 23108.864,
 ["last_events_tables"] = {
 },
@@ -817,38 +575,20 @@ _detalhes_database = {
 {
 ["buff_uptime"] = 0,
 ["ress"] = 0,
-["debuff_uptime"] = 0,
 ["cooldowns_defensive"] = 0,
-["interrupt"] = 0,
 ["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
 ["cc_break"] = 0,
 ["dead"] = 0,
 },
 ["frags_total"] = 0,
 ["voidzone_damage"] = 0,
 },
-["totals_grupo"] = {
-0,
-0,
-{
-0,
-[0] = 0,
-["alternatepower"] = 0,
-[3] = 0,
-[6] = 0,
-},
-{
-["buff_uptime"] = 0,
-["ress"] = 0,
-["debuff_uptime"] = 0,
-["cooldowns_defensive"] = 0,
-["interrupt"] = 0,
-["dispell"] = 0,
-["cc_break"] = 0,
-["dead"] = 0,
-},
+["player_last_events"] = {
 },
 ["frags_need_refresh"] = false,
+["overall_refreshed"] = true,
 ["amountCasts"] = {
 },
 ["instance_type"] = "none",
@@ -865,14 +605,53 @@ _detalhes_database = {
 ["data_inicio"] = 0,
 ["end_time"] = 23215.983,
 ["mapId"] = 2991,
-["boss_hp"] = 1,
-["combat_counter"] = 19,
+["raid_roster"] = {
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
 ["is_challenge"] = false,
+["spells_cast_timeline"] = {
+},
+["combat_counter"] = 19,
+["overall_enemy_name"] = "Unknown",
 ["frags"] = {
 },
-["player_last_events"] = {
+["PhaseData"] = {
+{
+1,
+1,
 },
-["overall_enemy_name"] = "Unknown",
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage"] = {
+},
+},
+["start_time"] = 0,
+["TimeData"] = {
+},
 ["segments_added"] = {
 {
 ["elapsed"] = 23215.983,
@@ -881,32 +660,16 @@ _detalhes_database = {
 ["clock"] = 0,
 },
 },
-["PhaseData"] = {
-{
-1,
-1,
 },
-["heal_section"] = {
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
 },
-["heal"] = {
+["last_coach_name"] = false,
 },
-["damage_section"] = {
-},
-["damage"] = {
-},
-},
-["start_time"] = 0,
-["TimeData"] = {
-},
-["spells_cast_timeline"] = {
-},
-},
-["last_day"] = "10",
 ["arena_data_headers"] = {
 },
-["announce_firsthit"] = {
-["enabled"] = true,
-["channel"] = "SELF",
+["damage_meter_session_info"] = {
 },
 ["announce_cooldowns"] = {
 ["enabled"] = false,
@@ -921,6 +684,7 @@ _detalhes_database = {
 },
 ["auto_combatlog"] = false,
 ["cached_specs"] = {
+["Player-6923-005A94FC"] = 1482,
 ["Player-6933-01801B2A"] = 1488,
 },
 }

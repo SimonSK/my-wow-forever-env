@@ -1,81 +1,121 @@
 
 DecursiveDB = {
 ["global"] = {
-["LastVersionAnnounce"] = 1794562220,
+["LastVersionAnnounce"] = 1794742009,
 ["NonRelease"] = "2.9.0-RC4",
+["MouseButtons"] = {
+"*%s2",
+"ctrl-%s1",
+"*%s1",
+},
 ["t_SpellIDsSoundReg"] = {
-[6751] = {
-["enabled"] = true,
-["spellType"] = 8,
-["from"] = "history",
-},
-[13322] = {
-["enabled"] = true,
-["spellType"] = 1,
-["from"] = "history",
-},
-[7713] = {
-["enabled"] = true,
-["spellType"] = 4,
-["from"] = "history",
-},
-[14517] = {
-["enabled"] = true,
-["from"] = "history",
-["spellType"] = 1,
-},
 [3237] = {
 ["enabled"] = true,
 ["spellType"] = 4,
 ["from"] = "history",
 },
-[9991] = {
+[3427] = {
+["enabled"] = true,
+["spellType"] = 16,
+["from"] = "history",
+},
+[16458] = {
 ["enabled"] = true,
 ["from"] = "history",
+["spellType"] = 16,
+},
+[589] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 1,
+},
+[9749] = {
+["enabled"] = true,
+["spellType"] = 1,
+["from"] = "history",
+},
+[13322] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 1,
+},
+[1319539] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 16,
+},
+[1297068] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 1,
+},
+[9991] = {
+["enabled"] = true,
 ["spellType"] = 8,
+["from"] = "history",
+},
+[172] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 1,
+},
+[20800] = {
+["enabled"] = true,
+["spellType"] = 1,
+["from"] = "history",
+},
+[8139] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 16,
+},
+[18266] = {
+["enabled"] = true,
+["spellType"] = 4,
+["from"] = "history",
+},
+[7713] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 4,
+},
+[14517] = {
+["enabled"] = true,
+["spellType"] = 1,
+["from"] = "history",
+},
+[1306224] = {
+["enabled"] = true,
+["from"] = "history",
+["spellType"] = 1,
 },
 [744] = {
 ["enabled"] = true,
 ["spellType"] = 8,
 ["from"] = "history",
 },
+[18267] = {
+["enabled"] = true,
+["spellType"] = 4,
+["from"] = "history",
+},
 [6866] = {
 ["enabled"] = true,
+["from"] = "history",
 ["spellType"] = 1,
-["from"] = "history",
 },
-[1319539] = {
+[6751] = {
 ["enabled"] = true,
-["spellType"] = 16,
 ["from"] = "history",
-},
-[1306224] = {
-["enabled"] = true,
-["spellType"] = 1,
-["from"] = "history",
-},
-[589] = {
-["enabled"] = true,
-["spellType"] = 1,
-["from"] = "history",
-},
-[16458] = {
-["enabled"] = true,
-["spellType"] = 16,
-["from"] = "history",
-},
-[1297068] = {
-["enabled"] = true,
-["spellType"] = 1,
-["from"] = "history",
+["spellType"] = 8,
 },
 },
 },
 ["profileKeys"] = {
 ["Simonwarlock Windseeker"] = "Default",
-["Simonmage Windseeker"] = "Default",
-["Simonpriest Windseeker"] = "Default",
 ["Simonpaladin Windseeker"] = "Default",
+["Simonpriest Windseeker"] = "Default",
+["Simonmage Windseeker"] = "Default",
 },
 ["profiles"] = {
 ["Default"] = {

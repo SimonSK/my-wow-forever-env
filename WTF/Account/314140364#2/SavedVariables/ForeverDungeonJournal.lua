@@ -14,12 +14,14 @@ ForeverDungeonJournalDB = {
 [262297] = 143122,
 [270885] = 142245,
 [270882] = 144475,
-[258924] = 144487,
 [250034] = 2424,
-[16059] = 15981,
-[270888] = 144023,
-[270884] = 142144,
 [261974] = 143035,
+[16059] = 15981,
+[270884] = 142144,
+[270888] = 144023,
+[258924] = 144487,
+},
+["runLogNames"] = {
 },
 ["fdjOptionsDump"] = {
 "CategoryRow#1.Background [Texture] atlas=Options_CategoryHeader_1 199x144",
@@ -242,101 +244,68 @@ ForeverDungeonJournalDB = {
 "SettingsPanel.SearchBox.searchIcon [Texture] atlas=common-search-magnifyingglass 10x10",
 },
 ["bossHintShown"] = true,
-["newestSeenVersion"] = "2.0.4",
-["questFaction"] = "Horde",
-["lootFilter"] = {
-["enabled"] = false,
-["classOnly"] = false,
-["recipes"] = false,
-["schools"] = {
+["runLogTrashTotal"] = {
+["Ragefire Chasm"] = 108,
 },
-["matchAll"] = true,
-["resists"] = {
+["lastBoss"] = 1,
+["bossEvents"] = {
+[2734] = {
+["map"] = 389,
+["last"] = 1794741116,
+["name"] = "Jergosh the Invoker",
+["dungeon"] = "Ragefire Chasm",
+["n"] = 3,
 },
-["weaponTypes"] = {
+[2733] = {
+["map"] = 389,
+["last"] = 1794740676,
+["name"] = "Taragaman the Hungerer",
+["dungeon"] = "Ragefire Chasm",
+["n"] = 3,
 },
-["stats"] = {
+[2732] = {
+["map"] = 389,
+["last"] = 1794740177,
+["name"] = "Oggleflint",
+["dungeon"] = "Ragefire Chasm",
+["n"] = 3,
 },
-["armorTypes"] = {
-},
-},
-["learnedQuestIDs"] = {
-},
-["lastMode"] = "bosses",
-["newestSeenAt"] = 1794563504,
-["showAllClassQuests"] = true,
-["learnedItemIDs"] = {
-["expeditionary legplates"] = {
-["id"] = 279901,
-["name"] = "Expeditionary Legplates",
-},
-["grips of control"] = {
-["id"] = 276733,
-["name"] = "Grips of Control",
-},
-["satyr's touch"] = {
-["id"] = 287036,
-["name"] = "Satyr's Touch",
-},
-["impish chain hood"] = {
-["id"] = 280058,
-["name"] = "Impish Chain Hood",
-},
-["burnished pridescales"] = {
-["id"] = 280073,
-["name"] = "Burnished Pridescales",
-},
-["flameslash crescent"] = {
-["id"] = 280056,
-["name"] = "Flameslash Crescent",
-},
-["shamanic wristguards"] = {
-["id"] = 280069,
-["name"] = "Shamanic Wristguards",
-},
-["cutthroat chestguard"] = {
-["id"] = 276739,
-["name"] = "Cutthroat Chestguard",
-},
-["bleak eye shoulderplates"] = {
-["id"] = 280075,
-["name"] = "Bleak Eye Shoulderplates",
-},
-["behemoth bones"] = {
-["id"] = 280065,
-["name"] = "Behemoth Bones",
-},
-["tidesong wand"] = {
-["id"] = 276735,
-["name"] = "Tidesong Wand",
-},
-["lucky shovelnose tuft"] = {
-["id"] = 280060,
-["name"] = "Lucky Shovelnose Tuft",
-},
-["trousers of the ebon giant"] = {
-["id"] = 280066,
-["name"] = "Trousers of the Ebon Giant",
-},
-["lost researcher's hood"] = {
-["id"] = 279931,
-["name"] = "Lost Researcher's Hood",
-},
-["reward voucher"] = {
-["id"] = 8070,
-["name"] = "Reward Voucher",
-},
-["veilpiercer girdle"] = {
-["id"] = 280070,
-["name"] = "Veilpiercer Girdle",
+[2735] = {
+["map"] = 389,
+["last"] = 1794741057,
+["name"] = "Bazzalan",
+["dungeon"] = "Ragefire Chasm",
+["n"] = 3,
 },
 },
-["lastDungeon"] = "Ragefire Chasm",
-["mapFloors"] = {
+["rpgAccount"] = {
+["rpgMaps"] = {
 },
-["trackerHintShown"] = true,
-["lastQuest"] = 6,
-["portraitTexturesByNpcID"] = {
+["rpgBosses"] = {
+["Ragefire Chasm"] = {
+[11517] = true,
+["oggleflint"] = true,
+[11518] = true,
+["jergosh the invoker"] = true,
+[11519] = true,
+["bazzalan"] = true,
+[11520] = true,
+["taragaman the hungerer"] = true,
+},
+},
+["rpgKills"] = {
+["Ragefire Chasm"] = true,
+},
+["rpgQuests"] = {
+[5728] = true,
+[5723] = true,
+[5725] = true,
+[92422] = true,
+[5722] = true,
+[5724] = true,
+[5761] = true,
+[962] = true,
+},
 },
 ["questText"] = {
 ["enUS"] = {
@@ -408,9 +377,17 @@ ForeverDungeonJournalDB = {
 ["o"] = "Take Apothecary Johaan's findings to Apothecary Renferrel in Silverpine Forest.",
 ["d"] = "Time is a luxury that is not afforded to those of us under the employ of Lady Sylvanas.  Surely you know this by now.\n\nAs a member of the Royal Apothecary Society it is my duty to share my knowledge with my colleagues so that our collective efforts might one day provide The Dark Lady with the New Plague she so badly desires.\n\nTake these findings to Apothecary Renferrel who is stationed at The Sepulcher in Silverpine Forest.  Follow the roads to the south from Brill.  From the Undercity go southwest.",
 },
+[5723] = {
+["o"] = "Search Orgrimmar for Ragefire Chasm, then kill 8 Ragefire Troggs and 8 Ragefire Shaman before returning to Rahauro in Thunder Bluff.",
+["d"] = "Beneath the city of Orgrimmar, stout creatures known as troggs started coming to the surface from deep below the lava filled tunnels. In her ever-benevolence, Magatha sought to make peace with the creatures, but they turned on her diplomats, killing them. She will not allow such treatment of the tauren people and now consider the creatures a threat to all of the Horde.\n\nShe asks that you put an end to this trogg threat before it overwhelms the Horde from below. Find Ragefire Chasm and destroy them all.",
+},
 [98545] = {
 ["o"] = "Deliver the Sealed Letter to Glix Xizzix in the Undercity.",
 ["d"] = "Since you are here, I'd like you to deliver this letter to an old friend of mine in the Undercity. I'd deliver myself but I have a somewhat colorful history with the Dark Lady, and it would be better if a neutral third party made the delivery.\r\n\r\nYou are looking for a goblin named Glix Xizzix in the Trade Quarter area of the Undercity. I'm sure he'd be happy to compensate you for your time.\r\n\r\n<Leonid lets out a low chuckle as he hands you the letter.>",
+},
+[5724] = {
+["o"] = "Take the Grimtotem Satchel to Rahauro in Thunder Bluff.",
+["d"] = "You find a satchel under the body of the tauren. It is still gripped tightly in his arms as though he was trying to protect it while being attacked by the troggs.\n\nRemoving the satchel from his vice-like grip, you stow it with your own equipment and prepare to make your way out of the tunnels and back to Rahauro in Thunder Bluff.",
 },
 [96656] = {
 ["o"] = "Speak to Eleanor Shackleton near Brill.",
@@ -419,6 +396,10 @@ ForeverDungeonJournalDB = {
 [5725] = {
 ["o"] = "Bring the books Spells of Shadow and Incantations from the Nether to Varimathras in Undercity.",
 ["d"] = "Many denizens of the Legion bestow gifts on their followers as you may well know. Some of these gifts the Dark Lady feels would be better off in her hands than in the hands of those with... lesser vision.\n\nA sect of the Shadow Council hidden in caverns below Orgrimmar known as the Searing Blade are a prime example. The Lady tells me that members of the Searing Blade have come into the possession of two powerful spell books--she would like to \"borrow\" these books from them. You will get them for her.",
+},
+[5726] = {
+["o"] = "Bring a Lieutenant's Insignia to Thrall in Orgrimmar.",
+["d"] = "One thing I will not tolerate are traitors in our midst, N. But I would be a fool to play my hand so early--it would not sufficiently cut the corruption out of our lands and only cause the infection to grow worse.\n\nBut you, a young adventurer, could go places my agents could not... could learn the truth... could find the true head of the beast.\n\nIf you are brave enough, then enter Skull Rock to the east of Orgrimmar, find a lieutenant's insignia off one of the Burning Blade there, and return to me.",
 },
 [354] = {
 ["o"] = "Bring Gregor's Remains, Nissa's Remains and Thurman's Remains to Coleman Farthing in Brill.",
@@ -532,6 +513,14 @@ ForeverDungeonJournalDB = {
 ["o"] = "Kill 8 Dark Neophytes and 8 Dark Enforcers in Tirisfal Glades.",
 ["d"] = "The Scourge are a blight on our lands, and their living servants are the worst of them. The people of Tirisfal have enough to deal with between the mindless dead and the Scarlet Crusade. If you wish to do some good, help me put an end to this scum.",
 },
+[5729] = {
+["o"] = "Speak to Neeru Fireblade in Orgrimmar.",
+["d"] = "I think our next step should be to have you placed close to Neeru. If he is as agitated as reports suggest, then we may accomplish two things. One, you may be able to gain some greater knowledge about the Council or at least the Burning Blade, and two, he may just begin to trust you enough that he asks you to start to aid him. He may very well look at you as someone who can fill the void now that some of the leadership is in turmoil.\n\nReturn to the Cleft and speak to him again, but do not be too overt.",
+},
+[5728] = {
+["o"] = "Kill Bazzalan and Jergosh the Invoker before returning to Thrall in Orgrimmar.",
+["d"] = "Hmm, leaders of the Searing Blade... this concerns me most. If they are the ones of value to Neeru, then those are who we must target first. This satyr... Bazzalan, and the other Neeru mentioned--what was he, a warlock?--must be slain.\n\nReturn to the Cleft of Shadow and enter Ragefire Chasm, N. Find these two leaders of the Searing Blade, and kill them. But be careful not to let Neeru know it was you who did this. You must retain your identity as one of his sisters in arms.",
+},
 [407] = {
 ["o"] = "Take the Laced Pumpkin to the Captured Scarlet Zealot who is being held in the cellar of the Gallow's End Tavern.",
 ["d"] = "Harmless pumpkins, right?  Or so it would seem.  If we are to defeat Arthas's advances from the North and the Human infestation from the South we need to start realizing the full potential of our gift of undeath.\n\nWith a little ingenuity a simple pumpkin becomes an agent for our Dark Lady.  This pumpkin, laced with my latest formula, will prove to be quite a treat.\n\nYet another Scarlet Zealot has been captured and is being kept in the cellar of the Gallow's End Tavern.  Take this pumpkin to the fool.",
@@ -548,9 +537,17 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Bowen Brisboise on the road to Brill from Deathknell to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "Tailoring is a surprisingly potent tradeskill to invest in, and I'm sure it'll serve you well.\r\n\r\nI know someone that can teach you how to craft a Faction Banner for your camp, provided you have the skill for it. Inspiration and morale are a key part of success on any battlefield, and an inspirational banner can go a long way to keeping you energized.",
 },
+[5727] = {
+["o"] = "Take the Lieutenant's Insignia to Neeru Fireblade and speak to him. Gauge if he believes you are a member of the Burning Blade and then return to Thrall in Orgrimmar.",
+["d"] = "Now let us see if this insignia you found is worth the effort.\n\nThere is a warlock within the city who believes he has my trust. He does not know that I realize where his true loyalties lie. He is in fact the leader of the Burning Blade. But do not rush off to do battle with him; he has a purpose, and we shall use him against our enemies.\n\nTake this insignia to him in the Cleft of Shadow here in Orgrimmar, speak to him and see if he believes you are one of his own, then return to me here.",
+},
 [427] = {
 ["o"] = "Executor Zygand of Brill wants you to kill 10 Scarlet Warriors.",
 ["d"] = "The documents Executor Arren provided are just the break we needed in our battle with the wretched Scarlet Crusade.  We now know their exact locations throughout Tirisfal Glades.\n\nBut the Deathguard has larger concerns.  The Lich King's army grows in number each night.  We need someone with \"initiative\" like yourself to drive the Scarlet Crusade to the grave.\n\nProve to me you are capable of serving The Dark Lady by travelling west to the tower past the Solliden Farmstead and slay 10 Scarlet Warriors.",
+},
+[832] = {
+["o"] = "Take this eye to Neeru Fireblade.",
+["d"] = "<Words emanate from the pendant and into your mind.>\n\nGazz'uz?\n\nGazz'uz...report!\n\nThere is word of your discovery in Skull Rock.  You must prepare for an attack!\n\nGazz'uz, I order you to speak!  Speak or I will make sure Neeru Fireblade knows of your presence, and he will descend on you with swift brutality.\n\nDo not test your skills against Neeru...\n\n...Gazz'uz, are you there...?",
 },
 [1470] = {
 ["o"] = "Bring Venya Marthand 3 Rattlecage Skulls.",
@@ -564,17 +561,45 @@ ForeverDungeonJournalDB = {
 ["o"] = "Collect 6 Faintly Glowing Bones for Hilda the Breaker.",
 ["d"] = "While the Tarnished in Shadowvale to the southwest are definitely a problem, we cannot allow the cellars below the town to fester into a full-blown Scourge uprising on Bandarion Keep.\r\n\r\nI need to get these trainees up to snuff in case that happens. You, however, are going to receive what I like to call a crash course.\r\n\r\nTravel beneath Shadowvale and retrieve some of their wretched bones so we can study them further. I need ones that still retain some of the initial reanimation magic--that's glowing ones.",
 },
+[3097] = {
+["o"] = "Read the Hallowed Scroll and speak to Dark Cleric Duesten in the church in Deathknell.",
+["d"] = "Ah, while you were off dealing with the mindless Scourge, this scroll arrived for you. I would think it's some matter of importance as it seems it bears the seal of the priest trainer Duesten. I would take some time to read it before heading out again.",
+},
+[8368] = {
+["o"] = "Bring 3 Warsong Marks of Honor to a Horde Warbringer outside the battlegrounds.",
+["d"] = "The battle in Warsong Gulch against the Silverwing Sentinels is of great importance.  Under the guise of protecting a forest that doesn't belong to them, the Alliance seeks to deny the Horde one of our largest sources for lumber.\n\nDo not let this happen, N!  Come back to me with proof of serving the Horde in a worthy manner!",
+},
+[411] = {
+["o"] = "Bring the Nether Gem to Bethor Iceshard in the Undercity.",
+["d"] = "Take this Nether Gem to my old comrade Bethor.  It will let us communicate ... and I have much to tell him.",
+},
 [96898] = {
 ["o"] = "Gather 12 Necrotic Crystal Fragments in Tirisfal Glades.",
 ["d"] = "It wasn't long ago that the citadel of Naxxramas bore down upon this city, intent on wiping the Forsaken off the map. Both the Forsaken and the Argent Dawn lost much that day to secure the future of the Forsaken.\r\n\r\nDuring the battle, the great necrotic focusing crystal mounted atop Naxxramas was shattered and its fragments were scattered all over this area. I suspect that is what the cultists are here for. Help me recover the fragments and deprive the Scourge of them.",
+},
+[355] = {
+["o"] = "Speak with Magistrate Sevren in Brill.",
+["d"] = "You have given me the remains of the Agamands, and satisfied my desire for revenge.  But the Agamand Mills hold a threat to all the Forsaken, not just to me.\n\nI have spoken to Magistrate Sevren of your exploits against the Agamands, and he wishes to speak with you.",
 },
 [1471] = {
 ["o"] = "Using the Runes of Summoning, summon and subdue a voidwalker, then return the Runes of Summoning to Carendin Halgar in the Magic Quarter of the Undercity.",
 ["d"] = "Surely you have seen the circle of summoning below us? Only there will you be able to draw forth an unbound voidwalker.\n\nUsing these runes, you will be able to draw it forth, and then you must dominate it through strength of arms and magic.\n\nWhen it is subdued, it will be indentured to you. Come to me then, and I will elucidate the spell of summoning, so that it may serve you to whatever end you wish.",
 },
+[365] = {
+["o"] = "Steal 10 pumpkins from the farm to the west, just north of Deathknell and take them to Apothecary Johaan in Brill.",
+["d"] = "What have we here?  You look like a fledgling warlock.  If you hope to prove yourself to The Dark Lady, you need to learn the ways of The Forsaken.\n\nTo the west you'll find a farm.  Humans infest the land like mold on a rotting corpse.  And worse yet, the Scarlet Crusade patrols nearby from their tower.  Teach those scum a lesson and steal 10 of their precious pumpkins.\n\nOnce you have 10, take them to Apothecary Johaan in Brill.",
+},
 [356] = {
 ["o"] = "Kill 8 Bleeding Horrors and 8 Wandering Spirits, then report back to Linnea at her camp.",
 ["d"] = "The defenders on The Bulwark protecting Tirisfal from the Plaguelands are on constant alert. But sometimes Scourge will slip past them.\n\nOur success at the Bulwark depends on a one-front battle - we cannot allow an attack from the rear, nor can we allow our defenders' supply line to be cut.\n\nAssist the Bulwark. Patrol east and slay any Scourge you find. Spend particular effort at the Balnir Farmstead to the east. It has become a haven for interloping Scourge.",
+},
+[5761] = {
+["o"] = "Enter Ragefire Chasm and slay Taragaman the Hungerer, then bring his heart back to Neeru Fireblade in Orgrimmar.",
+["d"] = "The primary task set upon me by our great Warchief is to root out the creatures responsible for infesting our lord's great city with demonic influence. The Burning Blade is one threat, but there are others; the Searing Blade for instance, who make their home in Ragefire Chasm, secretly attempting to subvert innocent members of the Horde.\n\nIf they are to be stopped, then their leader must be slain--a Felguard named Taragaman the Hungerer.\n\nKill him, and his heart will appease Thrall, of this I'm sure.",
+},
+[962] = {
+["o"] = "Apothecary Zamah in Thunder Bluff wants you to collect 10 Serpentbloom.",
+["d"] = "The Royal Apothecary Society, based in the great Undercity of Lordaeron, has sent me here for a very specific service, N. Perhaps you wish to aid me, and in turn The Dark Lady in our efforts to advance the Forsaken.\n\nRecently I studied a rare specimen of flora named Serpentbloom. I believe in greater quantities this herb has great potential.\n\nUnfortunately Serpentbloom can only be found in the darkest recesses of the Wailing Caverns, a dangerous cave system located in the Barrens.",
 },
 [360] = {
 ["o"] = "Return to Magistrate Sevren in Brill.",
@@ -596,91 +621,209 @@ ForeverDungeonJournalDB = {
 ["o"] = "Novice Elreth requires 6 Scavenger Paws and 6 Duskbat Wings.",
 ["d"] = "My duties include tending to our wounded warriors, tailoring armor and clothes, and assisting Shadow Priest Sarvis with whatever else he might need.\n\nFrom the look of it, you'll be enlisted in his service also... hunting the Mindless Ones, if I know his mind. Well, if you'd like to stay in one piece--and I've no doubt you do--perhaps I can help. I'm running out of paws and wings, and if you bring me some, I'll find some armor for you. You'll find a good number of wolves and bats to the south.",
 },
-[380] = {
-["o"] = "Executor Arren wants you to kill 10 Young Night Web Spiders and 8 Night Web Spiders.",
-["d"] = "One of our greatest struggles is obtaining the natural resources we need to survive. Gold was scarce even in the height of the Alliance's power.\n\nThere is a gold mine to the northwest that has been overrun with spiders. We need gold from the mine, but we can't very well get it while the spiders are crawling around in there. I've not much manpower to commit to the task, so we'll just have to do it little by little.\n\nGet up there and see what you can do for us, N.",
+[99153] = {
+["o"] = "Find the Hidden Crystal Fragment beneath Shadowvale for Ephram Barbaro.",
+["d"] = "Oi, you! Word travels quickly among our ranks. I heard about the work you did with the cultists around the remnants of the battle with Naxxramas.\r\n\r\nProblem is, one of them cultists got away with a piece of the focusing crystal. Seems to still have some juice in it. Best guess we have is it's somewhere beneath Shadowvale. It's either raising 'em or making 'em stronger, and you don't want either one.\r\n\r\nFind that crystal before this gets out of hand.",
 },
 [97891] = {
 ["o"] = "Bring the Unstable Potion to Doctor Martin Felben in the Apothecarium within the time limit.",
 ["d"] = "You! Quickly, I need you to bring this potion across the slime canal to Doctor Martin Felben in the Apothecarium!\r\n\r\nIt has a very limited shelf life, and no I can't go myself, my knees rattle and pop out if I attempt to run.\r\n\r\nJust another lovely side effect of undeath, apparently.\r\n\r\nBut we're wasting time! Here, take this and go!\r\n\r\n<Alessandro makes a shooing motion.>",
 },
-[96899] = {
-["o"] = "Meet Leonid Barthalomew at Bandarion Keep in Tirisfal Glades.",
-["d"] = "You've done a great thing for the cause of the Argent Dawn here today, and I thank you. I don't know how familiar you are with the fortress of Bandarion Keep, but my commander and I were headed that way to meet with the paladins that reside there. That was before we learned of the presence of the Cult of the Damned.\r\n\r\nIf you'd like to learn more about the Argent Dawn and our mission, seek out my commander at Bandarion Keep, to the northwest of here. I'll remain here to mop up the rest of this mess.",
+[368] = {
+["o"] = "Apothecary Johaan of the town of Brill needs 5 Vile Fin Scales from Murlocs in Tirisfal Glades.",
+["d"] = "While you were collecting samples for me, my experiments led me to realize that more reagents will be required for this new disease to spread properly. Poisoning some hapless victim is child's play. Plaguing an entire world proves to be a bit more complicated.\n\nI will need 5 Vile Fin Scales from Murlocs in the vicinity.  You will find the creatures along the coast to the north or to the west.",
 },
 [404] = {
 ["o"] = "Bring 7 Putrid Claws to Deathguard Dillinger in Brill.",
 ["d"] = "Scourge have trickled into Tirisfal Glades and have infested the area west of Brill, near the old bridge.\n\nGo there and beat back the rotting dead and ravaged corpses you find.  Scatter their bones and bring back their putrid claws, and the Deathguards will reward you.",
 },
-[408] = {
-["o"] = "Kill 8 Wailing Ancestors and 8 Rotting Ancestors.\n\nKill Captain Dargol, and bring his skull to Magistrate Sevren in Brill.",
-["d"] = "The Agamand Mills area has become a foothold for the Scourge.  Their strongest point is the Agamand Family Crypt where their local military leader, a skeleton named Captain Dargol, has headquartered.  With Necromancy he has raised the ancestors of the Agamands and plans to use them against us.\n\nThis cannot pass, and you must stop it.  Travel to the Agamand Family Crypt and defeat the raised Agamand ancestors.\n\nAnd, bring me the skull of Captain Dargol.",
-},
-[97955] = {
-["o"] = "Speak with Nurse Neela in Brill to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
-["d"] = "So you've taken up First Aid? That's an honorable... and pragmatic pursuit as a mage.\r\n\r\nI reckon I know someone that can teach you how to craft a First Aid Kit for your camp. Injuries are a reality in the world of adventuring and offering some much-needed healing at your camp could even save lives.",
-},
-[590] = {
-["o"] = "Defeat Calvin Montague in Deathknell.",
-["d"] = "What?\n\nWhat?!\n\nYou want money? I don't owe you any money.\n\nLetter? What letter? Oh, you wanna fight then? All right, mate... let's do this! Owe you any money...",
-},
-[5650] = {
-["o"] = "Find Deathguard Kel and heal his wounds using Lesser Heal (Rank 2). Afterwards, grant him Power Word: Fortitude and then return to Dark Cleric Beryl in Brill.",
-["d"] = "Our power comes from darkness and shadow, N, but that is not your only role. You have acknowledged that there is merit in knowing the healing arts. This is wise. But before you can know the dark, you must also know the light. And for this, I have a test for you.\n\nNorth of the cemetery is a wounded Deathguard--Deathguard Kel. He has protected us from gnolls for some time, and needs healing. But, you must also fortify his body before he can return to duty. Do both with your spells, and then return to me.",
+[96899] = {
+["o"] = "Meet Leonid Barthalomew at Bandarion Keep in Tirisfal Glades.",
+["d"] = "You've done a great thing for the cause of the Argent Dawn here today, and I thank you. I don't know how familiar you are with the fortress of Bandarion Keep, but my commander and I were headed that way to meet with the paladins that reside there. That was before we learned of the presence of the Cult of the Damned.\r\n\r\nIf you'd like to learn more about the Argent Dawn and our mission, seek out my commander at Bandarion Keep, to the northwest of here. I'll remain here to mop up the rest of this mess.",
 },
 [97558] = {
 ["o"] = "Bring Shelene Rhobart 8 Duskbat Wing Membranes, 6 Darkhound Hides and 3 Vile Fin Murloc Skin.",
 ["d"] = "One part of undeath no one mentions is what happens when we are injured. How does the skin of an undead heal itself?\r\n\r\nWell, it doesn't.\r\n\r\nOurs is a cursed life, N. We must take from the living to further our own existence.\r\n\r\nWhen we sustain an injury, we must replace our skin which usually means animal hides. Since different hide thicknesses are better for different places on our bodies a variety is key!\r\n\r\nBring me wing membranes of a duskbat, hides from a darkhound and skin of a Vile Fin murloc.",
 },
-[95328] = {
-["o"] = "Deliver Whispering Horror Residue to Father Lankester in the War Quarter of Undercity.",
-["d"] = "Against your better judgement you scrape up and collect the squirming remains of the beast. Someone in Undercity might have a use for them.",
+[1473] = {
+["o"] = "Recover Egalin's Grimoire and bring it to Carendin Halgar in the Temple of the Damned.",
+["d"] = "It seems the consensus that you are ready to learn to summon a voidwalker.\n\nA being created of the chaos that lies beyond, if you summon one but cannot control it, you will be torn asunder.\n\nThe first voidwalker was summoned by Egalin, and in his grimoire is the process explained.\n\nUnfortunately, it was stolen from us by an agent of the Scarlet Crusade who has it secreted away in his base at a tower to the west. Bring it to me, and I will impart the knowledge to you.",
 },
-[1881] = {
-["o"] = "Speak with Anastasia Hartwell.",
-["d"] = "N, Anastasia Hartwell has a task for someone of your talents.  Speak with her in the Magic Quarter of the Undercity, and prepare yourself for your first task for the mages of the Forsaken.",
-},
-[374] = {
-["o"] = "Bring 10 Scarlet Insignia Rings to Deathguard Burgess in Brill.",
-["d"] = "Executor Zygand tells me you've been out killing Scarlet Crusaders. Tirisfal Glades is crawling with them.\n\nVarimathras, lieutenant to The Dark Lady, is seeing to it personally that the scum of Azeroth, the Human race, gets wiped into oblivion. Here in Tirisfal Glades we face a particularly annoying breed of humans: The Scarlet Crusade.\n\nVenture forth and wage an offensive on the Scarlet Crusade, warlock. Bring me back 10 Scarlet Insignia Rings as proof of your loyalty to Varimathras and The Dark Lady.",
+[408] = {
+["o"] = "Kill 8 Wailing Ancestors and 8 Rotting Ancestors.\n\nKill Captain Dargol, and bring his skull to Magistrate Sevren in Brill.",
+["d"] = "The Agamand Mills area has become a foothold for the Scourge.  Their strongest point is the Agamand Family Crypt where their local military leader, a skeleton named Captain Dargol, has headquartered.  With Necromancy he has raised the ancestors of the Agamands and plans to use them against us.\n\nThis cannot pass, and you must stop it.  Travel to the Agamand Family Crypt and defeat the raised Agamand ancestors.\n\nAnd, bring me the skull of Captain Dargol.",
 },
 [99156] = {
 ["o"] = "Bring Riptear's Heart to Deathguard Linnea.",
 ["d"] = "Damn it all! A new report came in while you were on patrol. There has been a sighting of a rogue abomination wandering Eastern Tirisfal Glades, near Venomweb Vale.\r\n\r\nSomething is wrong. Abominations don't just slip through the Bulwark unnoticed.\r\n\r\nKeep this matter on a strictly need-to-know basis. That said, such a creature will not fall easily; you will need allies if you wish to be more than its next meal.\r\n\r\nSee this through, and you will be duly rewarded. Bring me its heart as proof of the deed.",
 },
-[368] = {
-["o"] = "Apothecary Johaan of the town of Brill needs 5 Vile Fin Scales from Murlocs in Tirisfal Glades.",
-["d"] = "While you were collecting samples for me, my experiments led me to realize that more reagents will be required for this new disease to spread properly. Poisoning some hapless victim is child's play. Plaguing an entire world proves to be a bit more complicated.\n\nI will need 5 Vile Fin Scales from Murlocs in the vicinity.  You will find the creatures along the coast to the north or to the west.",
+[97955] = {
+["o"] = "Speak with Nurse Neela in Brill to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
+["d"] = "So you've taken up First Aid? That's an honorable... and pragmatic pursuit as a warlock.\r\n\r\nI reckon I know someone that can teach you how to craft a First Aid Kit for your camp. Injuries are a reality in the world of adventuring and offering some much-needed healing at your camp could even save lives.",
 },
-[365] = {
-["o"] = "Steal 10 pumpkins from the farm to the west, just north of Deathknell and take them to Apothecary Johaan in Brill.",
-["d"] = "What have we here?  You look like a fledgling warlock.  If you hope to prove yourself to The Dark Lady, you need to learn the ways of The Forsaken.\n\nTo the west you'll find a farm.  Humans infest the land like mold on a rotting corpse.  And worse yet, the Scarlet Crusade patrols nearby from their tower.  Teach those scum a lesson and steal 10 of their precious pumpkins.\n\nOnce you have 10, take them to Apothecary Johaan in Brill.",
+[97246] = {
+["o"] = "Visit Borstan's Firepit and tell him Thatog wants you to deliver Migi's lunch to him personally.",
+["d"] = "My son, Migi, always takes off to play with his friends all day. I tell him to pick up a lunch at Borstan's, but I know he almost never does, because he comes home starving. These kids think their games are more important than their own bodies!\r\n\r\nPlease, stop at Borstan's Firepit and tell him you're there to deliver Migi's lunch. You can almost certainly find Migi behind Grommash Hold with the rest of his friends.\r\n\r\nDuties keep me here during the day and I can't watch over his every meal.",
 },
-[355] = {
-["o"] = "Speak with Magistrate Sevren in Brill.",
-["d"] = "You have given me the remains of the Agamands, and satisfied my desire for revenge.  But the Agamand Mills hold a threat to all the Forsaken, not just to me.\n\nI have spoken to Magistrate Sevren of your exploits against the Agamands, and he wishes to speak with you.",
+[590] = {
+["o"] = "Defeat Calvin Montague in Deathknell.",
+["d"] = "What?\n\nWhat?!\n\nYou want money? I don't owe you any money.\n\nLetter? What letter? Oh, you wanna fight then? All right, mate... let's do this! Owe you any money...",
 },
-[411] = {
-["o"] = "Bring the Nether Gem to Bethor Iceshard in the Undercity.",
-["d"] = "Take this Nether Gem to my old comrade Bethor.  It will let us communicate ... and I have much to tell him.",
+[1061] = {
+["o"] = "Speak with Seereth Stonebreak in the Stonetalon Mountains.",
+["d"] = "The spirits of the Stonetalon Mountains are angered, for goblins and their servants are plundering and burning the land.  So the land has cried out, and those who listen for such things... have heard.\n\nSeereth Stonebreak, a promising shaman of the Horde, was sent to Stonetalon.  She reports massive deforestation at the hands of the goblins, and requests aid.\n\nMeet Seereth in Stonetalon.  To reach her, follow the road west of the Barrens' Crossroads.  She is camped near the Greatwood Vale.",
 },
-[99153] = {
-["o"] = "Find the Hidden Crystal Fragment beneath Shadowvale for Ephram Barbaro.",
-["d"] = "Oi, you! Word travels quickly among our ranks. I heard about the work you did with the cultists around the remnants of the battle with Naxxramas.\r\n\r\nProblem is, one of them cultists got away with a piece of the focusing crystal. Seems to still have some juice in it. Best guess we have is it's somewhere beneath Shadowvale. It's either raising 'em or making 'em stronger, and you don't want either one.\r\n\r\nFind that crystal before this gets out of hand.",
+[1881] = {
+["o"] = "Speak with Anastasia Hartwell.",
+["d"] = "N, Anastasia Hartwell has a task for someone of your talents.  Speak with her in the Magic Quarter of the Undercity, and prepare yourself for your first task for the mages of the Forsaken.",
 },
-[8368] = {
-["o"] = "Bring 3 Warsong Marks of Honor to a Horde Warbringer outside the battlegrounds.",
-["d"] = "The battle in Warsong Gulch against the Silverwing Sentinels is of great importance.  Under the guise of protecting a forest that doesn't belong to them, the Alliance seeks to deny the Horde one of our largest sources for lumber.\n\nDo not let this happen, N!  Come back to me with proof of serving the Horde in a worthy manner!",
+[95328] = {
+["o"] = "Deliver Whispering Horror Residue to Father Lankester in the War Quarter of Undercity.",
+["d"] = "Against your better judgement you scrape up and collect the squirming remains of the beast. Someone in Undercity might have a use for them.",
 },
-[3097] = {
-["o"] = "Read the Hallowed Scroll and speak to Dark Cleric Duesten in the church in Deathknell.",
-["d"] = "Ah, while you were off dealing with the mindless Scourge, this scroll arrived for you. I would think it's some matter of importance as it seems it bears the seal of the priest trainer Duesten. I would take some time to read it before heading out again.",
+[380] = {
+["o"] = "Executor Arren wants you to kill 10 Young Night Web Spiders and 8 Night Web Spiders.",
+["d"] = "One of our greatest struggles is obtaining the natural resources we need to survive. Gold was scarce even in the height of the Alliance's power.\n\nThere is a gold mine to the northwest that has been overrun with spiders. We need gold from the mine, but we can't very well get it while the spiders are crawling around in there. I've not much manpower to commit to the task, so we'll just have to do it little by little.\n\nGet up there and see what you can do for us, N.",
 },
-[1473] = {
-["o"] = "Recover Egalin's Grimoire and bring it to Carendin Halgar in the Temple of the Damned.",
-["d"] = "It seems the consensus that you are ready to learn to summon a voidwalker.\n\nA being created of the chaos that lies beyond, if you summon one but cannot control it, you will be torn asunder.\n\nThe first voidwalker was summoned by Egalin, and in his grimoire is the process explained.\n\nUnfortunately, it was stolen from us by an agent of the Scarlet Crusade who has it secreted away in his base at a tower to the west. Bring it to me, and I will impart the knowledge to you.",
+[97249] = {
+["o"] = "Bring Migi's Lunch to him behind Grommash Hold.",
+["d"] = "Now that I know his parents worry about how much he's actually filling that belly, I've got an idea. \r\n\r\nThey made me promise not to pack the same meal every day, so Migi grows a taste for more than one thing. Still, whenever the smoker's full and we're making sweetglazed hog belly sandwiches, he always shows up for lunch. We've started crumbling the leftover crispy glazed bits as a topping--something we can add daily. \r\n\r\nTake this to him. Maybe he'll start showing up early and bringing friends!",
+},
+[97242] = {
+["o"] = "Take some cuttings from the Cattails and Speargrass growing around the water flows in the Valley of Honor and return to Kor'geld in Yelmak's Alchemy and Potions.",
+["d"] = "Yelmak doesn't want his apprentice breaking anything. Well, anything more than he already has.\r\n\r\nHe told me the young mixer in training has too much pride to ask for help when he really needs it. Yelmak wants to give him a taste of a particular home-brewed recipe.\r\n\r\nGather a mix of cattail and speargrass cuttings taken from the plants growing around the water in the Valley of Honor. I'd get them myself, but if I left the shop, Whuut would surely know we're catering to his mood.",
+},
+[374] = {
+["o"] = "Bring 10 Scarlet Insignia Rings to Deathguard Burgess in Brill.",
+["d"] = "Executor Zygand tells me you've been out killing Scarlet Crusaders. Tirisfal Glades is crawling with them.\n\nVarimathras, lieutenant to The Dark Lady, is seeing to it personally that the scum of Azeroth, the Human race, gets wiped into oblivion. Here in Tirisfal Glades we face a particularly annoying breed of humans: The Scarlet Crusade.\n\nVenture forth and wage an offensive on the Scarlet Crusade, warlock. Bring me back 10 Scarlet Insignia Rings as proof of your loyalty to Varimathras and The Dark Lady.",
+},
+[97275] = {
+["o"] = "Give Yelmak's Potion to Whuut.",
+["d"] = "Whuut is a prodigy. That much is true. But he doesn't yet have the experience, wisdom, and time on the stirring rod to know how to respect alchemical processes.\r\n\r\nHe is exhausting all of the rarest and most exotic reagents we have available without pausing to practice and refine his basic skills.\r\n\r\nGive him this potion I've brewed with a quick tonic method. He'll reconsider everything he's doing when he learns how local remedies and careful touch are the first true mastery.",
+},
+[5650] = {
+["o"] = "Find Deathguard Kel and heal his wounds using Lesser Heal (Rank 2). Afterwards, grant him Power Word: Fortitude and then return to Dark Cleric Beryl in Brill.",
+["d"] = "Our power comes from darkness and shadow, N, but that is not your only role. You have acknowledged that there is merit in knowing the healing arts. This is wise. But before you can know the dark, you must also know the light. And for this, I have a test for you.\n\nNorth of the cemetery is a wounded Deathguard--Deathguard Kel. He has protected us from gnolls for some time, and needs healing. But, you must also fortify his body before he can return to duty. Do both with your spells, and then return to me.",
+},
+[97326] = {
+["o"] = "Return 8 Smooth Boulders to Thra behind Grommash Hold.",
+["d"] = "Hey! You've got time to help us out! I know you do, I can tell by the way you smiled watching the game we're playing.\r\n\r\nThis spot behind Grommash Hold is nice because it's clear enough for us to set up our figures. But what stinks is we don't have enough rocks for chairs or tables.\r\n\r\nYou're big and strong... d'ya think you could carry back some medium-sized rocks, smooth enough to sit on if we need a rest?",
+},
+[5722] = {
+["o"] = "Search Ragefire Chasm for Maur Grimtotem's corpse and search it for any items of interest.",
+["d"] = "The troggs are not the only thing that interested Magatha in Ragefire Chasm. She has heard word that one of her servants, a Maur Grimtotem, found something peculiar while in the Chasm, but he never made it out to show her what. She'd like Maur's body found--if it still exists--and any signs of what he found while attempting to speak to the troggs.\n\nReturn to Magatha any items of interest, and I'm sure she would be very generous in her reward.\n\nAgain, seek the Chasm in the darkest areas of Orgrimmar.",
+},
+[886] = {
+["o"] = "Speak with Tonga Runetotem at the Crossroads.",
+["d"] = "The druids of Thunder Bluff sense a strange power leaking into the Barrens, east of Mulgore.\n\nTonga Runetotem was sent to discover the source of this power, but we fear he will need aid.\n\nTravel to the Barrens and speak with Tonga.  He will be at the Crossroads.  To reach there, take the road east out of Bloodhoof village.  Enter the Barrens, then turn north when the road forks.  Continue north and  you will find the Crossroads.\n\nAnd do not leave the road, N, for the Barrens is a harsh land.",
+},
+[744] = {
+["o"] = "Collect 6 Azure Feathers and 6 Bronze Feathers, and bring them to Eyahn Eagletalon in Thunder Bluff.",
+["d"] = "N, my brother soon stands before Chief Bloodhoof, and it is my honor to make his headdress for him.\n\nI want to ask a favor of you while I finish tanning these leather straps. There is not time for me to find enough feathers, and I was wondering, would you gather more for me?\n\nYou can find feathers of the correct size from the harpies residing far to the north and northwest of Thunder Bluff. I need only 6 azure and 6 bronze feathers to complete the design.",
+},
+[5730] = {
+["o"] = "Speak to Thrall in Orgrimmar and tell him what you've learned.",
+["d"] = "You are one of my lieutenants! Prepare yourself, warlock. I will call upon you soon.\n\nMy time spent on the Searing Blade may be all but wasted now, but that does not mean that the Shadow Council's schemes elsewhere must suffer. I will do what I can to minimize the damage here in Ragefire Chasm. In the meantime, I will have my agents in the Barrens and Ashenvale begin work on our newest agenda. Return to me soon.",
 },
 },
 },
-["lastBoss"] = 1,
+["questFaction"] = "Horde",
+["newestSeenAt"] = 1794742486,
+["runLogBossAliases"] = {
+},
+["lastMode"] = "bosses",
+["mapFloors"] = {
+["Ragefire Chasm"] = 1,
+},
+["lastDungeon"] = "Ragefire Chasm",
+["learnedItemIDs"] = {
+["grips of control"] = {
+["id"] = 276733,
+["name"] = "Grips of Control",
+},
+["veilpiercer girdle"] = {
+["id"] = 280070,
+["name"] = "Veilpiercer Girdle",
+},
+["satyr's touch"] = {
+["id"] = 287036,
+["name"] = "Satyr's Touch",
+},
+["impish chain hood"] = {
+["id"] = 280058,
+["name"] = "Impish Chain Hood",
+},
+["burnished pridescales"] = {
+["id"] = 280073,
+["name"] = "Burnished Pridescales",
+},
+["flameslash crescent"] = {
+["id"] = 280056,
+["name"] = "Flameslash Crescent",
+},
+["shamanic wristguards"] = {
+["id"] = 280069,
+["name"] = "Shamanic Wristguards",
+},
+["lost researcher's hood"] = {
+["id"] = 279931,
+["name"] = "Lost Researcher's Hood",
+},
+["bleak eye shoulderplates"] = {
+["id"] = 280075,
+["name"] = "Bleak Eye Shoulderplates",
+},
+["behemoth bones"] = {
+["id"] = 280065,
+["name"] = "Behemoth Bones",
+},
+["tidesong wand"] = {
+["id"] = 276735,
+["name"] = "Tidesong Wand",
+},
+["lucky shovelnose tuft"] = {
+["id"] = 280060,
+["name"] = "Lucky Shovelnose Tuft",
+},
+["trousers of the ebon giant"] = {
+["id"] = 280066,
+["name"] = "Trousers of the Ebon Giant",
+},
+["cutthroat chestguard"] = {
+["id"] = 276739,
+["name"] = "Cutthroat Chestguard",
+},
+["reward voucher"] = {
+["id"] = 8070,
+["name"] = "Reward Voucher",
+},
+["expeditionary legplates"] = {
+["id"] = 279901,
+["name"] = "Expeditionary Legplates",
+},
+},
+["trackerHintShown"] = true,
+["showAllClassQuests"] = true,
+["lastQuest"] = 6,
+["newestSeenVersion"] = "2.0.7",
+["portraitTexturesByNpcID"] = {
+},
+["learnedQuestIDs"] = {
+},
+["lootFilter"] = {
+["enabled"] = false,
+["classOnly"] = false,
+["recipes"] = false,
+["schools"] = {
+},
+["matchAll"] = true,
+["resists"] = {
+},
+["armorTypes"] = {
+},
+["stats"] = {
+},
+["weaponTypes"] = {
+},
+},
 }

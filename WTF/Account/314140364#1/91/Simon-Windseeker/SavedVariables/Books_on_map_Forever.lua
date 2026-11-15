@@ -12,6 +12,7 @@ BooksOnMapForeverDB = {
 },
 ["collected"] = {
 ["abecedaire"] = true,
+["tazo"] = true,
 },
 ["minimapPinSize"] = 14,
 ["sideTab"] = "rewards",

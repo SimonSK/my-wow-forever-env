@@ -1,33 +1,33 @@
 
 DataStore_Mails_Characters = {
 {
-["lastUpdate"] = 1794364685,
+["lastUpdate"] = 1794715528,
 ["Mails"] = {
 },
-["lastVisitDate"] = "2026/11/10 19:38",
+["MailCache"] = {
+},
+["lastVisitDate"] = "2026/11/14 21:05",
+},
+{
+["lastUpdate"] = 1794643881,
+["Mails"] = {
+},
+["lastVisitDate"] = "2026/11/14 01:11",
 ["MailCache"] = {
 },
 },
 {
-["lastUpdate"] = 1794183581,
+["lastUpdate"] = 1794636909,
 ["Mails"] = {
 },
 ["MailCache"] = {
 },
-["lastVisitDate"] = "2026/11/08 17:19",
+["lastVisitDate"] = "2026/11/13 23:15",
 },
 {
-["lastUpdate"] = 1794283410,
-["Mails"] = {
-},
-["lastVisitDate"] = "2026/11/09 21:03",
 ["MailCache"] = {
 },
-},
-{
 ["Mails"] = {
-},
-["MailCache"] = {
 },
 },
 }
@@ -35,7 +35,7 @@ DataStore_Mails_Options = {
 ["ReportExpiredMailsToChat"] = true,
 ["ScanMailBody"] = true,
 ["CheckMailExpiry"] = true,
-["CheckMailExpiryAllAccounts"] = true,
-["MailWarningThreshold"] = 5,
 ["CheckMailExpiryAllRealms"] = true,
+["MailWarningThreshold"] = 5,
+["CheckMailExpiryAllAccounts"] = true,
 }

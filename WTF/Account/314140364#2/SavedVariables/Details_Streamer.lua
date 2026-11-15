@@ -2,9 +2,9 @@
 Details_StreamerDB = {
 ["characters"] = {
 ["Simonpriest - CAMWOW US1 Realm 5 PvE"] = "Simon",
-["Simonmage - CAMWOW US1 Realm 5 PvE"] = "Simon",
-["Simonwarlock - CAMWOW US1 Realm 5 PvE"] = "Simon",
 ["Simonpaladin - CAMWOW US1 Realm 5 PvE"] = "Simon",
+["Simonwarlock - CAMWOW US1 Realm 5 PvE"] = "Simon",
+["Simonmage - CAMWOW US1 Realm 5 PvE"] = "Simon",
 },
 ["profiles"] = {
 ["Simon"] = {
@@ -16,11 +16,11 @@ Details_StreamerDB = {
 1,
 0.5,
 },
+["arrow_anchor_y"] = 0,
 ["main_frame_size"] = {
 300.0000305175781,
 500,
 },
-["arrow_anchor_y"] = 0,
 ["minimap"] = {
 ["minimapPos"] = 160,
 ["radius"] = 160,
@@ -28,20 +28,20 @@ Details_StreamerDB = {
 },
 ["main_frame_locked"] = false,
 ["arrow_anchor_x"] = 0,
-["author"] = "Terciob",
-["row_texture"] = "Details Serenity",
-["square_grow_direction"] = "right",
-["font_size"] = 10,
 ["row_color"] = {
 0.1,
 0.1,
 0.1,
 0.4,
 },
+["row_texture"] = "Details Serenity",
+["square_grow_direction"] = "right",
+["use_spark"] = true,
+["author"] = "Terciob",
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
-["use_spark"] = true,
+["y"] = -1.52587890625e-05,
 ["row_spacement"] = 21,
 ["main_frame_color"] = {
 0,
@@ -51,6 +51,7 @@ Details_StreamerDB = {
 },
 ["main_frame_strata"] = "LOW",
 ["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["font_size"] = 10,
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -62,7 +63,6 @@ Details_StreamerDB = {
 ["update_speed"] = 0.05,
 ["size"] = 32,
 },
-["y"] = -1.52587890625e-05,
 ["x"] = -3.0517578125e-05,
 ["font_face"] = "Friz Quadrata TT",
 ["square_size"] = 32,

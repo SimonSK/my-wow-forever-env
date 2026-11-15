@@ -11,6 +11,7 @@ BooksOnMapForeverDB = {
 ["minimapPinSize"] = 14,
 ["collected"] = {
 ["abecedaire"] = true,
+["tazo"] = true,
 },
 ["folded"] = {
 },

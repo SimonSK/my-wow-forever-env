@@ -109,4 +109,6 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/cw Simonwarlock Windseeker a",
 "/cw Simonwarlock Windseeker /bartender4",
 "/cw Simonwarlock Windseeker /align",
+"/s /ss",
+"/s /inv Simonwarlock Windseeker ",
 }

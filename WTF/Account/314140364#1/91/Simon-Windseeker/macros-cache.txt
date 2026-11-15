@@ -60,7 +60,6 @@ VER 3 010000000000000D "Holy Strike" "134400"
 #showtooltip Holy Strike
 /cancelaura Blessing of Protection
 /startattack
-/cast Judgement
 /cast Holy Strike
 END
 VER 3 0100000000000008 "Judgment" "134400"

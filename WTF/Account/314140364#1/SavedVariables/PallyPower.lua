@@ -27,18 +27,21 @@ PallyPowerDB = {
 ["Simon"] = {
 ["ForeverShamanColumn"] = true,
 ["auraDurations"] = {
+["Seal of Fury"] = 1800,
+["Seal of the Crusader"] = 1800,
 ["Seal of Righteousness"] = 30,
-["Righteous Fury"] = 1800,
+["Righteous Fury"] = 1800.001,
 },
 ["seal"] = 0,
 ["display"] = {
 ["HideCountText"] = true,
 ["buffDuration"] = false,
 ["frameLocked"] = true,
-["offsetX"] = 389.4999389648438,
-["offsetY"] = 63.33323287963867,
+["offsetX"] = -376.0000305175781,
+["offsetY"] = 120,
 ["showPlayerButtons"] = false,
 },
+["freeassign"] = false,
 ["enable"] = true,
 ["ForeverCountDefault"] = true,
 ["ForeverSealRestored"] = true,
@@ -71,21 +74,21 @@ PallyPowerDB = {
 }
 PallyPower_Assignments = {
 ["Simon Windseeker"] = {
-0,
-0,
-0,
-0,
-0,
-0,
-0,
-0,
-0,
+2,
+2,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
 },
 }
 PallyPower_NormalAssignments = {
 }
 PallyPower_AuraAssignments = {
-["Simon Windseeker"] = 0,
+["Simon Windseeker"] = 1,
 }
 PallyPower_SavedPresets = {
 ["PallyPower_NormalAssignments"] = {
@@ -102,10 +105,12 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[0] = "None",
-[6] = "CuratorNet",
+[6] = "TrueshotLodge",
+[7] = "CuratorNet",
+[8] = "TrueshotLodge1454",
 [4] = "Services",
 [5] = "TradeLocal",
+[0] = "None",
 }
 LCD_Data = nil
 LCD_GUIDAccess = nil

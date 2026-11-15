@@ -2,9 +2,9 @@
 PallyPowerDB = {
 ["profileKeys"] = {
 ["Simonwarlock Windseeker"] = "Other",
-["Simonmage Windseeker"] = "Other",
-["Simonpriest Windseeker"] = "Other",
 ["Simonpaladin Windseeker"] = "Simon",
+["Simonpriest Windseeker"] = "Other",
+["Simonmage Windseeker"] = "Other",
 },
 ["profiles"] = {
 ["Other"] = {
@@ -35,10 +35,10 @@ PallyPowerDB = {
 ["ForeverSalvSplit"] = true,
 ["ForeverCountDefault"] = true,
 ["display"] = {
-["HideCountText"] = true,
 ["offsetY"] = 63.33323287963867,
-["offsetX"] = 389.4999389648438,
 ["frameLocked"] = true,
+["offsetX"] = 389.4999389648438,
+["HideCountText"] = true,
 },
 ["autobuff"] = {
 ["buffDuration"] = false,
@@ -65,23 +65,21 @@ PallyPowerDB = {
 }
 PallyPower_Assignments = {
 ["Simon Windseeker"] = {
-0,
-0,
-0,
-0,
-0,
-0,
-0,
-0,
-0,
+2,
+2,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
 },
 }
 PallyPower_NormalAssignments = {
-["Simon Windseeker"] = {
-},
 }
 PallyPower_AuraAssignments = {
-["Simon Windseeker"] = 0,
+["Simon Windseeker"] = 1,
 }
 PallyPower_SavedPresets = {
 ["PallyPower_NormalAssignments"] = {
@@ -98,10 +96,12 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[0] = "None",
-[6] = "CuratorNet",
+[6] = "TrueshotLodge",
+[7] = "CuratorNet",
+[8] = "TrueshotLodge1454",
 [4] = "Services",
 [5] = "TradeLocal",
+[0] = "None",
 }
 LCD_Data = nil
 LCD_GUIDAccess = nil

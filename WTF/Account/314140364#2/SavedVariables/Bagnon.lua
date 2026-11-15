@@ -1,7 +1,7 @@
 
 Bagnon_Sets = {
 ["latest"] = {
-["id"] = "12.1.9",
+["id"] = "12.1.10",
 ["cooldown"] = 1794986765,
 ["who"] = "Aes Bavits",
 },
@@ -17,14 +17,14 @@ Bagnon_Sets = {
 ["point"] = "TOPRIGHT",
 ["color"] = {
 },
-["y"] = -343.0007015028979,
-["x"] = -284.0000400940583,
+["y"] = -342.0007015028979,
+["x"] = -98.99979595343325,
 ["spacing"] = 0,
-["borderColor"] = {
-},
+["showBags"] = true,
 ["activeRules"] = {
 },
-["showBags"] = true,
+["borderColor"] = {
+},
 },
 ["vault"] = {
 ["color"] = {
@@ -79,43 +79,43 @@ Bagnon_Sets = {
 },
 ["color"] = {
 },
-["x"] = -373.9999180237458,
+["showBags"] = true,
 ["activeRules"] = {
 },
-["showBags"] = true,
+["x"] = -373.9999180237458,
 },
 },
 ["countGuild"] = true,
 ["color"] = {
 ["quiver"] = {
 },
-["herb"] = {
+["account"] = {
 },
-["normal"] = {
+["enchant"] = {
 },
 ["soul"] = {
 },
-["leather"] = {
+["reagent"] = {
 },
 ["mine"] = {
 },
-["gem"] = {
+["engineer"] = {
 },
 ["inscribe"] = {
 },
-["reagent"] = {
+["fridge"] = {
 },
-["engineer"] = {
+["gem"] = {
 },
 ["key"] = {
 },
 ["tackle"] = {
 },
-["fridge"] = {
+["leather"] = {
 },
-["enchant"] = {
+["normal"] = {
 },
-["account"] = {
+["herb"] = {
 },
 },
 ["profiles"] = {
