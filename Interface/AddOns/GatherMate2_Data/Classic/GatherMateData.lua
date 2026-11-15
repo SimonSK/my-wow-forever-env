@@ -11,7 +11,6 @@ function GatherMateData:PerformMerge(dbs, style, zoneFilter)
 	if dbs["Treasure"] then self:MergeTreasure(style ~= "Merge", filter) end
 	if dbs["Gases"] then self:MergeGas(style ~= "Merge", filter) end
 	if dbs["Archaeology"] then self:MergeArchaeology(style ~= "Merge", filter) end
-	self:CleanupImportData()
 	GatherMate:SendMessage("GatherMateData2Import")
 	--GatherMate:CleanupDB()
 end
@@ -83,10 +82,4 @@ function GatherMateData:MergeArchaeology(clear, zoneFilter)
 end
 
 function GatherMateData:CleanupImportData()
-	GatherMateData2HerbDB = nil
-	GatherMateData2MineDB = nil
-	GatherMateData2FishDB = nil
-	GatherMateData2TreasureDB = nil
-	GatherMateData2GasDB = nil
-	GatherMateData2ArchaeologyDB = nil
 end
