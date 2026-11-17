@@ -9,11 +9,11 @@ NRCdatabase = {
 ["Simonwarlock Windseeker"] = {
 ["realm"] = "CAMWOW US1 Realm 5 PvE",
 ["race"] = "Undead",
-["guid"] = "Player-6923-01B20C57",
-["faction"] = "Horde",
-["level"] = 14,
-["englishClass"] = "WARLOCK",
 ["localizedClass"] = "Warlock",
+["guid"] = "Player-6923-01B20C57",
+["level"] = 15,
+["englishClass"] = "WARLOCK",
+["faction"] = "Horde",
 ["savedInstances"] = {
 },
 },
@@ -21,32 +21,32 @@ NRCdatabase = {
 ["savedInstances"] = {
 },
 ["race"] = "Undead",
+["localizedClass"] = "Paladin",
 ["guid"] = "Player-6923-00E24B64",
-["faction"] = "Horde",
 ["englishClass"] = "PALADIN",
 ["level"] = 1,
-["localizedClass"] = "Paladin",
+["faction"] = "Horde",
 ["realm"] = "CAMWOW US1 Realm 5 PvE",
 },
 ["Simonpriest Windseeker"] = {
 ["savedInstances"] = {
 },
 ["race"] = "Undead",
-["faction"] = "Horde",
-["localizedClass"] = "Priest",
-["englishClass"] = "PRIEST",
-["level"] = 13,
 ["guid"] = "Player-6923-01B20BD0",
+["faction"] = "Horde",
+["englishClass"] = "PRIEST",
+["level"] = 15,
+["localizedClass"] = "Priest",
 ["realm"] = "CAMWOW US1 Realm 5 PvE",
 },
 ["Simonmage Windseeker"] = {
 ["realm"] = "CAMWOW US1 Realm 5 PvE",
 ["race"] = "Undead",
-["localizedClass"] = "Mage",
-["guid"] = "Player-6923-005A94FC",
-["level"] = 15,
-["englishClass"] = "MAGE",
 ["faction"] = "Horde",
+["localizedClass"] = "Mage",
+["level"] = 18,
+["englishClass"] = "MAGE",
+["guid"] = "Player-6923-005A94FC",
 ["savedInstances"] = {
 },
 },
@@ -67,9 +67,637 @@ NRCdatabase = {
 },
 ["trades"] = {
 {
+["meClass"] = "PRIEST",
+["me"] = "Simonpriest Windseeker",
+["where"] = "The Barrens",
+["time"] = 1794899957,
+["tradeWho"] = "Simonhunter Windseeker",
+["tradeWhoClass"] = "HUNTER",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["count"] = 12,
+["texture"] = 132889,
+},
+},
+},
+{
+["meClass"] = "PRIEST",
+["me"] = "Simonpriest Windseeker",
+["where"] = "The Barrens",
+["time"] = 1794899825,
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:250977::::::::15:1487:::::::::|h[Recipe: Lesser Spellblasting Potion]|h|r",
+["texture"] = 134939,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["count"] = 4,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+},
+},
+{
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
+["where"] = "The Barrens",
+["time"] = 1794885165,
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:4496::::::::15:1482:::::::::|h[Small Brown Pouch]|h|r",
+["texture"] = 133634,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "The Barrens",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:17056::::::::15:1482:::::::::|h[Light Feather]|h|r",
+["texture"] = 132917,
+},
+{
+["count"] = 3,
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["texture"] = 132889,
+},
+},
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["time"] = 1794810785,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["targetItems"] = {
+{
+["count"] = 5,
+["itemLink"] = "|cnIQ2:|Hitem:10938::::::::15:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["texture"] = 132867,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:17056::::::::15:1482:::::::::|h[Light Feather]|h|r",
+["texture"] = 132917,
+},
+{
+["count"] = 2,
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["texture"] = 132889,
+},
+},
+["tradeWho"] = "Simonwarrior Windseeker",
+["tradeWhoClass"] = "WARRIOR",
+["time"] = 1794795673,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["targetItemsEnchant"] = {
+{
+["enchant"] = "Enchant Chest - Inferior Stamina",
+["itemLink"] = "|cnIQ2:|Hitem:3306::::::::15:1482::1::1:28:5244:::::|h[Brackwater Vest]|h|r",
+["texture"] = 132647,
+},
+},
+["tradeWho"] = "Simonwarrior Windseeker",
+["time"] = 1794792467,
+["tradeWhoClass"] = "WARRIOR",
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794792450,
+["tradeWho"] = "Simonwarrior Windseeker",
+["tradeWhoClass"] = "WARRIOR",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 5,
+["texture"] = 132889,
+},
+},
+},
+{
+["meClass"] = "PRIEST",
+["me"] = "Simonpriest Windseeker",
+["where"] = "Orgrimmar",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:2632::::::::15:1487::1:1:12920:1:28:5244:::::|h[Curved Dagger of Healing]|h|r",
+["texture"] = 135637,
+},
+},
+["tradeWho"] = "Simonwarrior Windseeker",
+["tradeWhoClass"] = "WARRIOR",
+["time"] = 1794792331,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794792244,
+["tradeWho"] = "Simonwarrior Windseeker",
+["tradeWhoClass"] = "WARRIOR",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:10938::::::::15:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["count"] = 2,
+["texture"] = 132867,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:10940::::::::15:1482:::::::::|h[Strange Dust]|h|r",
+["count"] = 2,
+["texture"] = 132858,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["targetItems"] = {
+{
+["count"] = 20,
+["itemLink"] = "|cnIQ1:|Hitem:1113::::::::15:1482:::::::::|h[Conjured Bread]|h|r",
+["texture"] = 133951,
+},
+{
+["count"] = 19,
+["itemLink"] = "|cnIQ1:|Hitem:1113::::::::15:1482:::::::::|h[Conjured Bread]|h|r",
+["texture"] = 133951,
+},
+{
+["count"] = 20,
+["itemLink"] = "|cnIQ1:|Hitem:2288::::::::15:1482:::::::::|h[Conjured Fresh Water]|h|r",
+["texture"] = 132794,
+},
+{
+["count"] = 20,
+["itemLink"] = "|cnIQ1:|Hitem:2288::::::::15:1482:::::::::|h[Conjured Fresh Water]|h|r",
+["texture"] = 132794,
+},
+{
+["count"] = 8,
+["itemLink"] = "|cnIQ1:|Hitem:2288::::::::15:1482:::::::::|h[Conjured Fresh Water]|h|r",
+["texture"] = 132794,
+},
+},
+["tradeWho"] = "Simondruid Windseeker",
+["tradeWhoClass"] = "DRUID",
+["time"] = 1794786401,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ3:|Hitem:253908::::::::15:1482::1::1:28:5244:::::|h[Pattern: Filigreed Shadow Gown]|h|r",
+["texture"] = 134939,
+},
+{
+["count"] = 5,
+["itemLink"] = "|cnIQ1:|Hitem:10940::::::::15:1482:::::::::|h[Strange Dust]|h|r",
+["texture"] = 132858,
+},
+},
+["tradeWho"] = "Simondruid Windseeker",
+["tradeWhoClass"] = "DRUID",
+["time"] = 1794786390,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:15492::::::::15:1482::1:1:12721:1:28:5244:::::|h[Bloodspattered Sash of the Monkey]|h|r",
+["texture"] = 132502,
+},
+{
+["itemLink"] = "|cnIQ2:|Hitem:3302::::::::15:1482::1::1:28:5244:::::|h[Brackwater Boots]|h|r",
+["texture"] = 132537,
+},
+{
+["count"] = 15,
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:248683::::::::15:1482:::::::::|h[Waylaid Crate: Apprentice Ore]|h|r",
+["texture"] = 236994,
+},
+{
+["itemLink"] = "|cnIQ2:|Hitem:1210::::::::15:1482:::::::::|h[Shadowgem]|h|r",
+["texture"] = 134074,
+},
+},
+["tradeWho"] = "Simondruid Windseeker",
+["tradeWhoClass"] = "DRUID",
+["time"] = 1794786362,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794782078,
+["tradeWho"] = "Simonrogue Windseeker",
+["tradeWhoClass"] = "ROGUE",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:3315::::::::15:1482::1::1:28:5244:::::|h[Ceremonial Leather Loincloth]|h|r",
+["texture"] = 134706,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:1113::::::::15:1482:::::::::|h[Conjured Bread]|h|r",
+["count"] = 19,
+["texture"] = 133951,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:1113::::::::15:1482:::::::::|h[Conjured Bread]|h|r",
+["count"] = 20,
+["texture"] = 133951,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:159::::::::15:1482:::::::::|h[Refreshing Spring Water]|h|r",
+["count"] = 6,
+["texture"] = 132794,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794782064,
+["tradeWho"] = "Simonrogue Windseeker",
+["tradeWhoClass"] = "ROGUE",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:10938::::::::15:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["texture"] = 132867,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:10940::::::::15:1482:::::::::|h[Strange Dust]|h|r",
+["count"] = 8,
+["texture"] = 132858,
+},
+{
+["itemLink"] = "|cnIQ2:|Hitem:818::::::::15:1482:::::::::|h[Tigerseye]|h|r",
+["count"] = 3,
+["texture"] = 134118,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 19,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ2:|Hitem:15492::::::::15:1482::1:1:12719:1:28:5244:::::|h[Bloodspattered Sash of the Whale]|h|r",
+["texture"] = 132502,
+},
+},
+},
+{
+["meClass"] = "PRIEST",
+["me"] = "Simonpriest Windseeker",
+["where"] = "Ragefire Chasm",
+["targetItems"] = {
+{
+["count"] = 8,
+["itemLink"] = "|cnIQ1:|Hitem:159::::::::15:1487:::::::::|h[Refreshing Spring Water]|h|r",
+["texture"] = 132794,
+},
+{
+["count"] = 20,
+["itemLink"] = "|cnIQ1:|Hitem:1113::::::::15:1487:::::::::|h[Conjured Bread]|h|r",
+["texture"] = 133951,
+},
+},
+["tradeWho"] = "Simonrogue Windseeker",
+["tradeWhoClass"] = "ROGUE",
+["time"] = 1794780466,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794777428,
+["tradeWho"] = "Simonrogue Windseeker",
+["tradeWhoClass"] = "ROGUE",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:4577::::::::15:1482::1::1:28:5244:::::|h[Compact Shotgun]|h|r",
+["texture"] = 135612,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794777273,
+["tradeWho"] = "Simonhunter Windseeker",
+["tradeWhoClass"] = "HUNTER",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:8180::::::::15:1482:::::::::|h[Hunting Bow]|h|r",
+["texture"] = 135491,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794777219,
+["tradeWho"] = "Simonhunter Windseeker",
+["tradeWhoClass"] = "HUNTER",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:5071::::::::15:1482::1::1:28:5244:::::|h[Shadow Wand]|h|r",
+["texture"] = 135645,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794777209,
+["tradeWho"] = "Simonhunter Windseeker",
+["tradeWhoClass"] = "HUNTER",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:10939::::::::15:1482:::::::::|h[Greater Magic Essence]|h|r",
+["count"] = 3,
+["texture"] = 132866,
+},
+{
+["itemLink"] = "|cnIQ2:|Hitem:10938::::::::15:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["count"] = 2,
+["texture"] = 132867,
+},
+},
+},
+{
+["meClass"] = "WARLOCK",
+["me"] = "Simonwarlock Windseeker",
+["where"] = "Orgrimmar",
+["targetItems"] = {
+{
+["count"] = 20,
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1490:::::::::|h[Linen Cloth]|h|r",
+["texture"] = 132889,
+},
+{
+["count"] = 10,
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1490:::::::::|h[Linen Cloth]|h|r",
+["texture"] = 132889,
+},
+},
+["tradeWho"] = "Simonhunter Windseeker",
+["tradeWhoClass"] = "HUNTER",
+["time"] = 1794772146,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794771977,
+["tradeWho"] = "Simonhunter Windseeker",
+["tradeWhoClass"] = "HUNTER",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794771728,
+["tradeWho"] = "Simonhunter Windseeker",
+["tradeWhoClass"] = "HUNTER",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794771404,
+["tradeWho"] = "Simonhunter Windseeker",
+["tradeWhoClass"] = "HUNTER",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 15,
+["texture"] = 132889,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794770606,
+["tradeWho"] = "Simon Windseeker",
+["tradeWhoClass"] = "PALADIN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:10940::::::::15:1482:::::::::|h[Strange Dust]|h|r",
+["count"] = 2,
+["texture"] = 132858,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["targetItemsEnchant"] = {
+{
+["enchant"] = "Enchant Bracer - Minor Deflect",
+["itemLink"] = "|cnIQ2:|Hitem:263338::::::::15:1482::11:::::::|h[Defender's Bracers]|h|r",
+["texture"] = 132606,
+},
+},
+["tradeWho"] = "Simondruid Windseeker",
+["time"] = 1794770494,
+["tradeWhoClass"] = "DRUID",
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794770281,
+["tradeWho"] = "Simonhunter Windseeker",
+["tradeWhoClass"] = "HUNTER",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:4570::::::::15:1482::1:1:12721:1:28:5244:::::|h[Birchwood Maul of the Monkey]|h|r",
+["texture"] = 133052,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794770168,
 ["tradeWho"] = "Simonshaman Windseeker",
+["tradeWhoClass"] = "SHAMAN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 20,
+["texture"] = 132889,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1482:::::::::|h[Linen Cloth]|h|r",
+["count"] = 6,
+["texture"] = 132889,
+},
+},
+},
+{
+["meClass"] = "WARLOCK",
+["me"] = "Simonwarlock Windseeker",
+["where"] = "Orgrimmar",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:818::::::::15:1490:::::::::|h[Tigerseye]|h|r",
+["texture"] = 134118,
+},
+},
+["tradeWho"] = "Simonshaman Windseeker",
+["tradeWhoClass"] = "SHAMAN",
+["time"] = 1794769407,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["targetItemsEnchant"] = {
+{
+["enchant"] = "Enchant Bracer - Minor Deflect",
+["itemLink"] = "|cnIQ2:|Hitem:281270::::::::15:1482::11:::::::|h[Thra's Friendship Bracelet]|h|r",
+["texture"] = 132609,
+},
+},
+["tradeWho"] = "Simonshaman Windseeker",
+["time"] = 1794769150,
+["tradeWhoClass"] = "SHAMAN",
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["time"] = 1794769100,
+["tradeWho"] = "Simonshaman Windseeker",
+["tradeWhoClass"] = "SHAMAN",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ2:|Hitem:15485::::::::15:1482::1:1:12730:1:28:5244:::::|h[War Torn Pants of Spirit]|h|r",
+["texture"] = 134586,
+},
+{
+["itemLink"] = "|cnIQ2:|Hitem:4564::::::::15:1482::1:1:12719:1:28:5244:::::|h[Spiked Club of the Whale]|h|r",
+["texture"] = 133489,
+},
+{
+["itemLink"] = "|cnIQ2:|Hitem:4570::::::::15:1482::1:1:12721:1:28:5244:::::|h[Birchwood Maul of the Monkey]|h|r",
+["texture"] = 133052,
+},
+{
+["itemLink"] = "|cnIQ1:|Hitem:10940::::::::15:1482:::::::::|h[Strange Dust]|h|r",
+["count"] = 2,
+["texture"] = 132858,
+},
+{
+["itemLink"] = "|cnIQ2:|Hitem:10938::::::::15:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["count"] = 4,
+["texture"] = 132867,
+},
+},
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:5572::::::::15:1482:::::::::|h[Small Green Pouch]|h|r",
+["texture"] = 133637,
+},
+},
+["tradeWho"] = "Simonshaman Windseeker",
+["tradeWhoClass"] = "SHAMAN",
+["time"] = 1794765617,
+},
+{
+["meClass"] = "MAGE",
+["me"] = "Simonmage Windseeker",
+["where"] = "Orgrimmar",
 ["targetItems"] = {
 {
 ["itemLink"] = "|cnIQ2:|Hitem:10938::::::::15:1482:::::::::|h[Lesser Magic Essence]|h|r",
@@ -80,14 +708,13 @@ NRCdatabase = {
 ["texture"] = 132858,
 },
 },
-["where"] = "Orgrimmar",
+["tradeWho"] = "Simonshaman Windseeker",
 ["tradeWhoClass"] = "SHAMAN",
 ["time"] = 1794742184,
 },
 {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
-["tradeWho"] = "Simonwarrior Windseeker",
 ["where"] = "Orgrimmar",
 ["targetItemsEnchant"] = {
 {
@@ -96,6 +723,7 @@ NRCdatabase = {
 ["texture"] = 132719,
 },
 },
+["tradeWho"] = "Simonwarrior Windseeker",
 ["tradeWhoClass"] = "WARRIOR",
 ["time"] = 1794742056,
 },
@@ -570,7 +1198,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Ragefire Chasm",
-["tradeWho"] = "Jocko Theshocko",
 ["playerItems"] = {
 {
 ["count"] = 20,
@@ -583,6 +1210,7 @@ NRCdatabase = {
 ["texture"] = 132794,
 },
 },
+["tradeWho"] = "Jocko Theshocko",
 ["tradeWhoClass"] = "SHAMAN",
 ["time"] = 1794725156,
 },
@@ -590,7 +1218,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Ragefire Chasm",
-["tradeWho"] = "Angus Stoutshaft",
 ["playerItems"] = {
 {
 ["count"] = 20,
@@ -598,6 +1225,7 @@ NRCdatabase = {
 ["texture"] = 133951,
 },
 },
+["tradeWho"] = "Angus Stoutshaft",
 ["tradeWhoClass"] = "WARRIOR",
 ["time"] = 1794723686,
 },
@@ -605,7 +1233,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Ragefire Chasm",
-["tradeWho"] = "Aurelth Mortis",
 ["playerItems"] = {
 {
 ["count"] = 20,
@@ -613,6 +1240,7 @@ NRCdatabase = {
 ["texture"] = 133951,
 },
 },
+["tradeWho"] = "Aurelth Mortis",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794723680,
 },
@@ -1476,8 +2104,6 @@ NRCdatabase = {
 ["me"] = "Simonpriest Windseeker",
 ["where"] = "Undercity",
 ["time"] = 1794640928,
-["tradeWho"] = "Simon Windseeker",
-["tradeWhoClass"] = "PALADIN",
 ["playerItems"] = {
 {
 ["itemLink"] = "|cnIQ2:|Hitem:268415::::::::13:1487:::::::::|h[Commonplace Herb Seeds]|h|r",
@@ -1510,6 +2136,8 @@ NRCdatabase = {
 ["texture"] = 133939,
 },
 },
+["tradeWhoClass"] = "PALADIN",
+["tradeWho"] = "Simon Windseeker",
 },
 {
 ["meClass"] = "PRIEST",
@@ -2520,7 +3148,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Undercity",
-["tradeWho"] = "Simon Windseeker",
 ["playerItems"] = {
 {
 ["itemLink"] = "|cnIQ2:|Hitem:774::::::::12:1482:::::::::|h[Malachite]|h|r",
@@ -2532,6 +3159,7 @@ NRCdatabase = {
 ["texture"] = 133970,
 },
 },
+["tradeWho"] = "Simon Windseeker",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794051031,
 },
@@ -2539,7 +3167,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Undercity",
-["tradeWho"] = "Simon Windseeker",
 ["playerItems"] = {
 {
 ["count"] = 12,
@@ -2570,6 +3197,7 @@ NRCdatabase = {
 ["texture"] = 134339,
 },
 },
+["tradeWho"] = "Simon Windseeker",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794051022,
 },
@@ -2577,7 +3205,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Undercity",
-["tradeWho"] = "Simon Windseeker",
 ["playerItems"] = {
 {
 ["itemLink"] = "|cnIQ1:|Hitem:4536::::::::12:1482:::::::::|h[Shiny Red Apple]|h|r",
@@ -2589,6 +3216,7 @@ NRCdatabase = {
 ["texture"] = 132794,
 },
 },
+["tradeWho"] = "Simon Windseeker",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794051009,
 },
@@ -2596,7 +3224,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Undercity",
-["tradeWho"] = "Simon Windseeker",
 ["playerItems"] = {
 {
 ["count"] = 20,
@@ -2614,6 +3241,7 @@ NRCdatabase = {
 ["texture"] = 132889,
 },
 },
+["tradeWho"] = "Simon Windseeker",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794050987,
 },
@@ -2621,7 +3249,6 @@ NRCdatabase = {
 ["meClass"] = "MAGE",
 ["me"] = "Simonmage Windseeker",
 ["where"] = "Undercity",
-["tradeWho"] = "Simon Windseeker",
 ["playerItems"] = {
 {
 ["itemLink"] = "|cnIQ1:|Hitem:5572::::::::12:1482:::::::::|h[Small Green Pouch]|h|r",
@@ -2650,6 +3277,7 @@ NRCdatabase = {
 ["texture"] = 132889,
 },
 },
+["tradeWho"] = "Simon Windseeker",
 ["tradeWhoClass"] = "PALADIN",
 ["time"] = 1794050979,
 },

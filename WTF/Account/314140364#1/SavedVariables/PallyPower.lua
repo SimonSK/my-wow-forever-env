@@ -27,9 +27,9 @@ PallyPowerDB = {
 ["Simon"] = {
 ["ForeverShamanColumn"] = true,
 ["auraDurations"] = {
-["Seal of Fury"] = 1800,
-["Seal of the Crusader"] = 1800,
 ["Seal of Righteousness"] = 30,
+["Seal of the Crusader"] = 1800,
+["Seal of Fury"] = 1800,
 ["Righteous Fury"] = 1800.001,
 },
 ["seal"] = 0,
@@ -37,8 +37,8 @@ PallyPowerDB = {
 ["HideCountText"] = true,
 ["buffDuration"] = false,
 ["frameLocked"] = true,
-["offsetX"] = -376.0000305175781,
-["offsetY"] = 120,
+["offsetX"] = -400,
+["offsetY"] = 143,
 ["showPlayerButtons"] = false,
 },
 ["freeassign"] = false,
@@ -105,9 +105,9 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[6] = "TrueshotLodge",
-[7] = "CuratorNet",
-[8] = "TrueshotLodge1454",
+[6] = "CuratorNet",
+[7] = "TrueshotLodge",
+[8] = "TrueshotLodge1413",
 [4] = "Services",
 [5] = "TradeLocal",
 [0] = "None",

@@ -29,9 +29,9 @@ W: 128
 H: 64
 Frame: AltoholicFrame
 FrameLevel: 1
-Anchor: CENTER
-X: 178
-Y: -78
+Anchor: LEFT
+X: 212
+Y: -66
 W: 925
 H: 538
 Frame: GRM_CoreFrame
@@ -54,7 +54,7 @@ Anchor: TOP
 X: -383
 Y: -74
 W: 280
-H: 574
+H: 626
 Frame: BagnonInventory1
 FrameLevel: 1
 Anchor: RIGHT

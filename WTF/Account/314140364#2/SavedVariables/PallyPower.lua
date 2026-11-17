@@ -35,10 +35,10 @@ PallyPowerDB = {
 ["ForeverSalvSplit"] = true,
 ["ForeverCountDefault"] = true,
 ["display"] = {
-["offsetY"] = 63.33323287963867,
 ["frameLocked"] = true,
-["offsetX"] = 389.4999389648438,
+["offsetY"] = 63.33323287963867,
 ["HideCountText"] = true,
+["offsetX"] = 389.4999389648438,
 },
 ["autobuff"] = {
 ["buffDuration"] = false,
@@ -77,6 +77,8 @@ PallyPower_Assignments = {
 },
 }
 PallyPower_NormalAssignments = {
+["Simon Windseeker"] = {
+},
 }
 PallyPower_AuraAssignments = {
 ["Simon Windseeker"] = 1,
@@ -96,9 +98,9 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[6] = "TrueshotLodge",
-[7] = "CuratorNet",
-[8] = "TrueshotLodge1454",
+[6] = "CuratorNet",
+[7] = "TrueshotLodge",
+[8] = "TrueshotLodge1413",
 [4] = "Services",
 [5] = "TradeLocal",
 [0] = "None",

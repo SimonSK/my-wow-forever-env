@@ -5,24 +5,24 @@ DataStore_Inventory_Characters = {
 nil,
 nil,
 nil,
-"|cnIQ1:|Hitem:6096::::::::15:1482::75:::::::|h[Apprentice's Shirt]|h|r",
-"|cnIQ3:|Hitem:14150:24:::::::15:1482::1:::::::|h[Robe of Evocation]|h|r",
-"|cnIQ2:|Hitem:14113::::::::15:1482::1:1:12730:1:28:5244:::::|h[Aboriginal Sash of Spirit]|h|r",
-"|cnIQ2:|Hitem:4309::::::::15:1482::::::::Player-6923-01B20BD0:|h[Handstitched Linen Britches]|h|r",
-"|cnIQ2:|Hitem:14114::::::::15:1482::1:1:12731:1:28:5244:::::|h[Aboriginal Footwraps of Stamina]|h|r",
-"|cnIQ2:|Hitem:281269:924:::::::15:1482::11:::::::|h[Mogra's Friendship Bracelet]|h|r",
-"|cnIQ2:|Hitem:4307::::::::15:1482::::::::Player-6923-005A94FC:|h[Heavy Linen Gloves]|h|r",
+"|cnIQ1:|Hitem:6096::::::::18:1482::75:::::::|h[Apprentice's Shirt]|h|r",
+"|cnIQ3:|Hitem:14150:24:::::::18:1482::1:::::::|h[Robe of Evocation]|h|r",
+"|cnIQ2:|Hitem:14113::::::::18:1482::1:1:12730:1:28:5244:::::|h[Aboriginal Sash of Spirit]|h|r",
+"|cnIQ2:|Hitem:4309::::::::18:1482::::::::Player-6923-01B20BD0:|h[Handstitched Linen Britches]|h|r",
+"|cnIQ2:|Hitem:14114::::::::18:1482:::1:12718::::::|h[Aboriginal Footwraps of the Eagle]|h|r",
+"|cnIQ2:|Hitem:281269:924:::::::18:1482::11:::::::|h[Mogra's Friendship Bracelet]|h|r",
+"|cnIQ2:|Hitem:4307::::::::18:1482::::::::Player-6923-005A94FC:|h[Heavy Linen Gloves]|h|r",
+"|cnIQ2:|Hitem:5351::::::::18:1482::11:::::::|h[Bounty Hunter's Ring]|h|r",
 nil,
 nil,
 nil,
-nil,
-"|cnIQ2:|Hitem:2580::::::::15:1482::::::::Player-6923-005A94FC:|h[Reinforced Linen Cape]|h|r",
-"|cnIQ3:|Hitem:15444::::::::15:1482::11:::::::|h[Staff of Orgrimmar]|h|r",
-[18] = "|cnIQ2:|Hitem:11287::::::::15:1482::::::::Player-6923-005A94FC:|h[Lesser Magic Wand]|h|r",
+"|cnIQ2:|Hitem:2580::::::::18:1482::::::::Player-6923-005A94FC:|h[Reinforced Linen Cape]|h|r",
+"|cnIQ3:|Hitem:15444::::::::18:1482::11:::::::|h[Staff of Orgrimmar]|h|r",
+[18] = "|cnIQ2:|Hitem:11287::::::::18:1482::::::::Player-6923-005A94FC:|h[Lesser Magic Wand]|h|r",
 },
-["lastUpdate"] = 1794742004,
-["averageItemLvl"] = 8.1875,
-["overallAIL"] = 8.1875,
+["lastUpdate"] = 1794901403,
+["averageItemLvl"] = 9.4375,
+["overallAIL"] = 9.4375,
 ["EquipmentInfo"] = 0,
 },
 {
@@ -37,7 +37,7 @@ nil,
 [6] = "|cnIQ1:|Hitem:3442::::::::15:1490::11:::::::|h[Apprentice Sash]|h|r",
 [5] = "|cnIQ0:|Hitem:1433::::::::15:1490:::::::::|h[Patchwork Armor]|h|r",
 },
-["lastUpdate"] = 1794741632,
+["lastUpdate"] = 1794899755,
 ["averageItemLvl"] = 6.3125,
 ["overallAIL"] = 6.3125,
 ["EquipmentInfo"] = 0,
@@ -62,7 +62,7 @@ nil,
 "|cnIQ3:|Hitem:15444::::::::15:1487::11:::::::|h[Staff of Orgrimmar]|h|r",
 [18] = "|cnIQ2:|Hitem:11287::::::::15:1487::::::::Player-6923-005A94FC:|h[Lesser Magic Wand]|h|r",
 },
-["lastUpdate"] = 1794738555,
+["lastUpdate"] = 1794899803,
 ["averageItemLvl"] = 7.875,
 ["overallAIL"] = 7.875,
 ["EquipmentInfo"] = 0,
@@ -118,62 +118,65 @@ DataStore_Inventory_Guilds = {
 {
 ["Members"] = {
 ["Simonhunter Windseeker"] = {
-["averageItemLvl"] = 7,
+["averageItemLvl"] = 8,
 },
 ["Simonrogue Windseeker"] = {
-["averageItemLvl"] = 6,
+["averageItemLvl"] = 7,
 },
 ["Simonpriest Windseeker"] = {
 ["averageItemLvl"] = 7,
 },
 ["Simon Windseeker"] = {
-["averageItemLvl"] = 3,
+["averageItemLvl"] = 8,
 },
 ["Simonshaman Windseeker"] = {
 ["averageItemLvl"] = 7,
 },
+["Simonmage Windseeker"] = {
+["averageItemLvl"] = 9,
+},
 ["Simonwarlock Windseeker"] = {
 ["averageItemLvl"] = 6,
 },
-["Simonmage Windseeker"] = {
-["averageItemLvl"] = 8,
-},
 ["Simondruid Windseeker"] = {
-["averageItemLvl"] = 6,
+["averageItemLvl"] = 7,
 },
 ["Simonwarrior Windseeker"] = {
-["averageItemLvl"] = 5,
+["averageItemLvl"] = 8,
+},
+["Sir Culation"] = {
+["averageItemLvl"] = 26,
 },
 },
 },
 {
 ["Members"] = {
 ["Simonhunter Windseeker"] = {
-["averageItemLvl"] = 6,
+["averageItemLvl"] = 8,
 },
 ["Simonrogue Windseeker"] = {
-["averageItemLvl"] = 6,
+["averageItemLvl"] = 7,
 },
 ["Simonpriest Windseeker"] = {
-["averageItemLvl"] = 5,
+["averageItemLvl"] = 7,
 },
 ["Simon Windseeker"] = {
-["averageItemLvl"] = 3,
+["averageItemLvl"] = 8,
 },
 ["Simonshaman Windseeker"] = {
 ["averageItemLvl"] = 7,
 },
 ["Simonwarlock Windseeker"] = {
-["averageItemLvl"] = 4,
-},
-["Simonmage Windseeker"] = {
-["averageItemLvl"] = 8,
-},
-["Simondruid Windseeker"] = {
 ["averageItemLvl"] = 6,
 },
+["Simonmage Windseeker"] = {
+["averageItemLvl"] = 9,
+},
+["Simondruid Windseeker"] = {
+["averageItemLvl"] = 7,
+},
 ["Simonwarrior Windseeker"] = {
-["averageItemLvl"] = 5,
+["averageItemLvl"] = 8,
 },
 },
 },
@@ -184,11 +187,11 @@ DataStore_Inventory_CollectedSets = {
 }
 DataStore_Inventory_AppearancesCounters = {
 ["MAGE"] = {
-[23] = 61529,
-[12] = 12336,
-[14] = 41047,
-[16] = 57435,
+[16] = 61531,
+[12] = 16433,
 [19] = 8307,
+[23] = 61529,
+[14] = 41047,
 },
 ["PALADIN"] = {
 [18] = 32883,
@@ -197,15 +200,15 @@ DataStore_Inventory_AppearancesCounters = {
 [22] = 20538,
 },
 ["WARLOCK"] = {
-[19] = 4211,
-[12] = 12336,
 [14] = 41047,
-[16] = 57435,
+[12] = 12336,
+[19] = 4211,
 [23] = 53337,
+[16] = 57435,
 },
 ["PRIEST"] = {
-[15] = 61530,
-[12] = 12336,
+[15] = 65626,
+[12] = 16433,
 [19] = 4211,
 [16] = 57435,
 [23] = 53337,

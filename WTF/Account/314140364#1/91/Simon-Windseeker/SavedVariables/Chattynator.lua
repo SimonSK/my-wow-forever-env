@@ -125,4 +125,9 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/g like",
 "/g maybe 20 min lol",
 "/g i just hit 35 skill point",
+"/s /reload",
+"/s /align",
+"/s /inv Simonmage Windseeker ",
+"/s /inv Simonwarlock Windseeker ",
+"/s /inv Simonpriest Windseeker ",
 }

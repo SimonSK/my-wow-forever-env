@@ -1,7 +1,7 @@
 
 DecursiveDB = {
 ["global"] = {
-["LastVersionAnnounce"] = 1794742009,
+["LastVersionAnnounce"] = 1794898679,
 ["NonRelease"] = "2.9.0-RC4",
 ["MouseButtons"] = {
 "*%s2",
@@ -56,10 +56,15 @@ DecursiveDB = {
 },
 [172] = {
 ["enabled"] = true,
-["from"] = "history",
 ["spellType"] = 1,
+["from"] = "history",
 },
 [20800] = {
+["enabled"] = true,
+["spellType"] = 1,
+["from"] = "history",
+},
+[14517] = {
 ["enabled"] = true,
 ["spellType"] = 1,
 ["from"] = "history",
@@ -69,29 +74,29 @@ DecursiveDB = {
 ["from"] = "history",
 ["spellType"] = 16,
 },
-[18266] = {
+[6866] = {
 ["enabled"] = true,
-["spellType"] = 4,
 ["from"] = "history",
+["spellType"] = 1,
 },
 [7713] = {
 ["enabled"] = true,
 ["from"] = "history",
 ["spellType"] = 4,
 },
-[14517] = {
+[18266] = {
 ["enabled"] = true,
-["spellType"] = 1,
 ["from"] = "history",
+["spellType"] = 4,
 },
 [1306224] = {
 ["enabled"] = true,
 ["from"] = "history",
 ["spellType"] = 1,
 },
-[744] = {
+[6950] = {
 ["enabled"] = true,
-["spellType"] = 8,
+["spellType"] = 1,
 ["from"] = "history",
 },
 [18267] = {
@@ -99,15 +104,15 @@ DecursiveDB = {
 ["spellType"] = 4,
 ["from"] = "history",
 },
-[6866] = {
-["enabled"] = true,
-["from"] = "history",
-["spellType"] = 1,
-},
 [6751] = {
 ["enabled"] = true,
 ["from"] = "history",
 ["spellType"] = 8,
+},
+[744] = {
+["enabled"] = true,
+["spellType"] = 8,
+["from"] = "history",
 },
 },
 },

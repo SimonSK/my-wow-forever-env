@@ -44,4 +44,6 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/cw Notiase Theone just filled",
 "/p gg ty",
 "/p /inv Simonwarrior Windseeker ",
+"/cw Simonhunter Windseeker |cnIQ1:|Hitem:2589::::::::15:1490:::::::::|h[Linen Cloth]|h|r\\",
+"/s /sleep",
 }

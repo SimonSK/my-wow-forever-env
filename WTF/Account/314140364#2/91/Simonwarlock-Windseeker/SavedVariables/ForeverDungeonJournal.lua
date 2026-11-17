@@ -1,19 +1,5 @@
 
 ForeverDungeonJournalCharacterDB = {
-["rpgBosses"] = {
-["Ragefire Chasm"] = {
-[11517] = true,
-["oggleflint"] = true,
-[11518] = true,
-["jergosh the invoker"] = true,
-[11519] = true,
-["bazzalan"] = true,
-[11520] = true,
-["taragaman the hungerer"] = true,
-},
-},
-["favouriteItems"] = {
-},
 ["rpgTrash"] = {
 ["Ragefire Chasm"] = {
 ["seen"] = {
@@ -41,9 +27,23 @@ ForeverDungeonJournalCharacterDB = {
 ["n"] = 20,
 },
 },
-["flightPointsVersion"] = 2,
-["trackedDungeons"] = {
+["rpgBosses"] = {
+["Ragefire Chasm"] = {
+[11517] = true,
+["oggleflint"] = true,
+[11518] = true,
+["jergosh the invoker"] = true,
+[11519] = true,
+["bazzalan"] = true,
+[11520] = true,
+["taragaman the hungerer"] = true,
 },
+},
+["favouriteItems"] = {
+},
+["flightPoints"] = {
+},
+["flightPointsVersion"] = 2,
 ["trackerSlots"] = {
 },
 ["rpgQuests"] = {
@@ -54,10 +54,11 @@ ForeverDungeonJournalCharacterDB = {
 [5722] = true,
 [5724] = true,
 [5761] = true,
+[914] = true,
 },
 ["rpgMaps"] = {
 },
-["flightPoints"] = {
+["trackedDungeons"] = {
 },
 ["rpgKills"] = {
 ["Ragefire Chasm"] = true,
@@ -281,9 +282,9 @@ ForeverDungeonJournalCharacterDB = {
 ["x"] = 102,
 ["loot"] = {
 {
-["link"] = "|cnIQ3:|Hitem:272996::::::::14:1490::1::1:28:5244:::::|h[Trogg Scepter]|h|r",
 ["id"] = 272996,
 ["w"] = "John Stonetalon",
+["link"] = "|cnIQ3:|Hitem:272996::::::::14:1490::1::1:28:5244:::::|h[Trogg Scepter]|h|r",
 },
 },
 ["b"] = "Oggleflint",
@@ -467,14 +468,14 @@ ForeverDungeonJournalCharacterDB = {
 ["x"] = 106,
 ["loot"] = {
 {
-["link"] = "|cnIQ3:|Hitem:14149::::::::15:1490::1::1:28:5244:::::|h[Subterranean Cape]|h|r",
 ["id"] = 14149,
 ["w"] = "Errol Ghoulbasher",
+["link"] = "|cnIQ3:|Hitem:14149::::::::15:1490::1::1:28:5244:::::|h[Subterranean Cape]|h|r",
 },
 {
-["link"] = "|cnIQ3:|Hitem:253902::::::::15:1490::1::1:28:5244:::::|h[Pattern: Filigreed Pristine Gown]|h|r",
 ["id"] = 253902,
 ["w"] = "John Stonetalon",
+["link"] = "|cnIQ3:|Hitem:253902::::::::15:1490::1::1:28:5244:::::|h[Pattern: Filigreed Pristine Gown]|h|r",
 },
 },
 ["b"] = "Taragaman the Hungerer",
@@ -635,9 +636,9 @@ ForeverDungeonJournalCharacterDB = {
 ["x"] = 53,
 ["loot"] = {
 {
-["link"] = "|cnIQ3:|Hitem:273005::::::::15:1490::1::1:28:5244:::::|h[Satyrskin Cloak]|h|r",
 ["id"] = 273005,
 ["w"] = "John Stonetalon",
+["link"] = "|cnIQ3:|Hitem:273005::::::::15:1490::1::1:28:5244:::::|h[Satyrskin Cloak]|h|r",
 },
 },
 ["b"] = "Bazzalan",
@@ -656,9 +657,9 @@ ForeverDungeonJournalCharacterDB = {
 ["x"] = 53,
 ["loot"] = {
 {
-["link"] = "|cnIQ3:|Hitem:14147::::::::15:1490::1:::::::|h[Cavedweller Bracers]|h|r",
 ["id"] = 14147,
 ["w"] = "Errol Ghoulbasher",
+["link"] = "|cnIQ3:|Hitem:14147::::::::15:1490::1:::::::|h[Cavedweller Bracers]|h|r",
 },
 },
 ["b"] = "Jergosh the Invoker",
@@ -702,12 +703,11 @@ ForeverDungeonJournalCharacterDB = {
 ["m"] = "Searing Blade Enforcer",
 },
 },
-["seenN"] = 94,
 ["created"] = 1794739709,
 ["deaths"] = 0,
 ["lastBoss"] = 1794741116,
+["seenN"] = 94,
 ["money"] = 762,
-["id"] = 1,
 ["firstKill"] = 1794739709,
 ["needs"] = {
 {
@@ -721,7 +721,9 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["closed"] = true,
 ["completed"] = true,
-["map"] = 389,
+["id"] = 1,
+["exits"] = {
+},
 ["party"] = {
 ["Errol-Ghoulbasher"] = "PALADIN",
 ["Coldpaw-Spy"] = "WARLOCK",
@@ -729,10 +731,9 @@ ForeverDungeonJournalCharacterDB = {
 ["John-Stonetalon"] = "DRUID",
 ["Simonwarlock-Windseeker"] = "WARLOCK",
 },
-["otherXP"] = 0,
-["exits"] = {
-},
 ["instanceName"] = "Ragefire Chasm",
+["otherXP"] = 0,
+["map"] = 389,
 ["firstTrash"] = 1794739709,
 },
 },

@@ -11,8 +11,8 @@ WT_Crafting = {
 [333] = true,
 [197] = true,
 [356] = true,
-[185] = true,
 [129] = true,
+[185] = true,
 },
 ["expandedProfessions"] = {
 {
@@ -28,8 +28,8 @@ WT_Crafting = {
 },
 },
 ["settings"] = {
-["showOtherFactionRecipes"] = false,
 ["showMerchantsFavorRecipes"] = false,
+["showOtherFactionRecipes"] = false,
 ["showReputationRecipes"] = false,
 },
 ["selectedSources"] = {

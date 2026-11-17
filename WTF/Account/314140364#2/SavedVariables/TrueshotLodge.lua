@@ -20,148 +20,113 @@ TrueshotLodgeDB = {
 },
 ["share_moderators"] = true,
 ["share_group"] = true,
+["filter_rares"] = false,
 ["collect"] = true,
-["debug"] = false,
-["sticky_selections"] = true,
 ["send_name_tip"] = true,
-["share_peers"] = {
-["Imlys Galefeather"] = {
-["last"] = 1794739712,
-["first"] = 1794719974,
-},
-["Zulu Xa"] = {
-["first"] = 1794739988,
-["last"] = 1794739988,
-},
-["Drok Eisenfang"] = {
-["first"] = 1794740022,
-["last"] = 1794741428,
-},
-["Parkjoon Joon"] = {
-["first"] = 1794739941,
-["last"] = 1794739941,
-},
-["Nar Draku"] = {
-["first"] = 1794739433,
-["last"] = 1794739433,
-},
-["Cleetus Squirrel"] = {
-["last"] = 1794742322,
-["first"] = 1794734255,
-},
-["Simonwarrior Windseeker"] = {
-["first"] = 1794741902,
-["last"] = 1794741953,
-},
-["Drea Black"] = {
-["first"] = 1794739268,
-["last"] = 1794742207,
-},
-["Simon Windseeker"] = {
-["last"] = 1794742238,
-["first"] = 1794734407,
-},
-["Simonshaman Windseeker"] = {
-["last"] = 1794742165,
-["first"] = 1794742165,
-},
-["Vissie Deathwatch"] = {
-["last"] = 1794741727,
-["first"] = 1794738543,
-},
-["Hadgar Darkstorm"] = {
-["first"] = 1794740687,
-["last"] = 1794742397,
-},
-["Grimm Dog"] = {
-["last"] = 1794742111,
-["first"] = 1794742111,
-},
-["Ahumbleking Lumbridgepkr"] = {
-["first"] = 1794733350,
-["last"] = 1794737887,
-},
-["Cromag Grok"] = {
-["first"] = 1794740904,
-["last"] = 1794741394,
-},
-["Notanother Orchunter"] = {
-["first"] = 1794741824,
-["last"] = 1794741824,
-},
-["Zarika Fireneck"] = {
-["last"] = 1794742284,
-["first"] = 1794742284,
-},
-["Xént Riské"] = {
-["first"] = 1794739135,
-["last"] = 1794739135,
-},
-["Big Corc"] = {
-["first"] = 1794739061,
-["last"] = 1794739061,
-},
-["Bronco Blitzhorn"] = {
-["first"] = 1794739415,
-["last"] = 1794739613,
-},
-["Finwego Finladin"] = {
-["first"] = 1794740745,
-["last"] = 1794740745,
-},
-["Orchrist Swifthoof"] = {
-["first"] = 1794741129,
-["last"] = 1794742346,
-},
-["Hardcore Superstar"] = {
-["last"] = 1794742319,
-["first"] = 1794742319,
-},
-["Loto Matato"] = {
-["first"] = 1794739511,
-["last"] = 1794739511,
-},
-["Minyak Nyongnyong"] = {
-["first"] = 1794741536,
-["last"] = 1794741536,
-},
-["Azua Ulam"] = {
-["last"] = 1794715809,
-["first"] = 1794715809,
-},
-["Shadowphangz Mcshank"] = {
-["first"] = 1794741003,
-["last"] = 1794741003,
-},
-["Polo Man"] = {
-["last"] = 1794739077,
-["first"] = 1794737895,
-},
-["Karui Berserker"] = {
-["first"] = 1794741148,
-["last"] = 1794741148,
-},
-["Oran Gehlow"] = {
-["first"] = 1794739703,
-["last"] = 1794741912,
-},
-["Rochelia Galestride"] = {
-["first"] = 1794733484,
-["last"] = 1794735951,
-},
-["Gormak Beastslayer"] = {
-["first"] = 1794741879,
-["last"] = 1794741889,
-},
-["Bigfeelings Areokay"] = {
-["first"] = 1794733306,
-["last"] = 1794733306,
-},
-},
+["sticky_selections"] = true,
 ["selections"] = {
 },
-["share_zone"] = true,
+["share_peers"] = {
+["Zerref Dragneel"] = {
+["first"] = 1794893806,
+["last"] = 1794900841,
+},
+["Ramose Stormstrider"] = {
+["last"] = 1794888392,
+["first"] = 1794810835,
+},
+["Bandan Skybluff"] = {
+["first"] = 1794894152,
+["last"] = 1794898681,
+},
+["Smooples Thehired"] = {
+["last"] = 1794900626,
+["first"] = 1794900618,
+},
+["Trueshot Lodge"] = {
+["last"] = 1794781600,
+["first"] = 1794781600,
+},
+["Pumper Niickle"] = {
+["last"] = 1794901500,
+["first"] = 1794901500,
+},
+["Motion Raceworks"] = {
+["last"] = 1794900097,
+["first"] = 1794900097,
+},
+["Roguesnipe Deadheart"] = {
+["last"] = 1794900569,
+["first"] = 1794900569,
+},
+["Chori Pan"] = {
+["last"] = 1794901853,
+["first"] = 1794901853,
+},
+["Tandumonium Ebbeson"] = {
+["first"] = 1794895153,
+["last"] = 1794899131,
+},
+["Ole Graybush"] = {
+["last"] = 1794901442,
+["first"] = 1794901442,
+},
+["Draknir Ashbrand"] = {
+["last"] = 1794900765,
+["first"] = 1794900765,
+},
+["Drag Hunter"] = {
+["first"] = 1794895668,
+["last"] = 1794895668,
+},
+["Kirkhill Hackskull"] = {
+["last"] = 1794886227,
+["first"] = 1794796582,
+},
+["Pure Crypwalker"] = {
+["last"] = 1794896313,
+["first"] = 1794889061,
+},
+["Beef Consomme"] = {
+["last"] = 1794898673,
+["first"] = 1794887757,
+},
+["Rick Morits"] = {
+["last"] = 1794900188,
+["first"] = 1794899776,
+},
+["Kindä Furry"] = {
+["last"] = 1794900163,
+["first"] = 1794900163,
+},
+["Auselite Reaper"] = {
+["last"] = 1794900265,
+["first"] = 1794900250,
+},
+["Groovius Maximus"] = {
+["first"] = 1794885984,
+["last"] = 1794891535,
+},
+["Ozamataz Bloodshank"] = {
+["first"] = 1794893701,
+["last"] = 1794901349,
+},
+["Gwyneth Kinkeh"] = {
+["last"] = 1794897901,
+["first"] = 1794895966,
+},
+["Fiona Fortune"] = {
+["last"] = 1794900631,
+["first"] = 1794900368,
+},
+["Auri Morvel"] = {
+["first"] = 1794898673,
+["last"] = 1794899054,
+},
+},
 ["ui_scale"] = 1,
+["share_zone"] = true,
+["debug"] = false,
 ["filter_by_faction"] = false,
 ["ability_tooltips"] = true,
 },
@@ -216,11 +181,11 @@ TrueshotLodgeDB = {
 ["pets"] = {
 ["Gelrin|Imp"] = {
 ["stats"] = {
-["armor"] = 349,
-["crit"] = 3.360400438308716,
-["health"] = 186,
-["damage_max"] = 21.65019035339356,
 ["speed"] = 114.2857142857143,
+["crit"] = 3.706600189208984,
+["health"] = 206,
+["damage_max"] = 21.94161987304688,
+["armor"] = 278,
 ["res"] = {
 nil,
 0,
@@ -229,8 +194,8 @@ nil,
 0,
 0,
 },
-["attack_power"] = 40,
-["damage_min"] = 16.37155532836914,
+["damage_min"] = 16.66298294067383,
+["attack_power"] = 42,
 },
 ["attack_speed"] = 1.739000082015991,
 ["name"] = "Gelrin",
@@ -238,9 +203,9 @@ nil,
 ["spells"] = {
 {
 ["spell_id"] = 7799,
-["rank"] = "Rank 2",
-["name"] = "Firebolt",
 ["slot"] = 5,
+["name"] = "Firebolt",
+["rank"] = "Rank 2",
 },
 {
 ["spell_id"] = 4511,
@@ -249,15 +214,15 @@ nil,
 },
 },
 ["level"] = 15,
-["cached"] = 1794741376,
+["cached"] = 1794899759,
 },
 ["Juk'mon|Voidwalker"] = {
 ["stats"] = {
-["attack_power"] = 47,
 ["damage_min"] = 8.033710479736328,
+["attack_power"] = 47,
 ["health"] = 429,
 ["damage_max"] = 10.61956596374512,
-["speed"] = 114.2857142857143,
+["armor"] = 965,
 ["res"] = {
 nil,
 0,
@@ -267,7 +232,7 @@ nil,
 0,
 },
 ["crit"] = 0,
-["armor"] = 965,
+["speed"] = 114.2857142857143,
 },
 ["attack_speed"] = 1.739000082015991,
 ["cached"] = 1794739145,
@@ -299,10 +264,11 @@ TrueshotLodgeCollected = {
 ["trainers"] = {
 },
 ["addon"] = {
-["saved_at"] = 1794742507,
-["sig"] = "1b458088",
-["version"] = "1.60.1.41",
 ["locale"] = "enUS",
+["file_id"] = "560adae66e75ca73",
+["version"] = "1.60.1.45",
+["sig"] = "300b399b",
+["saved_at"] = 1794902003,
 },
 ["tames"] = {
 },

@@ -48,4 +48,10 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/p we need a few more shamans",
 "/p gg ty",
 "/s /inv Simon Windseeker ",
+"/p omw",
+"/p hunter, are you ready?",
+"/p /readycheck",
+"/p gg ty all",
+"/p you too",
+"/s /inv Simonhunter Windseeker ",
 }

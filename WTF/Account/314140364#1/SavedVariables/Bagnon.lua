@@ -1,9 +1,9 @@
 
 Bagnon_Sets = {
 ["latest"] = {
-["id"] = "12.1.10",
+["id"] = "12.1.11",
 ["cooldown"] = 1794969493,
-["who"] = "Aes Bavits",
+["who"] = "Moth Monsterman",
 },
 ["global"] = {
 ["inventory"] = {
@@ -20,11 +20,11 @@ Bagnon_Sets = {
 ["y"] = -300.0005183974291,
 ["x"] = -25.99918560187075,
 ["spacing"] = 0,
-["showBags"] = true,
-["activeRules"] = {
-},
 ["borderColor"] = {
 },
+["activeRules"] = {
+},
+["showBags"] = true,
 },
 ["vault"] = {
 ["color"] = {
@@ -63,7 +63,7 @@ Bagnon_Sets = {
 },
 },
 ["bank"] = {
-["y"] = -69.00057943258537,
+["y"] = -50.00064046774162,
 ["rules"] = {
 ["sidebar"] = {
 "all",
@@ -74,48 +74,48 @@ Bagnon_Sets = {
 "miscellaneous",
 },
 },
-["point"] = "TOPRIGHT",
+["point"] = "TOPLEFT",
 ["borderColor"] = {
 },
 ["color"] = {
 },
-["showBags"] = true,
+["x"] = 489.0007629394531,
 ["activeRules"] = {
 },
-["x"] = -160.9993076721833,
+["showBags"] = true,
 },
 },
 ["countGuild"] = true,
 ["color"] = {
 ["quiver"] = {
 },
-["account"] = {
+["herb"] = {
 },
-["enchant"] = {
+["normal"] = {
 },
 ["soul"] = {
 },
-["reagent"] = {
+["inscribe"] = {
 },
 ["mine"] = {
 },
-["engineer"] = {
+["gem"] = {
 },
-["inscribe"] = {
+["leather"] = {
 },
 ["fridge"] = {
 },
-["gem"] = {
+["engineer"] = {
 },
 ["key"] = {
 },
 ["tackle"] = {
 },
-["leather"] = {
+["reagent"] = {
 },
-["normal"] = {
+["enchant"] = {
 },
-["herb"] = {
+["account"] = {
 },
 },
 ["profiles"] = {
