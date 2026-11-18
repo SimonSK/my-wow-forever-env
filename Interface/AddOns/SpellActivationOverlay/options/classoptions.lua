@@ -158,6 +158,9 @@ firstCb:SetPoint("TOPLEFT",firstAnchor.frame, "BOTTOMLEFT",(firstAnchor.xOffset 
 cb:SetPoint("TOPLEFT",firstAnchor.frame, "BOTTOMLEFT",(firstAnchor.xOffset or 0) + 320,firstAnchor.yOffset or 0)
 end
 table.insert(SpellActivationOverlayOptionsPanel.additionalCheckboxes[optionType],cb)
+if optionType=="alert" and #SpellActivationOverlayOptionsPanel.additionalCheckboxes[optionType]==12 then
+SpellActivationOverlayOptionsPanelSpellAlertVsGlowingButtonsDivider:SetWidth(256)
+end
 end
 if (infoTooltip)then
 local infoIcon=CreateFrame("Frame",nil,cb)

@@ -12,6 +12,8 @@ local holyShock=20473
 local how=24275
 local inquisition=84963
 local lightOfDawn=85222
+local prayForLight=1298728
+local righteousness=1299090
 local shieldOfTheRighteous=53600
 local templarsVerdict=85256
 local wordOfGlory=85673
@@ -249,6 +251,19 @@ buttons={
 }
 )
 end
+local function usePrayForLight()
+SAO:CreateEffect(
+"pray_for_light",
+SAO.TITAN,
+righteousness,
+"aura",
+{
+action=prayForLight,
+actionUsable=true,
+button={stacks=5,spellID=prayForLight},
+}
+)
+end
 local function useGrandCrusader()
 SAO:CreateEffect(
 "grand_crusader",
@@ -364,6 +379,25 @@ button={spellID=exorcism,option={isNative=true}},
 )
 end
 end
+local function useUnsealedWrath()
+SAO:CreateEffect(
+"unsealed_wrath",
+SAO.FOREVER,
+1311703,
+"aura",
+{
+aka={
+1311701,
+1311704,
+1311705,
+1328198,
+1328206,
+},
+talent=1310735,
+overlay={stacks=3,texture="denounce",position="Top"},
+}
+)
+end
 local function useSupplication()
 SAO:CreateEffect(
 "supplication",
@@ -413,12 +447,13 @@ useCrusade()
 useArtOfWar()
 useDivinePurpose()
 useDivineCrusader()
+usePrayForLight()
+useUnsealedWrath()
 useSupplication()
 useSelflessHealer()
+SAO:CreateRevelationEffect("revelation_paladin",1323419)
 end
 local function loadOptions(self)
-self:AddEyeOfGruulOverlayOption(37723)
-self:AddSoulPreserverOverlayOption(60513)
 end
 SAO.Class["PALADIN"]={
 ["Register"]=registerClass,

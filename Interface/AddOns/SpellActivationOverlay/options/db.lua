@@ -124,6 +124,12 @@ local frozenDebuff=5276
 overwriteOption(db, "MAGE", "alert",frozenDebuff,0,true)
 end
 end},
+{"3.0.0",function(db)
+if type(db.alert.timer)~="nil" then
+db.alert.countdown={visual=db.alert.timer,text=0}
+db.alert.timer=nil
+end
+end},
 }
 function SAO.LoadDB(self)
 local db=SpellActivationOverlayDB or {}
@@ -144,8 +150,8 @@ end
 if (type(db.alert.scale)=="nil")then
 db.alert.scale=1
 end
-if (type(db.alert.timer)=="nil")then
-db.alert.timer=1
+if (type(db.alert.timer)=="nil" and type(db.alert.countdown)=="nil")then
+db.alert.countdown={visual=1,text=0}
 end
 if (type(db.alert.sound)=="nil")then
 db.alert.sound=self.IsProject(SAO.FOREVER + SAO.CATA_AND_ONWARD) and 1 or 0

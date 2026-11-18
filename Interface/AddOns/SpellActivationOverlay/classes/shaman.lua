@@ -48,11 +48,11 @@ SAO.FOREVER + SAO.TBC_AND_ONWARD - SAO.RETAIL,
 talent=16164,
 overlays={
 [SAO.FOREVER]={
-{stacks=0,texture=texture,position="Left + Right (Flipped)",scale=1.5,pulse=false},
+{stacks=0,texture=texture,position="Left + Right (Flipped)",outer=0.5,pulse=false},
 },
 [SAO.ALL_PROJECTS - SAO.FOREVER]={
-{stacks=1,texture=texture,position="Left",scale=1.5,pulse=false,option=false},
-{stacks=2,texture=texture,position="Left + Right (Flipped)",scale=1.5,pulse=false,option={setupHash=hash0Stacks,testHash=hash2Stacks,variants=variants}},
+{stacks=1,texture=texture,position="Left" ,outer=0.5,pulse=false,option=false},
+{stacks=2,texture=texture,position="Left + Right (Flipped)",outer=0.5,pulse=false,option={setupHash=hash0Stacks,testHash=hash2Stacks,variants=variants}},
 },
 },
 }
@@ -81,7 +81,8 @@ SAO.TBC + SAO.WRATH + SAO.CATA,
 "aura",
 {
 talent=43338,
-overlay={texture="genericarc_05",position="Left + Right (Flipped)",scale=1.25,color={255,128,0},pulse=false},
+overlay=
+{texture="genericarc_05",position="Left + Right (Flipped)",outer=0.25,color={255,128,0},pulse=false},
 buttons={earthShock,flameShock,frostShock},
 }
 )
@@ -170,6 +171,7 @@ talent=stormstrike,-- To override text in option,otherwise it would display the 
 auraProps={debuff=true,mineOnly=true},
 overlay={
 texture="fury_of_stormrage",position="Top",
+text=false,
 pulse=false,
 scale=1.28,level=1,alpha=222,
 },
@@ -370,6 +372,7 @@ useMoltenBlast(self)
 usePowerSurge(self)
 self:RegisterAuraEyeOfGruul("eye_of_gruul_shaman",37722)
 self:RegisterAuraSoulPreserver("soul_preserver_shaman",60515)
+self:CreateRevelationEffect("revelation_shaman",1323418)
 end
 local function loadOptions(self)
 if self.IsEra()then
@@ -378,8 +381,6 @@ local elementalFocusTalent=16164
 lazyCreateElementalFocusVariants(self)
 self:AddOverlayOption(elementalFocusTalent,elementalFocusBuff,0,nil,elementalFocusVariants)
 end
-self:AddEyeOfGruulOverlayOption(37722)
-self:AddSoulPreserverOverlayOption(60515)
 if self.IsSoD()then
 local powerSurgeSoDBuff=415105
 local powerSurgeSoD=415100

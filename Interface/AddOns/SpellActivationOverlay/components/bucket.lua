@@ -3,6 +3,8 @@ local Module="bucket"
 SAO.RegisteredBucketsByName={}
 SAO.RegisteredBucketsBySpellID={}
 SAO.MacroConditionGenerators={}
+local inverseStacks=SAO.Constants.InverseAuraStacks
+local anyStacks=SAO.Constants.AnyAuraStacks
 SAO.Bucket={
 create=function(self,name,spellID,optionIndex)
 local spellName=SAO:GetSpellName(spellID)
@@ -208,7 +210,7 @@ end
 else
 local hashForAnyStacks=self.hashCalculatorToApply:toAnyAuraStacks()
 if self.displayedHash==nil then
-if currentStacks==nil or currentStacks==0 then
+if currentStacks==inverseStacks or currentStacks==anyStacks then
 if self[self.currentHash] then
 self[self.currentHash]:show()
 end
@@ -222,7 +224,7 @@ end
 end
 else
 local displayedStacks=SAO.Hash:new(self.displayedHash):getAuraStacks()
-if displayedStacks==nil then
+if displayedStacks==inverseStacks then
 self[self.displayedHash]:hide()
 if self[hashForAnyStacks] then
 self[hashForAnyStacks]:show(transitionOptions)
@@ -230,8 +232,8 @@ end
 if currentStacks > 0 and self[self.currentHash] then
 self[self.currentHash]:show(transitionOptions)
 end
-elseif displayedStacks==0 then
-if currentStacks==nil then
+elseif displayedStacks==anyStacks then
+if currentStacks==inverseStacks then
 self[self.displayedHash]:hide()
 if self[self.currentHash] then
 self[self.currentHash]:show(transitionOptions)
@@ -242,7 +244,7 @@ self[self.currentHash]:show()
 end
 end
 else
-if currentStacks==nil then
+if currentStacks==inverseStacks then
 local displayedHash=self.displayedHash
 if self[hashForAnyStacks] then
 self[hashForAnyStacks]:hide()
@@ -251,7 +253,7 @@ self[displayedHash]:hide()
 if self[self.currentHash] then
 self[self.currentHash]:show(transitionOptions)
 end
-elseif currentStacks==0 then
+elseif currentStacks==anyStacks then
 self[self.displayedHash]:hide()
 if self[self.currentHash] then
 self[self.currentHash]:show(transitionOptions)

@@ -19,8 +19,12 @@ SpellActivationOverlayAddonFrame.offset=SpellActivationOverlayDB.alert.offset
 SpellActivationOverlay_OnChangeGeometry(SpellActivationOverlayAddonFrame)
 end
 function SAO.ApplySpellAlertTimer(self)
-SpellActivationOverlayAddonFrame.useTimer=SpellActivationOverlayDB.alert.timer~=0
+local countdown=SpellActivationOverlayDB.alert.countdown
+SpellActivationOverlayAddonFrame.useVisualCountdown=countdown.visual~=0
+SpellActivationOverlayAddonFrame.textCountdownScale=countdown.text
+SpellActivationOverlayAddonFrame.useTimer=countdown.visual~=0 or countdown.text > 0
 SpellActivationOverlay_OnChangeTimerVisibility(SpellActivationOverlayAddonFrame)
+SAO.AuraContainer:setCountdown({visualEnabled=countdown.visual~=0,textScale=countdown.text})
 end
 function SAO.ApplySpellAlertSound(self)
 local useSound=SpellActivationOverlayDB.alert.sound~=0

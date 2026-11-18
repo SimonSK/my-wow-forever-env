@@ -57,12 +57,14 @@ index=overlay.index,
 spellID=overlay.spellID,
 texture=overlay.texture,
 position=overlay.position,
+outer=overlay.outer,
 level=overlay.level,
 scale=overlay.scale or 1,
 r=overlay.color and overlay.color[1] or 255,
 g=overlay.color and overlay.color[2] or 255,
 b=overlay.color and overlay.color[3] or 255,
 a=overlay.color and overlay.color[4] or 255,
+text=overlay.text,
 autoPulse=type(overlay.autoPulse)=='function' and overlay.autoPulse or overlay.autoPulse~=false,
 combatOnly=overlay.combatOnly==true,
 hash=overlay.hash,
@@ -113,6 +115,14 @@ local extra
 if overlay and overlay.level then
 extra=extra or {}
 extra.level=overlay.level
+end
+if overlay and type(overlay.outer)~='nil' then
+extra=extra or {}
+extra.outer=overlay.outer
+end
+if overlay and type(overlay.text)~='nil' then
+extra=extra or {}
+extra.text=overlay.text
 end
 if self.parent and self.parent.auraProps and self.parent.auraProps.debuff then
 extra=extra or {}

@@ -1,5 +1,83 @@
 ## SpellActivationOverlay Changelog
 
+#### v3.0.0 (2026-11-16)
+
+Thank you to our amazing contributors for helping out. Thanks!
+- Xaryu for reporting Mage issues and promoting the addon on stream
+- Partypete for suggesting and testing Paladin effects
+
+Spell Alerts now have a countdown number, similar to the shrinking effect
+- This effect is disabled by default; enter /sao to enable or disable it
+- 'Visual Countdown' rules the shrink (formerly Spell Alert Progressive Timer)
+- 'Text Size' rules the new number functionality
+- Some countdown numbers are not displayed on purpose to avoid confusion
+
+Spell Alerts can now have a shifted position
+- Alerts can share the same location (Top/Left/Right) without overlapping
+- Previously, sharing used other techniques such as scaling
+- This new technique should provide richer spell alerts with less confusion
+
+Spell Alerts now support item enchantments, starting with Revelation (Forever)
+- Druid
+- Hunter
+- Mage
+- Paladin
+- Priest
+- Shaman
+- Warlock
+
+New Spell Alert
+- Paladin's Unsealed Wrath (Forever)
+
+Updated Spell Alerts
+- Druid's Eclipse and Omen of Clarity are shifted to avoid overlap (Forever)
+- Druid's Eye of Gruul is now slightly shifted (The Burning Crusade)
+- Druid's Soul Preserver is now slightly shifted (Wrath of the Lich King)
+- Mage's Clearcasting is now shifted instead of scaled
+- Mage's Missile Barrage is now shifted instead of scaled (Forever)
+- Paladin's Eye of Gruul is now slightly shifted (The Burning Crusade)
+- Paladin's Soul Preserver is now slightly shifted (Wrath of the Lich King)
+- Priest's Clearcasting is now shifted instead of scaled (The Burning Crusade)
+- Priest's Eye of Gruul is now slightly shifted (The Burning Crusade)
+- Priest's Soul Preserver is now slightly shifted (Wrath of the Lich King)
+- Shaman's Elemental Focus is now shifted instead of scaled
+- Shamanistic Focus is now shifted instead of scaled (TBC, Wrath, Cata)
+- Shaman's Eye of Gruul is now slightly shifted (The Burning Crusade)
+- Shaman's Soul Preserver is now slightly shifted (Wrath of the Lich King)
+
+Bug Fixes
+- The Spell Alert Progressive Timer should now work as intended (Forever)
+
+#### v2.9.1 (2026-11-13)
+
+Thank you to our amazing contributors for helping out. Thanks!
+- SinianfromCH0813 for suggesting and testing Paladin's Pray for Light
+- SinianfromCH0813 for reporting a Hunter and a Warlock issue
+- Viper2042 for reporting a Shaman issue
+
+New Glowing Button
+- Pray for Light, with 5 stacks of Righteousness (Titan Reforged: Wrath)
+
+Bug Fixes
+- There was an issue that made some spells and abilities glow indefinitely
+- Hunter's Arcane Shot should no longer glow indefinitely (Wrath, MoP)
+- Hunter's Explosive Shot should no longer glow indefinitely (Wrath, Cata, MoP)
+- Hunter's Multi Shot should no longer glow indefinitely (MoP)
+- Mage's Arcane Missiles should no longer glow indefinitely (MoP)
+- Mage's Deep Freeze should no longer glow indefinitely (MoP)
+- Mage's Ice Lance should no longer glow indefinitely (MoP)
+- Priest's Flash Heal should no longer glow indefinitely (MoP)
+- Priest's Mind Spike should no longer glow indefinitely (MoP)
+- Shaman's Greater Healing Wave should no longer glow indefinitely (Cata, MoP)
+- Shaman's Healing Wave no longer glows indefinitely (SoD, Wrath, Cata, MoP)
+- Shaman's Healing Surge should no longer glow indefinitely (Cata, MoP)
+- Shaman's Lesser Healing Wave should no longer glow indefinitely (SoD, Wrath)
+- Warlock's Fel Flame should no longer glow indefinitely (Cata)
+- Warlock's Incinerate should no longer glow indefinitely (Wrath, Cata, MoP)
+- Warlock's Soul Fire should no longer glow indefinitely (Wrath, MoP)
+- Warrior's Overpower should no longer glow indefinitely (MoP)
+- Warrior's Wild Strike should no longer glow indefinitely (MoP)
+
 #### v2.9.0 (2026-11-12)
 
 Thank you to our amazing contributors for helping out. Thanks!

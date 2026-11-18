@@ -6,7 +6,8 @@ local sizeScale=0.8
 local longSide=256 * sizeScale
 local shortSide=128 * sizeScale
 local combatOverlayFactor=2
-local useTimer=true
+local useVisualCountdown=true
+local textCountdownScale=0
 local useSound=false
 function SpellActivationOverlay_OnLoad(self)
 SAO.Frame=self
@@ -21,6 +22,8 @@ self.offset=0
 self.scale=1
 SpellActivationOverlay_OnChangeGeometry(self)
 self.useTimer=true
+self.useVisualCountdown=true
+self.textCountdownScale=0
 SpellActivationOverlay_OnChangeTimerVisibility(self)
 self.useSound=false
 SpellActivationOverlay_OnChangeSoundToggle(self)
@@ -28,6 +31,9 @@ SAO.AuraContainer:initialize(SpellActivationOverlayAddonFrame,{
 longSide=256 * sizeScale * self.scale,
 shortSide=128 * sizeScale * self.scale,
 scale=sizeScale * self.scale,
+},{
+visualEnabled=self.useVisualCountdown,
+textScale=self.textCountdownScale,
 })
 local className,classFile,classId=UnitClass("player")
 local class=SAO.Class[classFile]
@@ -115,14 +121,16 @@ self.combatAnimIn:Play()
 end
 end
 function SpellActivationOverlay_OnChangeTimerVisibility(self)
-if useTimer==self.useTimer then
-return
-end
-useTimer=self.useTimer
+useVisualCountdown=self.useVisualCountdown
+textCountdownScale=self.textCountdownScale
 for _,overlayList in pairs(self.overlaysInUse)do
 for i=1,#overlayList do
 local overlay=overlayList[i]
-overlay.mask:SetShown(useTimer)
+overlay.mask:SetShown(useVisualCountdown)
+if overlay.hasText and textCountdownScale > 0 then
+overlay.durationText.text:SetScale(textCountdownScale * sizeScale * self.scale)
+end
+SpellActivationOverlay_UpdateDurationText(overlay)
 end
 end
 end
@@ -227,14 +235,17 @@ end
 positions=strupper(positions)
 if (complexLocationTable[positions])then
 for location,info in pairs(complexLocationTable[positions])do
-SpellActivationOverlay_ShowOverlay(self,spellID,texturePath,location,scale,r,g,b,a,info.vFlip,info.hFlip,info.cw,autoPulse,forcePulsePlay,endTime,combatOnly,extra)
+SpellActivationOverlay_ShowOverlay(self,spellID,texturePath,location,scale,{r,g,b,a},info,autoPulse,forcePulsePlay,endTime,combatOnly,extra)
 end
 else
-SpellActivationOverlay_ShowOverlay(self,spellID,texturePath,positions,scale,r,g,b,a,false,false,0,autoPulse,forcePulsePlay,endTime,combatOnly,extra)
+local posInfo={}
+SpellActivationOverlay_ShowOverlay(self,spellID,texturePath,positions,scale,{r,g,b,a},posInfo,autoPulse,forcePulsePlay,endTime,combatOnly,extra)
 end
 end
-function SpellActivationOverlay_ShowOverlay(self,spellID,texturePath,position,scale,r,g,b,a,vFlip,hFlip,cw,autoPulse,forcePulsePlay,endTime,combatOnly,extra)
+function SpellActivationOverlay_ShowOverlay(self,spellID,texturePath,position,scale,color,posInfo,autoPulse,forcePulsePlay,endTime,combatOnly,extra)
 SAO:Debug(Module, "Starting Overlay at location "..position.." for spell ID "..spellID.." "..SAO:GetSpellName(spellID, "")..(endTime and (" for "..math.floor((type(endTime)=='number' and endTime or endTime.endTime)-GetTime()+0.5).." secs") or ""))
+local r,g,b,a=unpack(color)
+local vFlip,hFlip,cw=posInfo.vFlip,posInfo.hFlip,posInfo.cw
 if (SpellActivationOverlayDB and SpellActivationOverlayDB.alert and not SpellActivationOverlayDB.alert.enabled)then
 return
 end
@@ -243,6 +254,10 @@ SAO_LastShownOverlay=overlay
 overlay.spellID=spellID
 overlay.position=position
 overlay.scale=scale
+overlay.hasText=true
+if type(extra)=='table' and type(extra.text)~='nil' then
+overlay.hasText=extra.text
+end
 local texLeft,texRight,texTop,texBottom=0,1,0,1
 if (vFlip)then
 texTop,texBottom=1,0
@@ -257,19 +272,21 @@ overlay.texture:SetTexCoord(texLeft,texBottom,texRight,texBottom,texLeft,texTop,
 else
 overlay.texture:SetTexCoord(texRight,texTop,texLeft,texTop,texRight,texBottom,texLeft,texBottom)
 end
+local outerFactor=type(extra)=='table' and extra.outer or 0
 overlay.SetGeometry=function(self,longSide,shortSide)
 local parent=self:GetParent()
 self:ClearAllPoints()
+local outerSide=outerFactor * shortSide * scale
 local width,height
 if (position=="CENTER")then
 width,height=longSide,longSide
 self:SetPoint("CENTER",parent, "CENTER",0,0)
 elseif (position=="LEFT")then
 width,height=shortSide,longSide
-self:SetPoint("RIGHT",parent, "LEFT",0,0)
+self:SetPoint("RIGHT",parent, "LEFT",-outerSide,0)
 elseif (position=="RIGHT")then
 width,height=shortSide,longSide
-self:SetPoint("LEFT",parent, "RIGHT",0,0)
+self:SetPoint("LEFT",parent, "RIGHT",outerSide,0)
 elseif (position=="TOP")then
 width,height=longSide,shortSide
 self:SetPoint("BOTTOM",parent, "TOP")
@@ -278,27 +295,31 @@ width,height=longSide,shortSide
 self:SetPoint("TOP",parent, "BOTTOM")
 elseif (position=="TOPRIGHT")then
 width,height=shortSide,shortSide
-self:SetPoint("BOTTOMLEFT",parent, "TOPRIGHT",0,0)
+self:SetPoint("BOTTOMLEFT",parent, "TOPRIGHT",outerSide,0)
 elseif (position=="TOPLEFT")then
 width,height=shortSide,shortSide
-self:SetPoint("BOTTOMRIGHT",parent, "TOPLEFT",0,0)
+self:SetPoint("BOTTOMRIGHT",parent, "TOPLEFT",-outerSide,0)
 elseif (position=="BOTTOMRIGHT")then
 width,height=shortSide,shortSide
-self:SetPoint("TOPLEFT",parent, "BOTTOMRIGHT",0,0)
+self:SetPoint("TOPLEFT",parent, "BOTTOMRIGHT",outerSide,0)
 elseif (position=="BOTTOMLEFT")then
 width,height=shortSide,shortSide
-self:SetPoint("TOPRIGHT",parent, "BOTTOMLEFT",0,0)
+self:SetPoint("TOPRIGHT",parent, "BOTTOMLEFT",-outerSide,0)
 else
 return
 end
 self:SetSize(width * scale,height * scale)
 self.mask:SetSize(longSide * scale,longSide * scale)
 self.combat:SetSize(longSide * scale * combatOverlayFactor,longSide * scale * combatOverlayFactor)
+if overlay.hasText and textCountdownScale > 0 then
+self.durationText.text:SetScale(textCountdownScale * sizeScale * parent.scale)
+end
 end
 overlay:SetGeometry(longSide,shortSide)
 overlay.texture:SetTexture(texturePath)
 overlay.texture:SetVertexColor(r / 255,g / 255,b / 255)
 overlay.alpha=a / 255
+overlay.durationText:SetAlpha(overlay.alpha)
 overlay.animOut:Stop()
 if useSound and (autoPulse or forcePulsePlay)then
 overlay.soundHandle=SAO:PlaySpellAlertSound()
@@ -317,8 +338,9 @@ if (forcePulsePlay and not overlay.pulse:IsPlaying())then
 overlay.pulse:Play()
 end
 overlay.pulse.autoPlay=autoPulse
-overlay.mask:SetShown(useTimer)
+overlay.mask:SetShown(useVisualCountdown)
 SpellActivationOverlay_SetOverlayTimer(self,overlay,endTime)
+SpellActivationOverlay_UpdateDurationText(overlay)
 overlay.combatOnly=combatOnly
 if (combatOnly)then
 tDeleteItem(self.combatOnlyOverlays,overlay)
@@ -341,8 +363,10 @@ end
 end
 local frameStrata=type(extra)=='table' and extra.strata or "MEDIUM"
 overlay:SetFrameStrata(frameStrata)
-local frameLevel=type(extra)=='table' and extra.level or 3
+overlay.durationText:SetFrameStrata(frameStrata)
+local frameLevel=type(extra)=='table' and extra.level or SAO.Constants.DefaultLevel
 overlay:SetFrameLevel(frameLevel)
+overlay.durationText:SetFrameLevel(frameLevel + 1)
 end
 function SpellActivationOverlay_DumpCombatOnlyOverlays()
 SAO:Info(Module, "Listing combat-only overlays ("..#SAO.Frame.combatOnlyOverlays.." item"..(#SAO.Frame.combatOnlyOverlays==1 and "" or "s")..")")
@@ -409,6 +433,7 @@ if (type(overlay.endTime)=='number' and SAO:IsTimeAlmostEqual(endTime,overlay.en
 return
 end
 overlay.endTime=endTime
+SpellActivationOverlay_UpdateDurationText(overlay)
 SAO:Debug(Module, "Setting Overlay Timer at location "..overlay.position.." for spell ID "..overlay.spellID.." "..SAO:GetSpellName(overlay.spellID, "")..(endTime and (" for "..math.floor(endTime-GetTime()+0.5).." secs") or " without time"))
 local offset=startTime and (GetTime() - startTime) or 0
 local duration=endTime - GetTime() + offset - 0.1
@@ -437,7 +462,28 @@ end
 return overlay
 end
 function SpellActivationOverlay_CreateOverlay(self)
-return CreateFrame("Frame",nil,self, "SpellActivationOverlayAddonTemplate")
+local overlay=CreateFrame("Frame",nil,self, "SpellActivationOverlayAddonTemplate")
+overlay.durationText=CreateFrame("Frame",nil,self, "SpellActivationOverlayDurationTextTemplate")
+overlay.durationText.overlay=overlay
+overlay.durationText:SetAllPoints(overlay)
+return overlay
+end
+function SpellActivationOverlay_UpdateDurationText(overlay)
+local durationText=overlay.durationText
+local remaining=overlay.endTime and overlay.endTime - GetTime()
+if not overlay.hasText or textCountdownScale <=0 or not overlay:IsShown() or not remaining or remaining <=0 then
+durationText:Hide()
+return
+end
+local seconds=math.ceil(remaining)
+if durationText.seconds~=seconds then
+durationText.text:SetText(seconds)
+durationText.seconds=seconds
+end
+durationText:Show()
+end
+function SpellActivationOverlayDuration_OnUpdate(self)
+SpellActivationOverlay_UpdateDurationText(self.overlay)
 end
 function SpellActivationOverlayTexture_OnShow(self)
 self.animIn:Play()
@@ -457,6 +503,8 @@ overlay.soundHandle=nil
 overlay.mask:SetAlpha(0)
 overlay.mask:SetScale(1)
 overlay.endTime=nil
+overlay.durationText:Hide()
+overlay.durationText.seconds=nil
 overlay:Hide()
 tDeleteItem(overlayParent.overlaysInUse[overlay.spellID],overlay)
 tinsert(overlayParent.unusedOverlays,overlay)

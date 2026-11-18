@@ -3,6 +3,8 @@ local Module="aurastacks"
 local canaccessvalue=canaccessvalue
 local InCombatLockdown=InCombatLockdown
 local ShouldAurasBeSecret=C_Secrets and C_Secrets.ShouldAurasBeSecret or function() return false; end
+local inverseStacks=SAO.Constants.InverseAuraStacks
+local anyStacks=SAO.Constants.AnyAuraStacks
 SAO.AURASTACKS={
 LEGACY=C_UnitAuras==nil,
 MODERN=C_UnitAuras~=nil,
@@ -51,7 +53,7 @@ key="aura_stacks",
 setterFunc=function(self,stacks,bucket)
 if type(stacks)~='number' or stacks < -1 then
 SAO:Warn(Module, "Invalid stack count "..tostring(stacks))
-elseif stacks==-1 then
+elseif stacks==inverseStacks then
 self:setMaskedHash(HASH_AURA_ABSENT,HASH_AURA_MASK)
 elseif bucket and bucket.stackAgnostic then
 self:setMaskedHash(HASH_AURA_ANY,HASH_AURA_MASK)
@@ -66,7 +68,7 @@ getterFunc=function(self)
 local maskedHash=self:getMaskedHash(HASH_AURA_MASK)
 if maskedHash==nil then return nil; end
 if maskedHash==HASH_AURA_ABSENT then
-return -1
+return inverseStacks
 end
 return maskedHash - HASH_AURA_ZERO
 end,
@@ -75,14 +77,14 @@ return bit.band(self.hash,bit.bnot(HASH_AURA_MASK)) + HASH_AURA_ANY
 end,
 toValue=function(hash)
 local auraStacks=hash:getAuraStacks()
-return (auraStacks==-1 and "missing") or (auraStacks==0 and "any" or tostring(auraStacks))
+return (auraStacks==inverseStacks and "missing") or (auraStacks==anyStacks and "any" or tostring(auraStacks))
 end,
 fromValue=function(hash,value)
 if value=="missing" then
-hash:setAuraStacks(-1)
+hash:setAuraStacks(inverseStacks)
 return true
 elseif value=="any" then
-hash:setAuraStacks(0)
+hash:setAuraStacks(anyStacks)
 return true
 elseif tostring(tonumber(value))==value then
 hash:setAuraStacks(tonumber(value))
@@ -95,7 +97,7 @@ getHumanReadableKeyValue=function(hash)
 local auraStacks=hash:getAuraStacks()
 if auraStacks and auraStacks > 0 then
 return SAO:NbStacks(auraStacks)
-elseif auraStacks==-1 then
+elseif auraStacks==inverseStacks then
 return ACTION_SPELL_AURA_REMOVED_DEBUFF
 else
 return nil
@@ -124,12 +126,12 @@ auraStacks,auraInstanceID=SAO:GetUnitAuraStacksBySpellID("target",filter,bucket.
 end
 if auraStacks~=nil then
 if bucket.stackAgnostic then
-bucket:setAuraStacks(0)
+bucket:setAuraStacks(anyStacks)
 else
 bucket:setAuraStacks(auraStacks)
 end
 else
-bucket:setAuraStacks(-1)
+bucket:setAuraStacks(inverseStacks)
 end
 if SAO.AURASTACKS.MODERN then
 bucket.lastKnownAuraStacks=auraStacks
@@ -205,17 +207,17 @@ bucket:refresh()
 return
 end
 if (auraRemovedLast)then
-bucket:setAuraStacks(-1); -- -1 means "not currently holding any stacks"
+bucket:setAuraStacks(inverseStacks); -- inverseStacks means "not currently holding any stacks"
 return
 end
-local stacks=0
+local stacks=anyStacks
 if not bucket.stackAgnostic then
 if event~="SPELL_AURA_REMOVED" then
 if isBuffBucket then
-stacks=SAO:GetPlayerAuraStacksBySpellID(spellID) or 0
+stacks=SAO:GetPlayerAuraStacksBySpellID(spellID) or anyStacks
 elseif isDebuffBucket then
 local filter=bucket.auraProps.mineOnly and "HARMFUL|PLAYER" or "HARMFUL"
-stacks=SAO:GetUnitAuraStacksBySpellID("target",filter,spellID) or 0
+stacks=SAO:GetUnitAuraStacksBySpellID("target",filter,spellID) or anyStacks
 end
 end
 end
@@ -254,7 +256,7 @@ local isDebuffBucket=bucket.auraProps and bucket.auraProps.debuff
 if isDebuffBucket and bucket.auraProps.mineOnly and not aura.isFromPlayerOrPlayerPet then
 return
 end
-bucket:setAuraStacks((bucket.stackAgnostic and 0) or aura.applications)
+bucket:setAuraStacks((bucket.stackAgnostic and anyStacks) or aura.applications)
 bucket.lastKnownAuraStacks=aura.applications
 if bucket.auraInstanceID then
 bucketsByAuraInstanceID[bucket.auraInstanceID]=nil
@@ -264,14 +266,14 @@ bucket.auraInstanceID=auraInstanceID
 bucketsByAuraInstanceID[auraInstanceID]=bucket
 end
 local removeAura=function(auraInstanceID,bucket)
-bucket:setAuraStacks(-1)
+bucket:setAuraStacks(inverseStacks)
 bucket.lastKnownAuraStacks=nil
 bucket.auraInstanceID=nil
 bucketsByAuraInstanceID[auraInstanceID]=nil
 end
 local updateAura=function(auraInstanceID,aura,bucket)
 if bucket.lastKnownAuraStacks~=aura.applications then
-bucket:setAuraStacks((bucket.stackAgnostic and 0) or aura.applications)
+bucket:setAuraStacks((bucket.stackAgnostic and anyStacks) or aura.applications)
 bucket.lastKnownAuraStacks=aura.applications
 else
 bucket:refresh()
@@ -340,7 +342,7 @@ end or nil,
 condition={
 noeVar="aura",
 hreVar="stacks",
-noeDefault=0,
+noeDefault=anyStacks,
 description="number of stacks",
 checker=function(value) return type(value)=='number' and value >=-1 and value <=10 end,
 noeToHash=function(value) return value end,

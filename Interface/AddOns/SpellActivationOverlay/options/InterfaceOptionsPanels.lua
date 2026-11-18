@@ -168,7 +168,7 @@ SpellActivationOverlayDB.alert.enabled=value > 0
 SAO:ApplySpellAlertOpacity(SpellActivationOverlayDB.alert.enabled~=wasEnabled)
 end
 local scaleSlider=SpellActivationOverlayOptionsPanelSpellAlertScaleSlider
-scaleSlider.Text:SetText("Spell Alert Scale")
+scaleSlider.Text:SetText("Scale Factor")
 _G[scaleSlider:GetName().."Low"]:SetText(SMALL)
 _G[scaleSlider:GetName().."High"]:SetText(LARGE)
 scaleSlider:SetMinMaxValues(0.25,2.5)
@@ -180,7 +180,7 @@ SpellActivationOverlayDB.alert.scale=value
 SAO:ApplySpellAlertGeometry()
 end
 local offsetSlider=SpellActivationOverlayOptionsPanelSpellAlertOffsetSlider
-offsetSlider.Text:SetText("Spell Alert Offset")
+offsetSlider.Text:SetText("Offset")
 _G[offsetSlider:GetName().."Low"]:SetText(NEAR)
 _G[offsetSlider:GetName().."High"]:SetText(FAR)
 offsetSlider:SetMinMaxValues(-200,400)
@@ -191,20 +191,32 @@ offsetSlider.ApplyValueToEngine=function(self,value)
 SpellActivationOverlayDB.alert.offset=value
 SAO:ApplySpellAlertGeometry()
 end
-local timerSlider=SpellActivationOverlayOptionsPanelSpellAlertTimerSlider
-timerSlider.Text:SetText("Spell Alert Progressive Timer")
-_G[timerSlider:GetName().."Low"]:SetText(DISABLE)
-_G[timerSlider:GetName().."High"]:SetText(ENABLE)
-timerSlider:SetMinMaxValues(0,1)
-timerSlider:SetValueStep(1)
-timerSlider.initialValue=SpellActivationOverlayDB.alert.timer
-timerSlider:SetValue(timerSlider.initialValue)
-timerSlider.ApplyValueToEngine=function(self,value)
-SpellActivationOverlayDB.alert.timer=value
+local visualCountdownSlider=SpellActivationOverlayOptionsPanelSpellAlertVisualCountdownSlider
+visualCountdownSlider.Text:SetText("Visual Countdown")
+_G[visualCountdownSlider:GetName().."Low"]:SetText(DISABLE)
+_G[visualCountdownSlider:GetName().."High"]:SetText(ENABLE)
+visualCountdownSlider:SetMinMaxValues(0,1)
+visualCountdownSlider:SetValueStep(1)
+visualCountdownSlider.initialValue=SpellActivationOverlayDB.alert.countdown.visual
+visualCountdownSlider:SetValue(visualCountdownSlider.initialValue)
+visualCountdownSlider.ApplyValueToEngine=function(self,value)
+SpellActivationOverlayDB.alert.countdown.visual=value
+SAO:ApplySpellAlertTimer()
+end
+local textCountdownSlider=SpellActivationOverlayOptionsPanelSpellAlertTextCountdownSlider
+textCountdownSlider.Text:SetText("Text Size ("..WrapTextInColorCode("New", "FFFF8000")..")")
+_G[textCountdownSlider:GetName().."Low"]:SetText(OFF)
+_G[textCountdownSlider:GetName().."High"]:SetText(LARGE)
+textCountdownSlider:SetMinMaxValues(0,7)
+textCountdownSlider:SetValueStep(0.1)
+textCountdownSlider.initialValue=SpellActivationOverlayDB.alert.countdown.text
+textCountdownSlider:SetValue(textCountdownSlider.initialValue)
+textCountdownSlider.ApplyValueToEngine=function(self,value)
+SpellActivationOverlayDB.alert.countdown.text=value
 SAO:ApplySpellAlertTimer()
 end
 local soundSlider=SpellActivationOverlayOptionsPanelSpellAlertSoundSlider
-soundSlider.Text:SetText("Spell Alert Sound Effect")
+soundSlider.Text:SetText("Sound Effect")
 _G[soundSlider:GetName().."Low"]:SetText(DISABLE)
 _G[soundSlider:GetName().."High"]:SetText(ENABLE)
 soundSlider:SetMinMaxValues(0,1)
@@ -217,19 +229,25 @@ SAO:ApplySpellAlertSound()
 end
 local testButton=SpellActivationOverlayOptionsPanelSpellAlertTestButton
 testButton:SetText("Toggle Test")
-testButton.fakeSpellID=42
+testButton.fakeSpellID1=42
+testButton.fakeSpellID2=43
+testButton.fakeSpellID3=44
 testButton.isTesting=false
 local testTextureLeftRight=SAO.IsEra() and "echo_of_the_elements" or "imp_empowerment"
+local testTextureOuter="genericarc_02"
 local testTextureTop=SAO.IsEra() and "fury_of_stormrage" or "brain_freeze"
 local testPositionTop=SAO.IsCata() and "Top (CW)" or "Top"
 testButton.StartTest=function(self)
 if (not self.isTesting)then
 self.isTesting=true
-SAO:ActivateOverlay(0,self.fakeSpellID,SAO.TexName[testTextureLeftRight], "Left + Right (Flipped)",1,255,255,255,255,false,nil,GetTime()+5,false,{strata="DIALOG",level=8999})
-SAO:ActivateOverlay(0,self.fakeSpellID,SAO.TexName[testTextureTop] ,testPositionTop ,1,255,255,255,255,false,nil,GetTime()+5,false,{strata="DIALOG",level=8999})
+SAO:ActivateOverlay(0,self.fakeSpellID1,SAO.TexName[testTextureLeftRight], "Left + Right (Flipped)",1,255,255,255,255,false,nil,GetTime()+5,false,{strata="DIALOG",level=8999})
+SAO:ActivateOverlay(0,self.fakeSpellID2,SAO.TexName[testTextureOuter] , "Left + Right (Flipped)",1,255,255,255,255,false,nil,GetTime()+5,false,{strata="DIALOG",level=8999,outer=1})
+SAO:ActivateOverlay(0,self.fakeSpellID3,SAO.TexName[testTextureTop] ,testPositionTop ,1,255,255,255,255,false,nil,GetTime()+5,false,{strata="DIALOG",level=8999})
 self.testTimerTicker=C_Timer.NewTicker(4.9,
 function()
-SAO:RefreshOverlayTimer(self.fakeSpellID,GetTime()+5)
+SAO:RefreshOverlayTimer(self.fakeSpellID1,GetTime()+5)
+SAO:RefreshOverlayTimer(self.fakeSpellID2,GetTime()+5)
+SAO:RefreshOverlayTimer(self.fakeSpellID3,GetTime()+5)
 end)
 SpellActivationOverlayFrame_SetForceAlpha1(true)
 end
@@ -238,12 +256,15 @@ testButton.StopTest=function(self)
 if (self.isTesting)then
 self.isTesting=false
 self.testTimerTicker:Cancel()
-SAO:DeactivateOverlay(self.fakeSpellID)
+SAO:DeactivateOverlay(self.fakeSpellID1)
+SAO:DeactivateOverlay(self.fakeSpellID2)
+SAO:DeactivateOverlay(self.fakeSpellID3)
 SpellActivationOverlayFrame_SetForceAlpha1(false)
 end
 end
 testButton:SetEnabled(SpellActivationOverlayDB.alert.enabled)
 SAO:MarkTexture(testTextureLeftRight)
+SAO:MarkTexture(testTextureOuter)
 SAO:MarkTexture(testTextureTop)
 local debugButton=SpellActivationOverlayOptionsPanelSpellAlertDebugButton
 debugButton.Text:SetText(SAO:optionDebugToChatbox())
@@ -304,8 +325,10 @@ local scaleSlider=SpellActivationOverlayOptionsPanelSpellAlertScaleSlider
 scaleSlider.initialValue=scaleSlider:GetValue()
 local offsetSlider=SpellActivationOverlayOptionsPanelSpellAlertOffsetSlider
 offsetSlider.initialValue=offsetSlider:GetValue()
-local timerSlider=SpellActivationOverlayOptionsPanelSpellAlertTimerSlider
-timerSlider.initialValue=timerSlider:GetValue()
+local visualCountdownSlider=SpellActivationOverlayOptionsPanelSpellAlertVisualCountdownSlider
+visualCountdownSlider.initialValue=visualCountdownSlider:GetValue()
+local textCountdownSlider=SpellActivationOverlayOptionsPanelSpellAlertTextCountdownSlider
+textCountdownSlider.initialValue=textCountdownSlider:GetValue()
 local soundSlider=SpellActivationOverlayOptionsPanelSpellAlertSoundSlider
 soundSlider.initialValue=soundSlider:GetValue()
 local glowingButtonCheckbox=SpellActivationOverlayOptionsPanelGlowingButtons
@@ -319,7 +342,8 @@ local function cancelFunc(self)
 local opacitySlider=SpellActivationOverlayOptionsPanelSpellAlertOpacitySlider
 local scaleSlider=SpellActivationOverlayOptionsPanelSpellAlertScaleSlider
 local offsetSlider=SpellActivationOverlayOptionsPanelSpellAlertOffsetSlider
-local timerSlider=SpellActivationOverlayOptionsPanelSpellAlertTimerSlider
+local visualCountdownSlider=SpellActivationOverlayOptionsPanelSpellAlertVisualCountdownSlider
+local textCountdownSlider=SpellActivationOverlayOptionsPanelSpellAlertTextCountdownSlider
 local soundSlider=SpellActivationOverlayOptionsPanelSpellAlertSoundSlider
 local glowingButtonCheckbox=SpellActivationOverlayOptionsPanelGlowingButtons
 local classOptions=SpellActivationOverlayOptionsPanel.classOptions
@@ -327,7 +351,8 @@ self:applyAll(
 opacitySlider.initialValue,
 scaleSlider.initialValue,
 offsetSlider.initialValue,
-timerSlider.initialValue,
+visualCountdownSlider.initialValue,
+textCountdownSlider.initialValue,
 soundSlider.initialValue,
 glowingButtonCheckbox.initialValue,
 classOptions.initialValue
@@ -340,12 +365,13 @@ self:applyAll(
 1,
 0,
 1,
+0,
 SAO.IsCata() and 1 or 0,
 true,
 defaultClassOptions
 )
 end
-local function applyAllFunc(self,opacityValue,scaleValue,offsetValue,timerValue,soundValue,isGlowEnabled,classOptions)
+local function applyAllFunc(self,opacityValue,scaleValue,offsetValue,visualCountdownValue,textCountdownValue,soundValue,isGlowEnabled,classOptions)
 local opacitySlider=SpellActivationOverlayOptionsPanelSpellAlertOpacitySlider
 opacitySlider:SetValue(opacityValue)
 if (SpellActivationOverlayDB.alert.opacity~=opacityValue)then
@@ -370,10 +396,16 @@ end
 if (geometryChanged)then
 SAO:ApplySpellAlertGeometry()
 end
-local timerSlider=SpellActivationOverlayOptionsPanelSpellAlertTimerSlider
-timerSlider:SetValue(timerValue)
-if (SpellActivationOverlayDB.alert.timer~=timerValue)then
-SpellActivationOverlayDB.alert.timer=timerValue
+local visualCountdownSlider=SpellActivationOverlayOptionsPanelSpellAlertVisualCountdownSlider
+visualCountdownSlider:SetValue(visualCountdownValue)
+if (SpellActivationOverlayDB.alert.countdown.visual~=visualCountdownValue)then
+SpellActivationOverlayDB.alert.countdown.visual=visualCountdownValue
+SAO:ApplySpellAlertTimer()
+end
+local textCountdownSlider=SpellActivationOverlayOptionsPanelSpellAlertTextCountdownSlider
+textCountdownSlider:SetValue(textCountdownValue)
+if (SpellActivationOverlayDB.alert.countdown.text~=textCountdownValue)then
+SpellActivationOverlayDB.alert.countdown.text=textCountdownValue
 SAO:ApplySpellAlertTimer()
 end
 local soundSlider=SpellActivationOverlayOptionsPanelSpellAlertSoundSlider

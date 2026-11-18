@@ -89,10 +89,10 @@ SAO.FOREVER,
 aka=441260,
 overlays={
 default={texture="eclipse_moon",pulse=false,option=false},
-{stacks=1,position="Left",scale=0.8,level=4,alpha=192},
-{stacks=2,position="Left",scale=1.1,level=4,alpha=255},
-{stacks=3,position="Right (Flipped)",scale=0.8,level=2,alpha=192},
-{stacks=4,position="Right (Flipped)",scale=1.1,level=2,alpha=255,option={
+{stacks=1,position="Left",scale=0.8,outer=-0.16,level=4,alpha=192,text=true},
+{stacks=2,position="Left",scale=1.1,outer=-0.16,level=4,alpha=255,text=false},
+{stacks=3,position="Right (Flipped)",scale=0.8,outer=-0.16,level=2,alpha=192,text=true},
+{stacks=4,position="Right (Flipped)",scale=1.1,outer=-0.16,level=2,alpha=255,text=false,option={
 setupHash=SAO:HashNameFromStacks(0),
 testHash={SAO:HashNameFromStacks(1),SAO:HashNameFromStacks(2),SAO:HashNameFromStacks(3),SAO:HashNameFromStacks(4)},
 subText=SAO:RecentlyUpdated(),
@@ -143,8 +143,8 @@ DRUID_STANCE_CAT,
 },
 optionIndex=0,
 overlays={
-{matchStance=true,texture="feral_omenofclarity",position="Left + Right (Flipped)",option=false},
-{matchStance=false,texture="natures_grace",position="Left + Right (Flipped)",
+{matchStance=true,texture="feral_omenofclarity",position="Left + Right (Flipped)",outer=0.25,option=false},
+{matchStance=false,texture="natures_grace",position="Left + Right (Flipped)",outer=0.25,
 option={
 setupHash=SAO:HashNameFromStacks(0),
 testHash=SAO.Hash:new():setAuraStacks(0):setMatchStance(false):toString(),
@@ -512,6 +512,7 @@ usePredatoryStrikes()
 useMangle()
 useOmenOfClarity()
 useSwiftbloom()
+SAO:CreateRevelationEffect("revelation_druid",1323400)
 if self.IsProject(SAO.ERA + SAO.TBC + SAO.WRATH + SAO.CATA)then
 if self.IsProject(SAO.SOD + SAO.WRATH + SAO.CATA + SAO.MOP)then
 self:RegisterAura("eclipse_lunar",0,lunarSpellID+1000000, "eclipse_moon", "Left",1,255,255,255,true)
@@ -544,8 +545,6 @@ self:AddOverlayOption(lunarEclipseTalent,lunarSpellID,0,nil,nil,nil,lunarSpellID
 self:AddOverlayOption(solarEclipseTalent,solarSpellID,0,nil,nil,nil,solarSpellID+1000000)
 self:AddOverlayOption(omenOfClarityTalent,omenSpellID,0,nil,nil,nil,omenSpellID+1000000)
 end
-self:AddEyeOfGruulOverlayOption(37721)
-self:AddSoulPreserverOverlayOption(60512)
 if canHaveEclipse then
 self:AddGlowingOption(lunarEclipseTalent,starfire,starfire)
 self:AddGlowingOption(solarEclipseTalent,wrath,wrath)

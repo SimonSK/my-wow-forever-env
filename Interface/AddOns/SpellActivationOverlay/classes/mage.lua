@@ -479,7 +479,7 @@ SAO.FOREVER,
 400589,
 "aura",
 {
-overlay={texture="arcane_missiles",position="Left + Right (Flipped)",scale=1.22,level=2},
+overlay={texture="arcane_missiles",position="Left + Right (Flipped)",outer=0.32,level=5},
 }
 )
 end
@@ -507,7 +507,7 @@ SAO.FOREVER + SAO.RETAIL,
 clearcastingBuff,
 "aura",
 {
-overlay={texture="genericarc_05",position="Left + Right (Flipped)",scale=1.5,pulse=false},
+overlay={texture="genericarc_05",position="Left + Right (Flipped)",outer=0.75,pulse=false,level=7},
 }
 )
 end
@@ -635,9 +635,12 @@ SAO.FOREVER,
 "aura",
 {
 overlays={
-{stacks=1,texture="hot_streak",position="Left + Right (Flipped)",scale=0.5,pulse=false,level=1,color={200,200,200},option=false},
-{stacks=2,texture="hot_streak",position="Left + Right (Flipped)",scale=0.7,pulse=false,level=2,color={222,222,222},option=false},
-{stacks=3,texture="hot_streak",position="Left + Right (Flipped)",scale=0.9,pulse=true ,level=3,color={255,255,255},option={setupHash=SAO:HashNameFromStacks(0),testHash=SAO:HashNameFromStacks(3)}},
+{stacks=1,texture="hot_streak",position="Left + Right (Flipped)",scale=0.5,pulse=false,text=true ,level=1,color={200,200,200},option=false},
+{stacks=2,texture="hot_streak",position="Left + Right (Flipped)",scale=0.7,pulse=false,text=false,level=2,color={222,222,222},option=false},
+{stacks=3,texture="hot_streak",position="Left + Right (Flipped)",scale=0.9,pulse=true ,text=false,level=3,color={255,255,255},option={
+setupHash=SAO:HashNameFromStacks(0),
+testHash={SAO:HashNameFromStacks(1),SAO:HashNameFromStacks(2),SAO:HashNameFromStacks(3)},
+}},
 },
 }
 )
@@ -712,16 +715,28 @@ end
 if isCompatibleWithClearcasting then
 lazyCreateClearcastingVariants(self)
 if clearcastingVariants then
-self:RegisterAura("clearcasting",0,12536,clearcastingVariants.textureFunc, "Left + Right (Flipped)",1.5,192,192,192,false)
+self:CreateEffect(
+"clearcasting",
+SAO.ALL_PROJECTS,
+12536,
+"aura",
+{
+overlay={texture="genericarc_05",position="Left + Right (Flipped)",outer=0.5,pulse=false},
+}
+)
 end
 end
 useArcaneBlast()
 useClearcasting()
 end
+local function registerItems(self)
+SAO:CreateRevelationEffect("revelation_mage",1248808)
+end
 local function registerClass(self)
 registerArcane(self)
 registerFire(self)
 registerFrost(self)
+registerItems(self)
 end
 local function loadOptions(self)
 local clearcastingTalent=12536

@@ -188,7 +188,7 @@ SAO.TBC,
 34754,
 "aura",
 {
-overlay={texture="genericarc_05",position="Left + Right (Flipped)",scale=1.5,color={192,192,192},pulse=false},
+overlay={texture="genericarc_05",position="Left + Right (Flipped)",outer=0.5,color={192,192,192},pulse=false},
 buttons={flashHeal,bindingHeal,greaterHeal},
 }
 )
@@ -332,6 +332,7 @@ useMindMelt()
 useMindSpike()
 useDivineInsight()
 useGlyphOfMindSpike()
+SAO:CreateRevelationEffect("revelation_priest",1323377)
 end
 local function loadOptions(self)
 local serendipityBuff2=63735
@@ -341,9 +342,7 @@ local serendipitySoDBuff=413247
 local oneOrTwoStacks=self:NbStacks(1,2)
 local twoStacks=self:NbStacks(2)
 local threeStacks=self:NbStacks(3)
-if self.IsTBC()then
-self:AddEyeOfGruulOverlayOption(37706)
-elseif self.IsProject(SAO.WRATH + SAO.CATA)then
+if self.IsProject(SAO.WRATH + SAO.CATA)then
 if self.IsWrath()then
 self:AddOverlayOption(serendipityTalent,serendipityBuff3,0,oneOrTwoStacks,nil,2)
 self:AddOverlayOption(serendipityTalent,serendipityBuff3,self:HashNameFromStacks(3))
@@ -351,7 +350,6 @@ elseif self.IsCata()then
 self:AddOverlayOption(serendipityTalent,serendipityBuff2,self:HashNameFromStacks(1))
 self:AddOverlayOption(serendipityTalent,serendipityBuff2,self:HashNameFromStacks(2))
 end
-self:AddSoulPreserverOverlayOption(60514)
 if self.IsWrath()then
 self:AddGlowingOption(serendipityTalent,serendipityBuff3,greaterHeal,threeStacks)
 self:AddGlowingOption(serendipityTalent,serendipityBuff3,prayerOfHealing,threeStacks)

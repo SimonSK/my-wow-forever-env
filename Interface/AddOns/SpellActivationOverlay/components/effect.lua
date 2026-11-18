@@ -150,10 +150,12 @@ condition=condition,
 hash=getHash(condition,triggers).hash,
 texture=texture,
 position=position,
+outer=overlayConfig.outer or default.outer,
 level=overlayConfig.level or default.level,
 scale=overlayConfig.scale or default.scale,
 color=color,
 pulse=getValueOrDefault(overlayConfig.pulse,default.pulse),
+text=getValueOrDefault(overlayConfig.text,default.text),
 option=mergeOption(default.option,overlayConfig.option),
 }
 table.insert(overlays,overlay)
@@ -338,10 +340,12 @@ if not overlay.project or self.IsProject(overlay.project)then
 local spellID=overlay.spellID or effect.spellID
 local texture=overlay.texture
 local position=overlay.position
+local outer=overlay.outer or 0
 local level=overlay.level
 local scale=overlay.scale or 1
 local color=overlay.color and {overlay.color[1],overlay.color[2],overlay.color[3],overlay.color[4]} or {255,255,255,255}
 local autoPulse=type(overlay.pulse)=='function' and overlay.pulse or overlay.pulse~=false
+local text=overlay.text~=false
 local combatOnly=overlay.combatOnly==true or effect.combatOnly==true
 local hash=overlay.hash
 local overlayPod={
@@ -349,11 +353,13 @@ stacks=nil,
 spellID=spellID,
 texture=type(texture)=='string' and SAO.TexName[texture] or texture,
 position=position,
+outer=outer,
 level=level,
 scale=scale,
 color=color,
 autoPulse=autoPulse,
 combatOnly=combatOnly,
+text=text,
 hash=hash,
 }
 self.BucketManager:addEffectOverlay(bucket,overlayPod)

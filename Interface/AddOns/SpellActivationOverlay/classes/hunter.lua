@@ -254,6 +254,7 @@ useThrillOfTheHunt()
 useFlankingStrike()
 useCobraStrikes()
 useBurningAdrenaline()
+SAO:CreateRevelationEffect("revelation_hunter",1323410)
 end
 SAO.Class["HUNTER"]={
 ["Register"]=registerClass,

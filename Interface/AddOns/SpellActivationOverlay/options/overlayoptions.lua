@@ -30,7 +30,7 @@ local applyTextFunc=function(self)
 local retryApplyText
 local enabled=self:IsEnabled()
 local text=" "
-text=talentText
+text=text..talentText
 local humanReadableHash=hashCalculator:toHumanReadableString()
 if humanReadableHash then
 text=text .. " ("..humanReadableHash..")"
@@ -77,8 +77,8 @@ end
 local testHashData={optionIndex=displayHashCalculator:toOptionIndex()}
 local testTexture=type(variants)=='table' and type(variants.textureTestFunc)=='function' and variants.textureTestFunc(cb,sb) or nil
 for _,o in ipairs(display.overlays)do
-local texture,positions,scale,r,g,b,a,autoPulse,forcePulsePlay,endTime,combatOnly,level=testTexture or o.texture,o.position,o.scale,o.r,o.g,o.b,o.a,o.autoPulse,o.autoPulse,nil,o.combatOnly,(o.level or 3)
-self:ActivateOverlay(testHashData,fakeOffset+(testAuraID or auraID),texture,positions,scale,r,g,b,a,autoPulse,forcePulsePlay,endTime,combatOnly,{strata="DIALOG",level=9000 + level})
+local texture,positions,scale,r,g,b,a,autoPulse,forcePulsePlay,endTime,combatOnly,level,outer=testTexture or o.texture,o.position,o.scale,o.r,o.g,o.b,o.a,o.autoPulse,o.autoPulse,nil,o.combatOnly,(o.level or SAO.Constants.DefaultLevel),(o.outer or 0)
+self:ActivateOverlay(testHashData,fakeOffset+(testAuraID or auraID),texture,positions,scale,r,g,b,a,autoPulse,forcePulsePlay,endTime,combatOnly,{strata="DIALOG",level=9000 + level,outer=outer})
 fakeOffset=fakeOffset + 1000000
 end
 else

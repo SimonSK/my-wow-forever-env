@@ -495,6 +495,7 @@ useEmpoweredImp(self)
 useFireAndBrimstone(self)
 useMannorothsFury(self)
 useFelSpark(self)
+self:CreateRevelationEffect("revelation_warlock",1323392)
 end
 local function loadOptions(self)
 if DrainSoulHandler.initialized then
