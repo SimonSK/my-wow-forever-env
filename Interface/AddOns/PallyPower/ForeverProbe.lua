@@ -92,17 +92,49 @@ end
 SLASH_PPAURA1 = "/ppaura"
 SlashCmdList["PPAURA"] = function(msg)
 	local function out(...) print("|cff33ff99PP-Aura|r", ...) end
+	if msg and msg:match("^%s*colors%s*$") then
+		local good = PallyPower.opt.cBuffGood
+		out("configured good color RGBA:", good.r, good.g, good.b, good.t)
+		out("configured background skin:", PallyPower.opt.skin)
+		return
+	end
 	local unit = (msg and msg:match("%S+")) or "target"
-	if not UnitExists(unit) then unit = "player" end
 	local issecret = _G.issecretvalue or function() return false end
+	local exists = UnitExists(unit)
+	if issecret(exists) then out("unit existence is hidden; using player"); unit = "player"
+	elseif not exists then unit = "player" end
 	out("unit", unit, "inCombat", tostring(InCombatLockdown()))
+	if PallyPower.NativeAuras then
+		local containers, slots, enabled = PallyPower.NativeAuras:GetAllocationCounts()
+		out("native allocations: containers", containers, "fixed slots", slots, "enabled slots", enabled,
+			"(configuration counts, not aura presence)")
+	end
+	if unit == "player" then
+		for _, entry in ipairs({{"RF", "PallyPowerRFTime1"}, {"seal", "PallyPowerRFTime2"}}) do
+			local text = _G[entry[2]]
+			local timer = text and text.ppAuraTimer
+			local source, enabled
+			if text and PallyPower.NativeAuras then source, enabled = PallyPower.NativeAuras:DescribeTimer(text) end
+			if source then
+				out(entry[1], "timer source:", source, "display enabled:", tostring(enabled), "duration: managed by Blizzard")
+			else
+				out(entry[1], "timer source:", timer and timer.source or "not bound",
+					"active:", tostring(timer and timer.active or false), "secret duration:", tostring(timer and timer.secret or false))
+			end
+		end
+	end
 	if not (C_UnitAuras and C_UnitAuras.GetAuraDataByIndex) then out("C_UnitAuras missing") return end
-	local hidden, shown = 0, 0
+	local hidden, shown, blocked = 0, 0, false
 	for i = 1, 40 do
 		local ok, d = pcall(C_UnitAuras.GetAuraDataByIndex, unit, i, "HELPFUL")
 		if not ok then
-			hidden = hidden + 1
-			out(i, "call failed (whole aura restricted)")
+			blocked = true
+			out("scan blocked at index", i, "(not a buff count; raw aura access denied)")
+			break
+		elseif issecret(d) then
+			blocked = true
+			out("scan blocked at index", i, "(whole aura table is secret)")
+			break
 		elseif not d then
 			break
 		else
@@ -111,7 +143,7 @@ SlashCmdList["PPAURA"] = function(msg)
 			out(i, nameSecret and "name=SECRET" or ("name=" .. tostring(d.name)), expSecret and "expiry=SECRET" or "expiry=readable")
 		end
 	end
-	out("readable names:", shown, "hidden names:", hidden)
+	out("readable names:", shown, "hidden names:", hidden, "scan blocked:", tostring(blocked))
 end
 
 -- /ppcasts : the last of your own spell casts the addon saw (shows whether the client hides spell ids).
