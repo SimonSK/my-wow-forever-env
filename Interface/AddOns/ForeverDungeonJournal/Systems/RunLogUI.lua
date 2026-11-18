@@ -27,7 +27,7 @@ do
             RUNLOG_BOSSES = "Bosses", RUNLOG_TRASH_MOBS = "Trash", RUNLOG_NEED = "Need rolls",
             RUNLOG_NO_NEED = "You didn't \"Need\" on anything this run.", RUNLOG_NO_TRASH = "No trash killed.",
             RUNLOG_NOT_KILLED = "not killed", RUNLOG_RARE = "Rare",
-            RUNLOG_WON = "Won", RUNLOG_LOST = "Lost", RUNLOG_ROLLING = "Rolling...",
+            RUNLOG_WON = "Won", RUNLOG_LOST = "Lost", RUNLOG_ROLLS = "Rolls", RUNLOG_ROLLING = "Rolling...",
             RUNLOG_OUTSIDE = "Time outside", RUNLOG_RELEASED = "Death Walk", RUNLOG_STEPPED = "Stepped out",
             RUNLOG_STILL_OUT = "still outside",
             RUNLOG_ROW_HINT = "Right click: delete this run", RUNLOG_DELETE = "Delete this run of %s?",
@@ -47,7 +47,7 @@ do
             RUNLOG_BOSSES = "Bosse", RUNLOG_TRASH_MOBS = "Trash", RUNLOG_NEED = "Bedarfswürfe",
             RUNLOG_NO_NEED = "In diesem Run hast du auf nichts Bedarf gewürfelt.", RUNLOG_NO_TRASH = "Kein Trash getötet.",
             RUNLOG_NOT_KILLED = "nicht getötet", RUNLOG_RARE = "Rare",
-            RUNLOG_WON = "Gewonnen", RUNLOG_LOST = "Verloren", RUNLOG_ROLLING = "Wird gewürfelt...",
+            RUNLOG_WON = "Gewonnen", RUNLOG_LOST = "Verloren", RUNLOG_ROLLS = "Würfe", RUNLOG_ROLLING = "Wird gewürfelt...",
             RUNLOG_OUTSIDE = "Zeit draußen", RUNLOG_RELEASED = "Geisterlauf", RUNLOG_STEPPED = "Rausgegangen",
             RUNLOG_STILL_OUT = "noch draußen",
             RUNLOG_ROW_HINT = "Rechtsklick: diesen Run löschen", RUNLOG_DELETE = "Diesen Run von %s löschen?",
@@ -67,7 +67,7 @@ do
             RUNLOG_BOSSES = "Boss", RUNLOG_TRASH_MOBS = "Monstres", RUNLOG_NEED = "Jets de Besoin",
             RUNLOG_NO_NEED = "Aucun jet de Besoin dans ce run.", RUNLOG_NO_TRASH = "Aucun monstre tué.",
             RUNLOG_NOT_KILLED = "pas tué", RUNLOG_RARE = "Rare",
-            RUNLOG_WON = "Gagné", RUNLOG_LOST = "Perdu", RUNLOG_ROLLING = "Jet en cours...",
+            RUNLOG_WON = "Gagné", RUNLOG_LOST = "Perdu", RUNLOG_ROLLS = "Jets", RUNLOG_ROLLING = "Jet en cours...",
             RUNLOG_OUTSIDE = "Temps dehors", RUNLOG_RELEASED = "Marche du fantôme", RUNLOG_STEPPED = "Sorti",
             RUNLOG_STILL_OUT = "encore dehors",
             RUNLOG_ROW_HINT = "Clic droit : supprimer ce run", RUNLOG_DELETE = "Supprimer ce run de %s ?",
@@ -87,7 +87,7 @@ do
             RUNLOG_BOSSES = "Jefes", RUNLOG_TRASH_MOBS = "Enemigos", RUNLOG_NEED = "Tiradas de Necesidad",
             RUNLOG_NO_NEED = "No tiraste Necesidad en este run.", RUNLOG_NO_TRASH = "Ningún enemigo matado.",
             RUNLOG_NOT_KILLED = "sin matar", RUNLOG_RARE = "Raro",
-            RUNLOG_WON = "Ganado", RUNLOG_LOST = "Perdido", RUNLOG_ROLLING = "Tirando...",
+            RUNLOG_WON = "Ganado", RUNLOG_LOST = "Perdido", RUNLOG_ROLLS = "Tiradas", RUNLOG_ROLLING = "Tirando...",
             RUNLOG_OUTSIDE = "Tiempo fuera", RUNLOG_RELEASED = "Paseo fantasmal", RUNLOG_STEPPED = "Salió",
             RUNLOG_STILL_OUT = "aún fuera",
             RUNLOG_ROW_HINT = "Clic derecho: borrar este run", RUNLOG_DELETE = "¿Borrar este run de %s?",
@@ -107,7 +107,7 @@ do
             RUNLOG_BOSSES = "Boss", RUNLOG_TRASH_MOBS = "Trash", RUNLOG_NEED = "Tiri Necessità",
             RUNLOG_NO_NEED = "In questa run non hai tirato Necessità su nulla.", RUNLOG_NO_TRASH = "Nessun trash ucciso.",
             RUNLOG_NOT_KILLED = "non ucciso", RUNLOG_RARE = "Raro",
-            RUNLOG_WON = "Vinto", RUNLOG_LOST = "Perso", RUNLOG_ROLLING = "Si tira...",
+            RUNLOG_WON = "Vinto", RUNLOG_LOST = "Perso", RUNLOG_ROLLS = "Tiri", RUNLOG_ROLLING = "Si tira...",
             RUNLOG_OUTSIDE = "Tempo fuori", RUNLOG_RELEASED = "Corsa del fantasma", RUNLOG_STEPPED = "Uscito",
             RUNLOG_STILL_OUT = "ancora fuori",
             RUNLOG_ROW_HINT = "Clic destro: elimina questa run", RUNLOG_DELETE = "Eliminare questa run di %s?",
@@ -127,7 +127,7 @@ do
             RUNLOG_BOSSES = "Chefes", RUNLOG_TRASH_MOBS = "Inimigos", RUNLOG_NEED = "Rolagens de Necessidade",
             RUNLOG_NO_NEED = "Você não rolou Necessidade nesta run.", RUNLOG_NO_TRASH = "Nenhum inimigo abatido.",
             RUNLOG_NOT_KILLED = "não abatido", RUNLOG_RARE = "Raro",
-            RUNLOG_WON = "Ganhou", RUNLOG_LOST = "Perdeu", RUNLOG_ROLLING = "Rolando...",
+            RUNLOG_WON = "Ganhou", RUNLOG_LOST = "Perdeu", RUNLOG_ROLLS = "Rolagens", RUNLOG_ROLLING = "Rolando...",
             RUNLOG_OUTSIDE = "Tempo fora", RUNLOG_RELEASED = "Caminhada fantasma", RUNLOG_STEPPED = "Saiu",
             RUNLOG_STILL_OUT = "ainda fora",
             RUNLOG_ROW_HINT = "Clique direito: apagar esta run", RUNLOG_DELETE = "Apagar esta run de %s?",
@@ -147,7 +147,7 @@ do
             RUNLOG_BOSSES = "Боссы", RUNLOG_TRASH_MOBS = "Монстры", RUNLOG_NEED = "Броски «Нужно»",
             RUNLOG_NO_NEED = "В этом забеге вы не бросали «Нужно».", RUNLOG_NO_TRASH = "Монстры не убиты.",
             RUNLOG_NOT_KILLED = "не убит", RUNLOG_RARE = "Редкий",
-            RUNLOG_WON = "Выиграно", RUNLOG_LOST = "Проиграно", RUNLOG_ROLLING = "Бросок...",
+            RUNLOG_WON = "Выиграно", RUNLOG_LOST = "Проиграно", RUNLOG_ROLLS = "Броски", RUNLOG_ROLLING = "Бросок...",
             RUNLOG_OUTSIDE = "Время снаружи", RUNLOG_RELEASED = "Путь призрака", RUNLOG_STEPPED = "Вышел",
             RUNLOG_STILL_OUT = "ещё снаружи",
             RUNLOG_ROW_HINT = "Правый клик: удалить забег", RUNLOG_DELETE = "Удалить этот забег (%s)?",
@@ -167,7 +167,7 @@ do
             RUNLOG_BOSSES = "우두머리", RUNLOG_TRASH_MOBS = "일반 몹", RUNLOG_NEED = "입찰 주사위",
             RUNLOG_NO_NEED = "이 기록에서 입찰한 아이템이 없습니다.", RUNLOG_NO_TRASH = "처치한 일반 몹이 없습니다.",
             RUNLOG_NOT_KILLED = "처치 안 함", RUNLOG_RARE = "희귀",
-            RUNLOG_WON = "획득", RUNLOG_LOST = "실패", RUNLOG_ROLLING = "주사위 중...",
+            RUNLOG_WON = "획득", RUNLOG_LOST = "실패", RUNLOG_ROLLS = "주사위", RUNLOG_ROLLING = "주사위 중...",
             RUNLOG_OUTSIDE = "밖에 있던 시간", RUNLOG_RELEASED = "유령 걷기", RUNLOG_STEPPED = "나감",
             RUNLOG_STILL_OUT = "아직 밖",
             RUNLOG_ROW_HINT = "우클릭: 이 기록 삭제", RUNLOG_DELETE = "%s 기록을 삭제할까요?",
@@ -187,7 +187,7 @@ do
             RUNLOG_BOSSES = "首领", RUNLOG_TRASH_MOBS = "小怪", RUNLOG_NEED = "需求掷骰",
             RUNLOG_NO_NEED = "本次没有点需求。", RUNLOG_NO_TRASH = "没有击杀小怪。",
             RUNLOG_NOT_KILLED = "未击杀", RUNLOG_RARE = "稀有",
-            RUNLOG_WON = "赢得", RUNLOG_LOST = "未得", RUNLOG_ROLLING = "掷骰中...",
+            RUNLOG_WON = "赢得", RUNLOG_LOST = "未得", RUNLOG_ROLLS = "掷骰", RUNLOG_ROLLING = "掷骰中...",
             RUNLOG_OUTSIDE = "在外时间", RUNLOG_RELEASED = "跑尸", RUNLOG_STEPPED = "离开副本",
             RUNLOG_STILL_OUT = "仍在外面",
             RUNLOG_ROW_HINT = "右键：删除此记录", RUNLOG_DELETE = "删除这条 %s 的记录？",
@@ -207,7 +207,7 @@ do
             RUNLOG_BOSSES = "首領", RUNLOG_TRASH_MOBS = "小怪", RUNLOG_NEED = "需求擲骰",
             RUNLOG_NO_NEED = "本次沒有點需求。", RUNLOG_NO_TRASH = "沒有擊殺小怪。",
             RUNLOG_NOT_KILLED = "未擊殺", RUNLOG_RARE = "稀有",
-            RUNLOG_WON = "贏得", RUNLOG_LOST = "未得", RUNLOG_ROLLING = "擲骰中...",
+            RUNLOG_WON = "贏得", RUNLOG_LOST = "未得", RUNLOG_ROLLS = "擲骰", RUNLOG_ROLLING = "擲骰中...",
             RUNLOG_OUTSIDE = "在外時間", RUNLOG_RELEASED = "跑屍", RUNLOG_STEPPED = "離開副本",
             RUNLOG_STILL_OUT = "仍在外面",
             RUNLOG_ROW_HINT = "右鍵：刪除此紀錄", RUNLOG_DELETE = "刪除這筆 %s 的紀錄？",
@@ -558,6 +558,7 @@ local function ItemCard(parent)
         if not self.link then return end
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
         pcall(GameTooltip.SetHyperlink, GameTooltip, self.link)
+        if FDJ.RunLogAddRolls then FDJ.RunLogAddRolls(self.rolls, self.winner) end -- rollhistory (2.0.9)
         GameTooltip:Show()
         self.fdjShift = nil
         -- No automatic "Equipped" comparison here (even with the game's
@@ -769,6 +770,31 @@ local function BossLine(parent)
     return r
 end
 
+-- rollhistory (2.0.9, M 16 Nov 2026): everyone's rolls on an item under
+-- its tooltip, highest first: the dice (Need) or the coin (Greed), the
+-- name (you in green, the winner in gold) and the number.
+local function IsYou(name)
+    local me = UnitName and UnitName("player")
+    return type(name) == "string" and type(me) == "string" and (name == me or name:lower() == me:lower()
+        or name == (_G.YOU or "You") or name:lower():sub(1, #me + 1) == me:lower() .. "-")
+end
+function FDJ.RunLogAddRolls(rolls, winner, indent)
+    if type(rolls) ~= "table" or #rolls == 0 then return end
+    if not indent then
+        GameTooltip:AddLine(" ")
+        GameTooltip:AddLine(L("RUNLOG_ROLLS"), GOLD[1], GOLD[2], GOLD[3])
+    end
+    for _, r in ipairs(rolls) do
+        local mark = r.k == "need" and "|TInterface\\Buttons\\UI-GroupLoot-Dice-Up:14:14:0:0|t "
+            or r.k == "greed" and "|TInterface\\Buttons\\UI-GroupLoot-Coin-Up:14:14:0:0|t " or ""
+        local name = r.name or "?"
+        local cr, cg, cb = 0.85, 0.85, 0.85
+        if IsYou(name) then cr, cg, cb = 0.25, 1.0, 0.35 end
+        if winner and type(name) == "string" and name:lower() == tostring(winner):lower() then cr, cg, cb = 1.0, 0.82, 0.0 end
+        GameTooltip:AddDoubleLine((indent and "     " or "") .. mark .. name, tostring(r.n or "-"), cr, cg, cb, 1, 1, 1)
+    end
+end
+
 -- Hover a boss: what it dropped (and who got it), or that it is still alive.
 local function BossTooltip(owner, boss, kill, start, onTracker)
     if not boss then return end
@@ -795,6 +821,8 @@ local function BossTooltip(owner, boss, kill, start, onTracker)
             else
                 GameTooltip:AddLine(text, 1, 1, 1)
             end
+            -- rollhistory (2.0.9): the others' rolls under it (when more than the winner's)
+            if type(e.rolls) == "table" and #e.rolls > 1 then FDJ.RunLogAddRolls(e.rolls, e.w, true) end
         end
     end
     -- 2.0.4: the tracker's boss portraits open the boss's loot on a click
@@ -1030,6 +1058,11 @@ local function RefreshDetail(win)
         c:SetPoint("TOPLEFT", content, "TOPLEFT", col * (half + 8), -y)
         c:SetWidth(half)
         c.link = need.link
+        c.rolls, c.winner = need.rolls, nil -- rollhistory (2.0.9): everyone's rolls in its tooltip
+        for _, r in ipairs(need.rolls or {}) do
+            if need.res == "won" and IsYou(r.name) then c.winner = r.name end
+        end
+        if need.res == "lost" and need.rolls and need.rolls[1] then c.winner = need.rolls[1].name end
         local icon = need.id and ((C_Item and C_Item.GetItemIconByID and C_Item.GetItemIconByID(need.id)) or (GetItemIcon and GetItemIcon(need.id)))
         c.icon:SetTexture(icon or "Interface\\Icons\\INV_Misc_QuestionMark")
         local name = type(need.link) == "string" and need.link:match("%[(.-)%]") or ("item " .. tostring(need.id))
@@ -1043,7 +1076,9 @@ local function RefreshDetail(win)
             c.result:SetText("|cff40ff59" .. L("RUNLOG_WON") .. "|r  |TInterface\\Buttons\\UI-GroupLoot-Dice-Up:14:14:0:0|t"
                 .. (need.n and (" |cffffffff" .. need.n .. "|r") or ""))
         elseif need.res == "lost" then
-            c.result:SetText("|cffff5a4a" .. L("RUNLOG_LOST") .. "|r")
+            -- rollhistory (2.0.9): what you rolled when you lost too
+            c.result:SetText("|cffff5a4a" .. L("RUNLOG_LOST") .. "|r"
+                .. (need.n and ("  |TInterface\\Buttons\\UI-GroupLoot-Dice-Up:14:14:0:0|t |cffffffff" .. need.n .. "|r") or ""))
         else
             c.result:SetText("|cffffd145" .. L("RUNLOG_ROLLING") .. "|r")
         end
@@ -1070,7 +1105,11 @@ local function RefreshDetail(win)
                 label, (e.t >= start and "+" or "-") .. Duration(math.abs(e.t - start)), away)
             -- Death Walk: the Spirit Healer's portrait (creature display 5233)
             if e.why == "released" and SetPortraitTextureFromCreatureDisplayID then
-                pcall(SetPortraitTextureFromCreatureDisplayID, line.icon, 5233)
+                -- allbaked (2.0.9): the bundled picture when there is one (no
+                -- render target for every death in the list)
+                if not (FDJ.SetBakedPortrait and FDJ.SetBakedPortrait(line.icon, 5233)) then
+                    pcall(SetPortraitTextureFromCreatureDisplayID, line.icon, 5233)
+                end
             end
         end
     end
@@ -1849,6 +1888,27 @@ end
 -- shows the tracker again (for players who never read "/dj tracker"). It
 -- hides the run it was ticked for: a new run unticks it by itself and the
 -- tracker works as usual.
+-- hideleave (2.0.10, M 17 Nov 2026: "if somebody goes out of the dungeon and
+-- it's not dead, I want the option to automatically untick"; Killer Kenney
+-- closed it, came back with a new group and it never showed): out of the
+-- dungeon alive, Hide Tracker unticks; the tracker its X closed stays closed
+-- until you go into a dungeon again, then it shows as usual. Out as a ghost
+-- (a corpse run) it stays ticked, as before.
+function FDJ.TrackerLeftAlive()
+    if not FDJ.TrackerOption("hide") then return end
+    local db = TrackerDB()
+    db.hideRun = nil
+    if db.dismissedRun ~= nil then db.dismissedUntilEnter = true end
+    FDJ.SetTrackerOption("hide", false)
+end
+function FDJ.TrackerEnteredDungeon()
+    local db = TrackerDB()
+    if not db.dismissedUntilEnter then return end
+    db.dismissedUntilEnter = nil
+    db.dismissedRun = nil
+    if FDJ.UpdateRunTracker then pcall(FDJ.UpdateRunTracker) end
+end
+
 function FDJ.SetTrackerHidden(on)
     if on then
         if FDJ.trackerHint then FDJ.trackerHint:Hide() end
@@ -1863,16 +1923,16 @@ function FDJ.SetTrackerHidden(on)
 end
 do
     local strings = {
-        enUS = { OPT_TRACK_HIDE = "Hide Tracker", OPT_TRACK_HIDE_TIP = "Hides the tracker for this run. Closing it with its X ticks this; a new run unticks it by itself. \"/dj tracker\" or unticking it shows the tracker again." },
-        deDE = { OPT_TRACK_HIDE = "Tracker ausblenden", OPT_TRACK_HIDE_TIP = "Blendet den Tracker für diesen Run aus. Schließen mit dem X setzt diesen Haken; ein neuer Run entfernt ihn von selbst. „/dj tracker“ oder Haken entfernen zeigt den Tracker wieder." },
-        frFR = { OPT_TRACK_HIDE = "Masquer le suivi", OPT_TRACK_HIDE_TIP = "Masque le suivi pour ce run. Le fermer avec son X coche cette case ; un nouveau run la décoche tout seul. « /dj tracker » ou la décocher réaffiche le suivi." },
-        esES = { OPT_TRACK_HIDE = "Ocultar el seguimiento", OPT_TRACK_HIDE_TIP = "Oculta el seguimiento en esta run. Cerrarlo con su X marca esta casilla; una run nueva la desmarca sola. «/dj tracker» o desmarcarla vuelve a mostrar el seguimiento." },
-        itIT = { OPT_TRACK_HIDE = "Nascondi tracker", OPT_TRACK_HIDE_TIP = "Nasconde il tracker per questa run. Chiuderlo con la X spunta questa casella; una nuova run la toglie da sola. «/dj tracker» o togliere la spunta mostra di nuovo il tracker." },
-        ptBR = { OPT_TRACK_HIDE = "Ocultar rastreador", OPT_TRACK_HIDE_TIP = "Oculta o rastreador nesta run. Fechá-lo no X marca esta opção; uma nova run a desmarca sozinha. «/dj tracker» ou desmarcá-la mostra o rastreador de novo." },
-        ruRU = { OPT_TRACK_HIDE = "Скрыть трекер", OPT_TRACK_HIDE_TIP = "Скрывает трекер в этом забеге. Закрытие крестиком ставит эту галочку; новый забег снимает её сам. «/dj tracker» или снятие галочки снова показывает трекер." },
-        koKR = { OPT_TRACK_HIDE = "추적기 숨기기", OPT_TRACK_HIDE_TIP = "이번 던전 진행에서 추적기를 숨깁니다. X로 닫으면 자동으로 체크되고, 새 진행이 시작되면 저절로 해제됩니다. \"/dj tracker\"를 입력하거나 체크를 해제하면 다시 표시됩니다." },
-        zhCN = { OPT_TRACK_HIDE = "隐藏追踪器", OPT_TRACK_HIDE_TIP = "本次副本中隐藏追踪器。用 X 关闭时会自动勾选；开始新的副本时会自动取消。输入“/dj tracker”或取消勾选即可再次显示。" },
-        zhTW = { OPT_TRACK_HIDE = "隱藏追蹤器", OPT_TRACK_HIDE_TIP = "本次副本中隱藏追蹤器。用 X 關閉時會自動勾選；開始新的副本時會自動取消。輸入「/dj tracker」或取消勾選即可再次顯示。" },
+        enUS = { OPT_TRACK_HIDE = "Hide Tracker", OPT_TRACK_HIDE_TIP = "Hides the tracker for this run. Closing it with its X ticks this; leaving the dungeon alive or a new run unticks it by itself. \"/dj tracker\" or unticking it shows the tracker again." },
+        deDE = { OPT_TRACK_HIDE = "Tracker ausblenden", OPT_TRACK_HIDE_TIP = "Blendet den Tracker für diesen Run aus. Schließen mit dem X setzt diesen Haken; den Dungeon lebend verlassen oder ein neuer Run entfernt ihn von selbst. „/dj tracker“ oder Haken entfernen zeigt den Tracker wieder." },
+        frFR = { OPT_TRACK_HIDE = "Masquer le suivi", OPT_TRACK_HIDE_TIP = "Masque le suivi pour ce run. Le fermer avec son X coche cette case ; sortir du donjon en vie ou un nouveau run la décoche tout seul. « /dj tracker » ou la décocher réaffiche le suivi." },
+        esES = { OPT_TRACK_HIDE = "Ocultar el seguimiento", OPT_TRACK_HIDE_TIP = "Oculta el seguimiento en esta run. Cerrarlo con su X marca esta casilla; salir de la mazmorra con vida o una run nueva la desmarca sola. «/dj tracker» o desmarcarla vuelve a mostrar el seguimiento." },
+        itIT = { OPT_TRACK_HIDE = "Nascondi tracker", OPT_TRACK_HIDE_TIP = "Nasconde il tracker per questa run. Chiuderlo con la X spunta questa casella; uscire dal dungeon da vivo o una nuova run la toglie da sola. «/dj tracker» o togliere la spunta mostra di nuovo il tracker." },
+        ptBR = { OPT_TRACK_HIDE = "Ocultar rastreador", OPT_TRACK_HIDE_TIP = "Oculta o rastreador nesta run. Fechá-lo no X marca esta opção; sair da masmorra vivo ou uma nova run a desmarca sozinha. «/dj tracker» ou desmarcá-la mostra o rastreador de novo." },
+        ruRU = { OPT_TRACK_HIDE = "Скрыть трекер", OPT_TRACK_HIDE_TIP = "Скрывает трекер в этом забеге. Закрытие крестиком ставит эту галочку; выход из подземелья живым или новый забег снимает её сам. «/dj tracker» или снятие галочки снова показывает трекер." },
+        koKR = { OPT_TRACK_HIDE = "추적기 숨기기", OPT_TRACK_HIDE_TIP = "이번 던전 진행에서 추적기를 숨깁니다. X로 닫으면 자동으로 체크되고, 살아서 던전을 나가거나 새 진행이 시작되면 저절로 해제됩니다. \"/dj tracker\"를 입력하거나 체크를 해제하면 다시 표시됩니다." },
+        zhCN = { OPT_TRACK_HIDE = "隐藏追踪器", OPT_TRACK_HIDE_TIP = "本次副本中隐藏追踪器。用 X 关闭时会自动勾选；活着离开副本或开始新的副本时会自动取消。输入“/dj tracker”或取消勾选即可再次显示。" },
+        zhTW = { OPT_TRACK_HIDE = "隱藏追蹤器", OPT_TRACK_HIDE_TIP = "本次副本中隱藏追蹤器。用 X 關閉時會自動勾選；活著離開副本或開始新的副本時會自動取消。輸入「/dj tracker」或取消勾選即可再次顯示。" },
     }
     strings.esMX = strings.esES
     for locale, entries in pairs(strings) do
@@ -3342,12 +3402,14 @@ function FDJ.ToggleRunTracker(on)
         if trackerClosedNotice then trackerClosedNotice:Hide() end
         db.on = true
         db.dismissedRun = nil
+        db.dismissedUntilEnter = nil -- hideleave
         -- asked for it with Track on screen: that overrides "Never track"
         if FDJ.TrackerOption("never") then FDJ.SetTrackerOption("never", false) end
         if FDJ.TrackerOption("hide") then db.hideRun = nil FDJ.SetTrackerOption("hide", false) end
     else
         db.on = nil
         db.dismissedRun = run and run.id or nil
+        db.dismissedUntilEnter = nil -- hideleave
     end
     FDJ.UpdateRunTracker()
 end

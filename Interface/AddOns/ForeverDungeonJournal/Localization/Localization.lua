@@ -17,6 +17,10 @@ FDJ.Locales.enUS = {
     MAP_OBJ_EXPLORE = "Explore this place",
     NOTICE_LV30_DATA = "New loot and quests for dungeons up to lv 30 are still being discovered. I will update as new data comes out. gl hf",
     NOTICE_RESIZE = "Commands changed from |cffff3030/fj|r to |cff33ff33/dj|r.",
+    MAP_SHARK_EXIT = "Shark exit",
+    MAP_SAFE_EXIT = "Safe exit",
+    MAP_SWIM_HERE = "Swim underwater here for level %d",
+    MAP_ALT_SPAWN = "Can also spawn here",
     MAP_SWIM_LEVEL = "Swim underwater for level %d",
     MAP_ENTRANCE = "Entrance",
     LOOT_COMPACT = "Compact view",
@@ -88,6 +92,7 @@ FDJ.Locales.enUS = {
     CHAIN_PICK_ONE = "You just need 1 of the following quests:",
     LOOT_NOTE_TWO_ITEMS = "Can drop 2 items",
     LOOT_NOTE_HELNURATH = "Summoned by the Warlock epic mount quest",
+    LOOT_NOTE_BURNING_FELGUARD = "Scarshield Warlocks can summon it through their portals",
     UNIQUE_TRASH = "Unique dungeon trash drops",
     DROPS_FROM = "Drops from: %s",
     CLICK_DUNGEON = "Click to open dungeon details",
@@ -100,8 +105,14 @@ FDJ.Locales.enUS = {
     WM_DUNGEON_MAP = "Dungeon Map",
     MINIMAP_HIDE_CONFIRM = "Hide the Dungeon Journal minimap button?\n\nYou can bring it back by typing /dj minimap.",
     LF_SHOW_RECIPES = "Always show pattern/recipe drops",
-    RESIZE_TIP_TITLE = "Resize",
-    RESIZE_TIP = "Drag to resize the window. Right-click to reset.",
+    RESIZE_TIP_TITLE = "Rescale",
+    RESIZE_TIP = "Drag to rescale the window. Right-click to reset.",
+    OPT_RESIZE = "Resize",
+    OPT_RESIZE_TIP = "Opens the journal so you can drag its corners to make it bigger.",
+    RESIZE_HINT = "Drag the corners to resize",
+    RESIZE_CORNER_TIP = "Drag to resize. Right-click to reset the size.",
+    OPT_RESET_SIZE = "Reset Size",
+    OPT_RESET_SIZE_TIP = "Puts the journal back to its normal size and scale.",
     LF_ENABLE = "Enable",
     LF_DISABLE = "Disable",
     LF_MIN_LEVEL = "Minimum required level",
@@ -121,6 +132,14 @@ FDJ.Locales.enUS = {
     OPT_PRESS_KEY = "Press a key...",
     OPT_KEY_TAKEN = "%s is already bound. Choose an unused key.",
     OPT_NO_COMBAT = "Keybinds cannot be changed during combat.",
+    LEVEL_TOO_LOW_DUNGEONS = "You are too low level for dungeons.\nThe first ones start at level %d.",
+    NO_DUNGEONS_MY_LEVEL = "No dungeons for your level.",
+    SHOW_ALL_DUNGEONS_ANYWAY = "Show all dungeons anyway",
+    SUMMON_QUEST_NOTE = "%s has to be summoned: use the %s at the gong by his pool.",
+    HOW_TO_SUMMON = "How to summon %s",
+    MAP_WREX_KEYRING = "Open with Wrex's Keyring for level %d",
+    OPT_MY_LEVEL_RANGE = "Show only my level range",
+    OPT_MY_LEVEL_RANGE_TIP = "Shows only the dungeons whose level range includes your level (the ranges of the Looking For Group panel).",
     OPT_HIDE_OUTLEVELED = "Auto-hide outleveled dungeons",
     OPT_HIDE_OUTLEVELED_TIP = "Hides a dungeon from the list once your level is above its level range.",
     OPT_HIDE_QUESTS_DONE = "Auto-hide dungeons with all quests done",
@@ -159,6 +178,8 @@ FDJ.Locales.enUS = {
     LF_STATS_HEADER = "Only items with these stats",
     LF_STATS_HINT = "Tick the stats you are looking for. Nothing ticked shows everything.",
     LF_MATCH_ALL = "Item must have all ticked stats",
+    LF_QUEST_REWARDS = "Show quest rewards too",
+    LF_SEARCHING = "Searching the loot... %d%%",
     LF_CLEAR = "Clear",
     OPT_DISCORD_COPY = "Press Ctrl+C to copy the invite link.",
     OPT_CLOSE = "Close",
@@ -217,7 +238,7 @@ FDJ.Locales.enUS = {
     OPT_SHOW_ALL_PROF = "Show All Profession Quests",
     OPT_SHOW_ALL_PROF_TIP = "Also list profession quests (Blacksmithing, Mining...) for professions this character doesn't have.",
     OPT_FOREVER_ONLY = "Forever Dungeons Only",
-    OPT_FOREVER_ONLY_TIP = "Show only the dungeons that are new in WoW Forever. Same as clicking the WoW Forever emblem at the top left of the dungeon list: untick it to see every dungeon again.",
+    OPT_FOREVER_ONLY_TIP = "Show only the dungeons that are new in WoW Forever. Untick it to see every dungeon again.",
     PROF_BLACKSMITHING = "Blacksmithing",
     PROF_MINING = "Mining",
     RAIDS_TITLE = "Raids",
@@ -280,6 +301,8 @@ FDJ.Locales.enUS = {
     HIDDEN = "Hidden",
     CLICK_HIDE_DUNGEON = "Click to hide this dungeon.",
     CLICK_RESTORE_DUNGEON = "Click to restore this dungeon.",
+    AUTO_HIDDEN_BY = "Hidden by: %s",
+    CLICK_SHOW_ANYWAY = "Click to show it anyway.",
     ALL_DUNGEONS_HIDDEN = "All dungeons are hidden. Click Hide Dungeons to restore them.",
     FACTION_QUESTS = "%s quests",
     QUEST_IN_LOG = "This earlier quest is in your quest log.",
@@ -333,6 +356,10 @@ FDJ.Locales.deDE = {
     MAP_OBJ_EXPLORE = "Diesen Ort erkunden",
     NOTICE_LV30_DATA = "Neue Beute und Quests für Dungeons bis Stufe 30 werden noch entdeckt. Ich aktualisiere, sobald neue Daten erscheinen. gl hf",
     NOTICE_RESIZE = "Die Befehle wurden von |cffff3030/fj|r zu |cff33ff33/dj|r geändert.",
+    MAP_SHARK_EXIT = "Hai-Ausgang",
+    MAP_SAFE_EXIT = "Sicherer Ausgang",
+    MAP_SWIM_HERE = "Hier unter Wasser tauchen für Ebene %d",
+    MAP_ALT_SPAWN = "Kann auch hier erscheinen",
     MAP_SWIM_LEVEL = "Unter Wasser tauchen für Ebene %d",
     MAP_ENTRANCE = "Eingang",
     LOOT_COMPACT = "Kompaktansicht",
@@ -401,6 +428,7 @@ FDJ.Locales.deDE = {
     CHAIN_PICK_ONE = "Du brauchst nur 1 der folgenden Quests:",
     LOOT_NOTE_TWO_ITEMS = "Kann 2 Gegenstände droppen",
     LOOT_NOTE_HELNURATH = "Beschworen durch die epische Reittier-Quest der Hexenmeister",
+    LOOT_NOTE_BURNING_FELGUARD = "Scarschild-Hexenmeister können ihn durch ihre Portale beschwören",
     UNIQUE_TRASH = "Einzigartige Beute von Trashmobs",
     DROPS_FROM = "Beute von: %s",
     CLICK_DUNGEON = "Klicken, um Dungeon-Details zu öffnen",
@@ -413,8 +441,14 @@ FDJ.Locales.deDE = {
     WM_DUNGEON_MAP = "Dungeonkarte",
     MINIMAP_HIDE_CONFIRM = "Minimap-Schaltfläche des Dungeon-Journals ausblenden?\n\nMit /dj minimap wird sie wieder angezeigt.",
     LF_SHOW_RECIPES = "Muster-/Rezept-Drops immer anzeigen",
-    RESIZE_TIP_TITLE = "Größe ändern",
-    RESIZE_TIP = "Ziehen, um die Fenstergröße zu ändern. Rechtsklick zum Zurücksetzen.",
+    RESIZE_TIP_TITLE = "Skalieren",
+    RESIZE_TIP = "Ziehen, um das Fenster zu skalieren. Rechtsklick zum Zurücksetzen.",
+    OPT_RESIZE = "Größe ändern",
+    OPT_RESIZE_TIP = "Öffnet das Journal, damit du es an den Ecken größer ziehen kannst.",
+    RESIZE_HINT = "Ziehe an den Ecken, um die Größe zu ändern",
+    RESIZE_CORNER_TIP = "Ziehen, um die Größe zu ändern. Rechtsklick setzt die Größe zurück.",
+    OPT_RESET_SIZE = "Größe zurücksetzen",
+    OPT_RESET_SIZE_TIP = "Setzt das Journal auf seine normale Größe und Skalierung zurück.",
     LF_ENABLE = "Aktivieren",
     LF_DISABLE = "Deaktivieren",
     LF_MIN_LEVEL = "Mindeststufe (benötigt)",
@@ -434,6 +468,14 @@ FDJ.Locales.deDE = {
     OPT_PRESS_KEY = "Taste drücken...",
     OPT_KEY_TAKEN = "%s ist bereits belegt. Wähle eine freie Taste.",
     OPT_NO_COMBAT = "Tastenbelegungen können im Kampf nicht geändert werden.",
+    LEVEL_TOO_LOW_DUNGEONS = "Deine Stufe ist zu niedrig für Dungeons.\nDie ersten beginnen ab Stufe %d.",
+    NO_DUNGEONS_MY_LEVEL = "Keine Dungeons für deine Stufe.",
+    SHOW_ALL_DUNGEONS_ANYWAY = "Trotzdem alle Dungeons zeigen",
+    SUMMON_QUEST_NOTE = "%s muss beschworen werden: Benutze %s am Gong bei seinem Becken.",
+    HOW_TO_SUMMON = "So beschwörst du %s",
+    MAP_WREX_KEYRING = "Mit Wrex' Schlüsselring öffnen für Ebene %d",
+    OPT_MY_LEVEL_RANGE = "Nur meinen Stufenbereich zeigen",
+    OPT_MY_LEVEL_RANGE_TIP = "Zeigt nur die Dungeons, deren Stufenbereich deine Stufe enthält (die Bereiche der Gruppensuche).",
     OPT_HIDE_OUTLEVELED = "Zu niedrige Dungeons automatisch ausblenden",
     OPT_HIDE_OUTLEVELED_TIP = "Blendet einen Dungeon aus der Liste aus, sobald deine Stufe über seinem Stufenbereich liegt.",
     OPT_HIDE_QUESTS_DONE = "Dungeons mit allen Quests erledigt ausblenden",
@@ -477,6 +519,8 @@ FDJ.Locales.deDE = {
     LF_STATS_HEADER = "Nur Gegenstände mit diesen Werten",
     LF_STATS_HINT = "Gesuchte Werte auswählen. Ohne Auswahl wird alles angezeigt.",
     LF_MATCH_ALL = "Gegenstand muss alle gewählten Werte haben",
+    LF_QUEST_REWARDS = "Auch Questbelohnungen zeigen",
+    LF_SEARCHING = "Beute wird durchsucht... %d%%",
     LF_CLEAR = "Leeren",
     OPT_DISCORD_COPY = "Drücke Strg+C, um den Einladungslink zu kopieren.",
     OPT_CLOSE = "Schließen",
@@ -535,7 +579,7 @@ FDJ.Locales.deDE = {
     OPT_SHOW_ALL_PROF = "Alle Berufsquests anzeigen",
     OPT_SHOW_ALL_PROF_TIP = "Zeigt auch Berufsquests (Schmiedekunst, Bergbau...) für Berufe, die dieser Charakter nicht hat.",
     OPT_FOREVER_ONLY = "Nur Forever-Dungeons",
-    OPT_FOREVER_ONLY_TIP = "Zeigt nur die Dungeons, die neu in WoW Forever sind. Wie ein Klick auf das WoW-Forever-Emblem oben links in der Dungeonliste: Haken entfernen, um wieder alle Dungeons zu sehen.",
+    OPT_FOREVER_ONLY_TIP = "Zeigt nur die Dungeons, die neu in WoW Forever sind. Haken entfernen, um wieder alle Dungeons zu sehen.",
     PROF_BLACKSMITHING = "Schmiedekunst",
     PROF_MINING = "Bergbau",
     RAIDS_TITLE = "Schlachtzüge",
@@ -593,6 +637,8 @@ FDJ.Locales.deDE = {
     HIDDEN = "Ausgeblendet",
     CLICK_HIDE_DUNGEON = "Klicken, um diesen Dungeon auszublenden.",
     CLICK_RESTORE_DUNGEON = "Klicken, um diesen Dungeon wieder einzublenden.",
+    AUTO_HIDDEN_BY = "Ausgeblendet durch: %s",
+    CLICK_SHOW_ANYWAY = "Klicken, um ihn trotzdem anzuzeigen.",
     ALL_DUNGEONS_HIDDEN = "Alle Dungeons sind ausgeblendet. Klicke auf Dungeons ausblenden, um sie wieder einzublenden.",
     FACTION_QUESTS = "%s-Quests",
     QUEST_IN_LOG = "Diese frühere Quest befindet sich in deinem Questlog.",
@@ -780,6 +826,7 @@ end
 -- instead of requiring a translation entry for every possible amount.
 local REPUTATION_NAMES = {
     deDE = {
+        ["Alliance"] = "Allianz", -- repfix (2.0.8)
         ["Gadgetzan"] = "Gadgetzan",
         ["Kirin Tor"] = "Kirin Tor",
         ["Gnomeregan Exiles"] = "Gnomeregangnome",
@@ -794,6 +841,7 @@ local REPUTATION_NAMES = {
         ["Undercity"] = "Unterstadt",
     },
     frFR = {
+        ["Alliance"] = "Alliance", -- repfix (2.0.8)
         ["Gadgetzan"] = "Gadgetzan",
         ["Kirin Tor"] = "Kirin Tor",
         ["Gnomeregan Exiles"] = "Exilés de Gnomeregan",
@@ -808,6 +856,7 @@ local REPUTATION_NAMES = {
         ["Undercity"] = "Fossoyeuse",
     },
     esES = {
+        ["Alliance"] = "Alianza", -- repfix (2.0.8)
         ["Gadgetzan"] = "Gadgetzan",
         ["Kirin Tor"] = "Kirin Tor",
         ["Gnomeregan Exiles"] = "Exiliados de Gnomeregan",
@@ -822,6 +871,7 @@ local REPUTATION_NAMES = {
         ["Undercity"] = "Entrañas",
     },
     itIT = {
+        ["Alliance"] = "Alleanza", -- repfix (2.0.8)
         ["Gadgetzan"] = "Gadgetzan",
         ["Kirin Tor"] = "Kirin Tor",
         ["Gnomeregan Exiles"] = "Esuli di Gnomeregan",
@@ -836,6 +886,7 @@ local REPUTATION_NAMES = {
         ["Undercity"] = "Sepulcra",
     },
     ptBR = {
+        ["Alliance"] = "Aliança", -- repfix (2.0.8)
         ["Gadgetzan"] = "Geringontzan",
         ["Kirin Tor"] = "Kirin Tor",
         ["Gnomeregan Exiles"] = "Exilados de Gnomeregan",
@@ -850,6 +901,7 @@ local REPUTATION_NAMES = {
         ["Undercity"] = "Cidade Baixa",
     },
     ruRU = {
+        ["Alliance"] = "Альянс", -- repfix (2.0.8)
         ["Gadgetzan"] = "Прибамбасск",
         ["Kirin Tor"] = "Kirin Tor",
         ["Gnomeregan Exiles"] = "Изгнанники Гномрегана",
@@ -864,6 +916,7 @@ local REPUTATION_NAMES = {
         ["Undercity"] = "Подгород",
     },
     koKR = {
+        ["Alliance"] = "얼라이언스", -- repfix (2.0.8)
         ["Gadgetzan"] = "가젯잔",
         ["Kirin Tor"] = "Kirin Tor",
         ["Gnomeregan Exiles"] = "놈리건 추방자",
@@ -878,6 +931,7 @@ local REPUTATION_NAMES = {
         ["Undercity"] = "언더시티",
     },
     zhCN = {
+        ["Alliance"] = "联盟", -- repfix (2.0.8)
         ["Gadgetzan"] = "加基森",
         ["Kirin Tor"] = "Kirin Tor",
         ["Gnomeregan Exiles"] = "诺莫瑞根流亡者",
@@ -892,6 +946,7 @@ local REPUTATION_NAMES = {
         ["Undercity"] = "幽暗城",
     },
     zhTW = {
+        ["Alliance"] = "聯盟", -- repfix (2.0.8)
         ["Gadgetzan"] = "加基森",
         ["Kirin Tor"] = "Kirin Tor",
         ["Gnomeregan Exiles"] = "諾姆瑞根流亡者",
@@ -962,6 +1017,28 @@ function FDJ.LocalizeBossName(name)
     local content = ContentTable()
     local value = content and content.bosses and content.bosses[name]
     return value or FDJ.LocalizeFreeText(name)
+end
+
+-- sourcetipl10n (2.0.9, M 16 Nov 2026: the trash portrait tooltip "like
+-- all trees, all satyrs ... doesn't get translated to other languages"):
+-- the family a trash item's portraits stand for (sourceTip, Data/Dungeons.lua).
+-- Eldreth spirits and Verek: the game's own names (Wowhead tooltips of npc
+-- 11472 and 9042, per language); zhTW written from zhCN.
+local SOURCE_TIPS = {
+    deDE = { ["All trees"] = "Alle Bäume", ["All satyrs"] = "Alle Satyrn", ["All Eldreth spirits"] = "Alle Geister der Eldreth", ["Verek"] = "Verek" },
+    frFR = { ["All trees"] = "Tous les arbres", ["All satyrs"] = "Tous les satyres", ["All Eldreth spirits"] = "Tous les esprits Eldreth", ["Verek"] = "Verek" },
+    esES = { ["All trees"] = "Todos los árboles", ["All satyrs"] = "Todos los sátiros", ["All Eldreth spirits"] = "Todos los espíritus Eldreth", ["Verek"] = "Verek" },
+    itIT = { ["All trees"] = "Tutti gli alberi", ["All satyrs"] = "Tutti i satiri", ["All Eldreth spirits"] = "Tutti gli spiriti Eldreth", ["Verek"] = "Verek" },
+    ptBR = { ["All trees"] = "Todas as árvores", ["All satyrs"] = "Todos os sátiros", ["All Eldreth spirits"] = "Todos os espíritos eldretianos", ["Verek"] = "Verek" },
+    ruRU = { ["All trees"] = "Все деревья", ["All satyrs"] = "Все сатиры", ["All Eldreth spirits"] = "Все элдретарские духи", ["Verek"] = "Верек" },
+    koKR = { ["All trees"] = "모든 나무정령", ["All satyrs"] = "모든 사티로스", ["All Eldreth spirits"] = "모든 엘드레스 영혼", ["Verek"] = "베레크" },
+    zhCN = { ["All trees"] = "所有树人", ["All satyrs"] = "所有萨特", ["All Eldreth spirits"] = "所有艾德雷斯鬼巫", ["Verek"] = "维雷克" },
+    zhTW = { ["All trees"] = "所有樹人", ["All satyrs"] = "所有薩特", ["All Eldreth spirits"] = "所有艾德雷斯鬼巫", ["Verek"] = "維雷克" },
+}
+function FDJ.LocalizeSourceTip(text)
+    if type(text) ~= "string" or text == "" then return text end
+    local own = SOURCE_TIPS[FDJ.GetLanguage()]
+    return (own and own[text]) or FDJ.LocalizeFreeText(text)
 end
 
 function FDJ.LocalizeItemSlot(slotText)

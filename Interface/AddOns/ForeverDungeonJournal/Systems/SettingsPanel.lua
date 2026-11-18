@@ -62,9 +62,11 @@ local function AllQuestsDone(dungeon)
     for _, quest in ipairs(dungeon.quests or {}) do
         local forFaction = quest.faction == nil or quest.faction == "Both"
             or quest.faction == "Neutral" or quest.faction == faction
-        local forClass = not quest.classOnly or Store().showAllClassQuests
+        -- otherclass (2.0.8): another class's quest (or a profession the
+        -- character doesn't have) never counts, "Show all ..." on or not
+        local forClass = not quest.classOnly
             or (class and tostring(quest.classOnly):upper() == class)
-        local forProfession = not quest.profession or Store().showAllProfessionQuests
+        local forProfession = not quest.profession
             or not FDJ.PlayerHasProfession or FDJ.PlayerHasProfession(quest.profession)
         if forFaction and forClass and forProfession and not quest.hideFromMainList and not quest.repeatable and quest.id
             and not (FDJ.IsQuestLost and FDJ.IsQuestLost(quest)) then -- a lost quest doesn't count
@@ -75,27 +77,94 @@ local function AllQuestsDone(dungeon)
     return count > 0
 end
 
-function FDJ.IsDungeonAutoHidden(dungeonName)
+-- "29-38" -> 29, 38; "55+" -> 55, nil
+local function DungeonLevelRange(dungeon)
+    local text = dungeon and dungeon.level
+    if type(text) ~= "string" then return nil end
+    local low, top
+    for number in text:gmatch("%d+") do
+        if not low then low = tonumber(number) else top = tonumber(number) end
+    end
+    return low, top
+end
+
+-- devlevel (dev, not in the release; M 16 Nov 2026): /dj level 1-60 shows
+-- the dungeon list as a character of that level sees it.
+local function ListLevel()
+    return FDJ.devLevel or PlayerLevel()
+end
+
+FDJ.DungeonLevelRange = DungeonLevelRange
+FDJ.ListLevel = ListLevel
+
+-- keepshown (2.0.10, M 17 Nov 2026; Discord report by HonestAuntyElle: an
+-- auto-hidden dungeon could not be shown again in Hide Dungeons, whatever
+-- was clicked): dungeons the player chose to show in Hide Dungeons although
+-- an auto-hide option would hide them. Per character, like the dungeons
+-- hidden by hand.
+function FDJ.ShownDungeons()
+    ForeverDungeonJournalCharacterDB = ForeverDungeonJournalCharacterDB or {}
+    local char = ForeverDungeonJournalCharacterDB
+    if type(char.shownDungeons) ~= "table" then char.shownDungeons = {} end
+    return char.shownDungeons
+end
+
+-- Which auto-hide option hides a dungeon (its option's label key), or nil.
+-- ignoreLevelRange (levelempty, 2.0.9): as if "Show only my level range" were off
+-- only (rehide): check just that one option (its saved setting's name)
+local function AutoHideReason(dungeonName, ignoreLevelRange, only)
     local db = Store()
-    if not db.autoHideOutleveled and not db.autoHideQuestsDone then return false end
+    if not db.autoHideOutleveled and not db.autoHideQuestsDone and not db.onlyMyLevelRange then return nil end
+    if only then
+        db = { [only] = db[only] }
+    end
     local dungeon = FDJ.DB and FDJ.DB[dungeonName]
-    if not dungeon then return false end
+    if not dungeon then return nil end
 
     -- Never hide the dungeon the player is standing in.
     if FDJ.CurrentDungeon then
         local ok, current = pcall(FDJ.CurrentDungeon)
-        if ok and current == dungeonName then return false end
+        if ok and current == dungeonName then return nil end
     end
 
     if db.autoHideOutleveled then
-        local level, top = PlayerLevel(), MaxDungeonLevel(dungeon)
-        if level and top and level > top then return true end
+        local level, top = ListLevel(), MaxDungeonLevel(dungeon)
+        if level and top and level > top then return "OPT_HIDE_OUTLEVELED" end
+    end
+    -- levelrange (2.0.9, M 16 Nov 2026: "players can choose to show only
+    -- dungeons in their range level"): only those whose level range (the
+    -- Looking For Group panel's) has the character's level in it. Off by
+    -- default. A dungeon with no range given always shows.
+    if db.onlyMyLevelRange and not ignoreLevelRange then
+        local level = ListLevel()
+        local low, top = DungeonLevelRange(dungeon)
+        if level and low and (level < low or (top and level > top)) then return "OPT_MY_LEVEL_RANGE" end
     end
     if db.autoHideQuestsDone then
         local ok, done = pcall(AllQuestsDone, dungeon)
-        if ok and done then return true end
+        if ok and done then return "OPT_HIDE_QUESTS_DONE" end
     end
-    return false
+    return nil
+end
+
+-- ignoreShown (keepshown): as if the player had not chosen to show it
+function FDJ.IsDungeonAutoHidden(dungeonName, ignoreLevelRange, ignoreShown)
+    if not ignoreShown and FDJ.ShownDungeons()[dungeonName] then return false end
+    return AutoHideReason(dungeonName, ignoreLevelRange) ~= nil
+end
+function FDJ.DungeonAutoHideReason(dungeonName)
+    return AutoHideReason(dungeonName)
+end
+
+-- rehide (2.0.10, M 17 Nov 2026: "if the auto hide option is untoggled and
+-- retoggled, the dungeons get hidden again, like a reset"): turning an
+-- auto-hide option on drops the "show it anyway" picks for the dungeons
+-- that option hides, so they are hidden again.
+local function RehideFor(option)
+    local shown = FDJ.ShownDungeons()
+    for dungeonName in pairs(shown) do
+        if AutoHideReason(dungeonName, nil, option) then shown[dungeonName] = nil end
+    end
 end
 
 -- ---------------------------------------------------------------------------
@@ -107,6 +176,17 @@ local OPTIONS = {
     { header = "OPT_UI" },
     -- bindtop (2.0.11): the key bind first on General, so players see it at once.
     { keybind = true, label = "OPT_BIND" },
+    -- resizemode (2.0.10, M 17 Nov 2026): opens the journal with a handle on
+    -- each corner to drag it bigger (Systems/Resize.lua)
+    {
+        buttons = {
+            { label = "OPT_RESIZE", tip = "OPT_RESIZE_TIP",
+                click = function() if FDJ.StartResizeMode then FDJ.StartResizeMode() end end },
+            -- resetsize (M 17 Nov 2026): the normal size and scale again
+            { label = "OPT_RESET_SIZE", tip = "OPT_RESET_SIZE_TIP",
+                click = function() if FDJ.ResetJournalSize then FDJ.ResetJournalSize() end end },
+        },
+    },
     {
         label = "OPT_HIDE_ITEM_LINE",
         tip = "OPT_HIDE_ITEM_LINE_TIP",
@@ -158,6 +238,14 @@ local OPTIONS = {
         refreshHome = true,
     },
     {
+        -- tierhide (2.0.10): the Tier Sets icon (Systems/TierSets.lua)
+        label = "OPT_HIDE_TIER",
+        tip = "OPT_HIDE_TIER_TIP",
+        get = function() return FDJ.IsTierIconHidden and FDJ.IsTierIconHidden() or false end,
+        set = function(on) if FDJ.SetTierIconHidden then FDJ.SetTierIconHidden(on) end end,
+        refreshHome = true,
+    },
+    {
         label = "OPT_HIDE_RUNLOG",
         tip = "OPT_HIDE_RUNLOG_TIP",
         get = function() return FDJ.IsRunLogButtonHidden and FDJ.IsRunLogButtonHidden() or false end,
@@ -192,17 +280,34 @@ local OPTIONS = {
         refreshHome = true,
     },
     {
+        -- levelrange (2.0.9): the game's "Show All Level Ranges" turned round
+        label = "OPT_MY_LEVEL_RANGE",
+        tip = "OPT_MY_LEVEL_RANGE_TIP",
+        get = function() return Store().onlyMyLevelRange == true end,
+        set = function(on)
+            Store().onlyMyLevelRange = on or nil
+            if on then RehideFor("onlyMyLevelRange") end
+        end,
+        refreshHome = true,
+    },
+    {
         label = "OPT_HIDE_OUTLEVELED",
         tip = "OPT_HIDE_OUTLEVELED_TIP",
         get = function() return Store().autoHideOutleveled == true end,
-        set = function(on) Store().autoHideOutleveled = on or nil end,
+        set = function(on)
+            Store().autoHideOutleveled = on or nil
+            if on then RehideFor("autoHideOutleveled") end
+        end,
         refreshHome = true,
     },
     {
         label = "OPT_HIDE_QUESTS_DONE",
         tip = "OPT_HIDE_QUESTS_DONE_TIP",
         get = function() return Store().autoHideQuestsDone == true end,
-        set = function(on) Store().autoHideQuestsDone = on or nil end,
+        set = function(on)
+            Store().autoHideQuestsDone = on or nil
+            if on then RehideFor("autoHideQuestsDone") end
+        end,
         refreshHome = true,
     },
     {
@@ -212,6 +317,9 @@ local OPTIONS = {
         set = function(on) Store().hideDoneTick = on or nil end,
         refreshHome = true,
     },
+    -- questspage (2.0.8, M 15 Nov 2026): the quest options on a page of
+    -- their own, after the Dungeon list (moved from it, unchanged).
+    { header = "QUESTS" },
     {
         label = "OPT_SHOW_ALL_CLASS",
         tip = "OPT_SHOW_ALL_CLASS_TIP",
@@ -231,6 +339,29 @@ local OPTIONS = {
             if FDJ.ScheduleQuestRefresh then pcall(FDJ.ScheduleQuestRefresh) end
         end,
         refreshHome = true,
+    },
+    {
+        -- questrowtrial (2.0.8): off: a dungeon's quest list shows the
+        -- character's faction only, its crest locked at the top (every
+        -- dungeon: FDJ.QUESTROW_ALL).
+        label = "OPT_BOTH_FACTIONS",
+        tip = "OPT_BOTH_FACTIONS_TIP",
+        get = function() return Store().showBothFactions == true end,
+        set = function(on)
+            Store().showBothFactions = on or nil
+            if FDJ.RefreshQuestFactionLock then pcall(FDJ.RefreshQuestFactionLock) end
+        end,
+    },
+    {
+        -- chainglowoff (2.0.8, M 15 Nov 2026): no golden glow on a quest
+        -- whose chain is done ("Pick it up" stays). Off by default.
+        label = "OPT_HIDE_CHAIN_GLOW",
+        tip = "OPT_HIDE_CHAIN_GLOW_TIP",
+        get = function() return Store().hideChainGlow == true end,
+        set = function(on)
+            Store().hideChainGlow = on or nil
+            if FDJ.ScheduleQuestRefresh then pcall(FDJ.ScheduleQuestRefresh) end
+        end,
     },
     -- The on-screen dungeon tracker (Systems/RunLogUI.lua).
     { header = "OPT_TRACKER" },

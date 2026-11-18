@@ -8,6 +8,9 @@ FDJ.FOREVER_QUEST_XP_FALLBACK[378] = 5750
 FDJ.QUEST_PREREQ_CHAINS[98823] = {{
     id = 95664,
     name = "Elder Knowledge",
+    -- excavhorde (2.0.7): started by the Titan Relic from inside the dungeon,
+    -- so the route hands it in (and takes Earthen Echo) after the run.
+    startsInDungeon = true,
 }}
 FDJ.QUEST_PREREQ_CHAINS[98824] = {{
     id = 95810,
@@ -535,7 +538,7 @@ FDJ.QUEST_PREREQ_DETAILS[450] = {
     map = { mapID = 1458, x = 0.488, y = 0.693, label = "Master Apothecary Faranell — Undercity", targetName = "Master Apothecary Faranell" },
     turninMap = { mapID = 1421, x = 0.428, y = 0.409, label = "Apothecary Renferrel — The Sepulcher", targetName = "Apothecary Renferrel" },
     requiredItems = {
-        {3255, "Berard's Journal", 1, "Found on Berard's Bookshelf in the Pyrewood Village inn (Silverpine Forest 43, 73)", map = { markerType = "location", mapID = 1421, x = 0.430, y = 0.732, label = "Berard's Bookshelf — Pyrewood Village", detail = "Found on Berard's Bookshelf in the Pyrewood Village inn (Silverpine Forest 43, 73)" }},
+        {3255, "Berard's Journal", 1, "Found on Berard's Bookshelf in the Pyrewood Village inn (Silverpine Forest 43, 73)", map = { markerType = "location", mapID = 1421, x = 0.430, y = 0.732, label = "Berard's Bookshelf — Pyrewood Village", detail = "Found on Berard's Bookshelf in the Pyrewood Village inn (Silverpine Forest 43, 73)", pickUp = true }},
     },
 }
 FDJ.QUEST_PREREQ_DETAILS[451] = {
@@ -625,7 +628,7 @@ do
         pickup = GROMGOL, turnin = GROMGOL,
         map = KINWEELAY,
         requiredItems = {
-            {4094, "Tablet Shard", 1, "From the tablet Gri'lek the Wanderer, at the bottom of the Vile Reef (around 25, 23)", map = { mapID = 1434, x = 0.248, y = 0.230, label = "Gri'lek the Wanderer — the Vile Reef", detail = "The tablet at the bottom of the Vile Reef (around 25, 23)" }},
+            {4094, "Tablet Shard", 1, "From the tablet Gri'lek the Wanderer, at the bottom of the Vile Reef (around 25, 23)", map = { mapID = 1434, x = 0.248, y = 0.230, label = "Gri'lek the Wanderer — the Vile Reef", detail = "The tablet at the bottom of the Vile Reef (around 25, 23)", pickUp = true, underwater = true }},
         },
     }
     FDJ.QUEST_PREREQ_DETAILS[95748] = {
@@ -634,7 +637,7 @@ do
         pickup = GROMGOL, turnin = GROMGOL,
         map = KINWEELAY,
         requiredItems = {
-            {2007, "The Third Troll Legend", 1, "Rubbing of the tablet Fall of Gurubashi, in the troll ruins on the coast north of the Vile Reef (around 23, 12)", map = { mapID = 1434, x = 0.230, y = 0.120, label = "Fall of Gurubashi — troll ruins north of the Vile Reef", detail = "The tablet in the troll ruins on the coast (around 23, 12)" }},
+            {2007, "The Third Troll Legend", 1, "Rubbing of the tablet Fall of Gurubashi, in the troll ruins on the coast north of the Vile Reef (around 23, 12)", map = { mapID = 1434, x = 0.230, y = 0.120, label = "Fall of Gurubashi — troll ruins north of the Vile Reef", detail = "The tablet in the troll ruins on the coast (around 23, 12)", pickUp = true }},
         },
     }
     FDJ.QUEST_PREREQ_DETAILS[95770] = {
@@ -742,7 +745,10 @@ do
 
     -- Objects, not NPCs: nothing to target from the map.
     local function Tablet(name, x, y, where)
-        return { markerType = "location", mapID = 1434, x = x, y = y, label = name .. " — Stranglethorn Vale", detail = where }
+        -- pickUp: a thing to pick up (the arrow stays there and says so);
+        -- underwater: on the bottom of the Vile Reef ("Swim underwater")
+        return { markerType = "location", mapID = 1434, x = x, y = y, label = name .. " — Stranglethorn Vale", detail = where, pickUp = true,
+            underwater = (name == "Gri'lek the Wanderer") or nil }
     end
 
     local LEAD_IN = {
@@ -853,6 +859,36 @@ do
         if quest.id == 97130 then
             quest.turninMap = FDJ.QUEST_START_MAPS[97130]
             break
+        end
+    end
+
+    -- drownedally (2.0.9, M: "the tracking guide, the one with the arrow, for
+    -- Alliance Drowned City quests"): what the Route needs to know.
+    --  - Sergeant Yohwa's two quests are taken together (the second does not
+    --    wait for the first to be handed in).
+    --  - Where each lead-in is done: the Kurzen men of both of Yohwa's quests
+    --    stand at Kurzen's Compound (Jungle Fighters and Medicine Men, 28
+    --    spawns around 44.7, 10.4); the Skullsplitter Mystics south of it (24
+    --    spawns around 45.9, 36.4; the Witch Doctors a little further south).
+    --    Forever client tables via Polestar forever-db (spawns of 937, 940,
+    --    780, 670). Kurzen's Mystery: its four tablets have their places
+    --    already (requiredItems' maps).
+    --  - Dibbs' two quests are done inside the dungeon: handed in after the
+    --    run. His two follow-ups are deliveries: no run of their own.
+    do
+        local KURZEN = { markerType = "location", mapID = 1434, x = 0.447, y = 0.104, label = "Kurzen's Compound — Stranglethorn Vale", detail = "Kurzen Jungle Fighters and Medicine Men, in and around Kurzen's Compound" } -- (no town named here: the arrow would say "Get to" it)
+        local SKULLSPLITTERS = { markerType = "location", mapID = 1434, x = 0.459, y = 0.364, label = "Skullsplitter trolls — Stranglethorn Vale", detail = "Skullsplitter Mystics and Witch Doctors in the troll ruins south of Kurzen's Compound" }
+        FDJ.QUEST_PREREQ_DETAILS[203].objectiveMap = KURZEN
+        FDJ.QUEST_PREREQ_DETAILS[204].objectiveMap = KURZEN
+        FDJ.QUEST_PREREQ_DETAILS[205].objectiveMap = SKULLSPLITTERS
+        for _, id in ipairs({ 95799, 95798 }) do
+            for _, step in ipairs(FDJ.QUEST_PREREQ_CHAINS[id]) do
+                if step.id == 204 then step.together = true end
+                if step.id == 95787 or step.id == 95788 then step.needsDungeon = true end
+            end
+        end
+        for _, quest in ipairs((FDJ.DB["The Drowned City"] and FDJ.DB["The Drowned City"].quests) or {}) do
+            if quest.id == 95799 or quest.id == 95798 then quest.routeNoRun = true end
         end
     end
 
@@ -971,6 +1007,14 @@ do
         if boss.name == "Gahz'rilla" then
             boss.summonItem = MALLET
             boss.summonChain = { page = PAGE, quest = MAIN }
+        end
+    end
+    -- summonhelp (2.0.9, M 16 Nov 2026): the quest Gahz'rilla (2770) says he
+    -- has to be summoned, above its Objective, with "How to summon
+    -- Gahz'rilla" opening this chain (Core/Journal.lua, FDJ.PlaceSummonHelp).
+    for _, quest in ipairs((zf and zf.quests) or {}) do
+        if quest.id == 2770 then
+            quest.summonHelp = { boss = "Gahz'rilla", item = MALLET, itemName = "Mallet of Zul'Farrak", page = PAGE, quest = MAIN }
         end
     end
 end
@@ -1296,6 +1340,201 @@ FDJ.NPC_FLOORS = {
     ["Tyrande Whisperwind"] = { { 1, 9662.5, 2524.5, 29 }, { 1, 9662.5, 2526.5, 28 } },
 }
 -- END npcfloors
+
+-- BEGIN droprare
+-- droprare (2.0.8, M 15 Nov 2026): the tooltip line of a loot entry with
+-- dropNote = "EXTREMELY_RARE_DROP" (Zul'Farrak: Spellshock Leggings 1/440,
+-- Bloodletter Scalpel 1/611).
+do
+    local texts = {
+        enUS = "Extremely rare drop", deDE = "Extrem seltene Beute", frFR = "Butin extrêmement rare",
+        esES = "Botín extremadamente raro", esMX = "Botín extremadamente raro", itIT = "Bottino estremamente raro",
+        ptBR = "Saque extremamente raro", ruRU = "Чрезвычайно редкая добыча", koKR = "극히 드문 전리품",
+        zhCN = "极其稀有的掉落", zhTW = "極其稀有的掉落",
+    }
+    for locale, text in pairs(texts) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t and t.EXTREMELY_RARE_DROP == nil then t.EXTREMELY_RARE_DROP = text end
+    end
+end
+-- chainglowoff (2.0.8): the Quests page option that removes the glow
+-- (glowstep, M 15 Nov 2026: its name says "chain step")
+do
+    local texts = {
+        enUS = { "Remove quest glow on chain step \"Pick it up\"", "A quest whose chain you have finished, and that you can take now, glows gold in the quest list. Tick this to remove the glow (\"Pick it up\" stays)." },
+        deDE = { "Questleuchten bei „Annehmen“ (Questreihen-Schritt) entfernen", "Eine Quest, deren Questreihe du abgeschlossen hast und die du jetzt annehmen kannst, leuchtet in der Questliste golden. Anhaken, um das Leuchten zu entfernen („Annehmen“ bleibt)." },
+        frFR = { "Retirer la lueur des quêtes « À prendre » (étape de suite)", "Une quête dont vous avez fini la suite, et que vous pouvez prendre, brille en doré dans la liste des quêtes. Cochez pour retirer la lueur (« À prendre » reste)." },
+        esES = { "Quitar el brillo de misiones «Recoger» (paso de cadena)", "Una misión cuya cadena has terminado y que ya puedes recoger brilla en dorado en la lista de misiones. Márcalo para quitar el brillo («Recoger» se queda)." },
+        itIT = { "Rimuovi il bagliore delle missioni «Da prendere» (passo della catena)", "Una missione di cui hai finito la catena, e che ora puoi prendere, brilla d'oro nell'elenco delle missioni. Spunta per togliere il bagliore («Da prendere» resta)." },
+        ptBR = { "Remover o brilho das missões \"Pegar\" (etapa de cadeia)", "Uma missão cuja cadeia você terminou, e que já pode pegar, brilha dourada na lista de missões. Marque para remover o brilho (\"Pegar\" continua)." },
+        ruRU = { "Убрать свечение заданий «Взять» (шаг цепочки)", "Задание, цепочку которого вы прошли и которое уже можно взять, светится золотом в списке заданий. Отметьте, чтобы убрать свечение («Взять» останется)." },
+        koKR = { "연계 퀘스트 단계 \"수락 가능\" 빛 효과 끄기", "연계 퀘스트를 마쳐 지금 받을 수 있는 퀘스트는 퀘스트 목록에서 금빛으로 빛납니다. 체크하면 빛 효과가 사라집니다(\"수락 가능\"은 남습니다)." },
+        zhCN = { "移除任务链步骤“可以接取”的任务光效", "已完成任务链、现在可以接取的任务会在任务列表中发出金光。勾选后移除光效（“可以接取”仍会显示）。" },
+        zhTW = { "移除任務鏈步驟「可以接取」的任務光效", "已完成任務鏈、現在可以接取的任務會在任務列表中發出金光。勾選後移除光效（「可以接取」仍會顯示）。" },
+    }
+    texts.esMX = texts.esES
+    for locale, pair in pairs(texts) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            if t.OPT_HIDE_CHAIN_GLOW == nil then t.OPT_HIDE_CHAIN_GLOW = pair[1] end
+            if t.OPT_HIDE_CHAIN_GLOW_TIP == nil then t.OPT_HIDE_CHAIN_GLOW_TIP = pair[2] end
+        end
+    end
+end
+-- bossquest (2.0.8): the tooltip of the quest beside a boss's name
+do
+    local tips = {
+        enUS = "Click to open the quest", deDE = "Klicken, um die Quest zu öffnen", frFR = "Cliquez pour ouvrir la quête",
+        esES = "Haz clic para abrir la misión", esMX = "Haz clic para abrir la misión", itIT = "Clicca per aprire la missione",
+        ptBR = "Clique para abrir a missão", ruRU = "Нажмите, чтобы открыть задание", koKR = "클릭하여 퀘스트 열기",
+        zhCN = "点击打开任务", zhTW = "點擊打開任務",
+    }
+    for locale, text in pairs(tips) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t and t.BOSS_QUEST_TIP == nil then t.BOSS_QUEST_TIP = text end
+    end
+end
+-- END droprare
+
+-- BEGIN rarelabels
+-- darkreaver (2.0.8, M 15 Nov 2026): a boss's own label in place of "Rare"
+-- (rareLabel), in the player's language when it is listed here.
+do
+    local LABELS = {
+        ["Paladin Mount Quest Boss"] = {
+            deDE = "Paladin-Reittierquest-Boss", frFR = "Boss quête monture paladin",
+            esES = "Jefe misión montura paladín", esMX = "Jefe misión montura paladín",
+            itIT = "Boss destriero paladino", ptBR = "Chefe montaria de paladino",
+            ruRU = "Босс квеста коня паладина", koKR = "성기사 탈것 퀘스트 보스",
+            zhCN = "圣骑士坐骑任务首领", zhTW = "聖騎士坐騎任務首領",
+        },
+    }
+    function FDJ.RareLabelText(label)
+        if type(label) ~= "string" then return nil end
+        local byLang = LABELS[label]
+        local lang = FDJ.GetLanguage and FDJ.GetLanguage() or nil
+        return (byLang and lang and byLang[lang]) or label
+    end
+end
+-- END rarelabels
+
+-- BEGIN questrowtrial
+-- questrowtrial (2.0.8, M 15 Nov 2026, tried on The Deadmines and Scarlet Monastery: Library first): the
+-- quest list of these dungeons shows the character's own faction only
+-- (unless "Show both factions' quests" is on in the options; the crest at
+-- the top is the character's, locked), and its rows have no faction crests:
+-- in their place a round ! (as big as the turn-in ?) that shows how to pick
+-- the quest up, with "Pick it up" beside it once its quest chain is done.
+FDJ.QUESTROW_TRIAL = {
+    ["The Deadmines"] = true,
+    ["Scarlet Monastery: Library"] = true, -- (M, 15 Nov 2026: "now do the same for scarlet lib quests")
+}
+-- questrowall (2.0.8, M 15 Nov 2026: "roll this update for every single
+-- dungeon"): every dungeon's quest list now (the list above is what was
+-- tried first).
+FDJ.QUESTROW_ALL = true
+do
+    local strings = {
+        enUS = { "Pick it up", "How to pick it up", "Its quest chain first: %s", "Show both factions' quests",
+            "Lets you switch a dungeon's quest list to the other faction's quests (the crests at the top of the list). Off: you only see your own faction's quests.",
+            "Your faction's quests. To see the other faction's too: Options, \"Show both factions' quests\".", "Show pickup on map" },
+        deDE = { "Annehmen", "So nimmst du sie an", "Erst die Questreihe: %s", "Quests beider Fraktionen anzeigen",
+            "Lässt dich die Questliste eines Dungeons auf die Quests der anderen Fraktion umschalten (die Wappen oben in der Liste). Aus: Du siehst nur die Quests deiner Fraktion.",
+            "Die Quests deiner Fraktion. Um auch die der anderen zu sehen: Optionen, \"Quests beider Fraktionen anzeigen\".", "Annahmeort auf der Karte zeigen" },
+        frFR = { "À prendre", "Comment la prendre", "D'abord sa suite de quêtes : %s", "Afficher les quêtes des deux factions",
+            "Permet d'afficher dans la liste des quêtes d'un donjon celles de l'autre faction (les blasons en haut de la liste). Désactivé : vous ne voyez que les quêtes de votre faction.",
+            "Les quêtes de votre faction. Pour voir aussi celles de l'autre : Options, « Afficher les quêtes des deux factions ».", "Afficher sur la carte où la prendre" },
+        esES = { "Recoger", "Cómo conseguirla", "Primero su cadena de misiones: %s", "Mostrar misiones de ambas facciones",
+            "Te deja cambiar la lista de misiones de una mazmorra a las de la otra facción (los blasones de arriba de la lista). Desactivado: solo ves las misiones de tu facción.",
+            "Las misiones de tu facción. Para ver también las de la otra: Opciones, «Mostrar misiones de ambas facciones».", "Mostrar en el mapa dónde conseguirla" },
+        itIT = { "Da prendere", "Come prenderla", "Prima la sua catena di missioni: %s", "Mostra le missioni di entrambe le fazioni",
+            "Ti permette di passare l'elenco delle missioni di un'istanza a quelle dell'altra fazione (gli stemmi in cima all'elenco). Disattivato: vedi solo le missioni della tua fazione.",
+            "Le missioni della tua fazione. Per vedere anche quelle dell'altra: Opzioni, «Mostra le missioni di entrambe le fazioni».", "Mostra sulla mappa dove prenderla" },
+        ptBR = { "Pegar", "Como pegá-la", "Primeiro a cadeia de missões: %s", "Mostrar missões das duas facções",
+            "Permite trocar a lista de missões de uma masmorra para as da outra facção (os brasões no topo da lista). Desligado: você só vê as missões da sua facção.",
+            "As missões da sua facção. Para ver também as da outra: Opções, \"Mostrar missões das duas facções\".", "Mostrar no mapa onde pegá-la" },
+        ruRU = { "Взять", "Как взять задание", "Сначала цепочка заданий: %s", "Показывать задания обеих фракций",
+            "Позволяет переключать список заданий подземелья на задания другой фракции (гербы вверху списка). Выкл.: видны только задания вашей фракции.",
+            "Задания вашей фракции. Чтобы видеть и задания другой: Настройки, «Показывать задания обеих фракций».", "Показать на карте, где взять" },
+        koKR = { "수락 가능", "퀘스트 받는 방법", "먼저 연계 퀘스트: %s", "양 진영 퀘스트 보기",
+            "던전 퀘스트 목록을 다른 진영의 퀘스트로 바꿀 수 있습니다(목록 위의 문장). 끄기: 자신의 진영 퀘스트만 보입니다.",
+            "자신의 진영 퀘스트입니다. 다른 진영 퀘스트도 보려면: 설정, \"양 진영 퀘스트 보기\".", "받는 곳을 지도에 표시" },
+        zhCN = { "可以接取", "如何接取", "先完成任务链：%s", "显示两个阵营的任务",
+            "可以将副本的任务列表切换为另一阵营的任务（列表顶部的徽记）。关闭：只显示你所在阵营的任务。",
+            "你所在阵营的任务。要同时查看另一阵营的任务：选项，“显示两个阵营的任务”。", "在地图上显示接取地点" },
+        zhTW = { "可以接取", "如何接取", "先完成任務鏈：%s", "顯示兩個陣營的任務",
+            "可以將副本的任務列表切換為另一陣營的任務（列表頂部的徽記）。關閉：只顯示你所在陣營的任務。",
+            "你所在陣營的任務。要同時查看另一陣營的任務：選項，「顯示兩個陣營的任務」。", "在地圖上顯示接取地點" },
+    }
+    strings.esMX = strings.esES
+    local keys = { "PICK_IT_UP", "PICKUP_HOW", "PICKUP_CHAIN_FIRST", "OPT_BOTH_FACTIONS", "OPT_BOTH_FACTIONS_TIP", "FACTION_LOCKED_TIP", "PICKUP_ON_MAP" }
+    for locale, texts in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            for i, key in ipairs(keys) do
+                if t[key] == nil then t[key] = texts[i] end
+            end
+        end
+    end
+end
+-- END questrowtrial
+
+-- BEGIN npcupstairs
+-- upstairs (2.0.8, M 15 Nov 2026): quest NPCs up a flight of stairs inside a
+-- building (Raleigh the Devout: upstairs in the Southshore inn). Once the
+-- arrow shows the NPC's portrait (the NPC is in reach), it says "Go
+-- upstairs" under the yards.
+FDJ.NPC_UPSTAIRS = {
+    ["Raleigh the Devout"] = true,
+}
+do
+    local strings = {
+        enUS = "Go upstairs", deDE = "Geh nach oben", frFR = "Montez à l'étage", esES = "Sube al piso de arriba",
+        itIT = "Sali al piano di sopra", ptBR = "Suba as escadas", ruRU = "Поднимитесь наверх",
+        koKR = "위층으로 올라가세요", zhCN = "上楼", zhTW = "上樓",
+    }
+    strings.esMX = strings.esES
+    for locale, text in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t and t.ARROW_GO_UP == nil then t.ARROW_GO_UP = text end
+    end
+end
+-- END npcupstairs
+
+-- BEGIN questrp
+-- questrp (2.0.8, M 15 Nov 2026): a quest whose hand-in starts a little scene
+-- before the NPC offers the next quest (Down the Scarlet Path: Raleigh the
+-- Devout breaks the seal on Anton's letter, reads it, speaks, throws it on
+-- the table; then In the Name of the Light). The arrow stays on the NPC and
+-- says "Wait for the RP" until the scene's last line (lines = how many the
+-- NPC says or emotes); the time it took is kept, so the next time it counts
+-- down. The lines: AzerothCore creature_text, NPC 3980 (SOURCES.txt).
+FDJ.QUEST_RP = {
+    [1052] = { npc = 3980, name = "Raleigh the Devout", lines = 3 },
+}
+do
+    local strings = {
+        enUS = { "Wait for the RP", "Wait for the RP (%ds)" },
+        deDE = { "Warte auf die Szene", "Warte auf die Szene (%d s)" },
+        frFR = { "Attendez la fin de la scène", "Attendez la fin de la scène (%d s)" },
+        esES = { "Espera a que termine la escena", "Espera a que termine la escena (%d s)" },
+        itIT = { "Aspetta la fine della scena", "Aspetta la fine della scena (%d s)" },
+        ptBR = { "Aguarde o fim da cena", "Aguarde o fim da cena (%d s)" },
+        ruRU = { "Дождитесь конца сценки", "Дождитесь конца сценки (%d с)" },
+        koKR = { "장면이 끝날 때까지 기다리세요", "장면이 끝날 때까지 기다리세요 (%d초)" },
+        zhCN = { "等待剧情结束", "等待剧情结束（%d秒）" },
+        zhTW = { "等待劇情結束", "等待劇情結束（%d秒）" },
+    }
+    strings.esMX = strings.esES
+    for locale, pair in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            if t.ARROW_RP_WAIT == nil then t.ARROW_RP_WAIT = pair[1] end
+            if t.ARROW_RP_WAIT_TIME == nil then t.ARROW_RP_WAIT_TIME = pair[2] end
+        end
+    end
+end
+-- END questrp
 
 -- BEGIN dalaranquests
 -- Kirin Tor quests from Archmage Lan'dalock in Dalaran (Alterac Mountains),
@@ -1748,7 +1987,12 @@ do
     local EITRIGG = { mapID = 1454, x = 0.344, y = 0.386, label = "Eitrigg — Grommash Hold, Orgrimmar", targetName = "Eitrigg" }
     local NAZEER = { mapID = 1445, x = 0.360, y = 0.310, label = "Nazeer Bloodspike — Brackenwall Village, Dustwallow Marsh", targetName = "Nazeer Bloodspike" }
     local ULKA = { mapID = 1445, x = 0.702, y = 0.188, label = "Sergeant Ulka — Alcaz Island, Dustwallow Marsh", targetName = "Sergeant Ulka" }
-    local SHAW = { mapID = 1453, x = 0.758, y = 0.598, label = "Master Mathias Shaw — SI:7, Old Town, Stormwind", targetName = "Mathias Shaw" }
+    -- shawspot (2.0.9, Pekins on Discord, 15 Nov 2026: "more towards the
+    -- south of Old Town at 79, 71"): 75.8, 59.8 was his place on the old
+    -- Stormwind map; on Forever's map he stands at 78.3, 70.7 (Forever
+    -- client tables via Polestar forever-db, spawn of NPC 332; the same
+    -- spot the journal already uses for Shaw's Report).
+    local SHAW = { mapID = 1453, x = 0.783, y = 0.707, label = "Master Mathias Shaw — SI:7, Old Town, Stormwind", targetName = "Master Mathias Shaw" }
     local SULLY = { mapID = 1445, x = 0.662, y = 0.452, label = "Sully McCleary — inn, Theramore", targetName = "Sully McCleary" }
     local SULLY_OUT = { mapID = 1445, x = 0.634, y = 0.424, label = "Sully McCleary — outside Theramore, across the bridge", targetName = "Sully McCleary" }
     local LANDALOCK = { mapID = 1416, x = 0.154, y = 0.738, label = "Archmage Lan'dalock — Violet Hold entrance, Dalaran", targetName = "Archmage Lan'dalock" }
@@ -1810,7 +2054,7 @@ do
     D[95194] = {
         level = 53, requires = 48,
         objective = "Seek out the SI:7 agent stationed on Theramore Isle.",
-        pickup = "Master Mathias Shaw, SI:7, Old Town, Stormwind City (75.8, 59.8)", turnin = AT_SULLY,
+        pickup = "Master Mathias Shaw, SI:7, Old Town, Stormwind City (78.3, 70.7)", turnin = AT_SULLY,
         map = SHAW, turninMap = SULLY,
     }
     D[95196] = {
@@ -2104,7 +2348,11 @@ do
             -- rfdstep (2.0.31): the chain's Rot and Regret step is done in Maraudon.
             if q.id == 93604 and not q.warning then q.warning = "WARNING: This chain has a step in Maraudon" end
             if q.id == 3341 or q.id == 3636 then
-                q.rewardItems = { {10824, "Amberglow Talisman", 3}, {270081, "Purified Ring", 3}, {10823, "Vanquisher's Sword", 3} }
+                -- rfdsword (2.0.10): a choice of the Talisman or the Ring; the
+                -- Vanquisher's Sword comes on top (Wowhead Forever)
+                q.rewardChoice = true
+                q.rewardItems = { {10824, "Amberglow Talisman", 3}, {270081, "Purified Ring", 3} }
+                q.additionalRewardItems = { {10823, "Vanquisher's Sword", 3} }
                 q.rewardSummary = (q.id == 3341) and "Undercity +150" or "Stormwind +150"
             end
             if q.id == 6521 then
@@ -2146,6 +2394,9 @@ do
     local JARKAL = { mapID = 1418, x = 0.026, y = 0.460, label = "Jarkal Mossmeld — Kargath, Badlands", targetName = "Jarkal Mossmeld" }
     local MAGELLAS = { mapID = 1455, x = 0.696, y = 0.186, label = "High Explorer Magellas — Hall of Explorers, Ironforge", targetName = "High Explorer Magellas" }
     local DINITA = { mapID = 1455, x = 0.338, y = 0.602, label = "Dinita Stonemantle — The Vault, Ironforge", targetName = "Dinita Stonemantle" }
+    -- discshorde (2.0.10): Wowhead Forever NPC spots, Thunder Bluff
+    local TRUTHSEEKER = { mapID = 1456, x = 0.344, y = 0.472, label = "Sage Truthseeker — Thunder Bluff", targetName = "Sage Truthseeker" }
+    local BENA = { mapID = 1456, x = 0.468, y = 0.334, label = "Bena Winterhoof — Thunder Bluff", targetName = "Bena Winterhoof" }
 
     -- A journal entry that becomes a chain step keeps its page as a step.
     local function AsStep(q)
@@ -2215,6 +2466,10 @@ do
         rewardSummary = "Darkspear Trolls +100",
         rewards = "Jarkal's Enhancing Necklace\n5,600 XP • Darkspear Trolls +100",
         rewardItems = { { 7888, "Jarkal's Enhancing Necklace", 3 } },
+        -- raceunavailable (2.0.10, M 16 Nov 2026: "That quest is not available to
+        -- your race" for his Undead): as Compendium of the Fallen
+        warning = "Undead cannot take this quest",
+        unavailableRaces = { Scourge = true },
     }, {
         { id = 2283, name = "Necklace Recovery" },
         { id = 2284, name = "Necklace Recovery, Take 2" },
@@ -2225,14 +2480,24 @@ do
     })
 
     -- Alliance Platinum Discs: the reward comes one step later.
-    local discRewards
+    -- discshorde (2.0.10, M 17 Nov 2026: "fix this reward choice for both
+    -- factions"): the same for the Horde (2280, then 2440 at Bena
+    -- Winterhoof); the reward (Wowhead Forever 2439 / 2440): 5 Superior
+    -- Healing Potions or 5 Greater Mana Potions, and the Thawpelt Sack on top.
+    local DISC_CHOICE = { { 3928, "Superior Healing Potion", 1, 5 }, { 6149, "Greater Mana Potion", 1, 5 } }
+    local DISC_ALSO = { { 9587, "Thawpelt Sack", 1 } }
     for _, q in ipairs((FDJ.DB and FDJ.DB["Uldaman"] and FDJ.DB["Uldaman"].quests) or {}) do
         if q.id == 2279 then
-            discRewards = q.rewardItems
             q.rewardItems = {}
             q.rewardChoice = nil
             q.rewardSummary = "Ironforge +150"
             q.turninMap = q.turninMap or MAGELLAS
+        elseif q.id == 2280 then
+            q.rewardItems = {}
+            q.rewardChoice = nil
+            q.additionalRewardItems = nil
+            q.rewardSummary = "Thunder Bluff +150"
+            q.turninMap = q.turninMap or TRUTHSEEKER
         end
     end
     Insert("Uldaman", 2279, {
@@ -2245,10 +2510,27 @@ do
         liveXPFallback = 420,
         rewardSummary = "",
         rewardChoice = true,
-        rewardItems = discRewards or { { 3928, "Superior Healing Potion", 1 }, { 6149, "Greater Mana Potion", 1 }, { 9587, "Thawpelt Sack", 2 } },
+        rewardItems = DISC_CHOICE,
+        additionalRewardItems = DISC_ALSO,
     }, {
         { id = 2278, name = "The Platinum Discs" },
         { id = 2279, name = "The Platinum Discs" },
+    })
+    Insert("Uldaman", 2280, {
+        id = 2440, name = "The Platinum Discs", faction = "Horde", level = 47, requires = 40,
+        pickup = "Sage Truthseeker, Thunder Bluff (34.4, 47.2)",
+        objective = "Take the reward voucher to Bena Winterhoof in Thunder Bluff.",
+        turnin = "Bena Winterhoof, Thunder Bluff (46.8, 33.4)",
+        startMap = TRUTHSEEKER, turninMap = BENA,
+        providedItem = { 8070, "Reward Voucher", 1, "Given by Sage Truthseeker when you accept the quest" },
+        liveXPFallback = 420,
+        rewardSummary = "Thunder Bluff +10",
+        rewardChoice = true,
+        rewardItems = DISC_CHOICE,
+        additionalRewardItems = DISC_ALSO,
+    }, {
+        { id = 2278, name = "The Platinum Discs" },
+        { id = 2280, name = "The Platinum Discs" },
     })
 
     -- WoW Forever quest XP (forever-tool / Wowhead Forever, Nov 2026).
@@ -2259,7 +2541,7 @@ do
         [1139] = 10250, [2200] = 4450, [2201] = 6300, [2204] = 1650, [2283] = 4800, [2284] = 4800,
         [2339] = 7300, [2278] = 8200, [2279] = 5250, [2280] = 5250, [1956] = 7800,
         [2198] = 5800, [2199] = 2450, [2318] = 6750, [2338] = 350, [2340] = 1850,
-        [2341] = 5600, [2361] = 5600, [2439] = 420,
+        [2341] = 5600, [2361] = 5600, [2439] = 420, [2440] = 420,
         -- Zul'Farrak
         [2769] = 405, [2770] = 14200, [2861] = 410, [2846] = 12100, [2768] = 12600, [2864] = 390,
         [2865] = 7800, [3042] = 7800, [3527] = 10500, [2991] = 10500, [2936] = 9700,
@@ -2747,10 +3029,10 @@ end
 do
     local D, C, XP = FDJ.QUEST_PREREQ_DETAILS, FDJ.QUEST_PREREQ_CHAINS, FDJ.FOREVER_QUEST_XP_FALLBACK
     local rfk = FDJ.DB and FDJ.DB["Razorfen Kraul"]
-    local FUREN = "Furen Longbeard, Dwarven District, Stormwind (58.0, 16.8)"
-    local FUREN_MAP = { mapID = 1453, x = 0.580, y = 0.168, label = "Furen Longbeard — Stormwind", targetName = "Furen Longbeard" }
+    local FUREN = "Furen Longbeard, Dwarven District, Stormwind (64.6, 37.2)"
+    local FUREN_MAP = { mapID = 1453, x = 0.646, y = 0.372, label = "Furen Longbeard — Stormwind", targetName = "Furen Longbeard" }
     local YORUS = "Yorus Barleybrew, Lakeshire, Redridge Mountains"
-    -- Where he stands (the Lakeshire inn).
+    -- rfkroute (2.0.28): where he stands (the Lakeshire inn), for the route.
     local YORUS_MAP = { mapID = 1433, x = 0.215, y = 0.447, label = "Yorus Barleybrew — Lakeshire", targetName = "Yorus Barleybrew" }
     local THUNGRIM = "Thun'grim Firegaze, hills east of the Crossroads, The Barrens (57, 30)"
     local THUNGRIM_MAP = { mapID = 1413, x = 0.570, y = 0.300, label = "Thun'grim Firegaze — east of the Crossroads", targetName = "Thun'grim Firegaze", detail = "On the hilltop east of the Crossroads, just south of Thorn Hill" }
@@ -2796,7 +3078,7 @@ do
     C[1782] = {
         { id = 1699, name = "The Rethban Gauntlet" },
         { id = 1702, name = "The Shieldsmith" },
-        { id = 1701, name = "Fire Hardened Mail" },
+        { id = 1701, name = "Fire Hardened Mail", needsDungeon = true }, -- rfkroute: handed in after the run
     }
     C[1848] = {
         { id = 1824, name = "Trial at the Field of Giants" },
@@ -3329,13 +3611,36 @@ do
     }
 
     -- Horde
+    -- muggchain (2.0.8, M 15 Nov 2026: his "Eye of Mugg: Horde chain audit",
+    -- a player's report that the list jumped from Encroaching Twilight to
+    -- Clugfist's Decree): the whole way to Clugfist's Decree is listed now.
+    -- Krom'rosh's two first quests, then Tran'gul's two Twilight quests,
+    -- Clubtoe's quests in the Sunnyglade cave (two quests are called The
+    -- Purple Ones: 95417, then 95601), back to Tran'gul, on to Clugfist and
+    -- his two quests. Quests done side by side follow each other in the list
+    -- (every step is needed). Rise Up! stays (a player's report on Wowhead's
+    -- 94968 lists it; the quest databases don't), with the quest that leads
+    -- to it, Rumblings of Discontent, before it.
     local horde = {
+        { id = 93786, name = "A Message in Blood" },
+        { id = 93787, name = "Food for the Taking" },
         { id = 94483, name = "Show Them How It's Done" },
         { id = 94672, name = "Encroaching Twilight" },
+        { id = 94680, name = "Twilight Missives" },
+        { id = 94727, name = "Digging for Answers" },
+        { id = 95417, name = "The Purple Ones" },
+        { id = 95601, name = "The Purple Ones" },
+        { id = 95602, name = "Sickening Lights" },
+        { id = 95427, name = "Twilight No More!" },
+        { id = 95418, name = "Spread the Word" },
+        { id = 95420, name = "Land of Giants" },
+        { id = 95424, name = "Might Makes Right" },
+        { id = 95425, name = "Unworthy Champion" },
         { id = 95428, name = "Clugfist's Decree" },
         { id = 94744, name = "The Wayward Warrior" },
         { id = 94748, name = "Break Their Chains" },
         { id = 94745, name = "Carving a Path" },
+        { id = 95431, name = "Rumblings of Discontent" },
         { id = 95432, name = "Rise Up!" },
         { id = 94768, name = "Bring Me His Head" },
     }
@@ -3394,6 +3699,105 @@ do
     local XP = FDJ.FOREVER_QUEST_XP_FALLBACK
     XP[94877] = 3150; XP[94886] = 380; XP[94888] = 3750; XP[94889] = 3750; XP[94891] = 4050
     XP[94672] = 3300; XP[95428] = 330
+
+    -- muggchain (2.0.8): the steps added to the Horde chain, and what was
+    -- not known about the old ones. Givers, hand-ins, levels and XP: Icy
+    -- Veins Forever and forever-xp.com (they agree); where they stand:
+    -- forever-xp.com.
+    local CLUBTOE = { mapID = M, x = 0.500, y = 0.470, label = "Clubtoe — Sunnyglade cave, Riverglades", targetName = "Clubtoe" }
+    local BRUTE = { mapID = M, x = 0.492, y = 0.467, label = "Twilight Brute — Sunnyglade cave, Riverglades", targetName = "Twilight Brute" }
+    local AT_TRANGUL = "Tran'gul, Rog'mar, Riverglades (59.5, 44.0)"
+    local AT_CLUBTOE = "Clubtoe, in the cave under Sunnyglade, Riverglades (50.0, 47.0; the cave's entrance is near 50, 46)"
+    local AT_BRUTE = "Twilight Brute, in the cave under Sunnyglade, Riverglades (49.2, 46.7)"
+    local AT_CLUGFIST = "Clugfist, Bolder'ok, Riverglades (64.4, 14.8)"
+    local AT_CRAGROG = "Crag'rog, Riverglades (27.4, 37.0)"
+    D[93786] = {
+        level = 36, requires = 35,
+        objective = "Slay 12 Meadowsbrook Farmhands, then return to Krom'rosh with news of your success.",
+        pickup = AT_KROM, turnin = AT_KROM, map = KROM, turninMap = KROM,
+        note = "Done alongside Food for the Taking.",
+    }
+    D[93787] = {
+        level = 36, requires = 36,
+        objective = "Steal 6 Feed Satchels from the Alliance farm in Meadowsbrook then return to Krom'rosh.",
+        pickup = AT_KROM, turnin = AT_KROM, map = KROM, turninMap = KROM,
+        note = "Done alongside A Message in Blood. Krom'rosh offers Show Them How It's Done once this is handed in.",
+    }
+    D[94483].level, D[94483].requires = 39, 36
+    D[94483].pickup, D[94483].turnin = AT_KROM, AT_KROM
+    D[94483].map, D[94483].turninMap = KROM, KROM
+    D[94672].note = "Done alongside Twilight Missives; Tran'gul gives Digging for Answers once both are handed in."
+    D[94680] = {
+        level = 41, requires = 36,
+        objective = "Retrieve 3 Twilight Missives from Twilight Shadowmancers in Sunnyglade for Tran'gul in Rog'mar.",
+        pickup = AT_TRANGUL, turnin = AT_TRANGUL, map = TRANGUL, turninMap = TRANGUL,
+        note = "Done alongside Encroaching Twilight; Tran'gul gives Digging for Answers once both are handed in.",
+    }
+    D[94727] = {
+        level = 40, requires = 36,
+        objective = "Convince a Twilight's Hammer miner in Sunnyglade to divulge their secrets.",
+        pickup = AT_TRANGUL, turnin = AT_CLUBTOE, map = TRANGUL, turninMap = CLUBTOE,
+    }
+    D[95417] = {
+        level = 40, requires = 36,
+        objective = "Find missing ogres in the caves beneath Sunnyglade for Clubtoe.",
+        pickup = AT_CLUBTOE, turnin = AT_BRUTE, map = CLUBTOE, turninMap = BRUTE,
+        note = "The first of two quests called The Purple Ones. Clubtoe gives Sickening Lights at the same time.",
+    }
+    D[95601] = {
+        level = 40, requires = 36,
+        objective = "Kill 5 Empowered Brutes and 10 Twilight Ritualists then return to Clubtoe in Sunnyglade.",
+        pickup = AT_BRUTE, turnin = AT_CLUBTOE, map = BRUTE, turninMap = CLUBTOE,
+        note = "The second of two quests called The Purple Ones. Done alongside Sickening Lights; both are needed for Twilight No More!.",
+    }
+    D[95602] = {
+        level = 40, requires = 36,
+        objective = "Destroy 5 Twilight Ritual Circles found throughout the caves underneath Sunnyglade.",
+        pickup = AT_CLUBTOE, turnin = AT_CLUBTOE, map = CLUBTOE, turninMap = CLUBTOE,
+        note = "Done alongside The Purple Ones; both are needed for Twilight No More!.",
+    }
+    D[95427] = {
+        level = 41, requires = 36,
+        objective = "Kill Chogg'Zac in the Sunnyglade cave and collect their heads for Clubtoe.",
+        pickup = AT_CLUBTOE, turnin = AT_CLUBTOE, map = CLUBTOE, turninMap = CLUBTOE,
+        requiredItems = { {265750, "Chogg's Head", 1, "From Chogg'Zac in the Sunnyglade cave"}, {265751, "Zac's Head", 1, "From Chogg'Zac in the Sunnyglade cave"} },
+        note = "Chogg'Zac is an elite.",
+    }
+    D[95418] = {
+        level = 40, requires = 36,
+        objective = "Deliver the head of Chogg to Tran'gul in Rog'mar.",
+        pickup = AT_CLUBTOE, turnin = AT_TRANGUL, map = CLUBTOE, turninMap = TRANGUL,
+    }
+    D[95420] = {
+        level = 40, requires = 36,
+        objective = "Deliver Chogg's head to the ogre city to the north.",
+        pickup = AT_TRANGUL, turnin = AT_CLUGFIST, map = TRANGUL, turninMap = CLUGFIST,
+    }
+    D[95424] = {
+        level = 41, requires = 36,
+        objective = "Kill 7 Twilight Maulers and 7 Twilight Firecallers for Clugfist in Bolder'ok.",
+        pickup = AT_CLUGFIST, turnin = AT_CLUGFIST, map = CLUGFIST, turninMap = CLUGFIST,
+        note = "Done alongside Unworthy Champion; both are needed for Clugfist's Decree.",
+    }
+    D[95425] = {
+        level = 42, requires = 36,
+        objective = "Collect Skullthumper from Klunk for Clugfist in Bolder'ok.",
+        pickup = AT_CLUGFIST, turnin = AT_CLUGFIST, map = CLUGFIST, turninMap = CLUGFIST,
+        note = "Done alongside Might Makes Right; both are needed for Clugfist's Decree. Skullthumper is reported to drop near 75, 27.",
+    }
+    D[94748].note = "Done alongside Carving a Path; both are needed for Bring Me His Head."
+    D[94745].note = "Done alongside Break Their Chains; both are needed for Bring Me His Head."
+    D[95431] = {
+        level = 41, requires = 38,
+        objective = "Look for the Bolder'ok ogre in the nearby cave.",
+        pickup = AT_DAGROSH, turnin = AT_CRAGROG, map = DAGROSH, turninMap = CRAGROG,
+        note = "Leads to Rise Up!. Not confirmed as needed for Bring Me His Head: a player reports it, the quest databases don't list it.",
+    }
+    D[95432].note = "Comes after Rumblings of Discontent. Not confirmed as needed for Bring Me His Head: a player reports it, the quest databases don't list it."
+    D[95278].providedItem = {268705, "Blood and Battle", 1, "Given by Da'grosh when you accept the quest"}
+    XP[93786] = 2800; XP[93787] = 2800; XP[94680] = 2450; XP[94727] = 320
+    XP[95417] = 320; XP[95601] = 3150; XP[95602] = 3150; XP[95427] = 3300
+    XP[95418] = 320; XP[95420] = 320; XP[95424] = 3300; XP[95425] = 3450; XP[95431] = 330
 end
 -- END kroldokchains2
 -- END kroldokquests
@@ -3897,3 +4301,171 @@ do
 end
 -- END onyxiaattunement
 
+
+
+-- BEGIN knightofmourning
+-- knightofmourning (2.0.10, M 17 Nov 2026): the Forsaken paladin chain into
+-- Blackmaw Hold (Wowhead Forever, quests 93030 and 99187): The Knight of
+-- Mourning (listen to his tale), then The Reliquary of Tyr (the journal
+-- entry), which awards the Sword of Mourning. The Reliquary of Tyr drops
+-- from Elder Shaman Bloodmane (Wowhead Forever item 286415). The Knight of
+-- Mourning stands in Tirisfal Glades (17.6, 67.4); players pick up both
+-- quests from him.
+do
+    local D, C, XP = FDJ.QUEST_PREREQ_DETAILS, FDJ.QUEST_PREREQ_CHAINS, FDJ.FOREVER_QUEST_XP_FALLBACK
+    local bh = FDJ.DB and FDJ.DB["Blackmaw Hold"]
+    local KNIGHT = "Knight of Mourning, Tirisfal Glades (17.6, 67.4)"
+    local KNIGHT_MAP = { mapID = 1420, x = 0.176, y = 0.674, label = "Knight of Mourning — Tirisfal Glades", targetName = "Knight of Mourning" }
+    C[99187] = {
+        { id = 93030, name = "The Knight of Mourning" },
+    }
+    D[93030] = {
+        level = 58, requires = 50,
+        objective = "Speak with the Knight of Mourning to learn more about his unfinished quest.",
+        pickup = KNIGHT,
+        turnin = KNIGHT,
+        map = KNIGHT_MAP,
+    }
+    XP[93030] = 620
+    XP[99187] = 13550
+    if bh then
+        bh.quests = bh.quests or {}
+        local have = false
+        for _, q in ipairs(bh.quests) do if q.id == 99187 then have = true end end
+        if not have then
+            table.insert(bh.quests, {
+                id = 99187, name = "The Reliquary of Tyr",
+                classOnly = "PALADIN", faction = "Horde",
+                level = 58, requires = 50,
+                pickup = KNIGHT, turnin = KNIGHT,
+                startMap = KNIGHT_MAP, turninMap = KNIGHT_MAP,
+                objective = "Travel to Blackmaw Hold in Kalimdor, and recover the Reliquary of Tyr.",
+                liveXPFallback = 13550,
+                rewardSummary = "",
+                rewardItems = { {286408, "Sword of Mourning", 3} },
+                requiredItem = { 286415, "Reliquary of Tyr", 4, 1, "Dropped by: Elder Shaman Bloodmane, Blackmaw Hold" },
+                note = "Forsaken paladin class quest. The Reliquary of Tyr drops from Elder Shaman Bloodmane.",
+            })
+        end
+    end
+end
+-- END knightofmourning
+
+-- BEGIN tasteofflame
+-- tasteofflame (2.0.10, M 17 Nov 2026: "This quest is actually a chain, and
+-- we do not show the start"; then: "It starts from Squire, then you get Set
+-- Them Ablaze, and then you unlock Trinkets, which gives you as a reward the
+-- molt, which then you can bring to the guy"): A Taste of Flame in Blackrock
+-- Depths (4024) after Squire Maltrake (3462), Set Them Ablaze! (3463),
+-- Trinkets... (3481: the Hoard of the Black Dragonflight, with the Black
+-- Dragonflight Molt inside) and A Taste of Flame (4022: show the molt to
+-- Cyrus Therepentous). Levels, givers, spots, XP, money and rewards: Wowhead
+-- Forever (quests 3462, 3463, 3481, 4022; Velarok Windblade, Squire
+-- Maltrake and the hoard at 39, 39 in Searing Gorge; Cyrus at 94.8, 31.6 in
+-- Burning Steppes). Cyrus's other A Taste of Flame (4023, elite: the drake
+-- he summons drops a molt) also opens 4024: it counts for step 4.
+do
+    local VELAROK = { mapID = 1427, x = 0.390, y = 0.390, label = "Velarok Windblade — Searing Gorge", targetName = "Velarok Windblade" }
+    local MALTRAKE = { mapID = 1427, x = 0.390, y = 0.390, label = "Squire Maltrake — Searing Gorge", targetName = "Squire Maltrake" }
+    local HOARD = { mapID = 1427, x = 0.390, y = 0.389, label = "Hoard of the Black Dragonflight — Searing Gorge" }
+    local CYRUS = { mapID = 1428, x = 0.948, y = 0.316, label = "Cyrus Therepentous — Burning Steppes", targetName = "Cyrus Therepentous" }
+    local VELAROK_TEXT = "Velarok Windblade, Searing Gorge (39.0, 39.0)"
+    local MALTRAKE_TEXT = "Squire Maltrake, Searing Gorge (39.0, 39.0)"
+    local HOARD_TEXT = "Hoard of the Black Dragonflight, Searing Gorge (39.0, 38.9)"
+    local CYRUS_TEXT = "Cyrus Therepentous, Burning Steppes (94.8, 31.6)"
+    FDJ.QUEST_PREREQ_CHAINS[4024] = {
+        { id = 3462, name = "Squire Maltrake" },
+        { id = 3463, name = "Set Them Ablaze!" },
+        { id = 3481, name = "Trinkets..." },
+        { id = 4022, name = "A Taste of Flame" },
+    }
+    FDJ.QUEST_PREREQ_DETAILS[3462] = {
+        level = 50, requires = 40,
+        objective = "Speak with Squire Maltrake.",
+        pickup = VELAROK_TEXT, turnin = MALTRAKE_TEXT,
+        map = VELAROK, turninMap = MALTRAKE,
+    }
+    FDJ.QUEST_PREREQ_DETAILS[3463] = {
+        level = 52, requires = 40,
+        objective = "Set the North, South, East, and West Sentry Towers on fire by using the Torch of Retribution inside each of the buildings.",
+        pickup = MALTRAKE_TEXT, turnin = MALTRAKE_TEXT,
+        map = MALTRAKE, turninMap = MALTRAKE,
+        providedItem = {10515, "Torch of Retribution", 1, "Given by Squire Maltrake when you accept the quest: use it on the Sentry Brazier inside each tower"},
+        note = "Elite quest.",
+    }
+    FDJ.QUEST_PREREQ_DETAILS[3481] = {
+        level = 50, requires = 40,
+        objective = "Open the chest.",
+        pickup = HOARD_TEXT, turnin = HOARD_TEXT,
+        startObject = {"Hoard of the Black Dragonflight", "Interface\\Icons\\INV_Box_02", "Beside Squire Maltrake, Searing Gorge (39.0, 38.9)"},
+        map = HOARD, turninMap = HOARD,
+    }
+    FDJ.QUEST_PREREQ_DETAILS[4022] = {
+        level = 54, requires = 52,
+        objective = "Show Cyrus Therepentous the Black Dragonflight Molt you received from Velarok Windblade.",
+        pickup = CYRUS_TEXT, turnin = CYRUS_TEXT,
+        map = CYRUS, turninMap = CYRUS,
+        requiredItems = { {10575, "Black Dragonflight Molt", 1, "Inside the Hoard of the Black Dragonflight (Trinkets...)"} },
+        note = "No molt? Cyrus has another A Taste of Flame (elite): after accepting it, ask him how to prove your worth and kill the Frenzied Black Drake he summons for its molt. It opens the Blackrock Depths quest too.",
+    }
+    -- rewards and money (Wowhead Forever)
+    FDJ.PREREQ_REWARD_ITEMS_FALLBACK[3463] = { items = { {10742, "Dragonflight Leggings", 2}, {10743, "Drakefire Headguard", 2}, {10744, "Axe of the Ebon Drake", 2}, {270114, "Dragonscale Pants", 2} }, choice = true }
+    FDJ.PREREQ_REWARD_MONEY_FALLBACK[3463] = 23000
+    FDJ.PREREQ_REWARD_ITEMS_FALLBACK[3481] = { items = { {10569, "Hoard of the Black Dragonflight", 1} }, choice = false }
+    FDJ.QUEST_DONE_BY = FDJ.QUEST_DONE_BY or {}
+    FDJ.QUEST_DONE_BY[4022] = { 4023 }
+    local XP = FDJ.FOREVER_QUEST_XP_FALLBACK
+    XP[3462] = 470; XP[3463] = 7600; XP[3481] = 470; XP[4022] = 5450
+end
+-- END tasteofflame
+
+-- BEGIN onyxiaxp
+-- onyxiaxp (2.0.10, M 17 Nov 2026, with his Onyxia Attunement XP audit):
+-- every quest of both attunement chains with its WoW Forever XP. Wowhead
+-- Forever gives each quest a base XP and Forever's multiplier; the game
+-- grants base x multiplier rounded to 50 (checked against the game's own
+-- reward window: Wild Ancients 6,600 x 2.675 = 17,650). 23 of the 31 steps
+-- had no XP of their own, and the two finals showed the bare base (8,300 /
+-- 9,950). The same quest IDs on the Blackrock Spire pages get it too.
+do
+    local XP = FDJ.FOREVER_QUEST_XP_FALLBACK
+    -- Alliance: Dragonkin Menace ... Drakefire Amulet
+    XP[4182] = 5450; XP[4183] = 4100; XP[4184] = 4100; XP[4185] = 540
+    XP[4186] = 5450; XP[4223] = 540; XP[4224] = 540
+    XP[4241] = 11450 -- 5,450 x 2.1
+    XP[4242] = 9800 -- 5,450 x 1.8
+    XP[4264] = 11150; XP[4282] = 11150 -- 6,200 x 1.8
+    XP[4322] = 13950 -- 7,750 x 1.8
+    XP[6402] = 660; XP[6403] = 9950; XP[99435] = 9950 -- (99435: Forever's other The Great Masquerade)
+    XP[6501] = 6600
+    XP[6502] = 22200 -- 8,300 x 2.675
+    -- Horde: Blood and Thunder ... Blood of the Black Dragon Champion
+    XP[98325] = 660
+    XP[4903] = 15350 -- 8,300 x 1.85
+    XP[4941] = 6600
+    XP[4974] = 26600 -- 9,950 x 2.675
+    XP[6566] = 660; XP[6567] = 3300; XP[6568] = 4950; XP[6569] = 6600; XP[6570] = 4950
+    XP[6582] = 6600; XP[6583] = 6600; XP[6584] = 6600; XP[6585] = 6600
+    XP[6601] = 4950
+    XP[6602] = 26600 -- 9,950 x 2.675
+end
+-- END onyxiaxp
+
+-- BEGIN rfkhorde
+-- rfkhorde (2.0.10): Show on Map spots for two Horde Razorfen Kraul quests
+-- (Wowhead Forever): An Unholy Alliance is handed in to Varimathras
+-- (Undercity 56.2, 92.6); Trial at the Field of Giants is done at the
+-- silithid mounds south of Camp Taurajo (44.5, 70.5).
+do
+    local rfk = FDJ.DB and FDJ.DB["Razorfen Kraul"]
+    for _, quest in ipairs((rfk and rfk.quests) or {}) do
+        if quest.id == 6522 then
+            quest.turninMap = { mapID = 1458, x = 0.562, y = 0.926, label = "Varimathras — Royal Quarter, Undercity", targetName = "Varimathras" }
+        end
+    end
+    local D = FDJ.QUEST_PREREQ_DETAILS
+    if type(D[1824]) == "table" then
+        D[1824].objectiveMap = { markerType = "location", mapID = 1413, x = 0.445, y = 0.705, label = "Field of Giants — The Barrens", detail = "Silithid Creepers, Swarmers and Grubs at the mounds south of Camp Taurajo drop Twitching Antennae" }
+    end
+end
+-- END rfkhorde

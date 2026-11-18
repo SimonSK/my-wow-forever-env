@@ -942,6 +942,7 @@ do
         for _, quest in ipairs(dungeon.quests or {}) do
             if type(quest) == "table" and type(quest.id) == "number" and quest.name
                 and not quest.repeatable and not quest.hideFromMainList and Matches(quest, faction)
+                and (not FDJ.QuestCountsForCharacter or FDJ.QuestCountsForCharacter(quest)) -- otherclass (2.0.8)
                 and not (FDJ.IsQuestUnavailable and FDJ.IsQuestUnavailable(quest)) -- notavailable (2.0.4), raceunavailable (2.0.9)
                 and not (FDJ.RPGQuestHidden and FDJ.RPGQuestHidden(name, quest)) then -- RPG Mode: unlocked ones only
                 list[#list + 1] = quest
@@ -1523,6 +1524,13 @@ do
         end
         return out
     end
+
+    -- dungeonroute: the dungeon Route (arrow guide) is not in the release
+    -- (kept in the private vault).
+    local function RouteOn() return false end
+    local function RouteSkips() return {} end
+    local function Routes() return {} end
+    local function RoutePlan() return {} end
 
     -- ------------------------------------------------------- the frame art
     -- The game's own Options window frame (metal edges, corners and title
@@ -2292,6 +2300,33 @@ do
         chainIcon:SetScript("OnDragStop", MoveStop)
         chainIcon:Hide()
         row.chainLines = {}
+        -- dungeonroute (2.0.5): on the route or left out (shown while the
+        -- dungeon's route is on).
+        local okBox, box = pcall(CreateFrame, "CheckButton", nil, row, "UICheckButtonTemplate")
+        if okBox and box then
+            row.routeBox = box
+            box:SetSize(20, 20)
+            box:SetPoint("TOPRIGHT", row, "TOPRIGHT", 4, 3)
+            box:SetScript("OnClick", function(self)
+                local owner = self:GetParent()
+                local info, window = owner.info, owner:GetParent()
+                local name = window and window.dungeon
+                if not (info and info.quest and info.quest.id and name) then return end
+                RouteSkips(name)[info.quest.id] = (not self:GetChecked()) and true or nil
+                if PlaySound and SOUNDKIT then
+                    local sound = self:GetChecked() and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON or SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF
+                    if sound then pcall(PlaySound, sound) end
+                end
+                if FDJ.RefreshQuestTracker then FDJ.RefreshQuestTracker() end
+            end)
+            box:SetScript("OnEnter", function(self)
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                GameTooltip:SetText(T(self:GetChecked() and "ROUTE_BOX_ON" or "ROUTE_BOX_OFF"), 1, 1, 1, 1, true)
+                GameTooltip:Show()
+            end)
+            box:SetScript("OnLeave", function() GameTooltip:Hide() end)
+            box:Hide()
+        end
 
         -- The quest's start item, once looted: its icon in place of the !.
         -- The game's action button template uses the item on a click (out of
@@ -2593,7 +2628,9 @@ do
             return a < b
         end)
         local textX = (extra == 0 and TEXT_X) or DOOR_TEXT_X + (extra - 1) * ICON_STEP
-        local textW = rowWidth - textX
+        local routed = RouteOn(name) -- dungeonroute (2.0.5): tick boxes at the rows' right
+        local routeSkip = routed and RouteSkips(name) or nil
+        local textW = rowWidth - textX - (routed and 18 or 0)
         local y = ROWS_TOP
         local done = 0
         for n, i in ipairs(order) do
@@ -2661,6 +2698,11 @@ do
             end
             mark.glow:SetTexture(info.icon)
             mark.glow:SetShown(clickable and not questButton and not item)
+            if row.routeBox then -- dungeonroute (2.0.5)
+                local boxed = routed and info.state ~= "done" and info.quest and info.quest.id ~= nil
+                row.routeBox:SetShown(boxed and true or false)
+                if boxed then row.routeBox:SetChecked(not routeSkip[info.quest.id]) end
+            end
             row.title:ClearAllPoints()
             row.title:SetPoint("TOPLEFT", row, "TOPLEFT", textX, 0)
             row.title:SetWidth(textW)
@@ -2804,10 +2846,92 @@ do
                 FDJ.FollowWaypoint(name, spot, title, turnIn)
             end
         end
+        -- dungeonroute (2.0.5): a dungeon's route, stop by stop.
+        for _, name in ipairs(ShownTracked()) do
+            local dungeon = FDJ.DB[name]
+            if dungeon and not dungeon.questChainPage and RouteOn(name) and not Locked(name) then
+                now[name] = true
+                local plan = RoutePlan(name)
+                local stop = plan[1]
+                -- routeready (2.0.8): all errands done, the entrance is next:
+                -- no arrow, the "You're ready to go in!" box, until its Show
+                -- location button is clicked.
+                if stop and stop.entrance and FDJ.RouteReady and not FDJ.RouteReady(name) then
+                    FDJ.FollowWaypoint(name, nil)
+                elseif stop and FDJ.RouteGoalHere and FDJ.RouteGoalHere(stop) then
+                    -- killzone (2.0.8): at the place to kill / collect: no arrow
+                    -- goalhere (2.0.9, M 16 Nov 2026): the arrow stays (it going
+                    -- away looked like it broke): what to kill / collect there in
+                    -- place of the yards (FDJ.RouteGoalLines).
+                    if FDJ.RouteNotReady then FDJ.RouteNotReady(name) end
+                    FDJ.FollowWaypoint(name, stop.spot, stop.title, stop.turnIn, FDJ.RouteGoalLines(plan, stop))
+                elseif stop then
+                    if not stop.entrance and FDJ.RouteNotReady then FDJ.RouteNotReady(name) end
+                    FDJ.FollowWaypoint(name, stop.spot, stop.title, stop.turnIn)
+                else
+                    if FDJ.RouteNotReady then FDJ.RouteNotReady(name) end
+                    FDJ.FollowWaypoint(name, nil)
+                end
+            elseif dungeon and FDJ.RouteNotReady then
+                FDJ.RouteNotReady(name) -- Route off
+            end
+        end
         for name in pairs(followed) do
             if not now[name] then FDJ.FollowWaypoint(name, nil) end
         end
         followed = now
+    end
+    FDJ.FollowRoutes = FollowChains
+    -- killzone (2.0.8, M 15 Nov 2026): a stop that is a place to kill or
+    -- collect things (a goto: stop, no person named: Down the Scarlet Path's
+    -- Valley of Bones, the motes in Demon Fall Canyon) needs no arrow once you
+    -- are there: within 250 yards of the spot, or anywhere in its subzone.
+    -- The subzone is learned the first time you are within 100 yards (so it
+    -- is surely the right one) and kept (ForeverDungeonJournalDB.goalAreas,
+    -- per client language): after a /reload anywhere in the valley, still no
+    -- arrow. It stays away while you are within 400 yards; leave the area and
+    -- it comes back. A person to talk to (Sputtervalve) keeps it.
+    function FDJ.RouteGoalHere(stop)
+        if type(stop) ~= "table" or type(stop.id) ~= "string" or not stop.id:find("^goto:") then return false end
+        if stop.exact then return false end -- drownedally (2.0.9): one thing at one place (a tablet), not an area
+        local spot = stop.spot
+        if type(spot) ~= "table" or spot.targetName or not spot.mapID then return false end
+        FDJ.routeGoalsHere = FDJ.routeGoalsHere or {}
+        local here = FDJ.routeGoalsHere
+        local areas = {}
+        if type(ForeverDungeonJournalDB) == "table" then
+            if type(ForeverDungeonJournalDB.goalAreas) ~= "table" then ForeverDungeonJournalDB.goalAreas = {} end
+            areas = ForeverDungeonJournalDB.goalAreas
+        end
+        local key = string.format("%s|%.3f|%.3f", tostring(spot.mapID), tonumber(spot.x) or 0, tonumber(spot.y) or 0)
+        local yards = FDJ.YardsToSpot and FDJ.YardsToSpot(spot)
+        local sub = type(GetSubZoneText) == "function" and GetSubZoneText() or ""
+        if type(sub) ~= "string" then sub = "" end
+        local locale = type(GetLocale) == "function" and GetLocale() or ""
+        if yards and yards <= 100 and sub ~= "" then areas[key] = { sub = sub, locale = locale } end
+        local learned = areas[key]
+        local inArea = sub ~= "" and type(learned) == "table" and learned.sub == sub and learned.locale == locale
+        if (yards and yards <= 250) or inArea or (here[stop.id] and yards and yards <= 400) then
+            here[stop.id] = true
+            return true
+        end
+        here[stop.id] = nil
+        return false
+    end
+    -- goalhere (2.0.9, M 16 Nov 2026): what the arrow says at the place to
+    -- kill / collect (FDJ.RouteGoalHere): the objectives of every quest done
+    -- there, as the tracker shows them ("0/15 Kurzen Jungle Fighter slain",
+    -- Bad Medicine's two lines under it: same place), done ones in grey.
+    function FDJ.RouteGoalLines(plan, stop)
+        local lines, seen = {}, {}
+        for _, task in ipairs(type(plan) == "table" and plan or {}) do
+            local id = type(task) == "table" and type(task.id) == "string" and tonumber(task.id:match("^goto:(%d+)$")) or nil
+            if id and not seen[id] and (task == stop or (task.key ~= nil and task.key == stop.key)) then
+                seen[id] = true
+                for _, line in ipairs(ObjectiveText(id)) do lines[#lines + 1] = line end
+            end
+        end
+        return lines
     end
     -- Show on Map on a chain page's spot (FDJ.SetWaypointArrow): follow it.
     function FDJ.FollowChainArrow(name)
@@ -2981,6 +3105,7 @@ do
             WindowSlots()[name] = nil
             -- Not tracked any more: its arrow stops, Show on Map's too (1.9.9).
             ArrowChains()[name] = nil
+            Routes()[name] = nil -- dungeonroute (2.0.5)
         end
         Folded()[name] = nil
         if PlaySound and SOUNDKIT then
@@ -2997,6 +3122,7 @@ do
         local b = journal and journal.questTrackButton
         if b and b.dungeon then FDJ.UpdateQuestTrackButton(b.dungeon) end
     end
+
 
     -- Called by the journal while it builds the quest list: the button sits
     -- left of the Alliance/Horde buttons.
@@ -3138,6 +3264,76 @@ do
         b:SetScript(b._fdjCanTarget and "PostClick" or "OnClick", b.fdjClick)
         b:Hide()
         return b
+    end
+
+    -- questrowtrial (2.0.8, M 15 Nov 2026): the quest list's round ! for a
+    -- quest not taken yet (dungeons in FDJ.QUESTROW_TRIAL): the turn-in
+    -- button with a ! (Media/PickUpMark.tga) in place of the ?; until the
+    -- game is restarted (a new file loads only then) the gossip ! on its
+    -- ring. A click shows how to pick the quest up (FDJ.ShowHowToPickUp:
+    -- where it is picked up, on the map; with no spot on the map, the chain
+    -- step to do next, else its page).
+    function FDJ.CreatePickUpButton(parent, size)
+        local b = FDJ.CreateTurnInButton(parent, size)
+        local art = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\PickUpMark"
+        if b.sharp then
+            if b.sharp:SetTexture(art, nil, nil, "TRILINEAR") == false then
+                b.sharp:SetTexture(ICON_TODO)
+                b.sharp:SetSize(size * 0.62, size * 0.62)
+                if b.button and b.button.ring then b.button.ring:Show() end
+                b.fdjSmallMark = true
+            end
+        elseif b.button and b.button.icon then
+            local t = b.button.icon
+            if t:SetTexture(art, nil, nil, "TRILINEAR") == false then t:SetTexture(ICON_TODO) end
+        elseif b.icon then
+            b.icon:SetTexture(ICON_TODO)
+        end
+        b:SetScript("OnEnter", function(self)
+            if not self.quest then return end
+            if self.button then self.button.lit:Show() end
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            -- pickonmap (2.0.8): "Show pickup on map", the place under it
+            -- (and its chain, when not done yet).
+            local onMap = FDJ.PickUpOnMapSpot and FDJ.PickUpOnMapSpot(self.quest)
+            local step = FDJ.NextChainStep and FDJ.NextChainStep(self.quest)
+            -- chainfirst (2.0.8): its chain not done yet: the click shows the chain
+            GameTooltip:SetText(T(step and "SHOW_QUEST_CHAIN" or (onMap and "PICKUP_ON_MAP" or "PICKUP_HOW")), 1, 0.82, 0)
+            if onMap then
+                local where = Field(self.quest.id, "pickup", self.quest.pickup)
+                if type(where) == "string" and where ~= "" then GameTooltip:AddLine(where, 1, 1, 1, true) end
+                if step then
+                    GameTooltip:AddLine(T("PICKUP_CHAIN_FIRST", Field(step.id, "name", step.name) or "?"), 1, 1, 1, true)
+                end
+            elseif step then
+                GameTooltip:AddLine(T("PICKUP_CHAIN_FIRST", Field(step.id, "name", step.name) or "?"), 1, 1, 1, true)
+            else
+                local where = Field(self.quest.id, "pickup", self.quest.pickup)
+                if type(where) == "string" and where ~= "" then GameTooltip:AddLine(where, 1, 1, 1, true) end
+            end
+            GameTooltip:Show()
+        end)
+        b.fdjClick = function(self)
+            if self.quest and FDJ.ShowHowToPickUp then FDJ.ShowHowToPickUp(self.quest, self.dungeon) end
+        end
+        b:SetScript(b._fdjCanTarget and "PostClick" or "OnClick", b.fdjClick)
+        return b
+    end
+    -- quest: the quest not taken yet, or nil to hide the button.
+    function FDJ.SetPickUpButton(b, quest, title, dungeon)
+        if not b then return end
+        b.quest, b.title, b.dungeon = quest or nil, title, dungeon
+        if not quest then
+            b:Hide()
+            return
+        end
+        b:EnableMouse(true)
+        if b.button then
+            PressMark(b, false)
+            b.button.lit:Hide()
+        end
+        if b.fdjSmallMark and b.sharp then b.sharp:SetSize(b:GetWidth() * 0.62, b:GetHeight() * 0.62) end
+        b:Show()
     end
 
     -- The chain steps' round ? (journal chain list, tracker step line): 24,
