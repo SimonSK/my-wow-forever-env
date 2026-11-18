@@ -1380,6 +1380,7 @@ GRML.German = function()
     GRM_L["Ctrl-Shift-Click"] = "Strg-Shift-Klick"
     GRM_L["Alt-Shiift-Click"] = "Alt-Shift-Klick"
     GRM_L["Right-Click"] = "Rechtsklick"
+    GRM_L["Left-Click"] = "Linksklick"
     GRM_L["Ctrl-Left-Click"] = "Strg-Linksklick"
 
     GRM_L["{custom1} to add player to all 3 macro tool ignore lists" ] = "{custom1}, um Spieler zu allen 3 Makro-Ignorier-Listen hinzuzufügen"
@@ -2108,6 +2109,32 @@ GRML.German = function()
     -- Forever labeling
     GRM_L["(Forever)"] = true
     GRM_L["Only Available in Classic or Forever"] = true
+
+    -- 1.9952
+    GRM_L["First:"] = true
+    GRM_L["Last:"] = true
+    GRM_L["Spelling and Case must be EXACT!"] = true
+    GRM_L["It is |CFFFF0000CRITICAL|r the player's First and Last name are spelled correctly, with the correct case, or they cannot be tracked correctly."] = true
+    GRM_L["Please Enter a Valid Player First Name"] = true
+    GRM_L["Please Enter a Valid Player Last Name"] = true
+    
+    -- 1.9953
+    GRM_L["Columns Manager"] = true
+    GRM_L["Click in order to add columns:"] = true
+    GRM_L["Reset Default"] = true
+    GRM_L["Search by Player Name or Nickname"] = true
+    GRM_L["Drag Left/Right to Reorder  •  Click to Remove"] = true
+    GRM_L["Click to Add  •  Or Drag Up into Active Row"] = true
+    GRM_L["Clear Optional"] = true
+    GRM_L["Active Columns"] = true
+    GRM_L["Unused Columns"] = true
+    GRM_L["Only available in Battle for Azeroth or later."] = true
+    GRM_L["Drag Left/Right to reorder this column."] = true
+    GRM_L["Name column is required and cannot be removed."] = true
+    GRM_L["Click to remove and move to Unused."] = true
+    GRM_L["Click to add to Active Columns (or drag into position above)."] = true
+    GRM_L["Only available in Cataclysm or later."] = true
+    GRM_L["Reputation"] = true
     
 end
 

@@ -919,11 +919,11 @@ GRM_UI.ReloadAllFrames = function( isManualUpdate , defaultSettingsReset )
 
         -- Guild Roster GRM Window
         if GRM_UI.GRM_RosterFrame and GRM_G.RosterFrameInitialized then
-            GRM_R.BuildRosterFrames();
+            GRM_UI.BuildRosterFrames( true );
 
             if GRM_UI.GRM_RosterFrame.GRM_RosterFrameScrollFrameChild.AllButtons ~= nil then
                 for i = 1 , #GRM_UI.GRM_RosterFrame.GRM_RosterFrameScrollFrameChild.AllButtons do
-                    GRM_R.BuildGuildRosterButtons ( i , true )
+                    GRM_UI.BuildGuildRosterButtons ( i , true )
                 end
             end
         end
@@ -1959,7 +1959,7 @@ GRM_UI.PreAddonLoadUI = function()
     end);
 
     -- Load Custom Roster frames
-    GRM_R.BuildRosterFrames();
+    GRM_UI.BuildRosterFrames();
 
     GRM_UI.IsLoaded = true;
 end
@@ -7517,7 +7517,7 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
 
     -- Add Ban Frame and details..
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame:SetPoint ( "CENTER" , UIParent );
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame:SetSize ( 330 , 275 );
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame:SetSize ( 350 , 275 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame:SetFrameStrata ( "DIALOG" );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame:SetToplevel ( true );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame:EnableMouse ( true );
@@ -7530,7 +7530,7 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanTitleText:SetText ( GRM.L ( "Add Player to Ban List" ) );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanTitleText:SetFont( GRM_G.FontChoice , GRM_G.FontModifier + 12 );
 
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_CompleteBanEntryText2:SetPoint ( "LEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanConfirmButton , "RIGHT" , 20 , 0 );
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_CompleteBanEntryText2:SetPoint ( "LEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanConfirmButton , "RIGHT" , 30 , 0 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_CompleteBanEntryText2:SetFont( GRM_G.FontChoice , GRM_G.FontModifier + 10 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_CompleteBanEntryText2:SetWidth ( 130 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_CompleteBanEntryText2:SetText ( GRM.L ( "Click or Press TAB to cycle through each step." ) );
@@ -7538,10 +7538,11 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
 
 
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionText:SetPoint ( "TOPLEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame , "TOPLEFT" , 8 , -90 );
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionText:SetText ( GRM.L ( "Name:" ) );
+    local firstNameText = GRM_G.RealmFree and GRM.L("First:") or GRM.L ( "Server:" )
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionText:SetText ( firstNameText );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionText:SetFont( GRM_G.FontChoice , GRM_G.FontModifier + 11 );
     -- Edit Box Values
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:SetPoint ( "LEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionText , "RIGHT" , 30 , 0 );
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:SetPoint ( "LEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionText , "RIGHT" , 50 , 0 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:SetSize ( 125 , 20 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:SetTextInsets( 2 , 3 , 3 , 2 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:SetMaxLetters ( 12 );
@@ -7553,15 +7554,11 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:SetPoint ( "TOPLEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox , "BOTTOMLEFT" , 0 , -5 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:SetSize ( 125 , 20 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:SetTextInsets( 2 , 3 , 3 , 2 );
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:SetMaxLetters ( 75 );
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:SetMaxLetters ( GRM_G.RealmFree and 12 or 50 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:SetFontObject ( "GameFontWhiteTiny" );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:EnableMouse( true );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:SetAutoFocus( false );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox.EscapeControl = false;
-    if GRM_G.RealmFree then
-        GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:Disable();
-    end
-
 
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanReasonEditBoxFrame:SetPoint ( "TOPLEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanDropDownClassSelected , "BOTTOMLEFT" , 0 , -4 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanReasonEditBoxFrame:SetBackdrop ( GRM_UI.noteBackdrop2 );
@@ -7584,7 +7581,8 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanReasonEditBox:SetSpacing ( 1 );
 
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBoxText:SetPoint ( "TOPLEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionText , "BOTTOMLEFT" , 0 , -10 );
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBoxText:SetText ( GRM.L ( "Server:" ) );
+    local banNameText = GRM_G.RealmFree and GRM.L("Last:") or GRM.L ( "Server:" )
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBoxText:SetText (banNameText);
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBoxText:SetFont( GRM_G.FontChoice , GRM_G.FontModifier + 11 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanClassSelectionText:SetPoint ( "TOPLEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBoxText , "BOTTOMLEFT" , 0 , -10 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanClassSelectionText:SetText ( GRM.L ( "Class:" ) );
@@ -7593,7 +7591,10 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanReasonEditBoxText:SetText ( GRM.L ( "Reason:" ) );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanReasonEditBoxText:SetFont( GRM_G.FontChoice , GRM_G.FontModifier + 11 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionWarningText:SetPoint ( "TOP" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame , "TOP" , 0 , -37 );
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionWarningText:SetText ( GRM.L ( "It is |CFFFF0000CRITICAL|r the player's name and server are spelled correctly for accurate tracking and notifications." ) );
+
+    local warningBanMatch = GRM_G.RealmFree and GRM.L("It is |CFFFF0000CRITICAL|r the player's First and Last name are spelled correctly, with the correct case, or they cannot be tracked correctly.") or
+                                                GRM.L ( "It is |CFFFF0000CRITICAL|r the player's name and server are spelled correctly for accurate tracking and notifications." )
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionWarningText:SetText ( warningBanMatch );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionWarningText:SetWordWrap ( true );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionWarningText:SetWidth ( 250 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionWarningText:SetTextColor ( 0 , 0.8 , 1 , 1 );
@@ -7961,7 +7962,7 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
         GRM_UI.SetTooltipScale();
         GameTooltip:SetOwner ( self , "ANCHOR_CURSOR" );
         if GRM_G.RealmFree then
-            GameTooltip:AddLine( GRM.L ( "Realms are Not Applicable" ) );
+            GameTooltip:AddLine( GRM.L ( "Spelling and Case must be EXACT!" ) );
         else
             GameTooltip:AddLine( GRM.L ( "Normalized Realm Names is Acceptable" ) );
             GameTooltip:AddLine ( GRM.L ( "Example: \'Aerie Peak\' or \'AeriePeak\'" ))
@@ -8142,7 +8143,7 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
         if not GRM_G.InitiatingBanEdit then
             GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:SetFocus();
             GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:SetText ( "" );
-            local realmName = GRM_G.RealmFree and GRM.L("<DOES NOT APPLY>") or GRM_G.realmName
+            local realmName = GRM_G.RealmFree and "" or GRM_G.realmName
             GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:SetText ( realmName );
             if GRM_G.BuildVersion >= GRM_ENUM.BUILD.WOTLK then
                 GRM_G.tempAddBanClass = "DEATHKNIGHT";
@@ -8160,13 +8161,13 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
 
         -- Create the autocomplete list so it doesn't have to keep rebuilding it over and over.
         GRM_G.autoCompleteBanList = GRM.GetAllCurrentAndFormerGuildies( true , true );
-        GRM_G.autoCompleteRealmsList = GRM.GetRealmNames();
+        GRM_G.autoCompleteRealmsList = GRM_G.RealmFree and {} or GRM.GetRealmNames();
     end)
 
     -- Autocomplete scrollframe
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanScrollFrame:Hide();
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanScrollFrame:SetSize ( 115 , 100 );
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanScrollFrame:SetPoint ( "TOPLEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox , "TOPRIGHT" , 3 , -3 );
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanScrollFrame:SetPoint ( "TOPLEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox , "TOPRIGHT" , 10 , -3 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanScrollFrame:SetScrollChild ( GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanScrollChildFrame );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanScrollFrame:SetHitRectInsets ( 0 , -15 , 0 , 0 );
     -- Slider Parameters
@@ -8192,19 +8193,19 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
     end)
 
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrame:SetPoint ( "TOP" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame , "BOTTOM" , -1 , 0 );
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrame:SetSize ( 307 , 100 );
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrame:SetSize ( 350 , 100 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrame:EnableKeyboard ( true );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrame:SetToplevel ( true );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrame:SetFrameStrata ( "DIALOG" );
 
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameYesButton:SetPoint ( "BOTTOMLEFT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrame , "BOTTOMLEFT" , 25 , 20 );
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameYesButton:SetSize ( 50 , 30 );
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameYesButton:SetSize ( 80 , 30 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameYesButtonText:SetPoint ( "CENTER" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameYesButton );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameYesButtonText:SetText ( GRM.L ( "Confirm" ) );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameYesButtonText:SetFont ( GRM_G.FontChoice , GRM_G.FontModifier + 10 );
 
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameCancelButton:SetPoint ( "BOTTOMRIGHT" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrame , "BOTTOMRIGHT" , -25 , 20 );
-    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameCancelButton:SetSize ( 50 , 30 );
+    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameCancelButton:SetSize ( 80 , 30 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameCancelButtonText:SetPoint ( "CENTER" , GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameCancelButton );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameCancelButtonText:SetFont ( GRM_G.FontChoice , GRM_G.FontModifier + 10 );
     GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_PopupWindowConfirmFrameCancelButtonText:SetText ( GRM.L ( "Cancel" ) );
@@ -8266,28 +8267,48 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
             GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_BanAllAltsCheckbox:SetChecked ( false );
 
             -- Run some logic... and if it is good, confirm popup window pop
-            local name = GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:GetText();
-            local server = GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:GetText();
+            local firstName = GRM.Util.Trim( GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:GetText() );
+            local serverOrLastName = GRM.Util.Trim( GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:GetText());
             local needsToReEnter = false;
 
-            if #name <= 1 or not GRM.Util.IsValidName( name ) then
-                GRM.Report ( GRM.L ( "Please Enter a Valid Player Name" ) );
+            -- Validate First Name (Auto-min: 2 Latin/Cyrillic or 1 CJK, Max: 12)
+            if not GRM.Util.IsValidName( firstName ) then
+                if GRM_G.RealmFree then
+                    GRM.Report( GRM.L( "Please Enter a Valid Player First Name" ) );
+                else
+                    GRM.Report( GRM.L( "Please Enter a Valid Player Name" ) );
+                end
+                
                 GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:SetFocus();
                 needsToReEnter = true;
             end
-            if not GRM_G.RealmFree then
-                if #server <= 1 or tonumber ( server ) ~= nil then
-                    GRM.Report ( GRM.L ( "Please Enter a Valid Server Name" ) );
+
+            -- 2. Validate Last Name (WoW Forever) OR Server Name (Retail/Classic)
+            if GRM_G.RealmFree then
+                -- Same exact rule for Last Name! (Auto-min: 2 Latin/Cyrillic or 1 CJK, Max: 12)
+                if not GRM.Util.IsValidName( serverOrLastName ) then
+                    GRM.Report( GRM.L( "Please Enter a Valid Player Last Name" ) );
+                    
+                    if not needsToReEnter then
+                        GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:SetFocus();
+                    end
+                    needsToReEnter = true;
+                end
+            else
+                if strlenutf8( serverOrLastName ) <= 1 or tonumber( serverOrLastName ) ~= nil then
+                    GRM.Report( GRM.L( "Please Enter a Valid Server Name" ) );
                     needsToReEnter = true;
                 end
             end
-
+            
             if not needsToReEnter then
-                local name = GRM.Util.FormatInputName ( GRM.Util.Trim( GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:GetText() ) );
+                local name = GRM.Util.FormatInputName ( firstName );
                 
-                if not GRM_G.RealmFree then
-                    name = name .. "-" .. GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:GetText();
+                local separtor = "-"
+                if GRM_G.RealmFree then
+                    separtor = " "
                 end
+                name = name .. separtor .. serverOrLastName;
 
                 -- Check if there are alts.
                 local isFound = false;
@@ -8419,7 +8440,9 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
             -- Required info to add the player...
             local fullName = GRM.Util.Trim( GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:GetText() );
             
-            if not GRM_G.RealmFree then
+            if GRM_G.RealmFree then
+                fullName = fullName .. " " .. GRM.Util.Trim( GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:GetText() )
+            else
                 fullName = fullName .. "-" .. string.gsub ( string.gsub ( GRM.Util.Trim( GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:GetText() ) , "-" , "" ) , "%s+" , "" );
             end
             local banReason = GRM.Util.Trim ( GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanReasonEditBox:GetText() );
@@ -8802,22 +8825,35 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
         if button == "LeftButton" then
             if GRM.IsAnyBanHighlighted() then
                 GRM_G.InitiatingBanEdit = true;
-                GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame:Show();
-                GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanConfirmButtonText:SetText ( GRM.L ( "Update Ban" ) );
-                GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanNameSelectionEditBox:SetText ( GRM.SlimName ( GRM_G.TempBanTarget[1] ) );
-                if not GRM_G.RealmFree then
-                    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanServerSelectionEditBox:SetText ( string.sub ( GRM_G.TempBanTarget[1] , string.find ( GRM_G.TempBanTarget[1] , "-" ) + 1 ) );
+
+                local addBanFrame = GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame;
+                local fullTargetName = GRM_G.TempBanTarget[1];
+
+                addBanFrame:Show();
+                addBanFrame.GRM_AddBanConfirmButtonText:SetText ( GRM.L ( "Update Ban" ) );
+
+                if GRM_G.RealmFree then
+                    -- WoW Forever: Split "First Last" into the First Name and Last Name boxes
+                    local firstName, lastName = string.match ( fullTargetName , "^(%S+)%s*(.*)$" );
+                    addBanFrame.GRM_AddBanNameSelectionEditBox:SetText ( firstName or fullTargetName );
+                    addBanFrame.GRM_AddBanServerSelectionEditBox:SetText ( lastName or "" );
+                else
+                    -- Retail/Classic: Split "First-Server" into the Name and Server boxes
+                    addBanFrame.GRM_AddBanNameSelectionEditBox:SetText ( GRM.SlimName ( fullTargetName ) );
+                    local dashIndex = string.find ( fullTargetName , "-" );
+                    local serverName = dashIndex and string.sub ( fullTargetName , dashIndex + 1 ) or "";
+                    addBanFrame.GRM_AddBanServerSelectionEditBox:SetText ( serverName );
                 end
 
                 GRM_G.tempAddBanClass = "DEATHKNIGHT"; -- Placeholder
                 local banReason = "";
-                local player = GRM.GetPlayer ( GRM_G.TempBanTarget[1] );
+                local player = GRM.GetPlayer ( fullTargetName );
 
                 if player then
                     GRM_G.tempAddBanClass = player.class;
                     banReason = player.reasonBanned;
                 else
-                    player = GRM.GetFormerPlayer ( GRM_G.TempBanTarget[1] );
+                    player = GRM.GetFormerPlayer ( fullTargetName );
 
                     if player then
                         GRM_G.tempAddBanClass = player.class;
@@ -8826,16 +8862,15 @@ GRM_UI.MetaDataInitializeUIrosterLog2 = function( isManualUpdate )
                 end
 
                 local colors = GRM.GetClassColorRGB ( GRM_G.tempAddBanClass );
-                GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanDropDownClassSelectedText:SetText( GRM.GetClassName ( GRM_G.tempAddBanClass ) );
-                GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanDropDownClassSelectedText:SetTextColor ( colors[1] , colors[2] , colors[3] , 1 );
+                addBanFrame.GRM_AddBanDropDownClassSelectedText:SetText( GRM.GetClassName ( GRM_G.tempAddBanClass ) );
+                addBanFrame.GRM_AddBanDropDownClassSelectedText:SetTextColor ( colors[1] , colors[2] , colors[3] , 1 );
                 if banReason ~= GRM.L ( "None Given" ) and banReason ~= "" then
-
-                    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanReasonEditBox:SetText ( banReason );
+                    addBanFrame.GRM_AddBanReasonEditBox:SetText ( banReason );
                 else
-                    GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanReasonEditBox:SetText ( GRM.L ( "Reason Banned?" ) );
+                    addBanFrame.GRM_AddBanReasonEditBox:SetText ( GRM.L ( "Reason Banned?" ) );
                 end
-                GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanReasonEditBox:SetFocus();
-                GRM_UI.GRM_CoreFrame.GRM_CoreBanListFrame.GRM_AddBanFrame.GRM_AddBanReasonEditBox:HighlightText ( 0 );
+                addBanFrame.GRM_AddBanReasonEditBox:SetFocus();
+                addBanFrame.GRM_AddBanReasonEditBox:HighlightText ( 0 );
             else
                 GRM.Report ( GRM.L ( "Please Select a Player to Edit their Ban!" ) );
             end
@@ -9683,7 +9718,7 @@ GRM_UI.BlizzardFramePinHookInitializations = function ( isManualUpdate )
 
             local pinFrame = CommunitiesFrame.GuildPreferredPlaySettingsTab ~= nil and CommunitiesFrame.GuildPreferredPlaySettingsTab or CommunitiesFrame.GuildInfoTab;
                 
-            GRM_R.InitializeRosterLoadButton ( CommunitiesFrame , { "TOP" , pinFrame , "BOTTOM" , 0 , -10 } , { 44 , 44 } , { 32 , 32 } );
+            GRM_UI.InitializeRosterLoadButton ( CommunitiesFrame , { "TOP" , pinFrame , "BOTTOM" , 0 , -10 } , { 44 , 44 } , { 32 , 32 } );
         end
     end
 
@@ -9872,7 +9907,7 @@ GRM_UI.RefreshSelectFrames = function ( log , audit , ban , macroTool , customRo
     end
 
     if customRoster and GRM_UI.GRM_RosterFrame and GRM_UI.GRM_RosterFrame:IsVisible() then
-        GRM_R.RefreshRosterName();
+        GRM_UI.RefreshRosterName();
     end
 
     if events and GRM_UI.GRM_CoreFrame.GRM_EventsFrame:IsVisible() then
@@ -9895,8 +9930,13 @@ GRM_UI.GetDefaultFrameSize = function ( frameName )
 
     local rosterFrameDefault = 885;
 
-    if GRM_G.BuildVersion >= GRM_ENUM.BUILD.BFA then     -- Larger for Mythic Scores which didn't come in until 8.0
+    if GRM_G.BuildVersion >= GRM_ENUM.BUILD.BFA then
         rosterFrameDefault = rosterFrameDefault + 90;
+    end
+
+    --
+    if frameName == "GRM_RosterFrame" and GRM_UI.GRM_RosterFrame and GRM_UI.GRM_RosterFrame.baseWidth then
+        rosterFrameDefault = GRM_UI.GRM_RosterFrame.baseWidth;
     end
 
     local sizeTable = {
@@ -9952,6 +9992,8 @@ end
 -- Purpose:         Quality of life sizing controls.
 GRM_UI.RescaleFrame = function ( frame , hide , tooltips , customCornerPos )
     local W , H = frame:GetWidth() , frame:GetHeight()
+    frame.baseWidth = W;
+    frame.baseHeight = H;
     local frameName = frame:GetName() .. "ReScale";
     local cornerPos = customCornerPos or { -10 , 10 };
     frame:SetResizable ( true );
@@ -10022,6 +10064,12 @@ GRM_UI.RescaleFrame = function ( frame , hide , tooltips , customCornerPos )
         frame.scrollFrame:SetPoint ( "Topleft" , frame , "Topleft" , 0 , 0 )
 
         frame:SetScript ( "OnSizeChanged" , function ( self )
+            if self.ignoreSizeChange then
+                return
+            end -- Bypass scaling when manually changing columns in the main roster, for example
+
+            local W = self.baseWidth or W;
+            local H = self.baseHeight or H;
 
             local scale = 0;
             local defTop , defBotton = 1.5 , 0.5;
