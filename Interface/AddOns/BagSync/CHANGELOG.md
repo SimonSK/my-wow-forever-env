@@ -1,17 +1,11 @@
 # BagSync
 
-## [v20.39](https://github.com/Xruptor/BagSync/tree/v20.39) (2026-11-07)
-[Full Changelog](https://github.com/Xruptor/BagSync/compare/v20.38...v20.39) [Previous Releases](https://github.com/Xruptor/BagSync/releases)
+## [v20.41](https://github.com/Xruptor/BagSync/tree/v20.41) (2026-11-17)
+[Full Changelog](https://github.com/Xruptor/BagSync/compare/v20.40...v20.41) [Previous Releases](https://github.com/Xruptor/BagSync/releases)
 
-- WoW Forever surname support + live client fixes (Fixes #479)  
-    - Forever characters are now saved as "FirstName Surname". Forever's UnitName()  
-      returns the surname as a second value, so alts sharing a first name were  
-      overwriting each other. Existing first-name-only entries are migrated  
-      automatically when the matching character (by GUID) logs in.  
-    - Currency transfers on Forever now look up the source character by GUID first.  
-    - Fixed IsForever detection on the live client.  
-    - Search modules button uses BSYC.IsRetail instead of a raw MAINLINE check.  
-    - Warband bank is only used when it's actually available. Forever has the  
-      account bank API but the feature is locked, which caused an empty 0g Warband  
-      entry to show in Gold, Search, Sort Order and Details. It's re-checked on  
-      login and bank open, so it will turn on automatically if Blizzard enables it.  
+- WoW Forever Bank Fix (part 2)  
+    * Fixed bank items on your other characters still not showing on WoW Forever.  BagSync was only watching for the "Banker" interaction to know you were at the bank, but the bank window can also be opened by the Character Banker and Account Banker types.  When that happened BagSync never knew you were at the bank, so nothing in your bank was ever saved.  It now uses the bank window open/close events like other bag addons do. (Fixes #481) (Fixes #482)  
+    * Bags placed in the bank bag slots on WoW Forever are now saved and counted for your other characters.  
+    * Opening the bank at a Warband-only banker will no longer save your character bank, since your character bank can't be viewed there.  
+    * The Warband bank is now only scanned once when the bank opens, instead of once for the bank window and again for the Warband banker.  Several Warband tab changes in a row are also grouped into a single scan.  
+    * Fixed the item type tooltip line leaking a global variable, which could cause taint issues with other addons.  
