@@ -113,7 +113,10 @@ local function WorldMarkerClick()
 end
 
 local function ConfigureMarkerButton(btn, worldMarkerIndex, targetMarkerIndex)
-    btn:RegisterForClicks("AnyDown")
+    -- Both click phases: the secure button acts on the one that matches the player's
+    -- "cast on key down" setting. Down only did nothing at all with that setting off
+    -- (reported on CurseForge).
+    btn:RegisterForClicks("AnyDown", "AnyUp")
     btn:SetAttribute("type", nil)
     btn:SetAttribute("type1", nil)
     btn:SetAttribute("type2", nil)
@@ -291,6 +294,7 @@ local UpdateMarkersOnlyBtn      -- forward declaration; assigned after settings 
 local UpdateTooltipBtn          -- forward declaration; assigned after settings panel
 local UpdateLeaveBtn            -- forward declaration; assigned after settings panel
 local UpdateVisibilityBtn       -- forward declaration; assigned after settings panel
+local UpdateBorderAlphaBtn      -- forward declaration; assigned after settings panel
 local UpdateScaleControls       -- forward declaration; assigned after settings panel
 local UpdateIconSizeControls    -- forward declaration; assigned after settings panel
 local UpdateSpacingControls     -- forward declaration; assigned after settings panel
@@ -326,6 +330,18 @@ end
 
 local function IsLeaderAssistVisibilityEnabled()
     return DB("hideUnlessRaidLeadAssist") == true
+end
+
+local function IsGroupVisibilityEnabled()
+    return DB("hideUnlessGroup") == true
+end
+
+-- Opacity of the bar's outer border: 1 (full) down to 0 (off).
+local BORDER_ALPHA_STEPS = { 1, 0.75, 0.5, 0.25, 0 }
+local function GetBorderAlpha()
+    local a = tonumber(DB("borderAlpha"))
+    if not a then return 1 end
+    return math.max(0, math.min(1, a))
 end
 
 local function IsPlayerRaidLeaderOrAssistant()
@@ -477,6 +493,11 @@ local function ApplyTheme()
             fr:SetBackdropBorderColor(bp.r, bp.g, bp.b, 0)
             fr:SetBackdropColor(0, 0, 0, 0)
         end
+    else
+        local borderAlpha = GetBorderAlpha()
+        for _, fr in ipairs(barFrames) do
+            fr:SetBackdropBorderColor(bp.r, bp.g, bp.b, borderAlpha)
+        end
     end
     if UpdateSwatchSelections then UpdateSwatchSelections() end
     if UpdateOrientationBtn then UpdateOrientationBtn() end
@@ -485,6 +506,7 @@ local function ApplyTheme()
     if UpdateTooltipBtn then UpdateTooltipBtn() end
     if UpdateLeaveBtn then UpdateLeaveBtn() end
     if UpdateVisibilityBtn then UpdateVisibilityBtn() end
+    if UpdateBorderAlphaBtn then UpdateBorderAlphaBtn() end
     if UpdateScaleControls then UpdateScaleControls() end
     if UpdateIconSizeControls then UpdateIconSizeControls() end
     if UpdateSpacingControls then UpdateSpacingControls() end
@@ -504,6 +526,9 @@ local encounterActive = false
 
 local function ShouldShowBar()
     if IsLeaderAssistVisibilityEnabled() and not IsPlayerRaidLeaderOrAssistant() then
+        return false
+    end
+    if IsGroupVisibilityEnabled() and not (type(IsInGroup) == "function" and IsInGroup()) then
         return false
     end
     if DB("encounterAutoShow") and not encounterActive then
@@ -1451,20 +1476,56 @@ UpdateLeaveBtn = function()
 end
 Tip(leaveBtnToggle, "Leave Button", "Show or hide the leave group button")
 
-local visibilityBtn = SFBtn("", SF_W - SF_PAD * 2, -238, "LEFT", function()
-    DB("hideUnlessRaidLeadAssist", not IsLeaderAssistVisibilityEnabled())
+-- Cycles Always -> In Group (party or raid) -> Raid Lead/Assist -> Always.
+local visibilityBtn = SFBtn("", ACT_W, -238, "LEFT", function()
+    if IsLeaderAssistVisibilityEnabled() then
+        DB("hideUnlessRaidLeadAssist", false)
+        DB("hideUnlessGroup", false)
+    elseif IsGroupVisibilityEnabled() then
+        DB("hideUnlessGroup", false)
+        DB("hideUnlessRaidLeadAssist", true)
+    else
+        DB("hideUnlessGroup", true)
+    end
     if UpdateVisibilityBtn then UpdateVisibilityBtn() end
     if RefreshBarVisibility then RefreshBarVisibility() end
 end)
 
 UpdateVisibilityBtn = function()
     if IsLeaderAssistVisibilityEnabled() then
-        visibilityBtn.label:SetText("Visibility: Raid Lead/Assist Only")
+        visibilityBtn.label:SetText("Show: Lead/Assist")
+    elseif IsGroupVisibilityEnabled() then
+        visibilityBtn.label:SetText("Show: In Group")
     else
-        visibilityBtn.label:SetText("Visibility: Always Available")
+        visibilityBtn.label:SetText("Show: Always")
     end
 end
-Tip(visibilityBtn, "Raid Lead/Assist Visibility", "Hide RaidBar unless you are in a raid and are raid leader or assistant")
+Tip(visibilityBtn, "Visibility",
+    "Click to cycle:\nAlways - the bar is always shown\nIn Group - only in a party or raid\nLead/Assist - only in a raid as leader or assistant")
+
+local borderAlphaBtn = SFBtn("", ACT_W, -238, "RIGHT", function()
+    local current, nextAlpha = GetBorderAlpha(), BORDER_ALPHA_STEPS[1]
+    for i, a in ipairs(BORDER_ALPHA_STEPS) do
+        if math.abs(a - current) < 0.01 then
+            nextAlpha = BORDER_ALPHA_STEPS[i + 1] or BORDER_ALPHA_STEPS[1]
+            break
+        end
+    end
+    DB("borderAlpha", nextAlpha)
+    UpdateBorderAlphaBtn()
+    ApplyTheme()
+end)
+
+UpdateBorderAlphaBtn = function()
+    local a = GetBorderAlpha()
+    if a <= 0 then
+        borderAlphaBtn.label:SetText("Border: Off")
+    else
+        borderAlphaBtn.label:SetText(string.format("Border: %d%%", math.floor(a * 100 + 0.5)))
+    end
+end
+UpdateBorderAlphaBtn()
+Tip(borderAlphaBtn, "Bar Border", "Click to cycle the bar's outer border: 100%, 75%, 50%, 25% or Off")
 
 SFHeader("Size", -274)
 local updatingScaleSlider = false
@@ -1724,7 +1785,7 @@ SlashCmdList["RAIDBAR"] = function(msg)
     -- Copy this line into support reports to identify the addon and client.
     if type(msg) == "string" and msg:match("^%s*(.-)%s*$"):lower() == "version" then
         local getMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
-        local installedVersion = getMetadata and getMetadata("RaidBar", "Version") or "1.1.18"
+        local installedVersion = getMetadata and getMetadata("RaidBar", "Version") or "1.2.0"
         local clientVersion, clientBuild = "unknown", "unknown"
         if type(GetBuildInfo) == "function" then clientVersion, clientBuild = GetBuildInfo() end
         print("Raid Markers " .. tostring(installedVersion) .. " | WoW " .. tostring(clientVersion) .. " (build " .. tostring(clientBuild) .. ")")
@@ -1811,6 +1872,16 @@ f:SetScript("OnEvent", function(self, event)
 
         ApplyBlizzRaidUI()
 
+        -- The marker buttons were wired while the file loaded, before the game had
+        -- loaded the saved settings, so a saved Swap Click Buttons choice was lost
+        -- on every login (reported on CurseForge). Wire them again now it is known.
+        UpdateSwapClicksBtn()
+        if InCombatLockdown() then
+            pendingSwapWiring = true
+        else
+            WireMarkerButtons()
+        end
+
         -- Scale must be set BEFORE SetPoint so the frame's coordinate space
         -- matches the UIParent coords we saved in SavePos.
         local scale = ClampScale(DB("scale") or DEFAULT_SCALE)
@@ -1895,6 +1966,25 @@ do
         local leadAssistLbl = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
         leadAssistLbl:SetPoint("LEFT", leadAssistCb, "RIGHT", 4, 0)
         leadAssistLbl:SetText("Hide bar unless in raid as leader or assistant")
+
+        local groupCb = CreateFrame("CheckButton", nil, panel, "UICheckButtonTemplate")
+        groupCb:SetPoint("TOPLEFT", leadAssistCb, "BOTTOMLEFT", 0, -8)
+        groupCb:SetChecked(IsGroupVisibilityEnabled())
+        groupCb:SetScript("OnClick", function(self)
+            DB("hideUnlessGroup", self:GetChecked())
+            if UpdateVisibilityBtn then UpdateVisibilityBtn() end
+            if RefreshBarVisibility then RefreshBarVisibility() end
+        end)
+        local groupLbl = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+        groupLbl:SetPoint("LEFT", groupCb, "RIGHT", 4, 0)
+        groupLbl:SetText("Hide bar unless in a party or raid")
+
+        -- The settings window changes the same options; show their current state.
+        panel:SetScript("OnShow", function()
+            autoShowCb:SetChecked(DB("encounterAutoShow") == true)
+            leadAssistCb:SetChecked(IsLeaderAssistVisibilityEnabled())
+            groupCb:SetChecked(IsGroupVisibilityEnabled())
+        end)
 
         if HAS_SETTINGS_API then
             local cat = Settings.RegisterCanvasLayoutCategory(panel, "RaidBar", "RaidBar")

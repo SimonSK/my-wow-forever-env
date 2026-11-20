@@ -1,3 +1,13 @@
+# Raid Markers 1.2.0
+
+- Fixed the marker buttons doing nothing for players with the game's "cast on key down" option (ActionButtonUseKeyDown) turned off (reported on CurseForge). The game then only acts when the mouse button is released, and the marker buttons only listened for the press. They now listen for both, like the clear buttons, and the game acts once. Not run in the game.
+- New: Border setting in /raidbar settings (Layout, next to Show). Click to cycle the bar's outer border through 100%, 75%, 50%, 25% and Off (requested on CurseForge). Floating buttons still hide the whole frame.
+- New: the Show setting (was Visibility) now cycles Always, In Group (party or raid) and Lead/Assist (in a raid as leader or assistant) (requested on CurseForge). Your existing Lead/Assist choice is kept. The same "in a party or raid" option is also a checkbox on the RaidBar page in the game's AddOn options, and those checkboxes now show the current choices.
+
+# Raid Markers 1.1.19
+
+- Swap Click Buttons now stays on after a relog or /reload (reported on CurseForge: it had to be set again every login). The marker buttons were set up while the addon loaded, before the game had read your saved settings, so they always started with left click = world marker and the setting button showed the default. They are now set up again once your settings are loaded (after combat if you log in during combat). Not run in the game.
+
 # Raid Markers 1.1.18
 
 - New setting: Swap Click Buttons (in /raidbar settings). Choose whether left or right click places the world marker on each marker button; the other click stamps the target icon. Default is unchanged (left = world marker). The tooltip follows your choice. If you change it in combat it applies when combat ends.
