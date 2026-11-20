@@ -1,4 +1,26 @@
-﻿1.60.30 - 11th November 2026
+﻿1.60.35 - 20th November 2026
+- For 'Class colored frames' ('Frames'), added an option to use class color for the health bar.
+- Some options will now be locked if EllesmereUI has certain modules enabled that conflict.
+- Updated flight times.
+
+1.60.34 - 19th November 2026
+- Updated flight times.
+
+1.60.33 - 18th November 2026
+- Updated flight times.
+
+1.60.32 - 18th November 2026
+- There may be more frequent updates for now so that players can get the latest flight times and don't need to submit them so often.  Most people run CurseForge App to manage addon updates anyway.  Thousands of flight messages have been processed since Forever launched so thank you for contributing.
+- Updated flight times.
+
+1.60.31 - 18th November 2026
+- For 'Enhance minimap' ('Interface'), there is a new header theme dropdown menu available so you can choose a theme for the header along with an option to animate it.  Requires 'Square minimap' to be enabled.  Blizzard is included in the theme list if you want to use the default UI header.  The minimap button bag has had a design refresh.  The buttons editor now uses simple checkboxes and toggling them no longer requires a reload.  You can still enter manual names if an obscure addon isn't shown in the list.
+- For 'Show info cards' ('Interface'), buff and debuff cards will now show the rank (if it has one).
+- For 'Show player chain' ('Interface'), added 4 new chains.  All the chains support full class-coloring options using the 'Class colored frames' option ('Frames').
+- The 'Filter chat messages' ('Chat') option is now available once again for blocking duel and drunken spam.
+- Updated flight times.  Thank you to the thousands of players who sent them in.
+
+1.60.30 - 11th November 2026
 - Added a new option 'Set keybindings' ('Settings') which replaces the previous way of setting addon related keybindings.
 - For 'Enhance minimap' ('Interface'), added 'Show header on hover'.  If checked, the header will only be shown while the pointer is over the minimap or header.  Also added 'Header opacity' slider.  Also tidied the header bar up a bit.
 - For 'Recent chat window' ('Chat') the window design has been updated.  It now shows the chat tab name and number of hidden messages, you can hold alt and drag the title bar to move the window, you can hold shift to scroll a page at a time or control to jump to the top or bottom of the chat history and there is a help button to remind you of the controls.  Web links, emails and battletags are now highlighted, you can click them and press CTRL/C to copy them to the clipboard.  You can click character names to copy them too.  You can now expand the window size to the top of your screen.  You can search recent chat using a new search box.  Added a refresh button to show new messages and a select all messages button.  Added a font size menu for the recent chat window.  You can now set a keybind to toggle the recent chat window.  Removed the chat tab right-click entry for recent chat window.
