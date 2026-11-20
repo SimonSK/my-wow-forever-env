@@ -1,4 +1,14 @@
-﻿1.60.31 - 12th November 2026
+﻿1.60.34 - 20th November 2026
+- Bosses and rares that have multiple known spawn points on dungeon maps will now show a faded icon for each spawn point.  Hovering the icon will highlight all known spawn points for that mob.  This currently affects Stockade, Wailing Caverns, Blackfathom Deeps, Scarlet Monastery (Graveyard) and Stratholme (living side).
+
+1.60.33 - 19th November 2026
+- Added Blackmaw Hold dungeon map.  Fixed the boss icons for Stockade dungeon map.
+
+1.60.32 - 18th November 2026
+- Added 'Show discovery button' (enabled by default).  If checked, a button on the map lets you show discovery areas, which are areas you need to visit to remove the fog of war from a zone.  So if you want to explore a zone, just run around and step inside each discovery area.
+- Updated points of interest.
+
+1.60.31 - 12th November 2026
 - Updated dungeon maps.
 
 1.60.30 - 11th November 2026

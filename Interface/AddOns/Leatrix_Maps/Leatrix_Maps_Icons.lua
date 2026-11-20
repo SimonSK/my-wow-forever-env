@@ -57,6 +57,7 @@
 			{"Spirit", 56.9, 24.5, L["Spirit Healer"], nil, spTex, nil, nil},
 			{"Arrow", 51.1, 14.8, L["Loch Modan"], nil, arTex, nil, nil, nil, nil, nil, 0.8, 1432},
 			{"Arrow", 5.3, 61.1, L["Searing Gorge"], nil, arTex, nil, nil, nil, nil, nil, 1.5, 1427},
+			{"Arrow", 54.8, 92.5, L["Riverglades"], L["Twilight's Shroud"], arTex, nil, nil, nil, nil, nil, 3.1, 2548},
 		},
 		--[[Blasted Lands]] [1419] = {
 			{"FlightA", 65.5, 24.4, L["Nethergarde Keep"] .. ", " .. L["Blasted Lands"], nil, tATex, nil, nil},
@@ -191,9 +192,12 @@
 		},
 		--[[Redridge Mountains]] [1433] = {
 			{"FlightA", 25.3, 59.0, L["Lakeshire"] .. ", " .. L["Redridge"], nil, tATex, nil, nil},
-			--{"Arrow", 8.5, 88.1, L["Duskwood"], nil, arTex, nil, nil, nil, nil, nil, 2.2, 1431},
-			--{"Arrow", 3.3, 73.1, L["Elwynn Forest"], nil, arTex, nil, nil, nil, nil, nil, 2.1, 1429},
-			--{"Arrow", 47.3, 14.3, L["Burning Steppes"], nil, arTex, nil, nil, nil, nil, nil, 5.9, 1428},
+			{"Arrow", 2.2, 90.6, L["Duskwood"], L["Darkshire"], arTex, nil, nil, nil, nil, nil, 2.4, 1431},
+			{"Arrow", 3.0, 72.3, L["Elwynn Forest"], L["Eastvale Logging Camp"], arTex, nil, nil, nil, nil, nil, 1.65, 1429},
+			{"Arrow", 41.7, 7.1, L["Burning Steppes"], L["Blackrock Pass"], arTex, nil, nil, nil, nil, nil, 0, 1428},
+			{"Arrow", 44.8, 9.8, L["Riverglades"], L["Blackrock Pass"], arTex, nil, nil, nil, nil, nil, 5.5, 2548},
+			{"Arrow", 66.4, 18.6, L["Riverglades"], L["Redridge Pass"], arTex, nil, nil, nil, nil, nil, 0.3, 2548},
+			{"Arrow", 96.5, 70.1, L["Swamp of Sorrows"], L["Redridge Pass"], arTex, nil, nil, nil, nil, nil, 2.7, 1435},
 			{"Spirit", 20.8, 56.5, L["Spirit Healer"], nil, spTex, nil, nil},
 		},
 		--[[Stranglethorn Vale]] [1434] = {
@@ -239,7 +243,6 @@
 			{"FlightA", 71.6, 72.3, L["Stormwind"] .. ", " .. L["Elwynn"], nil, tATex, nil, nil},
 			{"TravelA", 66.6, 34.7, L["Tram to"] .. " " .. L["Tinker Town"] .. ", " .. L["Ironforge"], nil, fATex, nil, nil, nil, nil, nil, 0, 1455},
 			{"Arrow", 74.5, 92.3, L["Elwynn Forest"], nil, arTex, nil, nil, nil, nil, nil, 3.8, 1429},
-			{"PortalA", 50.0, 86.9, L["Portal to"] .. " " .. L["Dalaran"] .. ", " .. L["Alterac Mountains"], nil, fATex, nil, nil, nil, nil, nil, 0, 1416},
 			{"TravelA", 21.8, 56.9, L["Boat to"] .. " " .. L["Auberdine"] .. ", " .. L["Darkshore"], nil, fATex, nil, nil, nil, nil, nil, 0, 1439},
 		},
 		--[[Ironforge]] [1455] = {
@@ -259,7 +262,10 @@
 			{"Dungeon", 37.5, 37.3, L["Krol'dok Stronghold"], L["Dungeon"], dnTex, 40, 45},
 			{"FlightA", 60.6, 81.6, L["Farholde Keep"] .. ", " .. L["Riverglades"], nil, tATex, nil, nil},
 			{"FlightH", 59.6, 45.1, L["Rog'mar"] .. ", " .. L["Riverglades"], nil, tHTex, nil, nil},
-			{"TravelH", 80.6, 54.6, L["Boat to"] .. " " .. L["Tanaris"], nil, fHTex, nil, nil, nil, nil, nil, 0, 1446},
+			{"TravelN", 80.6, 54.6, L["Boat to"] .. " " .. L["Tanaris"], nil, fNTex, nil, nil, nil, nil, nil, 0, 1446},
+			{"Arrow", 32.0, 30.2, L["Badlands"], L["North of Twilight's Shroud"], arTex, nil, nil, nil, nil, nil, 0, 1418},
+			{"Arrow", 16.3, 69.0, L["Redridge Mountains"], L["Blackrock Pass"], arTex, nil, nil, nil, nil, nil, 1.8, 1433},
+			{"Arrow", 25.3, 72.8, L["Redridge Mountains"], L["Redridge Pass"], arTex, nil, nil, nil, nil, nil, 3.2, 1433},
 		},
 
 		----------------------------------------------------------------------
@@ -401,7 +407,7 @@
 			{"Spirit", 54.0, 28.6, L["Spirit Healer"], nil, spTex, nil, nil},
 			{"Arrow", 50.6, 24.4, L["Thousand Needles"], nil, arTex, nil, nil, nil, nil, nil, 5.7, 1441},
 			{"Arrow", 27.1, 57.7, L["Un'Goro Crater"], nil, arTex, nil, nil, nil, nil, nil, 0.5, 1449},
-			{"TravelH", 68.6, 23.0, L["Boat to"] .. " " .. L["Riverglades"], nil, fHTex, nil, nil, nil, nil, nil, 0, 2548},
+			{"TravelN", 68.6, 23.0, L["Boat to"] .. " " .. L["Riverglades"], nil, fNTex, nil, nil, nil, nil, nil, 0, 2548},
 		},
 		--[[Azshara]] [1447] = {
 			{"Dungeon", 38.6, 33.2, L["Blackmaw Hold"], L["Dungeon"], dnTex, 55, 60},
