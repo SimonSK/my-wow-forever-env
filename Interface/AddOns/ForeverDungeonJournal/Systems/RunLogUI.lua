@@ -1998,6 +1998,31 @@ do
     end
 end
 
+-- locktracker (2.0.11): Options > Dungeon Tracker > Lock Tracker
+do
+    local strings = {
+        enUS = { OPT_TRACK_LOCK = "Lock Tracker", OPT_TRACK_LOCK_TIP = "The tracker can't be moved and loses its resize corner and its X. Right-click still opens Options." },
+        deDE = { OPT_TRACK_LOCK = "Tracker sperren", OPT_TRACK_LOCK_TIP = "Der Tracker lässt sich nicht mehr verschieben und verliert die Größenecke und sein X. Rechtsklick öffnet weiterhin die Optionen." },
+        frFR = { OPT_TRACK_LOCK = "Verrouiller le suivi", OPT_TRACK_LOCK_TIP = "Le suivi ne peut plus être déplacé et perd son coin de redimensionnement et son X. Le clic droit ouvre toujours les options." },
+        esES = { OPT_TRACK_LOCK = "Bloquear el seguimiento", OPT_TRACK_LOCK_TIP = "El seguimiento no se puede mover y pierde la esquina para cambiar el tamaño y su X. El clic derecho sigue abriendo las opciones." },
+        itIT = { OPT_TRACK_LOCK = "Blocca tracker", OPT_TRACK_LOCK_TIP = "Il tracker non si può spostare e perde l'angolo per ridimensionarlo e la X. Il clic destro apre ancora le opzioni." },
+        ptBR = { OPT_TRACK_LOCK = "Travar rastreador", OPT_TRACK_LOCK_TIP = "O rastreador não pode ser movido e perde o canto de redimensionar e o X. O clique direito ainda abre as opções." },
+        ruRU = { OPT_TRACK_LOCK = "Закрепить трекер", OPT_TRACK_LOCK_TIP = "Трекер нельзя перемещать, у него пропадают уголок изменения размера и крестик. Правый щелчок по-прежнему открывает настройки." },
+        koKR = { OPT_TRACK_LOCK = "추적기 잠금", OPT_TRACK_LOCK_TIP = "추적기를 옮길 수 없고 크기 조절 모서리와 X가 사라집니다. 오른쪽 클릭으로는 여전히 설정을 열 수 있습니다." },
+        zhCN = { OPT_TRACK_LOCK = "锁定追踪器", OPT_TRACK_LOCK_TIP = "追踪器无法移动，右下角的缩放角和 X 也会隐藏。右键点击仍可打开选项。" },
+        zhTW = { OPT_TRACK_LOCK = "鎖定追蹤器", OPT_TRACK_LOCK_TIP = "追蹤器無法移動，右下角的縮放角和 X 也會隱藏。右鍵點擊仍可開啟選項。" },
+    }
+    strings.esMX = strings.esES
+    for locale, entries in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            for key, value in pairs(entries) do
+                if t[key] == nil then t[key] = value end
+            end
+        end
+    end
+end
+
 -- Right-click on the tracker: a small menu with Options (opens Options >
 -- Dungeon Tracker).
 local trackerMenu
@@ -2099,21 +2124,22 @@ if StaticPopupDialogs then
 end
 
 do
-    -- reset button, its tooltip, the confirmation, the chat line, the boss portraits' loot line
+    -- reset button, its tooltip, the confirmation, the chat line, the boss portraits' loot line,
+    -- the second click that confirms with a controller on (padfocus, 2.0.12)
     local strings = {
-        enUS = { "Reset Tracker", "Ends this run. The next kill starts a new run.", "Reset the tracker? This run ends and the next kill starts a new one.", "Tracker reset: the next kill starts a new run.", "Right-click to show loot" },
-        deDE = { "Tracker zurücksetzen", "Beendet diesen Run. Der nächste Kill startet einen neuen Run.", "Tracker zurücksetzen? Dieser Run endet und der nächste Kill startet einen neuen.", "Tracker zurückgesetzt: Der nächste Kill startet einen neuen Run.", "Rechtsklick, um die Beute zu zeigen" },
-        frFR = { "Réinitialiser le suivi", "Termine ce run. Le prochain kill lance un nouveau run.", "Réinitialiser le suivi ? Ce run se termine et le prochain kill en lance un nouveau.", "Suivi réinitialisé : le prochain kill lance un nouveau run.", "Clic droit pour afficher le butin" },
-        esES = { "Reiniciar el seguimiento", "Termina esta run. La próxima muerte inicia una nueva run.", "¿Reiniciar el seguimiento? Esta run termina y la próxima muerte inicia una nueva.", "Seguimiento reiniciado: la próxima muerte inicia una nueva run.", "Clic derecho para mostrar el botín" },
-        itIT = { "Resetta il tracker", "Termina questa run. La prossima uccisione avvia una nuova run.", "Resettare il tracker? Questa run finisce e la prossima uccisione ne avvia una nuova.", "Tracker resettato: la prossima uccisione avvia una nuova run.", "Clic destro per mostrare il bottino" },
-        ptBR = { "Reiniciar o rastreador", "Encerra esta run. A próxima morte inicia uma nova run.", "Reiniciar o rastreador? Esta run termina e a próxima morte inicia uma nova.", "Rastreador reiniciado: a próxima morte inicia uma nova run.", "Clique com o botão direito para mostrar o saque" },
-        ruRU = { "Сбросить трекер", "Завершает этот забег. Следующее убийство начнёт новый забег.", "Сбросить трекер? Этот забег завершится, а следующее убийство начнёт новый.", "Трекер сброшен: следующее убийство начнёт новый забег.", "Правый клик — показать добычу" },
-        koKR = { "추적기 초기화", "이 런을 끝냅니다. 다음 처치로 새 런이 시작됩니다.", "추적기를 초기화할까요? 이 런이 끝나고 다음 처치로 새 런이 시작됩니다.", "추적기 초기화됨: 다음 처치로 새 런이 시작됩니다.", "우클릭하여 전리품 보기" },
-        zhCN = { "重置追踪器", "结束本轮。下一次击杀将开始新的一轮。", "重置追踪器？本轮将结束，下一次击杀将开始新的一轮。", "追踪器已重置：下一次击杀将开始新的一轮。", "右键点击显示掉落" },
-        zhTW = { "重置追蹤器", "結束本輪。下一次擊殺將開始新的一輪。", "重置追蹤器？本輪將結束，下一次擊殺將開始新的一輪。", "追蹤器已重置：下一次擊殺將開始新的一輪。", "右鍵點擊顯示掉落" },
+        enUS = { "Reset Tracker", "Ends this run. The next kill starts a new run.", "Reset the tracker? This run ends and the next kill starts a new one.", "Tracker reset: the next kill starts a new run.", "Right-click to show loot", "Click again to confirm." },
+        deDE = { "Tracker zurücksetzen", "Beendet diesen Run. Der nächste Kill startet einen neuen Run.", "Tracker zurücksetzen? Dieser Run endet und der nächste Kill startet einen neuen.", "Tracker zurückgesetzt: Der nächste Kill startet einen neuen Run.", "Rechtsklick, um die Beute zu zeigen", "Zum Bestätigen erneut klicken." },
+        frFR = { "Réinitialiser le suivi", "Termine ce run. Le prochain kill lance un nouveau run.", "Réinitialiser le suivi ? Ce run se termine et le prochain kill en lance un nouveau.", "Suivi réinitialisé : le prochain kill lance un nouveau run.", "Clic droit pour afficher le butin", "Cliquez à nouveau pour confirmer." },
+        esES = { "Reiniciar el seguimiento", "Termina esta run. La próxima muerte inicia una nueva run.", "¿Reiniciar el seguimiento? Esta run termina y la próxima muerte inicia una nueva.", "Seguimiento reiniciado: la próxima muerte inicia una nueva run.", "Clic derecho para mostrar el botín", "Haz clic otra vez para confirmar." },
+        itIT = { "Resetta il tracker", "Termina questa run. La prossima uccisione avvia una nuova run.", "Resettare il tracker? Questa run finisce e la prossima uccisione ne avvia una nuova.", "Tracker resettato: la prossima uccisione avvia una nuova run.", "Clic destro per mostrare il bottino", "Clicca di nuovo per confermare." },
+        ptBR = { "Reiniciar o rastreador", "Encerra esta run. A próxima morte inicia uma nova run.", "Reiniciar o rastreador? Esta run termina e a próxima morte inicia uma nova.", "Rastreador reiniciado: a próxima morte inicia uma nova run.", "Clique com o botão direito para mostrar o saque", "Clique de novo para confirmar." },
+        ruRU = { "Сбросить трекер", "Завершает этот забег. Следующее убийство начнёт новый забег.", "Сбросить трекер? Этот забег завершится, а следующее убийство начнёт новый.", "Трекер сброшен: следующее убийство начнёт новый забег.", "Правый клик — показать добычу", "Нажмите ещё раз для подтверждения." },
+        koKR = { "추적기 초기화", "이 런을 끝냅니다. 다음 처치로 새 런이 시작됩니다.", "추적기를 초기화할까요? 이 런이 끝나고 다음 처치로 새 런이 시작됩니다.", "추적기 초기화됨: 다음 처치로 새 런이 시작됩니다.", "우클릭하여 전리품 보기", "확인하려면 다시 클릭하세요." },
+        zhCN = { "重置追踪器", "结束本轮。下一次击杀将开始新的一轮。", "重置追踪器？本轮将结束，下一次击杀将开始新的一轮。", "追踪器已重置：下一次击杀将开始新的一轮。", "右键点击显示掉落", "再次点击以确认。" },
+        zhTW = { "重置追蹤器", "結束本輪。下一次擊殺將開始新的一輪。", "重置追蹤器？本輪將結束，下一次擊殺將開始新的一輪。", "追蹤器已重置：下一次擊殺將開始新的一輪。", "右鍵點擊顯示掉落", "再次點擊以確認。" },
     }
     strings.esMX = strings.esES
-    local keys = { "TRACKER_RESET", "TRACKER_RESET_TIP", "TRACKER_RESET_CONFIRM", "TRACKER_NEW_RUN_DONE", "TRACKER_SHOW_LOOT" }
+    local keys = { "TRACKER_RESET", "TRACKER_RESET_TIP", "TRACKER_RESET_CONFIRM", "TRACKER_NEW_RUN_DONE", "TRACKER_SHOW_LOOT", "TRACKER_RESET_AGAIN" }
     for locale, list in pairs(strings) do
         local t = FDJ.Locales and FDJ.Locales[locale]
         if t then
@@ -2167,102 +2193,16 @@ function FDJ.RunLogTestRemove(run)
     FDJ.RefreshRunLog()
 end
 
-local function TestDungeon(word)
-    local key = (word or ""):lower():gsub("[^%w]", "")
-    if key == "" then return nil end
-    for _, e in ipairs(FDJ.TESTLOG_DUNGEONS) do
-        if key == e[1] or key == e[2]:lower():gsub("[^%w]", "") then return e[2] end
-    end
-end
-
--- Returns a message for the chat.
-function FDJ.RunLogTest(args)
-    args = (args or ""):lower()
-    local tag = "|cffd8a83cDungeonJournal|r "
-    if args == "off" or args == "clear" then
-        FDJ.testRuns, FDJ.testRun = {}, nil
-        FDJ.UpdateRunTracker()
-        FDJ.RefreshRunLog()
-        return { tag .. "Test runs removed." }
-    end
-    local word, rest = args:match("^(%S+)%s*(.*)$")
-    local dungeon = TestDungeon(word)
-    local d = dungeon and FDJ.DB and FDJ.DB[dungeon]
-    if not d then
-        local lines, line = { tag .. "/dj testlog <abbreviation> [number | done]   |   /dj testlog off" }, ""
-        for _, e in ipairs(FDJ.TESTLOG_DUNGEONS) do
-            if FDJ.DB and FDJ.DB[e[2]] then
-                local part = "|cffffd100" .. e[1] .. "|r " .. DungeonLabel({ dungeon = e[2] })
-                if #line > 0 and #line + #part > 230 then lines[#lines + 1] = line line = "" end
-                line = line .. (#line > 0 and ",  " or "") .. part
-            end
-        end
-        if #line > 0 then lines[#lines + 1] = line end
-        return lines
-    end
-    local done = rest == "done" or rest == "complete" or rest == "completed"
-    local count = tonumber(rest) -- altartracker (2.0.49): /dj testlog st 3: that many down
-    local bosses = {}
-    for _, b in ipairs(d.bosses or {}) do
-        -- altartracker (2.0.49): a group (Altar Bosses) is no kill of its own
-        if type(b) == "table" and type(b.name) == "string" and not b.trash and not b.recipeTab and not b.rare
-            and not b.children then
-            bosses[#bosses + 1] = b
-        end
-    end
-    local now = Now()
-    FDJ.testRunID = (FDJ.testRunID or 0) - 1
-    local map
-    for id, name in pairs(FDJ.INSTANCE_ID_TO_DUNGEON or {}) do
-        if name == dungeon then map = id break end
-    end
-    local upto = done and #bosses or (count and math.max(0, math.min(#bosses, math.floor(count))))
-        or math.max(1, math.ceil(#bosses / 2))
-    local start = now - (upto * 160 + 30)
-    local run = {
-        id = FDJ.testRunID, test = true, dungeon = dungeon, map = map, created = start,
-        kills = {}, needs = {}, exits = {}, deathTimes = {}, deaths = done and 0 or 1, otherXP = 0,
-        startedAt = start, firstTrash = start, firstKill = start, money = 1234 + #bosses * 321,
-    }
-    local colors = { [2] = "ff1eff00", [3] = "ff0070dd", [4] = "ffa335ee" }
-    local t = start
-    for i = 1, upto do
-        for _ = 1, 3 do
-            t = t + 30
-            run.kills[#run.kills + 1] = { t = t, m = "Test trash", x = 40 }
-        end
-        t = t + 70
-        local b = bosses[i]
-        local kill = { t = t, m = b.name, b = b.name, n = tonumber(b.npcID), x = 160, loot = {} }
-        -- altartracker (2.0.49): a group's boss (Gasher...) dies as trash does
-        if b.childOf then kill.b, kill.x = nil, 120 end
-        local item = type(b.loot) == "table" and b.loot[1]
-        if type(item) == "table" and item[1] then
-            kill.loot[1] = { id = tonumber(item[1]),
-                link = "|c" .. (colors[tonumber(item[4]) or 0] or "ffffffff") .. "[" .. tostring(item[2] or item[1]) .. "]|r" }
-        end
-        if done and i == upto then kill.f = 1 end
-        run.kills[#run.kills + 1] = kill
-        run.lastBoss = t
-    end
-    if done then
-        run.completed, run.finalKill, run.closed = true, t, true
-    end
-    FDJ.testRuns[#FDJ.testRuns + 1] = run
-    FDJ.testRun = run
-    local db = TrackerDB()
-    if db.dismissedRun and db.dismissedRun < 0 then db.dismissedRun = nil end
-    FDJ.UpdateRunTracker()
-    FDJ.RefreshRunLog()
-    return { tag .. "Test run: " .. DungeonLabel(run) .. " (" .. upto .. "/" .. #bosses .. " bosses"
-        .. (done and ", completed" or "") .. "). Also in /dj log.  /dj testlog off removes it." }
-end
+-- notest (2.0.13, M 19 Nov 2026): the test command (FDJ.RunLogTest) is
+-- out of the release; it stays in the vault build.
 
 local tracker
 -- Dragging the tracker: by its top part (title, time and XP).
 function FDJ.RunTrackerDrag(start)
     local t = tracker
     if not t then return end
+    -- locktracker (2.0.11): Options > Dungeon Tracker > Lock Tracker
+    if start and FDJ.TrackerOption("lock") then return end
     if start then
         t:StartMoving()
         t.fdjMoving = true
@@ -2409,12 +2349,27 @@ local function BuildTracker()
         GameTooltip:Show()
     end)
     reset:SetScript("OnLeave", function() GameTooltip:Hide() end)
-    reset:SetScript("OnClick", function()
+    reset:SetScript("OnClick", function(self)
         if PlaySound and SOUNDKIT and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON then
             pcall(PlaySound, SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
         end
         GameTooltip:Hide()
-        if StaticPopup_Show and StaticPopupDialogs and StaticPopupDialogs.FDJ_TRACKER_RESET then
+        -- padfocus (2.0.12, kaanu): with the gamepad on, a StaticPopup from addon
+        -- code taints gamepad input until /reload, so confirm with a second click instead.
+        if GetCVarBool and GetCVarBool("GamePadEnable") then
+            local now = GetTime()
+            if self.resetArmedUntil and now <= self.resetArmedUntil then
+                self.resetArmedUntil = nil
+                FDJ.ResetTrackedRun()
+            else
+                self.resetArmedUntil = now + 3
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                GameTooltip:SetText(L("TRACKER_RESET"), 1, 0.82, 0)
+                GameTooltip:AddLine(L("TRACKER_RESET_CONFIRM"), 1, 1, 1, true)
+                GameTooltip:AddLine(L("TRACKER_RESET_AGAIN"), 0.25, 1, 0.25, true)
+                GameTooltip:Show()
+            end
+        elseif StaticPopup_Show and StaticPopupDialogs and StaticPopupDialogs.FDJ_TRACKER_RESET then
             StaticPopup_Show("FDJ_TRACKER_RESET", L("TRACKER_RESET_CONFIRM"))
         else
             FDJ.ResetTrackedRun()
@@ -2434,6 +2389,7 @@ local function BuildTracker()
         if FDJ.RefreshRunLog then FDJ.RefreshRunLog() end
         ShowTrackerClosedNotice()
     end)
+    t.close = close -- locktracker
 
     t.timeLabel = t:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontNormalSmall")
     t.timeLabel:SetPoint("TOPLEFT", 10, -30)
@@ -2985,7 +2941,7 @@ end
 function FDJ.TrackerGroupRow(t, run, frames, y)
     local f
     for _, x in ipairs(frames or {}) do
-        if x.group and x:IsShown() and GroupOpen(x.group.boss.name) then f = x break end
+        if x.group and type(x.group.children) == "table" and x.group.boss and x:IsShown() and GroupOpen(x.group.boss.name) then f = x break end -- (groupfix)
     end
     local row = t.groupRow
     if not f then
@@ -3002,7 +2958,7 @@ function FDJ.TrackerGroupRow(t, run, frames, y)
         t.groupRow = row
     end
     row:SetFrameLevel(t:GetFrameLevel() + 5)
-    local list = f.group.children
+    local list = f.group.children or {} -- (groupfix)
     local start = RunStart(run) or run.created
     for i, c in ipairs(list) do
         local p = row.portraits[i]
@@ -3187,7 +3143,7 @@ local function LayoutBossButtons(frames)
     local n = 0
     for _, f in ipairs(frames or {}) do
         local cx, cy = f:GetCenter()
-        if shown and cx and f:IsShown() and not f.kill and f.boss and not f.group then
+        if shown and cx and f:IsShown() and not f.kill and f.boss and not f.group and not f.fightGroup then
             n = n + 1
             local b = BossButton(n)
             b.portrait = f
@@ -3260,6 +3216,12 @@ function FDJ.UpdateRunTracker()
     end
     local t = tracker or BuildTracker()
     t.run = run
+    -- locktracker (2.0.11, M 18 Nov 2026: "once toggled, the tracker cant be
+    -- moved, loses the bottom right re size corner, and loses the X. only
+    -- right click to open option stays")
+    local locked = FDJ.TrackerOption("lock")
+    if t.close then t.close:SetShown(not locked) end
+    if t.grip then t.grip:SetShown(not locked) end
     t.title:SetText(DungeonLabel(run))
     -- the name as wide as it is (cut short with "..." only when it has to),
     -- the reset button right after it while the run is going
@@ -3321,7 +3283,13 @@ function FDJ.UpdateRunTracker()
             f.ring:Hide()
             f.kill, f.runStart = e.kill, start
             -- altartracker (2.0.49): a group's portrait, with its +
-            f.group = e.group and e or nil
+            -- (groupfix, 2.0.13, Malou on Discord 19 Nov 2026: "/dj tracker"
+            -- did nothing, a Lua error in TrackerGroupRow every redraw): only
+            -- a journal group (group = true, with its children) gets the +;
+            -- a fight (Ring of Law: group = the fight's name) has no children,
+            -- and its + opened a row of nothing that broke the tracker.
+            f.group = (e.group == true and type(e.children) == "table") and e or nil
+            f.fightGroup = type(e.group) == "string" or nil -- (groupfix: no click-to-target on it, as before)
             f.fdjX = left + col * (SIZE + GAP)
             if FDJ.TrackerGroupPlus then FDJ.TrackerGroupPlus(f) end
             f.isRare = isRare and true or nil

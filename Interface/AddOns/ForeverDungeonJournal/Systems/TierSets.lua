@@ -557,7 +557,8 @@ local function FillCell(cell, id, size, cellW, compact, sources, questIndex, own
     cell.compact = compact
     local tick = TickSize(compact)
     cell.check:SetSize(tick, tick)
-    cell.check:SetShown(own == true and Owned(id))
+    -- (dev, not in a release: /dj tiercheck ticks every piece to preview it)
+    cell.check:SetShown((own == true and Owned(id)) or FDJ.tierCheckTest == true)
     if compact then
         cell.name:Hide()
         cell.source:Hide()
@@ -1161,7 +1162,7 @@ end
 local onyxiaBefore = FDJ.OpenOnyxiaChain
 if onyxiaBefore then
     FDJ.OpenOnyxiaChain = function(...)
-        if FDJ.ActiveHomeTab() == "onyxia" then return FDJ.ShowDungeonsTab() end
+        if FDJ.ActiveHomeTab() == "onyxia" then return end -- tabstay (2.0.13, M 18 Nov 2026: "if I double click it it auto jumps to the dungeon tab"): a lit tab clicked again stays; the WoW Forever emblem is the way back
         if panel and panel:IsShown() then panel:Hide() end
         return onyxiaBefore(...)
     end
@@ -1172,7 +1173,7 @@ end
 local bagBefore = FDJ.OpenSleepingBagChain
 if bagBefore then
     FDJ.OpenSleepingBagChain = function(...)
-        if FDJ.ActiveHomeTab() == "sleepingbag" then return FDJ.ShowDungeonsTab() end
+        if FDJ.ActiveHomeTab() == "sleepingbag" then return end -- tabstay
         if panel and panel:IsShown() then panel:Hide() end
         return bagBefore(...)
     end
@@ -1298,12 +1299,8 @@ local function BuildButton(frame)
     b:SetScript("OnClick", function(self, button)
         if button == "RightButton" then ShowHideMenu(self) return end -- tierhide
         if GameTooltip then GameTooltip:Hide() end
-        if PlaySound and SOUNDKIT and SOUNDKIT.IG_CHARACTER_INFO_OPEN then pcall(PlaySound, SOUNDKIT.IG_CHARACTER_INFO_OPEN) end
-        if FDJ.ActiveHomeTab() == "tier" then
-            FDJ.ShowDungeonsTab()
-        else
-            FDJ.OpenTierPage()
-        end
+        if PlaySound then pcall(PlaySound, (SOUNDKIT and SOUNDKIT.IG_ABILITY_PAGE_TURN) or 836) end -- tabsound (2.0.11): the journal's opening page sound
+        if FDJ.ActiveHomeTab() ~= "tier" then FDJ.OpenTierPage() end -- tabstay: lit already: stays
     end)
     b:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")

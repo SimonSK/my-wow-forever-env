@@ -65,7 +65,7 @@ local function AllQuestsDone(dungeon)
         -- otherclass (2.0.8): another class's quest (or a profession the
         -- character doesn't have) never counts, "Show all ..." on or not
         local forClass = not quest.classOnly
-            or (class and tostring(quest.classOnly):upper() == class)
+            or (class and FDJ.QuestClassMatches(quest.classOnly, class)) -- (twoclasses)
         local forProfession = not quest.profession
             or not FDJ.PlayerHasProfession or FDJ.PlayerHasProfession(quest.profession)
         if forFaction and forClass and forProfession and not quest.hideFromMainList and not quest.repeatable and quest.id
@@ -363,8 +363,42 @@ local OPTIONS = {
             if FDJ.ScheduleQuestRefresh then pcall(FDJ.ScheduleQuestRefresh) end
         end,
     },
+    {
+        -- hideunavailable (2.0.11, M 18 Nov 2026): the quests marked
+        -- Unavailable are left out of the quest lists. Off by default; turns
+        -- itself off when an update makes one of them available again.
+        label = "OPT_HIDE_UNAVAILABLE",
+        tip = "OPT_HIDE_UNAVAILABLE_TIP",
+        get = function() return Store().hideUnavailableQuests == true end,
+        set = function(on)
+            Store().hideUnavailableQuests = on or nil
+            Store().hideUnavailableSeen = on and FDJ.UnavailableQuestIDs and FDJ.UnavailableQuestIDs() or nil
+            if FDJ.ScheduleQuestRefresh then pcall(FDJ.ScheduleQuestRefresh) end
+        end,
+        refreshHome = true,
+    },
+    -- lootoptions (2.0.11, M 18 Nov 2026: "add a new Loot section in the
+    -- option panel, the options: Hide drop rates, Hide quest item drops").
+    { header = "OPT_LOOT" },
+    {
+        label = "OPT_HIDE_QUEST_DROPS",
+        tip = "OPT_HIDE_QUEST_DROPS_TIP",
+        get = function() return Store().hideQuestDrops == true end,
+        set = function(on)
+            Store().hideQuestDrops = on or nil
+            if FDJ.RefreshLootNow then pcall(FDJ.RefreshLootNow) end
+        end,
+    },
     -- The on-screen dungeon tracker (Systems/RunLogUI.lua).
     { header = "OPT_TRACKER" },
+    {
+        -- locktracker (2.0.11, M 18 Nov 2026): the tracker can't be moved, no
+        -- resize corner, no X; right-click still opens Options.
+        label = "OPT_TRACK_LOCK",
+        tip = "OPT_TRACK_LOCK_TIP",
+        get = function() return FDJ.TrackerOption and FDJ.TrackerOption("lock") or false end,
+        set = function(on) if FDJ.SetTrackerOption then FDJ.SetTrackerOption("lock", on) end end,
+    },
     {
         -- hidetracker (2.0.4): ticked by the tracker's X, unticked by
         -- "/dj tracker"; unticking it here shows the tracker again.
@@ -1558,3 +1592,112 @@ function FDJ.OpenSettingsAt(label, quiet)
     end
 end
 -- END rpgintro
+
+-- BEGIN hideunavailable
+-- 2.0.11 (M 18 Nov 2026: "give players an option to Hide unavailable quests,
+-- this option will then be auto unticked if we change a quest from
+-- unavailable back to viable"). The quests the data marks unavailable
+-- (unavailable = true, or unavailableRaces) are saved with the option; at
+-- login, if one of them is no longer marked, the option turns itself off.
+do
+    local strings = {
+        enUS = { OPT_HIDE_UNAVAILABLE = "Hide unavailable quests",
+            OPT_HIDE_UNAVAILABLE_TIP = "Hides the quests marked Unavailable (not in WoW Forever for now, or not for your race). If an update makes one of them available again, this option turns itself off so you see it." },
+        deDE = { OPT_HIDE_UNAVAILABLE = "Nicht verfügbare Quests ausblenden",
+            OPT_HIDE_UNAVAILABLE_TIP = "Blendet Quests aus, die als nicht verfügbar markiert sind (derzeit nicht in WoW Forever oder nicht für dein Volk). Wird eine davon durch ein Update wieder verfügbar, schaltet sich diese Option von selbst aus, damit du sie siehst." },
+        frFR = { OPT_HIDE_UNAVAILABLE = "Masquer les quêtes indisponibles",
+            OPT_HIDE_UNAVAILABLE_TIP = "Masque les quêtes marquées indisponibles (absentes de WoW Forever pour l'instant, ou pas pour votre race). Si une mise à jour en rend une de nouveau disponible, cette option se désactive d'elle-même pour que vous la voyiez." },
+        esES = { OPT_HIDE_UNAVAILABLE = "Ocultar misiones no disponibles",
+            OPT_HIDE_UNAVAILABLE_TIP = "Oculta las misiones marcadas como no disponibles (aún no están en WoW Forever o no son para tu raza). Si una actualización vuelve a hacer disponible alguna, esta opción se desactiva sola para que la veas." },
+        itIT = { OPT_HIDE_UNAVAILABLE = "Nascondi missioni non disponibili",
+            OPT_HIDE_UNAVAILABLE_TIP = "Nasconde le missioni segnate come non disponibili (per ora non in WoW Forever, o non per la tua razza). Se un aggiornamento ne rende di nuovo disponibile una, questa opzione si disattiva da sola così la vedi." },
+        ptBR = { OPT_HIDE_UNAVAILABLE = "Ocultar missões indisponíveis",
+            OPT_HIDE_UNAVAILABLE_TIP = "Oculta as missões marcadas como indisponíveis (ainda não estão no WoW Forever ou não são para a sua raça). Se uma atualização deixar alguma disponível de novo, esta opção se desliga sozinha para você vê-la." },
+        ruRU = { OPT_HIDE_UNAVAILABLE = "Скрывать недоступные задания",
+            OPT_HIDE_UNAVAILABLE_TIP = "Скрывает задания, помеченные как недоступные (пока нет в WoW Forever или не для вашей расы). Если обновление снова сделает какое-то из них доступным, этот параметр отключится сам, чтобы вы его увидели." },
+        koKR = { OPT_HIDE_UNAVAILABLE = "이용 불가 퀘스트 숨기기",
+            OPT_HIDE_UNAVAILABLE_TIP = "이용 불가로 표시된 퀘스트를 숨깁니다(현재 WoW Forever에 없거나 내 종족은 받을 수 없음). 업데이트로 그중 하나가 다시 가능해지면 이 옵션이 자동으로 꺼져 그 퀘스트가 보입니다." },
+        zhCN = { OPT_HIDE_UNAVAILABLE = "隐藏不可用的任务",
+            OPT_HIDE_UNAVAILABLE_TIP = "隐藏标为不可用的任务（目前不在WoW Forever中，或你的种族无法接取）。如果更新让其中某个任务重新可用，此选项会自动关闭，让你看到它。" },
+        zhTW = { OPT_HIDE_UNAVAILABLE = "隱藏無法使用的任務",
+            OPT_HIDE_UNAVAILABLE_TIP = "隱藏標為無法使用的任務（目前不在WoW Forever中，或你的種族無法接取）。如果更新讓其中某個任務重新可用，此選項會自動關閉，讓你看到它。" },
+    }
+    strings.esMX = strings.esES
+    for locale, entries in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            for key, value in pairs(entries) do
+                if t[key] == nil then t[key] = value end
+            end
+        end
+    end
+
+    -- Every quest the data marks unavailable now (quest ID -> true).
+    FDJ.UnavailableQuestIDs = function()
+        local ids = {}
+        for _, dungeon in pairs(FDJ.DB or {}) do
+            local quests = type(dungeon) == "table" and dungeon.quests
+            for _, q in ipairs(type(quests) == "table" and quests or {}) do
+                if type(q) == "table" and type(q.id) == "number"
+                    and (q.unavailable or type(q.unavailableRaces) == "table") then
+                    ids[q.id] = true
+                end
+            end
+        end
+        return ids
+    end
+    FDJ.CheckHideUnavailable = function()
+        local db = Store()
+        if not db.hideUnavailableQuests then db.hideUnavailableSeen = nil return end
+        local now = FDJ.UnavailableQuestIDs()
+        for id in pairs(type(db.hideUnavailableSeen) == "table" and db.hideUnavailableSeen or {}) do
+            if not now[id] then
+                db.hideUnavailableQuests = nil
+                db.hideUnavailableSeen = nil
+                return
+            end
+        end
+        db.hideUnavailableSeen = now
+    end
+    if type(CreateFrame) == "function" then
+        local watcher = CreateFrame("Frame")
+        watcher:RegisterEvent("PLAYER_LOGIN")
+        watcher:SetScript("OnEvent", function() pcall(FDJ.CheckHideUnavailable) end)
+    end
+end
+-- END hideunavailable
+
+-- lootoptions (2.0.11): Options > Loot.
+do
+    local strings = {
+        enUS = { OPT_LOOT = "Loot",
+            OPT_HIDE_QUEST_DROPS = "Hide quest item drops", OPT_HIDE_QUEST_DROPS_TIP = "Boss loot pages don't list the quest items a boss drops." },
+        deDE = { OPT_LOOT = "Beute",
+            OPT_HIDE_QUEST_DROPS = "Questgegenstände in der Beute ausblenden", OPT_HIDE_QUEST_DROPS_TIP = "Die Beuteseiten der Bosse führen die Questgegenstände nicht auf, die ein Boss fallen lässt." },
+        frFR = { OPT_LOOT = "Butin",
+            OPT_HIDE_QUEST_DROPS = "Masquer les objets de quête du butin", OPT_HIDE_QUEST_DROPS_TIP = "Les pages de butin des boss ne listent pas les objets de quête qu'un boss laisse tomber." },
+        esES = { OPT_LOOT = "Botín",
+            OPT_HIDE_QUEST_DROPS = "Ocultar objetos de misión del botín", OPT_HIDE_QUEST_DROPS_TIP = "Las páginas de botín de los jefes no muestran los objetos de misión que suelta un jefe." },
+        itIT = { OPT_LOOT = "Bottino",
+            OPT_HIDE_QUEST_DROPS = "Nascondi oggetti di missione dal bottino", OPT_HIDE_QUEST_DROPS_TIP = "Le pagine del bottino dei boss non elencano gli oggetti di missione che un boss lascia cadere." },
+        ptBR = { OPT_LOOT = "Saque",
+            OPT_HIDE_QUEST_DROPS = "Ocultar itens de missão do saque", OPT_HIDE_QUEST_DROPS_TIP = "As páginas de saque dos chefes não listam os itens de missão que um chefe deixa cair." },
+        ruRU = { OPT_LOOT = "Добыча",
+            OPT_HIDE_QUEST_DROPS = "Скрыть предметы для заданий", OPT_HIDE_QUEST_DROPS_TIP = "На страницах добычи боссов не показываются предметы для заданий, которые падают с босса." },
+        koKR = { OPT_LOOT = "전리품",
+            OPT_HIDE_QUEST_DROPS = "퀘스트 아이템 숨기기", OPT_HIDE_QUEST_DROPS_TIP = "우두머리 전리품 페이지에 우두머리가 떨구는 퀘스트 아이템을 표시하지 않습니다." },
+        zhCN = { OPT_LOOT = "掉落",
+            OPT_HIDE_QUEST_DROPS = "隐藏任务物品掉落", OPT_HIDE_QUEST_DROPS_TIP = "首领掉落页面不列出首领掉落的任务物品。" },
+        zhTW = { OPT_LOOT = "掉落",
+            OPT_HIDE_QUEST_DROPS = "隱藏任務物品掉落", OPT_HIDE_QUEST_DROPS_TIP = "首領掉落頁面不列出首領掉落的任務物品。" },
+    }
+    strings.esMX = strings.esES
+    for locale, entries in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            for key, value in pairs(entries) do
+                if t[key] == nil then t[key] = value end
+            end
+        end
+    end
+end
