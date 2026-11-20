@@ -1,3 +1,21 @@
+## **VERSION 1.99531 - November 20th, 2026**
+
+***QUALITY OF LIFE***
+
+* Added the full localization for German, and partial for Russian. Program I put together to help use AI to translate will be adding it, but I hit my token limits for the day, so it will be slow progress as there is over 20,000 localization lines over 13 languages to fully finish lol.
+
+* Fixed the spacing in the macro tool for German/Russian as it was a little wonky due to some wrapped text requiring frame to be bigger. Looks much cleaner now.
+
+
+***BUG FIXES***
+
+* Retail and Forever should no longer have BG spam from the addon causing taint. Same with chat hooks attempting when in raid combat. This might have caused some blocking actions too. This was a MAJOR chore for me to adapt to with some recent backend changes that I almost gave up. 20hrs later I got it resolved.
+
+* Fixed an issue with the alt name spacing in the alt grouping window in the mouseover
+
+* The side alt group details window now is properly spaced for WOW Forever.
+
+
 ## **VERSION 1.9953 - November 16th, 2026**
 
 ***QUALITY OF LIFE***

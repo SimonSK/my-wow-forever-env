@@ -436,7 +436,7 @@ GRML.English = function()
     GRM_L["Feb"] = true
     GRM_L["Mar"] = true
     GRM_L["Apr"] = true
-    GRM_L["May"] = true
+    -- GRM_L["May"] = true  -- Duplicate
     GRM_L["Jun"] = true
     GRM_L["Jul"] = true
     GRM_L["Aug"] = true
@@ -2135,6 +2135,11 @@ GRML.English = function()
     GRM_L["Click to add to Active Columns (or drag into position above)."] = true
     GRM_L["Only available in Cataclysm or later."] = true
     GRM_L["Reputation"] = true
+
+    -- 1.99531
+    GRM_L["Addons Restricted while engaged in PVP. GRM initialization will continue when the {name} ends."] = true
+    GRM_L["Addons Restricted while engaged in a Boss Fight. GRM initialization will continue when the combat ends"] = true
+    GRM_L["Addons Restrcited in current state. Functionality Limited. GRM initialization will continue soon."] = true
 
 end
 

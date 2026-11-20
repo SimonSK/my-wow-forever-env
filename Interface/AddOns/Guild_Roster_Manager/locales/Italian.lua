@@ -674,7 +674,7 @@ GRML.Italian = function()
 	GRM_L["|CFFE6CC7FClick|r to sort Promotion Dates by Oldest"] = "|CFFE6CC7FClicca|r per ordinare le date di promozione dalla più vecchia"
 	GRM_L["|CFFE6CC7FClick|r to sort all Mains first"] = "|CFFE6CC7FClicca|r per ordinare mettendo prima tutti i Main"
 	GRM_L["|CFFE6CC7FClick|r to sort all Alts first."] = "|CFFE6CC7FClicca|r per ordinare mettendo prima tutti gli Alt."
-	GRM_L["{name}'s Alts"] = "Alt di {Name}"                                   -- Like "Arkaan's Alts"
+	GRM_L["{name}'s Alts"] = "Alt di {name}"                                   -- Like "Arkaan's Alts"
 	GRM_L["GRM window will open when combat ends."] = "La finestra di GRM si aprirà alla fine del combattimento"
 
 	-- R1.24
@@ -785,7 +785,7 @@ GRML.Italian = function()
 	GRM_L["Reporting:"] = "Segnala:"
 	GRM_L["Unable to disable level cap tracking. Please disable ALL tracking to turn off."] = "Impossibile disabilitare il monitoraggio del livello massimo. Per disattivarlo disabilita il tracciamento di tutti i cambi di livello."
 	GRM_L["No Levels to Report to Log"] = "Nessun livello verrà segnalato nel Registro"
-	GRM_L["{name} has Surpassed their Level {num} Milestone and is Now {custom1}"] = "{name} ha superato il Traguardo del {num} ed è {num1}"
+	GRM_L["{name} has Surpassed their Level {num} Milestone and is Now {custom1}"] = "{name} ha superato il Traguardo del {num} ed è {custom1}"
 	GRM_L["{name} has Reached their Level {num} Milestone"] = "{name} ha raggiunto il Traguardo del livello {num}"
 	GRM_L["{name}'s Ban has been Updated by {name2}!"] = "{name2} ha aggiornato il BAN di {name}"
 	GRM_L["{name} has Updated {name2}'s BAN and also BANNED all linked alts from the guild!"] = "{name} ha aggiornato il BAN di {name2} ed ha Bannato anche tutti i suoi Alt in gilda!"
@@ -912,7 +912,7 @@ GRML.Italian = function()
 	GRM_L["Unable to create GRM hotkey macro. You currently are at the cap of {num} macros."] = "Impossibile creare la macro per la scorciatoia di GRM. Hai raggiunto il cap di {num} macro."
 
 	-- 1.60
-	GRM_L["Really remove {name} Backup Point?"] = "Stai rimuovendo il Backup della gilda \"[name]\". Sei sicuro?"     -- The {name} is the guildName
+	GRM_L["Really remove {name} Backup Point?"] = "Stai rimuovendo il Backup della gilda \"{name}\". Sei sicuro?"     -- The {name} is the guildName
 
 	-- 1.63
 	GRM_L["Disabled"] = "Disabilitato"
@@ -2141,5 +2141,10 @@ GRML.Italian = function()
     GRM_L["Click to add to Active Columns (or drag into position above)."] = true
     GRM_L["Only available in Cataclysm or later."] = true
     GRM_L["Reputation"] = true
+
+	-- 1.99531
+    GRM_L["Addons Restricted while engaged in PVP. GRM initialization will continue when the {name} ends."] = true
+    GRM_L["Addons Restricted while engaged in a Boss Fight. GRM initialization will continue when the combat ends"] = true
+    GRM_L["Addons Restrcited in current state. Functionality Limited. GRM initialization will continue soon."] = true
 	
 end
