@@ -2019,7 +2019,7 @@ function Mixins.scripts.DropListRow.OnClick(self)
 			if not SinStatsDB.specProfiles[Ns.ProfileKey] then SinStatsDB.specProfiles[Ns.ProfileKey] = {} end
 			SinStatsDB.specProfiles[Ns.ProfileKey][specIndex] = value
 			-- auto-switch active spec
-			local currentSpec = GetSpecialization and GetSpecialization()
+			local currentSpec = Ns:GetSpecIndex()
 			if currentSpec and currentSpec == specIndex then
 				Ns:OnSpecChanged()
 				if profileFrame.CurrentProfileText then
@@ -2194,7 +2194,7 @@ function Mixins.functions.MainMenuButton.Collapse(self)
 	else
 		self.Label:SetTextColor(K.MAIN_MENU_SECTION_TEXT_R, K.MAIN_MENU_SECTION_TEXT_G, K.MAIN_MENU_SECTION_TEXT_B, K.MAIN_MENU_SECTION_TEXT_A)
 	end
-	local configFrame = self:GetParent()
+	local configFrame = Ns.ConfigFrame
 	if configFrame.MainMenuSelected.Anchor then
 		Ns:KillWidget(configFrame.MainMenuSelected.Anchor)
 		configFrame.MainMenuSelected.Anchor = nil
@@ -2226,7 +2226,7 @@ function Mixins.functions.MainMenuButton.Expand(self)
 	else
 		self.Label:SetTextColor(K.MAIN_MENU_SECTION_SELECT_TEXT_R, K.MAIN_MENU_SECTION_SELECT_TEXT_G, K.MAIN_MENU_SECTION_SELECT_TEXT_B, K.MAIN_MENU_SECTION_SELECT_TEXT_A)
 	end
-	local configFrame = self:GetParent()
+	local configFrame = Ns.ConfigFrame
 	configFrame.MainMenuSelected = self
 	if not self.DisplayFunc then
 		print("|cffff0000SinStats: No display function supplied for Main Menu item:", self.MyInformation.stat.."!")
@@ -2348,7 +2348,7 @@ end
 
 function Mixins.scripts.MainMenuButton.OnClick(self)
 	PlayOnTab()
-	local configFrame = self:GetParent()
+	local configFrame = Ns.ConfigFrame
 	if  configFrame.MainMenuSelected and configFrame.MainMenuSelected == self then
 		return
 	end
@@ -2525,7 +2525,7 @@ end
 ----------------------------------
 function W.PlainButton(parent, width)
 	local f = CreateFrame("Button", nil, parent)
-	f:SetSize(50, 25)
+	f:SetSize(50, K.PLAIN_BTN_H or 25)
 	f.SpecialType = "PlainButton"
 	Mixin(f, Mixins.functions.PlainButton)
 	AddLabel(f)
@@ -2568,7 +2568,7 @@ function Mixins.functions.PlainButton.Init(self, anchorframe, parent)
 	self.Key = self.MyInformation.stat
 	self:SetLabel(GetLabelText(self.MyInformation.stat, self.MyInformation, true))
 	self:SetWidth(self.Label:GetWidth() + 30)
-	if self.Key == "ResetPosition" and ApplyIconTextButtonStyle then
+	if (self.Key == "ResetPosition" or self.Key == "ResetConfigSize") and ApplyIconTextButtonStyle then
 		ApplyIconTextButtonStyle(self, {
 			normalTex = K.HUD_RESET_BTN_TEX,
 			pressedTex = K.HUD_RESET_BTN_PRESSED_TEX,
@@ -2580,6 +2580,9 @@ function Mixins.functions.PlainButton.Init(self, anchorframe, parent)
 			x = K.HUD_RESET_BTN_X,
 			y = K.HUD_RESET_BTN_Y,
 		})
+	end
+	if self.Key == "ResetConfigSize" then
+		self:SetLabel(L["ResetConfigSize"] or "Reset Config Size")
 	end
 end
 
@@ -2601,6 +2604,10 @@ end
 
 Mixins.scripts.PlainButton = {}
 function Mixins.scripts.PlainButton.OnClick(self)
+	if self.Key == "ResetConfigSize" then
+		if Ns.ResetConfigSize then Ns:ResetConfigSize() end
+		return
+	end
 	self.Settings[self.Key] = true
 	Ns:QueueProfileRefresh()
 end
@@ -3115,8 +3122,8 @@ function W.ProfileConfig(parent)
 	f.DeleteLabel:SetJustifyH("LEFT")
 	f.DeleteLabel:SetText(L["Delete"])
 
-	-- spec profiles for retail and mists
-	f.HasSpecProfiles = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE) or (WOW_PROJECT_ID == 19)
+	-- spec profiles for retail, mists and forever
+	f.HasSpecProfiles = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE) or (WOW_PROJECT_ID == 19) or (WOW_PROJECT_ID == WOW_PROJECT_CAMELOT)
 	if f.HasSpecProfiles then
 		f.SpecEnableCheck = CreateFrame("CheckButton", nil, f)
 		f.SpecEnableCheck:SetSize(K.CHECKBOX_SIZE, K.CHECKBOX_SIZE)
@@ -3175,7 +3182,7 @@ function W.ProfileConfig(parent)
 			SinStatsDB.specProfiles[Ns.ProfileKey].enabled = checked
 			f:UpdateSpecSection()
 			f:RunAction("select")
-			if checked and GetSpecialization then
+			if checked and Ns:GetSpecIndex() then
 				Ns:OnSpecChanged()
 				f.CurrentProfileText:SetText(format("%s: %s", L["CurrentProfile"], SinStatsDB.profileKeys[Ns.ProfileKey]))
 			end
@@ -3207,16 +3214,10 @@ function W.ProfileConfig(parent)
 		local enabled = specData and specData.enabled
 		self.SpecEnableCheck:SetChecked(enabled and true or false)
 
-		local numSpecs = GetNumSpecializations()
+		local numSpecs = Ns:GetNumSpecs() or 0
 		local specYOfs = self.SpecListAnchorY
 		for i = 1, numSpecs do
-			local specName, specIcon
-			if GetSpecializationInfo then
-				_, specName, _, specIcon = GetSpecializationInfo(i)
-			elseif GetSpecializationInfoForClassID then
-				local _, classID = UnitClassBase("player")
-				_, specName, _, specIcon = GetSpecializationInfoForClassID(classID, i)
-			end
+			local _, specName, _, specIcon = Ns:GetSpecInfo(i)
 			specName = specName or ("Spec " .. i)
 			if not self.SpecLabels[i] then
 				self.SpecLabels[i] = self:CreateFontString()

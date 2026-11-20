@@ -259,14 +259,49 @@ end
 --	Spec Profile Switch --
 --------------------------
 local specSwitching = false
+
+function Ns:GetSpecIndex()
+	if GetSpecialization then
+		return GetSpecialization()
+	end
+	if C_SpecializationInfo and C_SpecializationInfo.GetSpecialization then
+		return C_SpecializationInfo.GetSpecialization()
+	end
+end
+
+function Ns:GetNumSpecs()
+	if GetNumSpecializations then
+		return GetNumSpecializations()
+	end
+	if C_SpecializationInfo and C_SpecializationInfo.GetNumSpecializationsForClassID and UnitClassBase then
+		local _, classID = UnitClassBase("player")
+		if classID then
+			return C_SpecializationInfo.GetNumSpecializationsForClassID(classID)
+		end
+	end
+	return 0
+end
+
+function Ns:GetSpecInfo(specIndex)
+	if GetSpecializationInfo then
+		return GetSpecializationInfo(specIndex)
+	elseif GetSpecializationInfoForClassID and UnitClassBase then
+		local _, classID = UnitClassBase("player")
+		if classID then
+			return GetSpecializationInfoForClassID(classID, specIndex)
+		end
+	elseif C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo then
+		return C_SpecializationInfo.GetSpecializationInfo(specIndex)
+	end
+end
+
 function Ns:OnSpecChanged()
 	if specSwitching then return end
 	if not SinStatsDB.specProfiles then return end
 	local specData = SinStatsDB.specProfiles[Ns.ProfileKey]
 	if not specData or not specData.enabled then return end
 
-	if not GetSpecialization then return end
-	local specIndex = GetSpecialization()
+	local specIndex = Ns:GetSpecIndex()
 	if not specIndex then return end
 
 	local targetProfile = specData[specIndex]
@@ -463,9 +498,12 @@ f.HUD:SetScript("OnEvent", function (self, event, ...)
 				local unit = ...
 				if unit ~= "player" then return end
 				Ns:OnSpecChanged()
+			elseif event == "ACTIVE_TALENT_GROUP_CHANGED" then
+				-- Forever/Camelot: classic-style dual spec group switch changes the spec
+				Ns:OnSpecChanged()
 			elseif event == "PLAYER_TALENT_UPDATE" then
-				-- MoP Classic: spec changes fire PLAYER_TALENT_UPDATE
-				if WOW_PROJECT_ID == 19 then
+				-- MoP Classic + Forever: spec changes can fire PLAYER_TALENT_UPDATE
+				if WOW_PROJECT_ID == 19 or WOW_PROJECT_ID == WOW_PROJECT_CAMELOT then
 					Ns:OnSpecChanged()
 				end
 			end
@@ -481,6 +519,10 @@ f.HUD:SetScript("OnEvent", function (self, event, ...)
 
 		if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
 			self:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+		elseif WOW_PROJECT_ID == WOW_PROJECT_CAMELOT then
+			self:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+			self:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+			self:RegisterEvent("PLAYER_TALENT_UPDATE")
 		end
 		-- MoP Classic already registers PLAYER_TALENT_UPDATE via Mists.lua events table 
 
@@ -529,7 +571,7 @@ f.HUD:SetScript("OnEvent", function (self, event, ...)
 		end)
 
 		-- Apply spec profile for the current spec at login
-		if (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE) or (WOW_PROJECT_ID == 19) then
+		if (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE) or (WOW_PROJECT_ID == 19) or (WOW_PROJECT_ID == WOW_PROJECT_CAMELOT) then
 			C_Timer.After(0.5, function()
 				Ns:OnSpecChanged()
 			end)
@@ -548,6 +590,12 @@ function SlashCmdList.SINSTATS(msg)
 	if msg and msg:lower() == "debug" then
 		Ns.SinStatsDebug = not Ns.SinStatsDebug
 		print("SinStats debug: " .. (Ns.SinStatsDebug and "|cff00ff00ON|r" or "|cffff0000OFF|r"))
+	elseif msg and msg:lower() == "menufloor" then
+		if Ns.PrintMenuFloorDebug then
+			Ns:PrintMenuFloorDebug()
+		else
+			print("SinStats: menu floor diagnostic not available")
+		end
 	else
 		Ns:ToggleConfig()
 	end

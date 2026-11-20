@@ -10,7 +10,7 @@ local Percentage, Rating, MainHand, OffHand, SameLevel, BossLevel, Regen, Castin
 local Season, Expansion, Spark, Splinter, Gigantic, Plump, Current, Earned, Empty, Vintage = 1, 2, 1, 2, 1, 2, 1, 2, 1, 2
 
 Ns.ConfigWidth = 975
-Ns.ConfigHeight = 675
+Ns.ConfigHeight = 635
 
 --local honorIcon = 73824
 --local faction = UnitFactionGroup("player")

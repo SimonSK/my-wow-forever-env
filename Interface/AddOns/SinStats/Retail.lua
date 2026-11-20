@@ -11,7 +11,7 @@ local Season, Expansion, Spark, Splinter, Gigantic, Plump, Current, Earned, Empt
 local Spec, Hero, Mythical, Heroic = 1, 2, 1, 2
 
 Ns.ConfigWidth = 975--990
-Ns.ConfigHeight = 675--540
+Ns.ConfigHeight = 635--540
 -- if GetLocale() == "frFR" or GetLocale() == "zhCN" or GetLocale() == "zhTW" or GetLocale() == "koKR" then
 -- 	Ns.ConfigWidth = 960
 -- end

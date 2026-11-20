@@ -256,6 +256,8 @@ do
 			math.floor(b / pxSize + 0.5) * pxSize)
 	end
 
+	function PP.GetUnitPixel() return unitPixel end
+
 	local scaleWatcher = CreateFrame("Frame")
 	scaleWatcher:RegisterEvent("UI_SCALE_CHANGED")
 	scaleWatcher:RegisterEvent("DISPLAY_SIZE_CHANGED")
@@ -386,7 +388,8 @@ Ns.SettingsDisplayOrder = { ignoretoptabs=true,
 	{ stat="ConfigShortcut", icon="", spellclass="HUD", default=true, widget={ type="CheckBox", }, onclick="OnClickConfigShortcut", },
 	{ stat="HeaderOpacity", icon="", spellclass="HUD", default=1, widget={ type="Slider", min=0, max=1, valuestep=0.01, width=165, }, newline=true, },
 	{ stat="HUDStrata", icon="", spellclass="HUD", default="MEDIUM", widget={ type="DropList", data="Strata", width=120, }, newline=true, },
-	{ stat="ResetPosition", icon="", spellclass="HUD", default=false, widget={ type="PlainButton", }, },
+	{ stat="ResetPosition", icon="", spellclass="HUD", default=false, widget={ type="PlainButton", }, newline=true, },
+	{ stat="ResetConfigSize", icon="", spellclass="HUD", default=false, widget={ type="PlainButton", }, },
 	{ stat="HUDBgTexture", icon="", spellclass="HUD", default="Solid", widget={ type="DropList", data="BarTextures", width=170, }, subgroup={ text="BackgroundMenu", icon="Background" }, newline=true,},
 	{ stat="HUDBgColor", icon="", spellclass="HUD", default={ r=0.1, g=0.1, b=0.1, }, widget={ type="ColorPicker", }, newline=true, },
 	{ stat="HUDBgAlpha", icon="", spellclass="HUD", default=0, widget={ type="Slider", min=0, max=1, valuestep=0.01, width=185, }, newline=true,},
@@ -981,7 +984,7 @@ local function DisplayHorizontal(self, anchorframe, align, astab, noicons, ignor
 			end
 		end
 	end
- 	local maxItemsPerRow = floor(Ns.maxOptionsWidth / (largestWidgetWidth + colGap))
+  	local maxItemsPerRow = floor(Ns.maxOptionsWidth / (largestWidgetWidth + colGap))
  	local rows, modOffset = 0, 1
  	local firstOnRow = ChildAnchor.ScrollChild and ChildAnchor.ScrollChild or anchorframe
  	local lastAnchor = firstOnRow
@@ -1036,10 +1039,11 @@ local function DisplayHorizontal(self, anchorframe, align, astab, noicons, ignor
 			if k == 1 or v.MyInformation.newline or hasSubgroup or groupChanged or modVal == 0 then
 				addTip = 0
 				for i=k, k + maxItemsPerRow do
-					if anchorframe.CurrentWidgets[i] and anchorframe.CurrentWidgets[i].newline then
+					local scan = anchorframe.CurrentWidgets[i]
+					if scan and scan.newline then
 						break
 					end
-					if tipped[anchorframe.CurrentWidgets[i]] then
+					if scan and (tipped[scan] or scan.SpecialType == "PlainButton") then
 						addTip = tooltipOffset
 						break
 					end
@@ -1052,7 +1056,7 @@ local function DisplayHorizontal(self, anchorframe, align, astab, noicons, ignor
 						modOffset = modOffset + modVal
 					end
 				end
-				if v.Tip then
+				if v.Tip or v.SpecialType == "PlainButton" then
 					yos = yos + 17  -- CHANGES THE Y OFFSET OF 1ST ROW AND 2ND ROW OPTIONS - TOGETHER
 				end
 			
@@ -1722,7 +1726,8 @@ local function CreateMainMenu()
 		local currentMenuXOffset = f.IsStatSection and K.MAIN_MENU_STAT_X_OFFSET or 0
 		local previousMenuXOffset = last and last.MainMenuXOffset or 0
 		if i == 0 then
-			f:SetPoint("TOPLEFT", Ns.ConfigFrame.TopBorder, "LEFT", currentMenuXOffset, K.mainMenuYOffset) -- the first main menu item position relative to the top border line
+			-- First menu button: below the logo, relative to the left panel (no scroll frame).
+			f:SetPoint("TOPLEFT", Ns.ConfigFrame.LeftPanel, "TOPLEFT", 10 + currentMenuXOffset, -((52 + (K.MAIN_MENU_SHIFT or 40)) + (K.MAIN_MENU_TOP_PAD or 24)))
 			last = f
 		else
 			f:SetPoint("TOPLEFT", last, "BOTTOMLEFT", currentMenuXOffset - previousMenuXOffset, f.IsStatSection and K.MAIN_MENU_ITEM_GAP or -5)
@@ -1743,8 +1748,15 @@ local CreateBorder = Ns.CreateBorder
 local f = CreateFrame("frame", "SinStatsConfigFrame", UIParent)
 f:SetPoint("CENTER")
 f:SetMovable(true)
+f:SetResizable(true)
 f:SetUserPlaced(true)
 f:EnableMouse(true)
+if f.SetMinResize then
+	f:SetMinResize(K.CONFIG_MIN_W or 650, K.CONFIG_MIN_H or 420)
+end
+if f.SetMaxResize then
+	f:SetMaxResize(K.CONFIG_MAX_W or 1600, K.CONFIG_MAX_H or 900)
+end
 f:Hide()
 
 local function InitConfig()
@@ -1752,20 +1764,36 @@ local function InitConfig()
 	Ns.ConfigFrame = f
 	f.MainMenuItems = {} -- Toplevel items always visible
 
-	f.Background = f:CreateTexture()
-	f.Background:SetAllPoints()
-	f.Background:SetTexture(K.RIGHT_BODY_BG_TEX)
-	f.Background:SetVertexColor(
-	K.RIGHT_BODY_BG_COLOR_R,
-	K.RIGHT_BODY_BG_COLOR_G,
-	K.RIGHT_BODY_BG_COLOR_B,
-	K.RIGHT_BODY_BG_COLOR_A)
-	f:SetSize(Ns.ConfigWidth or 800, Ns.ConfigHeight or 500)
+	local initW = (SinStatsDB and SinStatsDB.configWidth) or Ns.ConfigWidth or 800
+	local initH = (SinStatsDB and SinStatsDB.configHeight) or Ns.ConfigHeight or 500
+	local minW, minH = K.CONFIG_MIN_W or 650, K.CONFIG_MIN_H or 420
+	local maxW, maxH = K.CONFIG_MAX_W or 1600, K.CONFIG_MAX_H or 900
+	initW = math.max(minW, initW)
+	initH = math.max(minH, initH)
+	if maxW > 0 then initW = math.min(maxW, initW) end
+	if maxH > 0 then initH = math.min(maxH, initH) end
+	f:SetSize(initW, initH)
 
-	f.SideBackground = f:CreateTexture()
-	f.SideBackground:SetDrawLayer("ARTWORK", 1)
-	f.SideBackground:SetSize(K.LEFT_PANEL_W, Ns.ConfigHeight)
+	-- Two separate visual panels (left menu / right content), each with its own
+	-- full border, separated by an empty see-through gap. The panels carry only
+	-- their borders; their backgrounds are drawn on the frame itself (BACKGROUND
+	-- layer) so they can never cover child content.
+	local gap = K.LEFT_RIGHT_GAP or 24
+	local rightPanelX = K.LEFT_PANEL_W + gap
+
+	f.LeftPanel = CreateFrame("Frame", "$parentLeftPanel", f)
+	f.LeftPanel:SetPoint("TOPLEFT", f, "TOPLEFT", 0, 0)
+	f.LeftPanel:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 0, 0)
+	f.LeftPanel:SetWidth(K.LEFT_PANEL_W)
+
+	f.RightPanel = CreateFrame("Frame", "$parentRightPanel", f)
+	f.RightPanel:SetPoint("TOPLEFT", f, "TOPLEFT", rightPanelX, 0)
+	f.RightPanel:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", 0, 0)
+
+	f.SideBackground = f:CreateTexture(nil, "BACKGROUND")
 	f.SideBackground:SetPoint("TOPLEFT", 0, 0)
+	f.SideBackground:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 0, 0)
+	f.SideBackground:SetWidth(K.LEFT_PANEL_W)
 	if K.LEFT_MENU_BG_TEX ~= "" then
 		f.SideBackground:SetTexture(K.LEFT_MENU_BG_TEX)
 		f.SideBackground:SetVertexColor(
@@ -1781,10 +1809,72 @@ local function InitConfig()
 			K.LEFT_MENU_BG_COLOR_A)
 	end
 
+	f.Background = f:CreateTexture(nil, "BACKGROUND")
+	f.Background:SetPoint("TOPLEFT", f, "TOPLEFT", rightPanelX, 0)
+	f.Background:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", 0, 0)
+	f.Background:SetTexture(K.RIGHT_BODY_BG_TEX)
+	f.Background:SetVertexColor(
+		K.RIGHT_BODY_BG_COLOR_R,
+		K.RIGHT_BODY_BG_COLOR_G,
+		K.RIGHT_BODY_BG_COLOR_B,
+		K.RIGHT_BODY_BG_COLOR_A)
+
 	f:SetClampedToScreen(false)
+
+	local function UpdateMenuMinHeight()
+		local fTop = f:GetTop() -- screen coordinate of the frame top
+		if not fTop then return end
+		local lowestBottom
+		for _, btn in pairs(f.MainMenuItems) do
+			local b = btn:GetBottom() -- screen coordinate
+			if b and (not lowestBottom or b < lowestBottom) then
+				lowestBottom = b
+			end
+		end
+		if not lowestBottom then return end
+		local needH = math.ceil((fTop - lowestBottom) + (K.MAIN_MENU_BOTTOM_GAP or 14))
+		if Ns.PP then
+			local scale = f:GetEffectiveScale()
+			if scale and scale > 0 then
+				local px = Ns.PP.GetUnitPixel() / scale
+				needH = math.floor(needH / px + 0.5) * px
+			end
+		end
+		f.MenuMinHeight = math.max(f.MenuMinHeight or 0, needH, K.CONFIG_MIN_H or 420)
+		if f.SetMinResize then
+			f:SetMinResize(K.CONFIG_MIN_W or 650, f.MenuMinHeight)
+		end
+		if f:GetHeight() < f.MenuMinHeight then
+			f:SetHeight(f.MenuMinHeight)
+		end
+	end
+
+	-- Diagnostic for the menu resize floor
+	function Ns:PrintMenuFloorDebug()
+		local cfg = Ns.ConfigFrame
+		if not cfg then return end
+		print("|cff00ffffSinStats menu floor debug:|r")
+		print("  #Ns.SpellClass = " .. tostring(#Ns.SpellClass))
+		print("  MenuFormulaH = " .. tostring(cfg.MenuFormulaH))
+		print("  MenuMinHeight = " .. tostring(cfg.MenuMinHeight))
+		print("  Frame height = " .. tostring(cfg:GetHeight()))
+		print("  CONFIG_MIN_H = " .. tostring(K.CONFIG_MIN_H))
+		print("  MAIN_MENU_SHIFT = " .. tostring(K.MAIN_MENU_SHIFT) .. " TOP_PAD = " .. tostring(K.MAIN_MENU_TOP_PAD) .. " BOTTOM_GAP = " .. tostring(K.MAIN_MENU_BOTTOM_GAP))
+		print("  MAIN_MENU_STAT_TEX_H = " .. tostring(K.MAIN_MENU_STAT_TEX_H) .. " ITEM_GAP = " .. tostring(K.MAIN_MENU_ITEM_GAP))
+		for i = 0, 24 do
+			local btn = cfg.MainMenuItems and cfg.MainMenuItems[i]
+			if btn then
+				print("  [" .. i .. "] " .. tostring(btn.SpellClass or "?") .. "  top=" .. tostring(btn:GetTop()) .. "  bottom=" .. tostring(btn:GetBottom()) .. "  h=" .. tostring(btn:GetHeight()))
+			end
+		end
+	end
+
 	f:SetScript("OnShow", function(self)
 		Ns.PP.SnapFrameToPixels(self)
+		Ns:SnapToPixels(self)
 		Ns.PP.ResnapAllBorders()
+		UpdateMenuMinHeight()
+		C_Timer.After(0.05, UpdateMenuMinHeight) -- re-measure once layout has fully settled
 
 		if not self._initialLayoutDone then
 			self._initialLayoutDone = true
@@ -1819,7 +1909,7 @@ local function InitConfig()
 	f.Logo:SetSize(300, 300) -- So the frame isn't mostly blank when first opened (MainMenuScripts.OnClick for where it's moved)
 	f.Logo:SetPoint("CENTER", 70, -10)
 ]]--
-	f.Logo:SetSize(90, 90)
+	f.Logo:SetSize(90, 100)
 	f.Logo:SetPoint("TOPLEFT", 25, 3)
 	f.Logo:SetAlpha(0.7)
 
@@ -1845,27 +1935,52 @@ local function InitConfig()
 	f.DragBar:SetScript("OnDragStop", function()
 		f:StopMovingOrSizing()
 		Ns.PP.SnapFrameToPixels(f)
+		Ns:SnapToPixels(f)
 		Ns.PP.ResnapAllBorders()
 	end)
 
-	-- local scale = f:GetEffectiveScale()
-	-- local pixel = 1 / scale
-	-- local sideX = math.floor(151 * scale + 0.5) / scale + pixel / 2
-	-- f.SideBorder = f:CreateLine()
-	-- f.SideBorder:SetDrawLayer("OVERLAY", 1)
-	-- f.SideBorder:SetThickness(pixel)
-	-- f.SideBorder:SetAlpha(1)
-	-- f.SideBorder:SetStartPoint("LEFT", f.TopBorder, sideX - 10, 0)
-	-- f.SideBorder:SetEndPoint("BOTTOMLEFT", f, sideX, 0)
-	-- f.SideBorder:SetColorTexture(0, 0, 0)
-
-	f.SideBorder = f:CreateTexture(nil, "OVERLAY", nil, 1)
-	f.SideBorder:SetTexture(K.SIDE_SEPARATOR_TEX)
-	f.SideBorder:SetTexCoord(K.SIDE_SEPARATOR_TEX_L, K.SIDE_SEPARATOR_TEX_R, K.SIDE_SEPARATOR_TEX_T, K.SIDE_SEPARATOR_TEX_B)
-	f.SideBorder:SetVertexColor(K.SIDE_SEPARATOR_R, K.SIDE_SEPARATOR_G, K.SIDE_SEPARATOR_B, K.SIDE_SEPARATOR_A)
-	f.SideBorder:SetWidth(K.SIDE_SEPARATOR_W)
-	f.SideBorder:SetPoint("TOPLEFT", f, "TOPLEFT", K.LEFT_PANEL_W-3, 0)
-	f.SideBorder:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", K.LEFT_PANEL_W, 0)
+	-- Resize grip (bottom-right corner) — drag to resize the whole config frame.
+	f.ResizeGrip = CreateFrame("Button", nil, f)
+	f.ResizeGrip:SetSize(K.CONFIG_RESIZE_GRIP_W or 16, K.CONFIG_RESIZE_GRIP_H or 16)
+	f.ResizeGrip:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -(K.CONFIG_RESIZE_GRIP_X or 2), K.CONFIG_RESIZE_GRIP_Y or 2)
+	f.ResizeGrip:SetFrameLevel(f:GetFrameLevel() + 12) -- above the panel borders
+	f.ResizeGrip:EnableMouse(true)
+	f.ResizeGrip.GripTexture = f.ResizeGrip:CreateTexture(nil, "OVERLAY")
+	f.ResizeGrip.GripTexture:SetAllPoints()
+	f.ResizeGrip.GripTexture:SetTexture((K.CONFIG_RESIZE_GRIP_TEX and K.CONFIG_RESIZE_GRIP_TEX ~= "") and K.CONFIG_RESIZE_GRIP_TEX or "Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+	f.ResizeGrip.GripTexture:SetAlpha(K.CONFIG_RESIZE_GRIP_ALPHA or 0.8)
+	f.ResizeGrip:SetScript("OnMouseDown", function(self, button)
+		if button == "LeftButton" then
+			UpdateMenuMinHeight() -- refresh the floor from live geometry before sizing starts
+			f:StartSizing("BOTTOMRIGHT")
+		end
+	end)
+	f.ResizeGrip:SetScript("OnMouseUp", function(self, button)
+		if button == "LeftButton" then
+			f:StopMovingOrSizing()
+			if Ns.PP then
+				Ns.PP.SnapFrameToPixels(f)
+				Ns:SnapToPixels(f)
+				Ns.PP.ResnapAllBorders()
+			end
+			if f:GetHeight() < f.MenuMinHeight then
+				f:SetHeight(f.MenuMinHeight)
+			end
+		elseif button == "RightButton" then
+			-- Right-click: reset to the client's default config size.
+			if SinStatsDB then
+				SinStatsDB.configWidth = nil
+				SinStatsDB.configHeight = nil
+			end
+			f:SetSize(Ns.ConfigWidth or 800, Ns.ConfigHeight or 500)
+		end
+	end)
+	f.ResizeGrip:SetScript("OnEnter", function(self)
+		f.ResizeGrip.GripTexture:SetAlpha(1)
+	end)
+	f.ResizeGrip:SetScript("OnLeave", function(self)
+		f.ResizeGrip.GripTexture:SetAlpha(K.CONFIG_RESIZE_GRIP_ALPHA or 0.8)
+	end)
 
 	-- Version
 	f.Version = f:CreateFontString("$parentTitle", "OVERLAY")
@@ -1873,35 +1988,124 @@ local function InitConfig()
 	f.Version:SetPoint("BOTTOMLEFT", 65, 1)
 	f.Version:SetText(Ns.Colors.Orange .. addVer .. "|r")
 
-	sidePanelWidth = K.LEFT_PANEL_W - 10
-	Ns.maxOptionsWidth = f:GetWidth() - sidePanelWidth - 30 -- -30 right indent size
+	sidePanelWidth = K.LEFT_PANEL_W - 10 -- left menu buttons keep their original width
+	Ns.maxOptionsWidth = f:GetWidth() - rightPanelX - 30 -- -30 right indent size
 	Ns.SeparatorWidth  = Ns.maxOptionsWidth / 1.15
 	f.StatHeaderBg = f:CreateTexture(nil, "ARTWORK", nil, 2)
 	if K.STAT_HEADER_WIDTH > 0 then
-		-- sidePanelWidth/2 right of frame centre = centre of the right content area.
-		f.StatHeaderBg:SetPoint("TOP", f, "TOP", sidePanelWidth / 2, 0)
+		-- rightPanelX/2 right of frame centre = centre of the right content area.
+		f.StatHeaderBg:SetPoint("TOP", f, "TOP", rightPanelX / 2, 0)
 		f.StatHeaderBg:SetSize(K.STAT_HEADER_WIDTH, K.STAT_HEADER_HEIGHT)
 	else
 		-- 0 = span the full right content area
-		f.StatHeaderBg:SetPoint("TOPLEFT",     f, "TOPLEFT",  sidePanelWidth, 0)
+		f.StatHeaderBg:SetPoint("TOPLEFT",     f, "TOPLEFT",  rightPanelX, 0)
 		f.StatHeaderBg:SetPoint("BOTTOMRIGHT", f, "TOPRIGHT", 0, -K.STAT_HEADER_HEIGHT)
 	end
 	f.StatHeaderBg:SetAlpha(1)
 	f.StatHeaderBg:Hide()
 	f.TopAnchor = CreateFrame("Frame", nil, f)
 	f.TopAnchor:SetSize(5, 2)
-	f.TopAnchor:SetPoint("TOP", (sidePanelWidth/2), -10) -- x,y entire right side panel content
+	f.TopAnchor:SetPoint("TOP", (rightPanelX/2), -10) -- x,y entire right side panel content
 	Ns.TopAnchor = f.TopAnchor
 
 	CreateMainMenu()
 
-	-- Global HUD switcher (right panel area, top-left)
+	local menuSectionNames = { Settings=true, Text=true, Layout=true, Events=true, Profiles=true, Panels=true, Search=true, FAQ=true }
+	local menuNeedH = (52 + (K.MAIN_MENU_SHIFT or 40)) + (K.MAIN_MENU_TOP_PAD or 24) + (K.MAIN_MENU_BOTTOM_GAP or 14) -- top offset + gap below the last button
+	for i = 0, #Ns.SpellClass do
+		local v = Ns.SpellClass[i]
+		if v then
+			local stat = string.trim(v.stat or "")
+			local isStatSection = stat ~= "" and not menuSectionNames[stat]
+			local btnH = isStatSection and (K.MAIN_MENU_STAT_TEX_H > 0 and K.MAIN_MENU_STAT_TEX_H or 21) or 21
+
+			menuNeedH = menuNeedH + btnH + (i == 0 and 0 or (isStatSection and -K.MAIN_MENU_ITEM_GAP or 5))
+		end
+	end
+	f.MenuMinHeight = math.max(math.ceil(menuNeedH), K.CONFIG_MIN_H or 420)
+	f.MenuFormulaH = math.ceil(menuNeedH) -- kept for the /sinstats menufloor diagnostic
+	if Ns.PP then
+		local scale = f:GetEffectiveScale()
+		if scale and scale > 0 then
+			local px = Ns.PP.GetUnitPixel() / scale
+			f.MenuMinHeight = math.floor(f.MenuMinHeight / px + 0.5) * px
+		end
+	end
+	if f.SetMinResize then
+		f:SetMinResize(K.CONFIG_MIN_W or 650, f.MenuMinHeight)
+	end
+	if f:GetHeight() < f.MenuMinHeight then
+		f:SetHeight(f.MenuMinHeight)
+	end
+
+	UpdateMenuMinHeight()
+	C_Timer.After(0, UpdateMenuMinHeight)
+
 	f.PanelSwitcher = Ns:GetWidget("PanelSwitcher", f)
-	f.PanelSwitcher:SetPoint("TOPLEFT", f, "TOPLEFT", sidePanelWidth + 15, -26)
+	f.PanelSwitcher:SetPoint("TOPLEFT", f, "TOPLEFT", rightPanelX + 15, -26)
 	f.PanelSwitcher:SetFrameLevel(f:GetFrameLevel() + 3)
 	f.PanelSwitcher:Refresh()
 
-	f.NineSlice = CreateConfigTextureBorder(f)
+	f.Logo:SetParent(f.LeftPanel)      -- parent-relative anchors: same spot
+	f.Version:SetParent(f.LeftPanel)   -- ditto
+	f.Title:SetParent(f.RightPanel)
+	f.Title:ClearAllPoints()
+	f.Title:SetPoint("TOP", f, "TOP", 0, -15) -- keep it centered on the whole frame
+	f.StatHeaderBg:SetParent(f.RightPanel) -- anchors already reference the frame explicitly
+
+	f.LeftPanel.Border = CreateConfigTextureBorder(f.LeftPanel)
+	f.RightPanel.Border = CreateConfigTextureBorder(f.RightPanel)
+
+	local function RefreshConfigLayout()
+		if Ns.PP then
+			local scale = f:GetEffectiveScale()
+			if scale and scale > 0 then
+				local px = Ns.PP.GetUnitPixel() / scale
+				local w = math.floor(f:GetWidth() / px + 0.5) * px
+				if w ~= f:GetWidth() then
+					f:SetWidth(w)
+				end
+			end
+		end
+		Ns.maxOptionsWidth = f:GetWidth() - rightPanelX - 30
+		Ns.SeparatorWidth  = Ns.maxOptionsWidth / 1.15
+
+		-- Pooled anchor frames keep the Description width from creation time.
+		local descW = Ns.maxOptionsWidth - (Ns.maxOptionsWidth / 5)
+		for _, name in ipairs({ "MainAnchor", "ChildAnchor" }) do
+			local anchor = f[name]
+			if anchor and anchor.Description then
+				anchor.Description:SetWidth(descW)
+			end
+		end
+
+		ReExpandActiveMenu()
+
+		-- Persist the user's chosen size.
+		if SinStatsDB then
+			SinStatsDB.configWidth = f:GetWidth()
+			SinStatsDB.configHeight = f:GetHeight()
+		end
+	end
+
+	f:SetScript("OnSizeChanged", function(self)
+		UpdateMenuMinHeight()
+		if self.MenuMinHeight and self:GetHeight() < self.MenuMinHeight then
+			self:SetHeight(self.MenuMinHeight)
+			return
+		end
+		if not self._layoutReady then return end
+		if self._resizeTimer then self._resizeTimer:Cancel() end
+		if C_Timer.NewTimer then
+			self._resizeTimer = C_Timer.NewTimer(0.12, function()
+				self._resizeTimer = nil
+				RefreshConfigLayout()
+			end)
+		else
+			C_Timer.After(0.12, RefreshConfigLayout)
+		end
+	end)
+	f._layoutReady = true
 end
 
 ------------------
@@ -2716,6 +2920,19 @@ function Ns:HideStatInfo()
 	if Ns.ConfigFrame and Ns.ConfigFrame.InfoFrame then
 		Ns.ConfigFrame.InfoFrame:Hide()
 	end
+end
+
+function Ns:ResetConfigSize()
+	local cfg = Ns.ConfigFrame
+	if not cfg then return end
+	Ns:Confirm(L["ResetConfigSizeConfirm"] or "Reset the config window to its default size?",
+		function()
+			if SinStatsDB then
+				SinStatsDB.configWidth = nil
+				SinStatsDB.configHeight = nil
+			end
+			cfg:SetSize(Ns.ConfigWidth or 800, Ns.ConfigHeight or 500)
+		end)
 end
 
 function Ns:ToggleConfig()

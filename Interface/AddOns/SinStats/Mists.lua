@@ -10,7 +10,7 @@ local Basic, Base, Modifiers, Complete, Points, Value, Normal, Special = 2, 2, 3
 
 
 Ns.ConfigWidth = 975
-Ns.ConfigHeight = 675 --700
+Ns.ConfigHeight = 635 --700
 Ns.targetLevel, Ns.ohID = 0, 0
 
 local honorIcon = 73824

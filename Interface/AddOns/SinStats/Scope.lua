@@ -30,6 +30,7 @@ Ns.K = {
 	TOP_TAB_CHECKMARK_SIZE = 16,
 	COLOR_PICKER_SIZE      = 17,  -- W.ColorPicker swatch (square)
 	DROPLIST_HEIGHT        = 23,  -- W.DropList bar height
+	PLAIN_BTN_H            = 30,  -- W.PlainButton frame height; extra px below the content = bottom separation like other widgets
 
 	CHECKBOX_X_OFFSET     = -6,  -- W.CheckBox: shift the check + label leftward
 	COLOR_PICKER_X_OFFSET =  2,  -- W.ColorPicker: shift swatch + label rightward
@@ -287,6 +288,9 @@ Ns.K = {
 
 	HOptionsOffsetX  = 35, HOptionsOffsetY = -42,  ---13 -- vertical gap added between widget rows on the right side
 	mainMenuYOffset  = -92,
+	MAIN_MENU_SHIFT  = 51,  -- extra px pushed down so the left menu starts below the logo
+	MAIN_MENU_TOP_PAD = 0,  -- extra px added below the menu start offset (see MAIN_MENU_SHIFT)
+	MAIN_MENU_BOTTOM_GAP = 0,  -- px between the last menu button and the bottom of the left panel (also the resize floor margin)
 	separatorOffsetY = 30,
 
 	SUBHEADER_BG_ENABLED     = true, -- show/hide the background texture on stat subheader bars
@@ -375,7 +379,18 @@ Ns.K = {
 	EDITBOX_BG_ATLAS       = "",
 
 	RIGHT_BODY_BG_TEX = _P.."bg\\bg-right-side.png",
-	LEFT_PANEL_W      = 158,  -- total width of the left menu panel in px; the vertical divider line sits here; right panel starts here
+	LEFT_PANEL_W      = 163,  -- total width of the left menu panel in px
+	LEFT_RIGHT_GAP    = 11,   -- empty px between the left menu panel and the right content panel (each panel has its own full border)
+	CONFIG_MIN_W      = 650,  -- minimum width in px when resizing the config frame
+	CONFIG_MIN_H      = 420,  -- minimum height in px when resizing the config frame
+	CONFIG_MAX_W      = 1600, -- maximum width in px when resizing the config frame (0 = no limit)
+	CONFIG_MAX_H      = 900,  -- maximum height in px when resizing the config frame (0 = no limit)
+	CONFIG_RESIZE_GRIP_TEX   = "Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down", -- resize grip texture; "" = default chat grip
+	CONFIG_RESIZE_GRIP_W     = 16,  -- grip width in px
+	CONFIG_RESIZE_GRIP_H     = 16,  -- grip height in px
+	CONFIG_RESIZE_GRIP_X     = 2,   -- inset from the frame's bottom-right corner
+	CONFIG_RESIZE_GRIP_Y     = 2,   -- inset from the frame's bottom-right corner
+	CONFIG_RESIZE_GRIP_ALPHA = 0.8, -- idle alpha (full alpha while hovered)
 	CONFIG_DRAG_HEIGHT = 95,   -- height in px of the draggable top bar area (covers logo → close button)
 	LEFT_MENU_BG_TEX  = _P.."bg\\bg-right-side.png",
 	INFO_FRAME_BG_TEX = _P.."bg\\side.png",

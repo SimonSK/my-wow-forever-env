@@ -493,13 +493,10 @@ function Ns.FunctionList.Speed(HUD, data, options, ...)
 	fullSpeed = fullSpeed / 0.07
 	staticSpeed = staticSpeed / 0.07
 
-	if canGlide then
-		local baseRaw = isGliding and forwardSpeed or fsRaw
-		if not issecretvalue(baseRaw) then
-			local movespeed = Round(baseRaw / BASE_MOVEMENT_SPEED * 100)
-			fullSpeed = movespeed
-			staticSpeed = movespeed
-		end
+	if isGliding and not issecretvalue(forwardSpeed) then
+		local movespeed = Round(forwardSpeed / BASE_MOVEMENT_SPEED * 100)
+		fullSpeed, staticSpeed = movespeed, movespeed
+		rawFullSpeed, rawStaticSpeed = forwardSpeed, forwardSpeed
 	end
 
 	if speedSecret then

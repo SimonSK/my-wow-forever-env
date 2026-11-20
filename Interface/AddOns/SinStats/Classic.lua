@@ -9,7 +9,7 @@ local SameLevel, BossLevel, Regen, Casting, Critical, CritDamage, Total, Max, Av
 
 
 Ns.ConfigWidth = 975
-Ns.ConfigHeight = 675--540
+Ns.ConfigHeight = 635--540
 Ns.targetLevel, Ns.ohID = 0, 0
 
 local honorIcon = 301091
