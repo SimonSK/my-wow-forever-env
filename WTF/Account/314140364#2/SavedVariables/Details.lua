@@ -152,7 +152,7 @@ _detalhes_global = {
 ["slashk_dnd"] = false,
 ["encounter_journal_cache"] = {
 },
-["combat_id_global"] = 143857,
+["combat_id_global"] = 144519,
 ["displays_by_spec"] = {
 },
 ["damage_scroll_position"] = {
@@ -238,7 +238,7 @@ _detalhes_global = {
 },
 ["shield_spellid_cache"] = {
 },
-["latest_encounter_spell_pool_access"] = 1794885045,
+["latest_encounter_spell_pool_access"] = 1795067080,
 ["parser_options"] = {
 ["tank_avoidance"] = false,
 ["shield_overheal"] = false,
@@ -2489,7 +2489,7 @@ false,
 ["boss_mods_timers"] = {
 ["encounter_timers_bw"] = {
 },
-["latest_boss_mods_access"] = 1794885045,
+["latest_boss_mods_access"] = 1795067080,
 ["encounter_timers_dbm"] = {
 },
 },
@@ -2543,17 +2543,17 @@ nil,
 ["SHAMAN"] = 1579053.174000001,
 },
 [0] = {
-["MAGE"] = 99677.00100000002,
-["PRIEST"] = 37543.06699999995,
-["WARLOCK"] = 46116.22099999996,
+["MAGE"] = 144331.0540000002,
+["PRIEST"] = 38386.64499999996,
+["WARLOCK"] = 82642.821,
 ["PALADIN"] = 43082.18500000006,
 },
 },
 ["spell_category_latest_save"] = 0,
 ["tutorial"] = {
 ["bookmark_tutorial"] = false,
-["main_help_button"] = 19102,
-["logons"] = 19102,
+["main_help_button"] = 19150,
+["logons"] = 19150,
 ["ENCOUNTER_BREAKDOWN_CHART"] = true,
 ["DETAILS_INFO_TUTORIAL2"] = 10,
 ["DISABLE_ONDEATH_PANEL"] = true,
@@ -2615,7 +2615,7 @@ false,
 0.1294,
 0.8,
 },
-["latest_npcid_pool_access"] = 1794885045,
+["latest_npcid_pool_access"] = 1795067080,
 ["run_code"] = {
 ["on_groupchange"] = "\n-- this code runs when the player enter or leave a group",
 ["on_zonechanged"] = "\n-- when the player changes zone, this code will run",
@@ -2640,11 +2640,11 @@ false,
 ["transcriptor_frame"] = {
 ["scale"] = 1,
 },
-["last_10days_cache_cleanup"] = 1795047054,
+["last_10days_cache_cleanup"] = 1795913950,
 ["show_totalhitdamage_on_overkill"] = false,
 ["switch_post_apoc"] = true,
 ["merge_pet_abilities"] = false,
-["latest_spell_pool_access"] = 1794885045,
+["latest_spell_pool_access"] = 1795067080,
 ["savedStyles"] = {
 },
 ["always_use_profile_exception"] = {

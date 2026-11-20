@@ -1,0 +1,8 @@
+Version: 1
+Frame: GRM_CoreFrame
+FrameLevel: 1
+Anchor: CENTER
+X: 0
+Y: 0
+W: 600
+H: 535

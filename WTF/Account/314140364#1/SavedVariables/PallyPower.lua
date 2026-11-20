@@ -10,49 +10,49 @@ PallyPowerDB = {
 },
 ["profiles"] = {
 ["Other"] = {
-["ShowPets"] = false,
 ["ForeverShamanColumn"] = true,
-["enable"] = true,
 ["ForeverSalvSplit"] = true,
+["seal"] = 11,
+["display"] = {
+["HideCountText"] = true,
+},
+["enable"] = true,
 ["minimap"] = {
 ["show"] = false,
 },
-["display"] = {
-["HideCountText"] = true,
-},
-["ForeverCountDefault"] = true,
-["ForeverSealRestored"] = true,
-["seal"] = 11,
-},
-["Simon"] = {
-["ForeverShamanColumn"] = true,
-["auraDurations"] = {
-["Seal of Righteousness"] = 30,
-["Seal of the Crusader"] = 1800,
-["Seal of Fury"] = 1800,
-["Righteous Fury"] = 1800.001,
-},
-["seal"] = 0,
-["display"] = {
-["HideCountText"] = true,
-["buffDuration"] = false,
-["frameLocked"] = true,
-["offsetX"] = -400,
-["offsetY"] = 143,
-["showPlayerButtons"] = false,
-},
-["freeassign"] = false,
-["enable"] = true,
-["ForeverCountDefault"] = true,
 ["ForeverSealRestored"] = true,
 ["ShowPets"] = false,
-["ForeverSalvSplit"] = true,
+["ForeverCountDefault"] = true,
+},
+["Simon"] = {
+["ShowPets"] = false,
+["freeassign"] = false,
+["ForeverShamanColumn"] = true,
+["enable"] = true,
+["auraDurations"] = {
+["Seal of Fury"] = 30,
+["Seal of the Crusader"] = 30,
+["Seal of Righteousness"] = 30,
+["Righteous Fury"] = 1800,
+},
+["ForeverCountDefault"] = true,
+["seal"] = 0,
+["minimap"] = {
+["show"] = false,
+},
 ["autobuff"] = {
 ["buffDuration"] = false,
 },
-["minimap"] = {
-["show"] = false,
+["display"] = {
+["frameLocked"] = true,
+["HideCountText"] = true,
+["buffDuration"] = false,
+["showPlayerButtons"] = false,
+["offsetY"] = 143,
+["offsetX"] = -400,
 },
+["ForeverSalvSplit"] = true,
+["ForeverSealRestored"] = true,
 ["rf"] = true,
 },
 ["Default"] = {
@@ -78,7 +78,7 @@ PallyPower_Assignments = {
 2,
 1,
 1,
-1,
+3,
 1,
 1,
 1,
@@ -88,7 +88,7 @@ PallyPower_Assignments = {
 PallyPower_NormalAssignments = {
 }
 PallyPower_AuraAssignments = {
-["Simon Windseeker"] = 1,
+["Simon Windseeker"] = 2,
 }
 PallyPower_SavedPresets = {
 ["PallyPower_NormalAssignments"] = {
@@ -105,8 +105,8 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[6] = "CuratorNet",
-[7] = "TrueshotLodge",
+[6] = "TrueshotLodge",
+[7] = "CuratorNet",
 [8] = "TrueshotLodge1413",
 [4] = "Services",
 [5] = "TradeLocal",

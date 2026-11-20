@@ -1,0 +1,15 @@
+Version: 1
+Frame: RaidBarFrame
+FrameLevel: 1
+Anchor: LEFT
+X: 106
+Y: 172
+W: 462
+H: 36
+Frame: GRM_CoreFrame
+FrameLevel: 1
+Anchor: CENTER
+X: 0
+Y: 0
+W: 600
+H: 535

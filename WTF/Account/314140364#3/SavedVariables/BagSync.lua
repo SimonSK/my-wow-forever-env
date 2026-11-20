@@ -1,0 +1,436 @@
+
+BagSyncDB = {
+["options§"] = {
+["tooltipSortMode"] = "realm_character",
+["singleCharLocations"] = false,
+["enableExtTooltip"] = false,
+["enableRealmAstrickName"] = false,
+["focusSearchEditBox"] = false,
+["enableAddonCompartment"] = true,
+["useIconLocations"] = true,
+["showWarbandTabs"] = false,
+["enableRealmIDTags"] = true,
+["enableTooltipItemID"] = false,
+["sortCurrencyByExpansion"] = true,
+["tracking"] = {
+["warband"] = true,
+["bag"] = true,
+["guild"] = true,
+["bank"] = true,
+["auction"] = true,
+["reagents"] = false,
+["void"] = false,
+["equip"] = true,
+["professions"] = true,
+["currency"] = true,
+["mailbox"] = true,
+},
+["tooltipOnlySearch"] = false,
+["enableCurrentRealmShortName"] = false,
+["showEquipBagSlots"] = false,
+["debug"] = {
+["SL2"] = false,
+["cache"] = false,
+["enable"] = false,
+["SL3"] = false,
+["INFO"] = true,
+["SL1"] = false,
+["DEBUG"] = false,
+["SL5"] = false,
+["WARN"] = false,
+["TRACE"] = true,
+["SL4"] = false,
+["FINE"] = false,
+},
+["showGuildInGoldTooltip"] = true,
+["enableSourceExpansion"] = true,
+["showBLCurrentCharacterOnly"] = false,
+["showRaceIcons"] = true,
+["unitDBVersion"] = {
+["auction"] = 1,
+},
+["extTT_FontMonochrome"] = false,
+["showTotal"] = true,
+["extTT_FontOutline"] = "OUTLINE",
+["cacheThrottle"] = "slow",
+["showBankTabs"] = false,
+["enableFactionIcons"] = false,
+["showBNETCRInfoWindow"] = false,
+["enableRealmNames"] = true,
+["enableLoginVersionInfo"] = true,
+["enableAccurateBattlePets"] = true,
+["enableTooltipGreenCheck"] = true,
+["extTT_CustomAnchorX"] = 0,
+["extTT_Font"] = "Friz Quadrata TT",
+["alwaysShowSearchFilters"] = false,
+["addonversion"] = "20.41",
+["minimap"] = {
+["minimapPos"] = 220,
+["showInCompartment"] = true,
+["hide"] = false,
+},
+["showCurrentCharacterOnly"] = false,
+["enableRealmShortName"] = false,
+["tooltipModifer"] = "NONE",
+["enableShowUniqueItemsTotals"] = true,
+["itemTotalsByClassColor"] = true,
+["enableItemTypes"] = true,
+["enableUnitClass"] = true,
+["enableCurrentRealmName"] = false,
+["enableBNET"] = false,
+["enableTooltipSeparator"] = true,
+["enableFaction"] = true,
+["extTT_CustomAnchorY"] = 0,
+["enable_GSC_Display"] = false,
+["enableTooltips"] = true,
+["extTT_Anchor"] = "BOTTOM",
+["enableCurrencyWindowTooltipData"] = true,
+["enableCR"] = true,
+["showGuildTabs"] = false,
+["colors"] = {
+["warband"] = {
+["b"] = 0.2196078431372549,
+["g"] = 0.2352941176470588,
+["r"] = 1,
+},
+["total"] = {
+["b"] = 0.3764705882352941,
+["g"] = 0.6431372549019608,
+["r"] = 0.9568627450980393,
+},
+["debug"] = {
+["b"] = 0.1529411764705883,
+["g"] = 0.8470588235294118,
+["r"] = 0.3019607843137255,
+},
+["currentrealm"] = {
+["b"] = 0.09019607843137255,
+["g"] = 0.7333333333333333,
+["r"] = 0.2980392156862745,
+},
+["guild"] = {
+["b"] = 0.7529411764705882,
+["g"] = 0.7215686274509804,
+["r"] = 0.396078431372549,
+},
+["first"] = {
+["b"] = 0,
+["g"] = 1,
+["r"] = 0.5019607843137255,
+},
+["bnet"] = {
+["b"] = 1,
+["g"] = 0.5333333333333333,
+["r"] = 0.207843137254902,
+},
+["second"] = {
+["b"] = 1,
+["g"] = 1,
+["r"] = 1,
+},
+["warbandtabs"] = {
+["b"] = 0.8784313725490196,
+["g"] = 0.8588235294117647,
+["r"] = 0.03529411764705882,
+},
+["expansion"] = {
+["b"] = 1,
+["g"] = 0.6235294117647059,
+["r"] = 0.8117647058823529,
+},
+["itemid"] = {
+["b"] = 0.5254901960784314,
+["g"] = 0.8274509803921568,
+["r"] = 0.3215686274509804,
+},
+["guildtabs"] = {
+["b"] = 0.8784313725490196,
+["g"] = 0.8588235294117647,
+["r"] = 0.03529411764705882,
+},
+["banktabs"] = {
+["b"] = 0.8784313725490196,
+["g"] = 0.8588235294117647,
+["r"] = 0.03529411764705882,
+},
+["itemtypes"] = {
+["b"] = 0.4,
+["g"] = 0.8117647058823529,
+["r"] = 0.8,
+},
+["bagslots"] = {
+["b"] = 0.4666666666666667,
+["g"] = 0.9333333333333333,
+["r"] = 0.2666666666666667,
+},
+["cr"] = {
+["b"] = 0.0392156862745098,
+["g"] = 0.4901960784313725,
+["r"] = 1,
+},
+},
+["enableWhitelist"] = false,
+["sortShowCurrentPlayerOnTop"] = false,
+["extTT_CustomAnchorEnabled"] = false,
+["extTT_CustomAnchorLocation"] = "CENTER",
+["extTT_FontSize"] = 12,
+},
+["blacklist§"] = {
+},
+["whitelist§"] = {
+},
+["CAMWOW US1 Realm 1 PvE"] = {
+["Simonmisc Windseeker"] = {
+["race_atlas"] = "raceicon128-orc-male",
+["guid"] = "Player-6794-048B62E1",
+["class"] = "WARRIOR",
+["race"] = "Orc",
+["equip"] = {
+"6125",
+"139",
+"140",
+"12282",
+},
+["realmKey"] = "CAMWOW US1 Realm 1 PvE",
+["rwsKey"] = "CAMWOWUS1Realm1PvE",
+["gender"] = 2,
+["local_class_name"] = "Warrior",
+["class_id"] = 1,
+["currency"] = {
+},
+["race_id"] = 2,
+["money"] = 0,
+["faction"] = "Horde",
+["professions"] = {
+},
+["bag"] = {
+[0] = {
+"6948",
+"117;4",
+},
+},
+["local_race_name"] = "Orc",
+["equipbags"] = {
+["bag"] = {
+},
+},
+},
+["Simonmetal Windseeker"] = {
+["race_atlas"] = "raceicon128-orc-female",
+["guid"] = "Player-6794-048B1E03",
+["class"] = "WARRIOR",
+["race"] = "Orc",
+["equip"] = {
+"6125",
+"139",
+"140",
+"12282",
+},
+["realmKey"] = "CAMWOW US1 Realm 1 PvE",
+["rwsKey"] = "CAMWOWUS1Realm1PvE",
+["gender"] = 3,
+["local_class_name"] = "Warrior",
+["bag"] = {
+[0] = {
+"6948",
+"117;4",
+},
+},
+["currency"] = {
+},
+["race_id"] = 2,
+["money"] = 0,
+["faction"] = "Horde",
+["professions"] = {
+},
+["class_id"] = 1,
+["local_race_name"] = "Orc",
+["equipbags"] = {
+["bag"] = {
+},
+},
+},
+["Simonfish Windseeker"] = {
+["race_atlas"] = "raceicon128-orc-female",
+["guid"] = "Player-6794-048B1E90",
+["class"] = "WARRIOR",
+["race"] = "Orc",
+["equip"] = {
+"6125",
+"139",
+"140",
+"12282",
+},
+["realmKey"] = "CAMWOW US1 Realm 1 PvE",
+["rwsKey"] = "CAMWOWUS1Realm1PvE",
+["gender"] = 3,
+["equipbags"] = {
+["bag"] = {
+},
+},
+["bag"] = {
+[0] = {
+"6948",
+"117;4",
+},
+},
+["class_id"] = 1,
+["race_id"] = 2,
+["money"] = 0,
+["faction"] = "Horde",
+["professions"] = {
+},
+["currency"] = {
+},
+["local_race_name"] = "Orc",
+["local_class_name"] = "Warrior",
+},
+["Simoncloth Windseeker"] = {
+["race_atlas"] = "raceicon128-orc-female",
+["guid"] = "Player-6794-048B6254",
+["class"] = "WARRIOR",
+["race"] = "Orc",
+["equip"] = {
+"6125",
+"139",
+"140",
+"12282",
+},
+["realmKey"] = "CAMWOW US1 Realm 1 PvE",
+["rwsKey"] = "CAMWOWUS1Realm1PvE",
+["gender"] = 3,
+["equipbags"] = {
+["bag"] = {
+},
+},
+["bag"] = {
+[0] = {
+"6948",
+"117;4",
+},
+},
+["class_id"] = 1,
+["race_id"] = 2,
+["money"] = 0,
+["faction"] = "Horde",
+["professions"] = {
+},
+["currency"] = {
+},
+["local_race_name"] = "Orc",
+["local_class_name"] = "Warrior",
+},
+["Simongem Windseeker"] = {
+["race_atlas"] = "raceicon128-orc-male",
+["guid"] = "Player-6794-048B62A0",
+["class"] = "WARRIOR",
+["race"] = "Orc",
+["equip"] = {
+"6125",
+"139",
+"140",
+"12282",
+},
+["realmKey"] = "CAMWOW US1 Realm 1 PvE",
+["rwsKey"] = "CAMWOWUS1Realm1PvE",
+["gender"] = 2,
+["equipbags"] = {
+["bag"] = {
+},
+},
+["bag"] = {
+[0] = {
+"6948",
+"117;4",
+},
+},
+["class_id"] = 1,
+["race_id"] = 2,
+["money"] = 0,
+["faction"] = "Horde",
+["professions"] = {
+},
+["currency"] = {
+},
+["local_race_name"] = "Orc",
+["local_class_name"] = "Warrior",
+},
+["Simonmeat Windseeker"] = {
+["race_atlas"] = "raceicon128-orc-female",
+["guid"] = "Player-6794-048B3E1B",
+["class"] = "WARRIOR",
+["race"] = "Orc",
+["equip"] = {
+"6125",
+"139",
+"140",
+"12282",
+},
+["realmKey"] = "CAMWOW US1 Realm 1 PvE",
+["rwsKey"] = "CAMWOWUS1Realm1PvE",
+["gender"] = 3,
+["local_class_name"] = "Warrior",
+["bag"] = {
+[0] = {
+"6948",
+"117;4",
+},
+},
+["currency"] = {
+},
+["race_id"] = 2,
+["money"] = 0,
+["faction"] = "Horde",
+["professions"] = {
+},
+["class_id"] = 1,
+["local_race_name"] = "Orc",
+["equipbags"] = {
+["bag"] = {
+},
+},
+},
+["Simonfood Windseeker"] = {
+["race_atlas"] = "raceicon128-orc-male",
+["guid"] = "Player-6794-048B1D94",
+["class"] = "WARRIOR",
+["race"] = "Orc",
+["equip"] = {
+"6125",
+"139",
+"140",
+"12282",
+},
+["realmKey"] = "CAMWOW US1 Realm 1 PvE",
+["bag"] = {
+[0] = {
+"6948",
+"117;4",
+},
+},
+["rwsKey"] = "CAMWOWUS1Realm1PvE",
+["gender"] = 2,
+["local_class_name"] = "Warrior",
+["class_id"] = 1,
+["currency"] = {
+},
+["race_id"] = 2,
+["money"] = 0,
+["faction"] = "Horde",
+["professions"] = {
+},
+["equipbags"] = {
+["bag"] = {
+},
+},
+["local_race_name"] = "Orc",
+["mailbox"] = {
+"5469;13",
+"769;5",
+},
+},
+},
+["savedsearch§"] = {
+},
+["forceDBReset§"] = 3,
+}

@@ -42,4 +42,5 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/g tf. who is it",
 "/s /inv Simonwarlock Windseeker ",
 "/s /sleep",
+"/inv Simonwarlock Windseeker ",
 }

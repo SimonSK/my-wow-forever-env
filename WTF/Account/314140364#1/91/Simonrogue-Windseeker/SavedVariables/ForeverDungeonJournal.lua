@@ -1,47 +1,6 @@
 
 ForeverDungeonJournalCharacterDB = {
-["rpgTrash"] = {
-},
-["rpgBosses"] = {
-["Ragefire Chasm"] = {
-[11517] = true,
-["oggleflint"] = true,
-[11518] = true,
-["jergosh the invoker"] = true,
-[11519] = true,
-["bazzalan"] = true,
-[11520] = true,
-["taragaman the hungerer"] = true,
-},
-},
-["favouriteItems"] = {
-},
-["flightPoints"] = {
-["thunder bluff, mulgore"] = true,
-["orgrimmar, durotar"] = true,
-},
-["flightPointsVersion"] = 2,
-["trackerSlots"] = {
-},
-["rpgQuests"] = {
-[5728] = true,
-[5723] = true,
-[5725] = true,
-[914] = true,
-[5722] = true,
-[5724] = true,
-[962] = true,
-[5761] = true,
-},
-["rpgMaps"] = {
-["Ragefire Chasm"] = true,
-},
 ["trackedDungeons"] = {
-},
-["runTracker"] = {
-},
-["rpgKills"] = {
-["Ragefire Chasm"] = true,
 },
 ["hearthSpot"] = {
 ["y"] = 0.6841509342193604,
@@ -49,9 +8,12 @@ ForeverDungeonJournalCharacterDB = {
 ["name"] = "Orgrimmar",
 ["x"] = 0.5419410467147827,
 },
-["hiddenDungeons"] = {
+["rpgMaps"] = {
+["Ragefire Chasm"] = true,
 },
-["journalMode"] = "gamer",
+["rpgKills"] = {
+["Ragefire Chasm"] = true,
+},
 ["runLog"] = {
 ["nextID"] = 3,
 ["runs"] = {
@@ -1110,6 +1072,46 @@ ForeverDungeonJournalCharacterDB = {
 },
 },
 },
+["rpgTrash"] = {
+},
+["shownDungeons"] = {
+},
+["favouriteItems"] = {
+},
+["trackerSlots"] = {
+},
 ["arrowChains"] = {
+},
+["flightPointsVersion"] = 2,
+["runTracker"] = {
+},
+["flightPoints"] = {
+["thunder bluff, mulgore"] = true,
+["orgrimmar, durotar"] = true,
+},
+["hiddenDungeons"] = {
+},
+["journalMode"] = "gamer",
+["rpgBosses"] = {
+["Ragefire Chasm"] = {
+[11517] = true,
+["oggleflint"] = true,
+[11518] = true,
+["jergosh the invoker"] = true,
+[11519] = true,
+["bazzalan"] = true,
+[11520] = true,
+["taragaman the hungerer"] = true,
+},
+},
+["rpgQuests"] = {
+[5728] = true,
+[5723] = true,
+[5725] = true,
+[914] = true,
+[5722] = true,
+[5724] = true,
+[962] = true,
+[5761] = true,
 },
 }

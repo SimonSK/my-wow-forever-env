@@ -2,7 +2,7 @@
 BooksOnMapForeverDB = {
 ["pinSize"] = 20,
 ["hideCollected"] = true,
-["hidden"] = false,
+["hidden"] = true,
 ["foldedSets"] = {
 },
 ["minimapIcon"] = {
@@ -11,9 +11,11 @@ BooksOnMapForeverDB = {
 ["folded"] = {
 },
 ["collected"] = {
-["tazo"] = true,
-["arcaniques"] = true,
 ["baxtan"] = true,
+["tazo"] = true,
+["ataeric"] = true,
+["arcaniques"] = true,
+["dalaran"] = true,
 ["abecedaire"] = true,
 ["reveurs"] = true,
 },

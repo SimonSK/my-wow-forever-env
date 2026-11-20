@@ -3,7 +3,7 @@ Altoholic_SummaryTab_Options = {
 ["CurrentMode"] = 1,
 ["CurrentMisc"] = 0,
 ["CurrentLevels"] = 1,
-["CurrentColumn"] = "Name",
+["CurrentColumn"] = "AiL",
 ["CurrentTradeSkill"] = 0,
 ["CurrentAltGroup"] = 0,
 ["CurrentLevelsMax"] = 60,
@@ -18,5 +18,5 @@ Altoholic_SummaryTab_Options = {
 ["CurrentFactions"] = 3,
 ["ShowLevelDecimals"] = true,
 ["ShowRestXP150pc"] = false,
-["SortAscending"] = true,
+["SortAscending"] = false,
 }

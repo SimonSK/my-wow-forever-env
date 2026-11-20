@@ -69,7 +69,7 @@ PallyPower_Assignments = {
 2,
 1,
 1,
-1,
+3,
 1,
 1,
 1,
@@ -77,11 +77,9 @@ PallyPower_Assignments = {
 },
 }
 PallyPower_NormalAssignments = {
-["Simon Windseeker"] = {
-},
 }
 PallyPower_AuraAssignments = {
-["Simon Windseeker"] = 1,
+["Simon Windseeker"] = 2,
 }
 PallyPower_SavedPresets = {
 ["PallyPower_NormalAssignments"] = {

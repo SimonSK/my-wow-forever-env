@@ -54,4 +54,7 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/p gg ty all",
 "/p you too",
 "/s /inv Simonhunter Windseeker ",
+"/inv Simonrogue Windseeker ",
+"/inv Simonhunter Windseeker ",
+"/inv Simon Windseeker ",
 }

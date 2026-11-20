@@ -1,39 +1,6 @@
 
 ForeverDungeonJournalCharacterDB = {
-["rpgQuests"] = {
-[5728] = true,
-[5723] = true,
-[5725] = true,
-[914] = true,
-[5722] = true,
-[5724] = true,
-[962] = true,
-[5761] = true,
-},
-["rpgBosses"] = {
-["Ragefire Chasm"] = {
-[11517] = true,
-["oggleflint"] = true,
-[11518] = true,
-["jergosh the invoker"] = true,
-[11519] = true,
-["bazzalan"] = true,
-[11520] = true,
-["taragaman the hungerer"] = true,
-},
-},
-["favouriteItems"] = {
-},
-["flightPoints"] = {
-["thunder bluff, mulgore"] = true,
-["orgrimmar, durotar"] = true,
-},
-["flightPointsVersion"] = 2,
-["trackerSlots"] = {
-},
-["arrowChains"] = {
-},
-["rpgMaps"] = {
+["trackedDungeons"] = {
 },
 ["hearthSpot"] = {
 ["y"] = 0.6853923797607422,
@@ -41,16 +8,11 @@ ForeverDungeonJournalCharacterDB = {
 ["name"] = "Orgrimmar",
 ["x"] = 0.5426052808761597,
 },
+["rpgMaps"] = {
+},
 ["rpgKills"] = {
 ["Ragefire Chasm"] = true,
 },
-["runTracker"] = {
-},
-["trackedDungeons"] = {
-},
-["hiddenDungeons"] = {
-},
-["journalMode"] = "gamer",
 ["runLog"] = {
 ["nextID"] = 2,
 ["runs"] = {
@@ -633,7 +595,7 @@ ForeverDungeonJournalCharacterDB = {
 ["deaths"] = 0,
 ["firstTrash"] = 1794766102,
 ["seenN"] = 87,
-["id"] = 1,
+["money"] = 675,
 ["firstKill"] = 1794766102,
 ["needs"] = {
 {
@@ -683,10 +645,18 @@ ForeverDungeonJournalCharacterDB = {
 ["exits"] = {
 },
 ["map"] = 389,
-["money"] = 675,
+["id"] = 1,
 ["lastBoss"] = 1794767789,
 },
 },
+},
+["arrowChains"] = {
+},
+["shownDungeons"] = {
+},
+["favouriteItems"] = {
+},
+["trackerSlots"] = {
 },
 ["rpgTrash"] = {
 ["Ragefire Chasm"] = {
@@ -716,5 +686,37 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["n"] = 22,
 },
+},
+["flightPointsVersion"] = 2,
+["runTracker"] = {
+},
+["flightPoints"] = {
+["thunder bluff, mulgore"] = true,
+["orgrimmar, durotar"] = true,
+},
+["hiddenDungeons"] = {
+},
+["journalMode"] = "gamer",
+["rpgBosses"] = {
+["Ragefire Chasm"] = {
+[11517] = true,
+["oggleflint"] = true,
+[11518] = true,
+["jergosh the invoker"] = true,
+[11519] = true,
+["bazzalan"] = true,
+[11520] = true,
+["taragaman the hungerer"] = true,
+},
+},
+["rpgQuests"] = {
+[5728] = true,
+[5723] = true,
+[5725] = true,
+[914] = true,
+[5722] = true,
+[5724] = true,
+[962] = true,
+[5761] = true,
 },
 }

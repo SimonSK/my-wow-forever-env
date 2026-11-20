@@ -58,7 +58,7 @@ H: 626
 Frame: BagnonInventory1
 FrameLevel: 1
 Anchor: RIGHT
-X: -26
-Y: 64
+X: -54
+Y: 94
 W: 384
 H: 281

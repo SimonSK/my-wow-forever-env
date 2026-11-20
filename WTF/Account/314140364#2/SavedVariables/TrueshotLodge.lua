@@ -27,101 +27,153 @@ TrueshotLodgeDB = {
 ["selections"] = {
 },
 ["share_peers"] = {
-["Zerref Dragneel"] = {
-["first"] = 1794893806,
-["last"] = 1794900841,
+["Bubbles Fluffhugger"] = {
+["last"] = 1795148730,
+["first"] = 1795148729,
 },
-["Ramose Stormstrider"] = {
-["last"] = 1794888392,
-["first"] = 1794810835,
+["Morehill Giggler"] = {
+["last"] = 1795147477,
+["first"] = 1795147477,
 },
-["Bandan Skybluff"] = {
-["first"] = 1794894152,
-["last"] = 1794898681,
+["Poozer Hamhock"] = {
+["last"] = 1795147319,
+["first"] = 1795147318,
 },
-["Smooples Thehired"] = {
-["last"] = 1794900626,
-["first"] = 1794900618,
+["Sel Hunt"] = {
+["last"] = 1795147788,
+["first"] = 1795146869,
 },
-["Trueshot Lodge"] = {
-["last"] = 1794781600,
-["first"] = 1794781600,
+["Jaeger Bloodstar"] = {
+["last"] = 1795150315,
+["first"] = 1795148522,
 },
-["Pumper Niickle"] = {
-["last"] = 1794901500,
-["first"] = 1794901500,
+["Clay Righteous"] = {
+["last"] = 1795148627,
+["first"] = 1795148229,
 },
-["Motion Raceworks"] = {
-["last"] = 1794900097,
-["first"] = 1794900097,
+["Auran Windsong"] = {
+["last"] = 1795148261,
+["first"] = 1795148252,
 },
-["Roguesnipe Deadheart"] = {
-["last"] = 1794900569,
-["first"] = 1794900569,
+["Ryu Nightwhisper"] = {
+["last"] = 1795149285,
+["first"] = 1795149186,
 },
-["Chori Pan"] = {
-["last"] = 1794901853,
-["first"] = 1794901853,
+["Gothics Palegrace"] = {
+["last"] = 1795147564,
+["first"] = 1795147564,
 },
-["Tandumonium Ebbeson"] = {
-["first"] = 1794895153,
-["last"] = 1794899131,
+["Jezkan Blastit"] = {
+["last"] = 1795148153,
+["first"] = 1795148153,
 },
-["Ole Graybush"] = {
-["last"] = 1794901442,
-["first"] = 1794901442,
+["Arvess Mistblade"] = {
+["last"] = 1795149765,
+["first"] = 1795149505,
 },
-["Draknir Ashbrand"] = {
-["last"] = 1794900765,
-["first"] = 1794900765,
+["Bane Bloodrush"] = {
+["last"] = 1795150405,
+["first"] = 1795150405,
 },
-["Drag Hunter"] = {
-["first"] = 1794895668,
-["last"] = 1794895668,
+["Ðistant Zug"] = {
+["last"] = 1795147470,
+["first"] = 1795147470,
 },
-["Kirkhill Hackskull"] = {
-["last"] = 1794886227,
-["first"] = 1794796582,
+["Hunter Jaest"] = {
+["last"] = 1795149563,
+["first"] = 1795149563,
 },
-["Pure Crypwalker"] = {
-["last"] = 1794896313,
-["first"] = 1794889061,
+["Rax Stormbringer"] = {
+["last"] = 1795150063,
+["first"] = 1795147803,
 },
-["Beef Consomme"] = {
-["last"] = 1794898673,
-["first"] = 1794887757,
+["Dimira Gloriano"] = {
+["last"] = 1795149597,
+["first"] = 1795149016,
 },
-["Rick Morits"] = {
-["last"] = 1794900188,
-["first"] = 1794899776,
+["Colindruid Niloc"] = {
+["last"] = 1795149446,
+["first"] = 1795149446,
 },
-["Kindä Furry"] = {
-["last"] = 1794900163,
-["first"] = 1794900163,
+["Karngrath Hearthoof"] = {
+["last"] = 1795150126,
+["first"] = 1795150126,
 },
-["Auselite Reaper"] = {
-["last"] = 1794900265,
-["first"] = 1794900250,
+["Aaja Fangwarden"] = {
+["last"] = 1795147466,
+["first"] = 1795147460,
 },
-["Groovius Maximus"] = {
-["first"] = 1794885984,
-["last"] = 1794891535,
+["Rasta Faraye"] = {
+["last"] = 1795147514,
+["first"] = 1795147009,
 },
-["Ozamataz Bloodshank"] = {
-["first"] = 1794893701,
-["last"] = 1794901349,
+["Ducky Bb"] = {
+["last"] = 1795150344,
+["first"] = 1795150344,
 },
-["Gwyneth Kinkeh"] = {
-["last"] = 1794897901,
-["first"] = 1794895966,
+["Simondruid Windseeker"] = {
+["last"] = 1795149994,
+["first"] = 1795149994,
 },
-["Fiona Fortune"] = {
-["last"] = 1794900631,
-["first"] = 1794900368,
+["Simon Windseeker"] = {
+["last"] = 1795149942,
+["first"] = 1795149942,
 },
-["Auri Morvel"] = {
-["first"] = 1794898673,
-["last"] = 1794899054,
+["Poundfist Hailstrom"] = {
+["last"] = 1795148580,
+["first"] = 1795148580,
+},
+["Aelira Raincaller"] = {
+["last"] = 1795149367,
+["first"] = 1795149367,
+},
+["Crazyb Jr"] = {
+["last"] = 1795147344,
+["first"] = 1795145650,
+},
+["Senor Huntatroll"] = {
+["last"] = 1795147816,
+["first"] = 1795147534,
+},
+["Banawaha Runedreamer"] = {
+["last"] = 1795149328,
+["first"] = 1795149328,
+},
+["Warbeást Bonecrusher"] = {
+["last"] = 1795148416,
+["first"] = 1795148415,
+},
+["Aldobank Rein"] = {
+["last"] = 1795147443,
+["first"] = 1795146089,
+},
+["Doc Doc"] = {
+["last"] = 1795147685,
+["first"] = 1795147676,
+},
+["Malakor Orthodox"] = {
+["last"] = 1795148440,
+["first"] = 1795148440,
+},
+["Judge Putrid"] = {
+["last"] = 1795147448,
+["first"] = 1795147448,
+},
+["Ost Mptree"] = {
+["last"] = 1795147460,
+["first"] = 1795147460,
+},
+["Bovin Jovi"] = {
+["last"] = 1795149067,
+["first"] = 1795149067,
+},
+["Thokk Skinflayer"] = {
+["last"] = 1795147711,
+["first"] = 1795147711,
+},
+["Mage Elven"] = {
+["last"] = 1795149486,
+["first"] = 1795149486,
 },
 },
 ["ui_scale"] = 1,
@@ -182,10 +234,10 @@ TrueshotLodgeDB = {
 ["Gelrin|Imp"] = {
 ["stats"] = {
 ["speed"] = 114.2857142857143,
-["crit"] = 3.706600189208984,
-["health"] = 206,
+["crit"] = 0,
+["health"] = 212,
 ["damage_max"] = 21.94161987304688,
-["armor"] = 278,
+["armor"] = 323,
 ["res"] = {
 nil,
 0,
@@ -200,12 +252,13 @@ nil,
 ["attack_speed"] = 1.739000082015991,
 ["name"] = "Gelrin",
 ["family"] = "Imp",
+["level"] = 15,
 ["spells"] = {
 {
 ["spell_id"] = 7799,
-["slot"] = 5,
-["name"] = "Firebolt",
 ["rank"] = "Rank 2",
+["name"] = "Firebolt",
+["slot"] = 5,
 },
 {
 ["spell_id"] = 4511,
@@ -213,45 +266,56 @@ nil,
 ["slot"] = 9,
 },
 },
-["level"] = 15,
-["cached"] = 1794899759,
+["cached"] = 1795103745,
 },
 ["Juk'mon|Voidwalker"] = {
+["spells"] = {
+{
+["name"] = "Consume Shadows",
+["slot"] = 4,
+["spell_id"] = 17767,
+["rank"] = "Rank 1",
+},
+{
+["name"] = "Sacrifice",
+["slot"] = 9,
+["spell_id"] = 7812,
+["rank"] = "Rank 1",
+},
+{
+["name"] = "Torment",
+["slot"] = 11,
+["spell_id"] = 7809,
+["rank"] = "Rank 2",
+},
+},
 ["stats"] = {
-["damage_min"] = 8.033710479736328,
-["attack_power"] = 47,
-["health"] = 429,
-["damage_max"] = 10.61956596374512,
-["armor"] = 965,
+["damage_min"] = 13.26820278167725,
+["attack_power"] = 75,
+["health"] = 827,
+["damage_max"] = 17.46841430664063,
+["armor"] = 1367,
 ["res"] = {
 nil,
 0,
+4,
 0,
-0,
-0,
+3,
 0,
 },
-["crit"] = 0,
+["crit"] = 5.080000400543213,
 ["speed"] = 114.2857142857143,
 },
 ["attack_speed"] = 1.739000082015991,
-["cached"] = 1794739145,
+["cached"] = 1795149947,
 ["family"] = "Voidwalker",
-["level"] = 14,
-["spells"] = {
-{
-["spell_id"] = 3716,
-["rank"] = "Rank 1",
-["name"] = "Torment",
-["slot"] = 9,
-},
-},
+["level"] = 21,
 ["name"] = "Juk'mon",
 },
 },
 ["slots"] = {
 },
-["active"] = "Gelrin|Imp",
+["active"] = "Juk'mon|Voidwalker",
 },
 ["tab_side"] = {
 },
@@ -266,9 +330,9 @@ TrueshotLodgeCollected = {
 ["addon"] = {
 ["locale"] = "enUS",
 ["file_id"] = "560adae66e75ca73",
-["version"] = "1.60.1.45",
-["sig"] = "300b399b",
-["saved_at"] = 1794902003,
+["version"] = "1.60.1.46",
+["sig"] = "a71af911",
+["saved_at"] = 1795150442,
 },
 ["tames"] = {
 },

@@ -1,109 +1,119 @@
 
 DataStore_Mails_Characters = {
 {
-["lastUpdate"] = 1794809901,
+["lastUpdate"] = 1795118937,
 ["Mails"] = {
 },
+["lastVisitDate"] = "2026/11/19 13:08",
 ["MailCache"] = {
 },
-["lastVisitDate"] = "2026/11/15 23:18",
 },
 {
 ["lastUpdate"] = 1794646989,
 ["Mails"] = {
 },
-["lastVisitDate"] = "2026/11/14 02:03",
 ["MailCache"] = {
+{
+["sender"] = "Simonmage Windseeker",
+["count"] = 1,
+["link"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["icon"] = 134939,
+["lastCheck"] = 1795128190,
+["daysLeft"] = 30,
 },
+},
+["lastVisitDate"] = "2026/11/14 02:03",
 },
 {
 ["lastUpdate"] = 1794670308,
 ["Mails"] = {
 },
-["lastVisitDate"] = "2026/11/14 08:31",
 ["MailCache"] = {
-},
+{
+["sender"] = "Simonmage Windseeker",
+["count"] = 1,
+["link"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["icon"] = 134939,
+["lastCheck"] = 1795128172,
+["daysLeft"] = 30,
 },
 {
-["lastUpdate"] = 1794713238,
-["Mails"] = {
+["sender"] = "Simonwarlock Windseeker",
+["count"] = 1,
+["link"] = "|cnIQ2:|Hitem:2632::::::::19:1490:::1:12720::::::|h[Curved Dagger of the Owl]|h|r",
+["icon"] = 135637,
+["lastCheck"] = 1795136293,
+["daysLeft"] = 30,
 },
+},
+["lastVisitDate"] = "2026/11/14 08:31",
+},
+{
+["lastUpdate"] = 1795150303,
+["Mails"] = {
+{
+["returned"] = false,
+["sender"] = "Simonmage Windseeker",
+["itemID"] = 6328,
+["link"] = "|cnIQ1:|Hitem:6328::::::::15:1484::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["count"] = 1,
+["lastCheck"] = 1795150303,
+["icon"] = 134939,
+["daysLeft"] = 30.74400520324707,
+},
+{
+["lastCheck"] = 1795150303,
+["sender"] = "Simonmage Windseeker",
+["subject"] = "asd",
+["returned"] = false,
+["money"] = 0,
+["text"] = "",
+["icon"] = 134327,
+["daysLeft"] = 30.74400520324707,
+},
+},
+["lastVisitDate"] = "2026/11/19 21:51",
 ["MailCache"] = {
 },
-["lastVisitDate"] = "2026/11/14 20:27",
 },
 {
 ["lastUpdate"] = 1794691774,
 ["Mails"] = {
 },
-["MailCache"] = {
-},
 ["lastVisitDate"] = "2026/11/14 14:29",
+["MailCache"] = {
+{
+["sender"] = "Simonmage Windseeker",
+["count"] = 1,
+["link"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["icon"] = 134939,
+["lastCheck"] = 1795128163,
+["daysLeft"] = 30,
 },
 {
-["lastUpdate"] = 1794899883,
+["sender"] = "Simonmage Windseeker",
+["count"] = 1,
+["link"] = "|cnIQ1:|Hitem:6325::::::::22:1482::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["icon"] = 134939,
+["lastCheck"] = 1795128163,
+["daysLeft"] = 30,
+},
+},
+},
+{
+["lastUpdate"] = 1794983799,
 ["Mails"] = {
-{
-["returned"] = false,
-["sender"] = "Simon Windseeker",
-["itemID"] = 6291,
-["link"] = "|cnIQ1:|Hitem:6291::::::::16:1485:::::::::|h[Raw Brilliant Smallfish]|h|r",
-["lastCheck"] = 1794899883,
-["count"] = 20,
-["icon"] = 133894,
-["daysLeft"] = 29.95854187011719,
 },
-{
-["returned"] = false,
-["sender"] = "Simon Windseeker",
-["itemID"] = 6291,
-["link"] = "|cnIQ1:|Hitem:6291::::::::16:1485:::::::::|h[Raw Brilliant Smallfish]|h|r",
-["lastCheck"] = 1794899883,
-["count"] = 20,
-["icon"] = 133894,
-["daysLeft"] = 29.95854187011719,
-},
-{
-["returned"] = false,
-["sender"] = "Simon Windseeker",
-["itemID"] = 6289,
-["link"] = "|cnIQ1:|Hitem:6289::::::::16:1485:::::::::|h[Raw Longjaw Mud Snapper]|h|r",
-["lastCheck"] = 1794899883,
-["count"] = 14,
-["icon"] = 133918,
-["daysLeft"] = 29.95854187011719,
-},
-{
-["returned"] = false,
-["sender"] = "Simon Windseeker",
-["itemID"] = 6291,
-["link"] = "|cnIQ1:|Hitem:6291::::::::16:1485:::::::::|h[Raw Brilliant Smallfish]|h|r",
-["lastCheck"] = 1794899883,
-["count"] = 14,
-["icon"] = 133894,
-["daysLeft"] = 29.95854187011719,
-},
-{
-["lastCheck"] = 1794899883,
-["sender"] = "Simon Windseeker",
-["subject"] = "Raw Brilliant Smallfish (20)",
-["returned"] = false,
-["money"] = 0,
-["text"] = "",
-["icon"] = 134327,
-["daysLeft"] = 29.95854187011719,
-},
-},
+["lastVisitDate"] = "2026/11/17 23:36",
 ["MailCache"] = {
 },
-["lastVisitDate"] = "2026/11/17 00:18",
 },
 }
 DataStore_Mails_Options = {
 ["ReportExpiredMailsToChat"] = true,
 ["ScanMailBody"] = true,
 ["CheckMailExpiry"] = true,
-["CheckMailExpiryAllAccounts"] = true,
-["MailWarningThreshold"] = 5,
 ["CheckMailExpiryAllRealms"] = true,
+["MailWarningThreshold"] = 5,
+["CheckMailExpiryAllAccounts"] = true,
 }

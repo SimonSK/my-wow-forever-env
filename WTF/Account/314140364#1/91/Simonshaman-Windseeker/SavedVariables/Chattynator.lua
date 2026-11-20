@@ -128,4 +128,8 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/g /inv Simonwarlock Windseeker ",
 "/g i forget, is first aid trainer only in valley of spirit",
 "/s /inv Simonpriest Windseeker ",
+"/bartender4",
+"/align",
+"/inv Simonwarlock Windseeker ",
+"/inv Simonpriest Windseeker ",
 }

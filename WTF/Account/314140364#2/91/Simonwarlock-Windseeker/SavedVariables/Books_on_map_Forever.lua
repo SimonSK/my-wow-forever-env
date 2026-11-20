@@ -8,12 +8,17 @@ BooksOnMapForeverDB = {
 ["minimapIcon"] = {
 ["minimapPos"] = 153.1798277281107,
 },
-["minimapPinSize"] = 14,
-["collected"] = {
-["abecedaire"] = true,
-["tazo"] = true,
-},
 ["folded"] = {
 },
+["collected"] = {
+["reveurs"] = true,
+["tazo"] = true,
+["ataeric"] = true,
+["arcaniques"] = true,
+["dalaran"] = true,
+["abecedaire"] = true,
+["baxtan"] = true,
+},
+["minimapPinSize"] = 14,
 ["sideTab"] = "rewards",
 }

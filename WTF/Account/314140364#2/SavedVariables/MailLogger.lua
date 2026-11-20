@@ -4778,5 +4778,3660 @@ true,
 },
 },
 },
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "21:17:55",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10939::::::::20:1482:::::::::|h[Greater Magic Essence]|h|r",
+["Name"] = "Greater Magic Essence",
+},
+},
+},
+{
+["TargetName"] = "Simonrogue-Windseeker",
+["Date"] = "2026-11-17",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "21:20:33",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::20:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simondruid-Windseeker",
+["Date"] = "2026-11-17",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "21:21:31",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+[7] = {
+["Number"] = 1,
+["Enchantment"] = "Enchant Chest - Inferior Stamina",
+["ItemLink"] = "|cnIQ2:|Hitem:3288::::::::20:1482:::::::::|h[Tribal Vest]|h|r",
+["Name"] = "Tribal Vest",
+},
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-17",
+["Reason"] = 1,
+["Time"] = "23:06:38",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "Undercity",
+["TargetName"] = "Simon Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6289::::::::20:1482:::::::::|h[Raw Longjaw Mud Snapper]|h|r",
+["Name"] = "Raw Longjaw Mud Snapper",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6289::::::::20:1482:::::::::|h[Raw Longjaw Mud Snapper]|h|r",
+["Name"] = "Raw Longjaw Mud Snapper",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6289::::::::20:1482:::::::::|h[Raw Longjaw Mud Snapper]|h|r",
+["Name"] = "Raw Longjaw Mud Snapper",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6289::::::::20:1482:::::::::|h[Raw Longjaw Mud Snapper]|h|r",
+["Name"] = "Raw Longjaw Mud Snapper",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6289::::::::20:1482:::::::::|h[Raw Longjaw Mud Snapper]|h|r",
+["Name"] = "Raw Longjaw Mud Snapper",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:24:50",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::20:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::20:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::20:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::20:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:25:42",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:805::::::::20:1482:::::::::|h[Small Red Pouch]|h|r",
+["Name"] = "Small Red Pouch",
+},
+},
+},
+{
+["TargetName"] = "Simondruid-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:27:04",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::20:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::20:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+},
+},
+{
+["TargetName"] = "Simondruid-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:28:14",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::20:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:31:18",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6326::::::::20:1482::14:::::::|h[Recipe: Slitherskin Mackerel]|h|r",
+["Name"] = "Recipe: Slitherskin Mackerel",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6326::::::::20:1482::14:::::::|h[Recipe: Slitherskin Mackerel]|h|r",
+["Name"] = "Recipe: Slitherskin Mackerel",
+},
+},
+},
+{
+["TargetName"] = "Simonhunter-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:37:03",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:4592::::::::20:1482:::::::::|h[Longjaw Mud Snapper]|h|r",
+["Name"] = "Longjaw Mud Snapper",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6290::::::::20:1482:::::::::|h[Brilliant Smallfish]|h|r",
+["Name"] = "Brilliant Smallfish",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6290::::::::20:1482:::::::::|h[Brilliant Smallfish]|h|r",
+["Name"] = "Brilliant Smallfish",
+},
+{
+["Number"] = 14,
+["ItemLink"] = "|cnIQ1:|Hitem:4592::::::::20:1482:::::::::|h[Longjaw Mud Snapper]|h|r",
+["Name"] = "Longjaw Mud Snapper",
+},
+},
+},
+{
+["TargetName"] = "Simonwarrior-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:39:50",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:4592::::::::20:1482:::::::::|h[Longjaw Mud Snapper]|h|r",
+["Name"] = "Longjaw Mud Snapper",
+},
+},
+},
+{
+["TargetName"] = "Simondruid-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:40:32",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:4592::::::::20:1482:::::::::|h[Longjaw Mud Snapper]|h|r",
+["Name"] = "Longjaw Mud Snapper",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:40:57",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5571::::::::20:1482:::::::::|h[Small Black Pouch]|h|r",
+["Name"] = "Small Black Pouch",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:43:03",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 16,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:43:18",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:14117::::::::15:1487:::1:12730::::::|h[Aboriginal Gloves of Spirit]|h|r",
+["Name"] = "Aboriginal Gloves of Spirit",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:45:28",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::15:1487:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:45:41",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::15:1487::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::15:1487::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6325::::::::15:1487::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["Name"] = "Recipe: Brilliant Smallfish",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6325::::::::15:1487::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["Name"] = "Recipe: Brilliant Smallfish",
+},
+},
+},
+{
+["TargetName"] = "Simonwarrior-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:46:13",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6290::::::::15:1487:::::::::|h[Brilliant Smallfish]|h|r",
+["Name"] = "Brilliant Smallfish",
+},
+},
+},
+{
+["TargetName"] = "Simonwarrior-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:48:54",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 18,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::15:1487:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simondruid-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:52:49",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6290::::::::15:1487:::::::::|h[Brilliant Smallfish]|h|r",
+["Name"] = "Brilliant Smallfish",
+},
+},
+},
+{
+["TargetName"] = "Simonhunter-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:53:18",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 14,
+["ItemLink"] = "|cnIQ1:|Hitem:6290::::::::15:1487:::::::::|h[Brilliant Smallfish]|h|r",
+["Name"] = "Brilliant Smallfish",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:54:11",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6290::::::::15:1487:::::::::|h[Brilliant Smallfish]|h|r",
+["Name"] = "Brilliant Smallfish",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:54:52",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:6290::::::::15:1490:::::::::|h[Brilliant Smallfish]|h|r",
+["Name"] = "Brilliant Smallfish",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:55:14",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:250977::::::::20:1482:::::::::|h[Recipe: Lesser Spellblasting Potion]|h|r",
+["Name"] = "Recipe: Lesser Spellblasting Potion",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6325::::::::20:1482::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["Name"] = "Recipe: Brilliant Smallfish",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6325::::::::20:1482::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["Name"] = "Recipe: Brilliant Smallfish",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::20:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::20:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 14,
+["ItemLink"] = "|cnIQ1:|Hitem:6290::::::::20:1482:::::::::|h[Brilliant Smallfish]|h|r",
+["Name"] = "Brilliant Smallfish",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:56:17",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:4592::::::::20:1482:::::::::|h[Longjaw Mud Snapper]|h|r",
+["Name"] = "Longjaw Mud Snapper",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:4592::::::::20:1482:::::::::|h[Longjaw Mud Snapper]|h|r",
+["Name"] = "Longjaw Mud Snapper",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:4592::::::::20:1482:::::::::|h[Longjaw Mud Snapper]|h|r",
+["Name"] = "Longjaw Mud Snapper",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:4592::::::::20:1482:::::::::|h[Longjaw Mud Snapper]|h|r",
+["Name"] = "Longjaw Mud Snapper",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-17",
+["Time"] = "23:56:39",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::20:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "00:42:43",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:15011::::::::21:1482:::1:12720::::::|h[Lupine Cord of the Owl]|h|r",
+["Name"] = "Lupine Cord of the Owl",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "00:43:18",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:14366::::::::15:1490:::::::::|h[Mystic's Bracelets]|h|r",
+["Name"] = "Mystic's Bracelets",
+},
+},
+},
+{
+["TargetName"] = "Simonshaman-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "00:45:13",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "11:17:27",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10938::::::::21:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["Name"] = "Lesser Magic Essence",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "11:27:30",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:1206::::::::21:1482:::::::::|h[Moss Agate]|h|r",
+["Name"] = "Moss Agate",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:769::::::::21:1482:::::::::|h[Chunk of Boar Meat]|h|r",
+["Name"] = "Chunk of Boar Meat",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:5469::::::::21:1482:::::::::|h[Strider Meat]|h|r",
+["Name"] = "Strider Meat",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:818::::::::21:1482:::::::::|h[Tigerseye]|h|r",
+["Name"] = "Tigerseye",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "13:11:18",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:818::::::::21:1482:::::::::|h[Tigerseye]|h|r",
+["Name"] = "Tigerseye",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ2:|Hitem:249391::::::::21:1482:::::::::|h[Pyrite]|h|r",
+["Name"] = "Pyrite",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2840::::::::21:1482:::::::::|h[Copper Bar]|h|r",
+["Name"] = "Copper Bar",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:2840::::::::21:1482:::::::::|h[Copper Bar]|h|r",
+["Name"] = "Copper Bar",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:1210::::::::21:1482:::::::::|h[Shadowgem]|h|r",
+["Name"] = "Shadowgem",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5635::::::::21:1482:::::::::|h[Sharp Claw]|h|r",
+["Name"] = "Sharp Claw",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "13:11:26",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:2592::::::::21:1482:::::::::|h[Wool Cloth]|h|r",
+["Name"] = "Wool Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::21:1482:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::21:1482:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 14,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::21:1482:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211854::::::::21:1482:::::::::|h[Scroll: OMIT KESA]|h|r",
+["Name"] = "Scroll: OMIT KESA",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:9768::::::::21:1482:::1:12744::::::|h[Greenweave Bracers of Shadow Protection]|h|r",
+["Name"] = "Greenweave Bracers of Shadow Protection",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "13:11:41",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:15308::::::::21:1482:::1:12719::::::|h[Feral Cord of the Whale]|h|r",
+["Name"] = "Feral Cord of the Whale",
+},
+{
+["Number"] = 13,
+["ItemLink"] = "|cnIQ1:|Hitem:2835::::::::21:1482:::::::::|h[Rough Stone]|h|r",
+["Name"] = "Rough Stone",
+},
+{
+["Number"] = 9,
+["ItemLink"] = "|cnIQ1:|Hitem:5075::::::::21:1482:::::::::|h[Blood Shard]|h|r",
+["Name"] = "Blood Shard",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "13:12:54",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4496::::::::21:1482:::::::::|h[Small Brown Pouch]|h|r",
+["Name"] = "Small Brown Pouch",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "13:14:12",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 15,
+["ItemLink"] = "|cnIQ1:|Hitem:17056::::::::21:1482:::::::::|h[Light Feather]|h|r",
+["Name"] = "Light Feather",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "16:00:50",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 8,
+["ItemLink"] = "|cnIQ1:|Hitem:2592::::::::21:1482:::::::::|h[Wool Cloth]|h|r",
+["Name"] = "Wool Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "16:01:05",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5571::::::::21:1482:::::::::|h[Small Black Pouch]|h|r",
+["Name"] = "Small Black Pouch",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4496::::::::21:1482:::::::::|h[Small Brown Pouch]|h|r",
+["Name"] = "Small Brown Pouch",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 6,
+["ItemLink"] = "|cnIQ1:|Hitem:17056::::::::21:1482:::::::::|h[Light Feather]|h|r",
+["Name"] = "Light Feather",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "16:05:30",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10939::::::::21:1482:::::::::|h[Greater Magic Essence]|h|r",
+["Name"] = "Greater Magic Essence",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ3:|Hitem:10978::::::::21:1482:::::::::|h[Small Glimmering Shard]|h|r",
+["Name"] = "Small Glimmering Shard",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10938::::::::21:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["Name"] = "Lesser Magic Essence",
+},
+{
+["Number"] = 4,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "16:06:28",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:858::::::::21:1482:::::::::|h[Lesser Healing Potion]|h|r",
+["Name"] = "Lesser Healing Potion",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "16:06:43",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:5635::::::::21:1482:::::::::|h[Sharp Claw]|h|r",
+["Name"] = "Sharp Claw",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:5134::::::::21:1482:::::::::|h[Small Furry Paw]|h|r",
+["Name"] = "Small Furry Paw",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211853::::::::21:1482:::::::::|h[Scroll: VOCE WELL]|h|r",
+["Name"] = "Scroll: VOCE WELL",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211855::::::::21:1482:::::::::|h[Scroll: STHENIC LUNATE]|h|r",
+["Name"] = "Scroll: STHENIC LUNATE",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211855::::::::21:1482:::::::::|h[Scroll: STHENIC LUNATE]|h|r",
+["Name"] = "Scroll: STHENIC LUNATE",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:2455::::::::21:1482:::::::::|h[Minor Mana Potion]|h|r",
+["Name"] = "Minor Mana Potion",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "16:09:07",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:3653::::::::21:1482:::::::::|h[Ceremonial Buckler]|h|r",
+["Name"] = "Ceremonial Buckler",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:6554::::::::21:1482:::1:12721::::::|h[Bard's Gloves of the Monkey]|h|r",
+["Name"] = "Bard's Gloves of the Monkey",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "16:10:10",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:248703::::::::21:1482:::::::::|h[Waylaid Crate: Apprentice Ingots]|h|r",
+["Name"] = "Waylaid Crate: Apprentice Ingots",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "16:11:46",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:9747::::::::15:1487:::1:12734::::::|h[Simple Britches of Magic]|h|r",
+["Name"] = "Simple Britches of Magic",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "16:12:28",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:14113::::::::15:1490:::1:12719::::::|h[Aboriginal Sash of the Whale]|h|r",
+["Name"] = "Aboriginal Sash of the Whale",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "16:13:08",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:15303::::::::21:1482:::1:12729::::::|h[Grizzly Pants of Intellect]|h|r",
+["Name"] = "Grizzly Pants of Intellect",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simonshaman-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "16:18:31",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ2:|Hitem:10938::::::::21:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["Name"] = "Lesser Magic Essence",
+},
+{
+["Number"] = 4,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simonrogue-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "16:20:01",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "17:59:20",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ2:|Hitem:10939::::::::21:1482:::::::::|h[Greater Magic Essence]|h|r",
+["Name"] = "Greater Magic Essence",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10938::::::::21:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["Name"] = "Lesser Magic Essence",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:5635::::::::21:1482:::::::::|h[Sharp Claw]|h|r",
+["Name"] = "Sharp Claw",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "17:59:33",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 6,
+["ItemLink"] = "|cnIQ1:|Hitem:2592::::::::21:1482:::::::::|h[Wool Cloth]|h|r",
+["Name"] = "Wool Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "18:00:05",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:15210::::::::21:1482:::1:12744::::::|h[Raider Shortsword of Shadow Protection]|h|r",
+["Name"] = "Raider Shortsword of Shadow Protection",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:15016::::::::21:1482:::1:12722:1:28:5254:::::|h[Lupine Handwraps of the Bear]|h|r",
+["Name"] = "Lupine Handwraps of the Bear",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:14090::::::::21:1482:::1:12730::::::|h[Beaded Britches of Spirit]|h|r",
+["Name"] = "Beaded Britches of Spirit",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "18:00:32",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:2657::::::::21:1482:::::::::|h[Red Leather Bag]|h|r",
+["Name"] = "Red Leather Bag",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "18:01:13",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 7,
+["ItemLink"] = "|cnIQ1:|Hitem:17056::::::::21:1482:::::::::|h[Light Feather]|h|r",
+["Name"] = "Light Feather",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "18:01:19",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 3,
+["ItemLink"] = "|cnIQ1:|Hitem:5134::::::::21:1482:::::::::|h[Small Furry Paw]|h|r",
+["Name"] = "Small Furry Paw",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "19:12:27",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211784::::::::21:1482:::::::::|h[Scroll: WUBBA WUBBA]|h|r",
+["Name"] = "Scroll: WUBBA WUBBA",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:3184::::::::21:1482:::1:12744::::::|h[Hook Dagger of Shadow Protection]|h|r",
+["Name"] = "Hook Dagger of Shadow Protection",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:14365::::::::21:1482:::::::::|h[Mystic's Cape]|h|r",
+["Name"] = "Mystic's Cape",
+},
+{
+["Number"] = 12,
+["ItemLink"] = "|cnIQ1:|Hitem:2592::::::::21:1482:::::::::|h[Wool Cloth]|h|r",
+["Name"] = "Wool Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "19:13:01",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:17056::::::::21:1482:::::::::|h[Light Feather]|h|r",
+["Name"] = "Light Feather",
+},
+{
+["Number"] = 4,
+["ItemLink"] = "|cnIQ1:|Hitem:814::::::::21:1482:::::::::|h[Flask of Oil]|h|r",
+["Name"] = "Flask of Oil",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "19:13:20",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4496::::::::21:1482:::::::::|h[Small Brown Pouch]|h|r",
+["Name"] = "Small Brown Pouch",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "19:13:35",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10939::::::::21:1482:::::::::|h[Greater Magic Essence]|h|r",
+["Name"] = "Greater Magic Essence",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "19:14:47",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10939::::::::21:1482:::::::::|h[Greater Magic Essence]|h|r",
+["Name"] = "Greater Magic Essence",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "22:44:55",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 4,
+["ItemLink"] = "|cnIQ2:|Hitem:10939::::::::21:1482:::::::::|h[Greater Magic Essence]|h|r",
+["Name"] = "Greater Magic Essence",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10938::::::::21:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["Name"] = "Lesser Magic Essence",
+},
+{
+["Number"] = 9,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5635::::::::21:1482:::::::::|h[Sharp Claw]|h|r",
+["Name"] = "Sharp Claw",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:1475::::::::21:1482:::::::::|h[Small Venom Sac]|h|r",
+["Name"] = "Small Venom Sac",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "22:45:07",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:828::::::::21:1482:::::::::|h[Small Blue Pouch]|h|r",
+["Name"] = "Small Blue Pouch",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "22:45:15",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:6600::::::::21:1482:::1:12745::::::|h[Dervish Belt of the Sorcerer]|h|r",
+["Name"] = "Dervish Belt of the Sorcerer",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2592::::::::21:1482:::::::::|h[Wool Cloth]|h|r",
+["Name"] = "Wool Cloth",
+},
+{
+["Number"] = 10,
+["ItemLink"] = "|cnIQ1:|Hitem:2592::::::::21:1482:::::::::|h[Wool Cloth]|h|r",
+["Name"] = "Wool Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "22:48:07",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:3192::::::::21:1482:::1:12720::::::|h[Short Bastard Sword of the Owl]|h|r",
+["Name"] = "Short Bastard Sword of the Owl",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "22:49:31",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:6271::::::::15:1487:::::::::|h[Pattern: Red Linen Vest]|h|r",
+["Name"] = "Pattern: Red Linen Vest",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:4699::::::::15:1487:::::::::|h[Seer's Belt]|h|r",
+["Name"] = "Seer's Belt",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "22:50:31",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simonrogue-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "22:53:48",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:15016::::::::21:1482:::1:12722:1:28:5254:::::|h[Lupine Handwraps of the Bear]|h|r",
+["Name"] = "Lupine Handwraps of the Bear",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:14365::::::::21:1482:::::::::|h[Mystic's Cape]|h|r",
+["Name"] = "Mystic's Cape",
+},
+},
+},
+{
+["TargetName"] = "Simonshaman-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "22:54:51",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 3,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::21:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:00:08",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 4,
+["ItemLink"] = "|cnIQ1:|Hitem:17056::::::::21:1482:::::::::|h[Light Feather]|h|r",
+["Name"] = "Light Feather",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:00:36",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:727::::::::21:1482:::1:12731::::::|h[Notched Shortsword of Stamina]|h|r",
+["Name"] = "Notched Shortsword of Stamina",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "23:34:03",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4241::::::::15:1490:::::::::|h[Green Woolen Bag]|h|r",
+["Name"] = "Green Woolen Bag",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4241::::::::15:1490:::::::::|h[Green Woolen Bag]|h|r",
+["Name"] = "Green Woolen Bag",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-18",
+["Time"] = "23:34:34",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:15303::::::::15:1490:::1:12725::::::|h[Grizzly Pants of the Boar]|h|r",
+["Name"] = "Grizzly Pants of the Boar",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "08:49:07",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1113::::::::15:1490:::::::::|h[Conjured Bread]|h|r",
+["Name"] = "Conjured Bread",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2136::::::::15:1490:::::::::|h[Conjured Purified Water]|h|r",
+["Name"] = "Conjured Purified Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1113::::::::15:1490:::::::::|h[Conjured Bread]|h|r",
+["Name"] = "Conjured Bread",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "10:44:52",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 6,
+["ItemLink"] = "|cnIQ1:|Hitem:2770::::::::17:1490:::::::::|h[Copper Ore]|h|r",
+["Name"] = "Copper Ore",
+},
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "10:45:59",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211787::::::::17:1490:::::::::|h[Scroll: LOWER PING WHOMEVER]|h|r",
+["Name"] = "Scroll: LOWER PING WHOMEVER",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211785::::::::17:1490:::::::::|h[Scroll: CWAL]|h|r",
+["Name"] = "Scroll: CWAL",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmage Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "10:47:28",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:15489::::::::17:1490:::1:12733::::::|h[Bloodspattered Sabatons of Power]|h|r",
+["Name"] = "Bloodspattered Sabatons of Power",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:785::::::::17:1490:::::::::|h[Mageroyal]|h|r",
+["Name"] = "Mageroyal",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10938::::::::17:1490:::::::::|h[Lesser Magic Essence]|h|r",
+["Name"] = "Lesser Magic Essence",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::17:1490:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:2318::::::::17:1490:::::::::|h[Light Leather]|h|r",
+["Name"] = "Light Leather",
+},
+{
+["Number"] = 13,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::17:1490:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simondruid-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "10:50:33",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1251::::::::17:1490:::::::::|h[Linen Bandage]|h|r",
+["Name"] = "Linen Bandage",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1251::::::::17:1490:::::::::|h[Linen Bandage]|h|r",
+["Name"] = "Linen Bandage",
+},
+},
+},
+{
+["TargetName"] = "Simonwarrior-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "10:52:03",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::17:1490:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "11:24:09",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:2073::::::::17:1490:::1:12917::::::|h[Dwarven Hatchet of Magic]|h|r",
+["Name"] = "Dwarven Hatchet of Magic",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:2986::::::::17:1490:::::::::|h[Inscribed Leather Pants]|h|r",
+["Name"] = "Inscribed Leather Pants",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonshaman Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "11:24:16",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:6546::::::::17:1490:::1:12723::::::|h[Soldier's Leggings of the Gorilla]|h|r",
+["Name"] = "Soldier's Leggings of the Gorilla",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simon Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:15012::::::::18:1490:::1:12721::::::|h[Lupine Slippers of the Monkey]|h|r",
+["Name"] = "Lupine Slippers of the Monkey",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "12:25:45",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonrogue Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:5498::::::::18:1490:::::::::|h[Small Lustrous Pearl]|h|r",
+["Name"] = "Small Lustrous Pearl",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:774::::::::18:1490:::::::::|h[Malachite]|h|r",
+["Name"] = "Malachite",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:818::::::::18:1490:::::::::|h[Tigerseye]|h|r",
+["Name"] = "Tigerseye",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "12:26:31",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simongem Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 6,
+["ItemLink"] = "|cnIQ1:|Hitem:2771::::::::18:1490:::::::::|h[Tin Ore]|h|r",
+["Name"] = "Tin Ore",
+},
+{
+["Number"] = 10,
+["ItemLink"] = "|cnIQ1:|Hitem:2836::::::::18:1490:::::::::|h[Coarse Stone]|h|r",
+["Name"] = "Coarse Stone",
+},
+{
+["Number"] = 24,
+["ItemLink"] = "|cnIQ1:|Hitem:2770::::::::18:1490:::::::::|h[Copper Ore]|h|r",
+["Name"] = "Copper Ore",
+},
+{
+["Number"] = 9,
+["ItemLink"] = "|cnIQ1:|Hitem:2835::::::::18:1490:::::::::|h[Rough Stone]|h|r",
+["Name"] = "Rough Stone",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "12:56:36",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmetal Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:249391::::::::18:1490:::::::::|h[Pyrite]|h|r",
+["Name"] = "Pyrite",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "12:56:49",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simongem Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "12:58:17",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4241::::::::21:1482:::::::::|h[Green Woolen Bag]|h|r",
+["Name"] = "Green Woolen Bag",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4241::::::::21:1482:::::::::|h[Green Woolen Bag]|h|r",
+["Name"] = "Green Woolen Bag",
+},
+{
+["Number"] = 19,
+["ItemLink"] = "|cnIQ1:|Hitem:1113::::::::21:1482:::::::::|h[Conjured Bread]|h|r",
+["Name"] = "Conjured Bread",
+},
+{
+["Number"] = 19,
+["ItemLink"] = "|cnIQ1:|Hitem:2136::::::::21:1482:::::::::|h[Conjured Purified Water]|h|r",
+["Name"] = "Conjured Purified Water",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "12:58:54",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 7,
+["ItemLink"] = "|cnIQ1:|Hitem:2592::::::::21:1482:::::::::|h[Wool Cloth]|h|r",
+["Name"] = "Wool Cloth",
+},
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Reason"] = 1,
+["Time"] = "12:59:56",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonwarlock Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211787::::::::21:1482:::::::::|h[Scroll: LOWER PING WHOMEVER]|h|r",
+["Name"] = "Scroll: LOWER PING WHOMEVER",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211785::::::::21:1482:::::::::|h[Scroll: CWAL]|h|r",
+["Name"] = "Scroll: CWAL",
+},
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "13:09:39",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:5470::::::::21:1482:::::::::|h[Thunder Lizard Tail]|h|r",
+["Name"] = "Thunder Lizard Tail",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:5503::::::::21:1482:::::::::|h[Clam Meat]|h|r",
+["Name"] = "Clam Meat",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:5467::::::::21:1482:::::::::|h[Kodo Meat]|h|r",
+["Name"] = "Kodo Meat",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmeat Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "13:09:55",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6361::::::::21:1482:::::::::|h[Raw Rainbow Fin Albacore]|h|r",
+["Name"] = "Raw Rainbow Fin Albacore",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonfish Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "13:10:13",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5635::::::::21:1482:::::::::|h[Sharp Claw]|h|r",
+["Name"] = "Sharp Claw",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:5134::::::::21:1482:::::::::|h[Small Furry Paw]|h|r",
+["Name"] = "Small Furry Paw",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmisc Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "13:11:40",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:5635::::::::21:1482:::::::::|h[Sharp Claw]|h|r",
+["Name"] = "Sharp Claw",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmisc Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "13:11:52",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 3,
+["ItemLink"] = "|cnIQ2:|Hitem:5498::::::::21:1482:::::::::|h[Small Lustrous Pearl]|h|r",
+["Name"] = "Small Lustrous Pearl",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simongem Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "Huey-Jast",
+["Date"] = "2026-11-19",
+["Time"] = "13:19:38",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Wailing Caverns",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+[4] = {
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:211786::::::::21:1482:::::::::|h[Scroll: CHAP BALK WELLES]|h|r",
+["Name"] = "Scroll: CHAP BALK WELLES",
+},
+},
+},
+{
+["TargetName"] = "Varan-Ragewanderer",
+["Date"] = "2026-11-19",
+["Time"] = "13:22:40",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1113::::::::21:1482:::::::::|h[Conjured Bread]|h|r",
+["Name"] = "Conjured Bread",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2136::::::::21:1482:::::::::|h[Conjured Purified Water]|h|r",
+["Name"] = "Conjured Purified Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2136::::::::21:1482:::::::::|h[Conjured Purified Water]|h|r",
+["Name"] = "Conjured Purified Water",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "Wailing Caverns",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "15:18:59",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:217495::::::::22:1482:::::::::|h[Scroll of Cryoblast]|h|r",
+["Name"] = "Scroll of Cryoblast",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:277487::::::::22:1482:::::::::|h[Scroll of Imbue Baleflame]|h|r",
+["Name"] = "Scroll of Imbue Baleflame",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:213564::::::::22:1482:::::::::|h[Scroll of Minor Evocation]|h|r",
+["Name"] = "Scroll of Minor Evocation",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "15:19:33",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:5635::::::::22:1482:::::::::|h[Sharp Claw]|h|r",
+["Name"] = "Sharp Claw",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:5635::::::::22:1482:::::::::|h[Sharp Claw]|h|r",
+["Name"] = "Sharp Claw",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::22:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10939::::::::22:1482:::::::::|h[Greater Magic Essence]|h|r",
+["Name"] = "Greater Magic Essence",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:1475::::::::22:1482:::::::::|h[Small Venom Sac]|h|r",
+["Name"] = "Small Venom Sac",
+},
+{
+["Number"] = 11,
+["ItemLink"] = "|cnIQ1:|Hitem:5469::::::::22:1482:::::::::|h[Strider Meat]|h|r",
+["Name"] = "Strider Meat",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "15:20:34",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:5134::::::::22:1482:::::::::|h[Small Furry Paw]|h|r",
+["Name"] = "Small Furry Paw",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:5134::::::::22:1482:::::::::|h[Small Furry Paw]|h|r",
+["Name"] = "Small Furry Paw",
+},
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 10,
+["ItemLink"] = "|cnIQ1:|Hitem:5635::::::::22:1482:::::::::|h[Sharp Claw]|h|r",
+["Name"] = "Sharp Claw",
+},
+{
+["Number"] = 7,
+["ItemLink"] = "|cnIQ1:|Hitem:5134::::::::22:1482:::::::::|h[Small Furry Paw]|h|r",
+["Name"] = "Small Furry Paw",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "15:21:14",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmisc Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:1475::::::::22:1482:::::::::|h[Small Venom Sac]|h|r",
+["Name"] = "Small Venom Sac",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "15:21:37",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmisc Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 11,
+["ItemLink"] = "|cnIQ1:|Hitem:5469::::::::22:1482:::::::::|h[Strider Meat]|h|r",
+["Name"] = "Strider Meat",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "15:21:59",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmeat Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "15:22:17",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:4569::::::::22:1482:::1:12721::::::|h[Staunch Hammer of the Monkey]|h|r",
+["Name"] = "Staunch Hammer of the Monkey",
+},
+{
+["Number"] = 9,
+["ItemLink"] = "|cnIQ1:|Hitem:17056::::::::22:1482:::::::::|h[Light Feather]|h|r",
+["Name"] = "Light Feather",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::22:1482:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+{
+["Number"] = 3,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::22:1482:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simondruid-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "15:24:46",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:10938::::::::22:1482:::::::::|h[Lesser Magic Essence]|h|r",
+["Name"] = "Lesser Magic Essence",
+},
+},
+},
+{
+["TargetName"] = "Simonwarrior-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "15:26:22",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::22:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+},
+},
+{
+["TargetName"] = "Simonrogue-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "15:30:24",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::22:1482:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simondruid-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "15:31:31",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 18,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::22:1482:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simonshaman-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "15:33:20",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:14114::::::::18:1490:::1:12718:1:28:5254:::::|h[Aboriginal Footwraps of the Eagle]|h|r",
+["Name"] = "Aboriginal Footwraps of the Eagle",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:14120::::::::18:1490::1:1:12743:1:28:5254:::::|h[Aboriginal Robe of Nature Protection]|h|r",
+["Name"] = "Aboriginal Robe of Nature Protection",
+},
+},
+},
+{
+["TargetName"] = "Simonshaman-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "15:34:31",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonpriest-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:6565::::::::15:1487::1:1:12730:1:28:5254:::::|h[Shimmering Gloves of Spirit]|h|r",
+["Name"] = "Shimmering Gloves of Spirit",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:14366::::::::15:1487::1::1:28:5254:::::|h[Mystic's Bracelets]|h|r",
+["Name"] = "Mystic's Bracelets",
+},
+},
+},
+{
+["TargetName"] = "Simonshaman-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "15:35:21",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5470::::::::22:1482:::::::::|h[Thunder Lizard Tail]|h|r",
+["Name"] = "Thunder Lizard Tail",
+},
+{
+["Number"] = 8,
+["ItemLink"] = "|cnIQ1:|Hitem:5469::::::::22:1482:::::::::|h[Strider Meat]|h|r",
+["Name"] = "Strider Meat",
+},
+{
+["Number"] = 4,
+["ItemLink"] = "|cnIQ1:|Hitem:1179::::::::22:1482:::::::::|h[Ice Cold Milk]|h|r",
+["Name"] = "Ice Cold Milk",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "15:37:24",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "15:37:35",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6325::::::::22:1482::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["Name"] = "Recipe: Brilliant Smallfish",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6325::::::::22:1482::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["Name"] = "Recipe: Brilliant Smallfish",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:250989::::::::22:1482:::::::::|h[Recipe: Lesser Mender's Potion]|h|r",
+["Name"] = "Recipe: Lesser Mender's Potion",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:250977::::::::22:1482:::::::::|h[Recipe: Lesser Spellblasting Potion]|h|r",
+["Name"] = "Recipe: Lesser Spellblasting Potion",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "15:37:55",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 11,
+["ItemLink"] = "|cnIQ1:|Hitem:814::::::::22:1482:::::::::|h[Flask of Oil]|h|r",
+["Name"] = "Flask of Oil",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:17056::::::::22:1482:::::::::|h[Light Feather]|h|r",
+["Name"] = "Light Feather",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:17056::::::::22:1482:::::::::|h[Light Feather]|h|r",
+["Name"] = "Light Feather",
+},
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:38:49",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5470::::::::22:1482:::::::::|h[Thunder Lizard Tail]|h|r",
+["Name"] = "Thunder Lizard Tail",
+},
+{
+["Number"] = 8,
+["ItemLink"] = "|cnIQ1:|Hitem:5469::::::::22:1482:::::::::|h[Strider Meat]|h|r",
+["Name"] = "Strider Meat",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmeat Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:39:09",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 11,
+["ItemLink"] = "|cnIQ1:|Hitem:814::::::::22:1482:::::::::|h[Flask of Oil]|h|r",
+["Name"] = "Flask of Oil",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmisc Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:39:28",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:1179::::::::22:1482:::::::::|h[Ice Cold Milk]|h|r",
+["Name"] = "Ice Cold Milk",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonfood Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:41:09",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:250977::::::::22:1482:::::::::|h[Recipe: Lesser Spellblasting Potion]|h|r",
+["Name"] = "Recipe: Lesser Spellblasting Potion",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:250989::::::::22:1482:::::::::|h[Recipe: Lesser Mender's Potion]|h|r",
+["Name"] = "Recipe: Lesser Mender's Potion",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonpriest Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:41:16",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonwarlock Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:42:43",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6325::::::::22:1482::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["Name"] = "Recipe: Brilliant Smallfish",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonwarrior Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:42:53",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6325::::::::22:1482::14:::::::|h[Recipe: Brilliant Smallfish]|h|r",
+["Name"] = "Recipe: Brilliant Smallfish",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonshaman Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:43:03",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simondruid Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:43:10",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:6328::::::::22:1482::14:::::::|h[Recipe: Longjaw Mud Snapper]|h|r",
+["Name"] = "Recipe: Longjaw Mud Snapper",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonrogue Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:50:12",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 7,
+["ItemLink"] = "|cnIQ1:|Hitem:1179::::::::22:1482:::::::::|h[Ice Cold Milk]|h|r",
+["Name"] = "Ice Cold Milk",
+},
+{
+["Number"] = 6,
+["ItemLink"] = "|cnIQ1:|Hitem:159::::::::22:1482:::::::::|h[Refreshing Spring Water]|h|r",
+["Name"] = "Refreshing Spring Water",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:5342::::::::22:1482:::::::::|h[Raptor Punch]|h|r",
+["Name"] = "Raptor Punch",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonfood Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "15:50:27",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 18,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::22:1482:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simoncloth Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "16:12:31",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4241::::::::18:1490:::::::::|h[Green Woolen Bag]|h|r",
+["Name"] = "Green Woolen Bag",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4241::::::::18:1490:::::::::|h[Green Woolen Bag]|h|r",
+["Name"] = "Green Woolen Bag",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4241::::::::18:1490:::::::::|h[Green Woolen Bag]|h|r",
+["Name"] = "Green Woolen Bag",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:2136::::::::18:1490:::::::::|h[Conjured Purified Water]|h|r",
+["Name"] = "Conjured Purified Water",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1113::::::::18:1490:::::::::|h[Conjured Bread]|h|r",
+["Name"] = "Conjured Bread",
+},
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "17:57:18",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 6,
+["ItemLink"] = "|cnIQ1:|Hitem:2592::::::::19:1490:::::::::|h[Wool Cloth]|h|r",
+["Name"] = "Wool Cloth",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:11081::::::::19:1490::::1:28:5254:::::|h[Formula: Enchant Shield - Lesser Protection]|h|r",
+["Name"] = "Formula: Enchant Shield - Lesser Protection",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonmage Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "17:57:45",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:5503::::::::19:1490:::::::::|h[Clam Meat]|h|r",
+["Name"] = "Clam Meat",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonmeat Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "17:58:14",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:4577::::::::19:1490:::::::::|h[Compact Shotgun]|h|r",
+["Name"] = "Compact Shotgun",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:2632::::::::19:1490:::1:12720::::::|h[Curved Dagger of the Owl]|h|r",
+["Name"] = "Curved Dagger of the Owl",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonshaman Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "17:58:37",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:1210::::::::19:1490:::::::::|h[Shadowgem]|h|r",
+["Name"] = "Shadowgem",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:1705::::::::19:1490:::::::::|h[Lesser Moonstone]|h|r",
+["Name"] = "Lesser Moonstone",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:5498::::::::19:1490:::::::::|h[Small Lustrous Pearl]|h|r",
+["Name"] = "Small Lustrous Pearl",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simongem Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "17:58:58",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 8,
+["ItemLink"] = "|cnIQ1:|Hitem:2771::::::::19:1490:::::::::|h[Tin Ore]|h|r",
+["Name"] = "Tin Ore",
+},
+{
+["Number"] = 7,
+["ItemLink"] = "|cnIQ1:|Hitem:2836::::::::19:1490:::::::::|h[Coarse Stone]|h|r",
+["Name"] = "Coarse Stone",
+},
+{
+["Number"] = 8,
+["ItemLink"] = "|cnIQ1:|Hitem:2770::::::::19:1490:::::::::|h[Copper Ore]|h|r",
+["Name"] = "Copper Ore",
+},
+{
+["Number"] = 4,
+["ItemLink"] = "|cnIQ1:|Hitem:2835::::::::19:1490:::::::::|h[Rough Stone]|h|r",
+["Name"] = "Rough Stone",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonmetal Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "17:59:15",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cnIQ1:|Hitem:1179::::::::19:1490:::::::::|h[Ice Cold Milk]|h|r",
+["Name"] = "Ice Cold Milk",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonfood Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "17:59:55",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:14161::::::::19:1490:::1:12722::::::|h[Pagan Cape of the Bear]|h|r",
+["Name"] = "Pagan Cape of the Bear",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonwarrior Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "18:00:24",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:15971::::::::19:1490:::1:12726::::::|h[Aboriginal Rod of the Wolf]|h|r",
+["Name"] = "Aboriginal Rod of the Wolf",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simondruid Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "18:01:10",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 3,
+["ItemLink"] = "|cnIQ1:|Hitem:5134::::::::19:1490:::::::::|h[Small Furry Paw]|h|r",
+["Name"] = "Small Furry Paw",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonmisc Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:6550::::::::20:1490:::1:12741::::::|h[Soldier's Wristguards of Fire Protection]|h|r",
+["Name"] = "Soldier's Wristguards of Fire Protection",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "19:11:29",
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonwarrior Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 7,
+["ItemLink"] = "|cnIQ1:|Hitem:2770::::::::20:1490:::::::::|h[Copper Ore]|h|r",
+["Name"] = "Copper Ore",
+},
+{
+["Number"] = 9,
+["ItemLink"] = "|cnIQ1:|Hitem:2836::::::::20:1490:::::::::|h[Coarse Stone]|h|r",
+["Name"] = "Coarse Stone",
+},
+{
+["Number"] = 3,
+["ItemLink"] = "|cnIQ1:|Hitem:2835::::::::20:1490:::::::::|h[Rough Stone]|h|r",
+["Name"] = "Rough Stone",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "19:11:50",
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonmetal Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:1179::::::::20:1490:::::::::|h[Ice Cold Milk]|h|r",
+["Name"] = "Ice Cold Milk",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:5342::::::::20:1490:::::::::|h[Raptor Punch]|h|r",
+["Name"] = "Raptor Punch",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "19:12:05",
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonfood Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5470::::::::20:1490:::::::::|h[Thunder Lizard Tail]|h|r",
+["Name"] = "Thunder Lizard Tail",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "19:12:16",
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonmeat Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 56,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::20:1490:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "19:12:27",
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simoncloth Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:4566::::::::20:1490:::1:12721::::::|h[Sturdy Quarterstaff of the Monkey]|h|r",
+["Name"] = "Sturdy Quarterstaff of the Monkey",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "19:12:38",
+["GiveMoney"] = 0,
+["Location"] = "Orgrimmar",
+["TargetName"] = "Simonshaman Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "21:38:52",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:818::::::::21:1490:::::::::|h[Tigerseye]|h|r",
+["Name"] = "Tigerseye",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:1210::::::::21:1490:::::::::|h[Shadowgem]|h|r",
+["Name"] = "Shadowgem",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ2:|Hitem:249391::::::::21:1490:::::::::|h[Pyrite]|h|r",
+["Name"] = "Pyrite",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simongem Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "21:39:06",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 10,
+["ItemLink"] = "|cnIQ1:|Hitem:2771::::::::21:1490:::::::::|h[Tin Ore]|h|r",
+["Name"] = "Tin Ore",
+},
+{
+["Number"] = 3,
+["ItemLink"] = "|cnIQ1:|Hitem:2836::::::::21:1490:::::::::|h[Coarse Stone]|h|r",
+["Name"] = "Coarse Stone",
+},
+{
+["Number"] = 10,
+["ItemLink"] = "|cnIQ1:|Hitem:2770::::::::21:1490:::::::::|h[Copper Ore]|h|r",
+["Name"] = "Copper Ore",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:2835::::::::21:1490:::::::::|h[Rough Stone]|h|r",
+["Name"] = "Rough Stone",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmetal Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "21:39:22",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 5,
+["ItemLink"] = "|cnIQ1:|Hitem:814::::::::21:1490:::::::::|h[Flask of Oil]|h|r",
+["Name"] = "Flask of Oil",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmisc Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "21:39:42",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 3,
+["ItemLink"] = "|cnIQ1:|Hitem:5134::::::::21:1490:::::::::|h[Small Furry Paw]|h|r",
+["Name"] = "Small Furry Paw",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmisc Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "21:40:45",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 11,
+["ItemLink"] = "|cnIQ1:|Hitem:2589::::::::21:1490:::::::::|h[Linen Cloth]|h|r",
+["Name"] = "Linen Cloth",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simoncloth Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Time"] = "21:40:58",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 7,
+["ItemLink"] = "|cnIQ1:|Hitem:5469::::::::21:1490:::::::::|h[Strider Meat]|h|r",
+["Name"] = "Strider Meat",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonmeat Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "21:42:35",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 4,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::22:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:10940::::::::22:1482:::::::::|h[Strange Dust]|h|r",
+["Name"] = "Strange Dust",
+},
+{
+["Number"] = 8,
+["ItemLink"] = "|cnIQ2:|Hitem:10939::::::::22:1482:::::::::|h[Greater Magic Essence]|h|r",
+["Name"] = "Greater Magic Essence",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ3:|Hitem:10978::::::::22:1482:::::::::|h[Small Glimmering Shard]|h|r",
+["Name"] = "Small Glimmering Shard",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:2592::::::::22:1482:::::::::|h[Wool Cloth]|h|r",
+["Name"] = "Wool Cloth",
+},
+{
+["Number"] = 17,
+["ItemLink"] = "|cnIQ1:|Hitem:17056::::::::22:1482:::::::::|h[Light Feather]|h|r",
+["Name"] = "Light Feather",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "21:42:53",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:805::::::::22:1482:::::::::|h[Small Red Pouch]|h|r",
+["Name"] = "Small Red Pouch",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:4496::::::::22:1482:::::::::|h[Small Brown Pouch]|h|r",
+["Name"] = "Small Brown Pouch",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "21:43:24",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:805::::::::22:1482:::::::::|h[Small Red Pouch]|h|r",
+["Name"] = "Small Red Pouch",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:828::::::::22:1482:::::::::|h[Small Blue Pouch]|h|r",
+["Name"] = "Small Blue Pouch",
+},
+{
+["Number"] = 10,
+["ItemLink"] = "|cnIQ1:|Hitem:5075::::::::22:1482:::::::::|h[Blood Shard]|h|r",
+["Name"] = "Blood Shard",
+},
+{
+["Number"] = 10,
+["ItemLink"] = "|cnIQ1:|Hitem:5075::::::::22:1482:::::::::|h[Blood Shard]|h|r",
+["Name"] = "Blood Shard",
+},
+{
+["Number"] = 9,
+["ItemLink"] = "|cnIQ1:|Hitem:5075::::::::22:1482:::::::::|h[Blood Shard]|h|r",
+["Name"] = "Blood Shard",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:2657::::::::22:1482:::::::::|h[Red Leather Bag]|h|r",
+["Name"] = "Red Leather Bag",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["Time"] = "21:43:55",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 10,
+["ItemLink"] = "|cnIQ1:|Hitem:5075::::::::22:1482:::::::::|h[Blood Shard]|h|r",
+["Name"] = "Blood Shard",
+},
+{
+["Number"] = 4,
+["ItemLink"] = "|cnIQ1:|Hitem:5075::::::::22:1482:::::::::|h[Blood Shard]|h|r",
+["Name"] = "Blood Shard",
+},
+},
+},
+{
+["PlayerName"] = "Simonmage-CAMWOW US1 Realm 5 PvE",
+["Date"] = "2026-11-19",
+["Reason"] = 1,
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "21:44:32",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["TargetName"] = "Simonwarlock Windseeker-CAMWOW US1 Realm 5 PvE",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 6,
+["ItemLink"] = "|cnIQ1:|Hitem:2592::::::::22:1482:::::::::|h[Wool Cloth]|h|r",
+["Name"] = "Wool Cloth",
+},
+},
+},
+{
+["TargetName"] = "Simon-Windseeker",
+["Date"] = "2026-11-19",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "21:45:52",
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simonwarlock-CAMWOW US1 Realm 5 PvE",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cnIQ1:|Hitem:5020::::::::21:1490:::::::::|h[Kolkar Booty Key]|h|r",
+["Name"] = "Kolkar Booty Key",
+},
+},
+},
 },
 }

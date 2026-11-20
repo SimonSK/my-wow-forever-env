@@ -1,6 +1,6 @@
 
 RaidBarDB = {
-["minimized"] = false,
+["minimized"] = true,
 ["buttonSize"] = 28,
 ["floating"] = false,
 ["scale"] = 0.75,

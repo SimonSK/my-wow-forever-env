@@ -15,10 +15,10 @@ Bartender4DB = {
 ["Simon"] = {
 ["enabled"] = true,
 ["position"] = {
-["y"] = -27,
-["x"] = -300,
+["y"] = -32,
+["x"] = -270.0000274658203,
 ["point"] = "TOP",
-["scale"] = 0.5,
+["scale"] = 0.45,
 },
 ["version"] = 3,
 },

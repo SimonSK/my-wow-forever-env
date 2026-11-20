@@ -1,9 +1,7 @@
 
 Bagnon_Sets = {
 ["latest"] = {
-["id"] = "12.1.11",
-["cooldown"] = 1794986765,
-["who"] = "Moth Monsterman",
+["cooldown"] = 1795747390,
 },
 ["global"] = {
 ["inventory"] = {
@@ -14,11 +12,11 @@ Bagnon_Sets = {
 "trade",
 },
 },
-["point"] = "BOTTOMRIGHT",
+["point"] = "TOPRIGHT",
 ["color"] = {
 },
-["y"] = 325.9993591308594,
-["x"] = -302.9994297424958,
+["y"] = -232.0007625380541,
+["x"] = -227.9994297424958,
 ["spacing"] = 0,
 ["showBags"] = true,
 ["activeRules"] = {
@@ -63,7 +61,7 @@ Bagnon_Sets = {
 },
 },
 ["bank"] = {
-["y"] = -139.0002742568041,
+["y"] = -54.00021322164787,
 ["rules"] = {
 ["sidebar"] = {
 "all",
@@ -74,7 +72,7 @@ Bagnon_Sets = {
 "miscellaneous",
 },
 },
-["point"] = "TOPRIGHT",
+["point"] = "TOPLEFT",
 ["borderColor"] = {
 },
 ["color"] = {
@@ -82,7 +80,7 @@ Bagnon_Sets = {
 ["showBags"] = true,
 ["activeRules"] = {
 },
-["x"] = -242.0000400940583,
+["x"] = 384.0000305175781,
 },
 },
 ["countGuild"] = true,
