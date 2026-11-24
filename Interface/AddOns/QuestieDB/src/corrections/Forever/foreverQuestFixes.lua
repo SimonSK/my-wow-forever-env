@@ -42,6 +42,15 @@ function ForeverQuestFixes:LoadDynamic()
     local playerClass = UnitClassBase("player")
 
     local questFixesHorde = {
+        [652] = { -- Breaking the Keystone
+            [questKeys.nextQuestInChain] = 688,
+        },
+        [687] = { -- Theldurin the Lost
+            [questKeys.preQuestSingle] = {688},
+        },
+        [2945] = { -- Grime-Encrusted Ring
+            [questKeys.nextQuestInChain] = 2949,
+        },
         [78124] = { -- Nar'thalas Almanac
             [questKeys.startedBy] = {{211022},{409496}},
             [questKeys.finishedBy] = {{211022}},
@@ -311,6 +320,9 @@ function ForeverQuestFixes:LoadDynamic()
         [91902] = { -- A Sealed Crate
             [questKeys.zoneOrSort] = zoneIDs.THE_BARRENS,
         },
+        [91903] = { -- A Sealed Crate
+            [questKeys.zoneOrSort] = zoneIDs.THE_BARRENS,
+        },
         [91904] = { -- A Sealed Crate
             [questKeys.zoneOrSort] = zoneIDs.THE_BARRENS,
         },
@@ -327,9 +339,21 @@ function ForeverQuestFixes:LoadDynamic()
             [questKeys.startedBy] = {{211022}},
             [questKeys.finishedBy] = {{211022}},
         },
+        [97287] = { -- Shrewd Negotiations
+            [questKeys.finishedBy] = {{269127}},
+        },
     }
 
     local questFixesAlliance = {
+        [652] = { -- Breaking the Keystone
+            [questKeys.nextQuestInChain] = 653,
+        },
+        [687] = { -- Theldurin the Lost
+            [questKeys.preQuestSingle] = {653},
+        },
+        [2945] = { -- Grime-Encrusted Ring
+            [questKeys.nextQuestInChain] = 2947,
+        },
         [78124] = { -- Nar'thalas Almanac
             [questKeys.startedBy] = {{211033},{409496}},
             [questKeys.finishedBy] = {{211033}},
@@ -597,6 +621,9 @@ function ForeverQuestFixes:LoadDynamic()
             [questKeys.zoneOrSort] = zoneIDs.REDRIDGE_MOUNTAINS,
         },
         [91902] = { -- A Sealed Crate
+            [questKeys.zoneOrSort] = zoneIDs.REDRIDGE_MOUNTAINS,
+        },
+        [91903] = { -- A Sealed Crate
             [questKeys.zoneOrSort] = zoneIDs.REDRIDGE_MOUNTAINS,
         },
         [91904] = { -- A Sealed Crate

@@ -1,19 +1,21 @@
-# QuestieDB 1.1.3
+# QuestieDB 1.1.6
 
 ### Quest fixes
 
-- Fix Raene's Cleansing quests ([Cabro](https://github.com/Questie/QuestieDB/commit/996cea9bc5aae3d410cee5a193dc1d08904d1e1f))
-- [Forever] Update quest XP data ([BreakBB](https://github.com/Questie/QuestieDB/commit/d85f6e1874687049573d8c8156575dd887705c5b))
-- [Forever] require Neutral reputation for "Buying Friendship" quests ([babyhuey](https://github.com/Questie/QuestieDB/commit/4a73dc6513f05714101cfc93eda147947b75574a), [Claude Sonnet 5.5](https://github.com/Questie/QuestieDB/commit/4a73dc6513f05714101cfc93eda147947b75574a))
+- Fix tooltips for A Moon-Kissed Blade ([Cabro](https://github.com/Questie/QuestieDB/commit/b1ea7bf239a2ed71e28397bfc86225ea46faeee8))
+- Glue quests in chain for Breaking the Keystone ([Cabro](https://github.com/Questie/QuestieDB/commit/afddbf2e71866158b6798375463b643ad0fbf503))
+- [Forever] Add starter for "Tattered Journal" ([BreakBB](https://github.com/Questie/QuestieDB/commit/0fca8318009043dfc79429a2d46ac30ae80d74cc))
+- [Forever] Update quest XP data ([BreakBB](https://github.com/Questie/QuestieDB/commit/4d170ef7f914c345776781a5b94f5e083a1af0ed))
 
 ### Database fixes
 
-- Update race required for Stalk With The Earthmother quests ([Cabro](https://github.com/Questie/QuestieDB/commit/000495c2198ce12ea27ba5271d018c7382faf512))
-- [Forever] Fix location of "Image of Archmage Modera" ([BreakBB](https://github.com/Questie/QuestieDB/commit/e97375f66ce21e4c8da092660e669e727a77b99f))
-- [Forever] Update quests, NPCs, objects and items data ([BreakBB](https://github.com/Questie/QuestieDB/commit/405d648da766edf487ba2c1e3a9d23b1fde633e1))
+- [Forever] Adjust drop rate for Thunder Lizard Blood and Super Reaper 6000 Blueprints ([Cabro](https://github.com/Questie/QuestieDB/commit/268f30b6a3307b522cf749dca3c8190703fbaaf3))
+- [Forever] Adjust faction for Arille Azuregaze, Alfred Copperworth, Paige and Angelique Butler ([Cabro](https://github.com/Questie/QuestieDB/commit/74109eb7f00e0b3697c2ac6692c9236744c14ffb))
+- [Forever] Update quests, NPCs, objects and items data ([BreakBB](https://github.com/Questie/QuestieDB/commit/b9aa3789371920aa64f282f0cf3fc3c6f955c354))
 
 ### Localization fixes
 
-- [Forever] Update all translations ([BreakBB](https://github.com/Questie/QuestieDB/commit/45264013cca3c4db6fcfb0c169d1e6bf7066030d))
+- [Forever] Update NPC subnames ([BreakBB](https://github.com/Questie/QuestieDB/commit/a69fedc4de47fc05a9cd00d07bb2062b6c18eeca))
+- [Forever] Update all translations ([BreakBB](https://github.com/Questie/QuestieDB/commit/3fb2fdaa18262617cb811f108548d868106f4f2f))
 
-[All changes since v1.1.2](https://github.com/Questie/QuestieDB/compare/v1.1.2..8b8df2dc12a34e2eb82bc7105b40405dce1c01f7)
+[All changes since v1.1.5](https://github.com/Questie/QuestieDB/compare/v1.1.5..4377c981ac368d1593ec92788218e0a689a6a02b)
