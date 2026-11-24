@@ -482,6 +482,7 @@ FDJ.ContentLocales.deDE.bosses = {
     ["Moontouched Wanderer"] = "Mondbestrahlter Wanderer",
     ["Gortek the Apprentice"] = "Gortek der Lehrling",
     ["Tunnelweb Matriarch"] = "Tunnelnetzmatriarchin",
+    ["Sabella No-Eyes"] = "Sabella Ohne-Augen", -- sabella (2.1.2)
     ["Viscous Fallout"] = "Verflüssigte Ablagerung",
     ["Electrocutioner 6000"] = "Elektrokutionator 6000",
     ["Crowd Pummeler 9-60"] = "Meute-Verprügler 9-60",
@@ -501,6 +502,10 @@ FDJ.ContentLocales.deDE.bosses = {
 }
 
 FDJ.ContentLocales.deDE.slotParts = {
+    -- isalien (2.1.1): relics (Wowhead Forever, the drop tables in this language)
+    ["Relic"] = "Relikt",
+    ["Libram"] = "Buchband",
+    ["Totem"] = "Totem",
     ["Chest"] = "Brust",
     ["Leather"] = "Leder",
     ["Wrist"] = "Handgelenke",

@@ -56,6 +56,7 @@ local function Account()
     if type(db.runLogNames) ~= "table" then db.runLogNames = {} end         -- npcID -> name
     if type(db.runLogTrashTotal) ~= "table" then db.runLogTrashTotal = {} end -- dungeon -> trash count
     if type(db.runLogBossAliases) ~= "table" then db.runLogBossAliases = {} end -- boss npcID -> { lower name = true }
+    if type(db.runLogRooms) ~= "table" then db.runLogRooms = {} end -- spireroom: locale -> map -> { lower room = wing or "shared" }
     return db
 end
 
@@ -125,6 +126,9 @@ end
 
 local function Match(p, text)
     if not p or type(text) ~= "string" then return nil end
+    -- rollnumbers (2.1.5): the loot history tag off first (no format keeps
+    -- it: LootFormat), or a line starting with a name took it in
+    text = text:gsub("|HlootHistory:[^|]*|h.-|h:?%s*", "")
     local caps = { text:match(p.pattern) }
     -- rollfix (2.0.10, M 16 Nov 2026: the Need roll showed no numbers, his
     -- or the others'): the client can put a tag before the line ("[Loot]: ")
@@ -155,6 +159,40 @@ local function Number(s)
     return tonumber((s:gsub("[^%d]", "")))
 end
 
+-- rollnumbers (2.1.5, M 24 Nov 2026: "why are need rolls showing still not
+-- working? i wanna see what i rolled"): the loot lines' own format can start
+-- with the loot history tag ("|HlootHistory:%d|h[Loot]|h: Need Roll - %d
+-- for %s by %s"); its number was taken for the roll, the roll for the item.
+-- The tag comes off the format (the line loses it in Match): the arguments
+-- are the line's own again.
+local function LootFormat(fmt)
+    if type(fmt) ~= "string" then return nil end
+    local s, e = fmt:find("|HlootHistory:.-|h.-|h:?%s*")
+    if not s then return fmt end
+    local tagPos = tonumber(fmt:sub(s, e):match("%%(%d)%$"))
+    local rest = fmt:sub(1, s - 1) .. fmt:sub(e + 1)
+    if tagPos then
+        rest = rest:gsub("%%(%d)%$", function(pos)
+            pos = tonumber(pos)
+            return "%" .. (pos > tagPos and pos - 1 or pos) .. "$"
+        end)
+    end
+    return rest
+end
+-- A roll line's item link, number and name, whatever their order in the
+-- client's language.
+local function RollArgs(args)
+    local link, n, name
+    for _, v in pairs(args or {}) do
+        if type(v) == "string" then
+            if v:find("|Hitem:", 1, true) then link = link or v
+            elseif not n and v:match("^[%d%.,]+$") then n = Number(v)
+            elseif v ~= "" then name = name or v end
+        end
+    end
+    return link, n, name
+end
+
 local patterns
 local function Patterns()
     if patterns then return patterns end
@@ -162,20 +200,37 @@ local function Patterns()
         xp = MakePattern(_G.COMBATLOG_XPGAIN_FIRSTPERSON, false),
         dies = MakePattern(_G.UNITDIESOTHER, true),
         slain = MakePattern(_G.SELFKILLOTHER, true),
-        youWon = MakePattern(_G.LOOT_ROLL_YOU_WON, true),
-        won = MakePattern(_G.LOOT_ROLL_WON, true),
-        allPassed = MakePattern(_G.LOOT_ROLL_ALL_PASSED, true),
-        needSelf = MakePattern(_G.LOOT_ROLL_NEED_SELF, true),
+        youWon = MakePattern(LootFormat(_G.LOOT_ROLL_YOU_WON), true),
+        won = MakePattern(LootFormat(_G.LOOT_ROLL_WON), true),
+        allPassed = MakePattern(LootFormat(_G.LOOT_ROLL_ALL_PASSED), true),
+        needSelf = MakePattern(LootFormat(_G.LOOT_ROLL_NEED_SELF), true),
         lootOther = MakePattern(_G.LOOT_ITEM, true),
-        greedSelf = MakePattern(_G.LOOT_ROLL_GREED_SELF, true),
-        needOther = MakePattern(_G.LOOT_ROLL_NEED, true),
-        greedOther = MakePattern(_G.LOOT_ROLL_GREED, true),
-        rolledNeed = MakePattern(_G.LOOT_ROLL_ROLLED_NEED, true),
-        rolledGreed = MakePattern(_G.LOOT_ROLL_ROLLED_GREED, true),
-        rolledNeedBonus = _G.LOOT_ROLL_ROLLED_NEED_ROLE_BONUS and MakePattern(_G.LOOT_ROLL_ROLLED_NEED_ROLE_BONUS, true) or nil,
+        greedSelf = MakePattern(LootFormat(_G.LOOT_ROLL_GREED_SELF), true),
+        needOther = MakePattern(LootFormat(_G.LOOT_ROLL_NEED), true),
+        greedOther = MakePattern(LootFormat(_G.LOOT_ROLL_GREED), true),
+        rolledNeed = MakePattern(LootFormat(_G.LOOT_ROLL_ROLLED_NEED), true),
+        rolledGreed = MakePattern(LootFormat(_G.LOOT_ROLL_ROLLED_GREED), true),
+        rolledNeedBonus = _G.LOOT_ROLL_ROLLED_NEED_ROLE_BONUS and MakePattern(LootFormat(_G.LOOT_ROLL_ROLLED_NEED_ROLE_BONUS), true) or nil,
         lootSelf = MakePattern(_G.LOOT_ITEM_SELF, true),
+        lootSelfMulti = _G.LOOT_ITEM_SELF_MULTIPLE and MakePattern(_G.LOOT_ITEM_SELF_MULTIPLE, true) or nil, -- lootvalue: "You receive loot: [X]x3."
         reset = MakePattern(_G.INSTANCE_RESET_SUCCESS or "%s has been reset.", true),
+        -- reptrack (2.1.4): "Reputation with %s increased by %d." (not tied to
+        -- the end: the game can add a bonus after it)
+        rep = MakePattern(_G.FACTION_STANDING_INCREASED or "Reputation with %s increased by %d.", false),
     }
+    -- rollnumbers: with the loot lines kept short (the game's default), only
+    -- the winner's line comes, with the roll in it: "[Loot]: You (Need - 87)
+    -- Won: <item>", "[Loot]: <name> (Greed - 54) Won: <item>".
+    patterns.noSpam = {}
+    for _, kind in ipairs({ "NEED", "GREED", "DE", "TRANSMOG" }) do
+        for _, who in ipairs({ "YOU_WON", "WON" }) do
+            local pat = MakePattern(LootFormat(_G["LOOT_ROLL_" .. who .. "_NO_SPAM_" .. kind]), true)
+            if pat then
+                patterns.noSpam[#patterns.noSpam + 1] = { p = pat, me = who == "YOU_WON",
+                    kind = (kind == "NEED" and "need") or (kind == "GREED" and "greed") or nil }
+            end
+        end
+    end
     return patterns
 end
 
@@ -344,6 +399,27 @@ end
 local function NameOfNpc(npc)
     if not npc then return nil end
     return Account().runLogNames[npc]
+end
+-- wingnames (2.1.5): a wing mob's names in this client's language, baked in
+-- (FDJ.RunLogMobNamesL10n, Data/RunLogWings.lua): is lname (lower case) one?
+local bakedNames
+local function BakedName(npc, lname)
+    if not npc or not lname then return false end
+    if not bakedNames then
+        bakedNames = {}
+        local loc = (type(GetLocale) == "function" and GetLocale()) or "enUS"
+        for id, row in pairs(FDJ.RunLogMobNamesL10n or {}) do
+            local v = type(row) == "table" and (row[loc] or (loc == "esMX" and row.esES)) or nil
+            local set = {}
+            for _, n in ipairs(type(v) == "table" and v or { v }) do
+                local l = Lower(n)
+                if l then set[l] = true end
+            end
+            if next(set) then bakedNames[id] = set end
+        end
+    end
+    local set = bakedNames[npc]
+    return set ~= nil and set[lname] == true
 end
 
 local FixBossKillsAll -- below: kills renamed once a boss's local name is known
@@ -617,6 +693,18 @@ local pendingXP = {}   -- { clock, amount }: XP that came before its kill
 -- the last one (a skipped boss keeps it open). Rares and bosses that need a
 -- quest or a summoning item to appear are optional. A dungeon without boss
 -- data completes on its final boss.
+-- dwarvesally (2.1.3, M 21 Nov 2026, an Alliance Uldaman run, every boss on
+-- the tracker crossed out: "run didnt end but all bosses are dead"): a boss
+-- only the other faction can fight (factionOnly: The Lost Dwarves, friendly
+-- to the Alliance) is not needed to end the run; the tracker already leaves
+-- it off (Systems/RunLogUI.lua, TrackerBossAllowed).
+local function PlayerFaction()
+    if type(UnitFactionGroup) ~= "function" then return nil end
+    local ok, faction = pcall(UnitFactionGroup, "player")
+    if not ok or type(faction) ~= "string" then return nil end
+    if type(issecretvalue) == "function" and issecretvalue(faction) then return nil end
+    return faction
+end
 local function AllBossesDown(run, kill)
     -- finalfirst (2.0.13, M 19 Nov 2026, a Stratholme: Undead run on stream
     -- shown done before Baron Rivendare died - the Black Guard Swordsmith's
@@ -634,13 +722,23 @@ local function AllBossesDown(run, kill)
     end
     local d = run.dungeon and FDJ.DB and FDJ.DB[run.dungeon]
     local needed, known, group = {}, {}, {}
+    local faction = PlayerFaction() -- dwarvesally
     for _, b in ipairs((d and d.bosses) or {}) do
         if type(b) == "table" and type(b.name) == "string" and not b.trash and not b.recipeTab then
             known[b.name] = true
             -- ringoflaw: one fight, whichever of its bosses shows up
             local key = type(b.fightGroup) == "string" and b.fightGroup or b.name
             if key ~= b.name then known[key] = true group[b.name] = key group[key] = key end
-            if not b.rare and not b.spawnQuest and not b.summonItem and not b.optional then needed[key] = true end
+            -- altarneeded (2.1.4, OMGmacros on Discord, 22 Nov 2026: "Both my sunken
+            -- Temple runs never completed ... killing all the bosses does not
+            -- register as a completion"): a journal group ("Altar Bosses") and its
+            -- children are no bosses of a run (Bosses, above: their kills are
+            -- trash), so no run could ever have them down: not needed to end it.
+            if not b.rare and not b.spawnQuest and not b.summonItem and not b.optional
+                and not b.childOf and not b.children -- altarneeded
+                and not (type(b.factionOnly) == "string" and faction and b.factionOnly ~= faction) then -- dwarvesally
+                needed[key] = true
+            end
         end
     end
     if not next(needed) then return kill.f and true or false end
@@ -677,7 +775,7 @@ SetKillTimes = function(run, kill)
         C_Timer.After(2, function()
             if FDJ.RunLogSummary then
                 local ok, text = pcall(FDJ.RunLogSummary, run)
-                if ok and text then Say(text) end
+                if ok and text then FDJ.ChatLine("|cffd8a83cDungeonJournal:|r " .. text) end -- (chatlines)
             end
         end)
     end
@@ -760,8 +858,13 @@ local function EventEndsFight(run, kill, boss)
     local dungeon = run.dungeon or insideDungeon
     if kill.wb == boss.name or not kill.b then
         kill.b, kill.wb = boss.name, nil
-        if not boss.rare and IsFinal(dungeon, kill.n, kill.m, boss) then kill.f = 1 end
     end
+    -- ukorzfinal (2.1.2, a Zul'Farrak run reported "Not finished" with every
+    -- boss down, M 21 Nov 2026): the boss event of a fight whose partner died
+    -- hidden (Ruuzlu: Forever hides who died) named the kill first, so it was
+    -- never marked as the final boss's and the run could not end. The fight's
+    -- kill is its boss's, final boss included, however it was named.
+    if kill.b == boss.name and not boss.rare and IsFinal(dungeon, kill.n, kill.m or boss.name, boss) then kill.f = 1 end
     for _, partner in ipairs(boss.killWith) do
         local name, npc
         for _, v in ipairs(type(partner) == "table" and partner or { partner }) do
@@ -845,6 +948,12 @@ local function FixBossKills(run)
                 if not k.r and IsFinal(dungeon, k.n, k.m or boss.name, boss) then k.f = 1 end
                 changed = true
             end
+            -- ukorzfinal (2.1.2): a final boss's kill saved without its mark
+            -- (Chief Ukorz Sandscalp's, above): marked now, so the run ends.
+            if boss and not k.f and not k.r and not boss.rare and IsFinal(dungeon, k.n, k.m or boss.name, boss) then
+                k.f = 1
+                changed = true
+            end
             if not k.r then lastBoss = k end
         elseif k.p and not k.wb and k.m and BossFor(dungeon, k.n, k.m) then
             -- ruuzlu: a partner that has its own page now
@@ -868,6 +977,9 @@ local function FixBossKills(run)
             end
         end
     end
+    -- (dwarvesally, 2.1.3: so a run left open with every boss it needs
+    -- dead - The Lost Dwarves counted for the Alliance - ends here, at its
+    -- last boss's kill, a few seconds after logging in or /reload)
     if not run.completed and lastBoss and AllBossesDown(run, lastBoss) then
         run.completed = true
         run.finalKill = run.finalKill or lastBoss.t
@@ -1022,7 +1134,7 @@ local function WingFor(npc, name)
         local matched = BossFor(wing, npc, name) ~= nil
         for id, english in pairs((FDJ.RunLogWingTrash or {})[wing] or {}) do
             if npc == id or (Lower(name) and (Lower(name) == Lower(english)
-                or Lower(name) == Lower(NameOfNpc(id)))) then matched = true break end
+                or Lower(name) == Lower(NameOfNpc(id)) or BakedName(id, Lower(name)))) then matched = true break end -- (wingnames)
         end
         if matched then
             if found and found ~= wing then return nil end
@@ -1044,7 +1156,7 @@ local function SharedWing(npc, name)
     if not wings and Lower(name) then
         for id, w in pairs(list) do
             local english = FDJ.RunLogSharedTrash and FDJ.RunLogSharedTrash[insideMap] and FDJ.RunLogSharedTrash[insideMap][id]
-            if Lower(name) == Lower(english) or Lower(name) == Lower(NameOfNpc(id)) then wings = w break end
+            if Lower(name) == Lower(english) or Lower(name) == Lower(NameOfNpc(id)) or BakedName(id, Lower(name)) then wings = w break end -- (wingnames)
         end
     end
     if not wings then return nil end
@@ -1068,6 +1180,57 @@ local function SharedWing(npc, name)
     end
     if not pick then return nil end
     return pick, count == 1
+end
+
+-- spireroom (2.1.4): the room you're in (the minimap's sub-zone, lower
+-- case), and which side of a shared instance it belongs to
+-- (FDJ.RunLogRoomWings; in another language the rooms learned below).
+local function RoomHere()
+    for _, getter in ipairs({ GetSubZoneText, GetMinimapZoneText }) do
+        if type(getter) == "function" then
+            local ok, text = pcall(getter)
+            local room = ok and Lower(text)
+            if room then return room end
+        end
+    end
+    return nil
+end
+
+local function LearnedRooms(map)
+    local byLocale = Account().runLogRooms
+    local loc = (type(GetLocale) == "function" and GetLocale()) or "enUS"
+    if type(byLocale[loc]) ~= "table" then byLocale[loc] = {} end
+    local t = byLocale[loc]
+    if type(t[map]) ~= "table" then t[map] = {} end
+    return t[map]
+end
+
+local function RoomWing(map)
+    local rooms = FDJ.RunLogRoomWings and map and FDJ.RunLogRoomWings[map]
+    if not rooms then return nil end
+    local room = RoomHere()
+    if not room then return nil end
+    local wing = rooms[room] or LearnedRooms(map)[room]
+    if wing == "shared" then return nil end
+    return wing
+end
+
+-- A kill of a mob or boss only one side has: the room it happened in is
+-- that side's (FDJ.RunLogRoomLearn), or both sides' once the other side
+-- has had one there too.
+local function LearnRoom(map, wing)
+    local learn = FDJ.RunLogRoomLearn and map and FDJ.RunLogRoomLearn[map]
+    local rooms = FDJ.RunLogRoomWings and map and FDJ.RunLogRoomWings[map]
+    if not learn or not rooms or not wing then return end
+    local room = RoomHere()
+    if not room or rooms[room] then return end -- (the built-in names)
+    local learned = LearnedRooms(map)
+    local was = learned[room]
+    if wing == learn then
+        if was == nil then learned[room] = wing end
+    elseif was == learn then
+        learned[room] = "shared"
+    end
 end
 
 local function ApplyWing(wing, confirmed)
@@ -1195,7 +1358,7 @@ local function EligibleKill(guid, npc, name, how)
     if WingFor(npc, name) or BossFor((current and current.dungeon) or insideDungeon, npc, name) then return true end
     for id, english in pairs((FDJ.RunLogSharedTrash or {})[insideMap] or {}) do
         if npc == id or (Lower(name) and (Lower(name) == Lower(english)
-            or Lower(name) == Lower(NameOfNpc(id)))) then return true end
+            or Lower(name) == Lower(NameOfNpc(id)) or BakedName(id, Lower(name)))) then return true end -- (wingnames)
     end
     -- fightkill: a death line during a fight is a real kill, even with no XP
     -- (overlevelled, level cap) and the mob's type hidden by the instance.
@@ -1244,12 +1407,19 @@ local function AddKill(guid, name, how)
     local wing = WingFor(npc, name)
     if how == "corpse" and wing and current.dungeon ~= wing then return nil end
     ApplyWing(wing, true)
+    if wing and how ~= "corpse" then LearnRoom(insideMap, wing) end -- spireroom
     if not wing and how ~= "corpse" then
         -- smwing (2.0.8): a shared mob that rules the tracker's wing out
         local shared, only = SharedWing(npc, name)
         if shared then
             ApplyWing(shared, false)
             if FDJ.TrackerScarletWing then pcall(FDJ.TrackerScarletWing, shared, not only) end
+        end
+        -- spireroom (2.1.4): no run yet and no side: the room tells it (a
+        -- first guess; a kill only the other side has still moves it)
+        if not current and not insideDungeon then
+            local roomWing = RoomWing(insideMap)
+            if roomWing then ApplyWing(roomWing, false) end
         end
     end
     if not EnsureRun() then return nil end
@@ -2111,10 +2281,98 @@ local function OnRollNumber(link, name, n)
     Changed()
 end
 
+-- rollnumbers: the game's own loot history, where the client has one: every
+-- player's roll on an item, yours too when you lost and the chat only names
+-- the winner. (The newer drop list, or the older list of rolled items.)
+local function HistoryRoll(link, name, n, kind)
+    link, name, n = Plain(link), Plain(name), tonumber(Plain(n))
+    local id = ItemIDOf(link)
+    if not id or type(name) ~= "string" or name == "" or not n or n <= 0 then return end
+    if kind then SetChoice(link, name, kind) end
+    if RollOf(id, name) == n then return end -- (known already)
+    OnRollNumber(link, name, n)
+end
+local function ReadHistoryDrop(encounterID, lootListID)
+    local get = C_LootHistory and C_LootHistory.GetSortedInfoForDrop
+    if type(get) ~= "function" then return end
+    local ok, info = pcall(get, encounterID, lootListID)
+    if not ok or type(info) ~= "table" or type(info.rollInfos) ~= "table" then return end
+    local S = Enum and Enum.EncounterLootDropRollState or {}
+    for _, r in ipairs(info.rollInfos) do
+        if type(r) == "table" then
+            local state = r.state
+            local kind = (state == (S.NeedMainSpec or 0) or state == (S.NeedOffSpec or 1)) and "need"
+                or (state == (S.Greed or 3)) and "greed" or nil
+            HistoryRoll(info.itemHyperlink, Plain(r.isSelf) and PlayerName() or r.playerName, r.roll, kind)
+        end
+    end
+end
+local function ReadHistoryItem(index)
+    local H = C_LootHistory
+    if not (H and type(H.GetItem) == "function" and type(H.GetPlayerInfo) == "function") then return end
+    local ok, _, link, players = pcall(H.GetItem, index)
+    players = ok and tonumber(Plain(players)) or nil
+    if not players then return end
+    for j = 1, math.min(players, 40) do
+        local okP, name, _, rollType, roll, _, isMe = pcall(H.GetPlayerInfo, index, j)
+        if okP then
+            rollType = Plain(rollType)
+            HistoryRoll(link, Plain(isMe) and PlayerName() or name, roll,
+                (rollType == 1 and "need") or (rollType == 2 and "greed") or nil)
+        end
+    end
+end
+local function ReadHistoryAll()
+    local H = C_LootHistory
+    if not (H and type(H.GetNumItems) == "function") then return end
+    local ok, n = pcall(H.GetNumItems)
+    n = ok and tonumber(Plain(n)) or nil
+    for i = 1, math.min(n or 0, 30) do ReadHistoryItem(i) end
+end
+
+-- lootvalue (2.1.4, M 22 Nov 2026: "it also counts items that you dropped ...
+-- it calculates the vendor price of the items ... every item"): every item the
+-- player loots inside ("You receive loot", stacks counted) adds its vendor
+-- price to the run (run.itemValue, copper); the Gold the tracker and the log
+-- show is the coin looted plus that. An item the game hasn't loaded yet is
+-- asked again a moment later (up to five times).
+local function AddLootValue(link, count, tries)
+    local run = inside and current or nil
+    if not run or type(link) ~= "string" then return end
+    local get = (C_Item and C_Item.GetItemInfo) or GetItemInfo
+    if type(get) ~= "function" then return end
+    local r = { pcall(get, link) }
+    if not (r[1] and r[2]) then
+        if (tries or 0) < 5 and C_Timer and C_Timer.After then
+            C_Timer.After(1, function() if current == run then AddLootValue(link, count, (tries or 0) + 1) end end)
+        end
+        return
+    end
+    local price = tonumber(Plain(r[12])) or 0
+    if price <= 0 then return end
+    run.itemValue = (run.itemValue or 0) + price * math.max(1, math.floor(tonumber(count) or 1))
+    Changed()
+end
 local function OnLootChat(text)
     text = Plain(text)
     if type(text) ~= "string" then return end
     local p = Patterns()
+    for _, ns in ipairs(p.noSpam or {}) do -- (rollnumbers)
+        local a = Match(ns.p, text)
+        if a then
+            local link, n, name = RollArgs(a)
+            if ns.me or not name then name = PlayerName() end
+            if link then
+                if ns.kind then SetChoice(link, name, ns.kind) end
+                if n then OnRollNumber(link, name, n) end
+                AddBossLoot(link, nil, name)
+                local mine = ns.me or IsMe(name)
+                local need = PendingNeedFor(ItemIDOf(link), mine)
+                if need then SetNeedResult(need, mine and "won" or "lost") SetNeedRoll(need) end
+            end
+            return
+        end
+    end
     local args = Match(p.youWon, text)
     if args then
         AddBossLoot(args[1], nil, PlayerName())
@@ -2148,9 +2406,11 @@ local function OnLootChat(text)
     if args then SetChoice(args[2], args[3], "need") OnRollNumber(args[2], args[3], Number(args[1])) return end
     args = Match(p.rolledGreed, text)
     if args then SetChoice(args[2], args[3], "greed") OnRollNumber(args[2], args[3], Number(args[1])) return end
-    args = Match(p.lootSelf, text)
+    -- lootvalue: a stack first (the single line's pattern would take "x3" into the link)
+    args = Match(p.lootSelfMulti, text) or Match(p.lootSelf, text)
     if args then
         AddBossLoot(args[1], nil, PlayerName())
+        AddLootValue(args[1], Number(args[2]) or 1)
         -- Receiving the item settles a Need roll on it: won.
         local need = PendingNeedFor(ItemIDOf(args[1]), true)
         if need then SetNeedResult(need, "won") SetNeedRoll(need) end
@@ -2351,7 +2611,9 @@ for _, e in ipairs({
     "ENCOUNTER_END", "BOSS_KILL", "PARTY_KILL", "UNIT_DIED", "GOSSIP_SHOW", "UNIT_TARGET",
     "CHAT_MSG_COMBAT_XP_GAIN", "CHAT_MSG_COMBAT_HOSTILE_DEATH", "CHAT_MSG_LOOT",
     "START_LOOT_ROLL", "CANCEL_LOOT_ROLL", "LOOT_OPENED", "LOOT_READY", "PLAYER_MONEY", "CHAT_MSG_SYSTEM",
-    "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED",
+    "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "MERCHANT_SHOW", "MERCHANT_CLOSED",
+    "CHAT_MSG_COMBAT_FACTION_CHANGE", -- reptrack (2.1.4)
+    "LOOT_HISTORY_UPDATE_DROP", "LOOT_HISTORY_ROLL_CHANGED", "LOOT_HISTORY_ROLL_COMPLETE", "LOOT_HISTORY_FULL_UPDATE", -- rollnumbers (2.1.5)
 }) do
     pcall(events.RegisterEvent, events, e)
 end
@@ -2360,6 +2622,9 @@ end
 -- doesn't take it back), counted while inside. At the level cap, where no
 -- XP comes, the page and the tracker show it instead of the mobs' XP.
 local lastMoney
+-- lootvalue: money from selling at a vendor inside (Blackrock Depths' own) is
+-- the items already counted at their vendor price: not counted again.
+local atMerchant = false
 local function ReadMoney()
     if not GetMoney then return nil end
     local ok, m = pcall(GetMoney)
@@ -2386,10 +2651,28 @@ local function OnMoney()
     if not now then return end
     local before = lastMoney
     lastMoney = now
+    if atMerchant then return end -- lootvalue
     if not before or now <= before or not inside then return end
     local run = current
     if not run then return end
     run.money = (run.money or 0) + (now - before)
+    if IsCapped() then run.capped = true end
+    Changed()
+end
+-- reptrack (2.1.4, M 23 Nov 2026: "the dungeon tracker for level 60s. Track
+-- reputation instead of experience"): the reputation gained inside, per
+-- faction (its name as the game writes it); at the level cap the tracker
+-- shows it where the mobs' XP is below it (Systems/RunLogUI.lua).
+local function OnRepChat(text)
+    text = Plain(text)
+    if not inside or type(text) ~= "string" then return end
+    local args = Match(Patterns().rep, text)
+    local name, amount = args and args[1], args and Number(args[2])
+    if type(name) ~= "string" or name == "" or not amount or amount <= 0 then return end
+    local run = EnsureRun()
+    if not run then return end
+    if type(run.rep) ~= "table" then run.rep = {} end
+    run.rep[name] = (tonumber(run.rep[name]) or 0) + amount
     if IsCapped() then run.capped = true end
     Changed()
 end
@@ -2399,6 +2682,7 @@ events:SetScript("OnEvent", function(_, event, ...)
         OnMoney()
         return
     end
+    if event == "MERCHANT_SHOW" or event == "MERCHANT_CLOSED" then atMerchant = event == "MERCHANT_SHOW" return end -- lootvalue
     if event == "PLAYER_ENTERING_WORLD" then
         if not lastMoney then lastMoney = ReadMoney() end
         if not lastXP then lastXP, lastMax, lastLevel = ReadXP() end
@@ -2512,6 +2796,8 @@ events:SetScript("OnEvent", function(_, event, ...)
         OnLootChat((...))
     elseif event == "CHAT_MSG_SYSTEM" then
         OnInstanceReset((...))
+    elseif event == "CHAT_MSG_COMBAT_FACTION_CHANGE" then -- reptrack
+        OnRepChat((...))
     elseif event == "PLAYER_REGEN_DISABLED" or event == "PLAYER_REGEN_ENABLED" then
         FDJ.RunLogNoteFight(event == "PLAYER_REGEN_DISABLED")
     elseif event == "START_LOOT_ROLL" then
@@ -2525,6 +2811,14 @@ events:SetScript("OnEvent", function(_, event, ...)
     elseif event == "CANCEL_LOOT_ROLL" then
         local rollID = ...
         if rollID then OnRollEnded(rollID) end
+    elseif event == "LOOT_HISTORY_UPDATE_DROP" then -- rollnumbers
+        local encounterID, lootListID = ...
+        pcall(ReadHistoryDrop, encounterID, lootListID)
+    elseif event == "LOOT_HISTORY_ROLL_CHANGED" then
+        local index = ...
+        if type(index) == "number" then pcall(ReadHistoryItem, index) end
+    elseif event == "LOOT_HISTORY_ROLL_COMPLETE" or event == "LOOT_HISTORY_FULL_UPDATE" then
+        pcall(ReadHistoryAll)
     end
 end)
 
@@ -2543,6 +2837,7 @@ function FDJ.RunLogDebug()
     Say("target guid=" .. show(okG and guid) .. " name=" .. show(okN and name) .. " npc=" .. tostring(npc))
     Say("wing evidence=" .. tostring(WingFor(npc, Plain(name)))
         .. " eligible=" .. tostring(EligibleKill(Plain(guid), npc, Plain(name), "guid")))
+    Say("room=" .. tostring(RoomHere()) .. " room side=" .. tostring(RoomWing(insideMap))) -- spireroom
     Say("boss=" .. tostring(boss and boss.name) .. " rare=" .. tostring(boss and (boss.rare or (FDJ.RUNLOG_TEST_RARES and FDJ.RUNLOG_TEST_RARES[dungeon])) or false))
     local function try(fn, ...) local ok, v = pcall(fn, ...) return ok and show(v) or "error" end
     Say("class=" .. try(UnitClassification, "target") .. " level=" .. try(UnitLevel, "target")

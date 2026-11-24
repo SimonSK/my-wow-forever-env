@@ -555,8 +555,11 @@ FDJ.QUEST_PREREQ_CHAINS = {
         { id = 7644, name = "Blessed Arcanite Barding" },
         { id = 7646, name = "The Divination Scryer" },
     },
-    [7668] = {
+    [8258] = { -- darkreaver (2.1.4): Forever's The Darkreaver Menace (was 7668)
         { id = 7667, name = "Material Assistance" },
+    },
+    [97169] = { -- darkreaverally (2.1.4): the Alliance's, from Eldrun Stormbreaker
+        { id = 97168, name = "Material Assistance" },
     },
     [5262] = {
         { id = 5251, name = "The Archivist" },
@@ -719,7 +722,6 @@ FDJ.QUEST_PREREQ_DETAILS = {
         turnin = "Hammertoe Grez, Uldaman excavation (outside the instance)",
     },
     [723] = {
-        startsInDungeon = true,
         level = 40, requires = 35,
         objective = "Take Hammertoe's Amulet to Prospector Ryedol in the Badlands.",
         pickup = "Hammertoe Grez",
@@ -756,9 +758,14 @@ FDJ.QUEST_PREREQ_DETAILS = {
     [2198] = {
         level = 41, requires = 37,
         objective = "Search for the original creator of the shattered necklace to learn of its potential value.",
-        pickup = "Shattered Necklace (drops in Uldaman)",
+        -- necklaceout (2.1.3, M 21 Nov 2026: "it's not a dungeon chain step. It
+        -- doesn't start inside a dungeon ... The shattered necklace can drop from
+        -- mobs outside as well"): the elites at the Uldaman dig site drop it
+        -- (Wowhead Forever: Stonevault Rockchewer, Cave Hunter, Shadowforge
+        -- Ruffian, Digger, Surveyor; Stonevault Oracle inside; SOURCES.txt).
+        pickup = "Shattered Necklace (drops outside and in Uldaman)",
         turnin = "Talvash del Kissel, Ironforge",
-        startItem = {7666, "Shattered Necklace", 2, "Drops from the dwarves and troggs in Uldaman"},
+        startItem = {7666, "Shattered Necklace", 2, "Drops from the elite troggs and Shadowforge dwarves outside Uldaman (and from troggs inside)"},
     },
     [2199] = {
         level = 41, requires = 37,
@@ -1803,6 +1810,13 @@ FDJ.QUEST_PREREQ_DETAILS = {
         pickup = "Sagorne Creststrider, Orgrimmar",
         turnin = "Sagorne Creststrider, Orgrimmar",
         map = { mapID = 1454, x = 0.384, y = 0.360, label = "Sagorne Creststrider — Orgrimmar", targetName = "Sagorne Creststrider" },
+    },
+    [97168] = { -- darkreaverally (2.1.4)
+        level = 60, requires = 58,
+        objective = "If you are interested in helping Eldrun Stormbreaker in Ironforge, bring him an Azerothian Diamond and a Pristine Black Diamond.",
+        pickup = "Eldrun Stormbreaker, Ironforge",
+        turnin = "Eldrun Stormbreaker, Ironforge",
+        map = { mapID = 1455, x = 0.471, y = 0.138, label = "Eldrun Stormbreaker — Ironforge", targetName = "Eldrun Stormbreaker" },
     },
     [5251] = {
         level = 60, requires = 55,

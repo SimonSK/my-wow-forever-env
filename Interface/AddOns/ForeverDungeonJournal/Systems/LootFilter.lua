@@ -11,12 +11,25 @@ local function L(key, ...)
     return key
 end
 
+-- charfilter (2.1.4, M 22 Nov 2026, Dawn on the Discord playing a cloth, a
+-- leather and a plate character and ticking the filter again on each: "the
+-- loot filter should be character locked. It should not be account locked"):
+-- the Loot Filter's ticks are saved per character
+-- (ForeverDungeonJournalCharacterDB.lootFilter). A character without its own
+-- yet starts once from what the account had, so nobody loses their setup.
+local function CopyTable(t)
+    local out = {}
+    for k, v in pairs(t) do out[k] = type(v) == "table" and CopyTable(v) or v end
+    return out
+end
 local function Settings()
-    ForeverDungeonJournalDB = ForeverDungeonJournalDB or {}
-    local db = ForeverDungeonJournalDB.lootFilter
+    ForeverDungeonJournalCharacterDB = ForeverDungeonJournalCharacterDB or {}
+    local char = ForeverDungeonJournalCharacterDB
+    local db = char.lootFilter
     if type(db) ~= "table" then
-        db = {}
-        ForeverDungeonJournalDB.lootFilter = db
+        local shared = type(ForeverDungeonJournalDB) == "table" and ForeverDungeonJournalDB.lootFilter or nil
+        db = type(shared) == "table" and CopyTable(shared) or {}
+        char.lootFilter = db
     end
     -- The "show recipes" option was removed: recipes live on the recipe tab
     -- (or under the boss-page divider), never inline in the loot list.
@@ -30,6 +43,7 @@ local function Settings()
     if db.matchAll == nil then db.matchAll = true end
     if db.enabled == nil then db.enabled = false end
     if type(db.minLevel) ~= "number" or db.minLevel <= 0 then db.minLevel = nil end
+    if type(db.maxLevel) ~= "number" or db.maxLevel <= 0 then db.maxLevel = nil end -- levelrange
     -- Armor types ticked in the Armor Filter (none ticked = all types).
     -- Older builds stored a single type in db.armor: carry it over once.
     if type(db.armorTypes) ~= "table" then db.armorTypes = {} end
@@ -264,7 +278,10 @@ local ARMOR = {
     Shield = { WARRIOR = 1, PALADIN = 1, SHAMAN = 1 },
 }
 local ONE_HAND = {
-    Axe = { WARRIOR = 1, PALADIN = 1, HUNTER = 1, SHAMAN = 1 },
+    -- rogueaxe (2.1.3): WoW Forever lets Rogues use one-handed axes; without
+    -- them here, "Only show loot my class can use" greyed out every one-hand
+    -- axe for a Rogue (Glutton's Cleaver; reported on Discord by Dom).
+    Axe = { WARRIOR = 1, PALADIN = 1, HUNTER = 1, ROGUE = 1, SHAMAN = 1 },
     Sword = { WARRIOR = 1, PALADIN = 1, HUNTER = 1, ROGUE = 1, MAGE = 1, WARLOCK = 1 },
     Mace = { WARRIOR = 1, PALADIN = 1, ROGUE = 1, PRIEST = 1, SHAMAN = 1, DRUID = 1 },
     Dagger = { WARRIOR = 1, HUNTER = 1, ROGUE = 1, PRIEST = 1, SHAMAN = 1, MAGE = 1, WARLOCK = 1, DRUID = 1 },
@@ -575,6 +592,53 @@ local function TipText(item)
     return #parts > 0 and parts or nil
 end
 
+-- levelrange (2.1.2, M 21 Nov 2026: "instead of minimum required level ...
+-- two boxes ... with a dash in between"): the level an item needs. Forever
+-- has no global GetItemInfo (the old Minimum required level box read it, so
+-- it let almost everything through): C_Item.GetItemInfo first; else the
+-- "Requires Level" line the game showed (item.tip) or of the item's tooltip
+-- (in the client's language). No requirement counts as level 1; nil:
+-- not known yet.
+local LEVEL_PATTERN
+local ItemLevelNeeded
+local function RequiredLevelOf(item)
+    -- questlevel: a quest reward needs its quest's level at least.
+    local questLevel = type(item) == "table" and tonumber(item.fdjQuestLevel) or nil
+    local need = ItemLevelNeeded(item)
+    if questLevel and questLevel > 0 then return math.max(need or 1, questLevel) end
+    return need
+end
+function ItemLevelNeeded(item)
+    local id = type(item) == "table" and item[1]
+    if type(id) == "number" and id > 0 then
+        local get = (C_Item and C_Item.GetItemInfo) or GetItemInfo
+        if type(get) == "function" then
+            local ok, _, _, _, _, req = pcall(get, id)
+            if ok and type(req) == "number" then return math.max(req, 1) end
+        end
+        if C_Item and type(C_Item.RequestLoadItemDataByID) == "function" then pcall(C_Item.RequestLoadItemDataByID, id) end
+    end
+    for _, line in ipairs(TipText(item) or {}) do
+        local n = tonumber(line:match("^requires level (%d+)"))
+        if n then return n end
+    end
+    if type(id) == "number" and id > 0 then
+        if not LEVEL_PATTERN then
+            local fmt = type(ITEM_MIN_LEVEL) == "string" and ITEM_MIN_LEVEL or "Requires Level %d"
+            LEVEL_PATTERN = "^" .. string.lower(fmt):gsub("([%(%)%.%+%-%*%?%[%]%^%$])", "%%%1"):gsub("%%d", "(%%d+)")
+        end
+        local text = TooltipText(id, FDJ.lootFilterStrict)
+        if text then
+            for _, line in ipairs(text) do
+                local n = tonumber(line:match(LEVEL_PATTERN))
+                if n then return n end
+            end
+            return 1 -- read, and no level needed
+        end
+    end
+    return nil
+end
+
 -- matchAll: the item must have every ticked stat; otherwise any one is enough.
 local function HasAnyStat(item, wanted, matchAll)
     local id = item and item[1]
@@ -826,10 +890,12 @@ function FDJ.FilterBossLoot(boss)
     local classOnly = on and db.classOnly
     local wantStats = on and AnyStatWanted(db) and not FDJ.lootFilterSkipStats -- fastshow
     local minLevel = on and db.minLevel or nil
+    local maxLevel = on and db.maxLevel or nil -- levelrange
+    if minLevel and maxLevel and minLevel > maxLevel then minLevel, maxLevel = maxLevel, minLevel end
     local armor = on and AnyArmorTicked(db) and db.armorTypes or nil
     local resists = on and AnyResistTicked(db) and not FDJ.lootFilterSkipStats and db.resists or nil -- fastshow
     local weapons = on and AnyWeaponTicked(db) and db.weaponTypes or nil
-    if showRecipes and not classOnly and not wantStats and not minLevel and not armor and not resists and not weapons then return boss end
+    if showRecipes and not classOnly and not wantStats and not minLevel and not maxLevel and not armor and not resists and not weapons then return boss end
     local shown = {}
     for _, item in ipairs(boss.loot) do
         local keep = true
@@ -867,21 +933,11 @@ function FDJ.FilterBossLoot(boss)
                     keep = false
                 end
             end
-            if keep and minLevel then
-                local required
-                if type(GetItemInfo) == "function" and item[1] and item[1] > 0 then
-                    local ok, _, _, _, _, itemMinLevel = pcall(GetItemInfo, item[1])
-                    if ok and type(itemMinLevel) == "number" then required = itemMinLevel end
-                end
-                if required == nil and not (item[1] and item[1] > 0) then -- kroldok: the level the game showed
-                    for _, line in ipairs(TipText(item) or {}) do
-                        local n = tonumber(line:match("^requires level (%d+)"))
-                        if n then required = n end
-                    end
-                end
+            if keep and (minLevel or maxLevel) then -- levelrange: from - to (10 - 10: level 10 only)
+                local required = RequiredLevelOf(item)
                 if required == nil then
                     if FDJ.lootFilterStrict then keep = false end -- not loaded yet
-                elseif required < minLevel then
+                elseif (minLevel and required < minLevel) or (maxLevel and required > maxLevel) then
                     keep = false
                 end
             end
@@ -927,6 +983,7 @@ function FDJ.FilterBossLootForPage(boss)
             shown[#shown + 1] = item
             if not keep[item] then FDJ.lootFilterDimmed[item] = true end
         end
+        if boss.lootRemoved then FDJ.lootFilterDimmed[item] = true end -- lootremoved: all of it greyed out
     end
     FDJ.lootFilterHidden = 0
     if #recipes > 0 then
@@ -973,7 +1030,7 @@ end
 -- --------------------------------------------------------------------- UI
 local function IsActive()
     local db = Settings()
-    return db.enabled and (db.recipes or db.classOnly or db.minLevel ~= nil or AnyArmorTicked(db) or AnyWeaponTicked(db) or AnyResistTicked(db) or AnyStatWanted(db))
+    return db.enabled and (db.recipes or db.classOnly or db.minLevel ~= nil or db.maxLevel ~= nil or AnyArmorTicked(db) or AnyWeaponTicked(db) or AnyResistTicked(db) or AnyStatWanted(db))
 end
 
 local function UpdateButton(frame)
@@ -1043,10 +1100,11 @@ local function RefreshWindow(frame)
     if win.questRewards then
         win.questRewards.fdjLabel:SetText("|TInterface\\GossipFrame\\AvailableQuestIcon:16:16:0:0|t " .. L("LF_QUEST_REWARDS"))
     end
-    win.minLabel:SetText(L("LF_MIN_LEVEL"))
+    win.minLabel:SetText(L("LF_LEVEL_RANGE")) -- levelrange
     local on = Settings().enabled and true or false
     win.toggle:SetText(on and L("LF_DISABLE") or L("LF_ENABLE"))
     if not win.minBox:HasFocus() then win.minBox:SetText(Settings().minLevel and tostring(Settings().minLevel) or "") end
+    if win.maxBox and not win.maxBox:HasFocus() then win.maxBox:SetText(Settings().maxLevel and tostring(Settings().maxLevel) or "") end
     local grey = on and 1 or 0.45
     for _, check in ipairs(win.checks) do
         check:SetChecked(check.fdjGet() and true or false)
@@ -1171,23 +1229,39 @@ local function CreateWindow(frame)
     win.statsHint:SetJustifyH("LEFT")
     win.statsHint:SetTextColor(0.72, 0.67, 0.58)
 
-    -- Minimum required level: empty shows everything.
+    -- levelrange (2.1.2): Level range, from [  ] - to [  ] (the level the
+    -- item needs); an empty box sets no limit on its side, both empty shows
+    -- everything. 10 - 10: the items for level 10.
     win.minLabel = win:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlight")
     win.minLabel:SetPoint("TOPLEFT", win.statsHint, "BOTTOMLEFT", 0, -10)
-    win.minBox = CreateFrame("EditBox", "ForeverDungeonJournalLootFilterMinLevel", win, "InputBoxTemplate")
-    win.minBox:SetSize(44, 20)
+    local function LevelBox(name, key)
+        local box = CreateFrame("EditBox", name, win, "InputBoxTemplate")
+        box:SetSize(36, 20)
+        box:SetAutoFocus(false)
+        if box.SetNumeric then box:SetNumeric(true) end
+        if box.SetMaxLetters then box:SetMaxLetters(2) end
+        if box.SetJustifyH then box:SetJustifyH("CENTER") end
+        box:SetScript("OnTextChanged", function(self, userInput)
+            if not userInput then return end
+            local value = tonumber(self:GetText() or "")
+            Settings()[key] = (value and value > 0) and value or nil
+            Changed(frame)
+        end)
+        box:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
+        box:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+        box:SetScript("OnTabPressed", function(self) -- from one box to the other
+            local other = (self == win.minBox) and win.maxBox or win.minBox
+            if other then other:SetFocus() end
+        end)
+        return box
+    end
+    win.minBox = LevelBox("ForeverDungeonJournalLootFilterMinLevel", "minLevel")
     win.minBox:SetPoint("LEFT", win.minLabel, "RIGHT", 12, 0)
-    win.minBox:SetAutoFocus(false)
-    if win.minBox.SetNumeric then win.minBox:SetNumeric(true) end
-    if win.minBox.SetMaxLetters then win.minBox:SetMaxLetters(2) end
-    win.minBox:SetScript("OnTextChanged", function(self, userInput)
-        if not userInput then return end
-        local value = tonumber(self:GetText() or "")
-        Settings().minLevel = (value and value > 0) and value or nil
-        Changed(frame)
-    end)
-    win.minBox:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
-    win.minBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    win.levelDash = win:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlight")
+    win.levelDash:SetPoint("LEFT", win.minBox, "RIGHT", 6, 0)
+    win.levelDash:SetText("-")
+    win.maxBox = LevelBox("ForeverDungeonJournalLootFilterMaxLevel", "maxLevel")
+    win.maxBox:SetPoint("LEFT", win.levelDash, "RIGHT", 10, 0)
 
     -- Armor type drop-down: a red WoW button like the others in this window,
     -- with a mail-armor icon on the left and a down arrow on the right.
@@ -1653,11 +1727,13 @@ local function CreateWindow(frame)
         s.classOnly = false
         s.stats = {}
         s.minLevel = nil
+        s.maxLevel = nil -- levelrange
         s.armorTypes = {}
         s.weaponTypes = {}
         s.resists = {}
         s.schools = {}
         if frame.lootFilterWindow and frame.lootFilterWindow.minBox then frame.lootFilterWindow.minBox:SetText("") end
+        if frame.lootFilterWindow and frame.lootFilterWindow.maxBox then frame.lootFilterWindow.maxBox:SetText("") end
         RefreshWindow(frame)
         Changed(frame)
     end)
@@ -1910,9 +1986,12 @@ function FDJ.RefreshLootFilterResults(frame)
             row.text:SetFontObject("ForeverDJ_GameFontHighlight")
             row.text:SetPoint("LEFT", row.icon, "RIGHT", 8, 0)
             local name
-            if type(GetItemInfo) == "function" and item[1] and item[1] > 0 then
-                local ok, liveName = pcall(GetItemInfo, item[1])
-                if ok and type(liveName) == "string" then name = liveName end
+            -- favnames (2.1.4): C_Item's (the client has no global
+            -- GetItemInfo), so the item's name is in the client's language
+            local get = (C_Item and C_Item.GetItemInfo) or GetItemInfo
+            if type(get) == "function" and item[1] and item[1] > 0 then
+                local ok, liveName = pcall(get, item[1])
+                if ok and type(liveName) == "string" and not (type(issecretvalue) == "function" and issecretvalue(liveName)) then name = liveName end
             end
             row.text:SetText(name or item[2] or "")
             row.text:SetTextColor(QualityColor(item[4]))
@@ -2072,7 +2151,10 @@ local function QuestRewardBosses(dungeonName, dungeon)
             QuestRewardIDs(quest, function(id, reward)
                 if seen[id] then return end
                 seen[id] = true
-                loot[#loot + 1] = { id, reward[2], RewardSlot(id), tonumber(reward[3]) or 1 }
+                -- questlevel (2.1.2, M 21 Nov 2026): a reward counts at its
+                -- quest's level too ("Available from Level 40"), not only at
+                -- the item's (most rewards need no level of their own).
+                loot[#loot + 1] = { id, reward[2], RewardSlot(id), tonumber(reward[3]) or 1, fdjQuestLevel = tonumber(quest.requires) }
             end)
             if #loot > 0 then
                 local title = quest.name or ""
@@ -2131,7 +2213,7 @@ end
 local function BuildPage()
     local bosses, itemCount = {}, 0
     local db = Settings()
-    local recipesOnly = db.enabled and db.recipes and not db.classOnly and not db.minLevel and not AnyArmorTicked(db) and not AnyWeaponTicked(db) and not AnyResistTicked(db) and not AnyStatWanted(db)
+    local recipesOnly = db.enabled and db.recipes and not db.classOnly and not db.minLevel and not db.maxLevel and not AnyArmorTicked(db) and not AnyWeaponTicked(db) and not AnyResistTicked(db) and not AnyStatWanted(db)
     FDJ.lootFilterStrict = true
     for _, dungeonName in ipairs(FDJ.ORDER or {}) do
         local dungeon = FDJ.DB and FDJ.DB[dungeonName]
@@ -2789,3 +2871,28 @@ do
         return plain(boss, ...)
     end
 end
+
+-- BEGIN lootremoved
+-- lootremoved (2.1.3, M 21 Nov 2026, the Obsidian Sentinel: "Due to players
+-- finding an efficient gold farm with this boss, blizzard has for now
+-- removed its loot"): the line under the boss's name (boss.lootNote).
+do
+    local strings = {
+        enUS = "Due to players finding an efficient gold farm with this boss, Blizzard has for now removed its loot.",
+        deDE = "Weil Spieler mit diesem Boss eine effiziente Goldfarm gefunden haben, hat Blizzard seine Beute vorerst entfernt.",
+        frFR = "Des joueurs ayant trouvé une ferme d'or efficace avec ce boss, Blizzard a retiré son butin pour l'instant.",
+        esES = "Como los jugadores encontraron una forma eficaz de farmear oro con este jefe, Blizzard ha retirado su botín por ahora.",
+        itIT = "Poiché i giocatori hanno trovato un modo efficace di farmare oro con questo boss, Blizzard ha rimosso il suo bottino per ora.",
+        ptBR = "Como os jogadores encontraram um farm de ouro eficiente com este chefe, a Blizzard removeu o saque dele por enquanto.",
+        ruRU = "Игроки нашли на этом боссе эффективный фарм золота, поэтому Blizzard пока убрала его добычу.",
+        koKR = "플레이어들이 이 우두머리로 효율적인 골드 파밍 방법을 찾아내서 블리자드가 당분간 전리품을 제거했습니다.",
+        zhCN = "由于玩家发现利用这个首领能高效刷金，暴雪暂时移除了它的掉落。",
+        zhTW = "由於玩家發現利用這個首領能高效刷金，暴雪暫時移除了它的掉落。",
+    }
+    strings.esMX = strings.esES
+    for locale, text in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t and t.LOOT_NOTE_LOOT_REMOVED == nil then t.LOOT_NOTE_LOOT_REMOVED = text end
+    end
+end
+-- END lootremoved

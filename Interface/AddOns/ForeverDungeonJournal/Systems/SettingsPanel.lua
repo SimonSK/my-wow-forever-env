@@ -170,10 +170,106 @@ end
 -- ---------------------------------------------------------------------------
 -- Panel
 -- ---------------------------------------------------------------------------
+-- BEGIN tabspage
+-- tabspage (2.1.5): Options > Tabs, its title and the four Show options.
+do
+    local strings = {
+        enUS = { "Tabs",
+            "Show Sleeping Bag quest", "Shows the Sleeping Bag icon on the journal's home page (next to the WoW Forever and Raids icons). Untick it to hide the icon; you can also right-click the icon and pick Hide. A tracked Sleeping Bag chain keeps its arrow.",
+            "Show Onyxia Attunement", "Shows the Onyxia icon on the journal's home page (next to the Sleeping Bag's). It ticks itself once you can start the chain (level 48 Alliance, 55 Horde); tick it to see the icon sooner. Untick it to hide the icon; you can also right-click the icon and pick Hide.",
+            "Show Tier Sets", "Shows the Tier Sets icon on the journal's home page. It stays unticked until level 50; tick it to see the icon sooner. Untick it to hide the icon; you can also right-click the icon and pick Hide.",
+            "Show Character Logs icon", "Shows the Character Logs icon (your character's portrait, left of Favourites) on the journal's home page. Untick it to hide the icon; you can also right-click the icon and pick Hide. Runs are still logged; /dj log opens the Character Logs." },
+        deDE = { "Reiter",
+            "Schlafsack-Quest anzeigen", "Zeigt das Schlafsack-Symbol auf der Startseite des Journals (neben den Symbolen für WoW Forever und Schlachtzüge). Entferne den Haken, um das Symbol auszublenden; geht auch per Rechtsklick auf das Symbol → Ausblenden. Eine verfolgte Schlafsack-Questreihe behält ihren Pfeil.",
+            "Onyxia-Einstimmung anzeigen", "Zeigt das Onyxia-Symbol auf der Startseite des Journals (neben dem des Schlafsacks). Der Haken setzt sich von selbst, sobald du die Questreihe beginnen kannst (Stufe 48 Allianz, 55 Horde); setze ihn, um das Symbol früher zu sehen. Entferne den Haken, um es auszublenden; geht auch per Rechtsklick auf das Symbol → Ausblenden.",
+            "Tier-Sets anzeigen", "Zeigt das Tier-Sets-Symbol auf der Startseite des Journals. Bis Stufe 50 ist der Haken nicht gesetzt; setze ihn, um das Symbol früher zu sehen. Entferne den Haken, um es auszublenden; geht auch per Rechtsklick auf das Symbol → Ausblenden.",
+            "Charakter-Logs-Symbol anzeigen", "Zeigt das Symbol der Charakter-Logs (das Porträt deines Charakters, links von Favoriten) auf der Startseite des Journals. Entferne den Haken, um es auszublenden; geht auch per Rechtsklick auf das Symbol → Ausblenden. Runs werden weiter aufgezeichnet; /dj log öffnet die Charakter-Logs." },
+        frFR = { "Onglets",
+            "Afficher la quête du sac de couchage", "Affiche l'icône du sac de couchage sur la page d'accueil du journal (à côté des icônes WoW Forever et Raids). Décochez pour masquer l'icône ; clic droit sur l'icône → Masquer fonctionne aussi. Une chaîne du sac de couchage suivie garde sa flèche.",
+            "Afficher l'accès à Onyxia", "Affiche l'icône d'Onyxia sur la page d'accueil du journal (à côté de celle du sac de couchage). L'option se coche d'elle-même dès que vous pouvez commencer la suite (niveau 48 Alliance, 55 Horde) ; cochez-la pour voir l'icône plus tôt. Décochez-la pour masquer l'icône ; clic droit sur l'icône → Masquer fonctionne aussi.",
+            "Afficher les ensembles de tier", "Affiche l'icône des ensembles de tier sur la page d'accueil du journal. L'option reste décochée jusqu'au niveau 50 ; cochez-la pour voir l'icône plus tôt. Décochez-la pour masquer l'icône ; clic droit sur l'icône → Masquer fonctionne aussi.",
+            "Afficher l'icône des journaux du personnage", "Affiche l'icône des journaux du personnage (le portrait de votre personnage, à gauche de Favoris) sur la page d'accueil du journal. Décochez pour masquer l'icône ; vous pouvez aussi faire un clic droit sur l'icône et choisir Masquer. Les runs sont toujours enregistrés ; /dj log ouvre les journaux." },
+        esES = { "Pestañas",
+            "Mostrar la misión del saco de dormir", "Muestra el icono del saco de dormir en la página de inicio del diario (junto a los iconos de WoW Forever y Bandas). Desmárcalo para ocultar el icono; también puedes hacer clic derecho en el icono y elegir Ocultar. Una cadena del saco de dormir seguida conserva su flecha.",
+            "Mostrar sintonización de Onyxia", "Muestra el icono de Onyxia en la página de inicio del diario (junto al del saco de dormir). Se marca sola cuando puedes empezar la cadena (nivel 48 Alianza, 55 Horda); márcala para ver el icono antes. Desmárcala para ocultar el icono; también puedes hacer clic derecho en el icono y elegir Ocultar.",
+            "Mostrar conjuntos de tier", "Muestra el icono de conjuntos de tier en la página de inicio del diario. Sigue desmarcada hasta el nivel 50; márcala para ver el icono antes. Desmárcala para ocultar el icono; también puedes hacer clic derecho en el icono y elegir Ocultar.",
+            "Mostrar el icono de registros del personaje", "Muestra el icono de los registros del personaje (el retrato de tu personaje, a la izquierda de Favoritos) en la página de inicio del diario. Desmárcalo para ocultar el icono; también puedes hacer clic derecho en el icono y elegir Ocultar. Las runs se siguen registrando; /dj log abre los registros." },
+        itIT = { "Schede",
+            "Mostra la missione del sacco a pelo", "Mostra l'icona del sacco a pelo nella pagina iniziale del diario (accanto alle icone di WoW Forever e Incursioni). Togli la spunta per nascondere l'icona; funziona anche il clic destro sull'icona → Nascondi. Una catena del sacco a pelo seguita mantiene la sua freccia.",
+            "Mostra sintonia di Onyxia", "Mostra l'icona di Onyxia nella pagina iniziale del diario (accanto a quella del sacco a pelo). Si spunta da sola quando puoi iniziare la catena (livello 48 Alleanza, 55 Orda); spuntala per vedere l'icona prima. Togli la spunta per nasconderla; funziona anche il clic destro sull'icona → Nascondi.",
+            "Mostra set tier", "Mostra l'icona dei set tier nella pagina iniziale del diario. Resta senza spunta fino al livello 50; spuntala per vedere l'icona prima. Togli la spunta per nasconderla; puoi anche fare clic destro sull'icona e scegliere Nascondi.",
+            "Mostra l'icona dei registri del personaggio", "Mostra l'icona dei registri del personaggio (il ritratto del tuo personaggio, a sinistra di Preferiti) nella pagina iniziale del diario. Togli la spunta per nascondere l'icona; puoi anche cliccare col tasto destro sull'icona e scegliere Nascondi. Le run vengono comunque registrate; /dj log apre i registri." },
+        ptBR = { "Abas",
+            "Mostrar a missão do saco de dormir", "Mostra o ícone do saco de dormir na página inicial do diário (ao lado dos ícones de WoW Forever e Raides). Desmarque para ocultar o ícone; também dá para clicar com o botão direito no ícone e escolher Ocultar. Uma cadeia do saco de dormir acompanhada mantém sua seta.",
+            "Mostrar sintonização de Onyxia", "Mostra o ícone de Onyxia na página inicial do diário (ao lado do saco de dormir). Marca-se sozinha quando você pode começar a sequência (nível 48 Aliança, 55 Horda); marque para ver o ícone antes. Desmarque para ocultar o ícone; também dá para clicar com o botão direito no ícone e escolher Ocultar.",
+            "Mostrar conjuntos de tier", "Mostra o ícone de conjuntos de tier na página inicial do diário. Fica desmarcada até o nível 50; marque para ver o ícone antes. Desmarque para ocultar o ícone; você também pode clicar com o botão direito no ícone e escolher Ocultar.",
+            "Mostrar o ícone de registros do personagem", "Mostra o ícone dos registros do personagem (o retrato do seu personagem, à esquerda de Favoritos) na página inicial do diário. Desmarque para ocultar o ícone; você também pode clicar com o botão direito no ícone e escolher Ocultar. As runs continuam sendo registradas; /dj log abre os registros." },
+        ruRU = { "Вкладки",
+            "Показывать задание спального мешка", "Показывает значок спального мешка на главной странице журнала (рядом со значками WoW Forever и рейдов). Снимите галочку, чтобы скрыть значок; можно также щёлкнуть по значку правой кнопкой и выбрать «Скрыть». Отслеживаемая цепочка спального мешка сохраняет свою стрелку.",
+            "Показывать доступ к Ониксии", "Показывает значок Ониксии на главной странице журнала (рядом со значком спального мешка). Галочка ставится сама, когда вы можете начать цепочку (48 уровень у Альянса, 55 у Орды); поставьте её, чтобы увидеть значок раньше. Снимите галочку, чтобы скрыть значок; можно также щёлкнуть по значку правой кнопкой и выбрать «Скрыть».",
+            "Показывать комплекты тиров", "Показывает значок комплектов тиров на главной странице журнала. До 50-го уровня галочка снята; поставьте её, чтобы увидеть значок раньше. Снимите галочку, чтобы скрыть значок; также можно щёлкнуть по значку правой кнопкой и выбрать «Скрыть».",
+            "Показывать значок журналов персонажа", "Показывает значок журналов персонажа (портрет вашего персонажа, слева от «Избранного») на главной странице журнала. Снимите галочку, чтобы скрыть значок; также можно щёлкнуть по значку правой кнопкой и выбрать «Скрыть». Забеги по-прежнему записываются; /dj log открывает журналы." },
+        koKR = { "탭",
+            "침낭 퀘스트 표시", "도감 첫 페이지에 침낭 아이콘을 표시합니다(WoW Forever 및 공격대 아이콘 옆). 체크를 해제하면 아이콘이 숨겨지며, 아이콘을 우클릭하고 숨기기를 선택해도 됩니다. 추적 중인 침낭 퀘스트 연계는 화살표가 계속 표시됩니다.",
+            "오닉시아 입장 퀘스트 표시", "도감 첫 페이지에 오닉시아 아이콘을 표시합니다(침낭 아이콘 옆). 연계 퀘스트를 시작할 수 있게 되면(얼라이언스 48레벨, 호드 55레벨) 저절로 체크되며, 더 일찍 보려면 체크하세요. 체크를 해제하면 아이콘이 숨겨지며, 아이콘을 우클릭하고 숨기기를 선택해도 됩니다.",
+            "티어 세트 표시", "도감 첫 페이지에 티어 세트 아이콘을 표시합니다. 50레벨까지는 체크가 해제되어 있으며, 체크하면 더 일찍 표시됩니다. 체크를 해제하면 아이콘이 숨겨지며, 아이콘을 우클릭하고 숨기기를 선택해도 됩니다.",
+            "캐릭터 기록 아이콘 표시", "도감 첫 페이지에 캐릭터 기록 아이콘(즐겨찾기 왼쪽의 캐릭터 초상화)을 표시합니다. 체크를 해제하면 아이콘이 숨겨지며, 아이콘을 우클릭하고 숨기기를 선택해도 됩니다. 기록은 계속 저장되며 /dj log 로 열 수 있습니다." },
+        zhCN = { "标签页",
+            "显示睡袋任务", "在日志首页显示睡袋图标（位于WoW Forever和团队副本图标旁）。取消勾选即可隐藏图标；也可以右键点击图标并选择隐藏。已追踪的睡袋任务链仍会显示箭头。",
+            "显示奥妮克希亚钥匙任务", "在日志首页显示奥妮克希亚图标（位于睡袋图标旁）。当你可以开始系列任务时（联盟48级，部落55级）会自动勾选；勾选可提前显示。取消勾选即可隐藏图标；也可以右键点击图标并选择隐藏。",
+            "显示套装", "在日志首页显示套装图标。50级之前保持未勾选；勾选可提前显示。取消勾选即可隐藏图标；也可以右键点击图标并选择隐藏。",
+            "显示角色记录图标", "在日志首页显示角色记录图标（收藏左边的角色头像）。取消勾选即可隐藏图标；也可以右键点击图标并选择隐藏。副本仍会被记录；/dj log 可打开角色记录。" },
+        zhTW = { "分頁",
+            "顯示睡袋任務", "在日誌首頁顯示睡袋圖示（位於WoW Forever和團隊副本圖示旁）。取消勾選即可隱藏圖示；也可以右鍵點擊圖示並選擇隱藏。已追蹤的睡袋任務鏈仍會顯示箭頭。",
+            "顯示奧妮克希亞鑰匙任務", "在日誌首頁顯示奧妮克希亞圖示（位於睡袋圖示旁）。當你可以開始系列任務時（聯盟48級，部落55級）會自動勾選；勾選可提前顯示。取消勾選即可隱藏圖示；也可以右鍵點擊圖示並選擇隱藏。",
+            "顯示套裝", "在日誌首頁顯示套裝圖示。50級之前保持未勾選；勾選可提前顯示。取消勾選即可隱藏圖示；也可以右鍵點擊圖示並選擇隱藏。",
+            "顯示角色紀錄圖示", "在日誌首頁顯示角色紀錄圖示（最愛左邊的角色頭像）。取消勾選即可隱藏圖示；也可以右鍵點擊圖示並選擇隱藏。副本仍會被紀錄；/dj log 可開啟角色紀錄。" },
+    }
+    strings.esMX = strings.esES
+    local KEYS = { "OPT_TABS", "OPT_SHOW_SLEEPING_BAG", "OPT_SHOW_SLEEPING_BAG_TIP", "OPT_SHOW_ONYXIA", "OPT_SHOW_ONYXIA_TIP",
+        "OPT_SHOW_TIER", "OPT_SHOW_TIER_TIP", "OPT_SHOW_RUNLOG", "OPT_SHOW_RUNLOG_TIP" }
+    for locale, list in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            for i, key in ipairs(KEYS) do
+                if t[key] == nil then t[key] = list[i] end
+            end
+        end
+    end
+end
+-- END tabspage
+
+-- chatlines (2.1.5): Options > General > Hide chat lines
+do
+    local strings = {
+        enUS = { "Hide chat lines", "Hides the lines the journal writes in your chat: the version when you log in, the note when an update is out, the unlock and run messages and the like." },
+        deDE = { "Chatzeilen ausblenden", "Blendet die Zeilen aus, die das Journal in deinen Chat schreibt: die Version beim Einloggen, den Hinweis auf ein Update, die Freischaltungs- und Run-Meldungen und Ähnliches." },
+        frFR = { "Masquer les lignes du chat", "Masque les lignes que le journal écrit dans votre chat : la version à la connexion, l'avis de mise à jour, les messages de déblocage et de run, etc." },
+        esES = { "Ocultar líneas del chat", "Oculta las líneas que el diario escribe en tu chat: la versión al conectarte, el aviso de actualización, los mensajes de desbloqueo y de runs, etc." },
+        itIT = { "Nascondi le righe in chat", "Nasconde le righe che il diario scrive nella tua chat: la versione all'accesso, l'avviso di aggiornamento, i messaggi di sblocco e delle run e simili." },
+        ptBR = { "Ocultar linhas do chat", "Oculta as linhas que o diário escreve no seu chat: a versão ao entrar, o aviso de atualização, as mensagens de desbloqueio e de runs e afins." },
+        ruRU = { "Скрыть строки в чате", "Скрывает строки, которые журнал пишет в ваш чат: версию при входе, сообщение о новой версии, сообщения о разблокировке и забегах и т. п." },
+        koKR = { "채팅 메시지 숨기기", "도감이 채팅창에 쓰는 메시지를 숨깁니다: 접속 시 버전, 업데이트 알림, 잠금 해제 및 던전 기록 메시지 등." },
+        zhCN = { "隐藏聊天信息", "隐藏日志在聊天框中显示的信息：登录时的版本、更新提示、解锁和副本记录信息等。" },
+        zhTW = { "隱藏聊天訊息", "隱藏日誌在聊天框中顯示的訊息：登入時的版本、更新提示、解鎖和副本紀錄訊息等。" },
+    }
+    strings.esMX = strings.esES
+    for locale, pair in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            if t.OPT_HIDE_CHAT == nil then t.OPT_HIDE_CHAT = pair[1] end
+            if t.OPT_HIDE_CHAT_TIP == nil then t.OPT_HIDE_CHAT_TIP = pair[2] end
+        end
+    end
+end
+
 local panel
 
 local OPTIONS = {
     { header = "OPT_UI" },
+    -- exporttab (2.1.1, M 20 Nov 2026: "I don't like the export button like
+    -- this. Just make an export tab before Discord"): the character code is
+    -- now on its own Export tab (BuildExportPage), not a button here.
     -- bindtop (2.0.11): the key bind first on General, so players see it at once.
     { keybind = true, label = "OPT_BIND" },
     -- resizemode (2.0.10, M 17 Nov 2026): opens the journal with a handle on
@@ -214,42 +310,24 @@ local OPTIONS = {
         end,
     },
     {
+        -- chatlines (2.1.5): the journal's own lines in the chat (FDJ.ChatLine, Core/Bootstrap.lua)
+        label = "OPT_HIDE_CHAT",
+        tip = "OPT_HIDE_CHAT_TIP",
+        get = function() return Store().hideChatLines == true end,
+        set = function(on) Store().hideChatLines = on and true or nil end,
+    },
+    {
         label = "OPT_HIDE_LFG",
         tip = "OPT_HIDE_LFG_TIP",
         get = function() return FDJ.IsLFGButtonHidden and FDJ.IsLFGButtonHidden() or false end,
         set = function(on) if FDJ.SetLFGButtonHidden then FDJ.SetLFGButtonHidden(on) end end,
     },
     {
-        label = "OPT_HIDE_SLEEPING_BAG",
-        tip = "OPT_HIDE_SLEEPING_BAG_TIP",
-        get = function() return FDJ.IsSleepingBagHidden and FDJ.IsSleepingBagHidden() or false end,
-        set = function(on) if FDJ.SetSleepingBagHidden then FDJ.SetSleepingBagHidden(on) end end,
-    },
-    {
-        -- The Onyxia Attunement icon (Systems/OnyxiaAttunement.lua).
-        -- hideonyxia (2.0.15): a Hide option like the others (it was "Show").
-        -- Ticked (hidden) by default until the character can start the chain,
-        -- then it unticks by itself; any level may untick it to see it sooner.
-        -- Ticking it again below the level goes back to that default.
-        label = "OPT_HIDE_ONYXIA",
-        tip = "OPT_HIDE_ONYXIA_TIP",
-        get = function() return not (FDJ.IsOnyxiaIconShown and FDJ.IsOnyxiaIconShown()) end,
-        set = function(on) if FDJ.SetOnyxiaIconShown then FDJ.SetOnyxiaIconShown(not on) end end,
-        refreshHome = true,
-    },
-    {
-        -- tierhide (2.0.10): the Tier Sets icon (Systems/TierSets.lua)
-        label = "OPT_HIDE_TIER",
-        tip = "OPT_HIDE_TIER_TIP",
-        get = function() return FDJ.IsTierIconHidden and FDJ.IsTierIconHidden() or false end,
-        set = function(on) if FDJ.SetTierIconHidden then FDJ.SetTierIconHidden(on) end end,
-        refreshHome = true,
-    },
-    {
-        label = "OPT_HIDE_RUNLOG",
-        tip = "OPT_HIDE_RUNLOG_TIP",
-        get = function() return FDJ.IsRunLogButtonHidden and FDJ.IsRunLogButtonHidden() or false end,
-        set = function(on) if FDJ.SetRunLogButtonHidden then FDJ.SetRunLogButtonHidden(on) end end,
+        -- exporttitle (2.1.1): the Export button in the title bar (Systems/BugReport.lua)
+        label = "OPT_HIDE_EXPORT",
+        tip = "OPT_HIDE_EXPORT_TIP",
+        get = function() return FDJ.IsExportButtonHidden and FDJ.IsExportButtonHidden() or false end,
+        set = function(on) if FDJ.SetExportButtonHidden then FDJ.SetExportButtonHidden(on) end end,
     },
     {
         label = "OPT_HIDE_DUNGEON_MAP",
@@ -259,6 +337,47 @@ local OPTIONS = {
             if on then Store().worldMapOverlay = false else Store().worldMapOverlay = nil end
             if FDJ.RefreshWorldMapOverlay and WorldMapFrame and WorldMapFrame:IsShown() then pcall(FDJ.RefreshWorldMapOverlay) end
         end,
+    },
+    -- (useprompt: its Hide option taken out, M 20 Nov 2026: "I don't want it")
+    -- tabspage (2.1.5, M 24 Nov 2026: "the general list is getting too long ...
+    -- another option ... tabs below general, and that's where we have the hide
+    -- sleeping bag, hide onyxia ... all the buttons that change the tabs, the
+    -- icons in our main page"; "change the wording from hide to show ... it's
+    -- easier for new players ... I also don't want to change the settings for
+    -- everybody else"): the home page's icons, each a Show option. Only the
+    -- wording and the tick turn round: what is saved stays as it was (an icon
+    -- hidden before is shown unticked).
+    { header = "OPT_TABS" },
+    {
+        label = "OPT_SHOW_SLEEPING_BAG",
+        tip = "OPT_SHOW_SLEEPING_BAG_TIP",
+        get = function() return not (FDJ.IsSleepingBagHidden and FDJ.IsSleepingBagHidden()) end,
+        set = function(on) if FDJ.SetSleepingBagHidden then FDJ.SetSleepingBagHidden(not on) end end,
+    },
+    {
+        -- The Onyxia Attunement icon (Systems/OnyxiaAttunement.lua).
+        -- Unticked (hidden) by default until the character can start the
+        -- chain, then it ticks by itself; any level may tick it to see it
+        -- sooner. Unticking it below the level goes back to that default.
+        label = "OPT_SHOW_ONYXIA",
+        tip = "OPT_SHOW_ONYXIA_TIP",
+        get = function() return FDJ.IsOnyxiaIconShown and FDJ.IsOnyxiaIconShown() or false end,
+        set = function(on) if FDJ.SetOnyxiaIconShown then FDJ.SetOnyxiaIconShown(on) end end,
+        refreshHome = true,
+    },
+    {
+        -- tierhide (2.0.10): the Tier Sets icon (Systems/TierSets.lua)
+        label = "OPT_SHOW_TIER",
+        tip = "OPT_SHOW_TIER_TIP",
+        get = function() return not (FDJ.IsTierIconHidden and FDJ.IsTierIconHidden()) end,
+        set = function(on) if FDJ.SetTierIconHidden then FDJ.SetTierIconHidden(not on) end end,
+        refreshHome = true,
+    },
+    {
+        label = "OPT_SHOW_RUNLOG",
+        tip = "OPT_SHOW_RUNLOG_TIP",
+        get = function() return not (FDJ.IsRunLogButtonHidden and FDJ.IsRunLogButtonHidden()) end,
+        set = function(on) if FDJ.SetRunLogButtonHidden then FDJ.SetRunLogButtonHidden(not on) end end,
     },
     { header = "OPT_DUNGEON_LIST" },
     {
@@ -377,6 +496,19 @@ local OPTIONS = {
         end,
         refreshHome = true,
     },
+    {
+        -- hidedone (2.1.3, M 21 Nov 2026: "the hide completed quest ... needed
+        -- to be in the option panel under quests"): the quests handed in are
+        -- left out of a dungeon's quest list (Core/Journal.lua); the dungeon
+        -- list on the main page still counts them. Off by default.
+        label = "OPT_HIDE_DONE_QUESTS",
+        tip = "OPT_HIDE_DONE_QUESTS_TIP",
+        get = function() return Store().hideDoneQuests == true end,
+        set = function(on)
+            Store().hideDoneQuests = on or nil
+            if FDJ.ScheduleQuestRefresh then pcall(FDJ.ScheduleQuestRefresh) end
+        end,
+    },
     -- lootoptions (2.0.11, M 18 Nov 2026: "add a new Loot section in the
     -- option panel, the options: Hide drop rates, Hide quest item drops").
     { header = "OPT_LOOT" },
@@ -436,6 +568,13 @@ local OPTIONS = {
         tip = "OPT_TRACK_HIDE_GOLD_TIP",
         get = function() return FDJ.TrackerOption and FDJ.TrackerOption("hideGold") or false end,
         set = function(on) if FDJ.SetTrackerOption then FDJ.SetTrackerOption("hideGold", on) end end,
+    },
+    {
+        -- lootname (2.1.4): the coin only, without the items' vendor value
+        label = "OPT_TRACK_HIDE_VENDOR",
+        tip = "OPT_TRACK_HIDE_VENDOR_TIP",
+        get = function() return FDJ.TrackerOption and FDJ.TrackerOption("hideVendor") or false end,
+        set = function(on) if FDJ.SetTrackerOption then FDJ.SetTrackerOption("hideVendor", on) end end,
     },
     {
         label = "OPT_TRACK_HIDE_BOSSES",
@@ -514,7 +653,7 @@ local OPTIONS = {
 local BINDING = "FOREVERDUNGEONJOURNAL_TOGGLE"
 local MODIFIER_KEYS = { LSHIFT = true, RSHIFT = true, LCTRL = true, RCTRL = true, LALT = true, RALT = true, LMETA = true, RMETA = true }
 
-local function Say(text) print("|cffd8a83cDungeonJournal:|r " .. text) end
+local function Say(text) FDJ.ChatLine("|cffd8a83cDungeonJournal:|r " .. text) end -- (chatlines)
 
 -- "CTRL-SHIFT-L" -> "Ctrl-Shift-L" (the client's own abbreviation shows "c-L").
 local MODIFIER_NAMES = { CTRL = "Ctrl", SHIFT = "Shift", ALT = "Alt", META = "Cmd" }
@@ -1066,6 +1205,178 @@ local function BuildDiscordPage(page)
     end)
 end
 
+-- exporttab (2.1.1, M 20 Nov 2026: "make an export tab before Discord at
+-- the top ... everything is going to be in that tab"): what the /dj export
+-- window shows, on the Options' own tab: the character's name and quests
+-- done, the code (one line; a click selects all of it for Ctrl+C), the
+-- website's address to paste it at, and how to copy it. The code is made
+-- again each time the tab opens. Like the Discord tab, it never takes the
+-- keyboard by itself (it would block key bindings).
+local function BuildExportPage(page)
+    local y = PageTitle(page, "OPT_EXPORT")
+    local info = page:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontNormal")
+    info:SetPoint("TOPLEFT", LABEL_X, y - 10)
+    info:SetPoint("RIGHT", page, "RIGHT", -34, 0)
+    info:SetJustifyH("LEFT")
+
+    local code = CreateFrame("EditBox", nil, page)
+    code:SetMultiLine(false)
+    code:SetMaxLetters(0)
+    code:SetFontObject("ForeverDJ_GameFontHighlightSmall")
+    code:SetPoint("TOPLEFT", info, "BOTTOMLEFT", 6, -22)
+    code:SetPoint("RIGHT", page, "RIGHT", -40, 0)
+    code:SetHeight(22)
+    code:SetAutoFocus(false)
+    code:SetTextInsets(4, 4, 0, 0)
+    if code.SetClipsChildren then code:SetClipsChildren(true) end
+    code:SetScript("OnMouseUp", function(self) self:HighlightText() end)
+    code:SetScript("OnEditFocusGained", function(self) self:HighlightText() end)
+    code:SetScript("OnEditFocusLost", function(self) self:HighlightText(0, 0) end)
+    code:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    code:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
+    -- Typing into it would only corrupt the code, so put it straight back.
+    code:SetScript("OnTextChanged", function(self, byUser)
+        if byUser then
+            self:SetText(page.code or "")
+            self:HighlightText()
+        end
+    end)
+    local codeBg = CreateFrame("Frame", nil, page, "BackdropTemplate")
+    codeBg:SetPoint("TOPLEFT", code, -6, 6)
+    codeBg:SetPoint("BOTTOMRIGHT", code, 6, -6)
+    codeBg:SetFrameLevel(math.max(0, code:GetFrameLevel() - 1))
+    if codeBg.SetBackdrop then
+        codeBg:SetBackdrop({
+            bgFile = "Interface\\Buttons\\WHITE8X8",
+            edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+            edgeSize = 10,
+            insets = { left = 2, right = 2, top = 2, bottom = 2 },
+        })
+        codeBg:SetBackdropColor(0, 0, 0, 0.6)
+        codeBg:SetBackdropBorderColor(0.28, 0.28, 0.28, 1)
+    end
+
+    -- exportgo (2.1.1, M 20 Nov 2026: "the export link ... send the user to
+    -- the export option page, with the usual highlight on the code"): the
+    -- gold band that pulses on an option row opened from elsewhere
+    -- (PulseRow), here on the code's row; FDJ.OpenExportTab asks for it.
+    local glow = page:CreateTexture(nil, "BACKGROUND", nil, 2)
+    glow:SetPoint("LEFT", page, "LEFT", 10, 0)
+    glow:SetPoint("RIGHT", page, "RIGHT", -10, 0)
+    glow:SetPoint("TOP", codeBg, "TOP", 0, 5)
+    glow:SetPoint("BOTTOM", codeBg, "BOTTOM", 0, -5)
+    glow:SetTexture("Interface\\Buttons\\WHITE8X8")
+    glow:SetVertexColor(1.00, 0.78, 0.25, 0.35)
+    glow:SetAlpha(0)
+    local pulse = glow:CreateAnimationGroup()
+    pulse:SetLooping("BOUNCE")
+    local fade = pulse:CreateAnimation("Alpha")
+    fade:SetFromAlpha(0)
+    fade:SetToAlpha(1)
+    fade:SetDuration(0.4)
+    pulse:SetScript("OnLoop", function(self)
+        self.loops = (self.loops or 0) + 1
+        if self.loops >= 6 then self:Stop() end
+    end)
+    function page.PulseCode()
+        pulse.loops = 0
+        pulse:Stop()
+        pulse:Play()
+    end
+
+    -- "Paste the code here:" and the website's address (a click selects it).
+    local siteLabel = page:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontNormal")
+    siteLabel:SetPoint("TOPLEFT", code, "BOTTOMLEFT", -6, -26)
+    panel.texts[#panel.texts + 1] = { siteLabel, "EXPORT_SITE" }
+    local site = CreateFrame("EditBox", nil, page, "InputBoxTemplate")
+    if FDJ.OwnFonts then FDJ.OwnFonts(site) end
+    site:SetSize(250, 22)
+    site:SetPoint("LEFT", siteLabel, "RIGHT", 12, 0)
+    site:SetAutoFocus(false)
+    site:SetScript("OnEditFocusGained", function(self) self:HighlightText() end)
+    site:SetScript("OnMouseUp", function(self) self:HighlightText() end)
+    site:SetScript("OnEditFocusLost", function(self) self:HighlightText(0, 0) end)
+    site:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    site:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
+    site:SetScript("OnTextChanged", function(self, byUser)
+        if byUser then
+            self:SetText(FDJ.SITE_CHARACTER_URL or "")
+            self:HighlightText()
+        end
+    end)
+
+    local copy = page:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlightSmall")
+    copy:SetPoint("TOPLEFT", siteLabel, "BOTTOMLEFT", 0, -22)
+    copy:SetPoint("RIGHT", page, "RIGHT", -34, 0)
+    copy:SetJustifyH("LEFT")
+    copy:SetTextColor(0.75, 0.72, 0.66)
+    panel.texts[#panel.texts + 1] = { copy, "EXPORT_COPY" }
+
+    -- exporthidetab (2.1.1, M 20 Nov 2026: "at the bottom an option to toggle
+    -- on and off called hide export button on main page ... I'm always going
+    -- to give them options to use their UI as they wish"): the same switch as
+    -- General's, at the bottom of this tab, under a gold rule.
+    local bottom = CreateFrame("Frame", nil, page)
+    bottom:SetPoint("BOTTOMLEFT", 0, 8)
+    bottom:SetPoint("BOTTOMRIGHT", 0, 8)
+    bottom:SetHeight(40)
+    local rule = GoldBand(page, "ARTWORK", 0.75, 0.3)
+    rule:SetPoint("BOTTOMLEFT", bottom, "TOPLEFT", 18, 4)
+    rule:SetPoint("BOTTOMRIGHT", bottom, "TOPRIGHT", -18, 4)
+    rule:SetHeight(1)
+    CreateOptionRow(bottom, {
+        label = "OPT_HIDE_EXPORT",
+        tip = "OPT_HIDE_EXPORT_TIP",
+        get = function() return FDJ.IsExportButtonHidden and FDJ.IsExportButtonHidden() or false end,
+        set = function(on) if FDJ.SetExportButtonHidden then FDJ.SetExportButtonHidden(on) end end,
+    }, -4)
+
+    -- exportlag (2.1.1, M 20 Nov 2026: "when I click on the export tab ...
+    -- there is some lag"): the tab opens at once and the code is made the
+    -- next moment (a quicker compression too, Systems/CharacterExport.lua).
+    -- Leaving the tab before then makes nothing.
+    local function Fill()
+        local ok, text, questCount, name = false, nil, nil, nil
+        if FDJ.BuildExportCode then ok, text, questCount, name = pcall(FDJ.BuildExportCode) end
+        if ok and type(text) == "string" then
+            page.code = text
+            info:SetText(string.format(L("EXPORT_HINT"), name or "?", questCount or 0))
+        else
+            page.code = ""
+            info:SetText(L("EXPORT_ERROR"))
+        end
+        code:SetText(page.code)
+        if code.SetCursorPosition then code:SetCursorPosition(0) end -- show the start
+        if page.pulseWanted then -- exportgo: opened from the Export button
+            page.pulseWanted = nil
+            -- pulseonce (2.1.1, M 20 Nov 2026: "only once, not every time we
+            -- open it or we click on it"): the first time only, for good
+            -- (once per account, exportPulseSeen).
+            local db = ForeverDungeonJournalDB
+            if type(db) == "table" and not db.exportPulseSeen then
+                db.exportPulseSeen = true
+                page.PulseCode()
+            end
+        end
+    end
+    page:SetScript("OnShow", function()
+        page.code = ""
+        info:SetText("")
+        code:SetText("")
+        code:ClearFocus()
+        site:SetText(FDJ.SITE_CHARACTER_URL or "")
+        if site.SetCursorPosition then site:SetCursorPosition(0) end
+        site:ClearFocus()
+        page.fillToken = (page.fillToken or 0) + 1
+        local token = page.fillToken
+        local function Later()
+            if page.fillToken == token and page:IsVisible() then Fill() end
+        end
+        if C_Timer and C_Timer.After then C_Timer.After(0.05, Later) else Fill() end
+    end)
+    page:SetScript("OnHide", function() page.fillToken = (page.fillToken or 0) + 1 end)
+end
+
 -- BEGIN scrollpages (2.0.10)
 -- An options page whose rows don't fit (General with the key bind, RPG Mode
 -- with the slider and the Export / Import buttons) scrolls: mouse wheel, or
@@ -1399,14 +1710,22 @@ local function CreatePanel()
         for i, e in ipairs(entries) do e.underline:SetShown(i == index) end
     end
 
-    -- ---------------------------------------------------- tab 2: Discord
+    -- ---------------------------------------------------- tab 2: Export
+    -- exporttab (2.1.1): the character code, before Discord (BuildExportPage)
+    local exportView = CreateFrame("Frame", nil, box)
+    exportView:SetAllPoints(box)
+    exportView:Hide()
+    BuildExportPage(exportView)
+    panel.exportView, panel.exportTab = exportView, 2 -- exportgo (FDJ.OpenExportTab)
+
+    -- ---------------------------------------------------- tab 3: Discord
     local discordView = CreateFrame("Frame", nil, box)
     discordView:SetAllPoints(box)
     BuildDiscordPage(discordView)
 
     -- ------------------------------------------------------------- tabs
-    local views = { optionsView, discordView }
-    local tabKeys = { "OPT_TAB_OPTIONS", "OPT_DISCORD" }
+    local views = { optionsView, exportView, discordView }
+    local tabKeys = { "OPT_TAB_OPTIONS", "RUNLOG_EXPORT", "OPT_DISCORD" }
     panel.tabs = {}
     local function SelectTab(index)
         panel.selectedTab = index
@@ -1469,6 +1788,218 @@ local function CreatePanel()
             left = left + tab:GetWidth() + 6
         end
     end
+
+    -- BEGIN optsearch
+    do
+        -- optsearch (2.1.1, M 20 Nov 2026: "top right of the options, add a little
+        -- search that people can type in their option and just find it"): a search
+        -- box at the top right. Typing lists every option whose name or tip has
+        -- each word typed (any case), under its section's name, each with its own
+        -- box to tick (the same option as on its page). Emptied (the X, or a
+        -- section clicked on the left), the pages are back as they were.
+        local results = CreateFrame("Frame", nil, optionsView)
+        results:SetPoint("TOPLEFT", SIDEBAR_W + 1, 0)
+        results:SetPoint("BOTTOMRIGHT", 0, 0)
+        results:Hide()
+        local resultsRows, resultsY = ScrollPage(results, PageTitle(results, "OPT_SEARCH_RESULTS"))
+        local noneFound = resultsRows:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontDisable")
+        noneFound:SetPoint("TOPLEFT", LABEL_X, resultsY - 7)
+        panel.texts[#panel.texts + 1] = { noneFound, "OPT_SEARCH_NONE" }
+        noneFound:Hide()
+
+        -- Lower case, letters with accents and Cyrillic too (string.lower is
+        -- A-Z only); colour codes out.
+        local function Fold(text)
+            local s = tostring(text or ""):gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):lower()
+            s = s:gsub("\195([\128-\158])", function(c)
+                local b = c:byte()
+                if b ~= 151 then return "\195" .. string.char(b + 32) end
+            end)
+            s = s:gsub("\208\129", "\209\145")
+            s = s:gsub("\208([\144-\159])", function(c) return "\208" .. string.char(c:byte() + 32) end)
+            s = s:gsub("\208([\160-\175])", function(c) return "\209" .. string.char(c:byte() - 32) end)
+            return s
+        end
+        local function OptionText(option, section)
+            local parts = { L(section) }
+            if option.label then parts[#parts + 1] = L(option.label) end
+            if option.tip then parts[#parts + 1] = L(option.tip) end
+            if option.keybind then parts[#parts + 1] = L("OPT_BIND_TIP") end
+            for _, spec in ipairs(option.buttons or {}) do
+                parts[#parts + 1] = L(spec.label)
+                if spec.tip then parts[#parts + 1] = L(spec.tip) end
+            end
+            return Fold(table.concat(parts, " "))
+        end
+
+        -- One row per option found, made the first time it is found.
+        local mirrors, sectionNames = {}, {}
+        local function Mirror(option)
+            local holder = mirrors[option]
+            if holder then return holder end
+            holder = CreateFrame("Frame", nil, resultsRows)
+            if option.keybind then
+                panel.keybinds[#panel.keybinds + 1] = CreateKeybindRow(holder, option, -4)
+                holder.h = 36
+            elseif option.slider then
+                CreateSliderRow(holder, option, 0)
+                holder.h = 54
+            elseif option.buttons then
+                CreateButtonsRow(holder, option, 0)
+                holder.h = 40
+            else
+                CreateOptionRow(holder, option, 0)
+                holder.h = 35
+            end
+            mirrors[option] = holder
+            return holder
+        end
+        local function SectionName(key)
+            local s = sectionNames[key]
+            if not s then
+                s = resultsRows:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlightSmall")
+                s:SetTextColor(0.80, 0.68, 0.45)
+                sectionNames[key] = s
+            end
+            return s
+        end
+        local function RefreshValues()
+            for _, button in ipairs(panel.keybinds) do button.Refresh() end
+            for _, slider in ipairs(panel.sliders or {}) do slider:Refresh() end
+            for _, check in ipairs(panel.checks) do
+                local ok, value = pcall(check.option.get)
+                check:SetChecked(ok and value or false)
+            end
+        end
+
+        local searching = false
+        local function RunSearch(text)
+            local words = {}
+            for w in Fold(text):gmatch("%S+") do words[#words + 1] = w end
+            if #words == 0 then
+                if searching then
+                    searching = false
+                    results:Hide()
+                    SelectPage(panel.selectedPage or 1)
+                    RefreshValues()
+                end
+                return
+            end
+            searching = true
+            if panel.selectedTab ~= 1 then SelectTab(1) end
+            for _, p in ipairs(pages) do p:Hide() end
+            for _, e in ipairs(entries) do
+                e.fade:Hide()
+                e.underline:Hide()
+                e.text:SetTextColor(1, 0.82, 0)
+            end
+            for _, holder in pairs(mirrors) do holder:Hide() end
+            for _, s in pairs(sectionNames) do s:Hide() end
+            local y, found, section, shownSection = resultsY, 0, nil, nil
+            for _, option in ipairs(OPTIONS) do
+                if option.header then
+                    section = option.header
+                elseif not option.action then
+                    local text = OptionText(option, section)
+                    local all = true
+                    for _, w in ipairs(words) do
+                        if not text:find(w, 1, true) then all = false break end
+                    end
+                    if all then
+                        if shownSection ~= section then
+                            shownSection = section
+                            local s = SectionName(section)
+                            s:SetText(L(section))
+                            s:ClearAllPoints()
+                            s:SetPoint("TOPLEFT", 22, y - 6)
+                            s:Show()
+                            y = y - 24
+                        end
+                        local holder = Mirror(option)
+                        holder:ClearAllPoints()
+                        holder:SetPoint("TOPLEFT", resultsRows, "TOPLEFT", 0, y)
+                        holder:SetPoint("TOPRIGHT", resultsRows, "TOPRIGHT", 0, y)
+                        holder:SetHeight(holder.h)
+                        holder:Show()
+                        y = y - holder.h
+                        found = found + 1
+                    end
+                end
+            end
+            noneFound:SetShown(found == 0)
+            resultsRows:SetHeight(math.max(1, -y + 4))
+            results:Show()
+            if results.scroll then results.scroll:SetVerticalScroll(0) end
+            if results.fdjRefreshScroll then results.fdjRefreshScroll() end
+            RefreshValues()
+        end
+
+        -- The box, in the journal's own search box style (smaller).
+        local search = CreateFrame("EditBox", "ForeverDungeonJournalSettingsSearch", panel, "BackdropTemplate")
+        search:SetSize(176, 22)
+        search:SetPoint("BOTTOMRIGHT", box, "TOPRIGHT", -4, 4)
+        search:SetFrameLevel(box:GetFrameLevel() + 2)
+        search:SetAutoFocus(false)
+        search:SetMaxLetters(40)
+        search:SetFontObject("ForeverDJ_GameFontHighlightSmall")
+        search:SetTextInsets(22, 20, 0, 0)
+        search:SetJustifyH("LEFT")
+        search:SetBackdrop({
+            bgFile = "Interface\\Buttons\\WHITE8X8",
+            edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+            edgeSize = 10,
+            insets = { left = 3, right = 3, top = 3, bottom = 3 },
+        })
+        search:SetBackdropColor(0.045, 0.043, 0.040, 0.98)
+        search:SetBackdropBorderColor(0.34, 0.31, 0.27, 1)
+        local icon = search:CreateTexture(nil, "ARTWORK")
+        icon:SetSize(12, 12)
+        icon:SetPoint("LEFT", 6, 0)
+        icon:SetTexture("Interface\\Common\\UI-Searchbox-Icon")
+        icon:SetVertexColor(0.72, 0.70, 0.66)
+        local placeholder = search:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlightSmall")
+        placeholder:SetPoint("LEFT", 22, 0)
+        placeholder:SetPoint("RIGHT", -20, 0)
+        placeholder:SetJustifyH("LEFT")
+        placeholder:SetWordWrap(false)
+        placeholder:SetTextColor(0.48, 0.47, 0.44)
+        panel.texts[#panel.texts + 1] = { placeholder, "OPT_SEARCH" }
+        local clear = CreateFrame("Button", nil, search)
+        clear:SetSize(14, 14)
+        clear:SetPoint("RIGHT", -4, 0)
+        clear:SetNormalTexture("Interface\\Buttons\\UI-StopButton")
+        clear:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight", "ADD")
+        clear:Hide()
+        clear:SetScript("OnClick", function()
+            search:SetText("")
+            search:ClearFocus()
+        end)
+        search:SetScript("OnTextChanged", function(self)
+            local text = self:GetText() or ""
+            placeholder:SetShown(text == "")
+            clear:SetShown(text ~= "")
+            RunSearch(text)
+        end)
+        search:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+        search:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
+        panel.searchBox = search
+
+        -- A section clicked on the left: its page, the search emptied.
+        for _, e in ipairs(entries) do
+            e:HookScript("OnClick", function()
+                if searching then
+                    search:SetText("")
+                    search:ClearFocus()
+                end
+            end)
+        end
+        -- Closed: the search is emptied (Options opens on its pages again).
+        panel:HookScript("OnHide", function()
+            search:ClearFocus()
+            if (search:GetText() or "") ~= "" then search:SetText("") end
+        end)
+    end
+    -- END optsearch
 
     -- noclose (2.0.9): no Close button at the bottom; the X in the title bar
     -- (and Esc) close the panel.
@@ -1560,6 +2091,18 @@ local function PulseRow(check)
     check.fdjPulse.loops = 0
     check.fdjPulse:Stop()
     check.fdjPulse:Play()
+end
+
+-- exportgo (2.1.1, M 20 Nov 2026: "the export link to just send the user to
+-- the export option page, with the usual highlight on the code"): the
+-- Options open on the Export tab, and once the code is made its row pulses.
+function FDJ.OpenExportTab()
+    if not panel then CreatePanel() end
+    panel.selectedTab = panel.exportTab or 2
+    if panel.exportView then panel.exportView.pulseWanted = true end
+    if panel:IsShown() then panel:Hide() end
+    panel:Show()
+    if panel.Raise then panel:Raise() end
 end
 
 -- quiet: just open that page, no flashing row.
@@ -1667,6 +2210,42 @@ do
 end
 -- END hideunavailable
 
+-- BEGIN hidedone
+do
+    local strings = {
+        enUS = { OPT_HIDE_DONE_QUESTS = "Hide completed quests",
+            OPT_HIDE_DONE_QUESTS_TIP = "Leaves the quests you've handed in out of a dungeon's quest list, so you only see what's left to do. The dungeon list still counts them." },
+        deDE = { OPT_HIDE_DONE_QUESTS = "Abgeschlossene Quests ausblenden",
+            OPT_HIDE_DONE_QUESTS_TIP = "Lässt die Quests, die du abgegeben hast, aus der Questliste eines Dungeons weg, damit du nur siehst, was noch zu tun ist. Die Dungeonliste zählt sie weiterhin." },
+        frFR = { OPT_HIDE_DONE_QUESTS = "Masquer les quêtes terminées",
+            OPT_HIDE_DONE_QUESTS_TIP = "Retire de la liste des quêtes d'un donjon celles que vous avez rendues, pour ne voir que ce qu'il reste à faire. La liste des donjons les compte toujours." },
+        esES = { OPT_HIDE_DONE_QUESTS = "Ocultar misiones completadas",
+            OPT_HIDE_DONE_QUESTS_TIP = "Quita de la lista de misiones de una mazmorra las que ya entregaste, para que solo veas lo que te queda por hacer. La lista de mazmorras las sigue contando." },
+        itIT = { OPT_HIDE_DONE_QUESTS = "Nascondi missioni completate",
+            OPT_HIDE_DONE_QUESTS_TIP = "Toglie dall'elenco delle missioni di una spedizione quelle che hai già consegnato, così vedi solo cosa ti resta da fare. L'elenco delle spedizioni le conta comunque." },
+        ptBR = { OPT_HIDE_DONE_QUESTS = "Ocultar missões concluídas",
+            OPT_HIDE_DONE_QUESTS_TIP = "Tira da lista de missões de uma masmorra as que você já entregou, para você ver só o que falta fazer. A lista de masmorras continua contando-as." },
+        ruRU = { OPT_HIDE_DONE_QUESTS = "Скрывать выполненные задания",
+            OPT_HIDE_DONE_QUESTS_TIP = "Убирает из списка заданий подземелья те, что вы уже сдали, чтобы видеть только то, что осталось. Список подземелий по-прежнему их учитывает." },
+        koKR = { OPT_HIDE_DONE_QUESTS = "완료한 퀘스트 숨기기",
+            OPT_HIDE_DONE_QUESTS_TIP = "이미 완료한 퀘스트를 던전 퀘스트 목록에서 빼서 남은 것만 보이게 합니다. 던전 목록에서는 계속 집계됩니다." },
+        zhCN = { OPT_HIDE_DONE_QUESTS = "隐藏已完成的任务",
+            OPT_HIDE_DONE_QUESTS_TIP = "在副本的任务列表中不显示你已交付的任务，只显示还要做的。副本列表仍会计入它们。" },
+        zhTW = { OPT_HIDE_DONE_QUESTS = "隱藏已完成的任務",
+            OPT_HIDE_DONE_QUESTS_TIP = "在副本的任務列表中不顯示你已交付的任務，只顯示還要做的。副本列表仍會計入它們。" },
+    }
+    strings.esMX = strings.esES
+    for locale, entries in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            for key, value in pairs(entries) do
+                if t[key] == nil then t[key] = value end
+            end
+        end
+    end
+end
+-- END hidedone
+
 -- lootoptions (2.0.11): Options > Loot.
 do
     local strings = {
@@ -1690,6 +2269,31 @@ do
             OPT_HIDE_QUEST_DROPS = "隐藏任务物品掉落", OPT_HIDE_QUEST_DROPS_TIP = "首领掉落页面不列出首领掉落的任务物品。" },
         zhTW = { OPT_LOOT = "掉落",
             OPT_HIDE_QUEST_DROPS = "隱藏任務物品掉落", OPT_HIDE_QUEST_DROPS_TIP = "首領掉落頁面不列出首領掉落的任務物品。" },
+    }
+    strings.esMX = strings.esES
+    for locale, entries in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            for key, value in pairs(entries) do
+                if t[key] == nil then t[key] = value end
+            end
+        end
+    end
+end
+
+-- optsearch (2.1.1): the Options search box's texts.
+do
+    local strings = {
+        enUS = { OPT_SEARCH = "Search options", OPT_SEARCH_RESULTS = "Search results", OPT_SEARCH_NONE = "No options found." },
+        deDE = { OPT_SEARCH = "Optionen durchsuchen", OPT_SEARCH_RESULTS = "Suchergebnisse", OPT_SEARCH_NONE = "Keine Optionen gefunden." },
+        frFR = { OPT_SEARCH = "Rechercher une option", OPT_SEARCH_RESULTS = "Résultats de la recherche", OPT_SEARCH_NONE = "Aucune option trouvée." },
+        esES = { OPT_SEARCH = "Buscar opciones", OPT_SEARCH_RESULTS = "Resultados de la búsqueda", OPT_SEARCH_NONE = "No se encontraron opciones." },
+        itIT = { OPT_SEARCH = "Cerca opzioni", OPT_SEARCH_RESULTS = "Risultati della ricerca", OPT_SEARCH_NONE = "Nessuna opzione trovata." },
+        ptBR = { OPT_SEARCH = "Buscar opções", OPT_SEARCH_RESULTS = "Resultados da busca", OPT_SEARCH_NONE = "Nenhuma opção encontrada." },
+        ruRU = { OPT_SEARCH = "Поиск настроек", OPT_SEARCH_RESULTS = "Результаты поиска", OPT_SEARCH_NONE = "Настройки не найдены." },
+        koKR = { OPT_SEARCH = "옵션 검색", OPT_SEARCH_RESULTS = "검색 결과", OPT_SEARCH_NONE = "옵션을 찾을 수 없습니다." },
+        zhCN = { OPT_SEARCH = "搜索选项", OPT_SEARCH_RESULTS = "搜索结果", OPT_SEARCH_NONE = "未找到选项。" },
+        zhTW = { OPT_SEARCH = "搜尋選項", OPT_SEARCH_RESULTS = "搜尋結果", OPT_SEARCH_NONE = "找不到選項。" },
     }
     strings.esMX = strings.esES
     for locale, entries in pairs(strings) do

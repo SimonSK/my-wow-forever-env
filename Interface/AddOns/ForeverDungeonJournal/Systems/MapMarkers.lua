@@ -81,7 +81,7 @@ local function RemoveTarget(target)
     end
     GameTooltip:Hide()
     if DEFAULT_CHAT_FRAME then
-        DEFAULT_CHAT_FRAME:AddMessage("|cffffd36bDungeonJournal:|r " .. L("MAP_MARKER_REMOVED"))
+        FDJ.ChatLine("|cffffd36bDungeonJournal:|r " .. L("MAP_MARKER_REMOVED"))
     end
 end
 
@@ -1454,15 +1454,27 @@ local function UpdateMapMarkers()
     return true
 end
 
+-- mapidle (2.1.4, M 23 Nov 2026, the performance check: once a pin had been
+-- shown on the world map, its updater ran 20 times a second for the rest of
+-- the session, the map closed too): it keeps the pins in place only while
+-- the world map is open; closed, the pins are put away once and it rests
+-- until the map opens again.
 local function StartQuestStartMapTicker()
-    if questStartMapTicker then return end
+    if questStartMapTicker then
+        questStartMapTicker:Show()
+        return
+    end
     questStartMapTicker = CreateFrame("Frame")
     questStartMapTicker.elapsed = 0
     questStartMapTicker:SetScript("OnUpdate", function(self, elapsed)
+        if not self.fdjMapHooked and WorldMapFrame and WorldMapFrame.HookScript then
+            self.fdjMapHooked = true
+            WorldMapFrame:HookScript("OnShow", function() self.elapsed = 0.05 self:Show() end)
+        end
         self.elapsed = self.elapsed + elapsed
         if self.elapsed < 0.05 then return end
         self.elapsed = 0
-        UpdateMapMarkers()
+        if UpdateMapMarkers() == false and self.fdjMapHooked then self:Hide() end
     end)
 end
 
@@ -1512,6 +1524,28 @@ local function ShowRecordedLocationOnMap(loc, fallbackText)
     mapTargets[key] = target
     -- arrow: the waypoint arrow points here too (see the end of this file).
     if FDJ.SetWaypointArrow then FDJ.SetWaypointArrow(target) end
+    -- padmap (2.1.1, kaanu's controller report: Show on Map broke the game's
+    -- controller mode every time). With the game's controller mode on, the
+    -- game opens and closes its windows itself, with protected code; the
+    -- world map opened by an addon puts the addon's code in that path and
+    -- the game blocks the controller (as the Dungeon Tracker's Reset popup
+    -- did). So with a controller the map is not opened: the spot is marked
+    -- (its pin shows when the player opens the map) and the chat says so.
+    -- M 20 Nov 2026: no arrow here ("the arrow is our routing guide").
+    if FDJ.GamePadMode and FDJ.GamePadMode() then
+        StartQuestStartMapTicker()
+        UpdateMapMarkers()
+        if DEFAULT_CHAT_FRAME then
+            local padText = FreeText(target.label or fallbackText or "recorded location")
+            padText = tostring(padText):gsub("%s*\226\128\148%s*", " - "):gsub("%s*\226\128\147%s*", " - ")
+            if not padText:find(" - ", 1, true) and target.mapID and C_Map and C_Map.GetMapInfo then
+                local ok, info = pcall(C_Map.GetMapInfo, target.mapID)
+                if ok and info and info.name and info.name ~= "" then padText = padText .. " - " .. info.name end
+            end
+            FDJ.ChatLine("|cffffd36bDungeonJournal:|r " .. L("MAP_PAD_MARKED", padText))
+        end
+        return
+    end
 
     local opened = false
     local inCombat = InCombatLockdown and InCombatLockdown()
@@ -1553,12 +1587,12 @@ local function ShowRecordedLocationOnMap(loc, fallbackText)
             if ok and info and info.name and info.name ~= "" then mapText = mapText .. " - " .. info.name end
         end
         if opened then
-            DEFAULT_CHAT_FRAME:AddMessage("|cffffd36bDungeonJournal:|r " .. L("MAP_MARKED", mapText))
+            FDJ.ChatLine("|cffffd36bDungeonJournal:|r " .. L("MAP_MARKED", mapText))
         elseif inCombat then
             local key = GetBindingKey and GetBindingKey("TOGGLEWORLDMAP")
-            DEFAULT_CHAT_FRAME:AddMessage("|cffffd36bDungeonJournal:|r " .. L("MAP_COMBAT", key or "M"))
+            FDJ.ChatLine("|cffffd36bDungeonJournal:|r " .. L("MAP_COMBAT", key or "M"))
         else
-            DEFAULT_CHAT_FRAME:AddMessage("|cffffd36bDungeonJournal:|r " .. L("MAP_OPEN_FAILED"))
+            FDJ.ChatLine("|cffffd36bDungeonJournal:|r " .. L("MAP_OPEN_FAILED"))
         end
     end
 end
@@ -1999,8 +2033,11 @@ do
 
     local function ItemName(id, fallback)
         local name
-        if id and GetItemInfo then
-            local ok, n = pcall(GetItemInfo, id)
+        -- favnames (2.1.4): C_Item's (the client has no global GetItemInfo),
+        -- so the item's name is in the client's language
+        local get = (C_Item and C_Item.GetItemInfo) or GetItemInfo
+        if id and type(get) == "function" then
+            local ok, n = pcall(get, id)
             if ok then name = Plain(n) end
         end
         if not name and id and C_Item and C_Item.RequestLoadItemDataByID then pcall(C_Item.RequestLoadItemDataByID, id) end
@@ -2170,7 +2207,29 @@ do
                     FDJ.StrokeIcon(b, b.icon, size)
                     b:SetFrameLevel(holder:GetFrameLevel() + 15)
                     b:ClearAllPoints()
-                    b:SetPoint("CENTER", holder, "TOPLEFT", pin.x * artW, -(pin.y * artH))
+                    -- pinclear (2.1.3, M 21 Nov 2026 on Uldaman's map: "make sure
+                    -- they don't overlap too much, but it's in the same room"):
+                    -- a quest's spot beside a boss's pin in the same room, and
+                    -- at any zoom moved just clear of the boss's ring
+                    local qx, qy = pin.x * artW, pin.y * artH
+                    local journal = _G.ForeverDungeonJournalFrame
+                    for _, m in ipairs((journal and journal.dungeonMapBossMarkers) or {}) do
+                        if m:IsShown() and m:GetParent() == holder then
+                            local okP, _, _, _, mx, my = pcall(m.GetPoint, m, 1)
+                            if okP and type(mx) == "number" and type(my) == "number" then
+                                my = -my
+                                local ring = ((m.border and m.border:GetWidth()) or (m:GetWidth() * 1.55)) * 0.42
+                                local need = ring + size * 0.36 + 2
+                                local dx, dy = qx - mx, qy - my
+                                local d = math.sqrt(dx * dx + dy * dy)
+                                if d < need then
+                                    if d < 0.5 then dx, dy, d = -1, 0, 1 end
+                                    qx, qy = mx + dx / d * need, my + dy / d * need
+                                end
+                            end
+                        end
+                    end
+                    b:SetPoint("CENTER", holder, "TOPLEFT", qx, -qy)
                     b:Show()
                 end
             end
@@ -2297,6 +2356,16 @@ do
             if t and t.ARROW_UPSTAIRS == nil then t.ARROW_UPSTAIRS = text end
         end
     end
+    do -- fphere (2.1.4): to the flight master of a flight point not found yet
+        local strings = { enUS = "Get the flight path at %s", deDE = "Hol dir den Flugpunkt %s", frFR = "Récupérez le point de vol : %s",
+            esES = "Consigue la ruta de vuelo de %s", itIT = "Prendi il punto di volo di %s", ptBR = "Pegue a rota de voo de %s",
+            ruRU = "Откройте точку полёта: %s", koKR = "%s 비행 경로를 얻으세요", zhCN = "获取%s的飞行点", zhTW = "取得%s的飛行點" }
+        strings.esMX = strings.esES
+        for locale, text in pairs(strings) do
+            local t = FDJ.Locales and FDJ.Locales[locale]
+            if t and t.ARROW_GET_FLIGHT_PATH == nil then t.ARROW_GET_FLIGHT_PATH = text end
+        end
+    end
     do -- arrowkill (2.0.13)
         local strings = { enUS = "Kill %s", deDE = "Töte %s", frFR = "Tuez %s", esES = "Mata a %s", itIT = "Uccidi %s", ptBR = "Mate %s",
             ruRU = "Убейте: %s", koKR = "%s 처치", zhCN = "击杀%s", zhTW = "擊殺%s" }
@@ -2326,25 +2395,25 @@ do
     do
         local strings = {
             enUS = { ARROW_NEXT_SPAWN = "Not found? Next spot (%d/%d)", ARROW_USE_ITEM = "Use %s in your bags to start the quest", ARROW_DISTANCE = "%d yds", ARROW_TIP_MOVE = "Drag to move.", ARROW_TIP_HIDE = "Shift + right-click to hide the arrow.",
-                ARROW_BOAT = "Take the boat to %s", ARROW_ZEPPELIN = "Take the zeppelin to %s", ARROW_FLY = "Fly to %s" },
+                ARROW_BOAT = "Take the boat to %s", ARROW_ZEPPELIN = "Take the zeppelin to %s", ARROW_FLY = "Fly to %s", ARROW_FLY_FROM = "Fly from %s to %s" },
             deDE = { ARROW_NEXT_SPAWN = "Nicht gefunden? Nächster Ort (%d/%d)", ARROW_USE_ITEM = "Benutze %s in deinen Taschen, um die Quest anzunehmen", ARROW_DISTANCE = "%d m", ARROW_TIP_MOVE = "Ziehen zum Verschieben.", ARROW_TIP_HIDE = "Umschalt + Rechtsklick blendet den Pfeil aus.",
-                ARROW_BOAT = "Nimm das Schiff nach %s", ARROW_ZEPPELIN = "Nimm den Zeppelin nach %s", ARROW_FLY = "Flieg nach %s" },
+                ARROW_BOAT = "Nimm das Schiff nach %s", ARROW_ZEPPELIN = "Nimm den Zeppelin nach %s", ARROW_FLY = "Flieg nach %s", ARROW_FLY_FROM = "Flieg von %s nach %s" },
             frFR = { ARROW_NEXT_SPAWN = "Introuvable ? Endroit suivant (%d/%d)", ARROW_USE_ITEM = "Utilisez %s dans vos sacs pour commencer la quête", ARROW_DISTANCE = "%d m", ARROW_TIP_MOVE = "Faites glisser pour déplacer.", ARROW_TIP_HIDE = "Maj + clic droit pour masquer la flèche.",
-                ARROW_BOAT = "Prenez le bateau pour %s", ARROW_ZEPPELIN = "Prenez le zeppelin pour %s", ARROW_FLY = "Volez vers %s" },
+                ARROW_BOAT = "Prenez le bateau pour %s", ARROW_ZEPPELIN = "Prenez le zeppelin pour %s", ARROW_FLY = "Volez vers %s", ARROW_FLY_FROM = "Volez de %s vers %s" },
             esES = { ARROW_NEXT_SPAWN = "¿No está? Siguiente lugar (%d/%d)", ARROW_USE_ITEM = "Usa %s de tus bolsas para empezar la misión", ARROW_DISTANCE = "%d m", ARROW_TIP_MOVE = "Arrastra para mover.", ARROW_TIP_HIDE = "Mayús + clic derecho para ocultar la flecha.",
-                ARROW_BOAT = "Toma el barco a %s", ARROW_ZEPPELIN = "Toma el zepelín a %s", ARROW_FLY = "Vuela a %s" },
+                ARROW_BOAT = "Toma el barco a %s", ARROW_ZEPPELIN = "Toma el zepelín a %s", ARROW_FLY = "Vuela a %s", ARROW_FLY_FROM = "Vuela de %s a %s" },
             itIT = { ARROW_NEXT_SPAWN = "Non trovato? Prossimo punto (%d/%d)", ARROW_USE_ITEM = "Usa %s nelle borse per iniziare la missione", ARROW_DISTANCE = "%d m", ARROW_TIP_MOVE = "Trascina per spostare.", ARROW_TIP_HIDE = "Maiusc + clic destro per nascondere la freccia.",
-                ARROW_BOAT = "Prendi la nave per %s", ARROW_ZEPPELIN = "Prendi lo zeppelin per %s", ARROW_FLY = "Vola a %s" },
+                ARROW_BOAT = "Prendi la nave per %s", ARROW_ZEPPELIN = "Prendi lo zeppelin per %s", ARROW_FLY = "Vola a %s", ARROW_FLY_FROM = "Vola da %s a %s" },
             ptBR = { ARROW_NEXT_SPAWN = "Não achou? Próximo local (%d/%d)", ARROW_USE_ITEM = "Use %s nas bolsas para começar a missão", ARROW_DISTANCE = "%d m", ARROW_TIP_MOVE = "Arraste para mover.", ARROW_TIP_HIDE = "Shift + clique com o botão direito para ocultar a seta.",
-                ARROW_BOAT = "Pegue o barco para %s", ARROW_ZEPPELIN = "Pegue o zepelim para %s", ARROW_FLY = "Voe para %s" },
+                ARROW_BOAT = "Pegue o barco para %s", ARROW_ZEPPELIN = "Pegue o zepelim para %s", ARROW_FLY = "Voe para %s", ARROW_FLY_FROM = "Voe de %s para %s" },
             ruRU = { ARROW_NEXT_SPAWN = "Не нашли? Следующее место (%d/%d)", ARROW_USE_ITEM = "Используйте %s из сумки, чтобы взять задание", ARROW_DISTANCE = "%d м", ARROW_TIP_MOVE = "Перетащите, чтобы переместить.", ARROW_TIP_HIDE = "Shift + щелчок правой кнопкой, чтобы скрыть стрелку.",
-                ARROW_BOAT = "Корабль: %s", ARROW_ZEPPELIN = "Дирижабль: %s", ARROW_FLY = "Полёт: %s" },
+                ARROW_BOAT = "Корабль: %s", ARROW_ZEPPELIN = "Дирижабль: %s", ARROW_FLY = "Полёт: %s", ARROW_FLY_FROM = "Полёт: %s → %s" },
             koKR = { ARROW_NEXT_SPAWN = "없나요? 다음 장소 (%d/%d)", ARROW_USE_ITEM = "가방의 %s|1을;를; 사용해 퀘스트를 시작하세요", ARROW_DISTANCE = "%d미터", ARROW_TIP_MOVE = "드래그하여 이동합니다.", ARROW_TIP_HIDE = "Shift + 오른쪽 클릭으로 화살표를 숨깁니다.",
-                ARROW_BOAT = "%s행 배를 타세요", ARROW_ZEPPELIN = "%s행 비행선을 타세요", ARROW_FLY = "%s(으)로 비행하세요" },
+                ARROW_BOAT = "%s행 배를 타세요", ARROW_ZEPPELIN = "%s행 비행선을 타세요", ARROW_FLY = "%s(으)로 비행하세요", ARROW_FLY_FROM = "%s에서 %s(으)로 비행하세요" },
             zhCN = { ARROW_NEXT_SPAWN = "没找到？下一个地点 (%d/%d)", ARROW_USE_ITEM = "使用背包中的%s以开始任务", ARROW_DISTANCE = "%d码", ARROW_TIP_MOVE = "拖动以移动。", ARROW_TIP_HIDE = "Shift+右键点击隐藏箭头。",
-                ARROW_BOAT = "乘船前往%s", ARROW_ZEPPELIN = "乘坐飞艇前往%s", ARROW_FLY = "飞往%s" },
+                ARROW_BOAT = "乘船前往%s", ARROW_ZEPPELIN = "乘坐飞艇前往%s", ARROW_FLY = "飞往%s", ARROW_FLY_FROM = "从%s飞往%s" },
             zhTW = { ARROW_NEXT_SPAWN = "沒找到？下一個地點 (%d/%d)", ARROW_USE_ITEM = "使用背包中的%s以開始任務", ARROW_DISTANCE = "%d碼", ARROW_TIP_MOVE = "拖曳以移動。", ARROW_TIP_HIDE = "Shift+右鍵點擊隱藏箭頭。",
-                ARROW_BOAT = "搭船前往%s", ARROW_ZEPPELIN = "搭乘飛艇前往%s", ARROW_FLY = "飛往%s" },
+                ARROW_BOAT = "搭船前往%s", ARROW_ZEPPELIN = "搭乘飛艇前往%s", ARROW_FLY = "飛往%s", ARROW_FLY_FROM = "從%s飛往%s" },
         }
         local more = {
             enUS = { ARROW_TALK_TO = "Talk to %s", ARROW_DIVE_DOWN = "Dive straight down", ARROW_PICK_UP_BOTTOM = "Pick it up at the bottom", ARROW_SWIM_UNDER = "Swim underwater", ARROW_PICK_UP = "Pick it up", ARROW_GET_TO = "Get to %s", ARROW_FLYING = "Flying to %s", ARROW_BELOW = "Below ground: find the way down", ARROW_ABOVE = "Upstairs: find the way up", ARROW_TIP_MAP = "Click to show it on the map.",
@@ -2386,6 +2455,23 @@ do
         }
         for locale, pair in pairs(skipnow) do
             if strings[locale] then strings[locale].ARROW_SKIP_NOW, strings[locale].ARROW_SKIP_NOW_TIP = pair[1], pair[2] end
+        end
+        -- lowdrop (2.1.3): the note on a skippable quest's stops (Power Stones)
+        local lowdrop = {
+            enUS = "Low drop chance, no follow-up. Skip if you want.",
+            deDE = "Niedrige Dropchance, keine Folgequest. Überspringt sie, wenn ihr wollt.",
+            frFR = "Faible chance de butin, pas de suite. Passez-la si vous voulez.",
+            esES = "Baja probabilidad de botín, sin continuación. Sáltala si quieres.",
+            itIT = "Bassa probabilità di drop, nessun seguito. Saltala se vuoi.",
+            ptBR = "Chance de drop baixa, sem continuação. Pule se quiser.",
+            ruRU = "Низкий шанс выпадения, продолжения нет. Можно пропустить.",
+            koKR = "드롭 확률이 낮고 후속 퀘스트가 없습니다. 원하면 건너뛰세요.",
+            zhCN = "掉落几率低，没有后续任务。想跳过就跳过。",
+            zhTW = "掉落機率低，沒有後續任務。想跳過就跳過。",
+        }
+        lowdrop.esMX = lowdrop.esES
+        for locale, text in pairs(lowdrop) do
+            if strings[locale] then strings[locale].ARROW_LOW_DROP = text end
         end
         -- plankjump (2.0.13): Test of Faith's planks
         local jump = { enUS = "Jump off the planks", deDE = "Spring von den Planken", frFR = "Sautez des planches",
@@ -2488,6 +2574,17 @@ do
         return nil
     end
 
+    -- samecontinent (2.1.4): the continent a spot is on (nil: the player's),
+    -- for the Route's order (Systems/QuestText.lua)
+    FDJ.SpotContinent = function(spot)
+        if spot then
+            local w = SpotWorld(spot)
+            return w and w[3] or nil
+        end
+        local _, _, continent = PlayerWorld()
+        return continent
+    end
+
     local function InInstance()
         if type(IsInInstance) ~= "function" then return false end
         local ok, inside = pcall(IsInInstance)
@@ -2544,6 +2641,13 @@ do
         HEARTH_CAST = 100,  -- yards' worth: casting it
         HEARTH_SAVES = 800, -- yards: only said when it saves this much
         HEARTH_NEAR = 300,  -- yards: standing about there already
+        -- hearthfar (2.1.1, M 20 Nov 2026, told to hearth from Riverglades to
+        -- Stormwind and fly to Southshore from there: "unless you're changing
+        -- continent, or you're maybe hearthing from Booty Bay to Ironforge,
+        -- just prefer taking the flight"): to a place on the same continent the
+        -- hearthstone is only said when it saves a trip about that long
+        -- (Booty Bay to Ironforge by air: some 5,700 yards' worth).
+        HEARTH_SAVES_SAME = 4500,
         NAME_NEAR = 600,    -- yards: a flight point this close to where a ride lands names the place
         -- The capitals' innkeepers (Wowhead Forever): where a hearthstone
         -- set there lands, with the English names of the place.
@@ -2598,8 +2702,12 @@ do
         { kind = "boat", faction = "Alliance", from = { 1445, 0.7128, 0.5629 }, to = { 1437, 0.0521, 0.6371 } }, -- Theramore -> Menethil Harbor
         { kind = "boat", from = { 1434, 0.2608, 0.7335 }, to = { 1413, 0.6374, 0.3850 } }, -- Booty Bay -> Ratchet
         { kind = "boat", from = { 1413, 0.6374, 0.3850 }, to = { 1434, 0.2608, 0.7335 } }, -- Ratchet -> Booty Bay
-        { kind = "boat", from = { 1446, 0.6757, 0.2310 }, to = { 2548, 0.7938, 0.5341 } }, -- Steamwheedle Port -> Powderfuse Port
-        { kind = "boat", from = { 2548, 0.7938, 0.5341 }, to = { 1446, 0.6757, 0.2310 } }, -- Powderfuse Port -> Steamwheedle Port
+        -- powderfusedock (2.1.4, M 22 Nov 2026 at the end of Powderfuse Port's pier:
+        -- "the arrow should point towards the actual dock ... it's telling me to
+        -- go back for no reason"): the boat docks at the pier's end (by Sadi and
+        -- the vendors), not at Wharfmaster Whizzbuzz where the pier begins.
+        { kind = "boat", from = { 1446, 0.6757, 0.2310 }, to = { 2548, 0.7980, 0.5400 } }, -- Steamwheedle Port -> Powderfuse Port
+        { kind = "boat", from = { 2548, 0.7980, 0.5400 }, to = { 1446, 0.6757, 0.2310 } }, -- Powderfuse Port -> Steamwheedle Port
         { kind = "zeppelin", faction = "Horde", from = { 1411, 0.5082, 0.1354 }, to = { 1420, 0.6074, 0.5887 } }, -- Orgrimmar -> Undercity
         { kind = "zeppelin", faction = "Horde", from = { 1420, 0.6074, 0.5887 }, to = { 1411, 0.5082, 0.1354 } }, -- Undercity -> Orgrimmar
         { kind = "zeppelin", faction = "Horde", from = { 1411, 0.5069, 0.1289 }, to = { 1434, 0.3143, 0.2991 } }, -- Orgrimmar -> Grom'gol
@@ -2762,17 +2870,206 @@ do
         end
         return flights[continent]
     end
+    -- fpremind (2.1.3, M 21 Nov 2026 at Aerie Peak: "the arrow should
+    -- remind you to pick up flight paths. If it knows you don't have a flight
+    -- path for a certain city, once you get to a quest that is close to the
+    -- flight path that you're missing, it should remind you to pick it up"):
+    -- the flight points of this side not found yet within FP_NEAR yards of
+    -- one of the given spots (a Route's stops, Systems/QuestText.lua). Only
+    -- on a continent whose flight map has been read (a flight point found
+    -- there): before that, nothing is known of it. Each one:
+    -- { spot = { mapID, x, y, label }, name, key (the flight map's name, lower case) }.
+    function FDJ.FlightPathsNear(spots)
+        local FP_NEAR = 300
+        if not (C_TaxiMap and type(C_TaxiMap.GetTaxiNodesForMap) == "function") then return {} end
+        if not (C_Map and type(C_Map.GetMapChildrenInfo) == "function") then return {} end
+        local now = (GetTime and GetTime()) or 0
+        local missing = FDJ.fpMissing
+        if not missing or now - (FDJ.fpMissingAt or 0) > 60 then
+            missing = {}
+            local faction, seen, known = Faction(), {}, {}
+            for _, continentMap in ipairs(CONTINENT_MAPS) do
+                local okZ, zones = pcall(C_Map.GetMapChildrenInfo, continentMap, 3, true)
+                for _, zone in ipairs((okZ and type(zones) == "table") and zones or {}) do
+                    local okN, nodes = pcall(C_TaxiMap.GetTaxiNodesForMap, zone.mapID)
+                    for _, node in ipairs((okN and type(nodes) == "table") and nodes or {}) do
+                        local id = type(node) == "table" and Number(node.nodeID)
+                        if id and not seen[id] and type(node.name) == "string" and type(node.position) == "table" and OurSide(node.faction, faction) then
+                            seen[id] = true
+                            local nx, ny = node.position.x, node.position.y
+                            if (nx == nil or ny == nil) and node.position.GetXY then nx, ny = node.position:GetXY() end
+                            nx, ny = Number(nx), Number(ny)
+                            local wx, wy, c = World(zone.mapID, nx, ny)
+                            if wx and c then
+                                if Found(node) then
+                                    known[c] = true
+                                else
+                                    local name = PlaceName(node.name)
+                                    missing[#missing + 1] = { wx, wy, c = c, name = name, key = string.lower(node.name),
+                                        spot = { mapID = zone.mapID, x = nx, y = ny, label = name, exact = true } }
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            for i = #missing, 1, -1 do
+                if not known[missing[i].c] then table.remove(missing, i) end
+            end
+            FDJ.fpMissing, FDJ.fpMissingAt = missing, now
+        end
+        local out, taken = {}, {}
+        for _, spot in ipairs(type(spots) == "table" and spots or {}) do
+            local sx, sy, sc
+            if type(spot) == "table" and spot.mapID then sx, sy, sc = World(spot.mapID, Number(spot.x), Number(spot.y)) end
+            if sx and sc then
+                for _, fp in ipairs(missing) do
+                    if fp.c == sc and not taken[fp.key] and Yards(sx, sy, fp[1], fp[2]) <= FP_NEAR then
+                        taken[fp.key] = true
+                        out[#out + 1] = fp
+                    end
+                end
+            end
+        end
+        return out
+    end
+    -- fphere (2.1.4, M 22 Nov 2026 at Nethergarde Keep, its gryphon master on
+    -- the minimap, the arrow saying to take the boat to Tanaris: "it should
+    -- just tell me to get the flight path because I'm right here ... There is
+    -- no reason for the arrow not to send you flight"): this side's flight
+    -- point not found yet nearest the player, within FP_HERE yards (on a
+    -- continent whose flight map has been read). The way may fly from it (FlyCost, for
+    -- the way from where the player stands only), the arrow leading to its
+    -- flight master first: "Get the flight path at ..." (Doing). Found there
+    -- (talking to the master), it is a flight point like any other.
+    function Way.UnfoundHere(c, px, py)
+        local FP_HERE = 300
+        local continentMap = c and CONTINENT_MAPS[c + 1]
+        if not (continentMap and px and py and C_TaxiMap and type(C_TaxiMap.GetTaxiNodesForMap) == "function"
+            and C_Map and type(C_Map.GetMapChildrenInfo) == "function") then return nil end
+        local now = (GetTime and GetTime()) or 0
+        local cache = Way.unfound
+        if not cache or cache.c ~= c or now - cache.at > 60 then
+            -- this side's flight points on the continent not found yet; none
+            -- while none there is found (its flight map never read)
+            cache = { c = c, at = now, list = {} }
+            local faction, seen, any = Faction(), {}, false
+            local okZ, zones = pcall(C_Map.GetMapChildrenInfo, continentMap, 3, true)
+            for _, zone in ipairs((okZ and type(zones) == "table") and zones or {}) do
+                local okN, nodes = pcall(C_TaxiMap.GetTaxiNodesForMap, zone.mapID)
+                for _, node in ipairs((okN and type(nodes) == "table") and nodes or {}) do
+                    local id = type(node) == "table" and Number(node.nodeID)
+                    if id and not seen[id] and type(node.name) == "string" and type(node.position) == "table" and OurSide(node.faction, faction) then
+                        seen[id] = true
+                        if Found(node) then
+                            any = true
+                        else
+                            local nx, ny = node.position.x, node.position.y
+                            if (nx == nil or ny == nil) and node.position.GetXY then nx, ny = node.position:GetXY() end
+                            local wx, wy, wc = World(zone.mapID, Number(nx), Number(ny))
+                            if wx and wc == c then
+                                cache.list[#cache.list + 1] = { wx, wy, c = wc, name = PlaceName(node.name), node = node.name,
+                                    key = string.lower(node.name), region = Way.Region(wc, zone.mapID, wx, wy), unfound = true }
+                            end
+                        end
+                    end
+                end
+            end
+            if not any then cache.list = {} end
+            Way.unfound = cache
+        end
+        local found, best, bestD = FoundFlights(), nil, nil
+        for _, fp in ipairs(cache.list) do
+            if not found[fp.key] then
+                local d = Yards(px, py, fp[1], fp[2])
+                if d <= FP_HERE and (not bestD or d < bestD) then best, bestD = fp, d end
+            end
+        end
+        return best and { fp = best, px = px, py = py, c = c } or nil
+    end
+    -- fpgossip (2.1.3, M 21 Nov 2026 at Aerie Peak: the arrow said "Fly to
+    -- Menethil Harbor" and led away from Aerie Peak's gryphon master, "it
+    -- should just send me to the flight path here"): the flight map is not
+    -- the only way a flight point is found. Talking to its flight master
+    -- finds it ("New flight path discovered!"), even for a quest, and one
+    -- found that way (Gryphon Master Talonaxe, a quest giver) was not known
+    -- here until his flight map was opened. On that message, or a gossip
+    -- with a flight option: this side's flight point nearest to the player,
+    -- within 100 yards, is kept as found.
+    function FDJ.FlightPathFoundHere()
+        if not (C_TaxiMap and type(C_TaxiMap.GetTaxiNodesForMap) == "function" and C_Map and type(C_Map.GetBestMapForUnit) == "function") then return end
+        local px, py, here = PlayerWorld()
+        if not (px and here) then return end
+        local okMap, mapID = pcall(C_Map.GetBestMapForUnit, "player")
+        mapID = okMap and Number(mapID) or nil
+        local faction, best, bestYards, guard = Faction(), nil, nil, 0
+        while mapID and guard < 4 do
+            local okN, nodes = pcall(C_TaxiMap.GetTaxiNodesForMap, mapID)
+            for _, node in ipairs((okN and type(nodes) == "table") and nodes or {}) do
+                if type(node) == "table" and type(node.name) == "string" and type(node.position) == "table"
+                    and OurSide(node.faction, faction) and not Found(node) then
+                    local nx, ny = node.position.x, node.position.y
+                    if (nx == nil or ny == nil) and node.position.GetXY then nx, ny = node.position:GetXY() end
+                    local wx, wy, c = World(mapID, Number(nx), Number(ny))
+                    if wx and c == here then
+                        local d = Yards(px, py, wx, wy)
+                        if d <= 100 and (not bestYards or d < bestYards) then best, bestYards = node, d end
+                    end
+                end
+            end
+            local okI, info = pcall(C_Map.GetMapInfo, mapID)
+            mapID = okI and type(info) == "table" and Number(info.parentMapID) or nil
+            if mapID == 0 then mapID = nil end
+            guard = guard + 1
+        end
+        if not best then return end
+        FoundFlights()[string.lower(best.name)] = true
+        flights, FDJ.fpMissing = nil, nil
+        if FDJ.FollowRoutes then pcall(FDJ.FollowRoutes) end
+    end
+    -- "New flight path discovered!"
+    function FDJ.FlightPathHeard(...)
+        local text = _G.ERR_NEWTAXIPATH
+        if type(text) ~= "string" then return end
+        for i = 1, select("#", ...) do
+            if select(i, ...) == text then return FDJ.FlightPathFoundHere() end
+        end
+    end
+    -- A gossip with a flight option (the flight icon, or type "taxi")
+    function FDJ.FlightMasterGossip()
+        local taxi = false
+        if C_GossipInfo and type(C_GossipInfo.GetOptions) == "function" then
+            local ok, options = pcall(C_GossipInfo.GetOptions)
+            for _, o in ipairs((ok and type(options) == "table") and options or {}) do
+                local icon = type(o) == "table" and o.icon or nil
+                if icon == 132057 or (type(o) == "table" and o.type == "taxi")
+                    or (type(icon) == "string" and string.find(string.lower(icon), "taxi", 1, true)) then taxi = true break end
+            end
+        end
+        if not taxi and type(GetGossipOptions) == "function" then
+            local list = { pcall(GetGossipOptions) }
+            if list[1] then
+                for i = 3, #list, 2 do
+                    if list[i] == "taxi" then taxi = true break end
+                end
+            end
+        end
+        if taxi then FDJ.FlightPathFoundHere() end
+    end
     do
         -- A flight point found, or the flight map opened: read them again.
         local watch = CreateFrame("Frame")
-        for _, event in ipairs({ "PLAYER_ENTERING_WORLD", "TAXIMAP_OPENED", "TAXIMAP_CLOSED", "TAXI_NODE_STATUS_CHANGED", "UI_INFO_MESSAGE" }) do
+        for _, event in ipairs({ "PLAYER_ENTERING_WORLD", "TAXIMAP_OPENED", "TAXIMAP_CLOSED", "TAXI_NODE_STATUS_CHANGED", "UI_INFO_MESSAGE", "GOSSIP_SHOW" }) do
             pcall(watch.RegisterEvent, watch, event)
         end
-        watch:SetScript("OnEvent", function(_, event)
+        watch:SetScript("OnEvent", function(_, event, ...)
+            if event == "GOSSIP_SHOW" then pcall(FDJ.FlightMasterGossip) return end -- fpgossip
+            if event == "UI_INFO_MESSAGE" then pcall(FDJ.FlightPathHeard, ...) end -- fpremind, fpgossip
             if event == "TAXIMAP_OPENED" then FDJ.taxiMapOpen = true end -- fpfix
             if event == "TAXIMAP_CLOSED" then FDJ.taxiMapOpen = nil end
             if event == "TAXIMAP_OPENED" or event == "TAXI_NODE_STATUS_CHANGED" then pcall(RecordFlightMap) end
             flights = nil
+            FDJ.fpMissing = nil -- fpremind
         end)
     end
 
@@ -2820,7 +3117,7 @@ do
     end
     -- How long a flight takes the first time (1.8.5): the yards it flies
     -- along its path, from Blizzard's TaxiPath tables of Classic Era (by way
-    -- of Polestar's travel data, GPL-3.0-or-later): the flight masters
+    -- of the travel tables gathered offline): the flight masters
     -- { continent, wx, wy } by node id, and the one-way flights from, to,
     -- yards. A flight that changes gryphons on the way flies each hop.
     local TAXI_NODES = {
@@ -3003,6 +3300,44 @@ do
         local ok, mapID = pcall(C_Map.GetBestMapForUnit, "player")
         return ok and Number(mapID) or nil
     end
+    -- swimstraight (2.1.3, M 21 Nov 2026 on Stranglethorn's Savage Coast,
+    -- the arrow to Enemies in the Water leading him up the coast: "it
+    -- should just point me straight into the water"): the walking net keeps
+    -- to the land, so a place out in the sea was reached round by the
+    -- shore. A spot marked swim is swum to in a straight line from its own
+    -- zone, within SWIM yards (further off, the roads are quicker).
+    -- (on Way: this scope is at Lua's limit of locals)
+    function Way.SwimStraight(entry, plan, px, py)
+        local spot = type(entry) == "table" and entry.spot or nil
+        if type(spot) ~= "table" or not spot.swim or type(plan) ~= "table" then return false end
+        if plan.via or plan.fly or plan.ride or not (plan.x and plan.y and px and py) then return false end
+        if PlayerMap() ~= tonumber(spot.mapID) then return false end
+        local goal = SpotWorld(spot)
+        if not goal or Yards(goal[1], goal[2], plan.x, plan.y) > 80 then return false end
+        return Yards(px, py, plan.x, plan.y) <= 1000
+    end
+    -- bottomline (2.1.3, M 21 Nov 2026 in Angor Fortress on the way to
+    -- Ambassador Infernus: "once we enter the fortress, we should say get to
+    -- the bottom of the fortress, because that's where it is"): a spot whose
+    -- way has a direct box and a directLine (FDJ.ARROW_VIAS): indoors in the
+    -- box, that line under the yards.
+    -- (on Way: this scope is at Lua's limit of locals)
+    function Way.DirectLine(entry)
+        local spot = type(entry) == "table" and entry.spot or nil
+        local vias = type(spot) == "table" and FDJ.ARROW_VIAS and FDJ.ARROW_VIAS[SpotKey(spot)]
+        local box = type(vias) == "table" and vias.direct
+        if type(box) ~= "table" or type(vias.directLine) ~= "string" or not Indoors() then return nil end
+        local px, py, here = PlayerWorld()
+        local a = SpotWorld({ mapID = box.mapID, x = box.x0, y = box.y0 })
+        local b = SpotWorld({ mapID = box.mapID, x = box.x1, y = box.y1 })
+        if not (px and py and a and b and a[3] == here and b[3] == here
+            and px >= math.min(a[1], b[1]) and px <= math.max(a[1], b[1])
+            and py >= math.min(a[2], b[2]) and py <= math.max(a[2], b[2])) then
+            return nil
+        end
+        local text = FDJ.LocalizeFreeText and FDJ.LocalizeFreeText(vias.directLine) or vias.directLine
+        return "|cff8fd0ff" .. text .. "|r"
+    end
     -- What a flight point costs on top when it is not on the given map
     -- (nil map, or a flight point whose maps are not known: nothing).
     local function Far(node, mapID)
@@ -3084,7 +3419,12 @@ do
     -- (nil: any).
     local function FlyCost(c, px, py, qx, qy, fromMap, toMap, fromR, toR)
         local nodes = FlightPoints(c)
-        if not nodes or #nodes < 2 then return nil end
+        -- fphere (2.1.4): the flight point not found yet by the player, a
+        -- start for the way from where the player stands (Way.hereFP, Plan)
+        local hereFP = Way.hereFP
+        if not (hereFP and hereFP.c == c and hereFP.px == px and hereFP.py == py
+            and (not fromR or (hereFP.fp.region or c) == fromR)) then hereFP = nil end
+        if not nodes or #nodes < (hereFP and 1 or 2) then return nil end
         local starts, ends = nodes, nodes
         if fromR or toR then
             starts, ends = {}, {}
@@ -3093,6 +3433,11 @@ do
                 if not fromR or r == fromR then starts[#starts + 1] = node end
                 if not toR or r == toR then ends[#ends + 1] = node end
             end
+        end
+        if hereFP then
+            local list = { hereFP.fp }
+            for i = 1, #starts do list[#list + 1] = starts[i] end
+            starts = list
         end
         local best, bestTo, least
         for _, a in ipairs(Nearest(starts, px, py)) do
@@ -3121,9 +3466,11 @@ do
     -- The flight to take from (px, py) to (qx, qy), when it saves enough of
     -- the way (keep: the one already chosen, kept while it saves any).
     -- way: between two regions (fromR, toR) the flight is the only way.
-    local function Flight(c, px, py, qx, qy, keep, fromMap, toMap, fromR, toR)
+    -- netwalk (2.1.1): walkYards, the walking net's own yards for the way
+    -- (Plan), when longer than the straight line and its borders.
+    local function Flight(c, px, py, qx, qy, keep, fromMap, toMap, fromR, toR, walkYards)
         local across = fromR ~= nil and toR ~= nil and fromR ~= toR
-        local walk = across and math.huge or Way.Walk(c, px, py, qx, qy) -- zonewalk
+        local walk = across and math.huge or math.max(Way.Walk(c, px, py, qx, qy), walkYards or 0) -- zonewalk
         -- fpdistant: kept only while both ends are still found (a flight
         -- map can take one off the list).
         if keep and keep[1].c == c and (not fromR or (keep[1].region or keep[1].c) == fromR)
@@ -3343,7 +3690,11 @@ do
         if spot[3] == p[3] and Yards(p[1], p[2], spot[1], spot[2]) < Way.HEARTH_NEAR then return end
         if Way.AtBind(name) then return end
         local _, from = Way.Search(spot, t)
-        if from and Way.HEARTH_CAST + from + Way.HEARTH_SAVES <= cost then entry.hearth = name end
+        -- hearthfar: the stricter rule only for a way that stays on the
+        -- continent (crossover, 2.1.1, M at the Talondeep Path on his way to
+        -- Undercity: "my Hearthstone is ready, which will save a lot of time")
+        local need = (spot[3] == p[3] and t[3] == p[3]) and Way.HEARTH_SAVES_SAME or Way.HEARTH_SAVES -- hearthfar
+        if from and Way.HEARTH_CAST + from + need <= cost then entry.hearth = name end
         plan.hearth = entry.hearth
     end
     do
@@ -3421,6 +3772,7 @@ do
         end
         local p = { px, py, here, region = hereR, map = playerMap }
         local t = { gx, gy, target[3], region = goalR, map = goalMap }
+        Way.hereFP = Way.UnfoundHere(here, px, py) -- fphere (2.1.4)
         -- On the boat or zeppelin taken, until well away from where it left.
         local ride = entry.ride
         if ride then
@@ -3517,9 +3869,29 @@ do
             plan.final = true
         end
         local a, b = Flight(here, px, py, gx, gy, entry.fly, playerMap, goalMap, hereR, toR)
+        -- netwalk (2.1.1, M 20 Nov 2026 at the Talondeep Path, the arrow
+        -- saying to walk 7,219 yards to the zeppelin tower with Sun Rock
+        -- Retreat's wind rider right there: "there is no way the right call
+        -- here is to walk to get the Zeppelin"): the walk was weighed as a
+        -- straight line (4,065 yards and its borders) while the way on foot
+        -- is the walking net's, round the mountains: no flight chosen, the
+        -- flight is weighed again against the net's yards.
+        -- The way's cost (for the hearthstone) takes the net's yards too: on
+        -- foot to the flight master, or all the way when no flight.
+        if hereR == toR and FDJ.WalkNetYards and Yards(px, py, gx, gy) >= FLY_MIN then
+            local yards = not a and FDJ.WalkNetYards(px, py, gx, gy, here) or nil
+            if yards then
+                a, b = Flight(here, px, py, gx, gy, entry.fly, playerMap, goalMap, hereR, toR, yards)
+                if not a and cost then cost = cost + math.max(0, yards - Way.Walk(here, px, py, gx, gy)) end
+            end
+            if a and cost and Yards(px, py, a[1], a[2]) >= FLY_MIN then
+                local toMaster = FDJ.WalkNetYards(px, py, a[1], a[2], here)
+                if toMaster then cost = cost + math.max(0, toMaster - Way.WalkNode(here, px, py, a, playerMap)) end
+            end
+        end
         entry.fly = a and { a, b } or nil
         if a then
-            plan.final, plan.fly = nil, b
+            plan.final, plan.fly, plan.flyFrom = nil, b, a -- flyfrom (2.1.3)
             if Yards(px, py, a[1], a[2]) <= AT_MASTER then
                 plan.atMaster = true
                 return plan
@@ -3755,7 +4127,7 @@ do
                 -- auction house, the arrow sending him back round by the
                 -- Drag): the road east from the Valley of Strength into the
                 -- auction house, its only way in (the Forever client's
-                -- walking map with its floors, Polestar_Nav_Kalimdor, read
+                -- walking map with its floors, the navigation grid, read
                 -- as data: 82 yards from 51.5, 64.3 to the auctioneers).
                 AH1 = { 0.5263, 0.6469 }, AH2 = { 0.5530, 0.6469 },
             },
@@ -3779,7 +4151,7 @@ do
         -- to Scooty pointing at the cliff, 360 yards round: "I don't think it
         -- understands Booty Bay's structure"): the town's docks, stairs and
         -- piers, walked between its NPCs and the tunnel north on the
-        -- Forever client's walking map with its floors (Polestar_Nav_EK,
+        -- Forever client's walking map with its floors (the navigation grid,
         -- read as data), cut down to their corners. Rides (the boat) leave
         -- from inside the town (docks): not through the tunnel.
         [1434] = {
@@ -3860,7 +4232,7 @@ do
         -- understands that I'm on the stairs ... without understanding the
         -- buildings"): the city's streets, stairs and bridges, walked
         -- between its NPCs and the foot of the great stairs (the way out) on
-        -- the Forever client's walking map with its floors (Polestar_Nav_EK,
+        -- the Forever client's walking map with its floors (the navigation grid,
         -- read as data), cut down to their corners.
         [1416] = {
             near = 45, targetNear = 160, -- (a place this near the streets is in the city: no way out by the stairs)
@@ -3901,6 +4273,16 @@ do
                 D161 = { 0.1034, 0.6864 }, D162 = { 0.1569, 0.5442 }, D163 = { 0.2318, 0.6789 }, D164 = { 0.2374, 0.6842 }, D165 = { 0.1866, 0.7263 },
                 D166 = { 0.1950, 0.7176 }, D167 = { 0.1230, 0.6640 }, DG = { 0.2167, 0.8271 }, D169 = { 0.1516, 0.5846 }, D170 = { 0.2030, 0.6363 },
                 D171 = { 0.1128, 0.5595 }, D172 = { 0.2031, 0.6708 }, D173 = { 0.2028, 0.6785 },
+                -- dalout (2.1.1, M 20 Nov 2026 on the road east of the city, the arrow
+                -- to Ranath Nightstride straight through the walls: "instead of
+                -- telling me to take the road and then the stairs"): the roads
+                -- outside, round the plaza with the pond at the foot of the great
+                -- stairs: from the north-east (where M stood), the east and the
+                -- south (the walking map's walks from each into the inn, by way of
+                -- the plaza and the stairs, cut down to their corners).
+                DP = { 0.2373, 0.8225 }, DJ = { 0.2641, 0.7801 }, DN = { 0.2680, 0.7000 },
+                DE1 = { 0.2493, 0.8047 }, DE2 = { 0.2760, 0.8114 }, DE3 = { 0.2954, 0.7846 }, DE4 = { 0.3000, 0.7700 },
+                DS1 = { 0.2180, 0.8426 }, DS2 = { 0.2299, 0.8605 }, DS3 = { 0.2400, 0.8600 },
             },
             edges = {
                 { "D1", "D2" }, { "D1", "D3" }, { "D1", "D31" }, { "D1", "D39" }, { "D2", "D3" }, { "D2", "D63" }, { "D3", "D31" }, { "D3", "D63" },
@@ -3938,6 +4320,8 @@ do
                 { "D131", "D132" }, { "D131", "D133" }, { "D132", "D153" }, { "D133", "D134" }, { "D134", "D153" }, { "D135", "D137" }, { "D137", "D160" }, { "D138", "D139" },
                 { "D140", "D141" }, { "D140", "D146" }, { "D142", "D144" }, { "D143", "D148" }, { "D143", "D170" }, { "D149", "D159" }, { "D150", "D157" }, { "D152", "D163" },
                 { "D158", "D159" }, { "D163", "D164" }, { "D172", "D173" },
+                { "DG", "DP" }, { "DP", "DJ" }, { "DJ", "DN" }, { "DP", "DE1" }, { "DE1", "DE2" }, { "DE2", "DE3" }, { "DE3", "DE4" }, -- dalout
+                { "DG", "DS1" }, { "DS1", "DS2" }, { "DS2", "DS3" },
             },
         },
         -- tbroads (2.0.11, M 18 Nov 2026 on the bridge from Hunter Rise, the
@@ -3999,8 +4383,8 @@ do
         -- and the long hall behind it, which bends west before it reaches the
         -- throne room; Varimathras and Sylvanas stand up on its dais, its
         -- steps on the west side. The corners: the shortest walks on the
-        -- Eastern Kingdoms walking maps (Polestar_Nav_EK, the Forever client's
-        -- navigation grid with its floors, Polestar's router run offline) to
+        -- Eastern Kingdoms walking maps (the Forever client's
+        -- navigation grid with its floors, a walking router run offline) to
         -- Varimathras from the Apothecarium, the Rogues' Quarter, the War
         -- Quarter and the elevator, merged. Only for a spot in the Royal
         -- Quarter (onlyNear) and only down in the city (ucDown: up in the
@@ -4045,7 +4429,7 @@ do
             -- bridges into the Trade Quarter) to the bat handler, up the ramp
             -- to the Trade Quarter's upper ring: the shortest walks to
             -- Michael Garrett from 245 places of the lower city (every 24
-            -- yards; Polestar's router on the Forever client's walking maps,
+            -- yards; a walking router on the Forever client's walking maps,
             -- run offline), cut to their corners and merged (F1 ... and the
             -- corners above). The upper ring is right over the lower floor:
             -- come from out in the city, the arrow stays on the lower floor's
@@ -4073,7 +4457,7 @@ do
                 -- Felben leading back east round to the south-east ramp:
                 -- "Source of Power is actually below through this little
                 -- passage"): the passage from the ring down to the lab's west
-                -- side (Polestar's router on the Forever client's walking
+                -- side (a walking router on the Forever client's walking
                 -- maps, to Felben's own spot, z -80: 145 yards, was 278). Only
                 -- a way in: its top is not joined to the ring's ways, so the
                 -- ways out of the lab (to the bat handler) stay as they were.
@@ -4194,7 +4578,7 @@ do
         -- on the left"): the quay and the two piers (the boat to Theramore
         -- leaves from the southern one, TH; the boat from Auberdine lands at
         -- the northern one, AU): the walk between them on the Forever
-        -- client's walking map (Polestar_Nav_EK, Polestar's router run
+        -- client's walking map (the navigation grid, a walking router run
         -- offline), cut down to its corners. Only for a place on the piers.
         [1437] = {
             near = 70, targetNear = 25, onlyNear = true, docks = true, close = 12, pass = 6,
@@ -4205,10 +4589,38 @@ do
             },
             edges = { { "TH", "S2" }, { "S2", "S1" }, { "S1", "SR" }, { "SR", "Q1" }, { "Q1", "NR" }, { "NR", "N2" }, { "N2", "AU" } },
         },
+        -- swroost (2.1.4, M 23 Nov 2026, just off the gryphon in Stormwind
+        -- with the arrow to Master Mathias Shaw pointing east over the wall:
+        -- "make the arrow actually follow the exit of the flight path when
+        -- landing in Stormwind ... I need to get to the old town"): down the
+        -- roost's ramp into the Trade District (RF its foot), along the
+        -- district's street to its north end (TN), over the bridge into Old
+        -- Town (OB, its signposts), through Old Town to SI:7's arch (SA), its
+        -- courtyard and the headquarters' door (SD; Shaw is up its stairs,
+        -- SH). The corners: spots of the city's NPCs and street signs and
+        -- the walks of its townsfolk in the Forever client's tables, and the
+        -- city's walked ways (SOURCES.txt, swroost). Only for a place by
+        -- these ways (onlyNear): anywhere else in the city the arrow is as
+        -- before, once down the ramp (leave). The way back to the roost (a
+        -- flight to take) too.
+        [1453] = {
+            near = 60, targetNear = 40, onlyNear = true, docks = true, close = 15, pass = 8,
+            gates = { "FM" },
+            leave = { FM = "RF" }, -- off the roost: down its ramp, wherever in the city the place is
+            nodes = {
+                FM = { 0.7125, 0.7220 }, RF = { 0.6853, 0.7493 }, TS = { 0.6870, 0.7360 }, TW = { 0.6442, 0.6698 }, TN = { 0.6610, 0.6436 },
+                OB = { 0.6945, 0.6275 }, O1 = { 0.7193, 0.6071 }, O2 = { 0.7462, 0.6206 }, O3 = { 0.7585, 0.6300 }, O4 = { 0.7640, 0.6370 },
+                SO = { 0.7744, 0.6531 }, SA = { 0.7763, 0.6622 }, SC = { 0.8036, 0.7098 }, SD = { 0.8055, 0.7096 }, SH = { 0.7828, 0.7073 },
+            },
+            edges = {
+                { "FM", "RF" }, { "RF", "TS" }, { "TS", "TW" }, { "TW", "TN" }, { "TN", "OB" }, { "OB", "O1" }, { "O1", "O2" }, { "O2", "O3" },
+                { "O3", "O4" }, { "O4", "SO" }, { "SO", "SA" }, { "SA", "SC" }, { "SC", "SD" }, { "SD", "SH" },
+            },
+        },
         -- orggate (2.0.8, M 15 Nov 2026: off the zeppelin in Durotar the
         -- arrow pointed at Orgrimmar through the cliff): the walk between
         -- the zeppelin tower's two feet and Orgrimmar's gate, the shortest
-        -- one on the Kalimdor walking maps (Polestar_Nav_KAL, the Forever
+        -- one on the Kalimdor walking maps (the Forever
         -- client's navigation grid, read as data), cut down to its corners.
         -- toCity: only for a way into that city (its gate OG is the city
         -- roads' G2) or to a place right by these roads (reach yards: the
@@ -4362,7 +4774,16 @@ do
         if net.onlyNear and (T.d > (net.targetNear or net.near) -- ucroyal: only for a spot by these ways
             or (net.targetNodes and not (net.targetNodes[T.a] or net.targetNodes[T.b]
                 or (skipT == "hall" and T.group == "lab") -- uclab: a spot in the lab
-                or (net.farNodes and (net.farNodes[T.a] or net.farNodes[T.b]))))) then return Keep(nil) end -- uclab: the bat handler
+                or (net.farNodes and (net.farNodes[T.a] or net.farNodes[T.b]))))) then -- uclab: the bat handler
+            -- swroost (2.1.4): a place off these ways, the player up on a
+            -- stretch left by one end only (net.leave: Stormwind's roost and
+            -- its ramp): down to that end first, then as before
+            local out = net.leave and P.d <= 12 and ((net.leave[P.a] == P.b and P.b) or (net.leave[P.b] == P.a and P.a))
+            if out and Yards(P.qx, P.qy, w[out][1], w[out][2]) > (net.pass or 10) then
+                return Keep(w[out], Yards(w[out][1], w[out][2], tx, ty))
+            end
+            return Keep(nil)
+        end
         if P.group == "lab" and T.group == "lab" and Yards(px, py, tx, ty) < 40 then return Keep(nil) end -- uclab: across the lab, straight
         -- uclab: to the bat handler from out in the city. (ucring: off an
         -- elevator too: they come down beside the Trade Quarter, its lower
@@ -4596,6 +5017,16 @@ do
                     end
                 else
                     if Yards(px, py, w[1], w[2]) <= (route.reach or VIA_REACHED) then reached = i break end
+                    -- doorway (2.1.4, M 22 Nov 2026 in Theramore, the arrow to Archmage
+                    -- Tervosh at the wall of his tower): a point with inside = true (a
+                    -- building's entrance) is passed as well once the player is indoors
+                    -- no further from the place than the entrance is (in by it without
+                    -- stepping on the point, or logged in inside): never led back out.
+                    if via.inside and spotWorld and spotWorld[3] == here and Indoors()
+                        and Yards(px, py, spotWorld[1], spotWorld[2]) <= Yards(w[1], w[2], spotWorld[1], spotWorld[2]) + 10 then
+                        reached = i
+                        break
+                    end
                     local n
                     for j = i + 1, #route do if worlds[j] then n = worlds[j] break end end
                     -- nearest: the other level's points only by standing at them.
@@ -4757,6 +5188,22 @@ do
         end
         return bestW, bestVia
     end
+    -- alcazstraight (2.1.4, M 23 Nov 2026 on Alcaz Island at 73.5, 18.6, the
+    -- arrow to the prison's entrance 1,374 yards back the way he came: "It
+    -- should just tell me to go straight or follow this little road"): in a
+    -- way's direct box (FDJ.ARROW_VIAS: from there the straight line is the
+    -- way) the continent's walking net is not asked either: it knows no way
+    -- on the island and led back over the water.
+    function Way.InDirectBox(entry, px, py, here)
+        local vias = FDJ.ARROW_VIAS and entry and entry.spot and FDJ.ARROW_VIAS[SpotKey(entry.spot)]
+        local box = type(vias) == "table" and vias.direct
+        if type(box) ~= "table" then return false end
+        local a = SpotWorld({ mapID = box.mapID, x = box.x0, y = box.y0 })
+        local b = SpotWorld({ mapID = box.mapID, x = box.x1, y = box.y1 })
+        return (a and b and a[3] == here and b[3] == here
+            and px >= math.min(a[1], b[1]) and px <= math.max(a[1], b[1])
+            and py >= math.min(a[2], b[2]) and py <= math.max(a[2], b[2])) and true or false
+    end
 
     -- Distance (yards) and the turn from where the player faces to where the
     -- arrow points, and the plan (Plan above). nil: no position, or no way.
@@ -4860,7 +5307,7 @@ do
                             if w and Yards(w[1], w[2], b[1], b[2]) <= 60 then
                                 local flown = Yards(px, py, a[1], a[2]) + Yards(a[1], a[2], b[1], b[2]) / FLY_SPEED + FLY_EXTRA + route.fdjRest[i]
                                 if flown < walk * FLY_WORTH then
-                                    direct = { here = region, fly = b }
+                                    direct = { here = region, fly = b, flyFrom = a } -- flyfrom (2.1.3)
                                     if Yards(px, py, a[1], a[2]) <= AT_MASTER then
                                         direct.atMaster = true
                                     else
@@ -4932,7 +5379,9 @@ do
             end
         end
         if not lift and not road and FDJ.WalkNetAim and plan.x and plan.y
-            and not (Way.ROADS[PlayerMap() or 0] or {}).noNet then -- tbroads
+            and not (Way.ROADS[PlayerMap() or 0] or {}).noNet -- tbroads
+            and not Way.SwimStraight(entry, plan, px, py) -- swimstraight (2.1.3)
+            and not Way.InDirectBox(entry, px, py, here) then -- alcazstraight (2.1.4)
             road, roadRest = FDJ.WalkNetAim(entry, plan.x, plan.y, px, py, here, plan.via and Yards(px, py, plan.x, plan.y) <= 150 or false)
         end
         plan.road = road and true or nil
@@ -4966,7 +5415,8 @@ do
     end
     local function QuestName(spot)
         local title = spot.questTitle
-        if spot.markerType ~= "dungeon" and type(title) == "string" and title ~= "" then return title end
+        -- lowdoor (2.1.4): a dungeon's door that is there for one quest (spot.questNamed) carries its name
+        if (spot.markerType ~= "dungeon" or spot.questNamed) and type(title) == "string" and title ~= "" then return title end
         return nil
     end
     -- What the NPC is called for /targetexact (nil: not an NPC).
@@ -5035,6 +5485,22 @@ do
         -- say get to Thalanaar?": his path's far end is near that flight
         -- point, but the place to go is the path itself: spot.noGetTo)
         if spot.noGetTo then return "" end
+        -- sidegetto (2.1.4, M 22 Nov 2026 in Maraudon's outer caves, the arrow to
+        -- the Gem of the Third Khan: "it should say the little text below, as
+        -- usual ... get to the orange side"): a spot's own line there
+        -- (spot.getToKey, a text key), gone once close by, as a place's is.
+        if spot.getToKey then
+            local w = SpotWorld(spot)
+            local px, py, here = PlayerWorld()
+            if w and px and here == w[3] then
+                local d = Yards(px, py, w[1], w[2])
+                if d <= Way.GET_TO_IN then entry.getToThere = true elseif d >= Way.GET_TO_OUT then entry.getToThere = nil end
+            else
+                entry.getToThere = nil
+            end
+            if entry.getToThere then return "" end
+            return FDJ.L(spot.getToKey)
+        end
         if entry.getTo == nil then
             local found = false
             local city = tonumber(spot.mapID)
@@ -5106,9 +5572,30 @@ do
     -- file is at Lua's limit of 200 locals in one scope.
     local function Doing(plan)
         if not plan then return "" end
+        -- fphere (2.1.4): the flight leaves from a flight point not found yet
+        if plan.fly and plan.flyFrom and plan.flyFrom.unfound and type(plan.flyFrom.name) == "string" and plan.flyFrom.name ~= "" then
+            return "|TInterface\\Cursor\\Taxi:0|t " .. FDJ.L("ARROW_GET_FLIGHT_PATH", plan.flyFrom.name)
+        end
+        -- flyfrom (2.1.3, M 21 Nov 2026 at Aerie Peak, "Fly to Menethil
+        -- Harbor": "I don't know which flight path it wants me to take"):
+        -- on the way to the flight master, where the flight leaves from too.
+        if plan.fly and plan.flyFrom and not plan.atMaster and type(plan.flyFrom.name) == "string" and plan.flyFrom.name ~= "" then
+            return "|TInterface\\Cursor\\Taxi:0|t " .. FDJ.L("ARROW_FLY_FROM", plan.flyFrom.name, plan.fly.name or "")
+        end
         if plan.fly then return "|TInterface\\Cursor\\Taxi:0|t " .. FDJ.L("ARROW_FLY", plan.fly.name or "") end
         local ride = plan.ride
-        if not ride then return plan.via and FreeText(plan.via.label) or "" end -- arrowvia: the point on the way
+        if not ride then -- arrowvia: the point on the way
+            -- labelnear (2.1.1, the Dor'Danil Barrow Den's "Into the barrow
+            -- den" not shown from Stonetalon): a point's label only within
+            -- via.labelNear yards of it
+            local via = plan.via
+            if via and tonumber(via.labelNear) then
+                local w = SpotWorld(via)
+                local px, py, here = PlayerWorld()
+                if not (w and px and w[3] == here and Yards(px, py, w[1], w[2]) <= tonumber(via.labelNear)) then return "" end
+            end
+            return via and FreeText(via.label) or ""
+        end
         -- way: the place it lands at ("Rut'theran Village", "Auberdine").
         if not ride.toName or ride.toName == "" then ride.toName = Way.PlaceAt(ride.to[1], ride.to[2], ride.to[3]) end
         if ride.kind == "portal" then return FDJ.L("ARROW_PORTAL", ride.toName) end
@@ -5180,18 +5667,45 @@ do
         f.fdjTargets = name ~= nil -- a left-click targets the NPC (and does not open the map)
     end
 
+    -- flybar (2.1.1): the flight's bar (and icon, unless keepIcon) away, the
+    -- way line back under the yards.
+    function Way.FlyBarOff(f, keepIcon)
+        if f.taxiBar and f.taxiBar:IsShown() then f.taxiBar:Hide() end
+        if f.taxiIcon and not keepIcon and f.taxiIcon:IsShown() then f.taxiIcon:Hide() end
+        if f.fdjRouteOnBar then
+            f.route:ClearAllPoints()
+            f.route:SetPoint("TOP", f.distance, "BOTTOM", 0, -2)
+            f.fdjRouteOnBar = nil
+        end
+    end
     local function Redraw(f)
+        if FDJ.ArrowOnWay then FDJ.ArrowOnWay(f, nil) end -- onway: drawn again further down when it has lines
         local entry = shown
         if not entry then
             f:Hide()
             return
         end
         local inside = InInstance()
+        -- goalbig (2.1.3, M 21 Nov 2026 among the buzzards, Badlands Reagent
+        -- Run's lines under the arrow: "we need to increase the text size of
+        -- these objectives. It's just way too small. You can try to double
+        -- it"; at 20: "way too big ... Make it a bit smaller and give it like a
+        -- box, a black box where all of this text is contained"): at a place
+        -- to kill / collect (goalhere) the lines under the name are bigger
+        -- (14, was 10: GameFontHighlightMedium), the name and they in a black
+        -- box (FDJ.ArrowGoalBox).
+        if (type(entry.spot.goalLines) == "table" and not inside) ~= (f.fdjGoalBig == true) then
+            f.fdjGoalBig = (type(entry.spot.goalLines) == "table" and not inside) or nil
+            f.distance:SetFontObject(f.fdjGoalBig and "ForeverDJ_GameFontHighlightMedium" or "ForeverDJ_GameFontHighlightSmall")
+            f.fdjMeasureText = nil -- (picgap: measured again)
+            if not f.fdjGoalBig then FDJ.ArrowGoalBox(f, false) end
+        end
         if not inside and OnTaxi() then
             -- In the air: how long the flight still takes (as long as it took
             -- last time; a guess the first time; else the time so far).
             ClickTargets(f, nil)
             f.arrow:Hide()
+            if f.swords then f.swords:Hide() end -- killswords
             if f.fdjHidden then
                 f.fdjHidden = false
                 f:SetAlpha(1)
@@ -5204,18 +5718,38 @@ do
             local took = flight.from and flight.to and FlightTimes()[flight.from .. ">" .. flight.to]
             -- Past the count-down's end (a slower flight than thought):
             -- nothing, not 0:00 for the rest of the way.
-            if type(took) == "number" then
-                f.distance:SetText(took - gone >= 0 and Clock(took - gone) or "")
-            elseif flight.guess then
-                f.distance:SetText(flight.guess - gone >= 0 and ("~" .. Clock(flight.guess - gone)) or "")
+            -- flybar (2.1.1): the time left as the yellow bar emptying (and on
+            -- it), the flight master icon where the arrow was. No time to go
+            -- by (a flight never timed nor guessed): the time so far, as before.
+            local total = (type(took) == "number" and took) or (type(flight.guess) == "number" and flight.guess) or nil
+            if f.taxiIcon then f.taxiIcon:Show() end
+            if f.taxiBar and total and total > 0 then
+                local left = total - gone
+                f.taxiBar.bar:SetValue(math.max(0, math.min(1, left / total)))
+                f.taxiBar.text:SetText(left >= 0 and ((type(took) == "number" and "" or "~") .. Clock(left)) or "")
+                f.taxiBar:Show()
+                f.distance:SetText("")
+                if not f.fdjRouteOnBar then
+                    f.route:ClearAllPoints()
+                    f.route:SetPoint("TOP", f.taxiBar, "BOTTOM", 0, -3)
+                    f.fdjRouteOnBar = true
+                end
             else
-                f.distance:SetText(Clock(gone))
+                Way.FlyBarOff(f, true)
+                if type(took) == "number" then
+                    f.distance:SetText(took - gone >= 0 and Clock(took - gone) or "")
+                elseif flight.guess then
+                    f.distance:SetText(flight.guess - gone >= 0 and ("~" .. Clock(flight.guess - gone)) or "")
+                else
+                    f.distance:SetText(Clock(gone))
+                end
             end
             f.route:SetText(flight.to and FDJ.L("ARROW_FLYING", PlaceName(flight.to)) or "")
             f.hearth:SetText("")
             if f.skipNow then f.skipNow:Hide() end -- skipnow
             return
         end
+        Way.FlyBarOff(f) -- flybar: landed
         local distance, turn, plan
         if not inside then distance, turn, plan = Measure(entry) end
         local final = plan and plan.final and not plan.elevator and not plan.road -- ucelevator, orgroads: at the elevator / a corner is not at the spot
@@ -5236,6 +5770,17 @@ do
         -- and comes back if they walk off before the step moves on.
         local near = distance ~= nil and final and not below and (distance <= ARRIVED or (f.fdjNear and distance <= ARRIVED + 4)) or false
         f.fdjNear = near
+        -- crumbpass (2.1.3): a Route's optional introductory quest (The Lost
+        -- Dwarves): stood at its giver and walked off without it, it is left
+        -- off the Route (FDJ.RouteCrumbPassed) and the arrow goes on.
+        if entry.spot.crumbQuest and not inside and distance then
+            if near then
+                entry.crumbAt = true
+            elseif entry.crumbAt and distance > ARRIVED + 30 then
+                entry.crumbAt = nil
+                if FDJ.RouteCrumbPassed then FDJ.RouteCrumbPassed(entry.spot.crumbQuest) end
+            end
+        end
         -- questrp (2.0.8): while the NPC's scene runs, the arrow stays at him
         local hide = inside or (near and not spawnHere and not (FDJ.ArrowRPWait and FDJ.ArrowRPWait(NPC(entry.spot))))
         if f.skipNow then f.skipNow:SetShown(entry.spot.skipQuest ~= nil and not inside) end -- skipnow (2.0.13)
@@ -5264,7 +5809,10 @@ do
             f:EnableMouse(not hide)
         end
         ClickTargets(f, (not hide and final and distance and distance <= NEAR_NPC) and entry.spot or nil)
-        if FDJ.ArrowItemButton then FDJ.ArrowItemButton(f, (not hide) and entry.spot or nil) end -- arrowitem (2.0.13)
+        -- useatgoal (2.1.4, goalat): a spot with useAtGoal shows its item, and
+        -- the line saying to use it, only with the box (at the place)
+        local useLater = entry.spot.useAtGoal and type(entry.spot.goalLines) ~= "table"
+        if FDJ.ArrowItemButton then FDJ.ArrowItemButton(f, ((not hide) and not useLater) and entry.spot or nil) end -- arrowitem (2.0.13)
         -- npcicon (2.0.13)
         if f.npc then
             -- (seenportrait, 2.0.13: a spot with seenPortrait = true - Rok'Alim on
@@ -5277,23 +5825,9 @@ do
                 f.title:SetText((on and "" or (f.fdjMark or "")) .. (f.fdjName or ""))
                 -- npcbig (2.0.16): the picture is bigger (32, was 22), left of the
                 -- name and level with it; a short name moves it out past the
-                -- distance line under it, so the two never overlap.
-                local half = (tonumber(f.title:GetStringWidth()) or 110) / 2
-                local out = math.max(0, ((tonumber(f.distance:GetStringWidth()) or 0) / 2) - half)
-                f.npc:ClearAllPoints()
-                f.npc:SetPoint("RIGHT", f.title, "LEFT", -3 - out, 0)
-                -- The picture and the name take the click too, not only the arrow.
-                -- (The picture sits left of the name, past the frame's own
-                -- edge when the name is long: the hit area reaches out to it.)
-                if f.SetHitRectInsets and not (InCombatLockdown and InCombatLockdown()) then
-                    if on then
-                        local tall = tonumber(f.title:GetStringHeight()) or 14
-                        f:SetHitRectInsets(75 - (half + out + 39), 75 - (half + 2), 0,
-                            math.max(0, math.floor(84 - (53 + tall / 2 + 18))))
-                    else
-                        f:SetHitRectInsets(49, 49, 0, 32)
-                    end
-                end
+                -- line under it (FDJ.ArrowPlacePicture), so the two never overlap.
+                f.fdjPicKey = nil
+                FDJ.ArrowPlacePicture(f, on)
                 -- npchover (2.0.16, picture only 2.0.17): the mouse already on the
                 -- arrow when the NPC comes in reach (or goes): the next frame's
                 -- check picks the glow (on the picture) or the tooltip again,
@@ -5419,7 +5953,25 @@ do
                             f.npc:SetTexCoord(0, 1, 0, 1)
                             drawn = pcall(SetPortraitTextureFromCreatureDisplayID, f.npc, display)
                         end
-                        if not drawn then
+                        -- objectmark (2.1.3, M 21 Nov 2026 at the Battered Dwarven
+                        -- Skeleton: "when I get close to items on the floor that I have
+                        -- to click to complete the quest ... I get the raid mark. I don't
+                        -- like it. The raid mark should just be the yellow question mark
+                        -- to turn in the quest itself"): a thing to click, no NPC (none
+                        -- of that name in FDJ.ARROW_NPC_IDS; a raid mark can't go on
+                        -- it): the quest's own mark, big, in place of the picture - the
+                        -- yellow ? where it is handed in, the ! where it starts, the
+                        -- blue ? of a repeatable - and nothing where it is only clicked.
+                        if not drawn and not npcID then
+                            local art = type(f.fdjMark) == "string" and f.fdjMark:match("^|T(.-):") or nil
+                            if art then
+                                f.npc:SetTexture(art)
+                                f.npc:SetTexCoord(0, 1, 0, 1)
+                                f.npc:Show()
+                            else
+                                f.npc:Hide()
+                            end
+                        elseif not drawn then
                             local index = entry.spot.raidMarkIndex or RaidMarkIndexForTarget(entry.spot)
                             if tonumber(index) then
                                 f.npc:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_" .. tonumber(index))
@@ -5458,6 +6010,7 @@ do
             -- upstairs (2.0.8): an NPC up the stairs (FDJ.NPC_UPSTAIRS), once
             -- its portrait shows: "Go upstairs" (no new local: at Lua's limit)
             local step = (below and FDJ.L("ARROW_BELOW")) or (above and FDJ.L("ARROW_ABOVE"))
+                or Way.DirectLine(entry) -- bottomline (2.1.3)
                 or (FDJ.ArrowRPWait and FDJ.ArrowRPWait(NPC(entry.spot))) -- questrp (2.0.8)
                 or (f.fdjNpcOn and FDJ.NPC_UPSTAIRS and FDJ.NPC_UPSTAIRS[NPC(entry.spot) or ""] and FDJ.L("ARROW_GO_UP")) or doing
             -- hearthfirst (2.0.13, M 19 Nov 2026 in Dalaran, "Fly to Undercity"
@@ -5493,6 +6046,11 @@ do
         -- keeps pointing into the area (not while standing on its spot).
         if type(entry.spot.goalLines) == "table" then
             f.distance:SetText(#entry.spot.goalLines > 0 and table.concat(entry.spot.goalLines, "\n") or (FreeText(entry.spot.detail) or ""))
+            -- goalitems (2.1.3): what to do here ("Kill the crag coyotes
+            -- here"), then every material of the step with its count
+            if entry.spot.goalLines.detail and #entry.spot.goalLines > 0 and (FreeText(entry.spot.detail) or "") ~= "" then
+                f.distance:SetText("|cff59ff59" .. FreeText(entry.spot.detail) .. "|r\n" .. (f.distance:GetText() or ""))
+            end
             f.route:SetText("")
             f.hearth:SetText("")
             FDJ.arrowFly = nil
@@ -5539,18 +6097,39 @@ do
         if near and not inside and not spawnHere and not entry.spot.pickUp and type(entry.spot.goalLines) ~= "table"
             and NPC(entry.spot) and not (FDJ.ArrowRPWait and FDJ.ArrowRPWait(NPC(entry.spot))) then
             -- arrowkill (2.0.13, M 18 Nov 2026 at Ricter: "these NPCs need to be killed, so the text should not be talk to"): a spot with kill = true
-            f.distance:SetText("|cff59ff59" .. FDJ.L(entry.spot.kill and "ARROW_KILL" or "ARROW_TALK_TO", FreeText(NPC(entry.spot)) or NPC(entry.spot)) .. "|r")
+            -- khanstops (2.1.4): a spot's own line there in place of it (spot.nearKey:
+            -- a Khan's spirit, the amulet used on it before the Khan is killed)
+            f.distance:SetText("|cff59ff59" .. (entry.spot.nearKey and FDJ.WrapHint(FDJ.L(entry.spot.nearKey))
+                or FDJ.L(entry.spot.kill and "ARROW_KILL" or "ARROW_TALK_TO", FreeText(NPC(entry.spot)) or NPC(entry.spot))) .. "|r")
             f.route:SetText("")
             f.hearth:SetText("")
             turn = nil
+        end
+        -- swimplace (2.1.3, M 21 Nov 2026 swimming to the Drowned City's
+        -- cavern for Locating the Lost City: "It should say swim underwater,
+        -- by the way"): a place under water that is no thing to pick up
+        -- (spot.underwater): swimming within 150 yards of it, "Swim
+        -- underwater" under the yards.
+        if entry.spot.underwater and not entry.spot.pickUp and not inside
+            and not (type(entry.spot.goalLines) == "table") and distance and distance <= 150
+            and type(IsSwimming) == "function" and select(2, pcall(IsSwimming)) == true then
+            f.route:SetText("|cff8fd0ff" .. FDJ.L("ARROW_SWIM_UNDER") .. "|r")
         end
         -- upstairs (2.0.13, M 18 Nov 2026 at Kegan Darkmar, on the upper floor
         -- of the camp's big house: "if the arrow could understand that we
         -- need to get upstairs"): the game tells an addon no height, so a
         -- spot with upstairs = true says so near it: "Go upstairs" under the
         -- yards, and over "Kill <name>" at the spot itself.
-        if entry.spot.upstairs and not inside and distance and distance <= 60 then
-            if near then
+        -- upnpc (2.1.1, M 20 Nov 2026 in Farholde Keep under Ashe Amberhall:
+        -- "here it should say to go upstairs"): an NPC of FDJ.NPC_UPSTAIRS
+        -- gets it too, whichever of the NPC's spots the arrow leads to.
+        if (entry.spot.upstairs or (FDJ.NPC_UPSTAIRS and FDJ.NPC_UPSTAIRS[NPC(entry.spot) or ""]))
+            and not inside and distance and distance <= 60 then
+            -- goalbox (2.1.4, M 23 Nov 2026 up Theramore's mage tower: the lines
+            -- "switching in between the two formats ... keep the blue one ... in
+            -- bigger format"): in a one-place box (useAtGoal) always in it, big,
+            -- not only within a few yards of the spot
+            if near or (entry.spot.useAtGoal and type(entry.spot.goalLines) == "table") then
                 f.distance:SetText("|cff8fd0ff" .. FDJ.L("ARROW_UPSTAIRS") .. "|r\n" .. (f.distance:GetText() or ""))
             else
                 f.route:SetText("|cff8fd0ff" .. FDJ.L("ARROW_UPSTAIRS") .. "|r")
@@ -5562,24 +6141,119 @@ do
         -- at the spot itself.
         -- grouphint (2.0.13): a line shown at any distance (spot.hintAlways), over the yards
         -- (plankjump, 2.0.13: spot.hintKey, the line in the player's language)
-        if (type(entry.spot.hint) == "string" or entry.spot.hintKey) and not inside and distance and (distance <= 60 or entry.spot.hintAlways) then
-            if near or entry.spot.hintAlways then
+        if (type(entry.spot.hint) == "string" or entry.spot.hintKey) and not inside and distance and (distance <= 60 or entry.spot.hintAlways)
+            and not (entry.spot.useAtGoal and type(entry.spot.goalLines) ~= "table") then -- (useatgoal)
+            if near or entry.spot.hintAlways or (entry.spot.useAtGoal and type(entry.spot.goalLines) == "table") then -- (goalbox)
                 f.distance:SetText("|cff8fd0ff" .. FDJ.WrapHint(entry.spot.hintKey and FDJ.L(entry.spot.hintKey) or entry.spot.hint) .. "|r\n" .. (f.distance:GetText() or ""))
             else
                 f.route:SetText("|cff8fd0ff" .. FDJ.WrapHint(entry.spot.hintKey and FDJ.L(entry.spot.hintKey) or entry.spot.hint) .. "|r")
             end
         end
+        -- elitenote (2.1.1, M 20 Nov 2026, Bring Me His Head: "under the usual
+        -- yards stuff, you should put level 46 elite quest, find the group"): a
+        -- spot's noteKey (Systems/QuestText.lua: FDJ.RouteNoted), a line of its
+        -- own under the yards (or under what to kill there), at any distance.
+        if entry.spot.noteKey and not (f.distance:GetText() or ""):find(FDJ.L(entry.spot.noteKey, entry.spot.noteArg), 1, true) then
+            f.distance:SetText(((f.distance:GetText() or "") ~= "" and ((f.distance:GetText() or "") .. "\n") or "")
+                .. "|cffff8040" .. FDJ.L(entry.spot.noteKey, entry.spot.noteArg) .. "|r")
+        end
+        if FDJ.ArrowBuyLines then FDJ.ArrowBuyLines(f, entry.spot, inside) end -- buylines (2.0.10)
+        if f.fdjNpcOn or (f.fdjItem and f.fdjItem:IsShown()) then FDJ.ArrowPlacePicture(f, f.fdjNpcOn and true or false) end -- picgap (2.1.3); itemgap (2.1.4)
+        if f.fdjGoalBig then FDJ.ArrowGoalBox(f, true) end -- goalbox (2.1.3)
+        FDJ.ArrowOnWay(f, (not inside) and entry.spot.onWayLines or nil) -- onway (2.1.3)
         if turn then
             if f.arrow.SetRotation then f.arrow:SetRotation(turn) end
             f.arrow:Show()
         else
             f.arrow:Hide()
         end
+        -- killswords (2.1.1, M 20 Nov 2026 in Sunnyglade, the arrow gone among
+        -- the cultists to kill): in a place to kill / collect, the game's own
+        -- crossed combat swords (the player portrait's) stand where the arrow was.
+        -- lootbag (2.1.1, M 20 Nov 2026 at the Legacy of the Aspects: "once
+        -- we have to pick up an item and not kill a mob, make the arrow become
+        -- the loot ... the one that we use for trash mobs ... if there is both
+        -- killing and pickup, just the sword. And if we are done killing
+        -- before picking up, switch the sword to pick up"): the Trash Drops
+        -- bag at a thing to pick up, and in a place where only things to
+        -- pick up are left to do (goalLines.pickUpOnly, Systems/QuestText.lua).
+        if f.swords then
+            local goal = type(entry.spot.goalLines) == "table" and entry.spot.goalLines or nil
+            local loot = (goal and goal.pickUpOnly) or (not goal and entry.spot.pickUp and near and not inside)
+            -- (acceptnow, 2.1.3: an item to click to accept a quest: its icon, no swords)
+            if not turn and (goal or loot) and not (goal and entry.spot.clickItem) then
+                if loot then
+                    if f.swords.fdjArt ~= "loot" then
+                        f.swords:SetTexture("Interface\\AddOns\\ForeverDungeonJournal\\Media\\TrashDropsIcon")
+                        f.swords:SetTexCoord(0, 1, 0, 1)
+                        f.swords:SetSize(40, 40)
+                        f.swords.fdjArt = "loot"
+                    end
+                elseif f.swords.fdjArt ~= true and FDJ.ArrowCombatArt then
+                    f.swords:SetTexCoord(0, 1, 0, 1)
+                    pcall(FDJ.ArrowCombatArt, f.swords)
+                end
+                f.swords:Show()
+            else
+                f.swords:Hide()
+            end
+        end
     end
 
     -- A left-click on the arrow: its spot (the objective, not a point on
     -- the way) on the world map, as Show on Map does. The arrow keeps where
     -- it was on the way (the points passed).
+    -- killswords (2.1.1): the crossed swords the player portrait shows in
+    -- combat, taken from the game's own frame (the classic portrait's
+    -- PlayerAttackIcon, or the newer frame's atlas), else its texture file.
+    -- swordsharp (2.1.1, M 20 Nov 2026: "it's very pixelated"): the art is
+    -- small (32 pixels in the portrait's file); drawn at 40 it was stretched.
+    -- Now at the size the game draws it, without snapping to the screen's
+    -- pixel grid, so it stays smooth.
+    -- warswords (2.1.1, M 20 Nov 2026: "way too small ... try with the War
+    -- Mode ones"): the game's War Mode crossed swords first, drawn 44 high
+    -- (their own shape kept); the portrait's swords only when this client
+    -- has none of them.
+    FDJ.ArrowCombatArt = function(tex)
+        local info = C_Texture and C_Texture.GetAtlasInfo
+        for _, atlas in ipairs({ "pvptalents-warmode-swords", "worldquest-icon-pvp-ffa" }) do
+            local a = info and info(atlas)
+            if a then
+                tex:SetAtlas(atlas)
+                local aw, ah = tonumber(a.width) or 0, tonumber(a.height) or 0
+                if aw > 0 and ah > 0 then tex:SetSize(44 * aw / ah, 44) else tex:SetSize(44, 44) end
+                if tex.SetSnapToPixelGrid then tex:SetSnapToPixelGrid(false) end
+                if tex.SetTexelSnappingBias then tex:SetTexelSnappingBias(0) end
+                tex.fdjArt = true
+                return
+            end
+        end
+        local icon = _G.PlayerAttackIcon
+        local w, h = 32, 32
+        if icon and icon.GetTexture and icon:GetTexture() then
+            local atlas = icon.GetAtlas and icon:GetAtlas()
+            if atlas then
+                tex:SetAtlas(atlas)
+            else
+                tex:SetTexture(icon:GetTexture())
+                tex:SetTexCoord(icon:GetTexCoord())
+            end
+            local iw, ih = icon:GetSize()
+            if (tonumber(iw) or 0) >= 12 and (tonumber(ih) or 0) >= 12 then w, h = iw, ih end
+        elseif C_Texture and C_Texture.GetAtlasInfo and C_Texture.GetAtlasInfo("UI-HUD-UnitFrame-Player-CombatIcon") then
+            tex:SetAtlas("UI-HUD-UnitFrame-Player-CombatIcon")
+            local info = C_Texture.GetAtlasInfo("UI-HUD-UnitFrame-Player-CombatIcon")
+            if info and (tonumber(info.width) or 0) >= 12 then w, h = info.width, info.height end
+        else
+            tex:SetTexture("Interface\\CharacterFrame\\UI-StateIcon")
+            tex:SetTexCoord(0.5, 1.0, 0.0, 0.484375)
+        end
+        tex:SetSize(w, h)
+        if tex.SetSnapToPixelGrid then tex:SetSnapToPixelGrid(false) end
+        if tex.SetTexelSnappingBias then tex:SetTexelSnappingBias(0) end
+        tex.fdjArt = true
+    end
+
     local function ShowOnMap(entry)
         local show = FDJ.MapMarkers and FDJ.MapMarkers.ShowRecordedLocationOnMap
         if not entry or type(entry.spot) ~= "table" or not show then return end
@@ -5630,10 +6304,53 @@ do
         f.arrow:SetSize(52, 52)
         f.arrow:SetPoint("TOP", f, "TOP", 0, 0)
         if f.arrow:SetTexture(ART) == false then f.arrow:SetTexture(FALLBACK_ART) end
+        f.swords = f:CreateTexture(nil, "ARTWORK") -- killswords (2.1.1)
+        f.swords:SetSize(40, 40)
+        f.swords:SetPoint("CENTER", f.arrow, "CENTER", 0, 0)
+        f.swords:Hide()
         f.title = f:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontNormal")
         f.title:SetPoint("TOP", f.arrow, "BOTTOM", 0, -1)
         f.distance = f:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlightSmall")
         f.distance:SetPoint("TOP", f.title, "BOTTOM", 0, -2)
+        -- flybar (2.1.1, M 20 Nov 2026 on a flight: "I would like to see the
+        -- flight icon ... on top of the quest and then have the timer of the
+        -- flight in a bar ... from filled to empty ... The bar should be
+        -- yellow"): in the air, the game's flight master icon where the arrow
+        -- was, and under the quest's name a yellow bar that empties as the
+        -- flight goes on, the time left on it.
+        f.taxiIcon = f:CreateTexture(nil, "ARTWORK")
+        f.taxiIcon:SetSize(34, 34)
+        f.taxiIcon:SetPoint("CENTER", f.arrow, "CENTER", 0, 0)
+        f.taxiIcon:SetTexture("Interface\\Minimap\\Tracking\\FlightMaster")
+        f.taxiIcon:Hide()
+        do
+            local okH, holder = pcall(CreateFrame, "Frame", nil, f, "BackdropTemplate")
+            local okB, bar = pcall(CreateFrame, "StatusBar", nil, okH and holder or f)
+            if okH and holder and okB and bar then
+                holder:SetSize(140, 12)
+                holder:SetPoint("TOP", f.title, "BOTTOM", 0, -4)
+                holder:EnableMouse(false)
+                if holder.SetBackdrop then
+                    holder:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8X8", edgeFile = "Interface\\Buttons\\WHITE8X8", edgeSize = 1 })
+                    holder:SetBackdropColor(0, 0, 0, 0.55)
+                    holder:SetBackdropBorderColor(0, 0, 0, 0.9)
+                end
+                bar:SetPoint("TOPLEFT", holder, "TOPLEFT", 1, -1)
+                bar:SetPoint("BOTTOMRIGHT", holder, "BOTTOMRIGHT", -1, 1)
+                bar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
+                bar:SetStatusBarColor(1.00, 0.82, 0.00)
+                bar:SetMinMaxValues(0, 1)
+                bar:SetValue(1)
+                bar:EnableMouse(false)
+                holder.bar = bar
+                holder.text = bar:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlightSmall")
+                holder.text:SetPoint("CENTER", holder, "CENTER", 0, 0)
+                local font, size = holder.text:GetFont()
+                if font then pcall(holder.text.SetFont, holder.text, font, size or 10, "OUTLINE") end
+                holder:Hide()
+                f.taxiBar = holder
+            end
+        end
         -- npcicon (2.0.13): the NPC in reach of a click: in place of the !
         -- or ?, the NPC's own picture (once the game shows the unit: target,
         -- mouseover or nameplate), else the mark the click puts on it.
@@ -5819,16 +6536,17 @@ do
         end
         if Way.corpseOff then return nil end
         if Way.corpse then return Way.corpse end
-        if not (C_DeathInfo and type(C_DeathInfo.GetCorpseMapPosition) == "function") then return nil end
         local map, guard = PlayerMap(), 0
-        while map and guard < 4 do
-            local okPos, pos = pcall(C_DeathInfo.GetCorpseMapPosition, map)
+        while map and guard < 4 and C_DeathInfo and type(C_DeathInfo.GetCorpseMapPosition) == "function" do
+            local okPos, pos, posY = pcall(C_DeathInfo.GetCorpseMapPosition, map)
             local x, y
             if okPos and type(pos) == "table" then
                 x, y = pos.x, pos.y
                 if (x == nil or y == nil) and pos.GetXY then x, y = pos:GetXY() end
+            elseif okPos and type(pos) == "number" then
+                x, y = pos, posY -- (x and y as two numbers)
             end
-            if Number(x) and Number(y) and x > 0 and y > 0 and x < 1 and y < 1 then
+            if Way.Spot(x, y) then
                 Way.corpse = { spot = { mapID = map, x = x, y = y, label = FDJ.L("ARROW_CORPSE"), corpse = true, markerType = "location" }, source = "corpse", key = "corpse" }
                 return Way.corpse
             end
@@ -5837,7 +6555,20 @@ do
             if map == 0 then map = nil end
             guard = guard + 1
         end
+        -- corpsefallback (2.1.1, M 20 Nov 2026, a ghost at Farholde Keep's
+        -- graveyard with the arrow on A Small Favor's hand-in: "it's telling me
+        -- to turn in the quest when I'm dead instead of getting to the body"):
+        -- the game gave no place for the corpse: where the character died.
+        if type(Way.diedAt) == "table" then
+            Way.corpse = { spot = { mapID = Way.diedAt.mapID, x = Way.diedAt.x, y = Way.diedAt.y, label = FDJ.L("ARROW_CORPSE"), corpse = true, markerType = "location" }, source = "corpse", key = "corpse" }
+            return Way.corpse
+        end
         return nil
+    end
+    -- A place on a map: two plain numbers inside it.
+    function Way.Spot(x, y)
+        if type(issecretvalue) == "function" and (issecretvalue(x) or issecretvalue(y)) then return false end
+        return Number(x) ~= nil and Number(y) ~= nil and x > 0 and y > 0 and x < 1 and y < 1
     end
     Way.corpseWatch = CreateFrame("Frame")
     ;(function()
@@ -5845,11 +6576,36 @@ do
             pcall(Way.corpseWatch.RegisterEvent, Way.corpseWatch, event)
         end
     end)()
-    Way.corpseWatch:SetScript("OnEvent", function()
+    Way.corpseWatch:SetScript("OnEvent", function(_, event)
         Way.corpse = nil
+        -- corpsefallback: where the character died is kept until alive again
+        if event == "PLAYER_DEAD" then
+            Way.diedAt = nil
+            local map = PlayerMap()
+            if map and C_Map and type(C_Map.GetPlayerMapPosition) == "function" then
+                local okP, pos = pcall(C_Map.GetPlayerMapPosition, map, "player")
+                local x, y
+                if okP and type(pos) == "table" then
+                    x, y = pos.x, pos.y
+                    if (x == nil or y == nil) and pos.GetXY then x, y = pos:GetXY() end
+                end
+                if Way.Spot(x, y) then Way.diedAt = { mapID = map, x = x, y = y } end
+            end
+        elseif event == "PLAYER_UNGHOST" then
+            Way.diedAt = nil
+        end
         local function again() if Choose then pcall(Choose) end end
         again()
         if C_Timer and C_Timer.After then C_Timer.After(1, again) end -- (the ghost and the corpse's place come a moment after)
+    end)
+    -- corpsefallback: a ghost whose corpse was not known yet when the arrow
+    -- was chosen: asked again every second until it is.
+    Way.corpseWatch:SetScript("OnUpdate", function(self, elapsed)
+        self.fdjWait = (self.fdjWait or 0) - (elapsed or 0)
+        if self.fdjWait > 0 then return end
+        self.fdjWait = 1
+        if Way.corpse or Way.corpseOff or not shown or shown.source == "corpse" then return end
+        if Way.Corpse() and Choose then pcall(Choose) end
     end)
 
     -- The spot shown on the map first, else the one a tracked chain is at.
@@ -5877,14 +6633,19 @@ do
         -- repeaticon (2.0.44): the arrow to a repeatable quest: the blue ?
         local repeatOnly = FDJ.IsRepeatableQuest ~= nil and pick.spot.fdjAutoQuest ~= nil
             and FDJ.IsRepeatableQuest(pick.spot.fdjAutoQuest)
+        -- sharpmark (2.1.3, M 21 Nov 2026 at the Battered Dwarven Skeleton:
+        -- "the question mark is so low quality though"): the arrow's ? and !
+        -- are the journal's own drawings (Media/ArrowTurnIn, ArrowPickUp,
+        -- ArrowRepeatable, 128 x 128), sharp at the picture's size too
+        -- (objectmark), in place of the game's 16 x 16 gossip marks.
         if repeatOnly and (pick.spot.turnIn or quest) then
-            mark = "|T" .. FDJ.REPEATABLE_QUEST_TEXTURE .. ":0|t "
+            mark = "|TInterface\\AddOns\\ForeverDungeonJournal\\Media\\ArrowRepeatable:0|t "
         elseif pick.spot.goTo then
             mark = "" -- gotomark
         elseif pick.spot.turnIn then
-            mark = "|TInterface\\GossipFrame\\ActiveQuestIcon:0|t "
+            mark = "|TInterface\\AddOns\\ForeverDungeonJournal\\Media\\ArrowTurnIn:0|t "
         elseif quest then
-            mark = "|TInterface\\GossipFrame\\AvailableQuestIcon:0|t "
+            mark = "|TInterface\\AddOns\\ForeverDungeonJournal\\Media\\ArrowPickUp:0|t "
         end
         f.fdjMark, f.fdjName = mark, (quest or SpotName(pick.spot))
         f.fdjNpcOn, f.fdjNpcUnit, f.fdjNpcAt = nil, nil, nil
@@ -5934,7 +6695,9 @@ do
     -- The chain moving on or ending takes its spot shown on the map along.
     -- goalhere (2.0.9): goalLines, at the place to kill / collect (a route's
     -- stop, Systems/QuestText.lua): the lines shown in place of the yards.
-    function FDJ.FollowWaypoint(source, spot, questTitle, turnIn, goalLines, goTo, skipQuest)
+    -- onway (2.1.3): onWay, lines for a second black box under the arrow
+    -- (FDJ.RouteOnWayLines, Systems/QuestText.lua; FDJ.ArrowOnWay).
+    function FDJ.FollowWaypoint(source, spot, questTitle, turnIn, goalLines, goTo, skipQuest, onWay)
         if source == nil then return end
         if type(spot) ~= "table" or not spot.mapID then
             if follows[source] then
@@ -5953,6 +6716,12 @@ do
         if old and old.key == key then
             old.spot.goTo = goTo and true or nil -- gotomark
             old.spot.goalLines = type(goalLines) == "table" and goalLines or nil
+            old.spot.onWayLines = type(onWay) == "table" and onWay or nil -- (onway)
+            old.spot.noteKey, old.spot.noteArg = spot.noteKey, spot.noteArg -- elitenote (2.1.1)
+            old.spot.buyLines = spot.buyLines -- buylines (2.0.10)
+            old.spot.skipQuest = skipQuest -- skipnow (2.0.13)
+            old.spot.crumbQuest = spot.crumbQuest -- crumbpass (2.1.3)
+            old.spot.questNamed = spot.questNamed -- lowdoor (2.1.4)
             if type(questTitle) == "string" and old.spot.questTitle ~= questTitle then
                 old.spot.questTitle = questTitle
                 if shown == old then Choose() end
@@ -5971,9 +6740,168 @@ do
         -- no "Turn in here" on its map pin.
         copy.goTo = goTo and true or nil
         copy.goalLines = type(goalLines) == "table" and goalLines or nil
+        copy.onWayLines = type(onWay) == "table" and onWay or nil -- (onway)
         copy.skipQuest = skipQuest -- skipnow (2.0.13): the Route's quest the arrow's "Skip for now" leaves off
         follows[source] = { spot = copy, source = source, key = key }
         Choose()
+    end
+    -- picgap (2.1.3, M 21 Nov 2026 at the Battered Dwarven Skeleton, "Talk to
+    -- Battered Dwarven Skeleton" running under the ?: "the little green text
+    -- should never overlap with portraits or question mark icons"): the
+    -- picture (32 high, level with the name) reaches down into the first line
+    -- under the name; it stands left of that line, measured every frame (the
+    -- yards become "Talk to <name>" once there, after the picture came).
+    -- The picture and the name take the click too, not only the arrow (the
+    -- picture sits left of the name, past the frame's own edge when the name
+    -- is long: the hit area reaches out to it; not in combat).
+    -- itemgap (2.1.4, M 22 Nov 2026 at Woodwyrd, the vial's icon over "Use the
+    -- vial on the burning tree": "can we make the green text not overlap with
+    -- the icon, in general always"): the icon of the item to click
+    -- (FDJ.ArrowItemButton) is placed the same way, left of the name and clear
+    -- of the line under it, with the picture left of the icon. The line is
+    -- measured in the font it is shown in (bigger at a place to kill).
+    function FDJ.ArrowPlacePicture(f, on)
+        if not (f and f.title and f.distance) then return end
+        local item = f.fdjItem and f.fdjItem:IsShown() and f.fdjItem or nil -- (itemgap)
+        local half = (tonumber(f.title:GetStringWidth()) or 110) / 2
+        local wide = 0
+        if on or item then
+            if not f.fdjMeasure then
+                f.fdjMeasure = f:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlightSmall")
+                f.fdjMeasure:Hide()
+            end
+            local first = (f.distance:GetText() or ""):match("^([^\n]*)") or ""
+            local font = f.distance:GetFontObject()
+            if first ~= f.fdjMeasureText or font ~= f.fdjMeasureFont then
+                if font then f.fdjMeasure:SetFontObject(font) end
+                f.fdjMeasure:SetText(first)
+                f.fdjMeasureText, f.fdjMeasureFont, f.fdjMeasureWide = first, font, tonumber(f.fdjMeasure:GetStringWidth()) or 0
+            end
+            wide = f.fdjMeasureWide or 0
+        end
+        local out = math.max(0, math.floor(wide / 2 - half + 3.5))
+        local key = (on and "on" or "off") .. (item and ":item" or "") .. ":" .. math.floor(half + 0.5) .. ":" .. out
+        if key == f.fdjPicKey then return end
+        local extra = 0
+        if item then
+            item:ClearAllPoints()
+            item:SetPoint("RIGHT", f.title, "LEFT", -3 - out, 0)
+            extra = (tonumber(item:GetWidth()) or 32) + 3
+        end
+        if f.npc then
+            f.npc:ClearAllPoints()
+            if item then
+                f.npc:SetPoint("RIGHT", item, "LEFT", -3, 0)
+            else
+                f.npc:SetPoint("RIGHT", f.title, "LEFT", -3 - out, 0)
+            end
+        end
+        if f.SetHitRectInsets then
+            if InCombatLockdown and InCombatLockdown() then return end -- (tried again next frame)
+            if on then
+                local tall = tonumber(f.title:GetStringHeight()) or 14
+                f:SetHitRectInsets(75 - (half + out + extra + 39), 75 - (half + 2), 0,
+                    math.max(0, math.floor(84 - (53 + tall / 2 + 18))))
+            else
+                f:SetHitRectInsets(49, 49, 0, 32)
+            end
+        end
+        f.fdjPicKey = key
+    end
+    -- goalbox (2.1.3, M 21 Nov 2026 among the buzzards: "give it like a box,
+    -- a black box where all of this text is contained in, so that it's easier
+    -- against the background to see"): behind the name and the lines under
+    -- it at a place to kill / collect, as wide as the widest line; the done
+    -- lines' grey made lighter for it (FDJ.RouteGoalLines).
+    function FDJ.ArrowGoalBox(f, show)
+        if not (f and f.title and f.distance) then return end
+        if not f.goalBox then
+            if not show then return end
+            f.goalBox = f:CreateTexture(nil, "BACKGROUND")
+            if f.goalBox.SetColorTexture then
+                f.goalBox:SetColorTexture(0, 0, 0, 0.75)
+            else
+                f.goalBox:SetTexture("Interface\\Buttons\\WHITE8X8")
+                f.goalBox:SetVertexColor(0, 0, 0, 0.75)
+            end
+            f.goalBox:SetPoint("TOP", f.title, "TOP", 0, 6)
+            f.goalBox:SetPoint("BOTTOM", f.distance, "BOTTOM", 0, -6)
+        end
+        if not show then
+            f.goalBox:Hide()
+            f.fdjBoxText = nil
+            return
+        end
+        local text = (f.title:GetText() or "") .. "\001" .. (f.distance:GetText() or "")
+        if text ~= f.fdjBoxText then
+            f.fdjBoxText = text
+            if not f.fdjBoxMeasure then
+                f.fdjBoxMeasure = f:CreateFontString(nil, "OVERLAY")
+                f.fdjBoxMeasure:Hide()
+            end
+            f.fdjBoxMeasure:SetFontObject(f.distance:GetFontObject() or "ForeverDJ_GameFontHighlightMedium")
+            local wide = tonumber(f.title:GetStringWidth()) or 0
+            for line in ((f.distance:GetText() or "") .. "\n"):gmatch("(.-)\n") do
+                f.fdjBoxMeasure:SetText(line)
+                wide = math.max(wide, tonumber(f.fdjBoxMeasure:GetStringWidth()) or 0)
+            end
+            f.goalBox:SetWidth(math.floor(wide + 18.5))
+        end
+        f.goalBox:Show()
+    end
+    -- onway (2.1.3, M 21 Nov 2026: "We could use a little black box with the
+    -- multiple objectives ... you don't need to complete it now"): what can
+    -- be done on the way at a dungeon's outer site, in a black box of its own
+    -- under everything else under the arrow (the way, the hearthstone, a
+    -- Skip for now or Next spot button), as wide as its widest line. nil:
+    -- hidden.
+    function FDJ.ArrowOnWay(f, lines)
+        if not (f and f.hearth) then return end
+        if type(lines) ~= "table" or #lines == 0 then
+            if f.onWay then
+                f.onWay:Hide()
+                f.onWayBox:Hide()
+            end
+            return
+        end
+        if not f.onWay then
+            f.onWay = f:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlight")
+            f.onWay:SetJustifyH("CENTER")
+            f.onWayBox = f:CreateTexture(nil, "BACKGROUND")
+            if f.onWayBox.SetColorTexture then
+                f.onWayBox:SetColorTexture(0, 0, 0, 0.75)
+            else
+                f.onWayBox:SetTexture("Interface\\Buttons\\WHITE8X8")
+                f.onWayBox:SetVertexColor(0, 0, 0, 0.75)
+            end
+            f.onWayBox:SetPoint("TOP", f.onWay, "TOP", 0, 6)
+            f.onWayBox:SetPoint("BOTTOM", f.onWay, "BOTTOM", 0, -6)
+            f.onWayMeasure = f:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlight")
+            f.onWayMeasure:Hide()
+        end
+        local anchor = f.hearth
+        if f.skipNow and f.skipNow:IsShown() then
+            anchor = f.skipNow
+        elseif f.nextSpawn and f.nextSpawn:IsShown() then
+            anchor = f.nextSpawn
+        end
+        if f.fdjOnWayAnchor ~= anchor then
+            f.fdjOnWayAnchor = anchor
+            f.onWay:ClearAllPoints()
+            f.onWay:SetPoint("TOP", anchor, "BOTTOM", 0, -12)
+        end
+        local text = table.concat(lines, "\n")
+        if f.onWay:GetText() ~= text then
+            f.onWay:SetText(text)
+            local wide = 0
+            for line in (text .. "\n"):gmatch("(.-)\n") do
+                f.onWayMeasure:SetText(line)
+                wide = math.max(wide, tonumber(f.onWayMeasure:GetStringWidth()) or 0)
+            end
+            f.onWayBox:SetWidth(math.floor(wide + 18.5))
+        end
+        f.onWay:Show()
+        f.onWayBox:Show()
     end
     function FDJ.WaypointArrowTarget()
         return shown and shown.spot or nil, shown and shown.source or nil
@@ -5984,7 +6912,12 @@ do
     -- boats, zeppelins, portals). from = nil: from where the player stands,
     -- and then with the hearthstone when it is ready and the quicker way.
     -- nil: no way known.
-    function FDJ.WayCost(from, to)
+    -- routenet (2.1.3): net = true, from where the player stands: a way on
+    -- foot is weighed by the walking net's yards (round the mountains), as
+    -- the arrow's own plan weighs it (netwalk), and a flight against that;
+    -- for the Route's stop being headed for (Systems/QuestText.lua:
+    -- headnear). The net's field round the stop is built once per stop.
+    function FDJ.WayCost(from, to, net)
         if type(to) ~= "table" or not to.mapID then return nil end
         local t = Way.Point(to.mapID, tonumber(to.x) or 0, tonumber(to.y) or 0)
         if not t then return nil end
@@ -6004,11 +6937,23 @@ do
             local _, found = Way.Search(p, t)
             cost = found or cost
         end
+        if net and not from and cost and p.region == t.region and p[3] == t[3] and FDJ.WalkNetYards
+            and Yards(p[1], p[2], t[1], t[2]) >= FLY_MIN then
+            local walk = Way.Walk(p[3], p[1], p[2], t[1], t[2])
+            if cost >= walk - 1 then
+                local yards = FDJ.WalkNetYards(p[1], p[2], t[1], t[2], p[3])
+                if yards and yards > walk then
+                    local _, _, fly = FlyCost(p[3], p[1], p[2], t[1], t[2], p.map, t.map, p.region, t.region)
+                    cost = math.min(yards, fly or yards)
+                end
+            end
+        end
         if not from and Way.HearthReady() then
             local bindName, bind = Way.BindSpot()
             if bind and not (bind[3] == p[3] and Yards(p[1], p[2], bind[1], bind[2]) < Way.HEARTH_NEAR) and not Way.AtBind(bindName) then
                 local _, after = Way.Search(bind, t)
-                if after and (not cost or Way.HEARTH_CAST + after + Way.HEARTH_SAVES <= cost) then
+                local need = bind[3] == p[3] and Way.HEARTH_SAVES_SAME or Way.HEARTH_SAVES -- hearthfar
+                if after and (not cost or Way.HEARTH_CAST + after + need <= cost) then
                     cost = Way.HEARTH_CAST + after
                 end
             end
@@ -6293,7 +7238,10 @@ end
         local itemID = use and tonumber(use[1])
         local on = itemID and Count(itemID) > 0
         if not on then
-            if f.fdjItem then f.fdjItem:Hide() end
+            if f.fdjItem and f.fdjItem:IsShown() then
+                f.fdjItem:Hide()
+                f.fdjPicKey = nil -- itemgap (2.1.4): the picture back by the name
+            end
             return
         end
         f.fdjItem = f.fdjItem or Build(f)
@@ -6304,9 +7252,13 @@ end
             b:SetAttribute("item", "item:" .. itemID)
             b.icon:SetTexture(Icon(itemID) or "Interface\\Icons\\INV_Misc_QuestionMark")
         end
-        b:ClearAllPoints()
-        b:SetPoint("RIGHT", f.title, "LEFT", -3, 0)
-        b:Show()
+        -- itemgap (2.1.4): placed clear of the line under the name (FDJ.ArrowPlacePicture)
+        if not b:IsShown() then
+            b:ClearAllPoints()
+            b:SetPoint("RIGHT", f.title, "LEFT", -3, 0)
+            b:Show()
+            f.fdjPicKey = nil
+        end
     end
 end)()
 

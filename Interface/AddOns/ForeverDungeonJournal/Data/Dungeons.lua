@@ -761,6 +761,9 @@ DB["The Deadmines"] = {
         warning = "This is a chain quest with a step in The Deadmines",
         objective = "Use the Moonsilver Blade to destroy Old-Fire Eye in Silverpine Forest.",
         rewardSummary = "Undercity +150  •  Earthen Ring +150  •  Orgrimmar +75",
+        -- firenotinside (2.1.1, M 20 Nov 2026: "obviously not inside the
+        -- dungeon"): Old Fire-Eye is killed in Silverpine Forest: no tint
+        dungeonStep = false,
         id = 95140,
         note = "Paladin class quest for undead and tauren. In this dungeon: Whitestone Oak Lumber drops from Goblin Woodcarvers. The other parts are the Enchanted Silver Ingot (Shadowfang Keep) and the Purified Kor Gem (Blackfathom Deeps).",
         liveXPFallback = 2650,
@@ -1076,6 +1079,9 @@ DB["Blackfathom Deeps"] = {
         warning = "This is a chain quest with a step in Blackfathom Deeps",
         objective = "Use the Moonsilver Blade to destroy Old-Fire Eye in Silverpine Forest.",
         rewardSummary = "Undercity +150  •  Earthen Ring +150  •  Orgrimmar +75",
+        -- firenotinside (2.1.1, M 20 Nov 2026: "obviously not inside the
+        -- dungeon"): Old Fire-Eye is killed in Silverpine Forest: no tint
+        dungeonStep = false,
         id = 95140,
         note = "Paladin class quest for undead and tauren. In this dungeon: the Corrupted Kor Gem drops from Blackfathom Sea Witches inside, and from Blackfathom Tide Priestesses and Oracles at the entrance in Ashenvale, once you have Seeking the Kor Gem from Ulric Frostveil at Zoram'gar Outpost. He purifies it. The other parts are Whitestone Oak Lumber (The Deadmines) and the Enchanted Silver Ingot (Shadowfang Keep).",
         liveXPFallback = 2650,
@@ -1402,6 +1408,9 @@ DB["Shadowfang Keep"] = {
         warning = "This is a chain quest with a step in Shadowfang Keep",
         objective = "Use the Moonsilver Blade to destroy Old-Fire Eye in Silverpine Forest.",
         rewardSummary = "Undercity +150  •  Earthen Ring +150  •  Orgrimmar +75",
+        -- firenotinside (2.1.1, M 20 Nov 2026: "obviously not inside the
+        -- dungeon"): Old Fire-Eye is killed in Silverpine Forest: no tint
+        dungeonStep = false,
         id = 95140,
         note = "Paladin class quest for undead and tauren. In this dungeon: the Enchanted Silver Ingot lies on a table in Archmage Arugal's room, after you kill him. The other parts are Whitestone Oak Lumber (The Deadmines) and the Purified Kor Gem (Blackfathom Deeps).",
         liveXPFallback = 2650,
@@ -2514,6 +2523,10 @@ FDJ.DB["Gnomeregan"] = {
         rewardSummary = "Nogg's Gold Ring",
         id = 2950,
         requires = 28,
+        -- routebuy (2.0.10): the Route sends you to the auction house for
+        -- these while they are missing; a delivery, no run of its own
+        routeBuy = { {2842, "Silver Bar", 1}, {1206, "Moss Agate", 1} },
+        routeNoRun = true,
         name = "Nogg's Ring Redo",
         startsInDungeon = true,
         faction = "Horde",
@@ -3365,6 +3378,10 @@ FDJ.DB["Scarlet Monastery: Library"] = {
         liveXPFallback = 3550,
     }, {
         warning = "This is a long chain that has a step in the Library",
+        -- notdungeon (2.1.1, M 20 Nov 2026: "this quest should not get the
+        -- faded color because this last part is not in the dungeon"): only
+        -- its Library step is done inside.
+        dungeonStep = false,
         objective = "Speak to Dorn Plainstalker in Thousand Needles.",
         rewardSummary = "",
         id = 1394,
@@ -3966,6 +3983,7 @@ FDJ.DB["Razorfen Downs"] = {
         rewardSummary = "",
         id = 3525,
         name = "Extinguishing the Idol",
+        warning = "Make sure every player in your group has completed the previous step before starting this quest.", -- idolwarn (2.1.0; worded by M 20 Nov 2026)
         faction = "Both",
         pickup = "Belnistrasz, Razorfen Downs",
         startsInDungeon = true,
@@ -4378,7 +4396,6 @@ FDJ.DB["Uldaman"] = {
         requires = 30,
         rewardChoice = true,
         rewardItems = {{9522, "Energized Stone Circle", 2}, {10358, "Duracin Bracers", 2}, {10359, "Everlast Boots", 2}, {270055, "Charged Leather Bracers", 2}},
-        note = "The power stones drop from Shadowforge dwarves in the outer cave.",
         turnin = "Rigglefuzz, Badlands",
         liveXPFallback = 3500,
     },
@@ -4569,10 +4586,10 @@ FDJ.DB["Uldaman"] = {
             aliases = {"Revelosh"},
             description = "In the cave before Ironaya's chamber. Drops The Shaft of Tsol for Staff of Prehistoria.",
             loot = {
-                {9389, "Revelosh's Spaulders", "Shoulder, Leather", 3},
-                {9388, "Revelosh's Armguards", "Wrist, Mail", 3},
-                {9387, "Revelosh's Boots", "Feet, Plate", 3},
-                {9390, "Revelosh's Gloves", "Hands, Cloth", 3},
+                {9389, "Revelosh's Spaulders", "Shoulder, Leather", 3, "", "RANDOM_ENCHANT"},
+                {9388, "Revelosh's Armguards", "Wrist, Mail", 3, "", "RANDOM_ENCHANT"},
+                {9387, "Revelosh's Boots", "Feet, Plate", 3, "", "RANDOM_ENCHANT"},
+                {9390, "Revelosh's Gloves", "Hands, Cloth", 3, "", "RANDOM_ENCHANT"},
             },
         },
         {
@@ -4613,6 +4630,10 @@ FDJ.DB["Uldaman"] = {
             name = "Obsidian Sentinel",
             npcID = 7023,
             aliases = {"Obsidian Sentinel"},
+            -- lootback (2.1.5, M 24 Nov 2026: "obsidian sentinel is now
+            -- dropping loot again"): the red line and the greyed-out loot of
+            -- lootremoved (2.1.3) are gone. To take its loot away again:
+            -- lootNote = "LOOT_NOTE_LOOT_REMOVED", lootRemoved = true.
             description = "Level 42 mechanical guardian near the back entrance to Uldaman, after Ironaya. Drops the Obsidian Power Source for the Mage quest Power in Uldaman.",
             loot = {
                 {274430, "Rock Sentinel Slicer", "Two-Hand, Axe", 3},
@@ -4628,7 +4649,7 @@ FDJ.DB["Uldaman"] = {
             aliases = {"Ancient Stone Keeper"},
             description = "In the Temple Hall.",
             loot = {
-                {9410, "Cragfists", "Hands, Plate", 3},
+                {9410, "Cragfists", "Hands, Plate", 3, "", "RANDOM_ENCHANT"},
                 {9411, "Rockshard Pauldrons", "Shoulder, Mail", 3},
                 {274431, "Sandstorm Staff", "Two-Hand, Staff", 3}, -- Wowhead Forever: Ancient Stone Keeper 61/179
             },
@@ -5666,7 +5687,11 @@ FDJ.DB["Krol'dok Stronghold"] = {
         -- Krol'dok Moulding looted inside starts the first.
         id = 94981,
         name = "Key Ingredients",
-        warning = "The key from this quest unlocks the upper side of the dungeon.",
+        warning = "The key from this quest opens a shortcut to the last boss.",
+        -- notdungeon (2.1.1, M 20 Nov 2026: "to turn it in, I gotta go back
+        -- to Farholde Keep ... the key ingredient step is not a dungeon
+        -- step"): no teal tint on its page.
+        dungeonStep = false,
         level = 41,
         requires = 38,
         faction = "Alliance",
@@ -5684,7 +5709,11 @@ FDJ.DB["Krol'dok Stronghold"] = {
     }, {
         id = 94974,
         name = "Key Ingredients",
-        warning = "The key from this quest unlocks the upper side of the dungeon.",
+        warning = "The key from this quest opens a shortcut to the last boss.",
+        -- notdungeon (2.1.1, M 20 Nov 2026: "to turn it in, I gotta go back
+        -- to Farholde Keep ... the key ingredient step is not a dungeon
+        -- step"): no teal tint on its page.
+        dungeonStep = false,
         level = 41,
         requires = 38,
         faction = "Horde",
@@ -5968,6 +5997,11 @@ FDJ.DB["Alcaz Prison"] = {
                 {287023, "Iron-Wrought Cuffs", "Wrist, Plate", 3},
                 {287024, "Mark of Captivity", "Neck", 3},
                 {287025, "Enchantresses' Spire", "Two-Hand, Staff", 3, "Strashaz Enchantress"}, -- Wowhead Forever: Strashaz Enchantress 5.78%
+                -- escapeplan (2.1.4, M 23 Nov 2026: "add this loot to alcaz
+                -- trash"): Escape Plan, gun, item level 54, needs 49, a zone
+                -- drop in Alcaz Prison (Wowhead Forever's Alcaz Prison drops;
+                -- SOURCES.txt, escapeplan)
+                {287026, "Escape Plan", "Ranged, Gun", 3},
             },
         },
     },
@@ -6222,6 +6256,22 @@ FDJ.DB["Blackmaw Hold"] = {
                     "Sell Price: 4|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t 38|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t 27|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t",
                 }},
                 {280086, "Octofinger Gauntlets", "Hands, Plate", 3}, -- Wowhead Forever: Tunnelweb Matriarch 2/2
+            },
+        },
+        {
+            -- sabella (2.1.2, M 20 Nov 2026: "add this rare boss to
+            -- blackmaw"): rare elite beast (NPC 269151, Wowhead Forever; a
+            -- player there: it appeared at the entrance of the cave inside
+            -- the dungeon and dropped the mail chest). Loot: Wowhead
+            -- Forever's drops (28 kills).
+            name = "Sabella No-Eyes",
+            npcID = 269151,
+            aliases = {"Sabella No-Eyes", "Sabella"},
+            description = "Rare spawn.",
+            rare = true,
+            loot = {
+                {280083, "Truesight Rifle", "Ranged, Gun", 3}, -- 16/28
+                {280084, "Furbolg Rib Protector", "Chest, Mail", 3}, -- 12/28
             },
         },
         {
@@ -6486,12 +6536,14 @@ FDJ.DB["Blackmaw Hold"] = {
                 {287033, "Furbolg Berserker's Boots", "Feet, Plate", 3, "Blackmaw Devotee / Blackmaw Berserker / Legashi Slayer"},
                 -- Epic Leatherworking pattern (Recipes & Patterns tab).
                 {252893, "Pattern: Timbermaw Tunic", "Recipe, Leatherworking", 4, "Blackmaw Druid"},
-            },
-            -- trashaudit (2.0.14): in Blackmaw Hold's item ID block (Wowhead
-            -- Forever, OneForAll) but no drop recorded yet: "probably drops".
-            probableLoot = {
-                {287031, "Spearfisher's Waders", "Legs, Mail", 3},
-                {287035, "Demon Worshipper's Necklace", "Neck", 3},
+                -- trashconfirm (2.1.2, M 21 Nov 2026: "confirm the two trash
+                -- drops"): no longer "probably drops". Wowhead Forever's
+                -- "Dropped by": the Waders from Blackmaw Thralls and Swarming
+                -- Imps; the Necklace from most of the trash (Blackmaw
+                -- Berserker, Champion, Headhunter and Thrall, Legashi Slayer
+                -- and Subjugator, Depraved Owlbeast).
+                {287031, "Spearfisher's Waders", "Legs, Mail", 3, "Blackmaw Thrall / Swarming Imp"},
+                {287035, "Demon Worshipper's Necklace", "Neck", 3, "Blackmaw Hold trash"},
             },
         },
     },
@@ -7309,6 +7361,7 @@ FDJ.DB["Sunken Temple"] = {
         {
             name = "Altar Bosses",
             children = { 5713, 5715, 5714, 5717, 5712, 5716 },
+            deadWith = "Atal'alarion", -- altarneeded (2.1.4, M 22 Nov 2026): with Atal'alarion dead the tracker counts the six as dead too
             portraitNpcID = 5713,
             description = "The six Atal'ai troll guardians on the balconies round the ring: Gasher, Hukku, Loro, Mijan, Zolo and Zul'Lor. All six must die before Jammal'an the Prophet comes down. They share one loot table.",
             loot = {
@@ -7524,6 +7577,7 @@ FDJ.DB["Sunken Temple"] = {
         {
             name = "Avatar of Hakkar",
             npcID = 8443,
+            optional = true, -- altarneeded (2.1.4): only there with the Filled Egg of Hakkar (The God Hakkar): a run ends without it
             aliases = {"Avatar of Hakkar"},
             description = "Summoned at the central altar with the Filled Egg of Hakkar (The God Hakkar).",
             loot = {
@@ -7731,15 +7785,44 @@ FDJ.DB["Scholomance"] = {
         classOnly = "SHAMAN",
         objective = "Use the Divination Scryer in the heart of the Great Ossuary's basement in the Scholomance. Doing so will bring forth spirits you must fight. Defeating these spirits will summon forth Death Knight Darkreaver; defeat him. Bring Darkreaver's Head to Sagorne Creststrider in the Valley of Wisdom, Orgrimmar.",
         rewardSummary = "",
-        id = 7668,
+        -- darkreaver (2.1.4, Aurheim on Discord, 23 Nov 2026: "Quest on
+        -- Forever is ID 8258 ... you pick between Skyfury Helm and Skyfury
+        -- Gauntlets. Both are epic"): Forever's quest is 8258, not the old
+        -- 7668 (Helm of Latent Power); SOURCES.txt, darkreaver. (lvl58, M 23
+        -- Nov 2026: "it's available from level 58 ... go back to showing
+        -- XP": level 58 as on Wowhead Forever, and its XP again.)
+        id = 8258,
         name = "The Darkreaver Menace",
         faction = "Horde",
         pickup = "Sagorne Creststrider, Valley of Wisdom, Orgrimmar",
         level = 60,
         requires = 58,
-        rewardItems = {{18807, "Helm of Latent Power", 3}},
+        rewardChoice = true,
+        rewardItems = {{20134, "Skyfury Helm", 4}, {20133, "Skyfury Gauntlets", 4}},
         note = "Shaman quest. Clear Rattlegore's basement, use the scryer and defeat Death Knight Darkreaver; return his head.",
         turnin = "Sagorne Creststrider, Valley of Wisdom, Orgrimmar",
+        liveXPFallback = 9950,
+    },
+    {
+        -- darkreaverally (2.1.4, M 23 Nov 2026: "alliance also has this chain,
+        -- make sure you apply accordingly to the alliance npcs"): the
+        -- Alliance's own, 97169 from Eldrun Stormbreaker in Ironforge's
+        -- Forlorn Cavern (after his Material Assistance, 97168); the same
+        -- event, level and rewards as the Horde's 8258 (SOURCES.txt,
+        -- darkreaverally).
+        classOnly = "SHAMAN",
+        objective = "Use the Divination Scryer in the heart of the Great Ossuary's basement in the Scholomance. Doing so will bring forth spirits you must fight. Defeating these spirits will summon forth Death Knight Darkreaver; defeat him. Bring Darkreaver's Head to Eldrun Stormbreaker in the Forlorn Caverns, Ironforge.",
+        rewardSummary = "",
+        id = 97169,
+        name = "The Darkreaver Menace",
+        faction = "Alliance",
+        pickup = "Eldrun Stormbreaker, Forlorn Cavern, Ironforge",
+        level = 60,
+        requires = 58,
+        rewardChoice = true,
+        rewardItems = {{20134, "Skyfury Helm", 4}, {20133, "Skyfury Gauntlets", 4}},
+        note = "Shaman quest. Clear Rattlegore's basement, use the scryer and defeat Death Knight Darkreaver; return his head.",
+        turnin = "Eldrun Stormbreaker, Forlorn Cavern, Ironforge",
         liveXPFallback = 9950,
     },
     },
@@ -7747,7 +7830,7 @@ FDJ.DB["Scholomance"] = {
         {
             name = "Kirtonos the Herald",
             npcID = 10506,
-            aliases = {"Kirtonos the Herald"},
+            aliases = {"Kirtonos the Herald", "Kirtonos"}, -- scholoids (2.1.2): the game's name of his fight
             description = "Summoned on the porch with the Blood of Innocents (Kirtonos the Herald).",
             loot = {
                 -- Kirtonos boss-specific drops (Forever Wowhead NPC 10506).
@@ -7801,6 +7884,9 @@ FDJ.DB["Scholomance"] = {
             loot = {
                 {14576, "Ebon Hilt of Marduk", "Main Hand, Sword", 3},
                 {18692, "Death Knight Sabatons", "Feet, Plate", 3},
+                -- marduknew (2.1.1, M 20 Nov 2026): his Forever drops (Wowhead Forever, binds when picked up)
+                {276069, "Gravetoll Gavel", "Two-Hand, Mace", 3},
+                {276071, "The Black Helm", "Head, Plate", 3},
             },
         },
         {
@@ -7811,13 +7897,16 @@ FDJ.DB["Scholomance"] = {
             loot = {
                 {14577, "Skullsmoke Pants", "Legs, Cloth", 3},
                 {18691, "Dark Advisor's Pendant", "Neck", 3},
+                -- vectusnew (2.1.1, M 20 Nov 2026): his Forever drops (Wowhead Forever, binds when picked up)
+                {276073, "Band of the Damned", "Finger", 3},
+                {276072, "Soulwoven Drape", "Back", 3},
                 {273121, "Blueprint: Sewing Machine", "Blueprint", 2}, -- bpaudit (2.0.9): Wowhead Forever: 1 drop in 17 loots
             },
         },
         {
             name = "Ras Frostwhisper",
             npcID = 10508,
-            aliases = {"Ras Frostwhisper"},
+            aliases = {"Ras Frostwhisper", "Ras Frostwhisperer"}, -- scholoids (2.1.2): the game's name of his fight
             description = "Lich in the Barov family vault. Use the Soulbound Keepsake on him for The Lich, Ras Frostwhisper.",
             loot = {
                 {16689, "Magister's Mantle", "Shoulder, Cloth", 3},
@@ -8184,7 +8273,6 @@ FDJ.DB["Maraudon"] = {
         level = 48,
         requires = 39,
         rewardItems = {{17774, "Mark of the Chosen", 2}},
-        note = "Loot the Amulet of Spirits from the Nameless Prophet in the outer caves, then use it to fight the five Khans: three in the outer caves, one on the purple route and one on the orange route. Combine their gems with the amulet.",
         turnin = "Centaur Pariah, southern Desolace",
         liveXPFallback = 5450,
     },
@@ -8649,6 +8737,8 @@ FDJ.DB["Dire Maul: East"] = {
             description = "The imp you chase through the Warpwood Quarter; he fights at the end and drops the Crescent Key.",
             loot = {
                 {18316, "Obsidian Bauble", "Off Hand", 3},
+                -- lootadd (2.1.1, M 20 Nov 2026): Wowhead Forever drops; wowtbc.gg Forever DM East loot table: 57/322
+                {18320, "Demondash Spaulders", "Shoulder, Mail", 3},
                 {18267, "Recipe: Runn Tum Tuber Surprise", "Recipe, Cooking", 2},
             },
         },
@@ -8662,6 +8752,9 @@ FDJ.DB["Dire Maul: East"] = {
                 {18323, "Satyr's Bow", "Ranged, Bow", 3},
                 -- It drops with a random enchantment ("of Frost Resistance"...).
                 {18319, "Fervent Helm", "Head, Mail", 3, "", "RANDOM_ENCHANT"},
+                -- lootadd (2.1.1, M 20 Nov 2026): Wowhead Forever drops; wowtbc.gg Forever DM East loot table: 71/378, 70/378
+                {18308, "Clever Hat", "Head, Leather", 3},
+                {18306, "Gloves of Shadowy Mist", "Hands, Cloth", 3},
             },
         },
         {
@@ -8687,6 +8780,8 @@ FDJ.DB["Dire Maul: East"] = {
             loot = {
                 {18325, "Felhide Cap", "Head, Leather", 3},
                 {18311, "Quel'dorai Channeling Rod", "Two-Hand, Staff", 3},
+                -- lootadd (2.1.1, M 20 Nov 2026): Wowhead Forever drops; wowtbc.gg Forever DM East loot table: 94/344
+                {18301, "Lethtendris's Wand", "Ranged, Wand", 3},
                 -- lootaudit (2.0.8, M 15 Nov 2026: his non-recipe loot audit, Wowhead Forever drops; Icy Veins Forever): Band of Vigor 11/54; Pimgib's Collar from her pet Pimgib (14349), 1/8
                 {18302, "Band of Vigor", "Finger", 3},
                 {18354, "Pimgib's Collar", "Trinket", 3},
@@ -8708,6 +8803,31 @@ FDJ.DB["Dire Maul: East"] = {
                 {18326, "Razor Gauntlets", "Hands, Plate", 3},
                 {18327, "Whipvine Cord", "Waist, Cloth", 3},
                 {18328, "Shadewood Cloak", "Back", 3},
+            },
+        },
+        {
+            -- isalien (2.1.1, M 20 Nov 2026: "add isalien with the usual text
+            -- for the tier 0.5"): the Dungeon Set 2 boss of this wing, summoned
+            -- in Alzzin the Wildshaper's hall with the Brazier (warcraft.wiki.gg:
+            -- her ghost haunts the hall where Alzzin resides). Optional: not on
+            -- the Dungeon Tracker. Loot: Wowhead Forever's drops (5 kills) and
+            -- wowtbc.gg's Forever DM East loot table.
+            name = "Isalien",
+            npcID = 16097,
+            rare = true,
+            rareLabel = "0.5 Quest Event", -- same label as Theldren, Kormok, Mor Grayhoof, Jarien and Sothos and Lord Valthalak
+            aliases = {"Isalien"},
+            description = "Summoned in Alzzin the Wildshaper's hall with the Brazier from the Dungeon Set 2 quests: one of the four bosses that drop a piece of Lord Valthalak's Amulet.",
+            trackerHidden = true,
+            loot = {
+                {22314, "Huntsman's Harpoon", "Two-Hand, Polearm", 3}, -- 2/5
+                {22472, "Boots of Ferocity", "Feet, Leather", 3}, -- 1/5
+                {22315, "Hammer of Revitalization", "Main Hand, Mace", 3}, -- 1/5
+                {22304, "Ironweave Gloves", "Hands, Cloth", 3}, -- 1/5
+                {22401, "Libram of Hope", "Relic, Libram", 3}, -- 1/5
+                {22345, "Totem of Tides", "Relic, Totem", 3}, -- 1/5
+                {21984, "Left Piece of Lord Valthalak's Amulet", "Quest Item", 1}, -- 2/5
+                {22046, "Right Piece of Lord Valthalak's Amulet", "Quest Item", 1}, -- 2/5
             },
         },
         {
@@ -8932,6 +9052,11 @@ FDJ.DB["Dire Maul: West"] = {
             -- left off the Dungeon Tracker and not needed to complete a run.
             trackerHidden = true,
             optional = true,
+            -- warlockmount (2.1.2, M 21 Nov 2026: "the same text that we had
+            -- for the Paladin mount boss"): like Death Knight Darkreaver, his
+            -- own label in place of "Rare".
+            rare = true,
+            rareLabel = "Warlock Mount Quest Boss", -- in every language (FDJ.RareLabelText)
             aliases = {"Lord Hel'nurath"},
             description = "Summoned by warlocks in the pentagram near Immol'thar (Dreadsteed of Xoroth).",
             -- Red line under his name on the loot page.
@@ -9560,8 +9685,8 @@ FDJ.DB["Stratholme: Living"] = {
         turnin = "Aurius, Stratholme",
     },
     {
-        note = "Introductory step leading to The Restless Souls.",
-        warning = "OPTIONAL, not required",
+        -- restlesssouls (2.1.3): a required step of Egan's The Restless Souls
+        -- (Data/QuestUpdates.lua), no longer an optional introduction.
         objective = "Find Egan. You only know that he was last seen around Stratholme.",
         rewardSummary = "",
         id = 5281,
@@ -9583,8 +9708,6 @@ FDJ.DB["Stratholme: Living"] = {
         level = 60,
         requires = 55,
         rewardItems = {{13315, "Testament of Hope", 2}},
-        note = "Optional introductory quest:",
-        noteQuestLink = { id = 5281, name = "The Restless Souls" },
         turnin = "Egan, Terrordale, Eastern Plaguelands",
         liveXPFallback = 8300,
     },
@@ -9853,8 +9976,8 @@ FDJ.DB["Stratholme: Undead"] = {
         liveXPFallback = 6600,
     },
     {
-        note = "Introductory step leading to The Restless Souls.",
-        warning = "OPTIONAL, not required",
+        -- restlesssouls (2.1.3): a required step of Egan's The Restless Souls
+        -- (Data/QuestUpdates.lua), no longer an optional introduction.
         objective = "Find Egan. You only know that he was last seen around Stratholme.",
         rewardSummary = "",
         id = 5281,
@@ -9876,8 +9999,6 @@ FDJ.DB["Stratholme: Undead"] = {
         level = 60,
         requires = 55,
         rewardItems = {{13315, "Testament of Hope", 2}},
-        note = "Optional introductory quest:",
-        noteQuestLink = { id = 5281, name = "The Restless Souls" },
         turnin = "Egan, Terrordale, Eastern Plaguelands",
         liveXPFallback = 8300,
     },
@@ -10090,7 +10211,15 @@ FDJ.DB["Stratholme: Undead"] = {
                 {13251, "Head of Baron Rivendare", "Quest Item", 1}, -- Above and Beyond
                 -- 2.0.6: epic two-hand sword, Wowhead Forever: dropped by Baron
                 -- Rivendare (9 of 8730 kills, its Classic Era drop data).
-                {13505, "Runeblade of Baron Rivendare", "Two-Hand, Sword", 4},
+                {13505, "Runeblade of Baron Rivendare", "Two-Hand, Sword", 4, lootFirst = 2},
+                -- deathcharger (2.1.3, M 21 Nov 2026: "ADD this", Wowhead
+                -- Forever's Deathcharger's Reins page): his mount, a very rare
+                -- drop (about 1 in 5,000 in Classic, Wowhead's comments). Rare
+                -- quality; on Forever account-wide and needs Journeyman Riding.
+                -- (lootfirst, M: "put it on the top left, and then just put the
+                -- epic sword at the top right column ... and give it the
+                -- extremely rare drop disclaimer that we already use")
+                {13335, "Deathcharger's Reins", "Mount", 3, dropNote = "EXTREMELY_RARE_DROP", lootFirst = 1},
             },
         },
         {

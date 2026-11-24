@@ -1604,3 +1604,243 @@ https://www.wowhead.com/forever/quest=79970/aeonas-the-vindicated (series ends t
 repeatonce (2.1.0): The Medallion of Faith repeatable in WoW Forever: Ziefog on Discord (19 Nov 2026,
 screenshot of the quest list).
 twoclasses (2.1.0): Nostro's Compendium for warriors and paladins: Ziefog on Discord (19 Nov 2026).
+
+kroldokally (Route: Krol'dok Stronghold, Alliance)
+- Overlord Kilgar's place (25.8-26.8, 43.1-44.8, level 46 elite): https://www.wowhead.com/forever/npc=256881/overlord-kilgar
+- A Small Favor, the conduit (tower in the south of the camp, 26.57, 47.28; Twilight Thrall 26.5, 47.8; players' comments): https://www.wowhead.com/forever/quest=94907/a-small-favor
+- Sunnyglade's cultist area (45.5, 52.3), the Twilight camps, Riftan's quests: https://wowhandbook.com/zones/eastern-kingdoms/riverglades/
+- The Alliance's order of steps, Farholde Keep's flight master: https://wowforeverinfo.com/guides/riverglades-35-45/
+- The cultists' spawns, Auctioneer Chilton (Stormwind): Forever client tables (Polestar forever-db)
+
+bmchain (2.1.1): Blackmaw Reclamation's chain
+- Theladron's in-game test (Discord thread "Blackmaw Hold prequest incomplete", 20 Nov 2026)
+- The Legashi Threat: https://www.wowhead.com/forever/quest=86746/the-legashi-threat
+- Report to Rageroar (comments: Neutral with Timbermaw Hold): https://www.wowhead.com/forever/quest=86752/report-to-rageroar
+- Missing Blackmaw Scouts: https://www.wowhead.com/forever/quest=86791/missing-blackmaw-scouts
+- Return to Rageroar's series: https://www.wowhead.com/forever/quest=86797/return-to-rageroar
+
+useprompt (2.1.1): A Small Favor's Amberhall's Soulstone (item 268646) and Twilight Thrall (NPC 258652): https://www.wowhead.com/forever/quest=94907/a-small-favor
+
+loreaspects / bookexact / denway (2.1.1): Test of Lore (1154), the Legacy of the Aspects
+- The book (object 20725) at 75.5, 74.4-74.5 in Ashenvale, and the way to it ("Go to /way 75.9 75.3, and go down", "go to the bottom, make a left", "the leftmost large circular space"): https://www.wowhead.com/forever/object=20725/the-legacy-of-the-aspects
+- At the bottom of Dor'danil in southern Ashenvale (the quest's text): https://wowclassicdb.com/wotlk/quest/1154 ; the den's entrance (76, 75): https://warcraft.wiki.gg/wiki/Test_of_Lore_(2) ; the French name: https://warcraft.wiki.gg/wiki/Dor%27Danil_Barrow_Den
+- Talondeep Path (Ashenvale 43, 71; Stonetalon Mountains 78, 42): a comment on https://www.wowhead.com/forever/zone=331
+- The way in through the den (door, tunnel, the way down round its east side, the rooms at the bottom): Polestar's walking router run offline on its Kalimdor walking maps (Polestar_Nav_Kalimdor, https://github.com/fitzforge/polestar, GPL-3.0-or-later; grown from Shortest Path Forever's format by Cillian Berragan, https://github.com/cjber/shortest-path-forever), 20 Nov 2026; only the corners are in the addon.
+
+tunkpin (2.1.1): Tunk in Krol'dok Stronghold
+- NPC 259256, drops the Krol'dok Moulding: AllTheThings 5.4.9 changelog, https://www.curseforge.com/wow/addons/all-the-things/files/9547803
+- At the blacksmith area near War Handler Ashka: https://www.icy-veins.com/wow-forever/krol-dok-stronghold-quests ; https://mobalytics.gg/wow-forever/dungeons/krol-dok-stronghold-complete-dungeon-guide-uncas ; the spot marked by M on the map, 20 Nov 2026
+
+marduknew / vectusnew (2.1.1): Scholomance's new drops
+- Gravetoll Gavel (276069), The Black Helm (276071): https://www.wowhead.com/forever/npc=10433/marduk-blackpool , https://www.wowhead.com/forever/item=276069 , https://www.wowhead.com/forever/item=276071
+- Band of the Damned (276073), Soulwoven Drape (276072): https://www.wowhead.com/forever/npc=10432/vectus , https://www.wowhead.com/forever/item=276073 , https://www.wowhead.com/forever/item=276072
+
+loreanswer (2.1.1): Test of Lore (6627), the answer to Braug Dimspirit's question
+- Neltharion: M in game at Braug Dimspirit (the question and its four answers), 20 Nov 2026; the step's answer already in the journal (ANSWER: Neltharion)
+
+t05forever (2.1.1): Tier 0.5, Forever's own Dungeon Set 2 (one version per role for some classes)
+- The sets, their versions and pieces: https://www.wowhead.com/forever/item-set=1778/battlegear-of-heroism , https://www.wowhead.com/forever/item-set=1673/soulforge-armor , https://www.wowhead.com/forever/item-set=1669/beastmaster-armor , https://www.wowhead.com/forever/item-set=1676/darkmantle-armor , https://www.wowhead.com/forever/item-set=1675/vestments-of-the-virtuous , https://www.wowhead.com/forever/item-set=1679/the-five-thunders , https://www.wowhead.com/forever/item-set=1671/sorcerers-regalia , https://www.wowhead.com/forever/item-set=1681/deathmist-raiment , https://www.wowhead.com/forever/item-set=1667/feralheart-raiment
+- Each piece's slot: Wowhead Forever's item search for each set's name (e.g. https://www.wowhead.com/forever/search?q=Soulforge)
+- The quests give a box to pick a version from, the same pieces per quest as before (Just Compensation: Radiant Gloves and Belt Set): https://www.wowhead.com/forever/item=227344/radiant-gloves-and-belt-set ; Soulforge Gauntlets (226975), as M's own in game, 20 Nov 2026: https://www.wowhead.com/forever/item=226975/soulforge-gauntlets
+
+zalfanpin / nargurkmove (2.1.1): Krol'dok Stronghold's map
+- Zalfan Moonshadow (NPC 268423, Vengeance of the Highborne's target), "found near Nar'gurk ... he paths" (its comment): https://www.wowhead.com/forever/npc=268423/zalfan-moonshadow ; his name in each language: the same page on Wowhead Forever's fr, ru, ko, cn and tw sites, and the quest's own text (es, pt)
+- Where Zalfan stands and where Nar'gurk is: the spots marked by M on the map, 20 Nov 2026
+- Zalfan Moonshadow's look (display 145448): the same Wowhead Forever page
+keyshortcut (2.1.1): Key Ingredients' note, the key opens a shortcut to the last boss (the upper side can be reached without it): M in game, 20 Nov 2026
+
+zfuldally (2.1.2, Route: Zul'Farrak and Uldaman, Alliance)
+- Spawns, objects and NPC ranks (Vale Screechers, the three Witherbark Cages, the Vilebranch at the Altar of Zul, Murdaloc, Magregan Deepshadow level 38 elite, Stonevault Bonesnappers, the buzzards, crag coyotes and rock elementals, the Carved Stone Urns), quest objectives and item drops: Forever client tables (Polestar forever-db, https://github.com/fitzforge/polestar)
+- Screecher Spirits (Vale Screechers in southern and central Feralas, the bramble on their bodies): https://classicdb.ch/?quest=3520 ; Vale Screecher at Feralas 52.7, 50.3: https://hunterpal.netlify.app/screecher-spirits
+- Witherbark Cages (Check First / Second / Third Cage): https://warcraft.wiki.gg/wiki/Witherbark_Cages ; https://classicdb.ch/?quest=2988
+- The Altar of Zul (49, 68): https://warcraft.wiki.gg/wiki/The_Altar_of_Zul ; in through the north gate, up the pyramid's steps: Warcraft Tavern's WoW Forever Zul'Farrak guide
+- Agmond's Fate (the urns at the dig site outside Uldaman): https://wowclassicdb.com/quest/704 ; https://classicdb.ch/?quest=704
+- Magregan Deepshadow (Dark Iron dwarf outside the instance, carries Hammertoe's Amulet): https://warcraft.wiki.gg/wiki/Magregan_Deepshadow ; his name in each language: https://www.wowhead.com/classic/de/npc=2932 and the same page on Wowhead Classic's fr, es, pt, ru, ko and tw sites (zhCN from the tw name)
+- Badlands Reagent Run (5 Buzzard Gizzards, 10 Crag Coyote Fangs, 5 Rock Elemental Shards): https://classicdb.ch/?quest=2500 ; https://warcraft.wiki.gg/wiki/Badlands_Reagent_Run_(Alliance)
+- Talkreischer (German name of the Vale Screecher): https://www.wowhead.com/classic/de/npc=5307
+
+scholoids (2.1.2): Scholomance's boss events (Dungeon Tracker skulls for Kirtonos and Ras)
+- Forever's encounter IDs and names (2801-2813, 3055; "Kirtonos", "Ras Frostwhisperer"): the Forever client's DungeonEncounter table, build 1.60.1.70450 (wago.tools, as kept in Polestar, https://github.com/fitzforge/polestar)
+- The report: Zaaartan on Discord (20 Nov 2026), the two skulls came with Kirtonos and Ras
+
+trashconfirm (2.1.2): Blackmaw Hold's two "probably drops" confirmed
+- Spearfisher's Waders (Blackmaw Thrall, Swarming Imp): https://www.wowhead.com/forever/item=287031/spearfishers-waders
+- Demon Worshipper's Necklace (Legashi Slayer, Blackmaw Berserker, Depraved Owlbeast, Blackmaw Champion, Legashi Subjugator, Blackmaw Headhunter, Blackmaw Thrall): https://www.wowhead.com/forever/item=287035/demon-worshippers-necklace
+
+shaperpins (2.1.2): Shaper's Terrace map boss positions and entrance
+- Ed's numbered map and boss list on M's Discord (21 Nov 2026): 1 Titanosaur, 2 Cinder, 3 Vitrix, 4 Izha'Rel and Tor'Rel, 5 Direhorn Matriarch, 6 Thunderhoof, 7 Bolt, 8 Venomridge, 9 Snowtalon, 10 Nanaya
+
+malletone (2.1.3): Mallet of Zul'Farrak page as one entry. Translated names
+are the game client's own, from the client's tables as Polestar ships them
+(forge data names, 1.60.1): Qiaga the Keeper (npc 7996), Morta'gya the
+Keeper (npc 8636), Gahz'rilla (npc 7273), Sacred Mallet (item 9241), Mallet
+of Zul'Farrak (item 9240). Jintha'Alor (area 354) is read from the client
+itself (C_Map.GetAreaInfo). Italian keeps the English names.
+
+drownedhorde (2.1.3): The Drowned City Route for the Horde
+- Locating the Lost City, the cavern (comment: /way 21.7, 27.1): https://www.wowhead.com/forever/quest=95770/locating-the-lost-city
+- The cavern's place to find, 21.8, 27.6: M in game, the quest's own map marker (21 Nov 2026; cavernpoint)
+- Enemies in the Water, 10 tridents, done by the dungeon's entrance (comments): https://www.wowhead.com/forever/quest=95773/enemies-in-the-water
+- The Gurubashi Legends of Old, a plain pickup at 23, 12 (comments): https://www.wowhead.com/forever/quest=95748/the-gurubashi-legends-of-old
+- The Only Good Brinescale..., needs Enemies in the Water and Locating the Lost City (comments): https://www.wowhead.com/forever/quest=95776/the-only-good-brinescale
+- A Tale Spun Around the Fire, follow-up to The Drowned City, delivery to Master Gadrin: https://www.wowhead.com/forever/quest=96078/a-tale-spun-around-the-fire
+- Ancient Gurubashi Idol, Mazu'kon's path starts at Mulgore 40.2, 17.4 (comment): https://www.wowhead.com/forever/quest=96774/ancient-gurubashi-idol
+- Brinescale Skirmisher (npc 262397) names: the client's tables as Polestar ships them (forge data names, 1.60.1)
+
+necklaceout (2.1.3): The Shattered Necklace starts outside Uldaman
+- Shattered Necklace (item 7666), dropped by Stonevault Oracle (inside), Stonevault Rockchewer, Stonevault Cave Hunter, Shadowforge Ruffian, Digger and Surveyor (Badlands); comments: drops outside from the elites before the entrance (Shadowforge Digger), and inside: https://www.wowhead.com/forever/item=7666/shattered-necklace
+- The same mobs, "in the Badlands", Stonevault Oracle in Uldaman: https://warcraft.wiki.gg/wiki/Shattered_Necklace
+- "Drops from Shadowforge Dwarves inside or outside of Uldaman" (WoW Forever guide): https://www.warcrafttavern.com/forever/guides/uldaman-quests/
+- "A drop from mobs both inside and outside the instance": https://icy-veins.com/wow-classic/uldaman-quests-guide
+- Player comments (killing the elite dwarves outside the instance for it): https://classicdb.ch/?quest=2198
+- The Route's stop to farm it: the Shadowforge dwarves in front of the entrance, 47.3, 12.0 (M in game; the Power Stones comments put the same dwarves at 45, 14 and 46, 14): https://www.wowhead.com/forever/quest=2418/power-stones
+- Where the troggs and dwarves stand (Stonevault troggs 32-38, 14-23; Shadowforge dwarves 43-51, 7-14, Badlands): the Forever client's spawn tables as Polestar ships them (forever-db spawn.jsonl); names in every language: the client's tables (Polestar, forge data names, 1.60.1)
+
+powerwarn (2.1.3): Power Stones drop outside and inside Uldaman
+- Dentrium Power Stone, dropped by Shadowforge Digger, Surveyor, Ruffian (Badlands) and Darkcaster, Ambusher, Sharpshooter, Relic Hunter, Archaeologist, Geologist (Uldaman): https://www.wowhead.com/forever/item=8009/dentrium-power-stone
+- An'Alleum Power Stone, the same dwarves outside and inside: https://www.wowhead.com/forever/item=8052/analleum-power-stone
+- Comments ("Can be obtained in or outside the instance"; Forever: very low drop rate): https://www.wowhead.com/forever/quest=2418/power-stones
+
+outsidesteps (2.1.3): A Sign of Hope, Amulet of Secrets, Prospect of Faith and Necklace Recovery are done outside Uldaman
+- Hammertoe Grez, "OUTSIDE the instance", 37.9, 10.5 Badlands (comments): https://www.wowhead.com/wotlk/cn/npc=2909
+- Hammertoe Grez, "in the outermost part of Uldaman": https://warcraft.wiki.gg/wiki/Hammertoe_Grez
+- Magregan Deepshadow, "just outside the Uldaman instance": https://warcraft.wiki.gg/wiki/Magregan_Deepshadow
+- Magregan Deepshadow "is NOT IN ULDAMAN", in the caverns outside (comments): https://classicdb.ch/?quest=722
+- Hammertoe Grez and Magregan Deepshadow just outside Uldaman (WoW Forever guide): https://www.warcrafttavern.com/forever/guides/uldaman-quests/
+- Hammertoe Grez down the tunnel before the jump to the entrance: https://wowpedia.fandom.com/wiki/A_Sign_of_Hope_(2)
+- Every quest-chain step marked as a Dungeon Chain Step checked against where its quest givers, mobs, objects and items stand: the Forever client's spawn and quest tables as Polestar ships them (forever-db spawn.jsonl, quest_start/quest_end/quest_objective.jsonl, item_source.jsonl); Hammertoe Grez, Magregan Deepshadow, Prospector Ryedol and Dran Droffers have no spawn in the instance
+
+hammertoecave (2.1.3): where Hammertoe Grez stands
+- "His regular location is 37.94, 10.53 badlands coordinates, inside uldaman, but outside the instance" (Allakhazam comment): https://www.wowhead.com/wotlk/cn/npc=2909
+- Down the tunnel before the jump to the instance entrance: https://wowpedia.fandom.com/wiki/A_Sign_of_Hope_(2)
+- His spawn, 37.9, 10.6 (world -6065, -3022): the Forever client's spawn table as Polestar ships it (forever-db spawn.jsonl)
+- M in game beside him at 37.8, 11.1; the cave mouth, 44.3 to 44.7, 12.0 (M's screenshots, 21 Nov 2026)
+
+fungusout (2.1.3): Magenta Fungus Caps outside Uldaman
+- "The fungus caps are scattered about the dig site (outside the actual instance)": https://www.tentonhammer.com/guides/guide-to-uldaman
+- Magenta Cap Clusters (objects 126049, 128293, item 8047): 17 spawns in the outer excavation caves, 33.5 to 41.0, 10.4 to 24.4, Badlands; the Forever client's spawn and item-source tables as Polestar ships them (forever-db spawn.jsonl, item_source.jsonl); the names in every language: the client's tables (Polestar, 1.60.1)
+- M in game: three caps picked at 37.9, 10.3, by Hammertoe Grez in the excavation tunnel (21 Nov 2026)
+
+ancientchest (2.1.3): Solution to Doom's Ancient Chest outside Uldaman, and the minimap picture
+- "The Tablet of Ryun'eh can be found in an Ancient Chest, outside of the dungeon, inside the cave system at around 39.5 18.6" (WoW Forever): https://www.icy-veins.com/wow-forever/uldaman-quests
+- "The Ancient Chest is located in Uldaman, outside of the instance": https://warcraft.wiki.gg/wiki/Ancient_Chest
+- In the Sealed Hall, outside the instance (comments): https://www.wowhead.com/classic/cn/item=4631
+- From the chest in the Sealed Hall outside the instance portal (WoW Forever): https://conquestcapped.com/guides/wow-forever/wow-forever-uldaman-guide/
+- The chest (object 126260) at 39.3, 18.8, Badlands; its name and the tablet's (item 4631) and Magregan Deepshadow's (NPC 2932) in every language: the Forever client's tables as Polestar ships them (forever-db spawn.jsonl, item_source.jsonl; Names, 1.60.1)
+- The picture (Media/UldamanExcavationMinimap.tga): M's own minimap at the chest, 39.4, 19.6 (21 Nov 2026), his arrow painted out and the black mark circled (later painted out: commonhall); Magregan Deepshadow at the same mark (M; his spawn 39.0, 19.7)
+
+commonhall / showlocation (2.1.3): Reclaimed Treasures outside Uldaman, its minimap picture and the Show Location button
+- "Krom's treasure can be found inside a chest in the outside area of the dungeon, at around 35.7 23.5" and the Horde's "at around 34.2 18.4" (WoW Forever): https://www.icy-veins.com/wow-forever/uldaman-quests
+- The Garrett Family Chest "is actually outside the instance of Uldaman in the tunnels": https://warcraft.wiki.gg/wiki/Garrett_Family_Chest
+- "A chest with my name on it is at the end of the North Common Hall" (the quest text): https://wowclassicdb.com/wotlk/quest/1360
+- Krom Stoutarm's Chest (object 124389) at 35.6, 23.5 and the Garrett Family Chest (object 124388) at 34.2, 18.6, Badlands; their names and the treasures' (items 8027, 8026) in every language: the Forever client's tables as Polestar ships them (forever-db spawn.jsonl, item_source.jsonl; Names, 1.60.1)
+- The picture (Media/UldamanCommonHallMinimap.tga): M's own minimap at 35.1, 19.3 (21 Nov 2026), his arrow painted out; the chest's place from the minimap's indoor scale (300 yards across), about 70 yards south at the end of the hall; the Sealed Hall picture's black mark painted out, the quests' item icons drawn in the rings in game
+
+infernus / angorway (2.1.3): An Ambassador of Evil's kill, and the way into Angor Fortress
+- Ambassador Infernus (NPC 2745) at 42.1, 28.9, Badlands, height 284; the fortress's spawns climbing from height 243 at the Badlands road (south-east, 46.9, 36.0) up the ramp (45.7, 33.8: 258; 44.4, 33.6: 277) to 300 inside; the Uldaman dig site under its north wall at height 210-230: the Forever client's tables as Polestar ships them (forever-db spawn.jsonl)
+- At the bottom of Angor Fortress, three stone golems guarding him (comments): https://www.wowhead.com/classic/npc=2745/ambassador-infernus
+- Angor Fortress in the northern Badlands, the Dark Iron dwarves' keep: https://warcraft.wiki.gg/wiki/Angor_Fortress
+- Loch Modan and the Badlands joined by the chasm at the Maker's Terrace: https://warcraft.wiki.gg/wiki/Badlands
+- The Valley of Kings, south-west Loch Modan, the way to Searing Gorge's locked gate: https://warcraft.wiki.gg/wiki/Valley_of_Kings
+
+reveloshrandom (2.1.3): Revelosh's four items have random enchantments
+- M in game, Uldaman (21 Nov 2026): Revelosh's Boots of Fire Protection dropped (a random suffix)
+- M in game, Uldaman (21 Nov 2026): Cragfists of the Knight dropped from the Ancient Stone Keeper (a random suffix, besides the Cragfists' own +5 Defense)
+
+itemnotes (2.1.3): the "where to find it" lines of quest items in every language
+- NPC, object, item and quest names: the Forever client's tables as Polestar ships them (Names, 1.60.1; forever-db npc.jsonl, object.jsonl, item.jsonl)
+- Zone and subzone names (Windshear Crag, Azurelode Mine, Lordamere Internment Camp, Kurzen's Compound, Rebel Camp, Fenris Isle, Thelgen Rock, The Charred Vale, Mannoroc Coven, Zoram'gar Outpost, The Sepulcher...): pfQuest's client tables, db/<locale>/zones.lua: https://github.com/shagu/pfQuest
+- Zone and dungeon names as the Classic Era client has them (Vorgebirge von Hillsbrad, Ashenvale, Blackrockspitze...): Questie's zone translations: https://github.com/Questie/Questie/tree/master/Localization/Translations/Zones
+- North / South Common Hall: the quests' own text in every language (Reclaimed Treasures, 1360 and 2342)
+- Forever names the game has no translation for (Twilight's Shroud, Riverglades, Sunnyglade, Overlord Kilgar, Warden's Footlocker...) stay in English
+
+
+deathcharger (2.1.3): Deathcharger's Reins on Baron Rivendare's loot
+- The item (Rare, account-wide on Forever, needs Journeyman Riding): https://www.wowhead.com/forever/item=13335/deathchargers-reins
+- Drops from Baron Rivendare, about 1 in 5,000 (the page's comments)
+
+pariahgems (2.1.4, The Pariah's Instructions: the amulet and the five gems)
+- Items: Amulet of Spirits 17757, Gem of the First Khan 17761 ... Gem of the Fifth Khan 17765, Amulet of Union 17758: https://classicdb.ch/?quest=7067 ; https://classicdb.ch/?item=17757 ; https://classicdb.ch/?item=17761 ; https://classicdb.ch/?item=17762 ; https://classicdb.ch/?item=17763 ; https://classicdb.ch/?item=17764 ; https://classicdb.ch/?item=17765
+- The spirits (Kolk 12240, Gelk 12239, Magra 12241 in Desolace; Maraudos 12242, Veng 12243 inside): https://classicdb.ch/?npc=12240 ; https://classicdb.ch/?npc=12239 ; https://classicdb.ch/?npc=12241 ; https://classicdb.ch/?npc=12243 ; https://warcraft.wiki.gg/wiki/Maraudon_NPCs ; https://warcraft.wiki.gg/wiki/Spirit_of_Kolk ; https://warcraft.wiki.gg/wiki/Spirit_of_Gelk ; https://warcraft.wiki.gg/wiki/Spirit_of_Magra ; https://warcraft.wiki.gg/wiki/Spirit_of_Maraudos ; https://warcraft.wiki.gg/wiki/Spirit_of_Veng
+- Their Desolace spots (Kolk 29.7, 60.5; Gelk 29.4, 56.9; Magra 35.8, 60.4; the Nameless Prophet 28.2, 62.4, one of his spawn points), classic-db data: https://forever-tavern.com/npcs/classic/12240-spirit-of-kolk/ ; https://forever-tavern.com/npcs/classic/12239-spirit-of-gelk/ ; https://forever-tavern.com/npcs/classic/12241-spirit-of-magra/ ; https://forever-tavern.com/npcs/classic/13718-the-nameless-prophet/ ; https://everlookdb.com/es/npc/12240/spirit-of-kolk ; https://everlookdb.com/es/npc/12239 ; https://everlookdb.com/es/npc/12241 ; https://metabot.gg/en/wow-forever/zones/desolace
+- Where each one is (Kolk by the Scepter of Celebras' shrine at the end of the middle tunnel, Gelk on the way to the purple side among the rock elementals, Magra on the way to the orange side by stairs, Maraudos in the purple wing up to Vyletongue's steps, Veng in the orange wing from the portal towards Razorlash; the Nameless Prophet in the tunnel behind the stone doors): https://www.icy-veins.com/wow-forever/maraudon-quests ; https://mmonster.co/wow-forever/guides/dungeons/maraudon ; https://warcrafttavern.com/wow-classic/guides/maraudon ; https://icy-veins.com/wow-classic/maraudon-quests-guide ; http://ptgmedia.pearsoncmg.com/imprint_downloads/brady/wow/maraudon/maraudon_lr.pdf ; https://warcraft.wiki.gg/wiki/The_Nameless_Prophet
+- Boss names in each language: the journal's own (Localization/Content_Verified.lua)
+- khanstops (2.1.4, the Route's stops for them): the Nameless Prophet's four spawn points 28.2, 62.4; 28.2, 64.2; 28.8, 62.4; 27.2, 63.1: https://forever-tavern.com/npcs/classic/13718-the-nameless-prophet/ ; the amulet used on each spirit to make its Khan fight: https://warcraft.wiki.gg/wiki/Magra ; https://www.icy-veins.com/wow-forever/maraudon-quests
+vialstop (2.1.4, Vyletongue Corruption: where the Coated Cerulean Vial is filled)
+- Items: Coated Cerulean Vial 17693 (given with the quest), Filled Cerulean Vial 17696: https://classicdb.ch/?quest=7041
+- The big pool with orange crystals outside the instance, on the way to the orange side, not the small pool Cavindra stands in: https://classicdb.ch/?quest=7041 (comments) ; https://www.icy-veins.com/wow-forever/maraudon-quests ; http://ptgmedia.pearsoncmg.com/imprint_downloads/brady/wow/maraudon/maraudon_lr.pdf ; https://mmonster.co/wow-forever/guides/dungeons/maraudon
+- Its spot, the Maraudon Orange Crystal Pool at 33.2, 65.7: https://forg.gg/en/forever/quest/7041
+maraudonally (2.1.4, Route: Maraudon, Alliance)
+- The Centaur Pariah walks the road between 43, 85 and 50, 86: https://warcraft.wiki.gg/wiki/Centaur_Pariah ; https://warcraft.wiki.gg/wiki/The_Pariah%27s_Instructions_(quest) ; players' comments: https://www.wowhead.com/classic/npc=13717
+- Spawns of the quest givers (Talendria, Keeper Marandis, Willow, Cavindra, Archmage Tervosh, Keeper Remulos, the Centaur Pariah at 50.4, 86.7) and the cave path: Forever client tables (Polestar forever-db)
+callofair (2.1.4, the Horde Shaman chain: Call of Air first, Elemental Aid from Prate Cloudseer, handed in to Rau Cliffrunner)
+- Report: Shera on the Discord (bug report "Correction on the quest chain for Shamans in Razorfen", 22 Nov 2026)
+- Call of Air 1531 (Searn Firewarder, Orgrimmar 38.0, 37.7 -> Prate Cloudseer, Air Totem, 2,450 XP): https://www.wowhead.com/forever/quest=1531/call-of-air ; https://classicdb.ch/?quest=1531 ; https://foreverdb.net/quest/1531-call-of-air
+- Call of Air 1532 (Xanis Flameweaver, Thunder Bluff): https://classicdb.ch/?quest=1532 ; https://warcraft.wiki.gg/wiki/Call_of_Air_(Thunder_Bluff)
+- Call of Air 96136 (Skyborne, Alaana Stormwalker, Mulgore 33.4, 22.4): https://wofwforever.com/en/guides/wow-forever-shaman-totem-quests/
+- Elemental Aid 79360 starts with Prate Cloudseer and ends with Rau Cliffrunner, after any of the three Call of Air (players' recordings): https://github.com/fitzforge/polestar/pull/1773 ; https://everlookdb.com/quest/79360/elemental-aid ; https://db.icy-veins.com/wow-forever/quests/79360
+alcazally (2.1.4, Route: Alcaz Prison, Alliance)
+- Quest givers and enders, prerequisites and NPC spots (Sully McCleary 260146 in the inn at 66.2, 45.1 and 260271 behind the graveyard at 63.4, 42.3; Shaw Needs To Know 95264 from 260271 to Master Mathias Shaw 332; Connery's Trunk, object 611086, Westfall 43.4, 67.9; Sergeant Ulka 260383 at 70.3, 18.9; Archmage Lan'dalock 20735 at 15.3, 73.9): the game's quest data in QuestieDB (WoW Forever) ; https://www.everlookdb.com/quest/95198/the-return-of-the-king ; https://db.icy-veins.com/wow-forever/quests/95263 ; https://www.wowhead.com/forever/guide/alcaz-prison-dungeon-overview-location-rewards
+- No boat or flight path to Alcaz Island: swim; the wooden pier on the west shore, then the path up to the prison at the north end, its basement: https://www.method.gg/wow-forever/dungeons/alcaz-prison ; https://mmonster.co/wow-forever/guides/dungeons/alcaz-prison ; https://warcraftmaps.com/guides/alcaz-prison-guide ; https://wowforever.be/guides/dungeons/alcaz-prison/guide/
+- The Dragon's Journal has no prerequisite: https://db.icy-veins.com/wow-forever/quests/96772 ; https://www.zockify.com/forever/dungeons/alcaz-prison/
+skippedstep (2.1.4, Materials of Significance's chain: Battle at the Mannoroc Coven counts as done once The Broken Hammer is taken)
+- Report: CobraLeader on the Discord ("In Search for Aeonas", 22 Nov 2026)
+- The Broken Hammer 79939 starts at the Broken Warhammer and lists no prerequisite quest: https://warcraftmaps.com/quest/79939/the-broken-hammer ; https://wowfdb.com/zones/desolace/
+- Battle at the Mannoroc Coven 96438 (Katherine the Pure -> Broken Warhammer): https://warcraftmaps.com/quest/96438/battle-at-the-mannoroc-coven ; Katherine doesn't always offer it (Wowhead comment): https://www.wowhead.com/forever/quest=79940/a-lost-brother
+swroost (2.1.4, the arrow's way from Stormwind's gryphon roost to Old Town and SI:7)
+- Spots of the city's NPCs (Dungar Longdrink 71.3, 72.2; Osborne the Night Man 77.4, 65.3; Officer Areyn 76.8, 66.0; Master Mathias Shaw 78.3, 70.7; Jasper Fel 80.3, 70.1), of its street signs (Old Town, Trade District, Stormwind Gate at 69.4, 62.8 and 72.0, 60.0; SI:7 and Command Center at 75.8, 63.4 and 77.2, 65.9) and the walks of Nikova Raskol and Jenn Langston through Old Town: the Forever client's spawn and waypoint tables in QuestieDB (WoW Forever)
+goalat (2.1.4, The Return of the King?'s box only inside Theramore's mage tower)
+- Jaina's guard: Theramore Guard (NPC 261485) at 66.3, 49.4 beside Archmage Tervosh (66.4, 49.3) and Lady Jaina Proudmoore (66.3, 49.0); the tower door's guards at 65.5, 48.2 and 65.7, 48.5: the Forever client's spawn tables in QuestieDB (WoW Forever)
+statesecrets (2.1.4, State Secrets: Renzik "The Shiv" for the Alliance, Nazgrel for the Horde)
+- The two quests (96377 ended by Renzik "The Shiv", NPC 6946; 96376 started and ended by Nazgrel, NPC 3230), the Document Box (274041) they take, the Fractured Insignia (279450), Nazgrel's +150 Orgrimmar, Renzik at 78.3, 71.1 on Forever's Stormwind map and Nazgrel at 32.3, 35.8 in Orgrimmar: the game's quest data in QuestieDB (WoW Forever)
+- Who takes the box and the reward (Fractured Insignia, 6,550 XP, 1g 60s): https://www.wowhead.com/forever/quest=96377/state-secrets ; https://www.wowhead.com/forever/quest=96376/state-secrets ; https://www.wowhead.com/forever/guide/alcaz-operative-disguise-toy-secret-walkthrough ; https://warcraft.wiki.gg/wiki/Document_Box ; https://endgametools.com/en/wow-forever/news/wow-forever-document-box
+escapeplan (2.1.4, Escape Plan in Alcaz Prison's Trash Drops)
+- Escape Plan (287026): gun, item level 54, requires level 49, a zone drop in Alcaz Prison: https://www.wowhead.com/forever/item=287026/escape-plan ; https://www.wowhead.com/forever/zone=16620/alcaz-prison
+darkreaver (2.1.4, The Darkreaver Menace for the Horde: Forever's quest 8258)
+- Reported by Aurheim on the Discord (23 Nov 2026): the reward is a choice of Skyfury Helm or Skyfury Gauntlets (both epic), the quest is 8258 on Wowhead Forever, the old one (Helm of Latent Power) 7668
+- Quest 8258 (Sagorne Creststrider, NPC 13417; Darkreaver's Head 18880; Skyfury Helm 20134 as its reward, Skyfury Gauntlets 20133): the game's quest data in QuestieDB (WoW Forever)
+darkreaverally (2.1.4, The Darkreaver Menace for the Alliance: 97169)
+- Exehn's request (23 Nov 2026): the Alliance has the chain too (Wowhead Forever, Material Assistance 97168)
+- Quest 97169 on Wowhead Forever: Alliance shaman quest from and to Eldrun Stormbreaker, the Forlorn Caverns in Ironforge, series Material Assistance then The Darkreaver Menace, not sharable; the reward choice as the Horde's (Skyfury Helm or Skyfury Gauntlets), as in the ConquestCapped WoW Forever guide and Icy Veins' WoW Forever database (Material Assistance 97168 leading to 97169)
+- Quest 97168 and Eldrun Stormbreaker (NPC 258098, Ironforge 47.1, 13.8): the game's quest data in QuestieDB (WoW Forever)
+lvl58 (2.1.4, The Darkreaver Menace from level 58, with its XP)
+- Exehn (23 Nov 2026): "it's available from level 58"; Wowhead Forever's quests 8258 and 97169 both list "Requires level 58"
+- The XP, 19,900 on both: as 7668's (audit212: Wowhead Forever's 9,950 with Forever's dungeon-quest multiplier); the ConquestCapped WoW Forever guide lists 19,900 for both factions
+morzul (2.1.4, Mor'zul Bloodbringer as the start of Imp Delivery's chain)
+- Exehn's request (23 Nov 2026) with Wowhead Forever quest 7562: level 58, requires level 60, both sides, warlock, from Spackle Thornberry, Martha Strain, Kurgul or Jubahl Corpseseeker to Mor'zul Bloodbringer, not sharable; the trainers' cities: the game's NPC data in QuestieDB (WoW Forever) and theforeverguides.com's Dreadsteed guide (Martha Strain, Undercity)
+- Mor'zul Bloodbringer's name and the Burning Steppes in each language: the journal's own Rage of Blood and Wildeyes translations
+spiremobs (2.1.4, the Lower Blackrock Spire tracker starting late: more of the Lower side's own mobs, and their names in the client's language)
+- Reported on the Discord (23 Nov 2026): in Lower Blackrock Spire the tracker only started after the first boss
+- Bloodaxe Evoker, Raider, Summoner, Veteran, Warmonger and Worg, Firebrand Invoker, Smolderthorn Axe Thrower: Hordemar City's mobs in Lower Blackrock Spire (Warcraft Wiki, Lower Blackrock Spire); the Bloodaxe and Firebrand legions live in Lower Blackrock Spire, the Blackhand legion in Upper Blackrock Spire (Warcraft Wiki); the Smolderthorn trolls of Tazz'Alaor and the Spirestone ogres of Mok'Doom (mmonster.co's WoW Forever Lower Blackrock Spire guide); the Spire Spiders and Spiderlings around Mother Smolderweb in the Skitterweb Tunnels (Warcraft Tavern's Forever Lower Blackrock Spire guide); NPC IDs: the game's NPC data in QuestieDB (WoW Forever)
+- The mobs' names in each language: the game client itself (the creature tooltip by NPC ID, as for the bosses)
+spireroom (2.1.4, a kill in a room only one side of Blackrock Spire has starts the run as that side)
+- Exehn (23 Nov 2026), a stream in Lower Blackrock Spire: the minimap says Hordemar City while the group kills its first Scarshield mobs
+- The rooms of each side: Warcraft Wiki (Hordemar City and its sub-areas Chamber of Battle, Halycon's Lair, Mok'Doom, Skitterweb Tunnels, The Storehouse, Tazz'Alor; the Hall of Blackhand, the outermost area, with the way into Lower Blackrock Spire and the door of Upper Blackrock Spire; Dragonspire Hall behind that door); the journal's own room list (Systems/WingFromText.lua)
+favnames (2.1.4, item names in the client's language in the favourites, the map pins' loot line, the loot filter's list and a quest's reward text)
+- Reported with a screenshot from a French client (23 Nov 2026): the favourites showed Rugged Spaulders and Dog Whistle in English while the loot list showed Spallières robustes
+stally (2.1.5, the Route for the Alliance's Sunken Temple quests)
+- Exehn's request (23 Nov 2026): "you need to build me Sunken Temple Alliance route"
+- Every stop's place: the spawns of the mobs, objects and NPCs in the game's quest data in QuestieDB (WoW Forever), the densest group of them (for a quest's mobs, the group nearest its giver or at its level): rocs of Tanaris (Roc, Fire Roc, Searing Roc: 45.4, 38.5); Groddoc Apes (58.5, 58.7) and Grizzled Ironfur Bears (53.7, 48.0) in Feralas; Marvon's Chest (object 149036, The Barrens 62.5, 38.5); the Ancient Egg (object 175889, The Hinterlands 57.6, 86.8); the Bloodpetal Lashers, Flayers, Threshers and Trappers (67.0, 30.1), the Gorishi Wasps and Stingers (48.3, 81.5), the Bloodpetal Sprouts (object 164958, 37.5, 65.2) and the six devilsaurs (Devilsaur, Ironhide Devilsaur, Tyrant Devilsaur) of Un'Goro Crater; Mosshoof Coursers (51.0, 27.8), Wavethrashers (86.2, 31.1), Blood Elf Surveyors and Reclaimers (56.7, 28.1), Spitelash Sirens (40.5, 52.1), Highborne Apparitions and Lichlings (16.6, 69.4), Timbermaw Shamans (44.2, 21.5) and Forest Oozes (69.2, 27.2) in Azshara; the Scourge by Uther's Tomb (50.8, 80.5), Venom Mist Lurkers (33.4, 61.4) and Diseased Black Bears (36.5, 63.6) in the Western Plaguelands; Irontree Stompers (51.5, 21.7) and Tainted Oozes (41.7, 48.9) in Felwood; Helboar (49.0, 38.2) and the Shadowsworn (66.0, 31.7) in the Blasted Lands; In Search of The Temple's place to find (the middle of its trigger points, Swamp of Sorrows 70.2, 52.9)
+- Which mobs drop each thing, and that Toxic Test counts any of the three devilsaurs (its objective's kill credit): the same quest data; An Imp's Request and Hot and Itchy exclusive to each other: the same quest data (each one's exclusiveTo)
+- How many of each are needed: the quests' objective texts; Spirit Totem's 8 Bloodshot Spider Eyes and 8 Thick Black Claws: classicdb.ch quest 8412
+- In Search of The Temple completes on swimming out towards the temple: classicdb.ch quest 1448, comments
+- The Stone Circle: "Located in a chest outside a small hut with Liv Rizzlefix inside" (63, 39): classicdb.ch quest 4147, comments
+- The Ancient Egg is in a cave behind the amphitheater at the top of Jintha'Alor, the cave's mouth at 59.05, 78.66, a patrol circling the egg: the quest's own text (wowclassicdb.com quest 4787); Wowhead item 12402, comments
+- Bloodpetal Sprouts look like a green bulb on the ground: Warcraft Wiki, Bloodpetal Poison
+- Sanath Lim-yo (Azshara 28.1, 50.1) teleports anyone up to Archmage Xylem's tower: Warcraft Wiki, Sanath Lim-yo and Archmage Xylem
+- The zones' names in each language: the game's own names for the zones
+tier05chain (2.1.5, the Tier 0.5 quest chain page, opened from its button on the Tier Sets page)
+- Exehn's request (24 Nov 2026): "add it in the tier, a button that gets to the chain", with his guide "WoW Forever Tier 0.5 Full Questline" (Dungeon Set 2, 29 steps, Bodley's branch reference; from ConquestCapped's Forever Tier 0.5 walkthrough, Warcraft Tavern's Dungeon Set 2 quest guide, Forever Guide's Three Kings of Flame 8961 and Zephras' Ash of Asharell 279415)
+- Quest IDs of every class's and faction's exchange, the faction steps and Bodley's branches; the NPCs' spots (Deliana, Mokvar, Anthion Harmon, Vi'el, Magma Lord Bokk) and the relics' and Bloodkelp's mobs: the game's quest data in QuestieDB (WoW Forever)
+- Mux Manascrambler 52.4, 27.2, Deliana 43.5, 52.6, Mokvar 35.0, 38.3, Anthion 26.1, 11.3, Executor Asharell's cave near 74, 66: the guide
+t05rewards (2.1.5, the Tier 0.5 chain's armor exchanges: Forever's own quests and their rewards)
+- Exehn's request (24 Nov 2026): Forever's class quests offer a choice (Druids four versions, Paladins and Shamans three, Priests and Warriors two, Hunters, Mages, Rogues and Warlocks one); the bracers a choice of items, the rest a box per version (https://www.wowhead.com/forever/item=227370/divine-will-boots-legs-and-shoulders-set)
+- The quests (84147-84210; 97411-97414 Horde Paladin, 97447-97450 Alliance Shaman) and the boxes each one offers: Out of Games' WoW Forever database (game data 1.60.1): https://outof.games/realms/forever/quests/zone/1537-ironforge/ (pages 2 and 3), https://outof.games/realms/forever/quests/zone/1637-orgrimmar/ (pages 2 and 3), https://outof.games/realms/forever/quest/84167-just-compensation/ , https://outof.games/realms/forever/quest/84183-anthions-parting-words/ , https://outof.games/realms/forever/quest/97450-saving-the-best-for-last/
+- The boxes' names and IDs: the game's item data in QuestieDB (WoW Forever); the same boxes in Season of Discovery: https://warcraft.wiki.gg/wiki/Saving_the_Best_for_Last_(Alliance_SoD) , https://warcraft.wiki.gg/wiki/Radiant_Helm_and_Chestpiece_Set , https://www.wowhead.com/classic/quest=84210/saving-the-best-for-last
+- Classic's versions (8905-9022) still in Forever's data with Classic's rewards (e.g. https://outof.games/realms/forever/quest/9003-saving-the-best-for-last/ , https://outof.games/realms/forever/quest/9000-saving-the-best-for-last/): counted as the same step
+- Hunters', Mages', Rogues' and Warlocks' rewards (no reward listed in the data): their single Forever version's pieces (Systems/TierSets.lua)
+- The armor exchanges are no Dungeon Chain Step: Exehn (24 Nov 2026): "You don't really need to go into dungeon to get the first piece. You can just buy it."
+t05boxes (2.1.5, a Tier 0.5 box clicked shows the pieces inside)
+- Exehn's request (24 Nov 2026): "when clicking on the boxes, it shows the pieces like it does when we click on the tier sets"
+- Which version each box holds: the boxes' own tooltips (e.g. Dawn Helm and Chestpiece Set: "Virtuous Crown and Virtuous Robe (Healer Specialization)", Exehn's screenshot, 24 Nov 2026); https://warcraft.wiki.gg/wiki/Merciful_Helm_and_Chestpiece_Set (Holy), https://warcraft.wiki.gg/wiki/Radiant_Helm_and_Chestpiece_Set (Retribution), https://warcraft.wiki.gg/wiki/Soulforge_Faceguard (Divine Will), https://warcraft.wiki.gg/wiki/Soulforge_Fists (Merciful Gloves and Belt Set), https://warcraft.wiki.gg/wiki/Tunic_of_The_Five_Thunders (Relief's), https://warcraft.wiki.gg/wiki/Chestguard_of_The_Five_Thunders (the Elemental and Enhancement versions), https://warcraft.wiki.gg/wiki/Pauldrons_of_Heroism (Immoveable), https://warcraft.wiki.gg/wiki/Feralheart_Cap (Feline; the Balance, tank and Restoration versions), https://warcraft.wiki.gg/wiki/Guardian's_Helm_and_Chestpiece_Set
+- The pieces of each version: Systems/TierSets.lua (t05forever)

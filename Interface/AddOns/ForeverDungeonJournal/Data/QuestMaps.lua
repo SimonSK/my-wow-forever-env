@@ -22,7 +22,7 @@ FDJ.QUEST_START_MAPS = {
     -- Nikova Raskol, Brohann Caskbelly, Shylamiir, Lord Grayson
     -- Shadowbreaker (here and in QuestChains.lua), Highlord Bolvar
     -- Fordragon, Grimand Elmore, Furen Longbeard (QuestUpdates.lua). Forever
-    -- client tables via Polestar forever-db (their spawns).
+    -- client tables (their spawns).
     [168]  = { mapID = 1453, x = 0.703, y = 0.408, label = "Wilder Thistlenettle" },
     [167]  = { mapID = 1453, x = 0.703, y = 0.408, label = "Wilder Thistlenettle" },
     [2040] = { mapID = 1453, x = 0.6300, y = 0.3400, label = "Shoni the Shilent — Dwarven District, Stormwind", targetName = "Shoni the Shilent" },
@@ -239,13 +239,14 @@ FDJ.QUEST_START_MAPS = {
     [7631] = { mapID = 1428, x = 0.126, y = 0.314, label = "Mor'zul Bloodbringer — Burning Steppes", targetName = "Mor'zul Bloodbringer" },
     [7629] = { mapID = 1428, x = 0.124, y = 0.314, label = "Gorzeeki Wildeyes — Burning Steppes", targetName = "Gorzeeki Wildeyes" },
     [7647] = { mapID = 1453, x = 0.484, y = 0.502, label = "Lord Grayson Shadowbreaker — Stormwind", targetName = "Lord Grayson Shadowbreaker" },
-    [7668] = { mapID = 1454, x = 0.384, y = 0.360, label = "Sagorne Creststrider — Orgrimmar", targetName = "Sagorne Creststrider" },
+    [8258] = { mapID = 1454, x = 0.384, y = 0.360, label = "Sagorne Creststrider — Orgrimmar", targetName = "Sagorne Creststrider" },
+    [97169] = { mapID = 1455, x = 0.471, y = 0.138, label = "Eldrun Stormbreaker — Ironforge", targetName = "Eldrun Stormbreaker" }, -- darkreaverally (2.1.4)
     [5463] = { mapID = 1423, x = 0.739, y = 0.490, label = "Leonid Barthalomew the Revered — Eastern Plaguelands", targetName = "Leonid Barthalomew the Revered" },
     [707] = { mapID = 1455, x = 0.746, y = 0.117, label = "Prospector Stormpike — Ironforge", targetName = "Prospector Stormpike" },
     [8415] = { mapID = 1453, x = 0.484, y = 0.502, label = "Lord Grayson Shadowbreaker — Stormwind", targetName = "Lord Grayson Shadowbreaker" },
     [5281] = { mapID = 1423, x = 0.718, y = 0.544, label = "Caretaker Alen — Eastern Plaguelands", targetName = "Caretaker Alen" },
     [5961] = { mapID = 1458, x = 0.580, y = 0.916, label = "Lady Sylvanas Windrunner — Undercity", targetName = "Lady Sylvanas Windrunner" },
-    [722] = { mapID = 1418, x = 0.443, y = 0.120, label = "Hammertoe Grez — Uldaman excavation (outside the instance)", detail = "Hammertoe is in the outer excavation caves, before the instance portal" },
+    [722] = { mapID = 1418, x = 0.379, y = 0.106, label = "Hammertoe Grez — Uldaman excavation (outside the instance)", detail = "Hammertoe is in the outer excavation caves, before the instance portal" },
     -- Starter locations from the Forever starter-location guide (safety net).
     [132] = { mapID = 1433, x = 0.214, y = 0.454, label = "Wiley the Black — Redridge Mountains", targetName = "Wiley the Black", detail = "Wiley the Black: Lakeshire inn, Redridge Mountains" },
     [135] = { mapID = 1436, x = 0.563, y = 0.475, label = "Gryan Stoutmantle — Westfall", targetName = "Gryan Stoutmantle", detail = "Gryan Stoutmantle: Sentinel Hill, Westfall" },
@@ -602,7 +603,10 @@ FDJ.MAP_QUEST_PINS = {
         } },
     },
     ["Uldaman"] = {
-        { floor = 1, x = 0.207, y = 0.341, spots = {
+        -- pinclear (2.1.3, M 21 Nov 2026: "The tablet of will is also next to
+        -- Galgann Firehammer. So you can put it a bit more to his left, but
+        -- still inside the room"; was 0.207, 0.341)
+        { floor = 1, x = 0.253, y = 0.327, spots = {
             { name = "Tablet of Will", quests = {
                 { id = 1139, name = "The Lost Tablets of Will", dungeon = "Uldaman", acts = { "loot" }, item = 5824, itemName = "Tablet of Will" },
             } },
@@ -619,12 +623,18 @@ FDJ.MAP_QUEST_PINS = {
                 { id = 2318, name = "Translating the Journal", dungeon = "Uldaman", main = 2339, acts = { "start" } },
             } },
         } },
-        { floor = 1, x = 0.316, y = 0.719, spots = {
+        -- pinclear (2.1.3, M 21 Nov 2026: "the hidden chamber question mark is
+        -- wrong. It should be literally on the same spot as Ironaya ... in the
+        -- same room": beside her, on the right; was 0.316, 0.719)
+        { floor = 1, x = 0.388, y = 0.739, spots = {
             { quests = {
                 { id = 2240, name = "The Hidden Chamber", dungeon = "Uldaman", acts = { "explore" } },
             } },
         } },
-        { floor = 1, x = 0.638, y = 0.948, spots = {
+        -- pinclear (2.1.3, M 21 Nov 2026: The Lost Dwarves' ? "on the lost
+        -- dwarf pin a little bit more to the left ... the same room"; was
+        -- 0.638, 0.948)
+        { floor = 1, x = 0.5665, y = 0.920, spots = {
             { name = "Baelog", quests = {
                 { id = 2398, name = "The Lost Dwarves", dungeon = "Uldaman", acts = { "end" } },
                 { id = 2240, name = "The Hidden Chamber", dungeon = "Uldaman", acts = { "start" } },

@@ -433,11 +433,127 @@ local function GoldText(copper)
     return c .. COPPER_ICON
 end
 FDJ.RunLogGoldText = GoldText
+-- lootvalue (2.1.4): a run's Gold: the coin looted plus its items' vendor value
+local function RunGold(run)
+    local coin = tonumber(run and run.money) or 0
+    if FDJ.TrackerOption and FDJ.TrackerOption("hideVendor") then return coin end -- lootname
+    return coin + (tonumber(run and run.itemValue) or 0)
+end
+-- lootname: the column's name, and what it counts (its tooltip)
+local function GoldName()
+    if FDJ.TrackerOption and FDJ.TrackerOption("hideVendor") then return L("RUNLOG_GOLD"), L("RUNLOG_GOLD_TIP") end
+    return L("RUNLOG_LOOT_VALUE"), L("RUNLOG_LOOT_VALUE_TIP")
+end
 
 local function MobXP(run)
     local xp = 0
     for _, k in ipairs(run.kills or {}) do xp = xp + (k.x or 0) end
     return xp
+end
+
+-- reptrack (2.1.4, M 23 Nov 2026: "The dungeon tracker for level 60s. Track
+-- reputation instead of experience. Now it's empty, but we could track rep
+-- ... if somebody reaches exalted, he stops tracking and it goes back to
+-- blank"): at the level cap the tracker's Mobs XP place shows the
+-- reputation this run gave (Systems/RunLog.lua counts it): "Rep" over
+-- "+<amount>", the faction the run gave the most (its name on hover;
+-- repshort, M 23 Nov 2026: "just call it a Rep. Don't give it the name of
+-- the rep ... way too long"). A faction the player is Exalted with
+-- (already, or reached during the run) is not shown; none left (or no
+-- reputation yet): blank, as before.
+do
+    local strings = {
+        enUS = { "This run: +%s", "Reputation from this run. Not tracked once you are Exalted with the faction.", "Rep" },
+        deDE = { "Dieser Run: +%s", "Ruf aus diesem Run. Ab Ehrfürchtig bei der Fraktion wird er nicht mehr verfolgt.", "Ruf" },
+        frFR = { "Ce run : +%s", "Réputation gagnée pendant ce run. Plus suivie une fois Exalté auprès de la faction.", "Réput." },
+        esES = { "Esta run: +%s", "Reputación de esta run. Deja de seguirse al ser Exaltado con la facción.", "Rep." },
+        itIT = { "Questa run: +%s", "Reputazione da questa run. Non più tracciata una volta Osannato con la fazione.", "Rep." },
+        ptBR = { "Esta run: +%s", "Reputação desta run. Deixa de ser rastreada quando você fica Exaltado com a facção.", "Rep." },
+        ruRU = { "Этот забег: +%s", "Репутация за этот забег. Не отслеживается, когда вы превознесены у фракции.", "Реп." },
+        koKR = { "이번 런: +%s", "이번 런에서 얻은 평판입니다. 해당 세력에 확고한 동맹이 되면 더 이상 추적하지 않습니다.", "평판" },
+        zhCN = { "本轮：+%s", "本轮获得的声望。在该阵营达到崇拜后不再追踪。", "声望" },
+        zhTW = { "本輪：+%s", "本輪獲得的聲望。在該陣營達到崇拜後不再追蹤。", "聲望" },
+    }
+    strings.esMX = strings.esES
+    local keys = { "RUNLOG_REP_RUN", "RUNLOG_REP_TIP", "RUNLOG_REP" }
+    for locale, list in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            for n, key in ipairs(keys) do
+                if t[key] == nil then t[key] = list[n] end
+            end
+        end
+    end
+end
+-- The factions a dungeon run can give, by ID: found by their name in the
+-- player's language even under a folded header of the reputation list.
+local REP_FACTION_IDS = { 529, 59, 576, 609, 270, 749, 910, 809, 87, 21, 369, 470, 577, 589, 729, 730,
+    890, 889, 509, 510, 349, 92, 93, 909, 70, 72, 47, 69, 54, 76, 81, 68, 530 }
+local function RepSecret(v) return type(issecretvalue) == "function" and issecretvalue(v) end
+-- The player's standing with a faction (1-8; 8 is Exalted), and the bar:
+-- its bottom, top and value. nil: not known.
+local function RepStandingRaw(name)
+    if type(name) ~= "string" then return nil end
+    local function Data(d)
+        if type(d) == "table" and d.name == name and tonumber(d.reaction) and not RepSecret(d.reaction) then
+            return tonumber(d.reaction), tonumber(d.currentReactionThreshold) or 0,
+                tonumber(d.nextReactionThreshold) or 0, tonumber(d.currentStanding) or 0
+        end
+    end
+    local function Info(fname, standing, low, high, value)
+        if fname == name and tonumber(standing) and not RepSecret(standing) then
+            return tonumber(standing), tonumber(low) or 0, tonumber(high) or 0, tonumber(value) or 0
+        end
+    end
+    local R = C_Reputation
+    local ok, count = pcall(R and R.GetNumFactions or GetNumFactions)
+    count = ok and tonumber(count) or 0
+    for i = 1, count do
+        local a, b, c, d
+        if R and type(R.GetFactionDataByIndex) == "function" then
+            local okD, data = pcall(R.GetFactionDataByIndex, i)
+            if okD then a, b, c, d = Data(data) end
+        elseif type(GetFactionInfo) == "function" then
+            local okI, fname, _, standing, low, high, value = pcall(GetFactionInfo, i)
+            if okI then a, b, c, d = Info(fname, standing, low, high, value) end
+        end
+        if a then return a, b, c, d end
+    end
+    for _, id in ipairs(REP_FACTION_IDS) do
+        local a, b, c, d
+        if R and type(R.GetFactionDataByID) == "function" then
+            local okD, data = pcall(R.GetFactionDataByID, id)
+            if okD then a, b, c, d = Data(data) end
+        elseif type(GetFactionInfoByID) == "function" then
+            local okI, fname, _, standing, low, high, value = pcall(GetFactionInfoByID, id)
+            if okI then a, b, c, d = Info(fname, standing, low, high, value) end
+        end
+        if a then return a, b, c, d end
+    end
+    return nil
+end
+local function RepStanding(name)
+    local ok, a, b, c, d = pcall(RepStandingRaw, name)
+    if ok then return a, b, c, d end
+end
+function FDJ.RunLogRepStanding(run, name) return RepStanding(name) end
+-- The faction this run gave the most reputation, and how much (an Exalted
+-- one left out); nil when there is none.
+local function RunRep(run)
+    local best, gain
+    for name, n in pairs((run and type(run.rep) == "table" and run.rep) or {}) do
+        n = tonumber(n)
+        if type(name) == "string" and n and n > 0 and (not gain or n > gain) then
+            local standing = FDJ.RunLogRepStanding(run, name)
+            if not (standing and standing >= 8) then best, gain = name, n end
+        end
+    end
+    return best, gain
+end
+local REP_STANDING_EN = { "Hated", "Hostile", "Unfriendly", "Neutral", "Friendly", "Honored", "Revered", "Exalted" }
+local function RepStandingLabel(n)
+    local g = _G["FACTION_STANDING_LABEL" .. tostring(n)]
+    return (type(g) == "string" and g ~= "") and g or REP_STANDING_EN[n] or "?"
 end
 
 local function TrashText(run)
@@ -457,7 +573,7 @@ function FDJ.RunLogSummary(run)
     end
     -- at the level cap: the gold earned in place of "<n> XP"
     local text = L("RUNLOG_DONE", DungeonLabel(run), secs and Duration(secs) or "-", run.deaths or 0, trash or "-", "\001")
-    local gold = GoldText(run.money)
+    local gold = GoldText(RunGold(run))
     for _, word in ipairs({ "\001 XP", "\001 EP", "\001 PX", "\001 PE", "\001 опыта", "경험치 \001", "经验 \001", "經驗 \001" }) do
         local i, j = text:find(word, 1, true)
         if i then text = text:sub(1, i - 1) .. gold .. text:sub(j + 1) break end
@@ -639,8 +755,22 @@ function FDJ.RunLogFixDungeon(run)
 end
 
 local FIGHT_PLACEHOLDERS = {} -- ringoflaw: the fight's entry before its boss is known
+-- logfaction (2.1.3, M: "can we just not have the lost dwarves show in the
+-- alliance char log?"): a boss only the other faction can fight
+-- (factionOnly: The Lost Dwarves, friendly to the Alliance) isn't listed
+-- in a run's bosses. The log is the character's own, so its faction is
+-- the character's. Still listed if the log has its kill.
+local function LogFaction()
+    if type(UnitFactionGroup) ~= "function" then return nil end
+    local ok, faction = pcall(UnitFactionGroup, "player")
+    if not ok or type(faction) ~= "string" then return nil end
+    if type(issecretvalue) == "function" and issecretvalue(faction) then return nil end
+    return faction
+end
+
 local function BossList(run)
     FDJ.RunLogFixDungeon(run)
+    local faction = LogFaction() -- logfaction
     local killed = {}
     for _, k in ipairs(run.kills or {}) do
         if k.b and not killed[k.b] then killed[k.b] = k end
@@ -650,7 +780,10 @@ local function BossList(run)
     for _, b in ipairs((d and d.bosses) or {}) do
         -- altarbosses (2.0.24): a journal group and its children are not
         -- listed among a run's bosses (their kills are trash, as before).
-        if type(b) == "table" and type(b.name) == "string" and b.runLogHidden then
+        if type(b) == "table" and type(b.name) == "string" and type(b.factionOnly) == "string"
+            and faction and b.factionOnly ~= faction and not killed[b.name] then
+            shown[b.name] = true -- logfaction: the other faction's boss
+        elseif type(b) == "table" and type(b.name) == "string" and b.runLogHidden then
             -- felsteedoff (2.0.7): not one of a run's bosses (the Shadowfang
             -- Keep horses); an older run's kill of it isn't listed either.
             shown[b.name] = true
@@ -903,6 +1036,7 @@ local function RefreshDetail(win)
         win.title:SetText("")
         win.sub:SetText("")
         if win.money then win.money:Hide() end
+        if win.moneyTip then win.moneyTip:Hide() end -- (rawgold)
         if win.trackButton then win.trackButton:Hide() end
         if win.partyButton then win.partyButton:Hide() end
         content:SetHeight(1)
@@ -925,12 +1059,38 @@ local function RefreshDetail(win)
     else
         win.money:SetPoint("TOPRIGHT", content, "TOPRIGHT", -4, -12)
     end
-    if run.money ~= nil then
-        win.money:SetText("|cffa59b8b" .. L("RUNLOG_MONEY") .. "|r  " .. GoldText(run.money))
+    if run.money ~= nil or run.itemValue ~= nil then
+        win.money:SetText("|cffa59b8b" .. (GoldName()) .. "|r  " .. GoldText(RunGold(run)))
         win.money:Show()
     else
         win.money:Hide()
     end
+    -- rawgold (2.1.4, M 23 Nov 2026: "when you hover the money, the loot
+    -- value, I want it to show in the tooltip how much gold, raw gold you
+    -- earned, just the gold, because people might not have the full value
+    -- because they don't sell every item"): hovering it, the gold looted
+    if not win.moneyTip then
+        local tip = CreateFrame("Frame", nil, content)
+        tip:EnableMouse(true)
+        tip:SetScript("OnEnter", function(self)
+            local shown = win.selected
+            if not shown then return end
+            local name, what = GoldName()
+            GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
+            -- (rawgold2, M 23 Nov 2026: what it counts under the name, then
+            -- "Raw gold looted" at the bottom)
+            GameTooltip:SetText(name, 1, 0.82, 0)
+            GameTooltip:AddLine(what, 0.8, 0.8, 0.8, true)
+            GameTooltip:AddLine(L("RUNLOG_GOLD_LOOTED", GoldText(tonumber(shown.money) or 0)), 1, 1, 1)
+            GameTooltip:Show()
+        end)
+        tip:SetScript("OnLeave", function() GameTooltip:Hide() end)
+        win.moneyTip = tip
+    end
+    win.moneyTip:ClearAllPoints()
+    win.moneyTip:SetPoint("TOPLEFT", win.money, "TOPLEFT", -4, 4)
+    win.moneyTip:SetPoint("BOTTOMRIGHT", win.money, "BOTTOMRIGHT", 4, -4)
+    win.moneyTip:SetShown(win.money:IsShown())
     if FDJ.RunLogPartyButton then FDJ.RunLogPartyButton(win, content, run) end
     local status, sr, sg, sb = Status(run)
     win.sub:SetText(FDJ.RunLogDate(run.created, true) .. "   |cff" ..
@@ -946,7 +1106,8 @@ local function RefreshDetail(win)
         { L("RUNLOG_TIME"), secs and Duration(secs) or "-", running and L("RUNLOG_RUNNING") or nil, L("RUNLOG_TIME"), { L("RUNLOG_TIME_TIP") } },
         { L("RUNLOG_DEATHS"), tostring(run.deaths or 0), nil, nil, nil },
         { L("RUNLOG_TRASH"), trashPct or "-", trashOf, L("RUNLOG_TRASH"), { L("RUNLOG_TRASH_TIP") } },
-        ShowsGold(run) and { L("RUNLOG_GOLD"), GoldText(run.money), nil, nil, nil }
+        ShowsGold(run) and { (GoldName()), GoldText(RunGold(run)), nil, GoldName(),
+            { (select(2, GoldName())), L("RUNLOG_GOLD_LOOTED", GoldText(tonumber(run.money) or 0)) } } -- (rawgold)
             or { L("RUNLOG_XP"), Thousands(MobXP(run)), nil, nil, nil },
     }
     local start = RunStart(run) or run.created
@@ -1341,6 +1502,8 @@ local function CreateWindow()
     end
 
     local inset = win.Inset or win
+    -- exporttitle (2.1.1, M 20 Nov 2026): the Export button left the Character
+    -- Logs for the journal's title bar, left of Report (Systems/BugReport.lua).
     -- Left: the runs.
     local listScroll = CreateFrame("ScrollFrame", nil, win, "UIPanelScrollFrameTemplate")
     win.listScroll = listScroll
@@ -1553,6 +1716,83 @@ do
     end
 end
 
+-- lootname (2.1.4, M 22 Nov 2026, after trying "Gold + Vendor" and "Loot value" on
+-- the tracker: "I prefer loot value ... when you hover over the gold, and even
+-- the text loot value, it says what it is ... Also, make another tracker option
+-- ... hide vendor items value"): the Gold column is "Loot value" (the coin
+-- looted plus the items' vendor price, lootvalue); hovering its name or its
+-- number says so. Options > Dungeon Tracker > Hide items' vendor value: the
+-- coin only, and the column is "Gold" again (the log page and the chat line too).
+do
+    local strings = {
+        enUS = { "Loot value", "The gold you looted plus what the items you looted sell for at a vendor.", "The gold you looted.",
+            "Hide items' vendor value", "Count only the gold you looted, not what the items you looted sell for at a vendor (the column is called Gold then)." },
+        deDE = { "Beutewert", "Das erbeutete Gold plus der Händlerpreis aller erbeuteten Gegenstände.", "Das erbeutete Gold.",
+            "Händlerwert der Gegenstände ausblenden", "Nur das erbeutete Gold zählen, nicht den Händlerpreis der erbeuteten Gegenstände (die Spalte heißt dann Gold)." },
+        frFR = { "Valeur du butin", "L'or ramassé plus le prix de vente chez un marchand des objets ramassés.", "L'or ramassé.",
+            "Masquer la valeur marchande des objets", "Ne compter que l'or ramassé, pas le prix de vente chez un marchand des objets ramassés (la colonne s'appelle alors Or)." },
+        esES = { "Valor del botín", "El oro despojado más lo que valen en un vendedor los objetos despojados.", "El oro despojado.",
+            "Ocultar el valor de venta de los objetos", "Contar solo el oro despojado, no lo que valen en un vendedor los objetos despojados (la columna se llama entonces Oro)." },
+        itIT = { "Valore bottino", "L'oro raccolto più il prezzo di vendita al mercante degli oggetti raccolti.", "L'oro raccolto.",
+            "Nascondi il valore di vendita degli oggetti", "Conta solo l'oro raccolto, non il prezzo di vendita al mercante degli oggetti raccolti (la colonna si chiama allora Oro)." },
+        ptBR = { "Valor do saque", "O ouro saqueado mais o preço de venda no vendedor dos itens saqueados.", "O ouro saqueado.",
+            "Ocultar o valor de venda dos itens", "Contar só o ouro saqueado, não o preço de venda no vendedor dos itens saqueados (a coluna passa a se chamar Ouro)." },
+        ruRU = { "Ценность добычи", "Собранное золото плюс цена продажи торговцу всех собранных предметов.", "Собранное золото.",
+            "Скрыть цену предметов у торговца", "Учитывать только собранное золото, без цены продажи собранных предметов торговцу (столбец тогда называется «Золото»)." },
+        koKR = { "전리품 가치", "획득한 골드와 획득한 아이템을 상점에 팔 때의 가격을 합한 값입니다.", "획득한 골드입니다.",
+            "아이템 상점 가격 숨기기", "획득한 골드만 계산하고, 획득한 아이템의 상점 판매 가격은 제외합니다 (이때 항목 이름은 골드입니다)." },
+        zhCN = { "战利品价值", "拾取的金币加上拾取物品卖给商人的价格。", "拾取的金币。",
+            "隐藏物品的商人价格", "只计算拾取的金币，不计拾取物品卖给商人的价格（此时该栏名为金币）。" },
+        zhTW = { "戰利品價值", "拾取的金幣加上拾取物品賣給商人的價格。", "拾取的金幣。",
+            "隱藏物品的商人價格", "只計算拾取的金幣，不計拾取物品賣給商人的價格（此時該欄名為金幣）。" },
+    }
+    strings.esMX = strings.esES
+    local KEYS = { "RUNLOG_LOOT_VALUE", "RUNLOG_LOOT_VALUE_TIP", "RUNLOG_GOLD_TIP", "OPT_TRACK_HIDE_VENDOR", "OPT_TRACK_HIDE_VENDOR_TIP" }
+    for locale, list in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            for i, key in ipairs(KEYS) do
+                if t[key] == nil then t[key] = list[i] end
+            end
+        end
+    end
+    -- rawgold (2.1.4): the gold looted alone, in the Loot value's tooltip
+    local looted = { enUS = "Raw gold looted: %s", deDE = "Reines erbeutetes Gold: %s", frFR = "Or brut ramassé : %s",
+        esES = "Oro bruto despojado: %s", itIT = "Oro grezzo raccolto: %s", ptBR = "Ouro bruto saqueado: %s",
+        ruRU = "Собрано чистого золота: %s", koKR = "획득한 순수 골드: %s", zhCN = "拾取的纯金币：%s", zhTW = "拾取的純金幣：%s" }
+    looted.esMX = looted.esES
+    for locale, text in pairs(looted) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t and t.RUNLOG_GOLD_LOOTED == nil then t.RUNLOG_GOLD_LOOTED = text end
+    end
+end
+
+-- vendorclick (2.1.4, M 22 Nov 2026: "in the loot value, right click to disable
+-- vendor items ... once it's back to gold ... right click to enable vendor
+-- value. So it's clean"): the column's tooltip says what a right-click does.
+do
+    local strings = {
+        enUS = { "Right-click to disable vendor value", "Right-click to enable vendor value" },
+        deDE = { "Rechtsklick: Händlerwert ausschalten", "Rechtsklick: Händlerwert einschalten" },
+        frFR = { "Clic droit : désactiver la valeur marchande", "Clic droit : activer la valeur marchande" },
+        esES = { "Clic derecho: desactivar el valor de venta", "Clic derecho: activar el valor de venta" },
+        itIT = { "Clic destro: disattiva il valore di vendita", "Clic destro: attiva il valore di vendita" },
+        ptBR = { "Clique direito: desativar o valor de venda", "Clique direito: ativar o valor de venda" },
+        ruRU = { "ПКМ: не учитывать цену у торговца", "ПКМ: учитывать цену у торговца" },
+        koKR = { "우클릭: 상점 가격 끄기", "우클릭: 상점 가격 켜기" },
+        zhCN = { "右键点击：关闭商人价格", "右键点击：开启商人价格" },
+        zhTW = { "右鍵點擊：關閉商人價格", "右鍵點擊：開啟商人價格" },
+    }
+    strings.esMX = strings.esES
+    for locale, pair in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            if t.RUNLOG_VENDOR_OFF_TIP == nil then t.RUNLOG_VENDOR_OFF_TIP = pair[1] end
+            if t.RUNLOG_VENDOR_ON_TIP == nil then t.RUNLOG_VENDOR_ON_TIP = pair[2] end
+        end
+    end
+end
+
 -- The icon's size and its gap to Favourites (picked on screen, 1.7.5).
 local ICON_SIZE, ICON_GAP, ICON_Y = 42, 11, -1
 function FDJ.IsRunLogButtonHidden()
@@ -1606,7 +1846,7 @@ local function ShowIconMenu(anchor)
             menu:Hide()
             -- 2.0.4: Hide opens Options at its line (highlighted); the player
             -- ticks it there, so they know where to undo it.
-            if FDJ.OpenSettingsAt then FDJ.OpenSettingsAt("OPT_HIDE_RUNLOG") else FDJ.SetRunLogButtonHidden(true) end
+            if FDJ.OpenSettingsAt then FDJ.OpenSettingsAt("OPT_SHOW_RUNLOG") else FDJ.SetRunLogButtonHidden(true) end
         end)
         menu.hide = item
         -- Closes on its own once the mouse has been away for a moment.
@@ -1657,10 +1897,10 @@ local function PlaceIcon(b)
     local hide = frame and frame.hideDungeonsButton
     local loot = frame and frame.lootFilterButton
     -- Same widths the buttons give themselves (Favourites.lua, LootFilter.lua,
-    -- the journal's Hide Dungeons), for the English words.
+    -- the journal's Edit Mode), for the English words.
     local favEn = fav.text and EnglishWidth(fav.text, "FAVOURITES", 44, 96, 170)
     local lootEn = loot and frame.lootFilterButtonText and EnglishWidth(frame.lootFilterButtonText, "LOOT_FILTER", 26, 110, 180)
-    local hideEn = hide and frame.hideDungeonsButtonText and EnglishWidth(frame.hideDungeonsButtonText, "HIDE_DUNGEONS", 26, 126, 180)
+    local hideEn = hide and frame.hideDungeonsButtonText and EnglishWidth(frame.hideDungeonsButtonText, "EDIT_MODE", 26, 126, 180)
     if not (favEn and lootEn and hideEn) or fav ~= frame.favouritesButton then
         b:SetPoint("RIGHT", fav, "LEFT", -ICON_GAP, ICON_Y)
         return
@@ -2104,10 +2344,63 @@ function FDJ.ResetTrackedRun()
         -- until the next kill starts the new run
         if run and FDJ.StartBlankRun then FDJ.StartBlankRun(run) end
         if FDJ.UpdateRunTracker then FDJ.UpdateRunTracker() end
-        print("|cffd8a83cDungeonJournal|r " .. L("TRACKER_NEW_RUN_DONE"))
+        FDJ.ChatLine("|cffd8a83cDungeonJournal|r " .. L("TRACKER_NEW_RUN_DONE")) -- (chatlines)
         return true
     end
     return false
+end
+
+-- padpopup (2.1.3): the reset question with the gamepad on, in a window of
+-- the journal's own (the game's popup would taint gamepad input): the same
+-- look, text and Yes / No as the game's.
+-- A controller is turned on in the game's settings and connected.
+function FDJ.ControllerConnected()
+    if not (GetCVarBool and GetCVarBool("GamePadEnable")) then return false end
+    if not (C_GamePad and type(C_GamePad.GetAllDeviceIDs) == "function") then return false end
+    local ok, ids = pcall(C_GamePad.GetAllDeviceIDs)
+    return ok and type(ids) == "table" and #ids > 0 or false
+end
+
+function FDJ.AskResetTracker()
+    local f = FDJ.resetAskFrame
+    if not f then
+        f = CreateFrame("Frame", "ForeverDungeonJournalResetAsk", UIParent, "BackdropTemplate")
+        FDJ.resetAskFrame = f
+        f:SetSize(320, 104)
+        f:SetFrameStrata("DIALOG")
+        f:SetToplevel(true)
+        f:EnableMouse(true)
+        if f.SetBackdrop then
+            f:SetBackdrop({
+                bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+                edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+                tile = true, tileSize = 32, edgeSize = 32,
+                insets = { left = 11, right = 12, top = 12, bottom = 11 },
+            })
+        end
+        f.text = f:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+        f.text:SetPoint("TOP", 0, -20)
+        f.text:SetWidth(280)
+        f.text:SetJustifyH("CENTER")
+        local yes = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+        yes:SetSize(110, 22)
+        -- (padtight, M: "so much dead space between yes, no, and the last
+        -- line": the buttons right under the text)
+        yes:SetPoint("TOPRIGHT", f.text, "BOTTOM", -6, -10)
+        yes:SetText(YES or "Yes")
+        yes:SetScript("OnClick", function() f:Hide() FDJ.ResetTrackedRun() end)
+        local no = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+        no:SetSize(110, 22)
+        no:SetPoint("TOPLEFT", f.text, "BOTTOM", 6, -10)
+        no:SetText(NO or "No")
+        no:SetScript("OnClick", function() f:Hide() end)
+        f:Hide()
+    end
+    f.text:SetText(L("TRACKER_RESET_CONFIRM"))
+    f:SetHeight(math.floor((f.text:GetStringHeight() or 14) + 0.5) + 67) -- (20 above the text, 10 to the buttons, 22 of buttons, 15 below)
+    f:ClearAllPoints()
+    f:SetPoint("TOP", UIParent, "TOP", 0, -135)
+    f:Show()
 end
 
 if StaticPopupDialogs then
@@ -2355,20 +2648,16 @@ local function BuildTracker()
         end
         GameTooltip:Hide()
         -- padfocus (2.0.12, kaanu): with the gamepad on, a StaticPopup from addon
-        -- code taints gamepad input until /reload, so confirm with a second click instead.
-        if GetCVarBool and GetCVarBool("GamePadEnable") then
-            local now = GetTime()
-            if self.resetArmedUntil and now <= self.resetArmedUntil then
-                self.resetArmedUntil = nil
-                FDJ.ResetTrackedRun()
-            else
-                self.resetArmedUntil = now + 3
-                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-                GameTooltip:SetText(L("TRACKER_RESET"), 1, 0.82, 0)
-                GameTooltip:AddLine(L("TRACKER_RESET_CONFIRM"), 1, 1, 1, true)
-                GameTooltip:AddLine(L("TRACKER_RESET_AGAIN"), 0.25, 1, 0.25, true)
-                GameTooltip:Show()
-            end
+        -- code taints gamepad input until /reload. padpopup (2.1.3, M 21 Nov
+        -- 2026, his controller setting on and the second click asked for:
+        -- "we had a pop-up. What happened?"): the same question in the
+        -- journal's own little window instead, Yes / No, not the game's popup.
+        -- padreal (2.1.3, M 21 Nov 2026 on keyboard and mouse: "I'm not
+        -- using the controller, so why did it detect?"): the game's controller
+        -- setting can be on with no controller there. Only with a controller
+        -- connected; else the game's own popup, as always.
+        if FDJ.ControllerConnected and FDJ.ControllerConnected() and FDJ.AskResetTracker then
+            FDJ.AskResetTracker()
         elseif StaticPopup_Show and StaticPopupDialogs and StaticPopupDialogs.FDJ_TRACKER_RESET then
             StaticPopup_Show("FDJ_TRACKER_RESET", L("TRACKER_RESET_CONFIRM"))
         else
@@ -2408,6 +2697,58 @@ local function BuildTracker()
     t.goldLabel:SetTextColor(MUTED[1], MUTED[2], MUTED[3])
     t.gold = t:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlightLarge")
     t.gold:SetPoint("TOPLEFT", t.goldLabel, "BOTTOMLEFT", 0, -3)
+    -- lootname (2.1.4): hovering the column's name or its number says what it
+    -- counts. vendorclick (2.1.4): a right-click there switches the items'
+    -- vendor value off or on (Options > Hide items' vendor value); a drag there
+    -- still moves the tracker.
+    local tip = CreateFrame("Frame", nil, t)
+    tip:SetPoint("TOPLEFT", t.goldLabel, "TOPLEFT", -3, 3)
+    tip:SetSize(80, 38)
+    tip:SetFrameLevel(handle:GetFrameLevel() + 6)
+    tip:EnableMouse(true)
+    Draggable(tip)
+    tip:SetScript("OnEnter", function(self)
+        local name, what = GoldName()
+        GameTooltip:SetOwner(self, "ANCHOR_BOTTOM")
+        GameTooltip:SetText(name, 1, 0.82, 0)
+        GameTooltip:AddLine(what, 1, 1, 1, true)
+        local off = FDJ.TrackerOption and FDJ.TrackerOption("hideVendor")
+        GameTooltip:AddLine(L(off and "RUNLOG_VENDOR_ON_TIP" or "RUNLOG_VENDOR_OFF_TIP"), 0.35, 1.00, 0.35, true)
+        GameTooltip:Show()
+    end)
+    tip:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    tip:SetScript("OnMouseUp", function(self, button)
+        if button ~= "RightButton" or not FDJ.SetTrackerOption then return end
+        FDJ.SetTrackerOption("hideVendor", not (FDJ.TrackerOption and FDJ.TrackerOption("hideVendor")))
+        if GameTooltip:IsOwned(self) then self:GetScript("OnEnter")(self) end -- (the tooltip follows)
+    end)
+    t.goldTip = tip
+    -- reptrack (2.1.4): hovering the reputation column: the faction, the
+    -- player's standing with it, what this run gave
+    local repTip = CreateFrame("Frame", nil, t)
+    repTip:SetPoint("TOPLEFT", t.xpLabel, "TOPLEFT", -3, 3)
+    repTip:SetSize(70, 38)
+    repTip:SetFrameLevel(handle:GetFrameLevel() + 6)
+    repTip:EnableMouse(true)
+    Draggable(repTip)
+    repTip:SetScript("OnEnter", function(self)
+        local name, gain = RunRep(t.run)
+        if not name then return end
+        GameTooltip:SetOwner(self, "ANCHOR_BOTTOM")
+        GameTooltip:SetText(name, 1, 0.82, 0)
+        local standing, low, high, value = FDJ.RunLogRepStanding(t.run, name)
+        if standing then
+            local line = RepStandingLabel(standing)
+            if high and low and high > low then line = line .. "  " .. Thousands(value - low) .. " / " .. Thousands(high - low) end
+            GameTooltip:AddLine(line, 1, 1, 1)
+        end
+        GameTooltip:AddLine(L("RUNLOG_REP_RUN", Thousands(gain)), 0.35, 1.00, 0.35)
+        GameTooltip:AddLine(L("RUNLOG_REP_TIP"), 0.8, 0.8, 0.8, true)
+        GameTooltip:Show()
+    end)
+    repTip:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    repTip:Hide()
+    t.repTip = repTip
 
     t.line = t:CreateTexture(nil, "ARTWORK")
     t.line:SetColorTexture(0.54, 0.39, 0.17, 0.6)
@@ -2448,7 +2789,7 @@ local function BuildTracker()
         db.point = { point, rel, x, y }
     end
     local function Announce()
-        print("|cffffd100Dungeon Journal|r tracker size: " .. math.floor(t:GetScale() * 100 + 0.5) .. "%")
+        FDJ.ChatLine("|cffffd100Dungeon Journal|r tracker size: " .. math.floor(t:GetScale() * 100 + 0.5) .. "%")
     end
     grip:SetScript("OnClick", function()
         Pin(1)
@@ -2565,6 +2906,24 @@ function FDJ.TrackerGroupEntry(run, d, group)
             e.dead = e.dead + 1
             if not last or (tonumber(k.t) or 0) > (tonumber(last.t) or 0) then last = k end
             for _, item in ipairs(k.loot or {}) do loot[#loot + 1] = item end
+        end
+    end
+    -- altarneeded (2.1.4, M 22 Nov 2026: "if atal alarion is dead then yes the
+    -- altar bosses would be considered dead too"): a group with deadWith (a
+    -- boss of the run): once that boss is dead, each of the group's bosses
+    -- with no kill of its own counts as dead with it (its time, no loot).
+    if type(group.deadWith) == "string" then
+        for _, k in ipairs(run.kills or {}) do
+            if type(k) == "table" and k.b == group.deadWith then
+                for _, c in ipairs(e.children) do
+                    if not c.kill then
+                        c.kill = { t = k.t, m = c.boss.name, n = c.boss.npcID }
+                        e.dead = e.dead + 1
+                    end
+                end
+                if not last or (tonumber(k.t) or 0) > (tonumber(last.t) or 0) then last = k end
+                break
+            end
         end
     end
     if #e.children > 0 and e.dead == #e.children then
@@ -3231,19 +3590,25 @@ function FDJ.UpdateRunTracker()
     t.title:SetWidth(math.max(1, math.min(full + 1, 236 - 30 - 26 - (canReset and t.reset and math.floor(t.reset:GetWidth() + 6.5) or 0))))
     if t.reset then t.reset:SetShown(canReset) end
     t.timeLabel:SetText(L("RUNLOG_TIME"))
-    t.xpLabel:SetText(L("RUNLOG_MOBS_XP"))
-    t.goldLabel:SetText(L("RUNLOG_GOLD"))
+    -- reptrack (2.1.4): at the level cap, the reputation in the Mobs XP place
+    local repName, repGain
+    if ShowsGold(run) then repName, repGain = RunRep(run) end
+    t.xpLabel:SetText(repName and L("RUNLOG_REP") or L("RUNLOG_MOBS_XP")) -- (repshort)
+    if t.repTip then t.repTip:SetShown(repName ~= nil) end
+    t.goldLabel:SetText((GoldName())) -- lootname
     local secs = Speed(run)
     t.time:SetText(secs and Duration(secs) or "0:00")
     if run.completed then t.time:SetTextColor(0.25, 1.0, 0.35) else t.time:SetTextColor(1, 1, 1) end
-    t.xp:SetText(Thousands(MobXP(run)))
-    t.gold:SetText(GoldText(run.money))
-    -- Time | Mobs XP | Gold (no Mobs XP at the level cap), less the ones
-    -- hidden in Options > Dungeon Tracker; none left: a slimmer tracker.
+    t.xp:SetText(repName and ("+" .. Thousands(repGain)) or Thousands(MobXP(run)))
+    t.gold:SetText(GoldText(RunGold(run)))
+    -- Time | Mobs XP | Gold (no Mobs XP at the level cap: the reputation
+    -- there, reptrack), less the ones hidden in Options > Dungeon Tracker;
+    -- none left: a slimmer tracker.
     local cols = {}
     if not FDJ.TrackerOption("hideTime") then cols[#cols + 1] = { t.timeLabel, t.time } end
-    if not ShowsGold(run) and not FDJ.TrackerOption("hideXP") then cols[#cols + 1] = { t.xpLabel, t.xp } end
+    if repName or (not ShowsGold(run) and not FDJ.TrackerOption("hideXP")) then cols[#cols + 1] = { t.xpLabel, t.xp } end
     if not FDJ.TrackerOption("hideGold") then cols[#cols + 1] = { t.goldLabel, t.gold } end
+    if t.goldTip then t.goldTip:SetShown(not FDJ.TrackerOption("hideGold")) end -- lootname
     for _, pair in ipairs({ { t.timeLabel, t.time }, { t.xpLabel, t.xp }, { t.goldLabel, t.gold } }) do
         pair[1]:Hide() pair[2]:Hide()
     end
@@ -3810,4 +4175,204 @@ do
         end
         if C_Timer and C_Timer.After then C_Timer.After(3, function() FDJ.UpdateRunTracker() end) end
     end)
+end
+
+-- exporthint (2.1.1, M 20 Nov 2026: "a little pop-up that pops up ... only
+-- once ... whenever somebody updates ... whenever somebody downloads it ...
+-- but then not anymore ... close to the one that we have for the Onyxia
+-- pop-up ... once people open the journal, it points at the character logs
+-- and says you can now export your character's progress to the website"):
+-- the first time the journal shows, a note under the Export button (title
+-- bar, left of Report; exporttitle, M 20 Nov 2026: "move the pop-up ...
+-- pointing to that button") in the Onyxia popup's look, its red arrow
+-- pointing up at the button. Once per account for good (exportHintSeen); a
+-- click opens the Options' Export tab; gone after 12 seconds, or with the
+-- journal. Not while the button is hidden.
+do
+    local strings = {
+        enUS = { EXPORT_NOTE = "You can now export your character's progress to the website", EXPORT_NOTE_CLICK = "Click here or on %s." },
+        deDE = { EXPORT_NOTE = "Du kannst jetzt den Fortschritt deines Charakters auf die Website exportieren", EXPORT_NOTE_CLICK = "Hier oder auf %s klicken." },
+        frFR = { EXPORT_NOTE = "Vous pouvez maintenant exporter la progression de votre personnage vers le site", EXPORT_NOTE_CLICK = "Cliquez ici ou sur %s." },
+        esES = { EXPORT_NOTE = "Ahora puedes exportar el progreso de tu personaje al sitio web", EXPORT_NOTE_CLICK = "Haz clic aquí o en %s." },
+        itIT = { EXPORT_NOTE = "Ora puoi esportare i progressi del tuo personaggio sul sito", EXPORT_NOTE_CLICK = "Clicca qui o su %s." },
+        ptBR = { EXPORT_NOTE = "Agora você pode exportar o progresso do seu personagem para o site", EXPORT_NOTE_CLICK = "Clique aqui ou em %s." },
+        ruRU = { EXPORT_NOTE = "Теперь вы можете экспортировать прогресс персонажа на сайт", EXPORT_NOTE_CLICK = "Нажмите здесь или на «%s»." },
+        koKR = { EXPORT_NOTE = "이제 캐릭터 진행 상황을 웹사이트로 내보낼 수 있습니다", EXPORT_NOTE_CLICK = "여기 또는 %s을(를) 클릭하세요." },
+        zhCN = { EXPORT_NOTE = "现在你可以将角色进度导出到网站", EXPORT_NOTE_CLICK = "点击此处或%s。" },
+        zhTW = { EXPORT_NOTE = "現在你可以將角色進度匯出到網站", EXPORT_NOTE_CLICK = "點擊此處或%s。" },
+    }
+    strings.esMX = strings.esES
+    for locale, values in pairs(strings) do
+        local t = FDJ.Locales and FDJ.Locales[locale]
+        if t then
+            for key, value in pairs(values) do
+                if t[key] == nil then t[key] = value end
+            end
+        end
+    end
+
+    local HINT_TIME = 12
+    local ARROW = "Interface\\AddOns\\ForeverDungeonJournal\\Media\\QuestPrevArrow"
+    local hint
+
+    local function Build(icon)
+        local p = CreateFrame("Button", nil, icon, "BackdropTemplate")
+        p:SetFrameStrata("FULLSCREEN_DIALOG")
+        p:SetClampedToScreen(true)
+        p:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+        p:SetBackdrop({
+            bgFile = "Interface\\Buttons\\WHITE8X8",
+            edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+            edgeSize = 12,
+            insets = { left = 3, right = 3, top = 3, bottom = 3 },
+        })
+        p:SetBackdropColor(0, 0, 0, 0.92)
+        p:SetBackdropBorderColor(0.6, 0.6, 0.6, 1)
+        -- The Onyxia popup's red arrow (it points left), turned to point up
+        -- at the icon; it comes and goes, nudging toward it.
+        p.arrow = p:CreateTexture(nil, "OVERLAY")
+        p.arrow:SetTexture(ARROW)
+        p.arrow:SetVertexColor(1, 0.12, 0.08)
+        p.arrow:SetSize(24, 24)
+        if p.arrow.SetRotation then pcall(p.arrow.SetRotation, p.arrow, -math.pi / 2) end
+        -- okbutton (M 20 Nov 2026: "we need the little OK button so people
+        -- can close the thing ... on the top left, at the top, above"): the
+        -- tracker's boss note's small OK, over the text; it only closes.
+        p.ok = CreateFrame("Button", nil, p, "UIPanelButtonTemplate")
+        FDJ.OwnFonts(p.ok)
+        p.ok:SetSize(34, 16)
+        p.ok:SetNormalFontObject("ForeverDJ_GameFontNormalSmall")
+        p.ok:SetHighlightFontObject("ForeverDJ_GameFontHighlightSmall")
+        p.ok:SetText(OKAY or "OK")
+        p.ok:SetPoint("TOPLEFT", 10, -9)
+        p.ok:SetScript("OnClick", function() p:Hide() end)
+        p.text = p:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontHighlightLarge")
+        p.text:SetPoint("TOPLEFT", 14, -30)
+        p.text:SetWidth(300)
+        p.text:SetJustifyH("LEFT")
+        p.text:SetTextColor(1, 1, 1)
+        p.text:SetShadowColor(0, 0, 0, 1)
+        p.text:SetShadowOffset(1, -1)
+        p.hint = p:CreateFontString(nil, "OVERLAY", "ForeverDJ_GameFontDisableSmall")
+        p.hint:SetPoint("TOPLEFT", p.text, "BOTTOMLEFT", 0, -6)
+        p.hint:SetWidth(300)
+        p.hint:SetJustifyH("LEFT")
+        p:SetScript("OnUpdate", function(self, elapsed)
+            self.t = (self.t or 0) + elapsed
+            if self.t >= HINT_TIME then
+                self:Hide()
+                return
+            end
+            -- in over 0.3 s, out over the last 0.6 s
+            self:SetAlpha(math.min(1, self.t / 0.3, (HINT_TIME - self.t) / 0.6))
+            local wave = math.sin(self.t * 4)
+            self.arrow:SetAlpha(0.55 + 0.45 * wave)
+            self.arrow:ClearAllPoints()
+            self.arrow:SetPoint("TOP", self.fdjIcon, "BOTTOM", 0, -1 - 3 * math.abs(wave))
+        end)
+        p:SetScript("OnClick", function(self, button)
+            self:Hide()
+            -- exporttitle: the Options' Export tab, as the button does
+            if button == "LeftButton" and FDJ.OpenExportTab then pcall(FDJ.OpenExportTab) end
+        end)
+        p:SetScript("OnEnter", function(self) self:SetBackdropBorderColor(1, 0.82, 0.35, 1) end)
+        p:SetScript("OnLeave", function(self) self:SetBackdropBorderColor(0.6, 0.6, 0.6, 1) end)
+        p:Hide()
+        return p
+    end
+
+    -- exportlater (2.1.5, M 24 Nov 2026: "on first journal open, players who
+    -- installed the addon for the first time see the Edit Mode popup, then
+    -- once they reach level 10, they will get the export popup to remind them
+    -- of the export ... If someone had the addon before, they just get the
+    -- edit mode popup one time"; "if a player is already level 10 on first
+    -- install, the export popup will appear on the 5th journal open"): only
+    -- for a new install (exportHintPending, from its first login; an update:
+    -- never). Then, on a character of level 10 or more: the journal opened
+    -- the 5th time (exportHintOpens), or the first time it opens after a
+    -- character reached level 10 (exportHintDing; not the very first open,
+    -- the Edit Mode note's). Never while the Edit Mode note is up.
+    do
+        local ev = CreateFrame("Frame")
+        ev:RegisterEvent("PLAYER_LOGIN")
+        ev:RegisterEvent("PLAYER_LEVEL_UP")
+        ev:SetScript("OnEvent", function(_, event, level)
+            local db = ForeverDungeonJournalDB
+            if type(db) ~= "table" then return end
+            if event == "PLAYER_LOGIN" then
+                if db == FDJ.bootDB then
+                    if not db.exportHintSeen then db.exportHintPending = true end
+                elseif not db.exportHintPending then
+                    db.exportHintSeen = true
+                end
+            elseif db.exportHintPending and tonumber(level) == 10 then
+                db.exportHintDing = true
+            end
+        end)
+    end
+    local function Due(db)
+        if not db.exportHintPending then return false end
+        if FDJ.EditModeNoteUp and FDJ.EditModeNoteUp() then return false end
+        local okL, level = pcall(UnitLevel, "player")
+        level = okL and tonumber(level) or nil
+        if not (level and level >= 10) then return false end
+        local opens = tonumber(db.exportHintOpens) or 0
+        return opens >= 5 or (db.exportHintDing == true and opens >= 2)
+    end
+    -- force: show it even when already seen (not marked).
+    function FDJ.ShowExportHint(icon, force)
+        local db = ForeverDungeonJournalDB
+        if type(db) ~= "table" or not icon then return end
+        if db.exportHintSeen and not force then return end
+        if not force and not Due(db) then return end -- (exportlater)
+        if not (icon:IsVisible() and icon:GetLeft()) then return end
+        if FDJ.IsExportButtonHidden and FDJ.IsExportButtonHidden() then return end
+        if not force then
+            db.exportHintSeen = true
+            db.exportHintPending, db.exportHintOpens, db.exportHintDing = nil, nil, nil
+        end
+        hint = hint or Build(icon)
+        hint.fdjIcon = icon
+        hint.text:SetText(L("EXPORT_NOTE"))
+        hint.hint:SetText(string.format(L("EXPORT_NOTE_CLICK"), L("RUNLOG_EXPORT")))
+        hint:SetSize(328, (hint.text:GetStringHeight() or 34) + (hint.hint:GetStringHeight() or 12) + 48)
+        hint:ClearAllPoints()
+        hint:SetPoint("TOP", icon, "BOTTOM", 0, -28)
+        hint.arrow:ClearAllPoints()
+        hint.arrow:SetPoint("TOP", icon, "BOTTOM", 0, -1)
+        hint.t = 0
+        hint:SetAlpha(0)
+        hint:Show()
+    end
+
+    -- The Export button: shown (the journal opened), after the title bar
+    -- has placed its buttons. journal: the journal's frame, its openings
+    -- counted while a new install waits for the note (exportlater; hooked a
+    -- frame later: the journal sets its own OnShow after its title bar).
+    function FDJ.AttachExportHint(icon, journal)
+        if not icon or icon.fdjExportHint then return end
+        icon.fdjExportHint = true
+        if journal and journal.HookScript then
+            local function Count()
+                local db = ForeverDungeonJournalDB
+                if type(db) == "table" and db.exportHintPending and not db.exportHintSeen then
+                    db.exportHintOpens = (tonumber(db.exportHintOpens) or 0) + 1
+                end
+            end
+            local function Hook()
+                journal:HookScript("OnShow", Count)
+                if journal:IsShown() then Count() end
+            end
+            if C_Timer and C_Timer.After then C_Timer.After(0, Hook) else Hook() end
+        end
+        local function Try()
+            if C_Timer and C_Timer.After then
+                C_Timer.After(0.3, function() FDJ.ShowExportHint(icon) end)
+            else
+                FDJ.ShowExportHint(icon)
+            end
+        end
+        icon:HookScript("OnShow", Try)
+        if icon:IsVisible() then Try() end
+    end
 end
