@@ -96,7 +96,7 @@ elseif (NIT.isTBC) then
 	NIT.hourlyLimit = 5;
 	NIT.dailyLimit = 999;
 elseif (NIT.isForever) then
-	NIT.hourlyLimit = 10;
+	NIT.hourlyLimit = 5;
 	NIT.dailyLimit = 999;
 else
 	--NIT.noRaidLockouts = true;
@@ -107,6 +107,7 @@ NIT.maxLevel = GetMaxPlayerLevel();
 NIT.prefixColor = "|cFFFF6900";
 NIT.perCharOnly = false; --Per char is gone in TBC, not sure how I didn't notice this earlier tbh, blizz never announced it.
 NIT.loadTime = GetServerTime();
+NIT_Installed = true;
 local GetGossipOptions = GetGossipOptions or C_GossipInfo.GetOptions;
 local GetItemInfo = GetItemInfo or C_Item.GetItemInfo;
 local GetCoinTextureString = C_CurrencyInfo.GetCoinTextureString;
@@ -239,16 +240,7 @@ function NIT.UnitName(unit)
 		if (lastName) then
 			name = name .. " " .. lastName;
 		end
-		if (C_GameRules.IsGameRuleActive(Enum.GameRule.HardcoreRuleset)) then
-			realm = "Hardcore";
-		elseif (C_GameRules.IsGameRuleActive(Enum.GameRule.RPRuleset)) then
-			realm = "RP";
-		elseif (C_GameRules.IsGameRuleActive(Enum.GameRule.PvPRuleset)) then
-			realm = "PvP";
-		else
-			realm = "PvE";
-		end
-		return name, realm;
+		return name, NIT.realm;
 	else
 		local name, realm = UnitName(unit);
 		return name, realm;
@@ -1676,6 +1668,7 @@ NITInstanceFrame:Hide();
 NITInstanceFrame:SetToplevel(true);
 NITInstanceFrame:SetMovable(true);
 NITInstanceFrame:EnableMouse(true);
+NITInstanceFrame:SetClampedToScreen(true);
 tinsert(UISpecialFrames, "NITInstanceFrame");
 NITInstanceFrame:SetPoint("CENTER", UIParent, 0, 100);
 NITInstanceFrame:SetBackdrop({bgFile = "Interface\\Buttons\\WHITE8x8",insets = {top = 0, left = 0, bottom = 0, right = 0}});
@@ -1711,14 +1704,15 @@ NITInstanceFrame.fs3 = NITInstanceFrame:CreateFontString("NITInstanceFrameFS3", 
 NITInstanceFrame.fs3:SetPoint("BOTTOM", 0, -20);
 NITInstanceFrame.fs3:SetFont(NIT.regionFont, 14);
 NITInstanceFrame.fs4 = NITInstanceFrame:CreateFontString("NITInstanceFrameFS4", "ARTWORK");
-NITInstanceFrame.fs4:SetPoint("TOP", NITInstanceFrame.fs, "BOTTOM", 0, -3);
+--NITInstanceFrame.fs4:SetPoint("TOP", NITInstanceFrame.fs, "BOTTOM", 0, -3);
+NITInstanceFrame.fs4:SetPoint("TOP", NITInstanceFrame, "BOTTOM", 0, -3);
 --NITInstanceFrame.fs4:SetPoint("TOP", -20, -45);
 NITInstanceFrame.fs4:SetFont(NIT.regionFont, 14);
 
 local NITInstanceDragFrame = CreateFrame("Frame", "NITlayerDragFrame", NITInstanceFrame);
 NITInstanceDragFrame:SetToplevel(true);
 NITInstanceDragFrame:EnableMouse(true);
-NITInstanceDragFrame:SetWidth(305);
+NITInstanceDragFrame:SetWidth(250);
 NITInstanceDragFrame:SetHeight(38);
 NITInstanceDragFrame:SetPoint("TOP", 0, 4);
 NITInstanceDragFrame:SetFrameLevel(131);
@@ -1780,9 +1774,10 @@ NITInstanceFrameClose:GetPushedTexture():SetTexCoord(0.1875, 0.8125, 0.1875, 0.8
 NITInstanceFrameClose:GetDisabledTexture():SetTexCoord(0.1875, 0.8125, 0.1875, 0.8125);
 
 --Config button.
-local NITInstanceFrameConfButton = CreateFrame("Button", "NITInstanceFrameConfButton", NITInstanceFrameClose, "UIPanelButtonTemplate");
+local NITInstanceFrameConfButton = CreateFrame("Button", "NITInstanceFrameConfButton", NITInstanceFrame.EditBox, "UIPanelButtonTemplate");
 --NITInstanceFrameConfButton:SetPoint("CENTER", -60, 1);
-NITInstanceFrameConfButton:SetPoint("CENTER", -61, -22);
+--NITInstanceFrameConfButton:SetPoint("CENTER", -61, -22);
+NITInstanceFrameConfButton:SetPoint("TOPRIGHT", -6, -21);
 NITInstanceFrameConfButton:SetWidth(95);
 NITInstanceFrameConfButton:SetHeight(17);
 NITInstanceFrameConfButton:SetText("Options");
@@ -1811,9 +1806,10 @@ NITInstanceFrameConfButton:SetScript("OnHide", function(self)
 end)
 
 --Trade log button.
-local NITInstanceFrameTradesButton = CreateFrame("Button", "NITInstanceFrameTradesButton", NITInstanceFrameClose, "UIPanelButtonTemplate");
+local NITInstanceFrameTradesButton = CreateFrame("Button", "NITInstanceFrameTradesButton", NITInstanceFrame.EditBox, "UIPanelButtonTemplate");
 --NITInstanceFrameTradesButton:SetPoint("CENTER", -60, -14);
-NITInstanceFrameTradesButton:SetPoint("CENTER", -61, -54);
+--NITInstanceFrameTradesButton:SetPoint("CENTER", -61, -54);
+NITInstanceFrameTradesButton:SetPoint("TOPRIGHT", -6, -53);
 NITInstanceFrameTradesButton:SetWidth(95);
 NITInstanceFrameTradesButton:SetHeight(17);
 NITInstanceFrameTradesButton:SetText(L["tradeLog"]);
@@ -1842,9 +1838,10 @@ NITInstanceFrameTradesButton:SetScript("OnHide", function(self)
 end)
 
 --Lockouts button.
-local NITInstanceFrameLockoutsButton = CreateFrame("Button", "NITInstanceFrameLockoutsButton", NITInstanceFrameClose, "UIPanelButtonTemplate");
+local NITInstanceFrameLockoutsButton = CreateFrame("Button", "NITInstanceFrameLockoutsButton", NITInstanceFrame.EditBox, "UIPanelButtonTemplate");
 --NITInstanceFrameLockoutsButton:SetPoint("CENTER", -60, -14);
-NITInstanceFrameLockoutsButton:SetPoint("CENTER", -61, -38);
+--NITInstanceFrameLockoutsButton:SetPoint("CENTER", -61, -38);
+NITInstanceFrameLockoutsButton:SetPoint("TOPRIGHT", -6, -37);
 NITInstanceFrameLockoutsButton:SetWidth(95);
 NITInstanceFrameLockoutsButton:SetHeight(17);
 NITInstanceFrameLockoutsButton:SetText(L["Lockouts"]);
@@ -1873,10 +1870,11 @@ NITInstanceFrameLockoutsButton:SetScript("OnHide", function(self)
 end)
 
 --Rested button.
-local NITInstanceFrameRestedButton = CreateFrame("Button", "NITInstanceFrameRestedButton", NITInstanceFrameClose, "UIPanelButtonTemplate");
+local NITInstanceFrameRestedButton = CreateFrame("Button", "NITInstanceFrameRestedButton", NITInstanceFrame.EditBox, "UIPanelButtonTemplate");
 --NITInstanceFrameRestedButton:SetPoint("CENTER", -80, -30);
 --NITInstanceFrameRestedButton:SetPoint("CENTER", -60, -28);
-NITInstanceFrameRestedButton:SetPoint("CENTER", -70, -3);
+---NITInstanceFrameRestedButton:SetPoint("CENTER", -70, -3);
+NITInstanceFrameRestedButton:SetPoint("TOPRIGHT", -6, 2);
 --NITInstanceFrameRestedButton:SetWidth(134);
 --NITInstanceFrameRestedButton:SetHeight(18);
 NITInstanceFrameRestedButton:SetWidth(115);
@@ -1906,6 +1904,45 @@ NITInstanceFrameRestedButton:SetScript("OnHide", function(self)
 		self:GetParent():GetParent().isMoving = false;
 	end
 end)
+
+if (NIT.isSOD or NIT.isForever) then
+	--Loot reminder button.
+	local NITInstanceFrameLootReminderButton = CreateFrame("Button", "NITInstanceFrameLootReminderButton", NITInstanceFrame.EditBox, "UIPanelButtonTemplate");
+	--NIT.altsLootReminderButton:SetPoint("CENTER", -60, -14);
+	NITInstanceFrameLootReminderButton:SetPoint("TOPRIGHT", -120, 2);
+	NITInstanceFrameLootReminderButton:SetWidth(70);
+	NITInstanceFrameLootReminderButton:SetHeight(25);
+	NITInstanceFrameLootReminderButton:SetText("|T133799:0|t " .. L["Reals"]);
+	NITInstanceFrameLootReminderButton:SetNormalFontObject("GameFontNormal");
+	NITInstanceFrameLootReminderButton:SetScript("OnClick", function(self, arg)
+		NIT:loadLootReminderListFrame();
+	end)
+	NITInstanceFrameLootReminderButton:SetScript("OnMouseDown", function(self, button)
+		if (button == "LeftButton" and not self:GetParent():GetParent().isMoving) then
+			self:GetParent():GetParent().EditBox:ClearFocus();
+			self:GetParent():GetParent():StartMoving();
+			self:GetParent():GetParent().isMoving = true;
+		end
+	end)
+	NITInstanceFrameLootReminderButton:SetScript("OnMouseUp", function(self, button)
+		if (button == "LeftButton" and self:GetParent():GetParent().isMoving) then
+			self:GetParent():GetParent():StopMovingOrSizing();
+			self:GetParent():GetParent().isMoving = false;
+		end
+	end)
+	NITInstanceFrameLootReminderButton:SetScript("OnHide", function(self)
+		if (self:GetParent():GetParent().isMoving) then
+			self:GetParent():GetParent():StopMovingOrSizing();
+			self:GetParent():GetParent().isMoving = false;
+		end
+	end)
+	--[[local texture = NITInstanceFrameLootReminderButton:CreateTexture(nil, "BORDER");
+	local size = NITInstanceFrameLootReminderButton:GetHeight()- 2;
+    texture:SetSize(size, size);
+    texture:SetPoint("RIGHT", NITInstanceFrameLootReminderButton, "LEFT", -5, -1);
+    texture:SetTexture(133799);
+	NITInstanceFrameLootReminderButton.leftIcon = texture;]]
+end
 
 function NIT:createInstanceFrameShowsAltsButton()
 	if (NIT.instanceFrameShowsAltsButton) then
@@ -1990,6 +2027,9 @@ function NIT:createInstanceFrameSelectAltMenu()
 	NIT.instanceFrameSelectAltMenu:SetPoint("TOPLEFT", -14, -17);
 	NIT.instanceFrameSelectAltMenu:SetFrameStrata("HIGH");
 	NIT.instanceFrameSelectAltMenu:SetFrameLevel(2);
+	if (NIT.isForever) then --Wider for surnames.
+		NIT.DDM:UIDropDownMenu_SetWidth(NIT.instanceFrameSelectAltMenu, 150);
+	end
 	NIT.instanceFrameSelectAltMenu.tooltip = CreateFrame("Frame", "NITInstanceFrameSelectAltMenuTooltip", NITInstanceFrame, "TooltipBorderedFrameTemplate");
 	NIT.instanceFrameSelectAltMenu.tooltip:SetPoint("TOPLEFT", 30, 45);
 	NIT.instanceFrameSelectAltMenu.tooltip:SetFrameStrata("TOOLTIP");
@@ -2276,6 +2316,7 @@ function NIT:createInstanceLineFrame(type, data, count)
 		obj.tooltip = CreateFrame("Frame", type .. "NITInstanceLineTooltip", NITInstanceFrame, "TooltipBorderedFrameTemplate");
 		obj.tooltip:SetPoint("CENTER", obj, "CENTER", 0, -46);
 		obj.tooltip:SetFrameStrata("HIGH");
+		obj.tooltip:SetClampedToScreen(true);
 		obj.tooltip:SetFrameLevel(4);
 		obj.tooltip.fs = obj.tooltip:CreateFontString(type .. "NITInstanceLineTooltipFS", "ARTWORK");
 		obj.tooltip.fs:SetPoint("CENTER", 0, 0);
@@ -2421,7 +2462,7 @@ function NIT:recalcInstanceLineFrames()
 					frame.fs:SetText(line);
 					--Leave enough room on the right of frame to not overlap the scroll bar (-20) and remove button (-20).
 					--frame:SetWidth(NITInstanceFrame:GetWidth() - 120);
-					frame:SetWidth(NITInstanceFrame:GetWidth() - 86); --Adjusted when lineframes were changed to button for clicking and highlight to fit better.
+					frame:SetWidth(NITInstanceFrame:GetWidth() - 50); --Adjusted when lineframes were changed to button for clicking and highlight to fit better.
 					frame:SetHeight(frame.fs:GetHeight());
 					frame.removeButton.count = count;
 					frame.removeButton:SetScript("OnClick", function(self, arg)
@@ -2517,15 +2558,19 @@ function NIT:buildInstanceLineFrameString(v, count, logID)
 		lockoutTimeString = instance;
 	elseif (NIT.perCharOnly and NIT.UnitName("player") ~= v.playerName) then
 		if (NIT.isRetail) then
-			lockoutTimeString = instance .. " (" .. L["entered"] .. " " .. NIT:getTimeString(timeAgo, true, "short") .. " " .. L["ago"] .. ")";
+			--lockoutTimeString = instance .. " (" .. L["entered"] .. " " .. NIT:getTimeString(timeAgo, true, "short") .. " " .. L["ago"] .. ")";
+			lockoutTimeString = instance .. " (" .. NIT:getTimeString(timeAgo, true, "short") .. " " .. L["ago"] .. ")";
 		else
-			lockoutTimeString = instance .. " (" .. L["entered"] .. " " .. NIT:getTimeString(timeAgo, true, NIT.db.global.timeStringType) .. " " .. L["ago"] .. ")";
+			--lockoutTimeString = instance .. " (" .. L["entered"] .. " " .. NIT:getTimeString(timeAgo, true, NIT.db.global.timeStringType) .. " " .. L["ago"] .. ")";
+			lockoutTimeString = instance .. " (" .. NIT:getTimeString(timeAgo, true, NIT.db.global.timeStringType) .. " " .. L["ago"] .. ")";
 		end
 	else
 		if (NIT.isRetail) then
-			lockoutTimeString = instance .. " (" .. L["entered"] .. " " .. NIT:getTimeString(timeAgo, true, "short") .. " " .. L["ago"] .. ")";
+			--lockoutTimeString = instance .. " (" .. L["entered"] .. " " .. NIT:getTimeString(timeAgo, true, "short") .. " " .. L["ago"] .. ")";
+			lockoutTimeString = instance .. " (" .. NIT:getTimeString(timeAgo, true, "short") .. " " .. L["ago"] .. ")";
 		else
-			lockoutTimeString = instance .. " (" .. L["entered"] .. " " .. NIT:getTimeString(timeAgo, true, NIT.db.global.timeStringType) .. " " .. L["ago"] .. ")";
+			--lockoutTimeString = instance .. " (" .. L["entered"] .. " " .. NIT:getTimeString(timeAgo, true, NIT.db.global.timeStringType) .. " " .. L["ago"] .. ")";
+			lockoutTimeString = instance .. " (" .. NIT:getTimeString(timeAgo, true, NIT.db.global.timeStringType) .. " " .. L["ago"] .. ")";
 		end
 	end
 	if (timeAgo < 3600) then
@@ -2550,11 +2595,13 @@ function NIT:buildInstanceLineFrameString(v, count, logID)
 		end
 		if (not NIT.perCharOnly or nameMatch == v.playerName) then
 			timeColor = "|cFFDEDE42";
-			if (count == 1 and NIT.inInstance) then
-				lockoutTimeString = instance .. " (" .. L["stillInDungeon"] .. ")";
-			elseif (not v.mythicPlus) then
-				if (not NIT.noDailyLockout) then
-					lockoutTimeString = instance .. " (" .. lockoutTime .. " " .. L["leftOnDailyLockout"] .. ")";
+			if (NIT.dailyLimit < 999) then
+				if (count == 1 and NIT.inInstance) then
+					lockoutTimeString = instance .. " (" .. L["stillInDungeon"] .. ")";
+				elseif (not v.mythicPlus) then
+					if (not NIT.noDailyLockout) then
+						lockoutTimeString = instance .. " (" .. lockoutTime .. " " .. L["leftOnDailyLockout"] .. ")";
+					end
 				end
 			end
 		end
@@ -2608,6 +2655,20 @@ function NIT:buildInstanceLineFrameString(v, count, logID)
 			lockoutTimeString = instance .. " (+" .. NIT:calcRecordedHonor(logID) .. " Honor)";
 		else
 			lockoutTimeString = instance .. " (Battleground)";
+		end
+		--Display the highest bg rep earned in the match, that should be the one tied to the bg.
+		local highestRep = 0;
+		local highestRepName;
+		if (v.rep and next(v.rep)) then
+			for repName, repAmount in pairs(v.rep) do
+				if (repAmount > 0 and repAmount > highestRep) then
+					highestRep = repAmount;
+					highestRepName = repName;
+				end
+			end
+		end
+		if (highestRep > 0) then
+			lockoutTimeString = lockoutTimeString .. " (+" .. highestRep .. " Rep)";
 		end
 		if (count == 1 and NIT.inInstance) then
 			if (LOCALE_koKR or LOCALE_zhCN or LOCALE_zhTW or LOCALE_ruRU) then
@@ -3353,6 +3414,7 @@ NITTradeLogFrame:Hide();
 NITTradeLogFrame:SetToplevel(true);
 NITTradeLogFrame:SetMovable(true);
 NITTradeLogFrame:EnableMouse(true);
+NITTradeLogFrame:SetClampedToScreen(true);
 tinsert(UISpecialFrames, "NITTradeLogFrame");
 NITTradeLogFrame:SetPoint("CENTER", UIParent, 20, 120);
 NITTradeLogFrame:SetBackdrop({bgFile = "Interface\\Buttons\\WHITE8x8",insets = {top = 0, left = 0, bottom = 0, right = 0}});
@@ -3953,6 +4015,7 @@ NITAltsFrame:Hide();
 NITAltsFrame:SetToplevel(true);
 NITAltsFrame:SetMovable(true);
 NITAltsFrame:EnableMouse(true);
+NITAltsFrame:SetClampedToScreen(true);
 tinsert(UISpecialFrames, "NITAltsFrame");
 NITAltsFrame:SetPoint("CENTER", UIParent, 0, 100);
 NITAltsFrame:SetBackdrop({bgFile = "Interface\\Buttons\\WHITE8x8",insets = {top = 0, left = 0, bottom = 0, right = 0}});
@@ -4144,7 +4207,7 @@ function NIT:createAltsFrameSlider()
 	end
 end
 function NIT:createAltsFrameLootReminderButton()
-	if (not NIT.isSOD) then
+	if (not NIT.isSOD and not NIT.isForever) then
 		return;
 	end
 	if (NIT.updateLootReminderFrame and not NIT.altsLootReminderButton) then
@@ -4154,7 +4217,7 @@ function NIT:createAltsFrameLootReminderButton()
 		NIT.altsLootReminderButton:SetPoint("CENTER", 0, -32);
 		NIT.altsLootReminderButton:SetWidth(190);
 		NIT.altsLootReminderButton:SetHeight(18);
-		NIT.altsLootReminderButton:SetText(L["Daily Tarnished Reals Status"]);
+		NIT.altsLootReminderButton:SetText(L["Check your daily reals status"]);
 		NIT.altsLootReminderButton:SetNormalFontObject("GameFontNormalSmall");
 		NIT.altsLootReminderButton:SetScript("OnClick", function(self, arg)
 			NIT:loadLootReminderListFrame();
@@ -4178,6 +4241,12 @@ function NIT:createAltsFrameLootReminderButton()
 				self:GetParent():GetParent().isMoving = false;
 			end
 		end)
+		local texture = NIT.altsLootReminderButton:CreateTexture(nil, "BORDER");
+		local size = NIT.altsLootReminderButton:GetHeight()- 2;
+	    texture:SetSize(size, size);
+	    texture:SetPoint("RIGHT", NIT.altsLootReminderButton, "LEFT", -3, -1);
+	    texture:SetTexture(133799);
+		NIT.altsLootReminderButton.leftIcon = texture;
 	end
 	--[[if (NIT.updateLootReminderFrame and not NIT.altsLootReminderButton2) then
 		--Loot reminder button.
@@ -4309,6 +4378,7 @@ function NIT:createAltsLineFrame(type, data, count)
 		obj.tooltip = CreateFrame("Frame", type .. "NITAltsLineTooltip", NITAltsFrame, "TooltipBorderedFrameTemplate");
 		obj.tooltip:SetPoint("CENTER", obj, "CENTER", 0, -46);
 		obj.tooltip:SetFrameStrata("HIGH");
+		obj.tooltip:SetClampedToScreen(true);
 		obj.tooltip:SetFrameLevel(4);
 		obj.tooltip.fs = obj.tooltip:CreateFontString(type .. "NITAltsLineTooltipFS", "ARTWORK");
 		obj.tooltip.fs:SetPoint("CENTER", 0, 0);
@@ -4344,7 +4414,7 @@ function NIT:createAltsLineFrame(type, data, count)
 		--end)
 		
 		obj.removeButton = CreateFrame("Button", type .. "NITAltsLineRB", obj, "UIPanelButtonTemplate");
-		obj.removeButton:SetPoint("LEFT", obj, "RIGHT", 34, 0);
+		obj.removeButton:SetPoint("LEFT", obj, "RIGHT", 14, 0);
 		obj.removeButton:SetWidth(13);
 		obj.removeButton:SetHeight(13);
 		--obj.removeButton:SetText("X");
@@ -4510,7 +4580,7 @@ function NIT:recalcAltsLineFrames()
 						_G[count .. "NITAltsLine"].fs:SetPoint("LEFT", 0, 0);
 						_G[count .. "NITAltsLine"].fs:SetText(msg);
 						--Leave enough room on the right of frame to not overlap the scroll bar (-20) and remove button (-20).
-						_G[count .. "NITAltsLine"]:SetWidth(NITAltsFrame:GetWidth() - 120);
+						_G[count .. "NITAltsLine"]:SetWidth(NITAltsFrame:GetWidth() - 75);
 						_G[count .. "NITAltsLine"]:SetHeight(_G[count .. "NITAltsLine"].fs:GetHeight());
 						--_G[count .. "NITAltsLine"].removeButton.count = count;
 						_G[count .. "NITAltsLine"].removeButton.tooltip.fs:SetText("|CffDEDE42" .. L["delete"] .. " " .. k);

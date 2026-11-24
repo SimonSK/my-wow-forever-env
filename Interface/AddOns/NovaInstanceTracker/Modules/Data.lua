@@ -41,6 +41,8 @@ local GetSpellInfo = NIT.GetSpellInfo;
 local GetItemCount = GetItemCount or C_Item.GetItemCount;
 local InviteUnit = InviteUnit or C_PartyInfo.InviteUnit;
 local LeaveParty = LeaveParty or C_PartyInfo.LeaveParty;
+--local GetCurrencyListSize = GetCurrencyListSize or C_CurrencyInfo.GetCurrencyListSize;
+--local GetCurrencyListInfo = GetCurrencyListInfo or C_CurrencyInfo.GetCurrencyListInfo;
 local issecretvalue = issecretvalue;
 local isForever = NIT.isForever;
 NIT.currentInstanceID = 0;
@@ -254,8 +256,10 @@ if (NIT.expansionNum < 4) then
 		f:RegisterEvent("TRADE_SKILL_UPDATE");
 	end
 end
-if (NIT.expansionNum > 3) then
+if (NIT.expansionNum > 3 or NIT.isForever) then
 	f:RegisterEvent("CHAT_MSG_CURRENCY");
+end
+if (NIT.expansionNum > 3) then
 	f:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN");
 end
 f:RegisterEvent("GROUP_JOINED");
@@ -955,6 +959,9 @@ function NIT:calcRecordedHonor(logID, useData)
 end
 
 --Cata and onwards honor recording, new event added.
+local instanceCurrencyRecording = {
+	[3469] = "Tarnished Undermine Real",
+};
 function NIT:chatMsgCurrency(...)
 	if (not NIT.inInstance) then
 		return;
@@ -1305,9 +1312,11 @@ local instanceCastDetectionFrame = CreateFrame("Frame");
 instanceCastDetectionFrame:SetScript('OnEvent', function(self, event, ...)
 	local unit, castGUID = ...;
 	if (not issecretvalue or not issecretvalue(castGUID)) then
-		NIT:parseGUID(nil, castGUID, "castGUID");
-		instanceCastDetectionFrame:UnregisterEvent("UNIT_SPELLCAST_START");
-		instanceCastDetectionFrame:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+		local success = NIT:parseGUID(nil, castGUID, "castGUID");
+		if (success) then
+			instanceCastDetectionFrame:UnregisterEvent("UNIT_SPELLCAST_START");
+			instanceCastDetectionFrame:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+		end
 	end
 end)
 
@@ -2167,6 +2176,8 @@ function NIT:parseGUID(unit, GUID, source)
 						end
 					end)
 				end
+				NIT:debug("set merged zoneID:", zoneID);
+				return true;
 			elseif ((npcID and NIT.lastNpcID == npcID) or (not NIT.data.instances[1].zoneID or NIT.data.instances[1].zoneID < 1)) then
 				--Set new zoneID if we get the same zoneid from 2 mobs in a row the same or one isn't set yet.
 				NIT.data.instances[1].zoneID = zoneID;
@@ -2177,6 +2188,8 @@ function NIT:parseGUID(unit, GUID, source)
 						NIT:pushDifferentInstanceConfirmed(NIT.data.instances[1].instanceName, NIT.data.instances[1].instanceID)
 					end
 				end
+				NIT:debug("set zoneID:", zoneID);
+				return true;
 			end
 			doneFirstGUIDCheck = true;
 		end
@@ -2950,10 +2963,15 @@ function NIT:recordPvpData()
 end
 
 function NIT:recordHonorData()
-	if (NIT.isClassic) then
+	if (NIT.isClassic and not NIT.isForever) then
 		return;
 	end
-	local honor = C_CurrencyInfo.GetCurrencyInfo(1901);
+	local honor;
+	if (NIT.isForever) then
+		honor = C_CurrencyInfo.GetCurrencyInfo(1792);
+	else
+		honor = C_CurrencyInfo.GetCurrencyInfo(1901);
+	end
 	local char = NIT.UnitName("player");
 	if (not NIT.data.myChars[char]) then
 		NIT.data.myChars[char] = {};
@@ -3650,7 +3668,7 @@ function NIT:recordInventoryData()
 end
 
 --[icon] = "name",
-local currencyItems = {
+local currencyItemsByIcon = {
 	--TBC.
 	[135884] = "Badge of Justice",
 	--Wrath
@@ -3691,10 +3709,16 @@ local currencyItems = {
     --[] = "",
 };
 
+local currencyItemsByCurrencyID = {
+	--Forever.
+    [3469] = "Tarnished Undermine Real",
+    --[1792] = "Honor Points",
+};
+
 function NIT:recordCurrency()
-	if (NIT.isClassic or NIT.isTBC or NIT.isRetail) then
-		return;
-	end
+	--if (NIT.isClassic or NIT.isTBC or NIT.isRetail) then
+	--	return;
+	--end
 	local char = NIT.UnitName("player");
 	if (not NIT.data.myChars[char]) then
 		NIT.data.myChars[char] = {};
@@ -3703,17 +3727,41 @@ function NIT:recordCurrency()
 	--if (not NIT.data.myChars[char].currency) then
 		NIT.data.myChars[char].currency = {};
 	--end
-	for i = 1, GetCurrencyListSize() do
-		local name, isHeader, _, _, _, count, icon, max = GetCurrencyListInfo(i);
-		if (icon and currencyItems[icon]) then
-			NIT.data.myChars[char].currency[icon] = {
-				name = name,
-				count = count,
-				max = max,
-			};
+	if (GetCurrencyListSize) then
+		for i = 1, GetCurrencyListSize() do
+			local name, isHeader, _, _, _, count, icon, max = GetCurrencyListInfo(i);
+			if (icon and currencyItemsByIcon[icon] and not isHeader) then
+				NIT.data.myChars[char].currency[icon] = {
+					name = name,
+					count = count,
+					max = max,
+				};
+			end
+		end
+	else
+		for i = 1, C_CurrencyInfo.GetCurrencyListSize() do
+			local data = C_CurrencyInfo.GetCurrencyListInfo(i);
+			if (data) then
+				local name, isHeader, count, icon, max = data.name, data.isHeader, data.quantity, data.iconFileID, data.maxQuantity;
+				if (not isHeader) then
+					local currencyID = data.currencyID;
+					if (currencyID and icon and currencyItemsByCurrencyID[currencyID]) then
+						NIT.data.myChars[char].currency[icon] = {
+							name = name,
+							count = count,
+							max = max,
+						};
+					elseif (icon and currencyItemsByIcon[icon]) then
+						NIT.data.myChars[char].currency[icon] = {
+							name = name,
+							count = count,
+							max = max,
+						};
+					end
+				end
+			end
 		end
 	end
-	
 	local conq = C_CurrencyInfo.GetCurrencyInfo(390);
 	if (conq and conq.quantity and conq.quantity > 0) then
 		NIT.data.myChars[char].conq = conq.quantity;

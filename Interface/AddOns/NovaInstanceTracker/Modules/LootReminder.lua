@@ -2,12 +2,22 @@
 ---NovaInstanceTracker--
 ------------------------
 
+--This was adapted for forever in a bit of a rush whilst leveling to get in rnage to test it.
+--So it's a mess, cleanup planned in the future.
+
 local L = LibStub("AceLocale-3.0"):GetLocale("NovaInstanceTracker");
 local lootReminderFrame, lootReminderListFrame, remnantsFrame;
-local lastLootNpcID, lastBossNpcID, lastBossTime, lastEncounterID;
+local lastLootNpcID, lastBossNpcID, lastBossTime, lastEncounterID, lastEncounterTime;
 local tinsert = tinsert;
 local GetItemInfo = GetItemInfo or C_Item.GetItemInfo;
 local GetPlayerAuraBySpellID = C_UnitAuras.GetPlayerAuraBySpellID;
+local GetFactionDataByID = GetFactionDataByID or C_Reputation.GetFactionDataByID;
+local isForever = NIT.isForever
+local realsCap = 150;
+if (isForever) then
+	realsCap = 165;
+end
+
 
 local msgTimer, fadeTimer;
 local function hideMiddleMsg()
@@ -249,7 +259,7 @@ function NIT:argentDawnTrinketReminder()
 	end
 end
 
-if (not NIT.isSOD) then
+if (not NIT.isSOD and not NIT.isForever) then
 	return;
 end
 
@@ -418,6 +428,18 @@ local turBossesUsingEncounter = {
 	--[2733] = {name = "Taragaman the Hungerer", instanceID = 2875, order = 11},
 	--[2734] = {name = "Jergosh the Invoker", instanceID = 2875, order = 11},
 	--[2735] = {name = "Taragaman the Hungerer", instanceID = 2875, order = 11},
+	
+	--[235] = {name = "Bael'Gar", instanceID = 230, order = 1},
+	
+	[267] = {name = "Highlord Omokk",            instanceID = 229, order = 1},
+	[268] = {name = "Shadow Hunter Vosh'gajin",  instanceID = 229, order = 2},
+    [269] = {name = "War Master Voone",          instanceID = 229, order = 3},
+    [270] = {name = "Mother Smolderweb",         instanceID = 229, order = 4},
+    [271] = {name = "Urok Doomhowl",             instanceID = 229, order = 5},
+    --[272] = {name = "Quartermaster Zigris",      instanceID = 229, order = 6}, --No real.
+    [273] = {name = "Gizrul the Slavener",       instanceID = 229, order = 7},
+    [274] = {name = "Halycon",                   instanceID = 229, order = 8},
+    [275] = {name = "Overlord Wyrmthalak",       instanceID = 229, order = 9},
 };
 
 --Bosses with a lockout like the world bosses and ony, no need to track coins just send a loot reminder when they die.
@@ -562,9 +584,462 @@ local remnantsBossesNoRecordEncounter = {
 	[1114] = {name = "Kel'Thuzad"},
 };
 
+
+if (isForever) then
+	dungeons = {
+		[289] = {name = "Scholomance", order = 8},
+		[329] = {name = "Stratholme", order = 10},
+		[429] = {name = "Dire Maul", order = 7},
+		[230] = {name = "Blackrock Depths", order = 2},
+		[229] = {name = "Blackrock Spire", order = 1},
+		--[2784] = {name = "Demonfall Canyon", order = 3},
+		--[2875] = {name = "Karazhan Crypts", order = 4},
+		[2974] = {name = "Blackmaw Hold", order = 4},
+		[3001] = {name = "The Shaper's Terrace", order = 3},
+		[109] = {name = "Sunken Temple", order = 5},
+		
+		--Test RFC.
+		--[389] = {name = "Test"},
+	};
+
+	--We still need 2 separate tables in forever just as a hack to keep the lookup funcs working without too much hassle.
+	turBosses = {
+		--Stratholme (1-9 live side, 10+ undead side).
+		[-100] = {header = true, title = L["Live Side"], instanceID = 329, order = 0},
+		[11058] = {name = "Ezra Grimm", instanceID = 329, encounterID = 2797, order = 1},
+		[10516] = {name = "The Unforgiven", instanceID = 329, encounterID = 472, order = 2},
+		[11143] = {name = "Postmaster Malown", instanceID = 329, encounterID = 2798, order = 3},
+		[10808] = {name = "Timmy the Cruel", instanceID = 329, encounterID = 474, order = 4},
+		[11032] = {name = "Malor the Zealous", instanceID = 329, encounterID = 476, order = 5},
+		[10997] = {name = "Cannon Master Willey", instanceID = 329, encounterID = 475, order = 6},
+		[10811] = {name = "Archivist Galford", instanceID = 329, encounterID = 477, order = 7},
+		[10812] = {name = "Balnazzar", instanceID = 329, encounterID = 478, order = 8}, --Balnazaar is Grand Crusader Dathrohan npcID when it dies and as Balnazzar corpse.
+		[-101] = {header = true, title = L["Undead Side"], instanceID = 329, order = 10},
+		[10437] = {name = "Nerub'enkan", instanceID = 329, encounterID = 480, order = 11},
+		[10436] = {name = "Baroness Anastari", instanceID = 329, encounterID = 479, order = 12},
+		[10438] = {name = "Maleki the Pallid", instanceID = 329, encounterID = 481, order = 13},
+		[10435] = {name = "Magistrate Barthilas", instanceID = 329, encounterID = 482, order = 14},
+		--[11121] = {name = "Black Guard Swordsmith", instanceID = 329, encounterID = 0, order = 15}, --Doesn't drop.
+		[10439] = {name = "Ramstein the Gorger", instanceID = 329, encounterID = 483, order = 16},
+		[10440] = {name = "Baron Rivendare", instanceID = 329, encounterID = 484, order = 17, reals = 2},
+		--[11120] = {name = "Crimson Hammersmith", instanceID = 329, encounterID = 0, order = 99}, --Needs testing (spawnable mob unlikely to drop).
+		--[10812] = {name = "Grand Crusader Dathrohan", instanceID = 329, encounterID = 478, order = 99}, --Becomes Balnazzar halfway through the fight.
+		--[10558] = {name = "Hearthsinger Forresten", instanceID = 329, encounterID = 473, order = 99}, --Needs testing.
+		--[10393] = {name = "Skul", instanceID = 329, encounterID = 0, order = 99}, --Needs testing (rare mob so unlikely to drop).
+		--[10809] = {name = "Stonespine", instanceID = 329, encounterID = 0, order = 99}, --Needs testing (rare mob so unlikely to drop).
+		--[14684] = {name = "Balzaphon", instanceID = 329, encounterID = 0, order = 18, reals = 3},
+		
+		
+		--Scholomance.
+		[10506] = {name = "Kirtonos the Herald", instanceID = 289, encounterID = 2805, order = 1},
+		[10503] = {name = "Jandice Barov", instanceID = 289, encounterID = 2804, order = 2},
+		[11622] = {name = "Rattlegore", instanceID = 289, encounterID = 2811, order = 3},
+		[10433] = {name = "Marduk Blackpool", instanceID = 289, encounterID = 2809, order = 4},
+		[10432] = {name = "Vectus", instanceID = 289, encounterID = 2813, order = 5},
+		[10508] = {name = "Ras Frostwhisper", instanceID = 289, encounterID = 2810, order = 6},
+		[10505] = {name = "Instructor Malicia", instanceID = 289, encounterID = 2803, order = 7},
+		[11261] = {name = "Doctor Theolen Krastinov", instanceID = 289, encounterID = 2802, order = 8},
+		[10901] = {name = "Lorekeeper Polkelt", instanceID = 289, encounterID = 2808, order = 9},
+		[10507] = {name = "The Ravenian", instanceID = 289, encounterID = 2812, order = 10},
+		[10504] = {name = "Lord Alexei Barov", instanceID = 289, encounterID = 2807, order = 11},
+		[10502] = {name = "Lady Illucia Barov", instanceID = 289, encounterID = 2806, order = 12},
+		[1853] = {name = "Darkmaster Gandling", instanceID = 289, encounterID = 2801, order = 13},
+		--[14695] = {name = "Lord Blackwood", instanceID = 289, encounterID = 0, order = 14, reals = 3},
+		
+		--Blackrock Depths. (Which BRD bosses can drop them? Not all can I think, this list is which on wowhead has seen a drop but probably not complete.
+		[9016] = {name = "Bael'Gar", instanceID = 230, encounterID = 235, order = 1},
+		[9017] = {name = "Lord Incendius", instanceID = 230, encounterID = 232, order = 2},
+		[9056] = {name = "Fineous Darkvire", instanceID = 230, encounterID = 234, order = 3},
+		[9033] = {name = "General Angerforge", instanceID = 230, encounterID = 236, order = 4},
+		[8983] = {name = "Golem Lord Argelmach", instanceID = 230, encounterID = 237, order = 5},
+		[9537] = {name = "Hurley Blackbreath", instanceID = 230, encounterID = 238, order = 6},
+		[9502] = {name = "Phalanx", instanceID = 230, encounterID = 239, order = 7},
+		[9156] = {name = "Ambassador Flamelash", instanceID = 230, encounterID = 242, order = 8},
+		[9938] = {name = "Magmus", instanceID = 230, encounterID = 244, order = 9},
+		[9019] = {name = "Emperor Dagran Thaurissan", instanceID = 230, encounterID = 2790, order = 10, reals = 2},
+		
+		--Dire Maul (1-9 east, 10-19 west, 20+ north).
+		[-102] = {header = true, title = L["East"], instanceID = 429, order = 0},
+		--[14354] = {name = "Pusillin", instanceID = 429, encounterID = 2792, order = 1},
+		[11490] = {name = "Zevrim Thornhoof", instanceID = 429, encounterID = 343, order = 2},
+		[13280] = {name = "Hydrospawn", instanceID = 429, encounterID = 344, order = 3},
+		[14327] = {name = "Lethtendris", instanceID = 429, encounterID = 345, order = 4},
+		[11492] = {name = "Alzzin the Wildshaper", instanceID = 429, encounterID = 346, order = 5},
+		[-103] = {header = true, title = L["West"], instanceID = 429, order = 10},
+		[11489] = {name = "Tendris Warpwood", instanceID = 429, encounterID = 350, order = 11},
+		[11488] = {name = "Illyanna Ravenoak", instanceID = 429, encounterID = 347, order = 12},
+		[11487] = {name = "Magister Kalendris", instanceID = 429, encounterID = 348, order = 13},
+		--[11467] = {name = "Tsu'zee", instanceID = 429, encounterID = 0, order = 14}, --Needs testing (rare mob so unlikely to drop).
+		[11496] = {name = "Immol'thar", instanceID = 429, encounterID = 349, order = 15},
+		[11486] = {name = "Prince Tortheldrin", instanceID = 429, encounterID = 361, order = 16},
+		[-104] = {header = true, title = L["North"], instanceID = 429, order = 20},
+		--[14326] = {name = "Guard Mol'dar", instanceID = 429, encounterID = 362, order = 21}, --Some north bosses don't drop, probably for tribute run reasons.
+		--[14322] = {name = "Stomper Kreeg", instanceID = 429, encounterID = 363, order = 22}, --Some north bosses don't drop, probably for tribute run reasons.
+		--[14321] = {name = "Guard Fengus", instanceID = 429, encounterID = 364, order = 23}, --Some north bosses don't drop, probably for tribute run reasons.
+		--[14323] = {name = "Guard Slip'kik", instanceID = 429, encounterID = 365, order = 24}, --Some north bosses don't drop, probably for tribute run reasons.
+		--[14325] = {name = "Captain Kromcrush", instanceID = 429, encounterID = 366, order = 25}, --Some north bosses don't drop, probably for tribute run reasons.
+		--[14324] = {name = "Cho'Rush the Observer", instanceID = 429, encounterID = 367, order = 26}, --The add during the last boss fight, no drop?
+		[11501] = {name = "King Gordok", instanceID = 429, encounterID = 368, order = 27, reals = 3},
+		
+		--Demonfall Canyon.
+		--[[[226923] = {name = "Grimroot", instanceID = 2784, encounterID = 0, order = 1},
+		[228022] = {name = "The Destructor's Wraith", instanceID = 2784, encounterID = 0, order = 2},
+		[226922] = {name = "Zilbagob", instanceID = 2784, encounterID = 0, order = 3},
+		[232632] = {name = "Azgaloth", instanceID = 2784, encounterID = 0, order = 4, reals = 3},
+		[227140] = {name = "Pyranis", instanceID = 2784, encounterID = 0, order = 5},
+		[227019] = {name = "Diathorus the Seeker", instanceID = 2784, encounterID = 0, order = 6},
+		[227028] = {name = "Hellscream's Phantom", instanceID = 2784, encounterID = 0, order = 7},]]
+		
+		--Blackrock Spire (1-9 lower, 10+ upper).
+		[-105] = {header = true, title = L["Upper"], instanceID = 229, order = 0},
+		[9816] = {name = "Pyroguard Emberseer", instanceID = 229, encounterID = 3062, order = 1},
+		--[10264] = {name = "Solakar Flamewreath", instanceID = 229, encounterID = 0, order = 2}, -- No drop.
+		--[10899] = {name = "Goraluk Anvilcrack", instanceID = 229, encounterID = 0, order = 3}, --No drop.
+		--[10339] = {name = "Gyth <Rend Blackhand's Mount>", instanceID = 229, encounterID = 0, order = 4}, --No drop.
+		[10429] = {name = "Warchief Rend Blackhand", instanceID = 229, encounterID = 3063, order = 5},
+		[10430] = {name = "The Beast", instanceID = 229, encounterID = 3068, order = 6},
+		[10363] = {name = "General Drakkisath", instanceID = 229, encounterID = 3069, order = 7},
+		--[10509] = {name = "Jed Runewatcher", instanceID = 229, encounterID = 0, order = 99}, --No drop.
+		[-106] = {header = true, title = L["Lower"], instanceID = 229, order = 10},
+		[9196] = {name = "Highlord Omokk", instanceID = 229, encounterID = 267, order = 11},
+		[9236] = {name = "Shadow Hunter Vosh'gajin", instanceID = 229, encounterID = 268, order = 12},
+		[9237] = {name = "War Master Voone", instanceID = 229, encounterID = 269, order = 13},
+		[10596] = {name = "Mother Smolderweb", instanceID = 229, encounterID = 270, order = 14},
+		[10584] = {name = "Urok Doomhowl", instanceID = 229, encounterID = 271, order = 15},
+		--[9736] = {name = "Quartermaster Zigris", instanceID = 229, encounterID = 272, order = 16}, --Needs testing.
+		[10220] = {name = "Halycon", instanceID = 229, encounterID = 274, order = 17},
+		[10268] = {name = "Gizrul the Slavener", instanceID = 229, encounterID = 273, order = 18},
+		[9568] = {name = "Overlord Wyrmthalak", instanceID = 229, encounterID = 275, order = 19, reals = 3},
+		
+		--Karazhan crypts.
+		--[[[238213] = {name = "Sairuh Maryla", instanceID = 2875, order = 1, encounterID = 3170, sharedNPCs = {238233, 238234}, reals = 5}, --Apprentice.
+		[238233] = {name = "Kaigy Maryla", instanceID = 2875, order = 2, encounterID = 3171, sharedNPCs = {238213, 238234}, reals = 5, dontCount = true}, --Apprentice.
+		[238234] = {name = "Barian Maryla", instanceID = 2875, order = 3, encounterID = 3172, sharedNPCs = {238213, 238233}, reals = 5, dontCount = true}, --Apprentice.
+		[1] = {name = "Opera of Malediction", instanceID = 2875, order = 4, encounterID = 3144, sharedNPCs = {2, 3}, reals = 5}, --Opera.
+		[2] = {name = "Opera of Malediction", instanceID = 2875, order = 5, encounterID = 3168, sharedNPCs = {1, 3}, reals = 5, dontCount = true}, --Opera.
+		[3] = {name = "Opera of Malediction", instanceID = 2875, order = 6, encounterID = 3169, sharedNPCs = {1, 2}, reals = 5, dontCount = true}, --Opera.
+		[237964] = {name = "Harbringer of Sin", instanceID = 2875, order = 7, encounterID = 3141, reals = 5},
+		[238024] = {name = "Creeping Malison", instanceID = 2875, order = 8, encounterID = 3146, reals = 5},
+		[237439] = {name = "Kharon", instanceID = 2875, order = 9, encounterID = 3143, reals = 5},
+		--[238678] = {name = "Unk'omon", instanceID = 2875, order = 10, encounterID = 3152}, --No real from this boss.
+		[238055] = {name = "Dark Rider", instanceID = 2875, order = 11, encounterID = 3145, reals = 5},
+		--[7] = {name = "Criminal", instanceID = 2875, order = 12, encounterID = 3142}, --Secret boss not found yet?]]
+		
+		--RFC testing.
+		--[11520] = {name = "Taragaman the Hungerer", instanceID = 389, order = 13, encounterID = 2733},
+		--[11518] = {name = "Jergosh the Invoker", instanceID = 389, order = 14, encounterID = 2734},
+		--[11519] = {name = "Taragaman the Hungerer", instanceID = 389, order = 15, encounterID = 2735},
+	};
+	
+	--Using encounter ID's and showing list on tooltip.
+	--Needs mapping to npcIDs for corpse recognition.
+	--All enounters here MUST be mapped by a NPC above or there will be duplicate boss kill data issues.
+	turBossesUsingEncounter = {
+		--Stratholme (1-9 live side, 10+ undead side).
+		[-100] = {header = true, title = L["Live Side"], instanceID = 329, order = 0},
+		[2797] = {name = "Ezra Grimm", instanceID = 329, npcIDs = {11058}, order = 1}, --No encounterID found.
+		[472] = {name = "The Unforgiven", instanceID = 329, npcIDs = {10516}, order = 2},
+		[2798] = {name = "Postmaster Malown", instanceID = 329, npcIDs = {11143}, order = 3}, --No encounterID found.
+		[474] = {name = "Timmy the Cruel", instanceID = 329, npcIDs = {10808}, order = 4},
+		[476] = {name = "Malor the Zealous", instanceID = 329, npcIDs = {11032}, order = 5}, --Encounter is named Commander Malor.
+		[475] = {name = "Cannon Master Willey", instanceID = 329, npcIDs = {10997}, order = 6}, --Encounter is named Willey Hopebreaker.
+		[477] = {name = "Archivist Galford", instanceID = 329, npcIDs = {10811}, order = 7}, --Encounter is named Instructor Galford.
+		[478] = {name = "Balnazzar", instanceID = 329, npcIDs = {10812}, order = 8}, --Balnazaar is Grand Crusader Dathrohan npcID when it dies and as Balnazzar corpse.
+		[-101] = {header = true, title = L["Undead Side"], instanceID = 329, order = 10},
+		[480] = {name = "Nerub'enkan", instanceID = 329, npcIDs = {10437}, order = 11},
+		[479] = {name = "Baroness Anastari", instanceID = 329, npcIDs = {10436}, order = 12},
+		[481] = {name = "Maleki the Pallid", instanceID = 329, npcIDs = {10438}, order = 13},
+		[482] = {name = "Magistrate Barthilas", instanceID = 329, npcIDs = {10435}, order = 14},
+		--[0] = {name = "Black Guard Swordsmith", instanceID = 329, npcIDs = {11121}, order = 15}, --Doesn't drop.
+		[483] = {name = "Ramstein the Gorger", instanceID = 329, npcIDs = {10439}, order = 16},
+		[484] = {name = "Baron Rivendare", instanceID = 329, npcIDs = {10440}, order = 17, reals = 2}, --Encounter is named Lord Aurius Rivendare.
+		--[0] = {name = "Crimson Hammersmith", instanceID = 329, npcIDs = {11120}, order = 99}, --Needs testing (spawnable mob unlikely to drop).
+		--[0] = {name = "Grand Crusader Dathrohan", instanceID = 329, npcIDs = {10812}, order = 99}, --Becomes Balnazzar halfway through the fight (encounter 478).
+		--[473] = {name = "Hearthsinger Forresten", instanceID = 329, npcIDs = {10558}, order = 99}, --Needs testing.
+		--[0] = {name = "Skul", instanceID = 329, npcIDs = {10393}, order = 99}, --Needs testing (rare mob so unlikely to drop).
+		--[0] = {name = "Stonespine", instanceID = 329, npcIDs = {10809}, order = 99}, --Needs testing (rare mob so unlikely to drop).
+		--[no encounter id] = {name = "Balzaphon", instanceID = 329, npcIDs = {14684}, order = 18, reals = 3}, --No encounterID found.
+		
+		
+		--Scholomance.
+		[2805] = {name = "Kirtonos the Herald", instanceID = 289, npcIDs = {10506}, order = 1},
+		[2804] = {name = "Jandice Barov", instanceID = 289, npcIDs = {10503}, order = 2},
+		[2811] = {name = "Rattlegore", instanceID = 289, npcIDs = {11622}, order = 3},
+		[2809] = {name = "Marduk Blackpool", instanceID = 289, npcIDs = {10433}, order = 4},
+		[2813] = {name = "Vectus", instanceID = 289, npcIDs = {10432}, order = 5},
+		[2810] = {name = "Ras Frostwhisper", instanceID = 289, npcIDs = {10508}, order = 6},
+		[2803] = {name = "Instructor Malicia", instanceID = 289, npcIDs = {10505}, order = 7},
+		[2802] = {name = "Doctor Theolen Krastinov", instanceID = 289, npcIDs = {11261}, order = 8},
+		[2808] = {name = "Lorekeeper Polkelt", instanceID = 289, npcIDs = {10901}, order = 9},
+		[2812] = {name = "The Ravenian", instanceID = 289, npcIDs = {10507}, order = 10},
+		[2807] = {name = "Lord Alexei Barov", instanceID = 289, npcIDs = {10504}, order = 11},
+		[2806] = {name = "Lady Illucia Barov", instanceID = 289, npcIDs = {10502}, order = 12},
+		[2801] = {name = "Darkmaster Gandling", instanceID = 289, npcIDs = {1853}, order = 13},
+		--[no encounter id] = {name = "Lord Blackwood", instanceID = 289, npcIDs = {14695}, order = 14, reals = 3}, --No encounterID found.
+		
+		--Blackrock Depths. (Which BRD bosses can drop them? Not all can I think, this list is which on wowhead has seen a drop but probably not complete.
+		[235] = {name = "Bael'Gar", instanceID = 230, npcIDs = {9016}, order = 1},
+		[232] = {name = "Lord Incendius", instanceID = 230, npcIDs = {9017}, order = 2},
+		[234] = {name = "Fineous Darkvire", instanceID = 230, npcIDs = {9056}, order = 3},
+		[236] = {name = "General Angerforge", instanceID = 230, npcIDs = {9033}, order = 4},
+		[237] = {name = "Golem Lord Argelmach", instanceID = 230, npcIDs = {8983}, order = 5},
+		[238] = {name = "Hurley Blackbreath", instanceID = 230, npcIDs = {9537}, order = 6},
+		[239] = {name = "Phalanx", instanceID = 230, npcIDs = {9502}, order = 7},
+		[242] = {name = "Ambassador Flamelash", instanceID = 230, npcIDs = {9156}, order = 8},
+		[244] = {name = "Magmus", instanceID = 230, npcIDs = {9938}, order = 9},
+		[2790] = {name = "Emperor Dagran Thaurissan", instanceID = 230, npcIDs = {9019}, order = 10, reals = 2},
+		
+		--Dire Maul (1-9 east, 10-19 west, 20+ north).
+		[-102] = {header = true, title = L["East"], instanceID = 429, order = 0},
+		--[2792] = {name = "Pusillin", instanceID = 429, npcIDs = {14354}, order = 1}, --No encounterID found.
+		[343] = {name = "Zevrim Thornhoof", instanceID = 429, npcIDs = {11490}, order = 2},
+		[344] = {name = "Hydrospawn", instanceID = 429, npcIDs = {13280}, order = 3},
+		[345] = {name = "Lethtendris", instanceID = 429, npcIDs = {14327}, order = 4},
+		[346] = {name = "Alzzin the Wildshaper", instanceID = 429, npcIDs = {11492}, order = 5},
+		[-103] = {header = true, title = L["West"], instanceID = 429, order = 10},
+		[350] = {name = "Tendris Warpwood", instanceID = 429, npcIDs = {11489}, order = 11},
+		[347] = {name = "Illyanna Ravenoak", instanceID = 429, npcIDs = {11488}, order = 12},
+		[348] = {name = "Magister Kalendris", instanceID = 429, npcIDs = {11487}, order = 13},
+		--[0] = {name = "Tsu'zee", instanceID = 429, npcIDs = {11467}, order = 14}, --Needs testing (rare mob so unlikely to drop).
+		[349] = {name = "Immol'thar", instanceID = 429, npcIDs = {11496}, order = 15},
+		[361] = {name = "Prince Tortheldrin", instanceID = 429, npcIDs = {11486}, order = 16},
+		--[2793] = {name = "Lord Hel'nurath", instanceID = 429, npcIDs = {0}, order = 17, reals = 1}, --Warlock summon boss.
+		--[2794] = {name = "Tsu'Zee", instanceID = 429, npcIDs = {0}, order = 18, reals = 1}, --MC bosses in DM:W, doesn't drop real?
+		[-104] = {header = true, title = L["North"], instanceID = 429, order = 20},
+		--[362] = {name = "Guard Mol'dar", instanceID = 429, npcIDs = {14326}, order = 21}, --Some north bosses don't drop, probably for tribute run reasons.
+		--[363] = {name = "Stomper Kreeg", instanceID = 429, npcIDs = {14322}, order = 22}, --Some north bosses don't drop, probably for tribute run reasons.
+		--[364] = {name = "Guard Fengus", instanceID = 429, npcIDs = {14321}, order = 23}, --Some north bosses don't drop, probably for tribute run reasons.
+		--[365] = {name = "Guard Slip'kik", instanceID = 429, npcIDs = {14323}, order = 24}, --Some north bosses don't drop, probably for tribute run reasons.
+		--[366] = {name = "Captain Kromcrush", instanceID = 429, npcIDs = {14325}, order = 25}, --Some north bosses don't drop, probably for tribute run reasons.
+		--[367] = {name = "Cho'Rush the Observer", instanceID = 429, npcIDs = {14324}, order = 26}, --The add during the last boss fight, no drop?
+		[368] = {name = "King Gordok", instanceID = 429, npcIDs = {11501}, order = 27, reals = 3},
+		
+		--Demonfall Canyon.
+		--[[[0] = {name = "Grimroot", instanceID = 2784, npcIDs = {226923}, order = 1},
+		[0] = {name = "The Destructor's Wraith", instanceID = 2784, npcIDs = {228022}, order = 2},
+		[0] = {name = "Zilbagob", instanceID = 2784, npcIDs = {226922}, order = 3},
+		[0] = {name = "Azgaloth", instanceID = 2784, npcIDs = {232632}, order = 4, reals = 3},
+		[0] = {name = "Pyranis", instanceID = 2784, npcIDs = {227140}, order = 5},
+		[0] = {name = "Diathorus the Seeker", instanceID = 2784, npcIDs = {227019}, order = 6},
+		[0] = {name = "Hellscream's Phantom", instanceID = 2784, npcIDs = {227028}, order = 7},]]
+		
+		--Blackrock Spire (1-9 lower, 10+ upper).
+		[-105] = {header = true, title = L["Upper"], instanceID = 229, order = 0},
+		[3062] = {name = "Pyroguard Emberseer", instanceID = 229, npcIDs = {9816}, order = 1}, --No encounterID found.
+		--[0] = {name = "Solakar Flamewreath", instanceID = 229, npcIDs = {10264}, order = 2}, -- No drop.
+		--[0] = {name = "Goraluk Anvilcrack", instanceID = 229, npcIDs = {10899}, order = 3}, --No drop.
+		--[0] = {name = "Gyth <Rend Blackhand's Mount>", instanceID = 229, npcIDs = {10339}, order = 4}, --No drop.
+		[3063] = {name = "Warchief Rend Blackhand", instanceID = 229, npcIDs = {10429}, order = 5},
+		[3068] = {name = "The Beast", instanceID = 229, npcIDs = {10430}, order = 6},
+		[3069] = {name = "General Drakkisath", instanceID = 229, npcIDs = {10363}, order = 7, reals = 3},
+		--[3070] = {name = "Lord Valthalak", instanceID = 229, npcIDs = {16042}, order = 8}, Tier 2.5 boss, not sure if drops reals in forever.
+		--[0] = {name = "Jed Runewatcher", instanceID = 229, npcIDs = {10509}, order = 99}, --No drop.
+		[-106] = {header = true, title = L["Lower"], instanceID = 229, order = 10},
+		[267] = {name = "Highlord Omokk", instanceID = 229, npcIDs = {9196}, order = 11},
+		[268] = {name = "Shadow Hunter Vosh'gajin", instanceID = 229, npcIDs = {9236}, order = 12},
+		[269] = {name = "War Master Voone", instanceID = 229, npcIDs = {9237}, order = 13},
+		[270] = {name = "Mother Smolderweb", instanceID = 229, npcIDs = {10596}, order = 14},
+		[271] = {name = "Urok Doomhowl", instanceID = 229, npcIDs = {10584}, order = 15},
+		--[272] = {name = "Quartermaster Zigris", instanceID = 229, npcIDs = {9736}, order = 16}, --Needs testing.
+		[274] = {name = "Halycon", instanceID = 229, npcIDs = {10220}, order = 17},
+		[273] = {name = "Gizrul the Slavener", instanceID = 229, npcIDs = {10268}, order = 18},
+		[275] = {name = "Overlord Wyrmthalak", instanceID = 229, npcIDs = {9568}, order = 19, reals = 3},
+		
+		--Karazhan crypts.
+		--[[[3170] = {name = "Sairuh Maryla", instanceID = 2875, npcIDs = {238213}, order = 1, encounterID = 3170, sharedNPCs = {238233, 238234}, reals = 5}, --Apprentice.
+		[3171] = {name = "Kaigy Maryla", instanceID = 2875, npcIDs = {238233}, order = 2, encounterID = 3171, sharedNPCs = {238213, 238234}, reals = 5, dontCount = true}, --Apprentice.
+		[3172] = {name = "Barian Maryla", instanceID = 2875, npcIDs = {238234}, order = 3, encounterID = 3172, sharedNPCs = {238213, 238233}, reals = 5, dontCount = true}, --Apprentice.
+		[3144] = {name = "Opera of Malediction", instanceID = 2875, npcIDs = {1}, order = 4, encounterID = 3144, sharedNPCs = {2, 3}, reals = 5}, --Opera.
+		[3168] = {name = "Opera of Malediction", instanceID = 2875, npcIDs = {2}, order = 5, encounterID = 3168, sharedNPCs = {1, 3}, reals = 5, dontCount = true}, --Opera.
+		[3169] = {name = "Opera of Malediction", instanceID = 2875, npcIDs = {3}, order = 6, encounterID = 3169, sharedNPCs = {1, 2}, reals = 5, dontCount = true}, --Opera.
+		[3141] = {name = "Harbringer of Sin", instanceID = 2875, npcIDs = {237964}, order = 7, encounterID = 3141, reals = 5},
+		[3146] = {name = "Creeping Malison", instanceID = 2875, npcIDs = {238024}, order = 8, encounterID = 3146, reals = 5},
+		[3143] = {name = "Kharon", instanceID = 2875, npcIDs = {237439}, order = 9, encounterID = 3143, reals = 5},
+		--[3152] = {name = "Unk'omon", instanceID = 2875, npcIDs = {238678}, order = 10, encounterID = 3152}, --No real from this boss.
+		[3145] = {name = "Dark Rider", instanceID = 2875, npcIDs = {238055}, order = 11, encounterID = 3145, reals = 5},
+		--[3142] = {name = "Criminal", instanceID = 2875, npcIDs = {7}, order = 12, encounterID = 3142}, --Secret boss not found yet?]]
+		
+		--Blackmaw Hold.
+		[3315] = {name = "Withermaw", instanceID = 2974, npcIDs = {}, order = 1},
+		[3316] = {name = "Impaan the Imprisoner", instanceID = 2974, npcIDs = {}, order = 2},
+		[3322] = {name = "Bonesnout the Unbroken", instanceID = 2974, npcIDs = {}, order = 3},
+		[3323] = {name = "Blackmaw Behemoth", instanceID = 2974, npcIDs = {}, order = 4},
+		[3327] = {name = "Elder Shaman Bloodmane", instanceID = 2974, npcIDs = {}, order = 5},
+		[3334] = {name = "Varrox Bleakhoof", instanceID = 2974, npcIDs = {}, order = 6},
+		[3336] = {name = "Unbound Spirit", instanceID = 2974, npcIDs = {}, order = 7},
+		
+		--The Shaper's Terrace.
+		--[3503] = {name = "Cinder", instanceID = 3001, npcIDs = {261974}, order = 1},
+		--[3597] = {name = "Snowtalon", instanceID = 3001, npcIDs = {262297}, order = 2},
+		--[3505] = {name = "Bolt", instanceID = 3001, npcIDs = {262081}, order = 3},
+		--[3600] = {name = "Vitrix", instanceID = 3001, npcIDs = {272561}, order = 4},
+		[3498] = {name = "Titanosaur", instanceID = 3001, npcIDs = {253201}, order = 5},
+		[3499] = {name = "Ravasaur Hunters", instanceID = 3001, npcIDs = {261811}, order = 6}, --Tor'Rel and Izha'Rel, 2 dinos.
+		[3501] = {name = "Venomridge", instanceID = 3001, npcIDs = {261813}, order = 7},
+		[3500] = {name = "Thunderhoof", instanceID = 3001, npcIDs = {261812}, order = 8},
+		[3507] = {name = "Direhorn Matriarch", instanceID = 3001, npcIDs = {262127}, order = 9},
+		[3502] = {name = "Nanaya", instanceID = 3001, npcIDs = {261809}, order = 10},
+		--[3504] = {name = "King Op", instanceID = 3001, npcIDs = {261993}, order = 11}, --Rare sometimes in the gorilla cave?
+	
+		--Sunken Temple.
+		[3582] = {name = "Atal'alarion", instanceID = 109, npcIDs = {8580, 218624}, order = 1},
+		[3589] = {name = "Jammal'an the Prophet", instanceID = 109, npcIDs = {5710, 218721}, order = 2},
+		[3588] = {name = "Dreamscythe", instanceID = 109, npcIDs = {5721, 220833}, order = 3},
+		[3586] = {name = "Morphaz", instanceID = 109, npcIDs = {5719, 221942}, order = 4},
+		[3583] = {name = "Avatar of Hakkar", instanceID = 109, npcIDs = {8443, 221394}, order = 5},
+		[3584] = {name = "Shade of Eranikus", instanceID = 109, npcIDs = {5709, 218571}, order = 6},
+		
+		--RFC testing.
+		--[2733] = {name = "Taragaman the Hungerer", instanceID = 389, npcIDs = {11520}, order = 13, encounterID = 2733},
+		--[2734] = {name = "Jergosh the Invoker", instanceID = 389, npcIDs = {11518}, order = 14, encounterID = 2734},
+		--[2735] = {name = "Taragaman the Hungerer", instanceID = 389, npcIDs = {11519}, order = 15, encounterID = 2735},
+	};
+	
+	--Bosses with a lockout like the world bosses and ony, no need to track coins just send a loot reminder when they die.
+	--Mapped to npcID.
+	turBossesNoRecord = {
+		--[[[14695] = {name = "Lord Blackwood", instanceID = 289}, --Scholo.
+		[14684] = {name = "Balzaphon", instanceID = 329}, --Strath.
+		[6109] = {name = "Azuregos", instanceID = 2791},
+		[230302] = {name = "Lord Kazzak", instanceID = 2789},
+		[10184] = {name = "Onyxia", instanceID = 249},]]
+		--MC.
+		--[[[12056] = {name = "Baron Geddon", instanceID = 409},
+		[228433] = {name = "Baron Geddon", instanceID = 409},
+		[12057] = {name = "Garr", instanceID = 409},
+		[228432] = {name = "Garr", instanceID = 409},
+		[12259] = {name = "Gehennas", instanceID = 409},
+		[228431] = {name = "Gehennas", instanceID = 409},
+		[11988] = {name = "Golemagg the Incinerator", instanceID = 409},
+		[228435] = {name = "Golemagg the Incinerator", instanceID = 409},
+		[12118] = {name = "Lucifron", instanceID = 409},
+		[228429] = {name = "Lucifron", instanceID = 409},
+		[11982] = {name = "Magmadar", instanceID = 409},
+		[228430] = {name = "Magmadar", instanceID = 409},
+		[12018] = {name = "Majordomo Executus", instanceID = 409},
+		[228437] = {name = "Majordomo Executus", instanceID = 409},
+		[11502] = {name = "Ragnaros", instanceID = 409},
+		[228438] = {name = "Ragnaros", instanceID = 409},
+		[12264] = {name = "Shazzrah", instanceID = 409},
+		[228434] = {name = "Shazzrah", instanceID = 409},
+		[12098] = {name = "Sulfuron Harbinger", instanceID = 409},
+		[228436] = {name = "Sulfuron Harbinger", instanceID = 409},
+		--BWL.
+		[12435] = {name = "Razorgore the Untamed", instanceID = 469},
+		[12017] = {name = "Broodlord Lashlayer", instanceID = 469},
+		[14020] = {name = "Chromaggus", instanceID = 469},
+		[14601] = {name = "Ebonroc", instanceID = 469},
+		[11983] = {name = "Firemaw", instanceID = 469},
+		[11981] = {name = "Flamegor", instanceID = 469},
+		[11583] = {name = "Nefarian", instanceID = 469},
+		[13020] = {name = "Vaelastrasz the Corrupt", instanceID = 469},]]
+	};
+	
+	--Encounters where the boss doesn't die, or where's there's more than 1 boss and we need to wait for all to die, use the encounter event.
+	--Probably end up just changing all raid bosses to this instead of the death event.
+	--Mapped to encounterID.
+	turBossesNoRecordEncounter = {
+		--[6109] = {name = "Azuregos"},
+		--[230302] = {name = "Lord Kazzak"},
+		--[10184] = {name = "Onyxia"},
+		--MC.
+		--[[[668] = {name = "Baron Geddon"},
+		[666] = {name = "Garr"},
+		[665] = {name = "Gehennas"},
+		[667] = {name = "Golemagg the Incinerator"},
+		[663] = {name = "Lucifron"},
+		[664] = {name = "Magmadar"},
+		[671] = {name = "Majordomo Executus"},
+		[672] = {name = "Ragnaros"},
+		[667] = {name = "Shazzrah"},
+		[669] = {name = "Sulfuron Harbinger"},
+		--BWL.
+		[610] = {name = "Razorgore the Untamed"},
+		[612] = {name = "Broodlord Lashlayer"},
+		[616] = {name = "Chromaggus"},
+		[613] = {name = "Firemaw"},
+		[615] = {name = "Flamegor/Ebonroc"}, --SoD combined these 2 bosses.
+		[617] = {name = "Nefarian"},
+		[611] = {name = "Vaelastrasz the Corrupt"},
+		--ZG.
+		[793] = {name = "Hakkar"},
+		[791] = {name = "High Priestess Arlokk"},
+		[792] = {name = "Jin'do the Hexxer"},
+		[789] = {name = "High Priest Thekal"},
+		[788] = {name = "Edge of Madness"},
+		[787] = {name = "Bloodlord Mandokir"},
+		[786] = {name = "High Priestess Mar'li"},
+		[784] = {name = "High Priest Venoxis"},
+		[785] = {name = "High Priestess Jeklik"},
+		[790] = {name = "Gahz'ranka"},
+		--The crystal vale.
+		[3079] = {name = "Prince Thunderaan"},
+		--Aq20.
+		[718] = {name = "Kurinnaxx"},
+		[719] = {name = "General Rajaxx"},
+		[720] = {name = "Moam"},
+		[721] = {name = "Buru the Gorger"},
+		[722] = {name = "Ayamiss the Hunter"},
+		[723] = {name = "Ossirian the Unscarred"},
+		--Aq40.
+		[709] = {name = "The Prophet Skeram"},
+		[710] = {name = "Silithid Royalty"},
+		[711] = {name = "Battleguard Sartura"},
+		[712] = {name = "Fankriss the Unyielding"},
+		[713] = {name = "Viscidus"},
+		[714] = {name = "Princess Huhuran"},
+		[715] = {name = "Twin Emperors"},
+		[716] = {name = "Ouro"},
+		[717] = {name = "C'thun"},
+		--Nightmare grove.
+		[3113] = {name = "Taerar"},
+		[3114] = {name = "Ysondre"},
+		[3111] = {name = "Emeriss"},
+		[3112] = {name = "Lethon"},]]
+	};
+end
+
+--Just used in forever.
+local function getEncounterIDFromNpcID(npcID)
+	--Check encounters list first.
+	for encounterID, v in pairs(turBossesUsingEncounter) do
+		if (v.npcIDs) then
+			for k, v in pairs(v.npcIDs) do
+				if (v == npcID) then
+					return encounterID;
+				end
+			end
+		end
+	end
+	--Then check npcIDs list.
+	if (turBosses[npcID]) then
+		return turBosses[npcID].encounterID;
+	end
+end
+
+local function skipRealMsgIfCapped()
+	if (NIT.db.global.skipRealMsgIfCapped) then
+		local itemCount;
+		if (isForever) then
+			local data = C_CurrencyInfo.GetCurrencyInfo(3469);
+			if (data) then
+				itemCount = data.quantity;
+			else
+				itemCount = 0;
+			end
+		else
+			itemCount = C_Item.GetItemCount(226404);
+		end
+		if (itemCount and itemCount >= realsCap) then
+			return true;
+		end
+	end
+end
+
 local function getTotalDailyReals()
 	local reals = 0;
-	for k, v in pairs(turBosses) do
+	local data = isForever and turBossesUsingEncounter or turBosses;
+	for k, v in pairs(data) do
 		if (not v.header and not v.dontCount) then
 			reals = reals + (v.reals or 1);
 		end
@@ -574,7 +1049,8 @@ end
 
 local function getTotalRealsPerDungeon(instanceID)
 	local reals = 0;
-	for k, v in pairs(turBosses) do
+	local data = isForever and turBossesUsingEncounter or turBosses;
+	for k, v in pairs(data) do
 		if (v.instanceID == instanceID and not v.header and not v.dontCount) then
 			reals = reals + (v.reals or 1);
 		end
@@ -595,7 +1071,8 @@ end]]
 
 local function getBossCount(instanceID)
 	local count, headerCount = 0, 0;
-	for k, v in pairs(turBosses) do
+	local data = isForever and turBossesUsingEncounter or turBosses;
+	for k, v in pairs(data) do
 		if (v.instanceID == instanceID and not v.header) then
 			if (v.header) then
 				headerCount = headerCount + 1;
@@ -608,9 +1085,12 @@ local function getBossCount(instanceID)
 end
 
 local function getLootedStatus(npcOrEncounterID, itemID, isEncounterID) --/dump getLootedStatus(2733, 226404)
+	if (isForever and itemID == 226404) then
+		itemID = 3469;
+	end
 	local looted, killed;
 	local data = NIT.data.myChars[NIT.UnitName("player")].bossKills[npcOrEncounterID];
-	if (isEncounterID) then
+	if (isEncounterID and not isForever) then
 		local data;
 		local bossData;
 		local bossDataID;
@@ -659,9 +1139,10 @@ end
 
 local function getTotalLootedToday()
 	local count = 0;
-	for k, v in pairs(turBosses) do
+	local data = isForever and turBossesUsingEncounter or turBosses;
+	for k, v in pairs(data) do
 		if (not v.header) then
-			local looted = getLootedStatus(k, 226404);
+			local looted = getLootedStatus(k, 226404, isForever);
 			if (looted) then
 				count = count + (v.reals or 1);
 			end
@@ -678,48 +1159,67 @@ function NIT:getLootReminderMinimapString()
 		local lootedCount = 0;
 		local npcs = {};
 		local usingEnconterIDs;
-		for k, v in pairs(turBosses) do
-			--Check if we're going by encounterID or NPC death.
-			--Originally it was all just NPC deaths but now there's dungeons with rotating bosses so we need to use enounterIDs.
-			--Map the npcID to enounterID in the tables above and then check here when displaying it so we only show 1 boss from the enounter rotation (like opera etc).
-			--It's a bit overly complicated but it works for neatness.
-			if (v.instanceID == NIT.currentInstanceID) then
-				local skip;
-				if (v.sharedNPCs) then
-					for _, sharedID in pairs(v.sharedNPCs) do
-						if (npcs[sharedID]) then
-							skip = true;
+		if (isForever) then
+			for k, v in pairs(turBossesUsingEncounter) do
+				--Only encounterIDs in forever.
+				if (v.instanceID == NIT.currentInstanceID) then
+					local t = {
+						npcID = k,
+						name = v.name,
+						order = v.order,
+						instanceID = v.instanceID,
+						header = v.header,
+						title = v.title,
+						isEncounterID = true,
+					};
+					tinsert(sorted, t);
+					npcs[k] = true;
+				end
+			end
+		else
+			for k, v in pairs(turBosses) do
+				--Check if we're going by encounterID or NPC death.
+				--Originally it was all just NPC deaths but now there's dungeons with rotating bosses so we need to use enounterIDs.
+				--Map the npcID to enounterID in the tables above and then check here when displaying it so we only show 1 boss from the enounter rotation (like opera etc).
+				--It's a bit overly complicated but it works for neatness.
+				if (v.instanceID == NIT.currentInstanceID) then
+					local skip;
+					if (v.sharedNPCs) then
+						for _, sharedID in pairs(v.sharedNPCs) do
+							if (npcs[sharedID]) then
+								skip = true;
+							end
 						end
 					end
-				end
-				if (not skip) then
-					if (v.encounterID) then
-						usingEnconterIDs = true;
-						local data = turBossesUsingEncounter[v.encounterID];
-						if (data) then
+					if (not skip) then
+						if (v.encounterID) then
+							usingEnconterIDs = true;
+							local data = turBossesUsingEncounter[v.encounterID];
+							if (data) then
+								local t = {
+									npcID = v.encounterID,
+									name = data.name,
+									order = v.order,
+									instanceID = v.instanceID,
+									header = v.header,
+									title = v.title,
+									isEncounterID = true,
+								};
+								tinsert(sorted, t);
+							end
+						else
 							local t = {
-								npcID = v.encounterID,
-								name = data.name,
+								npcID = k,
+								name = v.name,
 								order = v.order,
 								instanceID = v.instanceID,
 								header = v.header,
 								title = v.title,
-								isEncounterID = true,
 							};
 							tinsert(sorted, t);
 						end
-					else
-						local t = {
-							npcID = k,
-							name = v.name,
-							order = v.order,
-							instanceID = v.instanceID,
-							header = v.header,
-							title = v.title,
-						};
-						tinsert(sorted, t);
+						npcs[k] = true;
 					end
-					npcs[k] = true;
 				end
 			end
 		end
@@ -887,6 +1387,8 @@ local function addLootedReal(npcOrEncounterID, itemID)
 		NIT:debug("Missing boss kill reset time", npcOrEncounterID); --Possiblly if a boss not on the list drops a token?
 	end
 	NIT.data.myChars[NIT.UnitName("player")].bossKills[npcOrEncounterID].looted[itemID] = true;
+	lastBossNpcID = nil
+	lastEncounterID = nil;
 end
 
 local function chatMsgLoot(...)
@@ -894,7 +1396,7 @@ local function chatMsgLoot(...)
     local amount;
     local name = NIT.UnitName("player");
     
-    ---This was changed to use an old liv LebDeformat to fix issues with korean strings.
+    ---This was changed to use an old lib LebDeformat to fix issues with korean strings.
     ---The SELF loot strings were triggering for other people, so item counts would count everyone in the party.
     ---The lib fixed this.
     
@@ -979,6 +1481,7 @@ local function chatMsgLoot(...)
 		    			local _, classEnglish = UnitClass("player");
 		    			relicLooted(itemID,  me, classEnglish);
 		    		elseif (itemID == 226404) then
+		    			--Tarnished Undermine Real.
 		    			hideMiddleMsg();
 		    			if (NIT.currentInstanceID and dungeons[NIT.currentInstanceID]) then
 		    				if (NIT.currentInstanceID == 2875 and (lastEncounterID == 3144 or lastEncounterID == 3168 or lastEncounterID == 3169)) then
@@ -1006,12 +1509,97 @@ local function chatMsgLoot(...)
 							lastLootNpcID = nil;
 						end
 					elseif (itemID == 21229 or itemID == 236397) then
+						--Qiraji Lord's Insignia and Remnants of Valor.
 		    			hideMiddleMsg();
 		    		end
 		    	end
 	    	end
     	end
     end
+end
+
+local function chatMsgCurrency(...)
+	if (not NIT.inInstance) then
+		return;
+	end
+	local text = ...;
+	if (issecretvalue and issecretvalue(text)) then
+		return;
+	end
+	if (not strmatch(text, "currency:")) then
+		return;
+	end
+	local currencyID = tonumber(strmatch(text, "currency:(%d+):"));
+	if (currencyID) then
+    	if (NIT.inInstance) then
+	    	--local amount = strmatch(text, "currency:.+\]|h|r%D*(%d+)");
+    		if (currencyID == 3469) then
+    			--Tarnished Undermine Real is a currency instead of an item in forever.
+    			hideMiddleMsg();
+    			if (NIT.currentInstanceID and dungeons[NIT.currentInstanceID]) then
+    				if (NIT.currentInstanceID == 2875 and (lastEncounterID == 3144 or lastEncounterID == 3168 or lastEncounterID == 3169)) then
+    					NIT:debug("Using currency lastEncounterID:", lastEncounterID, lastLootNpcID);
+	    				addLootedReal(lastEncounterID, currencyID);
+    				else
+    					--Currency is only used in Forever for reals and there's no combat log to record npcID kills.
+    					--So we only use encounterIDs in forever.
+		    			if (lastLootNpcID) then
+		    				NIT:debug("Using currency lastLootNpcID:", lastLootNpcID);
+		    				local encounterID = getEncounterIDFromNpcID(lastLootNpcID);
+		    				if (encounterID) then
+		    					addLootedReal(encounterID, currencyID);
+		    					return;
+		    				end
+		    			end
+		    			if (lastEncounterID) then
+							NIT:debug("Using backup currency lastEncounterID:", lastBossNpcID);
+							addLootedReal(lastEncounterID, currencyID);
+						else
+							NIT:debug("Loot ID error:", currencyID, lastLootNpcID, lastBossNpcID);
+						end
+					end
+					lastLootNpcID = nil;
+				end
+    		end
+    	end
+    end
+end
+
+local function isKillRecorded(npcID, encounterID)
+	local data = NIT.data.myChars[NIT.UnitName("player")].bossKills;
+	if (data) then
+		if (npcID and data[npcID] and data[npcID].resetTime and data[npcID].resetTime > GetServerTime()) then
+			return true;
+		elseif (encounterID and data[encounterID] and data[encounterID].resetTime and data[encounterID].resetTime > GetServerTime()) then
+			return true;
+		end
+	end
+end
+
+local function addBossDied(npcID, encounterID, isFromLooting)
+	--Hacky fix for ever, onl store encounter IDs
+	if (isForever and npcID) then
+		encounterID = getEncounterIDFromNpcID(npcID);
+		npcID = nil;
+	end
+	--We try record from multiple sources as backups and diff game version apis so skip if recorded already.
+	if (isKillRecorded(npcID, encounterID)) then
+		return;
+	end
+	if (npcID) then
+		local resetTime = GetServerTime() + C_DateAndTime.GetSecondsUntilDailyReset();
+		if (not NIT.data.myChars[NIT.UnitName("player")].bossKills[npcID]) then
+			NIT.data.myChars[NIT.UnitName("player")].bossKills[npcID] = {};
+		end
+		NIT.data.myChars[NIT.UnitName("player")].bossKills[npcID].resetTime = resetTime;
+	elseif (encounterID) then
+		--No unit died event in forever, so this may get called from looting the corpse.
+		local resetTime = GetServerTime() + C_DateAndTime.GetSecondsUntilDailyReset();
+		if (not NIT.data.myChars[NIT.UnitName("player")].bossKills[encounterID]) then
+			NIT.data.myChars[NIT.UnitName("player")].bossKills[encounterID] = {};
+		end
+		NIT.data.myChars[NIT.UnitName("player")].bossKills[encounterID].resetTime = resetTime;
+	end
 end
 
 local function lootOpened()
@@ -1026,13 +1614,14 @@ local function lootOpened()
 			npcID = tonumber(npcID);
 			if (npcID and turBosses[npcID]) then
 				lastLootNpcID = npcID;
+				addBossDied(npcID, nil, true);
 			end
 		end
 		return;
 	end
 	local guid = UnitGUID("target");
 	--Check target as backup.
-	if (guid) then
+	if (guid and UnitIsDead("target")) then
 		if (issecretvalue and issecretvalue(guid)) then
 			return;
 		end
@@ -1041,6 +1630,7 @@ local function lootOpened()
 			npcID = tonumber(npcID);
 			if (npcID and turBosses[npcID]) then
 				lastLootNpcID = npcID;
+				addBossDied(npcID, nil, true);
 			end
 		end
 	end
@@ -1053,28 +1643,11 @@ end
 	--lastLootNpcID = nil;
 --end
 
-local function skipRealMsgIfCapped()
-	if (NIT.db.global.skipRealMsgIfCapped) then
-		local itemCount = C_Item.GetItemCount(226404);
-		if (itemCount and itemCount == 150) then
-			return true;
-		end
-	end
-end
-
-local function addBossDied(npcOrEncounterID)
-	local resetTime = GetServerTime() + C_DateAndTime.GetSecondsUntilDailyReset();
-	if (not NIT.data.myChars[NIT.UnitName("player")].bossKills[npcOrEncounterID]) then
-		NIT.data.myChars[NIT.UnitName("player")].bossKills[npcOrEncounterID] = {};
-	end
-	NIT.data.myChars[NIT.UnitName("player")].bossKills[npcOrEncounterID].resetTime = resetTime;
-end
-
 local function encounterEndSuccess(encounterID)
 	if (turBossesUsingEncounter[encounterID]) then
 		if (not skipRealMsgIfCapped()) then
 			addMsg(string.format(L["lootTheItem"], L["Tarnished Undermine Real"]) .. "!", 10);
-			addBossDied(encounterID);
+			addBossDied(nil, encounterID);
 		end
 	elseif (turBossesNoRecordEncounter[encounterID]) then
 		if (not skipRealMsgIfCapped()) then
@@ -1118,18 +1691,24 @@ end
 
 local f = CreateFrame("Frame");
 f:RegisterEvent("CHAT_MSG_LOOT");
-f:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
+if (not NIT.isForever) then
+	f:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
+end
 f:RegisterEvent("LOOT_OPENED");
 f:RegisterEvent("ENCOUNTER_END");
+f:RegisterEvent("CHAT_MSG_CURRENCY");
 f:SetScript('OnEvent', function(self, event, ...)
 	if (event == "COMBAT_LOG_EVENT_UNFILTERED") then
 		combatLogEventUnfiltered(...);
 	elseif (event == "CHAT_MSG_LOOT") then
 		chatMsgLoot(...);
+	elseif (event == "CHAT_MSG_CURRENCY") then
+		chatMsgCurrency(...);
 	elseif (event == "ENCOUNTER_END") then
 		local encounterID, _, _, _, success = ...;
 		if (success == 1) then
 			lastEncounterID = encounterID;
+			lastEncounterTime = GetServerTime();
 			encounterEndSuccess(encounterID);
 		end
 	elseif (event == "LOOT_OPENED") then
@@ -1173,6 +1752,9 @@ function NIT:loadLootReminderListFrame()
 		frame:SetUserPlaced(false);
 		frame:SetPoint("CENTER", UIParent, 0, 100);
 		frame:SetSize(650, 725);
+		if (isForever) then
+			frame:SetSize(650, 766);
+		end
 		frame:SetFrameStrata("HIGH");
 		frame:SetFrameLevel(140);
 		frame:SetScript("OnMouseDown", function(self, button)
@@ -1284,6 +1866,18 @@ function NIT:loadLootReminderListFrame()
 		t.instanceID = k;
 		tinsert(dungs, t);
 	end
+	
+	local dungCount = 0;
+	for k, v in pairs(dungs) do
+		--Set where to split the left and rght fontstrings.
+		dungCount = dungCount + 1;
+	end
+	local leftMax, rightMax = ceil(dungCount / 2), dungCount;
+	if (isForever) then
+		--leftMax, rightMax = floor(dungCount / 2), dungCount;
+		leftMax, rightMax = 5, 8;
+	end
+	
 	table.sort(dungs, function(a, b) return a.order < b.order end);
 	for id, instanceData in ipairs(dungs) do
 		count = count + 1;
@@ -1297,19 +1891,38 @@ function NIT:loadLootReminderListFrame()
 		count = count + 1;
 		local sorted = {};
 		local lootedCount = 0;
-		for k, v in pairs(turBosses) do
-			if (v.instanceID == instanceData.instanceID) then
-				local t = {
-					npcID = k,
-					name = v.name,
-					order = v.order,
-					instanceID = v.instanceID,
-					header = v.header,
-					title = v.title,
-					reals = v.reals,
-					sharedNPCs = v.sharedNPCs,
-				};
-				tinsert(sorted, t);
+		if (isForever) then
+			for k, v in pairs(turBossesUsingEncounter) do
+				if (v.instanceID == instanceData.instanceID) then
+					local t = {
+						npcID = k,
+						name = v.name,
+						order = v.order,
+						instanceID = v.instanceID,
+						header = v.header,
+						title = v.title,
+						reals = v.reals,
+						sharedNPCs = v.sharedNPCs,
+						isEncounterID = true,
+					};
+					tinsert(sorted, t);
+				end
+			end
+		else
+			for k, v in pairs(turBosses) do
+				if (v.instanceID == instanceData.instanceID) then
+					local t = {
+						npcID = k,
+						name = v.name,
+						order = v.order,
+						instanceID = v.instanceID,
+						header = v.header,
+						title = v.title,
+						reals = v.reals,
+						sharedNPCs = v.sharedNPCs,
+					};
+					tinsert(sorted, t);
+				end
 			end
 		end
 		--[[for k, v in pairs(turBosses) do
@@ -1333,7 +1946,7 @@ function NIT:loadLootReminderListFrame()
 		for i = #sorted, 1, -1 do
 			local data = sorted[i];
 			if (data.sharedNPCs) then
-				local looted, isKilledButNotLooted = getLootedStatus(data.npcID, 226404);
+				local looted, isKilledButNotLooted = getLootedStatus(data.npcID, 226404, v.isEncounterID);
 				--If looted remove all other shared npcs from sorted.
 				if (looted or isKilledButNotLooted) then
 					for k, v in pairs(data.sharedNPCs) do
@@ -1360,7 +1973,6 @@ function NIT:loadLootReminderListFrame()
 						--if ()
 					end
 					if (found) then
-						--print(1, data.name)
 						toRemove[data.npcID] = true;
 					end
 				end
@@ -1388,7 +2000,7 @@ function NIT:loadLootReminderListFrame()
 					text = text .. "\n" .. headerString;
 				end
 			else
-				local looted, isKilledButNotLooted = getLootedStatus(v.npcID, 226404);
+				local looted, isKilledButNotLooted = getLootedStatus(v.npcID, 226404, v.isEncounterID);
 				local lootedString;
 				if (isKilledButNotLooted) then
 					lootedString = "|cFFFF6900(" .. L["Killed But Not Looted"] .. ")|r";
@@ -1420,7 +2032,7 @@ function NIT:loadLootReminderListFrame()
 					text = text .. "\n" .. headerString;
 				end
 			else
-				local looted, isKilledButNotLooted = getLootedStatus(v.npcID, 226404);
+				local looted, isKilledButNotLooted = getLootedStatus(v.npcID, 226404, v.isEncounterID);
 				local lootedString;
 				if (isKilledButNotLooted) then
 					lootedString = "|cFFFF6900(" .. L["Killed But Not Looted"] .. ")|r";
@@ -1441,10 +2053,10 @@ function NIT:loadLootReminderListFrame()
 				end
 			end
 		end
-		if (instanceCount == 4) then
+		if (instanceCount == leftMax) then
 			lootReminderListFrame.scrollChild.fs2:SetText(text);
 			text = "";
-		elseif (instanceCount == 7) then
+		elseif (instanceCount == rightMax) then
 			lootReminderListFrame.scrollChild.fs3:SetText(text);
 		end
 	end

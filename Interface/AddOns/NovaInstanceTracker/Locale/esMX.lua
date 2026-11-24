@@ -635,3 +635,5 @@ L["NPC"] = "PNJ";
 
 L["by"] = "por";
 L["For help or suggestions"] = "Ayuda o sugerencias";
+
+L["Reals"] = "Reales";

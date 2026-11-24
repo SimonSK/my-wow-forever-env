@@ -586,7 +586,7 @@ L["Killed But Not Looted"] = "Killed But Not Looted";
 L["Loot the Tarnished Undermine Real"] = "Loot the Tarnished Undermine Real";
 L["Not Killed"] = "Not Killed";
 L["Loot Reminder List"] = "Loot Reminder List";
-L["Check your daily reals status"] = "Check your daily reals status"; --This string can't be any longer characters than this to fit in button.
+L["Check your daily reals status"] = "Daily Tarnished Reals Status"; --This string can't be any longer characters than this to fit in button.
 L["Bosses Looted"] = "Bosses Looted";
 L["Total today"] = "Total today";
 L["Total Reals"] = "Total Reals";
@@ -598,7 +598,7 @@ L["argentDawnTrinketReminderTitle"] = "Argent Dawn Trinket Reminder";
 L["argentDawnTrinketReminderDesc"] = "Argent Dawn trinket reminder in chat if you enter Scholomance/Stratholme with the trinket in bags and not exalted.";
 
 L["skipRealMsgIfCappedTitle"] = "No msg if capped";
-L["skipRealMsgIfCappedDesc"] = "Skip the Tarnished Undermine Real loot msg if we're capped at 150 tokens already.";
+L["skipRealMsgIfCappedDesc"] = "Skip the Tarnished Undermine Real loot msg if we're capped already.";
 
 L["Live Side"] = "Live Side";
 L["Undead Side"] = "Undead Side";
@@ -646,3 +646,5 @@ L["NPC"] = "NPC";
 
 L["by"] = "by";
 L["For help or suggestions"] = "For help or suggestions";
+
+L["Reals"] = "Reals";

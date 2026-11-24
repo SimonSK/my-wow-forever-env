@@ -693,7 +693,7 @@ function NIT:loadSpecificOptions()
 			set = "setAutoWrathDailies",
 		};
 	end
-	if (NIT.isSOD) then
+	if (NIT.isSOD or NIT.isForever) then
 		NIT.options.args["lootReminder"] = {
 			type = "header",
 			name = L["lootReminderDesc"],
@@ -864,9 +864,9 @@ NIT.optionDefaults = {
 		trimDataBelowLevel = 1,
 		instanceStatsOutputRunsPerLevel = true,
 		instanceStatsOutputRunsNextLevel = false,
-		instanceWindowWidth = 620,
+		instanceWindowWidth = 680,
 		instanceWindowHeight = 501,
-		charsWindowWidth = 600,
+		charsWindowWidth = 630,
 		charsWindowHeight = 350,
 		tradeWindowWidth = 580,
 		tradeWindowHeight = 320,
@@ -1042,13 +1042,17 @@ end
 
 function NIT:checkNewVersion()
 	--NIT.db.global.versions = {}; --To test.
-	local newVersionNotes = 2.31;
+	local newVersionNotes = 2.34;
 	if (NIT.version and NIT.version == newVersionNotes) then
 		if (not NIT.db.global.versions[NIT.version]) then
 			if (NIT.isForever) then
 				local notes = {
-					"Adjusted instances per hour limit to 10 in Forever.",
-					"Added support for the addon compartment button above the minimap, this means you can turn off the normal minimap icon and access it there instead if you like.",
+					"Added |T133799:0|t |cff1eff00[Tarnished Undermine Real]|r tracking and loot reminder to Forever, click the new Reals button on the instance log to view what you've looted for the day. Mouseover over the minimap icon while in a dungeon to see what you've looted in this run.",
+					"When you kill a boss that can drop a real a reminder will show in the middle of the screen, can be disabled in config.",
+					"Added battleground rep gains to the main log display.",
+					"Changed lockouts per hour count back to 5 as per hotfix this week.",
+					"Cleaned up the UI a bit.",
+					"Fixed a bunch of Forever related lua errors.",
 				};
 				loadNewVersionFrame(NIT.version, notes, "Nova Instance Tracker", "Interface\\AddOns\\NovaInstanceTracker\\Media\\portal", 30, 200);
 			end

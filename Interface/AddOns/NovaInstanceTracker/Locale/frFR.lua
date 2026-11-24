@@ -651,3 +651,5 @@ L["Dec"] = "Déc";
 
 L["by"] = "par";
 L["For help or suggestions"] = "Aide ou suggestions";
+
+L["Reals"] = "Réaux";
