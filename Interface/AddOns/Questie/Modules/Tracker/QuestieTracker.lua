@@ -3,6 +3,8 @@ local QuestieCompat = QuestieLoader:ImportModule("QuestieCompat")
 
 ---@class QuestieTracker
 local QuestieTracker = QuestieLoader:CreateModule("QuestieTracker")
+---@type TaintWatch
+local TaintWatch = QuestieLoader:ImportModule("TaintWatch")
 -------------------------
 --Import QuestieTracker modules.
 -------------------------
@@ -275,18 +277,6 @@ function QuestieTracker.Initialize()
         if TrackerUtils:IsVoiceOverLoaded() then VoiceOverFrame:Hide() end
     end
 
-    -- Flip some Dugi Guides options to prevent weird behavior
-    if IsAddOnLoaded("DugisGuideViewerZ") then
-        -- Turns off "Show Quest Objectives - Display quest objectives in small/anchored frame instead of the watch frame"
-        DugisGuideViewer:SetDB(false, 39) -- DGV_OBJECTIVECOUNTER
-
-        -- Turns off "Auto Quest Tracking - Automatically add quest to the Objective Tracker on accept or objective update"
-        DugisGuideViewer:SetDB(false, 78) -- DGV_AUTO_QUEST_TRACK
-
-        -- Turns on "Clear Final Waypoint - Always clear the last waypoint on reach"
-        DugisGuideViewer:SetDB(true, 1006) -- DGV_CLEAR_FINAL_WAYPOINT
-    end
-
     -- Restore saved focus. Update keeps retrying until the timeout while the focused quest is still loading.
     focusRestoreDeadline = GetTime() + FOCUS_RESTORE_TIMEOUT
     if _RestoreSavedFocus(true) then
@@ -430,6 +420,7 @@ function QuestieTracker:UpdateDurabilityFrame()
                 -- middle of the frame, first return is x value, second return is the y value
                 local trackerFrameX = trackerBaseFrame:GetCenter()
 
+                TaintWatch.Note("DurabilityFrame layout")
                 DurabilityFrame:ClearAllPoints()
                 DurabilityFrame:SetClampedToScreen(true)
                 DurabilityFrame:SetFrameStrata("MEDIUM")
@@ -530,11 +521,23 @@ function QuestieTracker:UpdateVoiceOverFrame()
     end
 end
 
+---@param text string
+---@return boolean
+local function _IsOwnLootMessage(text)
+    for _, lootFormat in pairs({LOOT_ITEM_SELF, LOOT_ITEM_PUSHED_SELF, LOOT_ITEM_CREATED_SELF, LOOT_ITEM_BONUS_ROLL_SELF}) do
+        local placeholderStart = string.find(lootFormat, "%", 1, true)
+        if placeholderStart and placeholderStart > 1 and string.sub(text, 1, placeholderStart - 1) == string.sub(lootFormat, 1, placeholderStart - 1) then
+            return true
+        end
+    end
+    return false
+end
+
 -- If the player loots a "Quest Item" then this triggers a Tracker Update so the
 -- Quest Item Button can be switched on and appear in the tracker.
 ---@param text string
 function QuestieTracker:QuestItemLooted(text)
-    local playerLoot = strmatch(text, "You receive ") or strmatch(text, "You create")
+    local playerLoot = _IsOwnLootMessage(text)
     local itemId = tonumber(string.match(text, "item:(%d+)"))
 
     if playerLoot and itemId then
@@ -1120,20 +1123,24 @@ function QuestieTracker:UpdateHeight()
     if Questie.db.char.isTrackerExpanded then
         -- Removes any padding from the last line in the tracker
         local currentLine = TrackerLinePool.GetCurrentLine()
-        local firstLine = TrackerLinePool.GetFirstLine()
+        if (not currentLine) then
+            return
+        end
 
         currentLine:SetHeight(currentLine.label:GetStringHeight())
 
-        local firstLineTop = firstLine:GetTop()
-        local currentLineBottom = currentLine:GetBottom()
-
-        if currentLine.mode == "zone" then
-            -- If a single zone is the only line in the tracker then don't add pixel padding
-            trackerQuestFrame.ScrollChildFrame:SetHeight((firstLineTop - currentLineBottom))
-        else
-            -- Add 3 pixels to bottom of tracker to account for text that traverses beyond the GetStringHeight() function such as lower case "g".
-            trackerQuestFrame.ScrollChildFrame:SetHeight((firstLineTop - currentLineBottom + 3))
+        -- Lines are stacked without gaps, so their summed heights are the content height.
+        -- Screen coordinates (GetTop/GetBottom) are not used, because they are nil while the tracker has no resolved position.
+        local contentHeight = 0
+        for i = 1, TrackerLinePool.GetHighestIndex() do
+            contentHeight = contentHeight + TrackerLinePool.GetLine(i):GetHeight()
         end
+
+        if currentLine.mode ~= "zone" then
+            -- Add 3 pixels to bottom of tracker to account for text that traverses beyond the GetStringHeight() function such as lower case "g".
+            contentHeight = contentHeight + 3
+        end
+        trackerQuestFrame.ScrollChildFrame:SetHeight(contentHeight)
 
         -- Set the baseFrame to full height so we can measure it
         trackerQuestFrame:SetHeight(trackerQuestFrame.ScrollChildFrame:GetHeight())
@@ -1362,6 +1369,7 @@ function QuestieTracker:UntrackQuestId(questId)
 
     if Questie.IsForever and C_QuestLog.GetQuestWatchType(questId) ~= nil then
         -- Keep the modern quest log's track checkbox consistent when untracking from Questie's menu.
+        TaintWatch.Note("RemoveQuestWatch", questId)
         C_QuestLog.RemoveQuestWatch(questId)
     end
 

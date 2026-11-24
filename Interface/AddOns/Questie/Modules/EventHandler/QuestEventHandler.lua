@@ -5,6 +5,8 @@ local QuestieCompat = QuestieLoader:ImportModule("QuestieCompat")
 local QuestEventHandler = QuestieLoader:CreateModule("QuestEventHandler")
 ---@class QuestEventHandlerPrivate
 local _QuestEventHandler = QuestEventHandler.private
+---@type TaintWatch
+local TaintWatch = QuestieLoader:ImportModule("TaintWatch")
 
 ---@type QuestEventHandlerPrivate
 QuestEventHandler.private = QuestEventHandler.private or {}
@@ -202,6 +204,7 @@ function QuestEventHandler:Initialize()
                 end
 
                 if foundQuestItem and quest and questName then
+                    TaintWatch.Note("StaticPopup text rewrite")
                     if StaticPopup_ForEachShownDialog then
                         -- MoP+
                         StaticPopup_ForEachShownDialog(function(dialog)
@@ -471,6 +474,9 @@ function _QuestEventHandler:MarkQuestAsAbandoned(questId)
 
         AvailableQuests.ResetLastNpcGuid()
         QuestieJourney:AbandonQuest(questId)
+        if Expansions.Current >= Expansions.Cata then
+            AutoCompleteFrame.HideIfShowing(questId)
+        end
         QuestieAnnounce:AbandonedQuest(questId)
 
         -- The local player no longer has this quest; a party member may still need it.

@@ -96,7 +96,6 @@ local migrationFunctions = {
     end,
     [12] = function()
         Questie.db.profile.autoAccept.rejectSharedInBattleground = false
-        Questie.db.profile.tutorialRejectInBattlegroundsDone = false
     end,
     [13] = function()
         Questie.db.profile.questAnnounceIncompleteBreadcrumb = true
@@ -333,6 +332,14 @@ local migrationFunctions = {
         if untrackShortcut and untrackShortcut ~= "disabled" and profile.trackerbindOpenQuestLog == untrackShortcut then
             profile.trackerbindOpenQuestLog = "disabled"
         end
+    end,
+    [54] = function()
+        -- The pfQuest/ClassicCodex icon toggle is gone; the icon theme choice replaced it.
+        Questie.db.profile.usePfQuestIcons = nil
+    end,
+    [55] = function()
+        -- The Isle of Quel'Danas phase lives in the global scope; this profile copy was never read by the phase logic
+        Questie.db.profile.isleOfQuelDanasPhase = nil
     end,
 }
 

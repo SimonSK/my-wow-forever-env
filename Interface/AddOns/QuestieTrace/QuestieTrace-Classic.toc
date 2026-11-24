@@ -1,6 +1,6 @@
 ## Interface: 11509, 20506, 38002, 50504
-## Title: QuestieTrace
-## Version: 1.13.0
+## Title: QuestieTrace|cFF00FF00 v1.14.0|r
+## Version: 1.14.0
 ## Author: Logon/TheCrux(BreakBB)
 ## Notes: Data collection addon for Questie
 ## Notes-deDE: Datensammlungs-Addon für Questie
@@ -44,6 +44,7 @@ Widgets/Dialog.lua
 Widgets/Dialog.xml
 Modules/Consent.lua
 Modules/Consent.xml
+Modules/Settings.lua
 
 Modules/Trackers/PlayerIdentity.lua
 Modules/Trackers/UnitLevel.lua

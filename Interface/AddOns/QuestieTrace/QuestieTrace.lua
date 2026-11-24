@@ -6,7 +6,7 @@ local Core = QuestieTraceCore
 ---@type string
 local ADDON_NAME = "QuestieTrace"
 ---@type number
-local SCHEMA_VERSION = 19
+local SCHEMA_VERSION = 21
 ---@type number Safety cap on QuestieTraceCharacter.sessions -- a pure size
 --- backstop for players who never open the export window, not a substitute
 --- for reporting. Oldest sessions are dropped first; there is no
@@ -119,6 +119,7 @@ local TRACKED_EVENT_CATEGORIES = {
       "PLAYER_REGEN_DISABLED",
       "PLAYER_REGEN_ENABLED",
       "PLAYER_TARGET_CHANGED",
+      "UPDATE_MOUSEOVER_UNIT",
       "PLAYER_EQUIPMENT_CHANGED",
       "SKILL_LINES_CHANGED",
       "LOOT_OPENED",
@@ -210,6 +211,9 @@ Core.TRACKED_EVENT_CATEGORIES = TRACKED_EVENT_CATEGORIES
 -- Event filters (skip events that don't match criteria)
 ---------------------------------------------------------------------------
 
+---@type boolean Whether the last recorded mouseover was an NPC.
+local mouseoverWasNpc = false
+
 local EVENT_FILTERS = {
   ---@param addonName string
   ---@return boolean
@@ -225,6 +229,16 @@ local EVENT_FILTERS = {
   ---@return boolean
   CHAT_MSG_SYSTEM = function(text)
     return Core.IsAllowedSystemMessage(text)
+  end,
+  -- Hovering players, pets and party frames fires this on every mouse move. Only NPCs are of interest, so
+  -- the rest is neither recorded nor sampled. The first transition from an NPC to a non-NPC is let through
+  -- so the mouseover streams get their "no unit" sample.
+  ---@return boolean
+  UPDATE_MOUSEOVER_UNIT = function()
+    local isNpc = Core.IsNpcUnit("mouseover")
+    local wasNpc = mouseoverWasNpc
+    mouseoverWasNpc = isNpc
+    return isNpc or wasNpc
   end,
 }
 
@@ -242,7 +256,7 @@ local EVENT_ARG_SANITIZERS = {
   CHAT_MSG_LOOT = Core.SanitizeChatMsgArgs,
   CHAT_MSG_MONEY = Core.SanitizeChatMsgArgs,
   CHAT_MSG_SKILL = Core.SanitizeChatMsgArgs,
-  CHAT_MSG_TRADESKILLS = Core.SanitizeChatMsgArgs,
+  CHAT_MSG_TRADESKILLS = Core.SanitizeTradeskillChatMsgArgs,
   CHAT_MSG_COMBAT_FACTION_CHANGE = Core.SanitizeChatMsgArgs,
   CHAT_MSG_COMBAT_XP_GAIN = Core.SanitizeChatMsgArgs,
 }
@@ -463,6 +477,7 @@ function Core.StartCapture(sessionName)
     return
   end
 
+  mouseoverWasNpc = false
   capture.token = capture.token + 1
   capture.startedAt = GetTime()
   capture.startedAtPrecise = GetTimePreciseSec()
@@ -496,6 +511,10 @@ function Core.StartCapture(sessionName)
       tracker.Init(capture)
     end
   end
+
+  -- The initial sample may already hold an NPC that the next non-NPC hover has to clear.
+  local mouseoverGuids = capture.session.functions.UnitGUID and capture.session.functions.UnitGUID.mouseover
+  mouseoverWasNpc = mouseoverGuids ~= nil and #mouseoverGuids > 0 and mouseoverGuids[#mouseoverGuids].v ~= nil
 end
 
 --- Stop the active capture session.
@@ -698,6 +717,9 @@ local function OnEvent(_, event, ...)
   -- 1. Initialize before login dumps and auto-start on PLAYER_LOGIN.
   if event == "PLAYER_LOGIN" then
     EnsureSavedVariables()
+    if Core.RegisterSettingsPanel then
+      Core.RegisterSettingsPanel()
+    end
   end
 
   -- 2. Event filtering

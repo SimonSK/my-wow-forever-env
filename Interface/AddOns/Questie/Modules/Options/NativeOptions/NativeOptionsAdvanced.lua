@@ -6,8 +6,8 @@ local Popup = QuestieLoader:ImportModule("QuestiePopup")
 -------------------------
 ---@type QuestieQuest
 local QuestieQuest = QuestieLoader:ImportModule("QuestieQuest")
----@type QuestieOptions
-local QuestieOptions = QuestieLoader:ImportModule("QuestieOptions")
+---@type TaintWatch
+local TaintWatch = QuestieLoader:ImportModule("TaintWatch")
 ---@type QuestieOptionsEngine
 local QuestieOptionsEngine = QuestieLoader:ImportModule("QuestieOptionsEngine")
 ---@type QuestieOptionsDefaults
@@ -20,8 +20,8 @@ local QuestieTracker = QuestieLoader:ImportModule("QuestieTracker")
 local IsleOfQuelDanas = QuestieLoader:ImportModule("IsleOfQuelDanas")
 ---@type l10n
 local l10n = QuestieLoader:ImportModule("l10n")
----@type Expansions
-local Expansions = QuestieLoader:ImportModule("Expansions")
+---@type ContentPhases
+local ContentPhases = QuestieLoader:ImportModule("ContentPhases")
 ---@type QuestieJourney
 local QuestieJourney = QuestieLoader:ImportModule("QuestieJourney")
 ---@type QuestieProfiler
@@ -174,13 +174,13 @@ function QuestieOptionsEngine.tabs.advanced:Initialize()
                         width = "half",
                         options = IsleOfQuelDanas.localizedPhaseNames,
                         enabled = function()
-                            return Expansions.Current > Expansions.Tbc
+                            return ContentPhases.activePhases.TBC >= 5
                         end,
                         get = function()
-                            return Questie.db.profile.isleOfQuelDanasPhase
+                            return Questie.db.global.isleOfQuelDanasPhase
                         end,
                         set = function(key)
-                            Questie.db.profile.isleOfQuelDanasPhase = key
+                            Questie.db.global.isleOfQuelDanasPhase = key
                             QuestieQuest:SmoothReset()
                         end,
                     },
@@ -190,9 +190,6 @@ function QuestieOptionsEngine.tabs.advanced:Initialize()
                         title = "Disable Phase reminder",
                         tooltip = "Enable or disable the reminder on login to set the Isle of Quel'Danas phase",
                         width = "half",
-                        enabled = function()
-                            return Expansions.Current > Expansions.Tbc
-                        end,
                         get = function()
                             return Questie.db.profile.isIsleOfQuelDanasPhaseReminderDisabled
                         end,
@@ -441,6 +438,7 @@ function QuestieOptionsEngine.tabs.advanced:Initialize()
                     Questie.db.profile.debugEnabled = value
                     if Questie.db.profile.debugEnabled then
                         QuestieLoader:PopulateGlobals()
+                        TaintWatch.Initialize()
                     end
                 end,
             },

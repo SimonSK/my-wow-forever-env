@@ -1,6 +1,8 @@
 ---@diagnostic disable: undefined-global, return-type-mismatch, undefined-field
 ---@class QuestieCompat
 local QuestieCompat = QuestieLoader:CreateModule("QuestieCompat")
+---@type TaintWatch
+local TaintWatch = QuestieLoader:ImportModule("TaintWatch")
 
 -- Source baselines: Era 1.15.9 (69722), Anniversary 2.5.6 (69795), Mists 5.5.4 (69585),
 -- Titan 3.80.2 (69874), Forever 1.60.1 (69913). See FOREVER_WORK_LEFT_TO_DO.md for pinned sources and caveats.
@@ -17,9 +19,7 @@ local INDIZES_ACTIVE = 6
 local tinsert = table.insert
 
 -- Compatibility loads before VersionCheck and embedded libraries, so Questie.IsForever is not available yet.
--- Forever shares Retail's project ID; use the same interface range as VersionCheck instead.
-local _, _, _, interfaceVersion = GetBuildInfo()
-local isForever = interfaceVersion >= 16000 and interfaceVersion < 17000
+local isForever = WOW_PROJECT_ID == WOW_PROJECT_CAMELOT
 
 -- QuestieDB loads later; the loader returns the module table that its owning file will populate.
 ---@type QuestieDB
@@ -308,12 +308,14 @@ function QuestieCompat.OpenWorldMap(uiMapId)
         if (not WorldMapFrame:IsShown()) then
             WorldMapFrame:Show()
         end
+        TaintWatch.Note("WorldMapFrame:SetMapID", uiMapId)
         WorldMapFrame:SetMapID(uiMapId)
         return true
     end
     if InCombatLockdown() then
         return false
     end
+    TaintWatch.Note("OpenWorldMap", uiMapId)
     C_Map.OpenWorldMap(uiMapId)
     return true
 end
@@ -382,10 +384,12 @@ local function ApplyObjectiveTrackerVisibility()
     visibilityFrame:UnregisterEvent("PLAYER_REGEN_ENABLED")
     if ObjectiveTrackerFrame then
         if hideObjectiveTracker then
+            TaintWatch.Note("ObjectiveTrackerFrame:Hide")
             ObjectiveTrackerFrame:Hide()
         else
             ObjectiveTrackerFrame:SetAlpha(1)
             -- Forever: calling Update() here would run Blizzard's layout (and its secret aura reads) and taint it.
+            TaintWatch.Note("ObjectiveTrackerFrame:Show")
             ObjectiveTrackerFrame:Show()
         end
     end
@@ -884,6 +888,7 @@ end
 ---@param questId QuestId
 function QuestieCompat.SetSuperTrackedQuestID(questId)
     if QuestieCompat.IsSuperTrackingSupported() then
+        TaintWatch.Note("SetSuperTrackedQuestID", questId)
         C_SuperTrack.SetSuperTrackedQuestID(questId)
     end
 end
@@ -891,6 +896,7 @@ end
 ---Does nothing on clients without super tracking.
 function QuestieCompat.ClearSuperTrackedQuest()
     if QuestieCompat.IsSuperTrackingSupported() then
+        TaintWatch.Note("SetSuperTrackedQuestID", 0)
         C_SuperTrack.SetSuperTrackedQuestID(0)
     end
 end

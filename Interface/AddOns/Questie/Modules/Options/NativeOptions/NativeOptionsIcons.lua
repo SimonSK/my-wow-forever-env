@@ -1,5 +1,5 @@
----@type QuestieOptions
-local QuestieOptions = QuestieLoader:ImportModule("QuestieOptions")
+---@type TaintWatch
+local TaintWatch = QuestieLoader:ImportModule("TaintWatch")
 ---@type QuestieOptionsEngine
 local QuestieOptionsEngine = QuestieLoader:ImportModule("QuestieOptionsEngine")
 ---@type QuestieOptionsDefaults
@@ -258,7 +258,7 @@ function QuestieOptionsEngine.tabs.icons:Initialize()
                         title = "Available AQ War Effort Quests",
                         tooltip = "If checked, the locations of the AQ War Effort quests will be shown on the map/minimap.",
                         width = "half",
-                        visible = Questie.IsClassic,
+                        visible = Expansions.Current == Expansions.Era,
                         enabled = _IsEnabled,
                         get = function() return Questie.db.profile.showAQWarEffortQuests end,
                         set = function(_, value)
@@ -359,8 +359,8 @@ function QuestieOptionsEngine.tabs.icons:Initialize()
                         width = "third",
                         align = "CENTER",
                         enabled = _IsEnabled,
-                        func = function()
-                            QuestieMenu:ShowTownsfolk(1)
+                        func = function(button)
+                            QuestieMenu:ShowTownsfolk(button)
                         end,
                     },
                     professionOptions = {
@@ -372,8 +372,8 @@ function QuestieOptionsEngine.tabs.icons:Initialize()
                         width = "third",
                         align = "CENTER",
                         enabled = _IsEnabled,
-                        func = function()
-                            QuestieMenu:ShowProfessions(1)
+                        func = function(button)
+                            QuestieMenu:ShowProfessions(button)
                         end,
                     },
                     vendorOptions = {
@@ -385,8 +385,8 @@ function QuestieOptionsEngine.tabs.icons:Initialize()
                         width = "third",
                         align = "CENTER",
                         enabled = _IsEnabled,
-                        func = function()
-                            QuestieMenu:ShowVendors(1)
+                        func = function(button)
+                            QuestieMenu:ShowVendors(button)
                         end,
                     },
                 },
@@ -1119,37 +1119,6 @@ _GetIconThemesSort = function()
     end
 end
 
-function QuestieOptionsUtils.SetPfQuestIcons(info, value)
-    Questie.db.profile.usePfQuestIcons = value
-    if value then
-        Questie.db.profile.ICON_SLAY = Questie.icons["node"]
-        Questie.db.profile.ICON_LOOT = Questie.icons["node"]
-        Questie.db.profile.ICON_EVENT = Questie.icons["node"]
-        Questie.db.profile.ICON_OBJECT = Questie.icons["node"]
-        Questie.db.profile.ICON_TALK = Questie.icons["node"]
-        Questie.db.profile.ICON_INTERACT = Questie.icons["node"]
-        Questie.db.profile.questObjectiveColors = true
-        Questie.db.profile.alwaysGlowMap = false
-        Questie.db.profile.questMinimapObjectiveColors = true
-        Questie.db.profile.alwaysGlowMinimap = false
-        Questie.db.profile.objectiveFilterDistance = 0
-    else
-        Questie.db.profile.ICON_SLAY = Questie.icons["slay"]
-        Questie.db.profile.ICON_LOOT = Questie.icons["loot"]
-        Questie.db.profile.ICON_EVENT = Questie.icons["event"]
-        Questie.db.profile.ICON_OBJECT = Questie.icons["object"]
-        Questie.db.profile.ICON_TALK = Questie.icons["talk"]
-        Questie.db.profile.ICON_INTERACT = Questie.icons["interact"]
-        Questie.db.profile.questObjectiveColors = false
-        Questie.db.profile.alwaysGlowMap = true
-        Questie.db.profile.questMinimapObjectiveColors = false
-        Questie.db.profile.alwaysGlowMinimap = false
-        Questie.db.profile.objectiveFilterDistance = optionsDefaults.profile.objectiveFilterDistance
-    end
-    Questie:SetIcons()
-    QuestieQuest:SmoothReset()
-end
-
 function QuestieOptionsUtils.DetermineTheme()
     if (GetCVar("questPOI") == "1" and Questie.db.profile.enableObjectives == false) then
         Questie.db.profile.iconTheme = "blizzard"
@@ -1193,6 +1162,7 @@ function QuestieOptionsUtils.ExecuteTheme(info, value)
     local currentQuestPOI = GetCVar("questPOI")
     if value == "questie" then
         if currentQuestPOI and currentQuestPOI ~= "0" then
+            TaintWatch.Note("SetCVar questPOI", "0")
             SetCVar("questPOI", "0")
         end
         if WorldMapQuestShowObjectives then
@@ -1212,6 +1182,7 @@ function QuestieOptionsUtils.ExecuteTheme(info, value)
         Questie.db.profile.objectiveFilterDistance = optionsDefaults.profile.objectiveFilterDistance
     elseif value == "pfquest" then
         if currentQuestPOI and currentQuestPOI ~= "0" then
+            TaintWatch.Note("SetCVar questPOI", "0")
             SetCVar("questPOI", "0")
         end
         if WorldMapQuestShowObjectives then
@@ -1231,6 +1202,7 @@ function QuestieOptionsUtils.ExecuteTheme(info, value)
         Questie.db.profile.objectiveFilterDistance = 2
     elseif value == "blizzard" then
         if currentQuestPOI and currentQuestPOI ~= "1" then
+            TaintWatch.Note("SetCVar questPOI", "1")
             SetCVar("questPOI", "1")
         end
         if WorldMapQuestShowObjectives then

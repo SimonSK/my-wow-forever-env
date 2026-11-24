@@ -41,6 +41,8 @@ local QuestieJourney = QuestieLoader:ImportModule("QuestieJourney")
 local HBDHooks = QuestieLoader:ImportModule("HBDHooks")
 ---@type GamepadMapHover
 local GamepadMapHover = QuestieLoader:ImportModule("GamepadMapHover")
+---@type TaintWatch
+local TaintWatch = QuestieLoader:ImportModule("TaintWatch")
 ---@type ChatFilter
 local ChatFilter = QuestieLoader:ImportModule("ChatFilter")
 ---@type QuestieShutUp
@@ -57,8 +59,8 @@ local DailyQuestComms = QuestieLoader:ImportModule("DailyQuestComms")
 local CommsVisibility = QuestieLoader:ImportModule("CommsVisibility")
 ---@type QuestieComms
 local QuestieComms = QuestieLoader:ImportModule("QuestieComms");
----@type QuestieOptions
-local QuestieOptions = QuestieLoader:ImportModule("QuestieOptions");
+---@type QuestieOptionsEngine
+local QuestieOptionsEngine = QuestieLoader:ImportModule("QuestieOptionsEngine")
 ---@type QuestieCoords
 local QuestieCoords = QuestieLoader:ImportModule("QuestieCoords");
 ---@type QuestieTooltips
@@ -320,7 +322,7 @@ QuestieInit.Stages[3] = function() -- run as a coroutine
     CommsEncoding.Init()
     CommsVisibility:Initialize()
     DailyQuestComms.Initialize()
-    if (not Questie.IsClassic) then
+    if (Expansions.Current ~= Expansions.Era) then
         -- There are no random daily quests on Era, HC or SoD so we skip this
         DailyQuestComms.RequestUnavailableDailyQuests(true)
     end
@@ -434,13 +436,14 @@ function QuestieInit.OnAddonLoaded()
         HBDHooks:Init()
         if Questie.IsForever then
             GamepadMapHover.Initialize()
+            TaintWatch.Initialize()
         end
         QuestieShutUp:ToggleFilters(Questie.db.profile.questieShutUp)
         QuestieCoords:Initialize()
         QuestieSlash.RegisterSlashCommands()
 
         IsleOfQuelDanas.Initialize() -- This has to happen before option init
-        QuestieOptions.Initialize()
+        QuestieOptionsEngine:Initialize()
     end, 0, "Error during AddonLoaded initialization!", nil, function(err)
         _StopStartup("startup.addon-loaded", err, "Reload the UI. If the problem persists, report this error.")
     end)
