@@ -32,7 +32,6 @@ local cachedMasteryDrLoss = 0
 local cachedVersDrColor = ""
 local cachedVersDmgDrLoss = 0
 local cachedVersMitDrLoss = 0
-local cachedVersDmg = 0
 local cachedVersMitigate = 0
 local cachedVersAura = false
 
@@ -307,11 +306,6 @@ function Ns.FunctionList.Versatility(HUD, data, options, ...)
 
 	if not isSecret then
 		dmg = vb29 + vrb29
-		-- cachedVersAura = C_UnitAuras.GetPlayerAuraBySpellID(389501) ~= nil
-		-- if cachedVersAura then
-		-- 	cachedVersAura = 3
-		-- end
-		--cachedVersDmg = dmg
 	else
 		 --fallback to raw value when cache was never populated
 		dmg = vrb29
@@ -380,9 +374,14 @@ function Ns.FunctionList.Versatility(HUD, data, options, ...)
 
 		if drColor ~= "" and capColor == "" then capColor = drColor; endColor = "|r" end
 
-		if Ns.Band(EB, Damage) then returnText = capColor .. (decimals):format(dmg) .. versProc .. endColor .. rating; statusbar = dmg end
+		local combatExtra = ""
+		if options.Combat_Mode and isSecret then
+			combatExtra = " +" .. (decimals):format(vb29)
+		end
+
+		if Ns.Band(EB, Damage) then returnText = capColor .. (decimals):format(dmg) .. versProc .. endColor .. combatExtra .. rating; statusbar = dmg end
 		if Ns.Band(EB, DamageTaken) then returnText = capColor .. (decimals):format(mitigate) .. mitProc .. endColor .. rating; statusbar = mitigate end
-		if Ns.Band(EB, Both) then returnText = capColor .. (decimals):format(dmg) .. versProc .. endColor .. "/" .. (decimals):format(mitigate) .. mitProc .. rating; statusbar = dmg end
+		if Ns.Band(EB, Both) then returnText = capColor .. (decimals):format(dmg) .. versProc .. endColor .. combatExtra .. "/" .. (decimals):format(mitigate) .. mitProc .. rating; statusbar = dmg end
 
 		if options.DR_Display and dmgDRLoss > 0 then
 			local lossVal

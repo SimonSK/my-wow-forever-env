@@ -414,6 +414,10 @@ L["Auto_SwitchTooltip"] = Ns.Colors.Green .. "Combat mode|r\n" .. "Auto switches
 L["Combat_Mode"] = "Live mode"
 L["Combat_ModeTip"] = ""
 L["Combat_ModeTooltip"] = Ns.Colors.Green .. "Live mode|r\n" .. "Shows the unrestricted value per \nsecond allowing in-combat updates"
+L["CombatMode"] = "Combat mode"
+L["CombatModeTip"] = ""
+L["CombatModeTooltip"] = Ns.Colors.Green .. "Combat mode|r\n" .. "Shows additions combat-restricted \nbuffs as a +value next to the live stat"
+
 L["World_RealmTooltip"] = Ns.Colors.Green .. "Realm|r\n" .. "Average latency from your computer to \nthe Blizzard server in milliseconds\n\n" .. Ns.Colors.Green .. "World|r\n" .. "In-game latency from your computer to \nthe Game World"
 L["Main_Off_AutoTooltip"] = Ns.Colors.Green .. "Main-Hand|r\n" .. "Main-Hand weapon value \n\n" .. Ns.Colors.Green .. "Off-Hand|r\n" .. "Off-Hand weapon value\n\n" .. Ns.Colors.Green .. "Auto|r\n" .. "detects the Off-Hand value and \ndisplays the stat if applicable"
 L["Total_Equipped_BagsTooltip"] = Ns.Colors.Green .. "Total|r\n" .. "Combined repair cost of your equipped \ngear and the gear in your bags \n\n" .. Ns.Colors.Green .. "Equipped|r\n" .. "Repair of cost your equipped gear only \n\n" .. Ns.Colors.Green .. "Bags|r\n" .. "Repair cost of your gear in bags only"
@@ -453,7 +457,7 @@ L["StaminaDescription"] = ""
 
 L["HealthRegen"] = "HP5"
 L["HealthRegenMenu"] = "Health Regen"
-L["HealthRegenDescription"] = L["TipsAndInfo"] .. "Health regenerated per 5 seconds \nwhile out of combat \n\nHealth from Spirit is counted at \n75%, since that is the value shown \non the character sheet while standing"
+L["HealthRegenDescription"] = L["TipsAndInfo"] .. "Health regenerated per 5 seconds \nwhile out of combat"
 
 L["Intellect"] = "Intellect"
 L["IntellectMenu"] = "Intellect"
@@ -477,7 +481,7 @@ L["HitDescription"] = L["TipsAndInfo"] .. "Hit Chance displayed in percentage, r
 
 L["HasteMelee"] = "Haste"
 L["HasteMeleeMenu"] = "Haste"
-L["HasteMeleeDescription"] = L["TipsAndInfo"] .. "Melee Haste in percentage"
+L["HasteMeleeDescription"] = L["TipsAndInfo"] .. "Melee Haste in percentage, rating or both"
 
 L["weaponSpeed"] = "Atk Speed"
 L["weaponSpeedMenu"] = "Weapon Speed"
@@ -547,11 +551,11 @@ L["RangedCritDescription"] = L["SinLive"] .. "Critical hit chance against same l
 
 L["RangedHit"] = "rHit"
 L["RangedHitMenu"] = "Hit"
-L["RangedHitDescription"] = L["TipsAndInfo"] .. "Hit Chance with Ranged weapons"
+L["RangedHitDescription"] = L["TipsAndInfo"] .. "Hit Chance with Ranged weapons in percentage, rating or both"
 
 L["HasteRanged"] = "rHaste"
 L["HasteRangedMenu"] = "Haste"
-L["HasteRangedDescription"] = L["TipsAndInfo"] .. "Ranged Haste percentage"
+L["HasteRangedDescription"] = L["TipsAndInfo"] .. "Ranged Haste in percentage, rating or both"
 
 L["rangedSpeed"] = "rAtk Speed"
 L["rangedSpeedMenu"] = "Attack Speed"
@@ -599,11 +603,11 @@ L["SpellCritDescription"] = L["SinLive"] .. "Critical hit chance against same le
 
 L["SpellHit"] = "Spell Hit"
 L["SpellHitMenu"] = "Hit"
-L["SpellHitDescription"] = L["TipsAndInfo"] .. "Hit chance with spells"
+L["SpellHitDescription"] = L["TipsAndInfo"] .. "Hit chance with spells in percentage, rating or both"
 
 L["HasteCaster"] = "Spell Haste"
 L["HasteCasterMenu"] = "Haste"
-L["HasteCasterDescription"] = L["TipsAndInfo"] .. "Spell Haste in percentage"
+L["HasteCasterDescription"] = L["TipsAndInfo"] .. "Spell Haste in percentage, rating or both"
 
 L["SpellMiss"] = "Spell Miss"
 L["SpellMissMenu"] = "Miss Chance"
@@ -801,6 +805,9 @@ L["Editbox_MobRangeTooltip"] = "Set the detection range in yards\n\n0 = all visi
 -- Caps
 L["Cap_Percent"] = "Cap color"
 L["Cap_PercentTooltip"] = Ns.Colors.Green .. "Cap color|r\n" .. "Set the percentage of your \ndesired cap.\n\nThis is a visual indicator, as the\nactual cap is implemented\nand already calculated and \ncannot be changed \n\nYour stat will be colored green \nupon reaching the set value \n\nSet value to 0 to disable cap \ncolors"
+L["Cap_Rating"] = "Rating cap"
+L["Cap_RatingTooltip"] = Ns.Colors.Green .. "Rating cap|r\n" .. "Set the rating of your soft or \nhard cap. It can also be used \nto set a diminishing return cap \nor any other personal threshold \n\nYour stat will be colored green \nupon reaching the set value \n\nSet value to 0 to disable cap \ncolors"
+L["Percent_RatingTooltip"] = Ns.Colors.Green .. "Percentage|r\n" .. "Displays the stat in percentage \n\n" .. Ns.Colors.Green .. "Rating|r\n" .. "Displays the rating value"
 
 -- Decimals
 L["Decimals_Default"] = "Number Break Place"

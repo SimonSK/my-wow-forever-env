@@ -1,4 +1,4 @@
----@diagnostic disable: unbalanced-assignments
+
 local AddName, Ns = ...
 local L = Ns.L
 local issecretvalue = Ns.issecretvalue
@@ -7,16 +7,9 @@ local Safe = Ns.Safe
 ------------------------------
 --		Options Equates		--
 ------------------------------
-local Both, Enhanced, Base, SameLevel, BossLevel, Casting = 3, 1, 2, 1, 2, 2
+local Both, SameLevel, BossLevel, Casting, Rating = 3, 1, 2, 2, 2
+local Percentage = 1
 
-local function AnySecret(...)
-	for i = 1, select("#", ...) do
-		if issecretvalue((select(i, ...))) then return true end
-	end
-	return false
-end
-
-local cachedSpellCrit = 0
 local cachedSpellCritBoss = 0
 
 ------------------------------
@@ -42,45 +35,17 @@ function Ns.SpellUpdate()
 		Ns.spirit = spirit
 	end
 
-	-- Spell Power
-	local healSpell = GetSpellBonusHealing()
-	local holySpell = GetSpellBonusDamage(2)
-	local natureSpell = GetSpellBonusDamage(4)
-	local shadowSpell = GetSpellBonusDamage(6)
-	local fireSpell = GetSpellBonusDamage(3)
-	local frostSpell = GetSpellBonusDamage(5)
-	local arcaneSpell = GetSpellBonusDamage(7)
 	local hitSpellRating = GetCombatRatingBonus(8)
 	local hitSpellGear = GetSpellHitModifier()
 
-	-- Forever: these values are secret in restricted content; keep the last readable totals (cache)
-	if AnySecret(healSpell, holySpell, natureSpell, shadowSpell, fireSpell, frostSpell, arcaneSpell, hitSpellRating, hitSpellGear) then
-		return
-	end
-
-	healSpell = healSpell or 0
-	holySpell = holySpell or 0
-	natureSpell = natureSpell or 0
-	shadowSpell = shadowSpell or 0
-	fireSpell = fireSpell or 0
-	frostSpell = frostSpell or 0
-	arcaneSpell = arcaneSpell or 0
-
-	Ns.healSpell = healSpell + (healSpell * Ns.spiritualHealing) + (healSpell * Ns.purification)
-	Ns.holySpell = (holySpell + (holySpell * Ns.dmfbuff) + (holySpell * Ns.silithyst) + (holySpell * Ns.sancAura) + (holySpell * Ns.vengeance))
-	Ns.natureSpell = (natureSpell + (natureSpell * Ns.dmfbuff) + (natureSpell * Ns.silithyst))
-	Ns.shadowSpell = (shadowSpell + (shadowSpell * Ns.shadowMastery) + (shadowSpell * Ns.DarkNessTalent) + (shadowSpell * Ns.dsSuc) + (shadowSpell * Ns.dmfbuff) + (shadowSpell * Ns.silithyst) + (shadowSpell * Ns.shadowFormDmg))
-	Ns.fireSpell = (fireSpell + (fireSpell * Ns.firepowerMod) + (fireSpell * Ns.aiMod) + (fireSpell * Ns.emberstorm) + (fireSpell * Ns.dsImp) + (fireSpell * Ns.dmfbuff) + (fireSpell * Ns.silithyst) + (fireSpell * Ns.arcanePower))
-	Ns.frostSpell = (frostSpell + (frostSpell * Ns.pierceMod) + (frostSpell * Ns.aiMod) + (frostSpell * Ns.dmfbuff) + (frostSpell * Ns.silithyst) + (frostSpell * Ns.arcanePower))
-	Ns.arcaneSpell = (arcaneSpell + (arcaneSpell * Ns.aiMod) + (arcaneSpell * Ns.dmfbuff) + (arcaneSpell * Ns.silithyst) + (arcaneSpell * Ns.arcanePower))
-
-	-- Hit
-	if hitSpellRating == nil or hitSpellGear == nil then
-		Ns.hitSpellChance = 0
-		Ns.hitSpellGear = 0
-	else
-		Ns.hitSpellChance = hitSpellRating
-		Ns.hitSpellGear = hitSpellGear
+	if not issecretvalue(hitSpellRating) and not issecretvalue(hitSpellGear) then
+		if hitSpellRating == nil or hitSpellGear == nil then
+			Ns.hitSpellChance = 0
+			Ns.hitSpellGear = 0
+		else
+			Ns.hitSpellChance = hitSpellRating
+			Ns.hitSpellGear = hitSpellGear
+		end
 	end
 
 end
@@ -90,21 +55,15 @@ end
 function Ns.FunctionList.SpellCrit(HUD, data, options, ...)
 
 	local EB = options.Level_Same_Boss
-	local critSpellChance = 0
-	local spellCritTable = {
-		GetSpellCritChance(2), -- holy
-		GetSpellCritChance(3), -- fire
-		GetSpellCritChance(4), -- nature
-		GetSpellCritChance(5), -- frost
-		GetSpellCritChance(6), -- shadow
-		GetSpellCritChance(7), -- arcane
-	}
+	local spellCrit = GetSpellCritChance()
 	local levelDifference = 0
 	local critAura = 1.8
 	local capColor = ""
 	local statusbar = 0
 	local returnText
 	local decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
+	local combatSecret = false
+	local bossCrit = 0
 
 	levelDifference = Ns.targetLevel - Ns.playerLevel
 	if levelDifference <= 0 then
@@ -114,31 +73,37 @@ function Ns.FunctionList.SpellCrit(HUD, data, options, ...)
 		critAura = 1.8
 	end
 
-	-- Forever: school crit values are secret in restricted content; keep the last readable result (cache)
-	if AnySecret(unpack(spellCritTable)) then
-		critSpellChance = cachedSpellCrit
-		Ns.critSpellBoss = cachedSpellCritBoss
+	local suppression = levelDifference + critAura
+
+	if not issecretvalue(spellCrit) then
+		bossCrit = spellCrit - suppression
+		cachedSpellCritBoss = bossCrit
 	else
-		table.sort(spellCritTable)
-		critSpellChance = spellCritTable[#spellCritTable]
-		critSpellChance = critSpellChance + Ns.combustionCount + Ns.arcaneMod + Ns.spellCritMod
-		cachedSpellCrit = critSpellChance
-		cachedSpellCritBoss = critSpellChance - levelDifference - critAura
-		Ns.critSpellBoss = cachedSpellCritBoss
+		combatSecret = true
+		if options.CombatMode then
+			bossCrit = spellCrit
+		else
+			bossCrit = cachedSpellCritBoss
+		end
 	end
 
 	local cap = options.Cap_Percent or 100
-	if cap > 0 and Safe(critSpellChance) >= cap then capColor = Ns.greenText end
+	if cap > 0 and Safe(spellCrit) >= cap then capColor = Ns.greenText end
 	if cap == 0 then capColor = "" end
 
+	local suppressionText = ""
+	if options.CombatMode and combatSecret then
+		suppressionText = " +" .. (decimals):format(suppression)
+	end
+
 	if Ns.Band(EB, SameLevel) then
-		returnText = capColor .. (decimals):format(critSpellChance); statusbar = critSpellChance
+		returnText = capColor .. (decimals):format(spellCrit); statusbar = spellCrit
 	end
 	if Ns.Band(EB, BossLevel) then
-		returnText = capColor .. (decimals):format(Ns.critSpellBoss); statusbar = Ns.critSpellBoss
+		returnText = capColor .. (decimals):format(bossCrit) .. suppressionText; statusbar = bossCrit
 	end
 	if Ns.Band(EB, Both) then
-		returnText = capColor .. (decimals):format(critSpellChance) .. "|r (" .. (decimals):format(Ns.critSpellBoss) .. ")"; statusbar = critSpellChance
+		returnText = capColor .. (decimals):format(spellCrit) .. "|r (" .. (decimals):format(bossCrit) .. ")"; statusbar = spellCrit
 	end
 
 	HUD:UpdateText(data, returnText)
@@ -147,29 +112,59 @@ end
 ------------------------------------------------
 
 -- Hit
+local cachedSpellHitChance = 0   -- frozen sum shown when CombatMode is off
+
 function Ns.FunctionList.SpellHit(HUD, data, options, ...)
 
-	local EB = options.Enhanced_Base
-	local capColor = ""
-	local statusbar = 0
-	local returnText
-	local decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
+	local EB = options.Percent_Rating or 1
+	local hitMod = GetSpellHitModifier()
+	local hitBonus = GetCombatRatingBonus(CR_HIT_SPELL)
+	local hitRating = GetCombatRating(CR_HIT_SPELL)
+	local returnText, decimals, statusbar
+	local capColor, endColor, rateColor = "", "", ""
+	local combatSecret = false
+	local totalHit = 0
 
-	local baseHit = (Ns.hitSpellChance or 0) + (Ns.hitSpellGear or 0)
-	local enhancedHit = baseHit + (Ns.hitMod or 0)
-
-	local cap = options.Cap_Percent or 16
-	if cap > 0 and Safe(enhancedHit) >= cap then capColor = Ns.greenText end
-	if cap == 0 then capColor = "" end
-
-	if Ns.Band(EB, Enhanced) then
-		returnText = capColor .. (decimals):format(enhancedHit) .. Ns.labelHit; statusbar = enhancedHit
+	if not issecretvalue(hitMod) and not issecretvalue(hitBonus) then
+		totalHit = hitMod + hitBonus
+		cachedSpellHitChance = totalHit
+	else
+		combatSecret = true
+		if options.CombatMode then
+			totalHit = hitMod
+		else
+			totalHit = cachedSpellHitChance
+		end
 	end
-	if Ns.Band(EB, Base) then
-		returnText = capColor .. (decimals):format(baseHit); statusbar = baseHit
+
+	local rating = hitRating
+
+	decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
+
+	if Safe(totalHit) >= options.Cap_Percent then capColor = Ns.greenText end
+	if capColor ~= "" then endColor = "|r" end
+
+	if Safe(rating) >= options.Cap_Rating then rateColor = Ns.greenText end
+
+	if options.Cap_Percent == 0 then capColor = "" end
+	if options.Cap_Rating == 0 then rateColor = "" end
+
+	local bonusText = ""
+	if options.CombatMode and combatSecret then
+		bonusText = endColor .. " +" .. (decimals):format(hitBonus)
+	end
+
+	if Ns.Band(EB, Percentage) then
+		returnText = capColor .. (decimals):format(totalHit) .. bonusText
+		statusbar = totalHit
+	end
+	if Ns.Band(EB, Rating) then
+		returnText = rateColor .. rating
+		statusbar = rating
 	end
 	if Ns.Band(EB, Both) then
-		returnText = capColor .. (decimals):format(enhancedHit) .. Ns.labelHit .. "|r (" .. (decimals):format(baseHit) .. ")"; statusbar = enhancedHit
+		returnText = capColor .. (decimals):format(totalHit) .. endColor .. " (" .. rateColor .. rating .. endColor .. ")"
+		statusbar = totalHit
 	end
 
 	HUD:UpdateText(data, returnText)
@@ -188,7 +183,7 @@ function Ns.FunctionList.SpellMiss(HUD, data, options, ...)
 	local missSameLevel = 3
 	local missBossLevel = 16
 
-	local hitSpell = (Ns.hitSpellChance or 0) + (Ns.hitSpellGear or 0) + (Ns.hitMod or 0)
+	local hitSpell = (Ns.hitSpellChance) + (Ns.hitSpellGear) + (Ns.hitMod)
 
 	missSameLevel = (missSameLevel - hitSpell)
 	missBossLevel = (missBossLevel - hitSpell)
@@ -211,8 +206,8 @@ function Ns.FunctionList.SpellMiss(HUD, data, options, ...)
 		baseStat = missBossLevel
 	end
 
-	local missValue = enhancedStat or baseStat or 0
-	local cap = options.Cap_Percent or 0
+	local missValue = enhancedStat or baseStat
+	local cap = options.Cap_Percent
 	if cap > 0 and missValue <= cap then capColor = Ns.greenText end
 	if cap == 0 and missValue <= 0 then capColor = Ns.greenText end
 
@@ -233,22 +228,10 @@ end
 -- Healing
 function Ns.FunctionList.Healing(HUD, data, options, ...)
 
-	local EB, enhancedStat, baseStat = options.Enhanced_Base
-	local healBase = GetSpellBonusHealing()
-
-	if Ns.Band(EB, Enhanced) then
-		enhancedStat = Ns.healSpell
-	end
-	if  Ns.Band(EB, Base) then
-		baseStat = healBase
-	end
-
+	local power = GetSpellBonusHealing()
 	local returnText
-	if Ns.Band(EB, Both) then
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat) .. " (" .. Ns.DecimalNumber(options.Decimals_Default, baseStat) .. ")"
-	else
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat)
-	end
+
+	returnText = Ns.DecimalNumber(options.Decimals_Default, power)
 
 	HUD:UpdateText(data, returnText)
 end
@@ -257,22 +240,10 @@ end
 -- Holy
 function Ns.FunctionList.Holy(HUD, data, options, ...)
 
-	local EB, enhancedStat, baseStat = options.Enhanced_Base
-	local holyBase = GetSpellBonusDamage(2)
-
-	if Ns.Band(EB, Enhanced) then
-		enhancedStat = Ns.holySpell
-	end
-	if  Ns.Band(EB, Base) then
-		baseStat = holyBase
-	end
-
+	local power = GetSpellBonusDamage(2)
 	local returnText
-	if Ns.Band(EB, Both) then
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat) .. " (" .. Ns.DecimalNumber(options.Decimals_Default, baseStat) .. ")"
-	else
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat)
-	end
+
+	returnText = Ns.DecimalNumber(options.Decimals_Default, power)
 
 	HUD:UpdateText(data, returnText)
 end
@@ -281,22 +252,10 @@ end
 -- Nature
 function Ns.FunctionList.Nature(HUD, data, options, ...)
 
-	local EB, enhancedStat, baseStat = options.Enhanced_Base
-	local natureBase = GetSpellBonusDamage(4)
-
-	if Ns.Band(EB, Enhanced) then
-		enhancedStat = Ns.natureSpell
-	end
-	if  Ns.Band(EB, Base) then
-		baseStat = natureBase
-	end
-
+	local power = GetSpellBonusDamage(4)
 	local returnText
-	if Ns.Band(EB, Both) then
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat) .. " (" .. Ns.DecimalNumber(options.Decimals_Default, baseStat) .. ")"
-	else
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat)
-	end
+
+	returnText = Ns.DecimalNumber(options.Decimals_Default, power)
 
 	HUD:UpdateText(data, returnText)
 end
@@ -305,22 +264,10 @@ end
 -- Shadow
 function Ns.FunctionList.Shadow(HUD, data, options, ...)
 
-	local EB, enhancedStat, baseStat = options.Enhanced_Base
-	local shadowBase = GetSpellBonusDamage(6)
-
-	if Ns.Band(EB, Enhanced) then
-		enhancedStat = Ns.shadowSpell
-	end
-	if  Ns.Band(EB, Base) then
-		baseStat = shadowBase
-	end
-
+	local power = GetSpellBonusDamage(6)
 	local returnText
-	if Ns.Band(EB, Both) then
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat) .. " (" .. Ns.DecimalNumber(options.Decimals_Default, baseStat) .. ")"
-	else
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat)
-	end
+
+	returnText = Ns.DecimalNumber(options.Decimals_Default, power)
 
 	HUD:UpdateText(data, returnText)
 end
@@ -329,22 +276,10 @@ end
 -- Fire
 function Ns.FunctionList.Fire(HUD, data, options, ...)
 
-	local EB, enhancedStat, baseStat = options.Enhanced_Base
-	local fireBase = GetSpellBonusDamage(3)
-
-	if Ns.Band(EB, Enhanced) then
-		enhancedStat = Ns.fireSpell
-	end
-	if  Ns.Band(EB, Base) then
-		baseStat = fireBase
-	end
-
+	local power = GetSpellBonusDamage(3)
 	local returnText
-	if Ns.Band(EB, Both) then
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat) .. " (" .. Ns.DecimalNumber(options.Decimals_Default, baseStat) .. ")"
-	else
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat)
-	end
+
+	returnText = Ns.DecimalNumber(options.Decimals_Default, power)
 
 	HUD:UpdateText(data, returnText)
 end
@@ -353,22 +288,10 @@ end
 -- Frost
 function Ns.FunctionList.Frost(HUD, data, options, ...)
 
-	local EB, enhancedStat, baseStat = options.Enhanced_Base
-	local frostBase = GetSpellBonusDamage(5)
-
-	if Ns.Band(EB, Enhanced) then
-		enhancedStat = Ns.frostSpell
-	end
-	if  Ns.Band(EB, Base) then
-		baseStat = frostBase
-	end
-
+	local power = GetSpellBonusDamage(5)
 	local returnText
-	if Ns.Band(EB, Both) then
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat) .. " (" .. Ns.DecimalNumber(options.Decimals_Default, baseStat) .. ")"
-	else
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat)
-	end
+
+	returnText = Ns.DecimalNumber(options.Decimals_Default, power)
 
 	HUD:UpdateText(data, returnText)
 end
@@ -377,22 +300,10 @@ end
 -- Arcane
 function Ns.FunctionList.Arcane(HUD, data, options, ...)
 
-	local EB, enhancedStat, baseStat = options.Enhanced_Base
-	local arcaneBase = GetSpellBonusDamage(7)
-
-	if Ns.Band(EB, Enhanced) then
-		enhancedStat = Ns.arcaneSpell
-	end
-	if  Ns.Band(EB, Base) then
-		baseStat = arcaneBase
-	end
-
+	local power = GetSpellBonusDamage(7)
 	local returnText
-	if Ns.Band(EB, Both) then
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat) .. " (" .. Ns.DecimalNumber(options.Decimals_Default, baseStat) .. ")"
-	else
-		returnText = Ns.DecimalNumber(options.Decimals_Default, enhancedStat and enhancedStat or baseStat)
-	end
+
+	returnText = Ns.DecimalNumber(options.Decimals_Default, power)
 
 	HUD:UpdateText(data, returnText)
 end
@@ -452,35 +363,35 @@ end
 -- Haste
 function Ns.FunctionList.HasteCaster(HUD, data, options, ...)
 
-	local EB = options.Enhanced_Base or 1
-	local capColor = ""
-	local haste = Ns.castHaste
-	local statusbar = haste
-	local decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
+	local EB = options.Percent_Rating or 1
+	local haste = UnitSpellHaste("player")
+	local rating = GetCombatRating(CR_HASTE_SPELL)
+	local returnText, decimals, statusbar
+	local capColor, endColor, rateColor = "", "", ""
 
-	local cap = options.Cap_Percent or 100
-	if cap > 0 and Safe(haste) >= cap then capColor = Ns.greenText end
-	if cap == 0 then capColor = "" end
+	decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
 
-	local returnText
+	if Safe(haste) >= options.Cap_Percent then capColor = Ns.greenText end
+	if capColor ~= "" then endColor = "|r" end
 
-	if Ns.Band(EB, Both) then
-		returnText = capColor .. (decimals):format(haste) .. "|r (" .. (decimals):format(haste) .. ")"
-	elseif Ns.Band(EB, Base) then
-		returnText = capColor .. (decimals):format(haste)
-	else
-		returnText = capColor .. (decimals):format(haste)
-	end
+	if Safe(rating) >= options.Cap_Rating then rateColor = Ns.greenText end
+
+	if options.Cap_Percent == 0 then capColor = "" end
+	if options.Cap_Rating == 0 then rateColor = "" end
+
+	if not issecretvalue(rating) then rating = BreakUpLargeNumbers(rating) end
+
+	if Ns.Band(EB, Percentage) then returnText = capColor .. (decimals):format(haste); statusbar = haste end
+	if Ns.Band(EB, Rating) then returnText = rateColor .. rating; statusbar = rating end
+	if Ns.Band(EB, Both) then returnText = capColor .. (decimals):format(haste) .. endColor .. "/" .. rateColor .. rating .. endColor; statusbar = haste end
 
 	HUD:UpdateText(data, returnText)
 	HUD:UpdateBar(data, statusbar)
 end
 ------------------------------------------------
 
---------------------
--- Mana regeneration
---------------------
 
+-- Mana regeneration
 local cachedRegenBase, cachedRegenCasting = 0, 0
 
 local function CacheManaRegen(base, casting)
@@ -509,6 +420,7 @@ local function FormatManaRegen(options, scale)
 	end
 	return (decimals):format(base)
 end
+------------------------------------------------
 
 -- MP2
 function Ns.FunctionList.ManaRegen(HUD, data, options, ...)

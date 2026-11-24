@@ -603,7 +603,7 @@ function Ns:InitStat(self, profile, statdata)
 	if self.Bar and statOpts and (statOpts.StaticBar or statOpts.ShowBar) then
 		local barHeight = statOpts.BarHeight or 0
 		self._barHeight = barHeight
-		self._textHeight = self:GetHeight() -- text line height, before any bar growth
+		self._textHeight = curH -- text line height, before any bar growth (curH is the guarded, plain height we just set)
 		if barHeight > self._textHeight then
 			self:SetHeight((self._textHeight + barHeight) / 2) -- reserve the bar's lower half
 		end

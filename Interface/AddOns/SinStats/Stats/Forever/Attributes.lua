@@ -65,9 +65,7 @@ function Ns.FunctionList.Stamina(HUD, data, options, ...)
 	HUD:UpdateText(data, debuffColor .. Ns.DecimalNumber(options.Decimals_Default, stat))
 end
 
--- Health regeneration per 5 seconds, out of combat
--- GetHealthRegen returns health per second; the paper doll prints it per 5 seconds
--- DecimalFormat maps the slider directly: 0 = no decimals, 1 = one decimal, ...
+-- Health regen
 function Ns.FunctionList.HealthRegen(HUD, data, options, ...)
 
 	local regen = Safe(GetHealthRegen()) * 5

@@ -11,7 +11,7 @@ local Season, Expansion, Spark, Splinter, Gigantic, Plump, Current, Earned, Empt
 local Spec, Hero, Mythical, Heroic = 1, 2, 1, 2
 
 Ns.ConfigWidth = 975--990
-Ns.ConfigHeight = 635--540
+Ns.ConfigHeight = 600--540
 -- if GetLocale() == "frFR" or GetLocale() == "zhCN" or GetLocale() == "zhTW" or GetLocale() == "koKR" then
 -- 	Ns.ConfigWidth = 960
 -- end
@@ -36,7 +36,7 @@ Ns.DefaultOrder = { -- grp = SpellClass, options order = display order, ["on"]/[
 { stat="CritChance", onupdate=true, events={}, spell=1217605, spellclass="Enhancement", widget={ type="CheckBox" }, options={ WithBar=true, Percent_Rating=true, Decimals_Two=true, Cap_Percent=true, Cap_Rating=true, DR_Display=true, DR_Gradient=true }, subgroup=true, },
 { stat="Haste", onupdate=true, events={}, spell=342245, spellclass="Enhancement", widget={ type="CheckBox" }, options={ WithBar=true, Percent_Rating=true, Decimals_Two=true, Cap_Percent=true, Cap_Rating=true, DR_Display=true, DR_Gradient=true }, subgroup=true },
 { stat="Mastery", onupdate=true, events={}, spell=207684, spellclass="Enhancement", widget={ type="CheckBox" }, options={ WithBar=true, Percent_Rating=true, Decimals_Two=true, Cap_Percent=true, Cap_Rating=true, DR_Display=true, DR_Gradient=true }, subgroup=true },
-{ stat="Versatility", onupdate=true, events={}, spell=202137, spellclass="Enhancement", widget={ type="CheckBox" }, options={ WithBar=true, Damage_Taken=true, Display_Rating=true, Rating_Only=true, Decimals_Two=true, Cap_Percent=true, DR_Display=true, DR_Gradient=true, }, subgroup=true },
+{ stat="Versatility", onupdate=true, events={}, spell=202137, spellclass="Enhancement", widget={ type="CheckBox" }, options={ WithBar=true, Damage_Taken=true, Display_Rating=true, Rating_Only=true, Decimals_Two=true, Cap_Percent=true, DR_Display=true, DR_Gradient=true, Combat_Mode=true }, subgroup=true },
 { stat="Avoidance", onupdate=true, events={}, spell=202138, spellclass="Enhancement", widget={ type="CheckBox" }, options={ WithBar=true, Percent_Rating=true, Decimals_Two=true, Cap_Percent=true, Cap_Rating=true }, subgroup=true },
 { stat="Leech", onupdate=true, events={}, spell=204021, spellclass="Enhancement", widget={ type="CheckBox" }, options={ WithBar=true, Percent_Rating=true, Decimals_Two=true, Cap_Percent=true, Cap_Rating=true }, subgroup=true },
 { stat="Speed", onupdate=true, events={}, updatespeed=1, spell=109215, spellclass="Enhancement", widget={ type="CheckBox" }, options={ WithBar="Speed", Speed_Static=true, Speed_Color=true, Speed_Mode=true, Speed_Unit=true, Speed_Secret=true, Decimals_Default=true }, subgroup=true },
@@ -214,6 +214,7 @@ Ns.Options = {
 	{ stat="Damage_Taken", group=2, spellclass="Damage_Taken", widget={ type="Radio", }, tooltip=true,  default=1, labels={ "Damage", "DamageTaken", "Both"}, newline=true, },
 	{ stat="Melee_Ranged", group=2, spellclass="Melee_Ranged", widget={ type="Radio", }, tooltip=true,  default=1, labels={ "Melee", "Ranged", "Both"},newline=true, },
 	{ stat="Display_Average", group=2, spellclass="Display_Average", widget={ type="CheckBox", }, tooltip=true,  default=false, labels={ "Display_Average"}, newline=true, },
+	{ stat="Combat_Mode", group=2, spellclass="Combat_Mode", widget={ type="CheckBox", }, tooltip=true, default=false, labels={ "Combat_Mode"}, newline=true, },
 	{ stat="World_Realm", group=2, spellclass="World_Realm", widget={ type="Radio", }, tooltip=true,  default=1, labels={ "World", "Realm", "Both"}, newline=true, },
 	{ stat="Player_Party", group=2, spellclass="Player_Party", widget={ type="Radio", }, tooltip=true, default=1, labels={ "Player", "Party", "Both"}, newline=true, },
 	{ stat="Equipped_Overall", group=2, spellclass="Equipped_Overall", widget={ type="Radio", }, tooltip=true,  default=1, labels={ "Equipped", "Max", "Both"}, newline=true, },

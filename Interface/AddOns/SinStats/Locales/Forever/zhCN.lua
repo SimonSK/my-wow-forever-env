@@ -369,6 +369,13 @@ L["Cap_PercentTooltip"] = Ns.Colors.Green .. "上限颜色|r\n" ..
 "当你的属性达到设定值时 \n" ..
 "会显示为绿色。 \n\n" ..
 "将数值设为 0 可禁用上限颜色"
+L["Cap_Rating"] = "评分上限"
+L["Cap_RatingTooltip"] = Ns.Colors.Green .. "评分上限|r\n" ..
+"设置你软/硬上限的评分。\n也可用于设置递减回报上限 \n或其他个人阈值。 \n\n" ..
+"当你的属性达到设定值时 \n" ..
+"会显示为绿色。 \n\n" ..
+"将数值设为 0 可禁用上限颜色"
+L["Percent_RatingTooltip"] = Ns.Colors.Green .. "百分比|r\n" .. "以百分比显示属性\n\n" .. Ns.Colors.Green .. "数值|r\n" .. "显示数值"
 
 -- Decimals
 L["Decimals_Default"] = "千位分隔"
@@ -427,6 +434,10 @@ L["Combat_ModeTooltip"] = Ns.Colors.Green .. "实时模式|r\n" ..
 "以每秒为单位显示数值, \n并遵循上方的 正常 - 施法中 设置 \n\n" ..
 "它永不冻结: 即使游戏隐藏玩家属性, \n数值仍会持续更新 \n\n" ..
 "由于是每秒数值, 数字会远小于 \n属性本身: 每5秒 30 点即每秒 6 点"
+
+L["CombatMode"] = "战斗模式"
+L["CombatModeTip"] = ""
+L["CombatModeTooltip"] = Ns.Colors.Green .. "战斗模式|r\n" .. "将仅在战斗中生效的额外增益效果\n以 +数值 的形式显示在当前属性旁边"
 
 L["World_RealmTooltip"] = Ns.Colors.Green .. "服务器|r\n" ..
 "从你的电脑到暴雪服务器的平均延迟(毫秒）\n\n" ..

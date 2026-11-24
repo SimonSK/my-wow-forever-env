@@ -7,7 +7,8 @@ local Safe = Ns.Safe
 ------------------------------
 --		Options Equates		--
 ------------------------------
-local Both, SameLevel, BossLevel, Max, Average, Enhanced, Base = 3, 1, 2, 1, 2, 1, 2
+local Both, SameLevel, BossLevel, Max, Average, Enhanced, Base, Rating = 3, 1, 2, 1, 2, 1, 2, 2
+local Percentage = 1
 
 ------------------------------
 --		Weapon Skill		--
@@ -198,7 +199,6 @@ end
 ------------------------------------------------
 
 -- DPS
--- Forever: UnitRangedDamage turns secret in restricted content; DPS needs arithmetic, so cache it
 local cachedRangedDPS, cachedRangedAvgDPS = 0, 0
 
 function Ns.FunctionList.rDPS(HUD, data, options, ...)
@@ -287,27 +287,50 @@ end
 ------------------------------------------------
 
 -- Haste
+local cachedRangedHaste = 0   -- frozen sum shown when CombatMode is off
+
 function Ns.FunctionList.HasteRanged(HUD, data, options, ...)
 
-	local EB = options.Enhanced_Base or 1
-	local capColor = ""
-	local haste = Ns.totalRangedHaste
-	local statusbar = haste
-	local decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
+	local EB = options.Percent_Rating or 1
+	local haste, bonus = GetRangedHaste()
+	local rating = GetCombatRating(CR_HASTE_RANGED)
+	local returnText, decimals, statusbar
+	local capColor, endColor, rateColor = "", "", ""
+	local combatSecret = false
+	local totalHaste = 0
 
-	local cap = options.Cap_Percent or 100
-	if cap > 0 and Safe(haste) >= cap then capColor = Ns.greenText end
-	if cap == 0 then capColor = "" end
-
-	local returnText
-
-	if Ns.Band(EB, Both) then
-		returnText = capColor .. (decimals):format(haste) .. "|r (" .. (decimals):format(haste) .. ")"
-	elseif Ns.Band(EB, Base) then
-		returnText = capColor .. (decimals):format(haste)
+	if not issecretvalue(haste) and not issecretvalue(bonus) then
+		totalHaste = (haste) + (bonus)
+		cachedRangedHaste = totalHaste
 	else
-		returnText = capColor .. (decimals):format(haste)
+		combatSecret = true
+		if options.CombatMode then
+			totalHaste = haste
+		else
+			totalHaste = cachedRangedHaste
+		end
 	end
+
+	decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
+
+	if Safe(totalHaste) >= options.Cap_Percent then capColor = Ns.greenText end
+	if capColor ~= "" then endColor = "|r" end
+
+	if Safe(rating) >= options.Cap_Rating then rateColor = Ns.greenText end
+
+	if options.Cap_Percent == 0 then capColor = "" end
+	if options.Cap_Rating == 0 then rateColor = "" end
+
+	if not issecretvalue(rating) then rating = BreakUpLargeNumbers(rating) end
+
+	local bonusText = ""
+	if options.CombatMode and combatSecret then
+		bonusText = endColor .. " +" .. (decimals):format(bonus)
+	end
+
+	if Ns.Band(EB, Percentage) then returnText = capColor .. (decimals):format(totalHaste) .. bonusText; statusbar = totalHaste end
+	if Ns.Band(EB, Rating) then returnText = rateColor .. rating; statusbar = rating end
+	if Ns.Band(EB, Both) then returnText = capColor .. (decimals):format(totalHaste) .. endColor .. "/" .. rateColor .. rating .. endColor; statusbar = totalHaste end
 
 	HUD:UpdateText(data, returnText)
 	HUD:UpdateBar(data, statusbar)
@@ -315,49 +338,59 @@ end
 ------------------------------------------------
 
 -- Hit
+local cachedRangedHitChance = 0   -- frozen sum shown when CombatMode is off
+
 function Ns.FunctionList.RangedHit(HUD, data, options, ...)
 
-	local EB = options.Enhanced_Base or 1
-	local hitRangedChance = 0
-	local capColor = ""
-	local statusbar = 0
-	local returnText
+	local EB = options.Percent_Rating or 1
+	local hitMod = GetRangedHitModifier()
+	local hitBonus = GetCombatRatingBonus(CR_HIT_RANGED)
+	local hitRating = GetCombatRating(CR_HIT_RANGED)
+	local returnText, decimals, statusbar
+	local capColor, endColor, rateColor = "", "", ""
+	local combatSecret = false
+	local totalHit = 0
 
-	if (Ns.classFilename == "HUNTER") then
-		local slotId = GetInventorySlotInfo("RangedSlot")
-		local link = GetInventoryItemLink("player", slotId)
-		if link then
-			hitRangedChance = GetHitModifier()
-			if hitRangedChance == nil then
-				hitRangedChance = 0
-			end
-			local itemId, enchantId = link:match("item:(%d+):(%d+)")
-			if enchantId then
-				enchantId = tonumber(enchantId)
-				if enchantId == 2523 and not issecretvalue(hitRangedChance) then
-					hitRangedChance = hitRangedChance + 3
-				end
-			end
-		end
+	if not issecretvalue(hitMod) and not issecretvalue(hitBonus) then
+		totalHit = hitMod + hitBonus
+		cachedRangedHitChance = totalHit
 	else
-		hitRangedChance = GetHitModifier()
-		if hitRangedChance == nil then hitRangedChance = 0 end
+		combatSecret = true
+		if options.CombatMode then
+			totalHit = hitMod
+		else
+			totalHit = cachedRangedHitChance
+		end
 	end
 
-	local cap = options.Cap_Percent or 9
-	if cap > 0 and Safe(hitRangedChance) >= cap then capColor = Ns.greenText end
-	if cap == 0 then capColor = "" end
+	local rating = hitRating
 
-	local baseHit = hitRangedChance
-	local enhancedHit = hitRangedChance
-	local decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
+	decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
 
+	if Safe(totalHit) >= options.Cap_Percent then capColor = Ns.greenText end
+	if capColor ~= "" then endColor = "|r" end
+
+	if Safe(rating) >= options.Cap_Rating then rateColor = Ns.greenText end
+
+	if options.Cap_Percent == 0 then capColor = "" end
+	if options.Cap_Rating == 0 then rateColor = "" end
+
+	local bonusText = ""
+	if options.CombatMode and combatSecret then
+		bonusText = endColor .. " +" .. (decimals):format(hitBonus)
+	end
+
+	if Ns.Band(EB, Percentage) then
+		returnText = capColor .. (decimals):format(totalHit) .. bonusText
+		statusbar = totalHit
+	end
+	if Ns.Band(EB, Rating) then
+		returnText = rateColor .. rating
+		statusbar = rating
+	end
 	if Ns.Band(EB, Both) then
-		returnText = capColor .. (decimals):format(enhancedHit) .. "|r (" .. (decimals):format(baseHit) .. ")"; statusbar = enhancedHit
-	elseif Ns.Band(EB, Base) then
-		returnText = capColor .. (decimals):format(baseHit); statusbar = baseHit
-	else
-		returnText = capColor .. (decimals):format(enhancedHit); statusbar = enhancedHit
+		returnText = capColor .. (decimals):format(totalHit) .. endColor .. " (" .. rateColor .. rating .. endColor .. ")"
+		statusbar = totalHit
 	end
 
 	HUD:UpdateText(data, returnText)
@@ -417,8 +450,8 @@ function Ns.FunctionList.RangedMiss(HUD, data, options, ...)
 		baseStat = rangedMissBoss
 	end
 
-	local missValue = enhancedStat or baseStat or 0
-	local cap = options.Cap_Percent or 0
+	local missValue = enhancedStat or baseStat
+	local cap = options.Cap_Percent
 	if cap > 0 and missValue <= cap then capColor = Ns.greenText end
 	if cap == 0 and missValue <= 0 then capColor = Ns.greenText end
 

@@ -7,6 +7,7 @@ local Safe = Ns.Safe
 --		Options Equates		--
 ------------------------------
 local Both, MainHand, OffHand, SameLevel, BossLevel, Auto, Enhanced, Base, Value, Rating = 3, 1, 2, 1, 2, 3, 1, 2, 1, 2
+local Percentage = 1
 
 ------------------------------
 --		Weapon Skills		--
@@ -69,7 +70,6 @@ local function FloorValue(value)
 	return math.floor(value)
 end
 
--- GetHitModifier is secret in restricted content; cache the last readable value so the miss arithmetic stays valid
 local cachedHitModifier = 0
 
 local function GetSafeHitModifier()
@@ -447,32 +447,59 @@ end
 ------------------------------------------------
 
 -- Hit
+local cachedHitChance = 0   -- frozen sum shown when CombatMode is off
+
 function Ns.FunctionList.Hit(HUD, data, options, ...)
 
-	local EB = options.Enhanced_Base or 1
-	local hitChance = GetHitModifier()
-	local capColor = ""
-	local statusbar = 0
+	local EB = options.Percent_Rating or 1
+	local hitMod = GetHitModifier()
+	local hitBonus = GetCombatRatingBonus(CR_HIT_MELEE)
+	local hitRating = GetCombatRating(CR_HIT_MELEE)
+	local returnText, decimals, statusbar
+	local capColor, endColor, rateColor = "", "", ""
+	local combatSecret = false
+	local totalHit = 0
 
-	if hitChance == nil then
-		hitChance = 0
+	if not issecretvalue(hitMod) and not issecretvalue(hitBonus) then
+		totalHit = hitMod + hitBonus
+		cachedHitChance = totalHit
+	else
+		combatSecret = true
+		if options.CombatMode then
+			totalHit = hitMod
+		else
+			totalHit = cachedHitChance
+		end
 	end
 
-	local cap = options.Cap_Percent or 9
-	if cap > 0 and Safe(hitChance) >= cap then capColor = Ns.greenText end
-	if cap == 0 then capColor = "" end
+	local rating = hitRating
 
-	local baseHit = hitChance
-	local enhancedHit = hitChance
-	local returnText
-	local decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
+	decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
 
+	if Safe(totalHit) >= options.Cap_Percent then capColor = Ns.greenText end
+	if capColor ~= "" then endColor = "|r" end
+
+	if Safe(rating) >= options.Cap_Rating then rateColor = Ns.greenText end
+
+	if options.Cap_Percent == 0 then capColor = "" end
+	if options.Cap_Rating == 0 then rateColor = "" end
+
+	local bonusText = ""
+	if options.CombatMode and combatSecret then
+		bonusText = endColor .. " +" .. (decimals):format(hitBonus)
+	end
+
+	if Ns.Band(EB, Percentage) then
+		returnText = capColor .. (decimals):format(totalHit) .. bonusText
+		statusbar = totalHit
+	end
+	if Ns.Band(EB, Rating) then
+		returnText = rateColor .. rating
+		statusbar = rating
+	end
 	if Ns.Band(EB, Both) then
-		returnText = capColor .. (decimals):format(enhancedHit) .. "|r (" .. (decimals):format(baseHit) .. ")"; statusbar = enhancedHit
-	elseif Ns.Band(EB, Base) then
-		returnText = capColor .. (decimals):format(baseHit); statusbar = baseHit
-	else
-		returnText = capColor .. (decimals):format(enhancedHit); statusbar = enhancedHit
+		returnText = capColor .. (decimals):format(totalHit) .. endColor .. " (" .. rateColor .. rating .. endColor .. ")"
+		statusbar = totalHit
 	end
 
 	HUD:UpdateText(data, returnText)
@@ -483,25 +510,27 @@ end
 -- Haste
 function Ns.FunctionList.HasteMelee(HUD, data, options, ...)
 
-	local EB = options.Enhanced_Base or 1
-	local capColor = ""
-	local haste = Ns.totalHaste
-	local statusbar = haste
-	local decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
+	local EB = options.Percent_Rating or 1
+	local haste = GetMeleeHaste()
+	local rating = GetCombatRating(CR_HASTE_MELEE)
+	local returnText, decimals, statusbar
+	local capColor, endColor, rateColor = "", "", ""
 
-	local cap = options.Cap_Percent or 100
-	if cap > 0 and Safe(haste) >= cap then capColor = Ns.greenText end
-	if cap == 0 then capColor = "" end
+	decimals = Ns.DecimalFormat(options.Decimals_Two, "%%")
 
-	local returnText
+	if Safe(haste) >= options.Cap_Percent then capColor = Ns.greenText end
+	if capColor ~= "" then endColor = "|r" end
 
-	if Ns.Band(EB, Both) then
-		returnText = capColor .. (decimals):format(haste) .. "|r (" .. (decimals):format(haste) .. ")"
-	elseif Ns.Band(EB, Base) then
-		returnText = capColor .. (decimals):format(haste)
-	else
-		returnText = capColor .. (decimals):format(haste)
-	end
+	if Safe(rating) >= options.Cap_Rating then rateColor = Ns.greenText end
+
+	if options.Cap_Percent == 0 then capColor = "" end
+	if options.Cap_Rating == 0 then rateColor = "" end
+
+	if not issecretvalue(rating) then rating = BreakUpLargeNumbers(rating) end
+
+	if Ns.Band(EB, Percentage) then returnText = capColor .. (decimals):format(haste); statusbar = haste end
+	if Ns.Band(EB, Rating) then returnText = rateColor .. rating; statusbar = rating end
+	if Ns.Band(EB, Both) then returnText = capColor .. (decimals):format(haste) .. endColor .. "/" .. rateColor .. rating .. endColor; statusbar = haste end
 
 	HUD:UpdateText(data, returnText)
 	HUD:UpdateBar(data, statusbar)
@@ -600,8 +629,8 @@ function Ns.FunctionList.MeleeMiss(HUD, data, options, ...)
 		baseStat = Ns.meleeBossLevel
 	end
 
-	local missValue = enhancedStat or baseStat or 0
-	local cap = options.Cap_Percent or 0
+	local missValue = enhancedStat or baseStat
+	local cap = options.Cap_Percent
 	if cap > 0 and missValue <= cap then capColor = Ns.greenText end
 	if cap == 0 and missValue <= 0 then capColor = Ns.greenText end
 
