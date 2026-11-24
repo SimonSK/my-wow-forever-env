@@ -8,6 +8,8 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
+["arrowDone"] = {
+},
 ["arrowChains"] = {
 },
 ["runTracker"] = {

@@ -14,233 +14,103 @@ TrueshotLodgeDB = {
 ["send_name"] = false,
 ["filter_by_pet"] = false,
 ["minimapIcon"] = {
-["showInCompartment"] = true,
 ["hide"] = false,
+["showInCompartment"] = true,
 },
 ["debug"] = false,
 ["share_group"] = true,
 ["share_moderators"] = true,
 ["collect"] = true,
-["send_name_tip"] = true,
+["filter_by_faction"] = false,
 ["sticky_selections"] = true,
+["filter_rares"] = false,
 ["share_peers"] = {
-["Hecate Skullmore"] = {
-["first"] = 1795043005,
-["last"] = 1795043005,
-},
-["Ruzaki Lightdeath"] = {
-["first"] = 1795042580,
-["last"] = 1795042580,
-},
-["Agathahark Amorgallus"] = {
-["first"] = 1795043005,
-["last"] = 1795043005,
-},
-["Cleetus Squirrel"] = {
-["first"] = 1795042580,
-["last"] = 1795042796,
-},
-["Patricia Sunfire"] = {
-["first"] = 1795043005,
-["last"] = 1795043005,
-},
-["Timbo Jin"] = {
-["first"] = 1795042579,
-["last"] = 1795043005,
-},
-["Sigian Lightfoot"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
-},
-["Thornia Homoneypants"] = {
-["first"] = 1795043005,
-["last"] = 1795043005,
-},
-["Tandi Blazehook"] = {
-["first"] = 1795043005,
-["last"] = 1795043005,
-},
-["Geisthund Gorehammer"] = {
-["first"] = 1795042580,
-["last"] = 1795042580,
-},
-["Hunter Jaest"] = {
-["first"] = 1795042579,
-["last"] = 1795043005,
-},
-["Zhylaw Direhide"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
-},
-["Trolly Balony"] = {
-["first"] = 1795043005,
-["last"] = 1795043005,
-},
-["Zanjiri Bloodfist"] = {
-["first"] = 1795043005,
-["last"] = 1795043005,
-},
-["Buzz Bandookwala"] = {
-["first"] = 1795042580,
-["last"] = 1795042580,
-},
-["Nyx Sidhewyn"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
-},
-["Dead Zonè"] = {
-["last"] = 1795043299,
-["first"] = 1795043298,
-},
-["Zarika Fireneck"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
-},
-["Death Mans"] = {
-["first"] = 1795043006,
-["last"] = 1795043006,
-},
-["Ars Templarius"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
+["Peku Desu"] = {
+["first"] = 1795380408,
+["last"] = 1795380409,
 },
 ["Colindruid Niloc"] = {
-["first"] = 1795042579,
 ["last"] = 1795042579,
-},
-["Aulani Nu"] = {
 ["first"] = 1795042579,
-["last"] = 1795043005,
 },
-["Pasta Bolognese"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
+["Forgot Bow"] = {
+["last"] = 1795380800,
+["first"] = 1795378484,
 },
-["Hetnu Salvaticus"] = {
-["first"] = 1795043005,
-["last"] = 1795043005,
+["Giant Spelltusk"] = {
+["last"] = 1795378766,
+["first"] = 1795378766,
 },
-["Shax Skinshifter"] = {
-["first"] = 1795042580,
-["last"] = 1795042580,
+["Morgana Mcnaughty"] = {
+["last"] = 1795380647,
+["first"] = 1795375961,
 },
-["Wayward Angel"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
+["Raverend Mother"] = {
+["last"] = 1795380693,
+["first"] = 1795380693,
 },
-["Icepick Frostmage"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
-},
-["Lexandrie Hart"] = {
-["first"] = 1795042580,
-["last"] = 1795042801,
-},
-["Inktoxicated Shadowmon"] = {
-["first"] = 1795043005,
-["last"] = 1795043005,
-},
-["Orgrin Gorehammer"] = {
-["last"] = 1795043005,
-["first"] = 1795042548,
-},
-["Zultar Pain"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
-},
-["Elennvila Bitterwind"] = {
-["first"] = 1795042580,
-["last"] = 1795042953,
-},
-["Troll Troller"] = {
-["first"] = 1795042580,
-["last"] = 1795042580,
-},
-["Hankius Pankius"] = {
-["first"] = 1795042579,
-["last"] = 1795043005,
-},
-["Phobos Tamiel"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
-},
-["Brigadier Biggs"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
-},
-["Synyster Gats"] = {
-["first"] = 1795043005,
-["last"] = 1795043005,
-},
-["Tyruson Runningbull"] = {
-["first"] = 1795043006,
-["last"] = 1795043309,
+["Banker Woodrow"] = {
+["first"] = 1795380346,
+["last"] = 1795380346,
 },
 ["Orchrist Swifthoof"] = {
+["last"] = 1795379549,
 ["first"] = 1795042581,
-["last"] = 1795042581,
 },
-["Hellaez Mang"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
+["Mystic Mist"] = {
+["last"] = 1795381245,
+["first"] = 1795381243,
 },
-["Amaris Shadowstep"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
+["Warbeást Bonecrusher"] = {
+["last"] = 1795378524,
+["first"] = 1795378523,
 },
-["Redge Roast"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
+["Bowz Only"] = {
+["last"] = 1795381224,
+["first"] = 1795381167,
 },
-["Dambros Plainstrider"] = {
-["first"] = 1795043006,
-["last"] = 1795043006,
+["Tres Truesight"] = {
+["last"] = 1795381102,
+["first"] = 1795381100,
 },
-["Shrek Theogre"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
+["Woodrow Wildshot"] = {
+["last"] = 1795381193,
+["first"] = 1795380544,
 },
-["Maeve Khelmack"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
+["Kragnar Bloodfang"] = {
+["last"] = 1795377908,
+["first"] = 1795375841,
 },
-["Jenkal Stormcaller"] = {
-["first"] = 1795042580,
-["last"] = 1795042580,
+["Simonrogue Windseeker"] = {
+["last"] = 1795379722,
+["first"] = 1795376912,
 },
-["Champ Oakenbow"] = {
-["first"] = 1795042579,
-["last"] = 1795042579,
+["Tanya Degurechäff"] = {
+["last"] = 1795379193,
+["first"] = 1795379193,
 },
+["Rumi Hüntrx"] = {
+["first"] = 1795376739,
+["last"] = 1795376739,
 },
-["selections"] = {
+["Silar Darkwind"] = {
+["last"] = 1795379892,
+["first"] = 1795378510,
+},
+["Cambrea Vale"] = {
+["last"] = 1795381185,
+["first"] = 1795379726,
+},
 },
 ["ui_scale"] = 1,
 ["share_zone"] = true,
-["filter_rares"] = false,
-["filter_by_faction"] = false,
+["selections"] = {
+},
+["send_name_tip"] = true,
 ["ability_tooltips"] = true,
 },
 ["char"] = {
-["Simonfish Windseeker - CAMWOW US1 Realm 1 PvE"] = {
-["trained_ids"] = {
-},
-["trained"] = {
-},
-["tab_order"] = {
-},
-["stable"] = {
-["pets"] = {
-},
-["slots"] = {
-},
-},
-["tab_side"] = {
-},
-["tab_hidden"] = {
-},
-},
-["Simonmisc Windseeker - CAMWOW US1 Realm 1 PvE"] = {
+["Simongem Windseeker - "] = {
 ["trained_ids"] = {
 },
 ["trained"] = {
@@ -263,7 +133,9 @@ TrueshotLodgeDB = {
 },
 ["trained"] = {
 },
-["tab_order"] = {
+["tab_hidden"] = {
+},
+["tab_side"] = {
 },
 ["stable"] = {
 ["pets"] = {
@@ -271,12 +143,28 @@ TrueshotLodgeDB = {
 ["slots"] = {
 },
 },
-["tab_side"] = {
-},
-["tab_hidden"] = {
+["tab_order"] = {
 },
 },
 ["Simongem Windseeker - CAMWOW US1 Realm 1 PvE"] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_hidden"] = {
+},
+["tab_side"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_order"] = {
+},
+},
+["Simonfish Windseeker - "] = {
 ["trained_ids"] = {
 },
 ["trained"] = {
@@ -299,6 +187,24 @@ TrueshotLodgeDB = {
 },
 ["trained"] = {
 },
+["tab_hidden"] = {
+},
+["tab_side"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_order"] = {
+},
+},
+["Simonmisc Windseeker - "] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
 ["tab_order"] = {
 },
 ["stable"] = {
@@ -317,6 +223,24 @@ TrueshotLodgeDB = {
 },
 ["trained"] = {
 },
+["tab_order"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_side"] = {
+},
+["tab_hidden"] = {
+},
+},
+["Simonfood Windseeker - "] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
 ["tab_hidden"] = {
 },
 ["tab_side"] = {
@@ -331,6 +255,96 @@ TrueshotLodgeDB = {
 },
 },
 ["Simonmeat Windseeker - CAMWOW US1 Realm 1 PvE"] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_order"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_side"] = {
+},
+["tab_hidden"] = {
+},
+},
+["Simonfish Windseeker - CAMWOW US1 Realm 1 PvE"] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_hidden"] = {
+},
+["tab_side"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_order"] = {
+},
+},
+["Simonmetal Windseeker - "] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_hidden"] = {
+},
+["tab_side"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_order"] = {
+},
+},
+["Simonmisc Windseeker - CAMWOW US1 Realm 1 PvE"] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_hidden"] = {
+},
+["tab_side"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_order"] = {
+},
+},
+["Simoncloth Windseeker - "] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_order"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_side"] = {
+},
+["tab_hidden"] = {
+},
+},
+["Simonmeat Windseeker - "] = {
 ["trained_ids"] = {
 },
 ["trained"] = {
@@ -357,8 +371,8 @@ TrueshotLodgeCollected = {
 ["locale"] = "enUS",
 ["file_id"] = "ea65c23eff5efbf9",
 ["version"] = "1.60.1.46",
-["sig"] = "92a6b9ef",
-["saved_at"] = 1795043658,
+["sig"] = "a272a7dd",
+["saved_at"] = 1795381376,
 },
 ["tames"] = {
 },

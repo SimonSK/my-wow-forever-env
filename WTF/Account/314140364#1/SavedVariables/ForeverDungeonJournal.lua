@@ -1,18 +1,190 @@
 
 ForeverDungeonJournalDB = {
-["compactLoot"] = true,
-["lastView"] = "dungeon",
-["lastBoss"] = 1,
-["arrow"] = {
+["portraitCacheVersion"] = 4,
+["lastQuest"] = 9,
+["runLogNames"] = {
 },
-["showAllProfessionQuests"] = true,
+["bossHintShown"] = true,
+["rpgAccount"] = {
+["rpgMaps"] = {
+["Ragefire Chasm"] = true,
+["Wailing Caverns"] = true,
+["Ruins of Lordaeron"] = true,
+},
+["rpgBosses"] = {
+["Ragefire Chasm"] = {
+[11517] = true,
+["oggleflint"] = true,
+[11518] = true,
+["jergosh the invoker"] = true,
+[11519] = true,
+["bazzalan"] = true,
+[11520] = true,
+["taragaman the hungerer"] = true,
+},
+["Wailing Caverns"] = {
+[3669] = true,
+[5912] = true,
+[3673] = true,
+[3654] = true,
+["lord pythas"] = true,
+["skum"] = true,
+[3670] = true,
+[3674] = true,
+["lord serpentis"] = true,
+[5775] = true,
+[3653] = true,
+["mutanus the devourer"] = true,
+["verdan the everliving"] = true,
+["kresh"] = true,
+[3671] = true,
+["lord cobrahn"] = true,
+["lady anacondra"] = true,
+["deviate faerie dragon"] = true,
+},
+["Ruins of Lordaeron"] = {
+[250657] = true,
+[250631] = true,
+["viktor the vile"] = true,
+[256035] = true,
+[256097] = true,
+["the baron"] = true,
+["bjork"] = true,
+[250660] = true,
+["rath'mael"] = true,
+["the abandoned"] = true,
+[250483] = true,
+["witherfang"] = true,
+},
+},
+["rpgKills"] = {
+["Ragefire Chasm"] = true,
+["Wailing Caverns"] = true,
+["Ruins of Lordaeron"] = true,
+},
+["rpgQuests"] = {
+[5722] = true,
+[95204] = true,
+[5761] = true,
+[959] = true,
+[92422] = true,
+[914] = true,
+[5723] = true,
+[1487] = true,
+[92401] = true,
+[78307] = true,
+[1491] = true,
+[95140] = true,
+[1486] = true,
+[95697] = true,
+[5724] = true,
+[5728] = true,
+[97288] = true,
+[1013] = true,
+[92421] = true,
+[1221] = true,
+[1098] = true,
+[1014] = true,
+[5725] = true,
+[96988] = true,
+[95216] = true,
+[2843] = true,
+[6981] = true,
+[80411] = true,
+[78699] = true,
+[962] = true,
+},
+},
+["lastMode"] = "bosses",
+["trackerHintShown"] = true,
+["flightTimes"] = {
+["The Sepulcher, Silverpine Forest>Undercity, Tirisfal"] = 112,
+["Orgrimmar, Durotar>Crossroads, The Barrens"] = 110,
+["Crossroads, The Barrens>Orgrimmar, Durotar"] = 142,
+["Undercity, Tirisfal>The Sepulcher, Silverpine Forest"] = 106,
+["Thunder Bluff, Mulgore>Orgrimmar, Durotar"] = 207,
+["Crossroads, The Barrens>Thunder Bluff, Mulgore"] = 182,
+["Orgrimmar, Durotar>Thunder Bluff, Mulgore"] = 225,
+},
+["portraitTexturesByNpcID"] = {
+},
 ["bossEvents"] = {
+[585] = {
+["map"] = 43,
+["last"] = 1795191748,
+["name"] = "Lady Anacondra",
+["dungeon"] = "Wailing Caverns",
+["n"] = 1,
+},
+[586] = {
+["map"] = 43,
+["last"] = 1795192522,
+["name"] = "Lord Cobrahn",
+["dungeon"] = "Wailing Caverns",
+["n"] = 1,
+},
+[587] = {
+["map"] = 43,
+["last"] = 1795192603,
+["name"] = "Kresh",
+["dungeon"] = "Wailing Caverns",
+["n"] = 1,
+},
+[588] = {
+["map"] = 43,
+["last"] = 1795193225,
+["name"] = "Lord Pythas",
+["dungeon"] = "Wailing Caverns",
+["n"] = 1,
+},
+[589] = {
+["map"] = 43,
+["last"] = 1795193863,
+["name"] = "Skum",
+["dungeon"] = "Wailing Caverns",
+["n"] = 1,
+},
+[590] = {
+["map"] = 43,
+["last"] = 1795194486,
+["name"] = "Lord Serpentis",
+["dungeon"] = "Wailing Caverns",
+["n"] = 1,
+},
+[3412] = {
+["map"] = 2999,
+["last"] = 1795237485,
+["name"] = "Bjork",
+["dungeon"] = "Ruins of Lordaeron",
+["n"] = 1,
+},
+[591] = {
+["map"] = 43,
+["last"] = 1795194560,
+["name"] = "Verdan the Everliving",
+["dungeon"] = "Wailing Caverns",
+["n"] = 1,
+},
 [2734] = {
 ["map"] = 389,
 ["last"] = 1794790867,
 ["name"] = "Jergosh the Invoker",
 ["dungeon"] = "Ragefire Chasm",
 ["n"] = 6,
+},
+[592] = {
+["map"] = 43,
+["last"] = 1795195236,
+["name"] = "Mutanus the Devourer",
+["dungeon"] = "Wailing Caverns",
+["n"] = 1,
+},
+[3354] = {
+["map"] = 2999,
+["last"] = 1795237731,
+["name"] = "Rath'mael",
+["dungeon"] = "Ruins of Lordaeron",
+["n"] = 1,
 },
 [2733] = {
 ["map"] = 389,
@@ -21,12 +193,12 @@ ForeverDungeonJournalDB = {
 ["dungeon"] = "Ragefire Chasm",
 ["n"] = 6,
 },
-[2732] = {
-["map"] = 389,
-["last"] = 1794790098,
-["name"] = "Oggleflint",
-["dungeon"] = "Ragefire Chasm",
-["n"] = 6,
+[3411] = {
+["map"] = 2999,
+["last"] = 1795237111,
+["name"] = "Viktor the Vile",
+["dungeon"] = "Ruins of Lordaeron",
+["n"] = 1,
 },
 [2735] = {
 ["map"] = 389,
@@ -35,25 +207,59 @@ ForeverDungeonJournalDB = {
 ["dungeon"] = "Ragefire Chasm",
 ["n"] = 6,
 },
+[3353] = {
+["map"] = 2999,
+["last"] = 1795236333,
+["name"] = "Witherfang",
+["dungeon"] = "Ruins of Lordaeron",
+["n"] = 1,
 },
+[3355] = {
+["map"] = 2999,
+["last"] = 1795236561,
+["name"] = "The Butcher",
+["dungeon"] = "Ruins of Lordaeron",
+["n"] = 1,
+},
+[3357] = {
+["map"] = 2999,
+["last"] = 1795237314,
+["name"] = "The Abandoned",
+["dungeon"] = "Ruins of Lordaeron",
+["n"] = 1,
+},
+[2732] = {
+["map"] = 389,
+["last"] = 1794790098,
+["name"] = "Oggleflint",
+["dungeon"] = "Ragefire Chasm",
+["n"] = 6,
+},
+},
+["lootFilter"] = {
+["armorTypes"] = {
+},
+["stats"] = {
+},
+["weaponTypes"] = {
+},
+["schools"] = {
+},
+["matchAll"] = true,
+["resists"] = {
+},
+["enabled"] = false,
+["classOnly"] = false,
+["recipes"] = false,
+},
+["compactLoot"] = true,
+["lastView"] = "home",
+["showAllProfessionQuests"] = true,
 ["minimap"] = {
 ["minimapPos"] = 175.0647129382706,
 ["hide"] = false,
 },
 ["displayIDs"] = {
-[260274] = 142322,
-[7023] = 5285,
-[262297] = 143122,
-[270885] = 142245,
-[270882] = 144475,
-[258924] = 144487,
-[261974] = 143035,
-[16059] = 15981,
-[270888] = 144023,
-[270884] = 142144,
-[250034] = 2424,
-},
-["runLogNames"] = {
 },
 ["fdjOptionsDump"] = {
 "CategoryRow#1.Background [Texture] atlas=Options_CategoryHeader_1 199x144",
@@ -275,61 +481,15 @@ ForeverDungeonJournalDB = {
 "SettingsPanel.SearchBox.clearButton.Icon [Texture] atlas=common-search-clearbutton 10x10",
 "SettingsPanel.SearchBox.searchIcon [Texture] atlas=common-search-magnifyingglass 10x10",
 },
-["bossHintShown"] = true,
-["portraitCacheVersion"] = 2,
+["newestSeenAt"] = 1795510246,
 ["spotFixes"] = {
-[5769] = {
--1047.700073242188,
--300,
+[3419] = {
+-995.4000244140625,
+275.8000183105469,
 1,
-["y"] = 0.2841569781303406,
-["x"] = 0.7824441194534302,
-["name"] = "Arch Druid Hamuul Runetotem",
-["map"] = 1456,
-},
-[11833] = {
--1068.599975585938,
--220.6999969482422,
-1,
-["y"] = 0.3141360878944397,
-["x"] = 0.7064675092697144,
-["name"] = "Rahauro",
-["map"] = 1456,
-},
-[1952] = {
-521.7000122070312,
-1630.200073242188,
-0,
-["y"] = 0.4089250564575195,
-["x"] = 0.4332965016365051,
-["name"] = "High Executor Hadrec",
-["map"] = 1421,
-},
-[248840] = {
-518.7000122070312,
-1629.700073242188,
-0,
-["y"] = 0.4099889397621155,
-["x"] = 0.4334084391593933,
-["name"] = "Trevan Rol",
-["map"] = 1421,
-},
-[2425] = {
-1285.900024414063,
-331.8000183105469,
-0,
-["y"] = 0.924877405166626,
-["x"] = 0.5642869472503662,
-["name"] = "Varimathras",
-["map"] = 1458,
-},
-[5770] = {
--1066.400024414063,
--275.8000183105469,
-1,
-["y"] = 0.3109366297721863,
-["x"] = 0.7592378854751587,
-["name"] = "Nara Wildmane",
+["y"] = 0.2089146375656128,
+["x"] = 0.2307682037353516,
+["name"] = "Apothecary Zamah",
 ["map"] = 1456,
 },
 [251001] = {
@@ -341,14 +501,32 @@ ForeverDungeonJournalDB = {
 ["name"] = "Deathguard Kristof",
 ["map"] = 1420,
 },
-[246378] = {
-2489.800048828125,
-2038.599975585938,
+[10181] = {
+1293.099975585938,
+317.2000122070313,
 0,
-["y"] = 0.4473537802696228,
-["x"] = 0.2201253175735474,
-["name"] = "Danitha Morr",
-["map"] = 1420,
+["y"] = 0.9135989546775818,
+["x"] = 0.5794882774353027,
+["name"] = "Lady Sylvanas Windrunner",
+["map"] = 1458,
+},
+[3448] = {
+-542.5,
+-2668.400146484375,
+1,
+["y"] = 0.3189699649810791,
+["x"] = 0.5221712589263916,
+["name"] = "Tonga Runetotem",
+["map"] = 1413,
+},
+[5769] = {
+-1048.400024414063,
+-300.8999938964844,
+1,
+["y"] = 0.2851492166519165,
+["x"] = 0.7832878232002258,
+["name"] = "Arch Druid Hamuul Runetotem",
+["map"] = 1456,
 },
 [259611] = {
 496.7000122070313,
@@ -368,131 +546,32 @@ ForeverDungeonJournalDB = {
 ["name"] = "Ebru",
 ["map"] = 1414,
 },
-[3419] = {
--995.4000244140625,
-275.8000183105469,
+[11833] = {
+-1074.800048828125,
+-219.8000030517578,
 1,
-["y"] = 0.2089146375656128,
-["x"] = 0.2307682037353516,
-["name"] = "Apothecary Zamah",
+["y"] = 0.3230409622192383,
+["x"] = 0.7056443095207214,
+["name"] = "Rahauro",
 ["map"] = 1456,
 },
-[266484] = {
-1302.300048828125,
-317.2000122070313,
+[1952] = {
+520.7000122070312,
+1628.300048828125,
 0,
-["y"] = 0.8993556499481201,
-["x"] = 0.5795540809631348,
-["name"] = "Morbin Lightbane",
-["map"] = 1458,
-},
-[5767] = {
--799.4000244140625,
--2036.5,
-1,
-["y"] = 0.5543242692947388,
-["x"] = 0.5191076993942261,
-["name"] = "Nalpak",
-["map"] = 1414,
-},
-[2934] = {
-1532.099975585938,
-356.1000061035156,
-0,
-["y"] = 0.5403305292129517,
-["x"] = 0.5389986038208008,
-["name"] = "Keeper Bel'dugur",
-["map"] = 1458,
-},
-[250686] = {
-463,
-1581.300048828125,
-0,
-["y"] = 0.429895281791687,
-["x"] = 0.4449297189712524,
-["name"] = "Tabitha Heartweaver",
+["y"] = 0.409273624420166,
+["x"] = 0.4337396621704102,
+["name"] = "High Executor Hadrec",
 ["map"] = 1421,
 },
-[1938] = {
-550.7000122070312,
-1593.5,
+[248840] = {
+518.7000122070312,
+1629.700073242188,
 0,
-["y"] = 0.3985596299171448,
-["x"] = 0.4420125484466553,
-["name"] = "Dalar Dawnweaver",
+["y"] = 0.4099889397621155,
+["x"] = 0.4334084391593933,
+["name"] = "Trevan Rol",
 ["map"] = 1421,
-},
-[3448] = {
--546,
--2670.800048828125,
-1,
-["y"] = 0.3194841742515564,
-["x"] = 0.5224018096923828,
-["name"] = "Tonga Runetotem",
-["map"] = 1413,
-},
-[1937] = {
-521.4000244140625,
-1648.599975585938,
-0,
-["y"] = 0.4090113639831543,
-["x"] = 0.4289165735244751,
-["name"] = "Apothecary Renferrel",
-["map"] = 1421,
-},
-[211022] = {
-1667.900024414063,
-166.8000030517578,
-0,
-["y"] = 0.3282018899917603,
-["x"] = 0.7362817525863647,
-["name"] = "Owen Thadd",
-["map"] = 1458,
-},
-[3442] = {
--904.2999877929688,
--3756.5,
-1,
-["y"] = 0.3725112080574036,
-["x"] = 0.6295497417449951,
-["name"] = "Sputtervalve",
-["map"] = 1413,
-},
-[3413] = {
-2039.200073242188,
--4740.80029296875,
-1,
-["y"] = 0.2508335709571838,
-["x"] = 0.7558879852294922,
-["name"] = "Sovik",
-["map"] = 1454,
-},
-[3446] = {
--928.6000366210938,
--3699,
-1,
-["y"] = 0.3761082291603088,
-["x"] = 0.6238696575164795,
-["name"] = "Mebok Mizzyrix",
-["map"] = 1413,
-},
-[3665] = {
--928.2000122070312,
--3768.300048828125,
-1,
-["y"] = 0.3760558366775513,
-["x"] = 0.6307145357131958,
-["name"] = "Crane Operator Bigglefuzz",
-["map"] = 1413,
-},
-[2055] = {
-1432.599975585938,
-406.8999938964844,
-0,
-["y"] = 0.6957138776779175,
-["x"] = 0.4860281944274902,
-["name"] = "Master Apothecary Faranell",
-["map"] = 1458,
 },
 [259620] = {
 520.2000122070312,
@@ -503,76 +582,222 @@ ForeverDungeonJournalDB = {
 ["name"] = "Lumina Windsinger",
 ["map"] = 1421,
 },
+[1938] = {
+551.6000366210938,
+1594.599975585938,
+0,
+["y"] = 0.3982206583023071,
+["x"] = 0.4417517781257629,
+["name"] = "Dalar Dawnweaver",
+["map"] = 1421,
+},
+[5770] = {
+-1067.700073242188,
+-275.2000122070313,
+1,
+["y"] = 0.3128294944763184,
+["x"] = 0.7587189078330994,
+["name"] = "Nara Wildmane",
+["map"] = 1456,
+},
+[11044] = {
+1407,
+430.1000061035156,
+0,
+["y"] = 0.7356829643249512,
+["x"] = 0.4618379473686218,
+["name"] = "Doctor Martin Felben",
+["map"] = 1458,
+},
+[2425] = {
+1287.800048828125,
+333.7000122070313,
+0,
+["y"] = 0.9219422340393066,
+["x"] = 0.5623083114624023,
+["name"] = "Varimathras",
+["map"] = 1458,
+},
+[11835] = {
+1420.800048828125,
+427.3000183105469,
+0,
+["y"] = 0.7142302989959717,
+["x"] = 0.4648104310035706,
+["name"] = "Theodore Griffs",
+["map"] = 1458,
+},
+[1495] = {
+2023.700073242188,
+75.9000015258789,
+0,
+["y"] = 0.6021052002906799,
+["x"] = 0.6544833183288574,
+["name"] = "Deathguard Linnea",
+["map"] = 1420,
+},
+[2934] = {
+1529.400024414063,
+354.2000122070313,
+0,
+["y"] = 0.5444693565368652,
+["x"] = 0.5409836769104004,
+["name"] = "Keeper Bel'dugur",
+["map"] = 1458,
+},
+[8418] = {
+-606.2999877929688,
+-2258.5,
+1,
+["y"] = 0.3284078240394592,
+["x"] = 0.4817153811454773,
+["name"] = "Falla Sagewind",
+["map"] = 1413,
+},
+[5767] = {
+-799.4000244140625,
+-2036.5,
+1,
+["y"] = 0.5543242692947388,
+["x"] = 0.5191076993942261,
+["name"] = "Nalpak",
+["map"] = 1414,
+},
+[3368] = {
+1775.400024414063,
+-4486.10009765625,
+1,
+["y"] = 0.5328942537307739,
+["x"] = 0.5742877125740051,
+["name"] = "Borstan",
+["map"] = 1454,
+},
+[250686] = {
+463,
+1581.300048828125,
+0,
+["y"] = 0.429895281791687,
+["x"] = 0.4449297189712524,
+["name"] = "Tabitha Heartweaver",
+["map"] = 1421,
+},
+[7825] = {
+1669.099975585938,
+170.5,
+0,
+["y"] = 0.3262725472450256,
+["x"] = 0.732421338558197,
+["name"] = "Oran Snakewrithe",
+["map"] = 1458,
+},
+[266484] = {
+1302.400024414063,
+316.8999938964844,
+0,
+["y"] = 0.8991374969482422,
+["x"] = 0.5798603296279907,
+["name"] = "Morbin Lightbane",
+["map"] = 1458,
+},
+[1937] = {
+524,
+1647.599975585938,
+0,
+["y"] = 0.408103346824646,
+["x"] = 0.4291370511054993,
+["name"] = "Apothecary Renferrel",
+["map"] = 1421,
+},
+[211022] = {
+1667.700073242188,
+166.9000091552734,
+0,
+["y"] = 0.328443706035614,
+["x"] = 0.7361974716186523,
+["name"] = "Owen Thadd",
+["map"] = 1458,
+},
+[3442] = {
+-903.2999877929688,
+-3756.699951171875,
+1,
+["y"] = 0.3723660111427307,
+["x"] = 0.6295651197433472,
+["name"] = "Sputtervalve",
+["map"] = 1413,
+},
+[3413] = {
+2038.900024414063,
+-4743.2001953125,
+1,
+["y"] = 0.2512446641921997,
+["x"] = 0.7575826644897461,
+["name"] = "Sovik",
+["map"] = 1454,
+},
+[3446] = {
+-932.6000366210938,
+-3696.60009765625,
+1,
+["y"] = 0.3767082095146179,
+["x"] = 0.6236354112625122,
+["name"] = "Mebok Mizzyrix",
+["map"] = 1413,
+},
+[246378] = {
+2489.800048828125,
+2038.599975585938,
+0,
+["y"] = 0.4473537802696228,
+["x"] = 0.2201253175735474,
+["name"] = "Danitha Morr",
+["map"] = 1420,
+},
+[2055] = {
+1435.599975585938,
+406.1000061035156,
+0,
+["y"] = 0.6911227107048035,
+["x"] = 0.4868770837783814,
+["name"] = "Master Apothecary Faranell",
+["map"] = 1458,
+},
+[3665] = {
+-928.2000122070312,
+-3768.300048828125,
+1,
+["y"] = 0.3760558366775513,
+["x"] = 0.6307145357131958,
+["name"] = "Crane Operator Bigglefuzz",
+["map"] = 1413,
+},
+},
+["newestSeenVersion"] = "2.1.4",
+["mapFloors"] = {
+["Ragefire Chasm"] = 1,
+["Wailing Caverns"] = 1,
+["Ruins of Lordaeron"] = 1,
+},
+["trackerOptions"] = {
+},
+["showAllClassQuests"] = true,
+["arrow"] = {
+},
+["learnedQuestIDs"] = {
 },
 ["runLogTrashTotal"] = {
 ["Ragefire Chasm"] = 117,
+["Wailing Caverns"] = 273,
+["Ruins of Lordaeron"] = 163,
 },
-["rpgAccount"] = {
-["rpgMaps"] = {
-["Ragefire Chasm"] = true,
-},
-["rpgBosses"] = {
-["Ragefire Chasm"] = {
-[11517] = true,
-["oggleflint"] = true,
-[11518] = true,
-["jergosh the invoker"] = true,
-[11519] = true,
-["bazzalan"] = true,
-[11520] = true,
-["taragaman the hungerer"] = true,
-},
-},
-["rpgKills"] = {
-["Ragefire Chasm"] = true,
-},
-["rpgQuests"] = {
-[5722] = true,
-[5761] = true,
-[959] = true,
-[92422] = true,
-[914] = true,
-[5723] = true,
-[962] = true,
-[1491] = true,
-[5724] = true,
-[5728] = true,
-[1013] = true,
-[92421] = true,
-[2843] = true,
-[1098] = true,
-[5725] = true,
-[95140] = true,
-[1014] = true,
-[95216] = true,
-[92401] = true,
-[1486] = true,
-[1487] = true,
-[1221] = true,
-},
-},
-["newestSeenVersion"] = "2.1.0",
-["newestSeenAt"] = 1795147806,
-["questFaction"] = "Horde",
-["lastDungeon"] = "Shadowfang Keep",
-["learnedQuestIDs"] = {
-},
-["showAllClassQuests"] = true,
-["mapFloors"] = {
-["Ragefire Chasm"] = 1,
-},
-["lastMode"] = "bosses",
-["runLogBossAliases"] = {
-},
-["trackerHintShown"] = true,
 ["learnedItemIDs"] = {
+["grips of control"] = {
+["id"] = 276733,
+["name"] = "Grips of Control",
+},
 ["lost researcher's hood"] = {
 ["id"] = 279931,
 ["name"] = "Lost Researcher's Hood",
-},
-["expeditionary legplates"] = {
-["id"] = 279901,
-["name"] = "Expeditionary Legplates",
 },
 ["satyr's touch"] = {
 ["id"] = 287036,
@@ -594,17 +819,17 @@ ForeverDungeonJournalDB = {
 ["id"] = 280069,
 ["name"] = "Shamanic Wristguards",
 },
-["behemoth bones"] = {
-["id"] = 280065,
-["name"] = "Behemoth Bones",
+["tidesong wand"] = {
+["id"] = 276735,
+["name"] = "Tidesong Wand",
 },
 ["bleak eye shoulderplates"] = {
 ["id"] = 280075,
 ["name"] = "Bleak Eye Shoulderplates",
 },
-["cutthroat chestguard"] = {
-["id"] = 276739,
-["name"] = "Cutthroat Chestguard",
+["behemoth bones"] = {
+["id"] = 280065,
+["name"] = "Behemoth Bones",
 },
 ["veilpiercer girdle"] = {
 ["id"] = 280070,
@@ -618,29 +843,24 @@ ForeverDungeonJournalDB = {
 ["id"] = 280066,
 ["name"] = "Trousers of the Ebon Giant",
 },
-["tidesong wand"] = {
-["id"] = 276735,
-["name"] = "Tidesong Wand",
+["cutthroat chestguard"] = {
+["id"] = 276739,
+["name"] = "Cutthroat Chestguard",
 },
 ["reward voucher"] = {
 ["id"] = 8070,
 ["name"] = "Reward Voucher",
 },
-["grips of control"] = {
-["id"] = 276733,
-["name"] = "Grips of Control",
+["expeditionary legplates"] = {
+["id"] = 279901,
+["name"] = "Expeditionary Legplates",
 },
 },
-["flightTimes"] = {
-["The Sepulcher, Silverpine Forest>Undercity, Tirisfal"] = 112,
-["Orgrimmar, Durotar>Crossroads, The Barrens"] = 110,
-["Undercity, Tirisfal>The Sepulcher, Silverpine Forest"] = 106,
-["Thunder Bluff, Mulgore>Orgrimmar, Durotar"] = 207,
-["Orgrimmar, Durotar>Thunder Bluff, Mulgore"] = 225,
+["trackerClosedNoticeShown"] = true,
+["questFaction"] = "Horde",
+["runLogBossAliases"] = {
 },
-["lastQuest"] = 2,
-["portraitTexturesByNpcID"] = {
-},
+["lastDungeon"] = "Blackfathom Deeps",
 ["questText"] = {
 ["enUS"] = {
 [1013] = {
@@ -755,6 +975,14 @@ ForeverDungeonJournalDB = {
 ["o"] = "Take the Symbol of Life and use it to resurrect Deathguard Falgan at Venomweb Vale. \r\n\r\nShould you misplace your Symbol of Life, return to Danitha Morr for a replacement.",
 ["d"] = "Falgan and I were sent on a mission to scout out scarlet activity in Venomweb Vale. We managed to sneak close enough to one of their camps to hear about new orders involving an attack on Brill. Before we could decide what to do next, I stepped on a twig and the noise alerted them to us.\r\n\r\nFalgan yelled at me to run, so I ran. By the time I realized he wasn't with me, I was halfway to Brill. That brave idiot probably stayed behind to hold them off for me.\r\n\r\nPlease, find my friend and help him if you can.",
 },
+[6128] = {
+["o"] = "Bring 5 Earthroot and 5 Kodo Horns to Tonga Runetotem at the Crossroads so he may make a curative salve.",
+["d"] = "The water will serve as the base of the curative salve I shall make for the gazelles.  For curative properties, I need some earthroot.  Herbalists know how to find it, so if you are not familiar with this skill you'll need to find one to help us out.\n\nFinally for potency, I need kodo horns - mere chips and fragments will not suffice.  Kodos you can handle wander the northern part of the Barrens; bring some down for the greater good of the balance N, and fetch the horns for me.",
+},
+[6130] = {
+["o"] = "Return to Turak Runetotem on the Elder Rise, Thunder Bluff.",
+["d"] = "You've learned what it means to cure poison without the benefit of spiritual aid.  Remember what others must endure in fighting poisonous afflictions as you soon embrace your newfound power over poison.\n\nYou should now return to Turak Runetotem in Thunder Bluff, N.  He, no doubt, has a very important spell to teach you now that the student understands the lesson given unto her.\n\nFarewell, young druid.  We shall speak again.",
+},
 [93065] = {
 ["o"] = "Speak with Valennia Stormfist in the Gustberry Lowlands.",
 ["d"] = "The Peacekeepers are mobilizing and we are all gearing up to head out. Make whatever preparations you need to make and meet us at the eastern road leading north out of town. We'll have one final check-in with everyone before we move out.",
@@ -818,6 +1046,10 @@ ForeverDungeonJournalDB = {
 [97953] = {
 ["o"] = "Speak with Vance Undergloom in Brill to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "Enchanters make everything better and are always welcome at any camp out in the wilds.\r\n\r\nI reckon I know someone that can teach you how to craft an Enchanted Lute for your camp. It's so important to find entertainment during your downtime, and this bit of magic can help ensure you are ready to weather all sorts of challenges when you hit the old dusty trail once again.",
+},
+[97985] = {
+["o"] = "Slay Stormheart in Thousand Needles and acquire its heart.",
+["d"] = "Fascinating, aren't they? This is the first time I have ever been privy to the secrets of abomination creation.\r\n\r\nI have been studying these notes, and it appears we need a heart. A massive one!\r\n\r\nI hear there is a thunder lizard there of impressive size called Stormheart, that patrols along the canyon edge in Thousand Needles. With a name like that it must have the perfect heart. I must have that heart!\r\n\r\nOh, also I suggest you bring friends. Stormheart isn't known for being docile.",
 },
 [94440] = {
 ["o"] = "Retrieve the Scarlet Crusade Attack Plans from the Scarlet Crusaders at Venomweb Vale, and return to Deathguard Billmuth at Bandarion Keep.",
@@ -951,6 +1183,10 @@ ForeverDungeonJournalDB = {
 ["o"] = "Bring Alaric's Head to his grave.",
 ["d"] = "You don't look like a rot hide.  Good.  I had lost hope...\n\nMy name is Alaric, and I was once Thule's head servant and bodyguard.  He used his magic to \"protect\" me from the Plague of Undeath, but instead his spell gave me an unlife from which I cannot escape.  And after creating the cursed rot hide gnolls, Thule beheaded me... and gave my head to the gnolls as a plaything!\n\nPlease, take me to my body.  I believe the gnolls buried it here in Fenris Keep, near the stable, in an unmarked grave.",
 },
+[98404] = {
+["o"] = "Recover the Relic of the Fang, Relic of the Claw, and Relic of the Silent Shadow from the Stormrage Barrow Den, and return them to the Avatar of Saeyleenan.",
+["d"] = "In order to draw upon my spirit, you will need to undergo a trial. To understand and respect my form you must prove that you can embody cunning, stealth, and if you should be cornered, ferocity.\r\n\r\nIn the Barrow Dens just east of here, are three relics you must acquire. They are guarded by powerful enraged spirits that will attack you on sight. A statue at the entrance will bless you with temporary stealth to get past them.\r\n\r\nReturn these relics to me to pass the druidic trial of these lands.",
+},
 [91282] = {
 ["o"] = "Find the fortress of Bandarion Keep and report to Breton Samuels there.",
 ["d"] = "It is encouraging to see my newly risen brothers and sisters thrive as you have. It is only through community and shared faith that we can truly realize our full potential however, and to that end we've begun to form a new paladin order right here in Tirisfal. \r\n\r\nIf you wish to learn more, you should visit our monastery on the edge of the Whispering Woods. It is called Bandarion Keep. It's on the bluffs just northwest of the Solliden Farmstead, and should be hard to miss.",
@@ -975,6 +1211,10 @@ ForeverDungeonJournalDB = {
 ["o"] = "Kill Maggot Eye and return to Executor Zygand in Brill with his paw for a reward.",
 ["d"] = "Wanted: Maggot Eye!\n\nA foul beast, even by Gnoll standards, Maggot Eye has been sentenced to death for his crimes against The Forsaken.  This despicable villain has been stealing corpses for use by the Lich King's army.  Maggot Eye was last seen pillaging the lands near Garren's Haunt to the north of Brill.\n\nThe town of Brill hereby offers a reward to the capable soul who can carry out the execution.  Show Executor Zygand the villain's paw once the deed is done.\n\nMercy is for the weak.",
 },
+[98341] = {
+["o"] = "Seek out the Avatar of Saeyleenan in the southern part Moonglade and learn what it has to share with you about the nature of the windborne cat.",
+["d"] = "A spirit of your homeland has recently appeared here and has asked me to guide you to it. This windborne cat spirit has come to tutor and mentor you so that you may take the feline shape of the spirit on Zephras.\r\n\r\nAll druids eventually seek this wisdom, though it seems your homeland has a slightly different shape than our traditional one. If you desire to take this spirit's feline form, you will need to undergo our trial.\r\n\r\nIt can be found in the southern part of Moonglade, south of the twin bridges.",
+},
 [92880] = {
 ["o"] = "Bring Yorna's Report to Valennia Stormfist in Valanaar.",
 ["d"] = "I suspect it will take a bit of time for us to mop up what's left of the attackers, but our chances are far better now. Head back to Valanaar and let them know that we are stable here now.\r\n\r\nI can't thank you enough for your help. We'd be in much worse shape without you. I asked for reinforcements and it seems that I got a burgeoning hero instead. I'll take that.\r\n\r\nMay the four winds bless you, druid.",
@@ -990,6 +1230,14 @@ ForeverDungeonJournalDB = {
 [92529] = {
 ["o"] = "Report to Missionary Jasaan near the entrance to Falaath Village.\r\n\r\nIf you lose your Mark of Akir, speak with Sania Silverstream in Shen'dar Village to regain the effect.",
 ["d"] = "It gladdens my heart that you wish to serve Al'Akir. Our current trials as a people stem from our own complacency. We grew prideful and took the bounty of the winds for granted. The stagnation that followed is the reason the spirits of the wind abandoned us.\r\n\r\nOnly through acts of contrition may we feel the wind's caress once more. If you seek the fellowship of like-minded shen'dorei, go to Falaath Village and find Missionary Jasaan there. I will mark you so that the faithful will know you as a recruit.",
+},
+[97288] = {
+["o"] = "Deliver the Abominable Head to Master Apothecary Faranell within the Undercity.",
+["d"] = "<As the creature falls, its head comes toppling off. It seems as if it has been reattached several times, and the connection gets weaker with each reconnection.\r\n\r\nSomeone in the Undercity would know more about this unique abomination.>",
+},
+[95883] = {
+["o"] = "Collect a Tortured Soul from the nearby undead in Beren's Peril in Silverpine Forest.",
+["d"] = "<The preparations for a hastily-assembled ritual are gathered unceremoniously on the altar. According to the scrap of note, everything has been gathered. All that's missing are the offering of blood and the Tortured Soul.\r\n\r\nThe undead around you look tortured enough. They may have what you seek.>",
 },
 [91316] = {
 ["o"] = "Collect 12 pieces of Sturdy Lumber from Shadowvale in Tirisfal Glades.",
@@ -1014,6 +1262,10 @@ ForeverDungeonJournalDB = {
 [97257] = {
 ["o"] = "Wait for Olariaan to begin the ritual at the Brazier of Offering and follow his instructions.\r\n\r\nYou must deliver the Eternal Flame to Valanaar before the timer runs out.",
 ["d"] = "Now we will perform the ritual. \r\n\r\nI will place the materials onto the altar and call forth the spirits of flame. If the offering is accepted, they will appear and light the Eternal Flame. You will then hold your torch forth and capture the flame.\r\n\r\nCarry the lit torch to Valanaar and place it in the Brazier of Eternal Flames. You must do so quickly, for the flames of the Firelands are quick to dissipate here in Skywall.",
+},
+[97289] = {
+["o"] = "Bring the Head of the Baron to the body of Othmar in the Undercity.",
+["d"] = "We craft abomination heads all the time, but this one is special. It belonged to a Grand Marshal of the Alliance once. A particularly unpleasant one. Othmar, I believe its name was. The Dark Lady had the pleasure of dispatching this one herself.\r\n\r\nOoh the secrets it could tell if it could talk. And it can! If we reattach it to an appropriate host.\r\n\r\nGo ahead and place it next to the available body in the next room. But don't attach it. Not yet.",
 },
 [91285] = {
 ["o"] = "Slay 8 Vile Fin Attackers and 8 Vile Fin Seers and report back to Breton Samuels when it is done.",
@@ -1047,6 +1299,14 @@ ForeverDungeonJournalDB = {
 ["o"] = "Accompany Lumina Windsinger and help her escape Fenris Keep.",
 ["d"] = "Now that I'm free I'm going to make these vile creatures regret ever laying eyes on a Windshaper.\r\n\r\nLet's get out of here, paladin.",
 },
+[97290] = {
+["o"] = "Report your findings to Master Apothecary Faranell in Undercity.",
+["d"] = "You... abomination...\r\n\r\nWhy should... help you...\r\n\r\nBe gone...",
+},
+[95885] = {
+["o"] = "Use the Tortured Soul to give an offering of blood at the Offering Stone in Beren's Peril.",
+["d"] = "<All that's left now is the offering of blood.\r\n\r\nThe note scrap mentioned a 'willing sacrifice.'\r\n\r\nAn intense sense of dread washes over you.>",
+},
 [91861] = {
 ["o"] = "Investigate Fenris Keep to the north and attempt to locate the missing member of the Earthen Ring party.",
 ["d"] = "<The fact that you found only one body is a hopeful sign. Perhaps the High Elf that Trevan and Hadrec described is still alive somewhere deeper inside the nearby fortress?>",
@@ -1067,9 +1327,17 @@ ForeverDungeonJournalDB = {
 ["o"] = "Read the Crumpled Note you've been given, then seek out Blademaster Ren inside the Thendal Village watchtower.",
 ["d"] = "While you were gone our warrior trainer--Blademaster Ren--requested that we send you their way when you returned. She dropped this note off for you as well.\r\n\r\nGive it a read, then find Blademaster Ren inside the village watchtower.",
 },
+[97291] = {
+["o"] = "Collect a Toxic Skullcap from Tawny Grisette in the Trade Quarter, Blisterweed near the Herbalism Trainer, and Essence of Agony from the poison vendor in the Rogues' Quarter for Master Apothecary Faranell in Undercity.",
+["d"] = "With the head reattached, all we need now is to bind it to the Dark Lady's will. This should not be a problem. The beast barely has brains left as it is after all the beatings it's taken.\r\n\r\nWe simply need to motivate it.\r\n\r\nFetch me a Toxic Skullcap from Miss Grisette in the Trade Quarter. Oh, and some Blisterweed from our local herbalist trainers, the Alliestars. Feel free to just take some, they owe me. And lastly a bit of Essence of Agony. Any old poison vendor should do.\r\n\r\nWe have a potion to make!",
+},
 [93746] = {
 ["o"] = "Confront Belathaan Brightwish along the road to the Shrine of Akir.",
 ["d"] = "The High Order has been warned of the consequences of meddling with the Windshaper's affairs. I think we need to make an example out of Belathaan and send him back to the High Order with a few bruises and a healthy respect for the boundaries we set.\r\n\r\nBelathaan was seen leaving town, traveling north towards the Shrine of Akir. I don't know why he was going there, but confronting him alone on the road is the safest option. Find him, and put a bit of fear into his heart.",
+},
+[6981] = {
+["o"] = "Travel to Ratchet to find someone that can tell you more about the glowing shard.\n\nThen, deliver the shard as you are directed.",
+["d"] = "The shard is a brilliant green, and although solid, what looks like smoke swirls just below the surface. You can't help staring into the depths of the crystal; at the same time, you know there is something very disturbing about it.\n\nMaybe you should see if anyone in Ratchet can tell you more about this strange shard.",
 },
 [94896] = {
 ["o"] = "Collect 8 Abandoned Belongings from the ruins of Ban'aethal.",
@@ -1131,6 +1399,10 @@ ForeverDungeonJournalDB = {
 ["o"] = "Purchase a Bundle of Herbs from Nida the herbalist, a Bundle of Cedar Twigs from Nata the enchanting supplier, and Sinew Thread from Mahu the leatherworking supplier and Ceremonial Flint and Tinder from Naal the cooking supplier.\r\n\r\nCombine the items and sprinkle the incense off of Hunter's Rise.",
 ["d"] = "Blessings of An'she, friend.\r\n\r\nWe tauren have a tradition of scattering incense to the winds and I was hoping you'd be interested in honoring this tradition.\r\n\r\nYou will need to craft the incense by purchasing herbs from Nida, cedar from Nata, sinew thread from Mahu in the mid rise, and ceremonial flint and tinder from Naal on the upper rise. Once you have these items, combine them and spread them off the south facing cliff of Hunter's Rise.\r\n\r\nYou will find a mat and incense at the ceremonial site.",
 },
+[6129] = {
+["o"] = "Use the Curative Animal Salve on 10 Sickly Gazelles that are located throughout the northern part of the Barrens; doing so should cure them.  Sickly Gazelles have been reported north of the east-west road that runs through the Crossroads.",
+["d"] = "I was able to make enough salve for ten doses of curing, N.  While I work with local authorities to try and make some more salve, I'd like for you to help us get a head start.  All around the northern Barrens are sickly gazelles; use the salve on them and cure their malaise.\n\nDendrite Starblaze in Moonglade will want to talk to you when you're done, I'm sure.  Please extend our thanks to the Cenarion Circle there... and let me say thanks to you directly for the help you've given!",
+},
 [411] = {
 ["o"] = "Bring the Nether Gem to Bethor Iceshard in the Undercity.",
 ["d"] = "Take this Nether Gem to my old comrade Bethor.  It will let us communicate ... and I have much to tell him.",
@@ -1143,6 +1415,10 @@ ForeverDungeonJournalDB = {
 ["o"] = "Kill 8 Grimtotem Ruffians and 6 Grimtotem Mercenaries, and then return to Makaba Flathoof near the southeastern edge of Stonetalon.\r\n",
 ["d"] = "The Grimtotem Clan raided my village and killed most everyone. I killed all I could, but barely escaped with my life.\n\nN, all I wish now is that more of them are dead. You will find them just to the west of here.\r\n\r\n",
 },
+[92643] = {
+["o"] = "Find the cultist turncoat at the house just inside the highlands northwest of Valanaar.",
+["d"] = "There is a turncoat amongst the Al'Aketh. They claim to know the cult's true intentions for the island and want to come in, but will only do so with assurances of protection.\r\n\r\nThis defector is hiding at a secluded residence just northwest of Valanaar inside the highlands. I need someone who can discreetly go there, find the traitor, and escort him back to us. This might be a trap, but if this information is as important as this traitor claims, it's worth some risk.",
+},
 [822] = {
 ["o"] = "Bring 5 Lightning Glands, 1 Thunderhawk Saliva Gland and 1 Kodo Liver to Brewmaster Drohn in Ratchet.",
 ["d"] = "Good stuff, that stormstout, huh?\n\nI have another recipe that I learned from Chen. Would you be interested? It won't take long to make, and it might be useful if you plan on adventuring some more.\n\nBring me 5 lightning glands from any stormhide, 1 thunderhawk saliva gland from greater thunderhawks, and a kodo liver from any of the Barrens' kodos.\n\nLike I said, this stuff has kick; it's the trogg brew that I mentioned to you before.",
@@ -1151,9 +1427,17 @@ ForeverDungeonJournalDB = {
 ["o"] = "Bring the Stolen Silver to Gazrog in the Crossroads.",
 ["d"] = "You may have killed the raptors, but the silver they stole must be recovered!  I have reports that the raptors have a large grouping of nests south of Ratchet, known as the Raptor Grounds.  It is likely that they brought our stolen silver there.\n\nGo to this raptor haven and search for the stolen silver.  When you find it, return it to me.",
 },
+[95697] = {
+["o"] = "Enter the Excavation Sites in the Wetlands and bring back Thicket Raptor Meat.",
+["d"] = "Zamja tells me we need more homestyle cooking.\r\nIf we start selling raptor, she thinks it'll draw in customers who don't usually visit Borstan's Firepit.\r\n\r\nHer idea is not so bad. But I want something that rises above the smells of our birth villages. We're in Orgrimmar! Borstan should serve a grand take on their familiar favorites.\r\n\r\nA hunter recently came back from the Wetlands with a giant talon from the thicket raptors in the Excavation Sites.\r\n\r\nUp for a job?",
+},
 [98284] = {
 ["o"] = "Speak with Nasalanna Windsinger in Shen'dar Village to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "Enchanters make everything better and are always welcome at any camp out in the wilds.\r\n\r\nI reckon I know someone that can teach you how to craft an Enchanted Lute for your camp. It's so important to find entertainment during your downtime, and this bit of magic can help ensure you are ready to weather all sorts of challenges when you hit the old dusty trail once again.",
+},
+[98340] = {
+["o"] = "Speak with Dendrite Starblaze in the village of Nighthaven, Moonglade.",
+["d"] = "It would seem that you are ready for the next step in your journey, young druid. Dendrite Starblaze has sent for you, and wishes for you to seek him out in Moonglade once again.\r\n\r\nYou have already learned to call upon the magic to take you to Moonglade, so you should be able to embark immediately if you choose. I would suggest you leave soon, if you wish to continue your druidic training.",
 },
 [97326] = {
 ["o"] = "Return 8 Smooth Boulders to Thra behind Grommash Hold.",
@@ -1163,9 +1447,21 @@ ForeverDungeonJournalDB = {
 ["o"] = "Collect 8 Bottles of Whispering Elixir from Shadowvale, then return to Carolai Anise in Brill.",
 ["d"] = "Before the Scourge invasion, the reclusive village of Shadowvale was known for its Whispering Elixir. Distilled from herbs found only in Tyr's Fall, the elixir was sought by apothecaries, mystics, and poisoners alike even after being banned in the city.\r\n\r\nI've had requests from a number of buyers eager to get their hands on some elixir. Travel to the ruins of Shadowvale deep in the Whispering Forest to the west. I'm prepared to offer significant compensation if you can recover some bottles for me.",
 },
+[903] = {
+["o"] = "Collect 7 Prowler Claws from Savannah Prowlers for Sergra Darkthorn in the Crossroads.",
+["d"] = "Now it's time to go after something that really bites.  The prowlers of the Barrens are a tough breed.  Tough, resourceful, sly... and deadly.  You'll find them among the tall grasses.  You'll find many to the southwest of the Crossroads.\n\nBe wary as you hunt them, N, or you may find yourself no longer the predator, but instead the prey.",
+},
+[1528] = {
+["o"] = "Find Islen Waterseer in the Barrens.",
+["d"] = "Water be in ya future, mon. I see you be strong in da ways of fire already, an' me tinkin' you be ready to talk to Islen.\n\nIslen live along the coast of da Barrens. If ya head south along the Southfury River, ya canna miss her--look fer da big shark! She be strong in da ways of da elements and can teach ya da ways of water... if you tink you be ready.\n\nShe be easy ta find, just don' go too far south--she be jus' beyond Ratchet.",
+},
 [97965] = {
 ["o"] = "Speak with Naleeia Tattermend in Shen'dar Village to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "So you've taken up First Aid? That's an honorable... and pragmatic pursuit as a druid.\r\n\r\nI reckon I know someone that can teach you how to craft a First Aid Kit for your camp. Injuries are a reality in the world of adventuring and offering some much-needed healing at your camp could even save lives.",
+},
+[6543] = {
+["o"] = "Open the Bundle of Reports.  Take the Warsong Reports to the Warsong Scout, Warsong Runner, and Warsong Outrider. Bring back the updates they give you to Kadrak at the northern watch tower in the barrens.",
+["d"] = "I recently deployed a few scouts into Ashenvale and I need a runner to take them their orders, and bring me back a report of what they have observed.\n\nYour first stop should be the Zoram'gar Outpost, along the coast to the west, at the Zoram Strand, to locate the first runner. You also need to stop at Splintertree Post, to the north, and along the road to the east, near Azshara. You will find a scout and an outrider there.\n\nGive them each a report, and from them, get an update on their findings.",
 },
 [5041] = {
 ["o"] = "Find and return Crossroads' Supply Crates to Thork in the Barrens.",
@@ -1179,9 +1475,61 @@ ForeverDungeonJournalDB = {
 ["o"] = "Report to Constable Aonda in Shen'dar Village.",
 ["d"] = "One of the most pervasive threats on Zephras Isle is the Al'Aketh Cult. They are religious zealots devoted to the worship of the supposed elemental ruler of Skywall, Al'Akir the Windlord. They are brutal, single-minded, and their power and ambitions are growing more deadly by the day.\r\n\r\nYour path will soon take you to Shen'dar Village to the south. Present yourself to Constable Aonda when you arrive. The cult threatens Shen'dar and they are in need of aid. Tell Aonda that I sent you.",
 },
-[3301] = {
-["o"] = "Speak with Mura Runetotem in the Sepulcher.",
-["d"] = "My clanmate, Mura Runetotem, traveled to Silverpine so that she might aid our undead allies.  Silverpine is an ailing forest, a dying forest, and it was Mura's hope to bring it new life.  Perhaps the strange life found here in the Barrens can help her work in Silverpine.\n\nTake a sample of the shells you gathered, and bring it to Mura in Silverpine.  She is staying at the Sepulcher.  With luck, studying the shell will give her the insight she needs to heal that dying place.",
+[6541] = {
+["o"] = "Report to Kadrak at the watch tower in northern Barrens.",
+["d"] = "Have you ever been to Ashenvale, to the north? The horde has recently set up an outpost on the Zoram Strand there, and we can always use some new recruits to help defend our new fronts.\n\nIf you think you are up to it, see Kadrak in the northern Barrens, at the watch tower. He is heading up the Ashenvale campaign and can give you further orders.",
+},
+[448] = {
+["o"] = "Report to High Executor Hadrec at the Sepulcher.",
+["d"] = "Before you launch an assault on Fenris Isle, report to High Executor Hadrec.  He may have additional information or equipment you'll need.",
+},
+[95216] = {
+["o"] = "Collect the Highly Toxic Strain from Witherfang in Ruins of Lordaeron for Theodore Griffs in Undercity.",
+["d"] = "Welcome to the most vital organ of the Undercity: The Apothecarium! Here we experiment on the most virulent of Azeroth's exotic specimens.\r\n\r\nYou've caught me in a good mood, so I will let you in on my latest investigation. It appears there is a particularly venomous arthropod stalking the ruins above our fair city. Its toxins are said to eat through even undead flesh. How exhilarating!\r\n\r\nI wish to validate these claims. Should you find yourself withering away from its bite, I should love a sample.",
+},
+[905] = {
+["o"] = "Kill Sunscale raptors and collect their feathers. Use the feathers on the 3 Scytheclaw nests. Return to Sergra Darkthorn in the Crossroads.",
+["d"] = "Now, N, the hunt deepens.  Now you must defeat your prey, and then find your way to its lair.\n\nHunt the sunscale raptors to the south.  Slay them and remove the feathers they wear.  Place the feathers on the scytheclaw nests southwest of the Stagnant Oasis. Show their brethren you do not fear them!",
+},
+[3261] = {
+["o"] = "Speak with Jorn Skyseer at Camp Taurajo.",
+["d"] = "Your time with me is over, N.  To learn more, you must go to Camp Taurajo to the south and speak with Jorn Skyseer.  He will continue your guidance.",
+},
+[94568] = {
+["o"] = "Speak with Talaanis Shadowsong and observe the conversation.",
+["d"] = "The turncoat clearly was afraid of what the cult had planned, enough so to defect and seek our aid. It's truly unfortunate that he is dead and took his secrets to the grave with him.\r\n\r\nWe must discuss this further to determine our next steps.",
+},
+[883] = {
+["o"] = "Bring the Hoof of Lakota'mani to Jorn at Camp Taurajo.",
+["d"] = "The Hoof of Lakota'mani is a symbol of the strength of the great kodo.",
+},
+[478] = {
+["o"] = "Bring the strange pendant to Shadow Priest Allister at the Sepulcher.",
+["d"] = "<You quickly remove the pendant from the crate and replace the lid.>",
+},
+[91859] = {
+["o"] = "Speak with Deathguard Baldren about the mysterious Earthen Ring travelers who recently passed through The Sepulcher.",
+["d"] = "Cutting straight to it, these \"dignitaries\" are no ordinary diplomats. One was a Tauren. Ordinary enough for the Earthen Ring, but the other--and you'll scarcely believe this--was an elf. A *high* elf. They were cloaked, but I've seen quel'dorei before and I'd bet my good pinky finger that's what I saw.\r\n\r\nWhy was an elf accompanying a Tauren through horde territory? Well, your guess is as good as mine. That's as much as I know, so I'd suggest speaking with Deathguard Baldren near the entrance to town.",
+},
+[97245] = {
+["o"] = "Find the home of Kuramaa in the Shen'dar Highlands, and defeat the spirit in combat. Bring Kuramaa's Mask to Olariaan Swiftburn in the Gustberry Lowlands when you are victorious.",
+["d"] = "The residents of the Shen'dar Highlands speak of an ancient forest sprite called Kuramaa. They say it lives inside of a twisted stump at the summit of a hill near the highlands Anchor Pylon.\r\n\r\nGo to the highlands and find this stump. Rap your fist upon the bark and Kuramaa will appear. Best the spirit in combat, and bring me its wooden mask.\r\n\r\nBe warned however, this entity will be exceptionally resistant to much of your magic. Only the touch of flame will lay low the spirit.",
+},
+[452] = {
+["o"] = "Help Deathstalker Faerleia kill the Pyrewood Council.",
+["d"] = "You got here just in the nick of time, N!\n\nThe Pyrewood Council will be returning any moment.  Arugal has other matters to tend to in the keep.  He uses the Council as mere puppets to keep the mindless minions of Pyrewood under his control.  But I believe that without the guidance of the Pyrewood Council, the sons of Arugal will turn against their master.\n\nI cannot handle them all by myself.  I need you to help me.  Together we can lay waste to the Council for Lady Sylvanas.",
+},
+[99] = {
+["o"] = "Bring 6 Pyrewood Shackles to Dalar Dawnweaver at the Sepulcher.",
+["d"] = "As my understanding of Arugal's magic grows so does my disdain for the hapless fool.  I am close to completing my research on his so called remedy.\n\nMy knowledge will be complete when I learn what enchantment is causing the strange behavior going on in Pyrewood Village.  By day, the peasants appear to be Human.  But when the sun goes down the townsfolk turn into Moonrage Worgen.\n\nI need to draw energy from the enchanted shackles Arugal cast on them.  Bring to me six enchanted Pyrewood Shackles, N.",
+},
+[96638] = {
+["o"] = "Speak to Raan Wildwind near Shen'dar Village.",
+["d"] = "More and more adventurers like yourself have been seeking glory and fortune outside of the safety of Thendal Grove. There's one such adventurer who has made a camp outside of Shen'dar Village, along the road leading southwest out of Thendal Grove.\r\n\r\nSeek him out and see what you can learn from him that may help you in your own travels.",
+},
+[477] = {
+["o"] = "Retrieve the contents of one of the Dalaran wizards' crates. You will find Pyrewood Village to the south.",
+["d"] = "As you may know, the town of Ambermill remains a source of human opposition, mainly through the support they receive from the wizards of Dalaran.\n\nI don't know what their plan is, but for them to show interest in a backwater village like Ambermill indicates that it must have some greater importance.\n\nThey've been shipping crates by the wagon from Hillsbrad. Many of those supplies end up at a small camp north of Pyrewood Village. Retrieve the contents of a crate and return them to me.",
 },
 [94485] = {
 ["o"] = "Collect 8 Lady's Tear Moss.",
@@ -1191,9 +1539,45 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Urs'endris near the falls northeast of Valanaar.",
 ["d"] = "Greetings, N. You have progressed in your druidic studies far enough that I think it is time for you to meet one of the great spirits that reside here on Zephras. Urs'endris is a wise and noble spirit, who has taught druids how to take on the ursera shape for generations. Unfortunately his domain has begun to wither and fall into the sky like many other areas of Zephras.\r\n\r\nTo find him, travel northeast near the waterfall in the shadow of the Shrine of Akir. He should be able to instruct you further.",
 },
+[461] = {
+["o"] = "Take Alaric to the hidden alcove.",
+["d"] = "I know of a hidden niche within the keep that holds an item dear to Thule, and his old colleagues.  It also holds something you might find useful.  Take me there!\n\nThe alcove is in the southwestern tower of the keep, behind a dusty shelf.\n\nTake my body, but leave my boots.  They never fit me anyway...",
+},
+[881] = {
+["o"] = "Bring Echeyakee's Hide to Sergra Darkthorn at the Crossroads.",
+["d"] = "Whitemist, Echeyakee in the Tauren tongue, is the king of the savannah cats.  He hunts with such stealth, they say he's like a thin, white mist on the earth.  And he kills so fast his prey have no time for fear, or pain.\n\nThe Tauren say he is both mercy and death.\n\nYou will learn if that's true, for I now set you on the path to hunt Echeyakee.  His lair is northeast of the Crossroads, among the bones of giant Kodo\n\nGo.  Blow this horn when you reach his lair.  Blow the horn, and he will come.",
+},
+[78261] = {
+["o"] = "Find The Horn of Xelthos inside of Shadowfang Keep. Then, return it to C's dead drop near Pyrewood Village. You must complete the job alone.",
+["d"] = "<A note sits in the chest>\r\n\r\nHello, N.\r\n\r\nI desire a treasure known as The Horn of Xelthos, which is somewhere within Shadowfang Keep.\r\n\r\nVenturing inside the keep usually calls for backup. However, for this job, a low profile is of utmost importance.\r\n\r\nYou must go alone.\r\n\r\nI have a contact, by the name of Veenix, in the Stonetalon Mountains. He should be able to help you get past the courtyard gate. The rest is up to you. \r\n\r\nReturn the horn here, and your payment will be sent soon after.\r\n\r\n- C",
+},
+[1098] = {
+["o"] = "Find the Deathstalker Adamant and Deathstalker Vincent.",
+["d"] = "In preparation for an assault on Shadowfang, two deathstalkers were sent to the keep to gather intelligence.  It has been many days and they have not returned, but we must receive their report if we're to have any hope of a successful attack!\n\nSo here is your task, N.  Go to Shadowfang Keep to the south and find the Deathstalkers Adamant and Vincent.  Find them, and if they require aid then give it.\n\nThis mission is as dangerous as is it critical, N.  Do not fail.",
+},
+[97538] = {
+["o"] = "Tah Winterhoof in Thunder Bluff wants 30 Mirkweed Pods from Mirkfallon Lake.",
+["d"] = "Greetings, friend. I wonder if I may ask a favor of you? I have just run out of red pigment for my paints, and I am looking for one with younger hooves to make the long journey into the Stonetalon Mountains on my behalf.\r\n\r\nIn the middle of the mountain pass there lies a large circular lake, Mirkfallon Lake, that has a unique plant that grows within its waters. The pods of this plant, mirkweed, turn a vibrant red when dried. Gather the pods of this plant for me, and I will reward you well for your efforts.",
+},
+[94913] = {
+["o"] = "Use the spell \"Teleport: Moonglade\" to travel to Moonglade. When you arrive, speak with Dendrite Starblaze in the village of Nighthaven.",
+["d"] = "All druids are welcomed to the sacred lands of Moonglade. Keeper Remulos--Moonglade's guardian--keeps watch over all druids who hibernate there. I'll teach you the spell that lets you transport yourself there. Cast it whenever you seek Moonglade's knowledge or solace.\n\nAs for your first lesson here on Azeroth, travel to Moonglade and speak with Dendrite Starblaze in Nighthaven about the path you're now on. Good luck, young druid.",
+},
+[480] = {
+["o"] = "Kill the Dalaran archmage, then retrieve his staff for Shadow Priest Allister at the Sepulcher.",
+["d"] = "An archmage of great power is overseeing the reactivation of the ley energy node. With the progress they have made, our only hope of stopping them is by killing him. It will be difficult, he is no doubt protected by many other mages and warders.\n\nYou must go, and you must dispatch him quickly. When he is dead, retrieve his staff for me. Go now.",
+},
 [959] = {
 ["o"] = "Crane Operator Bigglefuzz in Ratchet wants you to retrieve the bottle of 99-Year-Old Port from Mad Magglish who is hiding in the Wailing Caverns.",
 ["d"] = "Oops!\n\nHad a little mishap, as you can see! The morning cargo shipment from Booty Bay was huge. Huge I say! Never seen so many crates. Well, I was trying to expedite things so I started unloading a bit more than I could handle. That's when everything came tumbling down.\n\nBefore I knew what was going on, I saw that menace, Mad Magglish, go running off with a bottle of 99-year-old port. Chased him all the way to Wailing Caverns. No way I was going in there.\n\nMaybe you're brave enough to find him?",
+},
+[6126] = {
+["o"] = "Travel to Moonglade and speak with Dendrite Starblaze in the village of Nighthaven.",
+["d"] = "You're now ready to learn about poison and the power we as druids have over it, N.  Cenarius has blessed us with the ability to purge even the most foul of poisons with but a mere incantation.  This gift is not to be taken lightly... and to ensure you learn this lesson, you'll work to address the effects of poisonings as a layman would.\n\nTravel to Moonglade and speak with Dendrite Starblaze; he awaits your arrival to begin your lesson.",
+},
+[95328] = {
+["o"] = "Deliver Whispering Horror Residue to Father Lankester in the War Quarter of Undercity.",
+["d"] = "Against your better judgement you scrape up and collect the squirming remains of the beast. Someone in Undercity might have a use for them.",
 },
 [832] = {
 ["o"] = "Take this eye to Neeru Fireblade.",
@@ -1203,6 +1587,10 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Fenn Fairweather in Shen'dar Village to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "You might not think so, but your skill as a fisherman can actually come in handy at camp.\r\n\r\nI reckon I know someone that can teach you how to craft a Fish Bowl for your camp. You can use this fixture to help provide a bit of joy to yourself and your fellow adventurers. A happy adventurer is a strong adventurer and I'm sure your combat capabilities will reflect that.",
 },
+[94007] = {
+["o"] = "Report to Quel'ana Quickgale in Valanaar.",
+["d"] = "Now that you've gained a level of comfort in the wilds of the highlands, I believe it is time for you to seek your very own animal companion.\r\n\r\nGo to the port of Valanaar to the southeast, and speak with Quel'ana Quickgale there. He will instruct you in the art of beast taming.",
+},
 [6127] = {
 ["o"] = "Use the Empty Dreadmist Peak Sampler to draw a sample of water from a pool at the top of the peak.\n\nDeliver the Filled Dreadmist Peak Sampler to Tonga Runetotem at the Crossroads, Barrens.",
 ["d"] = "Dreadmist Peak to the northwest of the Crossroads is most likely a primary candidate as to the source of the spread of the poison.  Its airy peaks have pools of water that influence the weather patterns.  I suspect the water is now tainted by the demon-worshipping Burning Blade.\n\nUse this sampler to draw water from the pool at the very top of the peak.  Once filled, deliver it to Tonga Runetotem at the Crossroads.  He is the one that requested our aid, and you will work with him to address this malady.",
@@ -1211,13 +1599,29 @@ ForeverDungeonJournalDB = {
 ["o"] = "Collect 20 feathers from the Shadowgale Shrieklings in Shadowgale Forest.",
 ["d"] = "The other ingredient I need for the poultice is feathers from the Shadowgale shrieklings that roam this forest. In their juvenile form, the shrieklings have insulative feathers which would be ideal to put over the moss. These feathers will prevent the antiseptic sap from drying out and will provide at least some protection against the elements.\r\n\r\nBe warned, the shrieklings are normally docile but they have been incredibly hostile of late. Their large talons can easily disembowel you if you aren't careful.",
 },
-[94007] = {
-["o"] = "Report to Quel'ana Quickgale in Valanaar.",
-["d"] = "Now that you've gained a level of comfort in the wilds of the highlands, I believe it is time for you to seek your very own animal companion.\r\n\r\nGo to the port of Valanaar to the southeast, and speak with Quel'ana Quickgale there. He will instruct you in the art of beast taming.",
+[481] = {
+["o"] = "Take the rune-inscribed pendant to Dalar Dawnweaver at the Sepulcher.",
+["d"] = "Take the pendant to Dalar Dawnweaver, perhaps he can shed some light on the wizards' plans.",
+},
+[95981] = {
+["o"] = "Slay 8 Dalaran Wizards and 8 Dalaran Watchers for Shadow Priest Allister in the Sepulcher.",
+["d"] = "Taking away their pendants is just the first step. If the Kirin Tor really are shipping a steady supply of relics from Dalaran, we must stop them at the source.\r\n\r\nSearch the roads around Ambermill for Dalaran's wizards and watchers. Their presence has allowed free access across our borders for too long. If we can cull their numbers, that should put a stop to these pendants making it into Silverpine Forest in the first place.",
+},
+[4921] = {
+["o"] = "Find Mankrik's wife and then return to him in the Crossroads.",
+["d"] = "We battled in a small tauren camp when we were separated--she held three of the Bristlebacks off by herself. But the odds began to overwhelm us. I led some away only to see her overwhelmed by newcomers. In my rage, I turned to face my enemies, but they brought me down easily with their vast numbers.\n\nI awoke to a tauren druid tending my wounds--he had come across me on the Gold Road as I fell.\n\nPlease, druid, find some sign of my wife.",
+},
+[97244] = {
+["o"] = "Slay Skypriest Faladiel in the Gustberry Lowlands and collect Faladiel's Heart.",
+["d"] = "There is an Al'Aketh Skypriest called Faladiel. He was once a caller of the flame and a stalwart Windshaper. Like so many Al'Aketh, he mortgaged his loyalty for power and his hands are now stained with the blood of his former brothers and sisters.\r\n\r\nYou will find Skypriest Faladiel at the farm to the northeast past Valanaar, just to the south of the Shrine of Akir. Kill the betrayer. Bring me his heart. It is a gruesome task, but it is needed for the ritual we are to perform.",
 },
 [962] = {
 ["o"] = "Apothecary Zamah in Thunder Bluff wants you to collect 10 Serpentbloom.",
 ["d"] = "The Royal Apothecary Society, based in the great Undercity of Lordaeron, has sent me here for a very specific service, N. Perhaps you wish to aid me, and in turn The Dark Lady in our efforts to advance the Forsaken.\n\nRecently I studied a rare specimen of flora named Serpentbloom. I believe in greater quantities this herb has great potential.\n\nUnfortunately Serpentbloom can only be found in the darkest recesses of the Wailing Caverns, a dangerous cave system located in the Barrens.",
+},
+[446] = {
+["o"] = "Bring Bethor's Scroll to Apothecary Renferrel at the Silverpine Sepulcher.",
+["d"] = "This Ichor was crafted by an old colleague of mine: Thule Ravenclaw.  He was a young, promising mage before the great war, but when the Lich King rose to power, he betrayed his brethren and allied with the Scourge.\n\nI did not realize he still lives, nor that he leads the Rot Hides in their forays against us!\n\nI know many of his spells, and can help concoct a potion to counter them.  Take this scroll back to Apothecary Renferrel.  It has the incantations needed for the potion.",
 },
 [354] = {
 ["o"] = "Bring Gregor's Remains, Nissa's Remains and Thurman's Remains to Coleman Farthing in Brill.",
@@ -1231,25 +1635,25 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Shadow Priest Allister at the Sepulcher.",
 ["d"] = "Of course! How could I have forgotten?\n\nAmbermill was one of the sites earmarked by the Kirin Tor, noted because it houses a dormant ley energy node. The wizards must be planning to reactivate the node and use its energies for some greater purpose.\n\nWe cannot allow this to happen...\n\nIt will take a great amount of power to activate the area's ley energies, we can stall them by taking the pendants away from the wizards.\n\nRelay this information to Allister, he will decide a course of action.",
 },
-[3261] = {
-["o"] = "Speak with Jorn Skyseer at Camp Taurajo.",
-["d"] = "Your time with me is over, N.  To learn more, you must go to Camp Taurajo to the south and speak with Jorn Skyseer.  He will continue your guidance.",
+[451] = {
+["o"] = "Bring 6 samples of Lake Creeper Moss, 6 samples of Lake Skulker Moss and a Hardened Tumor to Master Apothecary Faranell in the Undercity.",
+["d"] = "According to Berard's Journal the moss from Lake Skulkers and Creepers might prove useful for our quest to brew a new plague.  Those beasts dwell on the islands in Lake Lordamere to the east.\n\nHe also mentions a very rare Hardened Tumor that he discovered on a Vile Fin murloc.  Apparently the tumor is so rare Berard was only able to obtain one.\n\nCollect samples of the moss as well as the rare hardened tumor and take them to Master Apothecary Faranell in the Undercity.",
 },
 [95349] = {
 ["o"] = "Take the skycutter ship from Zephras Isle to Mulgore and speak with Alaana Stormwalker when you arrive.",
 ["d"] = "The recent events with the cult have delayed my plans to travel to Azeroth and I must remain here in Valanaar for a time. You and a handful of other Windshapers will be our vanguard instead. Alaana Stormwalker will be waiting to receive our Windshapers upon arrival in Mulgore, and I'd encourage you to explore Azeroth while we finish our business here. We will join you soon.\r\n\r\nWhen you are ready, please proceed to the dock just outside this lodge and board the skycutter ship there. \r\n\r\nBanu-Alah, N.",
 },
-[905] = {
-["o"] = "Kill Sunscale raptors and collect their feathers. Use the feathers on the 3 Scytheclaw nests. Return to Sergra Darkthorn in the Crossroads.",
-["d"] = "Now, N, the hunt deepens.  Now you must defeat your prey, and then find your way to its lair.\n\nHunt the sunscale raptors to the south.  Slay them and remove the feathers they wear.  Place the feathers on the scytheclaw nests southwest of the Stagnant Oasis. Show their brethren you do not fear them!",
+[1131] = {
+["o"] = "Bring Steelsnap's Rib to Melor Stonehoof in Thunder Bluff.",
+["d"] = "At times we hunt for food.  At times we hunt for honor.  And at times we hunt to earn the Earthmother's teachings.\n\nBut the hunt I now set upon you is none of these things.  It is to slay a creature outside the Earthmother's blessing.\n\nThe hyena Steelsnap roams the Thousand Needles, south of the Barrens.  He is a tyrant, attracting other hyenas to him and spreading fear and bloodshed among more peaceful beasts.\n\nFind Steelsnap, N.  Find him, and defeat him.",
 },
 [97968] = {
 ["o"] = "Speak with Syriel Nightrain in Valanaar to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "Looks to me like you've gained some skill in herbalism. Picking flowers isn't just for dilly-dallying, you know. It can be useful... and profitable.\r\n\r\nI reckon I know someone that can teach you how to craft an Incense Candle for your camp. High spirits are a key component to keeping healers and spellcasters in the fight, and an Incense Candle can provide a boost that magic users will surely appreciate.",
 },
-[6543] = {
-["o"] = "Open the Bundle of Reports.  Take the Warsong Reports to the Warsong Scout, Warsong Runner, and Warsong Outrider. Bring back the updates they give you to Kadrak at the northern watch tower in the barrens.",
-["d"] = "I recently deployed a few scouts into Ashenvale and I need a runner to take them their orders, and bring me back a report of what they have observed.\n\nYour first stop should be the Zoram'gar Outpost, along the coast to the west, at the Zoram Strand, to locate the first runner. You also need to stop at Splintertree Post, to the north, and along the road to the east, near Azshara. You will find a scout and an outrider there.\n\nGive them each a report, and from them, get an update on their findings.",
+[92517] = {
+["o"] = "Kill 10 Highlands Bandits and their leader, \"Badwind\" Bennic in the Shen'dar Highlands.",
+["d"] = "There's a cave not far to the north, hidden behind a waterfall. It's well known to me that there's a group of bandits that are operating out of that cave. They were a problem for us before the cult arrived, but now they are a real terror. I can't spare the people to go and clear them out, unfortunately.\r\n\r\nI need you to go there and take care of them for me. Kill as many as you can, and if possible, take out their leader, the one they call \"Badwind\" Bennic. That cave is dangerous, so be careful.",
 },
 [355] = {
 ["o"] = "Speak with Magistrate Sevren in Brill.",
@@ -1259,45 +1663,45 @@ ForeverDungeonJournalDB = {
 ["o"] = "Collect 10 Bloodied Heirlooms from Al'Aketh Footsoldiers and Al'Aketh Stormchasers in the Shadowgale Forest.",
 ["d"] = "The Al'Aketh Cultists ambushed us with no warning, though their motives remain a mystery to me. I knew these cultists had clouds between their ears, but I never imagined they would upset the delicate balance here on Zephras with such brutality. Go, slay as many as you can and take their heirlooms if they wear any.\r\n\r\n<Elegael spits.>\r\n\r\nThese storm-cursed cultists don't deserve to be called shen'dorei. The beasts of the forest can have their bodies. Their ashes don't deserve the winds.",
 },
-[6541] = {
-["o"] = "Report to Kadrak at the watch tower in northern Barrens.",
-["d"] = "Have you ever been to Ashenvale, to the north? The horde has recently set up an outpost on the Zoram Strand there, and we can always use some new recruits to help defend our new fronts.\n\nIf you think you are up to it, see Kadrak in the northern Barrens, at the watch tower. He is heading up the Ashenvale campaign and can give you further orders.",
+[2479] = {
+["o"] = "Travel to Tarren Mill in Hillsbrad Foothills and deliver the Sample of Zanzil's Mixture to Serge Hinott.\n\nTo get to Tarren Mill, take the Zeppelin to the Undercity and follow the road south through Silverpine and towards Hillsbrad. Follow the signs!\r\n\r\n",
+["d"] = "Take a sample of the mixture to Serge Hinott in Tarren Mill.\n\nIf anyone can cure you, it's Serge. Live long enough and Serge will show you the ways of poison creation and use.",
 },
-[446] = {
-["o"] = "Bring Bethor's Scroll to Apothecary Renferrel at the Silverpine Sepulcher.",
-["d"] = "This Ichor was crafted by an old colleague of mine: Thule Ravenclaw.  He was a young, promising mage before the great war, but when the Lich King rose to power, he betrayed his brethren and allied with the Scourge.\n\nI did not realize he still lives, nor that he leads the Rot Hides in their forays against us!\n\nI know many of his spells, and can help concoct a potion to counter them.  Take this scroll back to Apothecary Renferrel.  It has the incantations needed for the potion.",
+[877] = {
+["o"] = "Return to Tonga at The Crossroads, after investigating the Stagnant Oasis.",
+["d"] = "Like the one you found at the Forgotten Pools, there may be fissures at the other oases in the Barrens.  If so, then perhaps the fissures are the oases' source of life.\n\nWe must test this.\n\nHere, take these seeds.  They are dead and infertile, but take them to the Stagnant Oasis to the southeast.  If there is a fissure there, then place the seeds within it...and observe.",
 },
-[903] = {
-["o"] = "Collect 7 Prowler Claws from Savannah Prowlers for Sergra Darkthorn in the Crossroads.",
-["d"] = "Now it's time to go after something that really bites.  The prowlers of the Barrens are a tough breed.  Tough, resourceful, sly... and deadly.  You'll find them among the tall grasses.  You'll find many to the southwest of the Crossroads.\n\nBe wary as you hunt them, N, or you may find yourself no longer the predator, but instead the prey.",
+[92421] = {
+["o"] = "Collect 25 Intact Limbs within The Ruins of Lordaeron for Morbin Lightbane in the Undercity.",
+["d"] = "As a paladin of the Forsaken, it is my duty to exact the will of our Dark Lady while tending to our people's needs. We are fortunate with an opportunity to accomplish both.\r\n\r\nAbove the Undercity, the scourge still roam unchecked in great numbers. Our forces dwindle trying to reclaim our land, and decaying flesh cannot be reknit. Not without replacements.\r\n\r\nWould that our glorious captain Garek Bandarion still be with us, I know what he would wish. To finish what he started and heal our kin. For Lordaeron!",
 },
-[91859] = {
-["o"] = "Speak with Deathguard Baldren about the mysterious Earthen Ring travelers who recently passed through The Sepulcher.",
-["d"] = "Cutting straight to it, these \"dignitaries\" are no ordinary diplomats. One was a Tauren. Ordinary enough for the Earthen Ring, but the other--and you'll scarcely believe this--was an elf. A *high* elf. They were cloaked, but I've seen quel'dorei before and I'd bet my good pinky finger that's what I saw.\r\n\r\nWhy was an elf accompanying a Tauren through horde territory? Well, your guess is as good as mine. That's as much as I know, so I'd suggest speaking with Deathguard Baldren near the entrance to town.",
+[444] = {
+["o"] = "Bring the Sample Ichor to Bethor Iceshard in the Undercity.",
+["d"] = "I have reduced the ichor you brought me and separated it into its base components.  My findings are not conclusive, but I have determined that warlock and necromantic magics were used in the ichor's creation.\n\nWhile I continue to study the ichor, I want you to take a sample to Bethor Iceshard in the Undercity.  Bethor is not an apothecary, but his knowledge of magic may help to unravel the mystery of the rot hides.\n\nGo.  You will find Bethor in the Magic Quarter of the Undercity.",
 },
-[1098] = {
-["o"] = "Find the Deathstalker Adamant and Deathstalker Vincent.",
-["d"] = "In preparation for an assault on Shadowfang, two deathstalkers were sent to the keep to gather intelligence.  It has been many days and they have not returned, but we must receive their report if we're to have any hope of a successful attack!\n\nSo here is your task, N.  Go to Shadowfang Keep to the south and find the Deathstalkers Adamant and Vincent.  Find them, and if they require aid then give it.\n\nThis mission is as dangerous as is it critical, N.  Do not fail.",
+[439] = {
+["o"] = "Bring Deliah's Ring to High Executor Hadrec at the Sepulcher.",
+["d"] = "Among the corpses a hand protrudes, unwrapped.  It is the hand of a woman, pockmarked from the plague but relatively fresh.  \n\nOn the hand is a ring.  Removing the ring and inspecting it reveals an engraving:\n\n\"For Deliah\"",
 },
-[477] = {
-["o"] = "Retrieve the contents of one of the Dalaran wizards' crates. You will find Pyrewood Village to the south.",
-["d"] = "As you may know, the town of Ambermill remains a source of human opposition, mainly through the support they receive from the wizards of Dalaran.\n\nI don't know what their plan is, but for them to show interest in a backwater village like Ambermill indicates that it must have some greater importance.\n\nThey've been shipping crates by the wagon from Hillsbrad. Many of those supplies end up at a small camp north of Pyrewood Village. Retrieve the contents of a crate and return them to me.",
+[95508] = {
+["o"] = "Help Walton survive the encounter with Terry Longdrink and the Kul Tiras marines.",
+["d"] = "Yes, I used to be a member of the Kul Tiras navy. After Lord Admiral took Theramore and started his campaign in Durotar, I had... \"objections\" to his methods. Particularly the methods involving executing civilians.\r\n\r\nThere's more to the story but... wait... what's that?\r\n\r\nThere's a group of men coming up the ridge!",
 },
 [356] = {
 ["o"] = "Kill 8 Bleeding Horrors and 8 Wandering Spirits, then report back to Linnea at her camp.",
 ["d"] = "The defenders on The Bulwark protecting Tirisfal from the Plaguelands are on constant alert. But sometimes Scourge will slip past them.\n\nOur success at the Bulwark depends on a one-front battle - we cannot allow an attack from the rear, nor can we allow our defenders' supply line to be cut.\n\nAssist the Bulwark. Patrol east and slay any Scourge you find. Spend particular effort at the Balnir Farmstead to the east. It has become a haven for interloping Scourge.",
 },
-[461] = {
-["o"] = "Take Alaric to the hidden alcove.",
-["d"] = "I know of a hidden niche within the keep that holds an item dear to Thule, and his old colleagues.  It also holds something you might find useful.  Take me there!\n\nThe alcove is in the southwestern tower of the keep, behind a dusty shelf.\n\nTake my body, but leave my boots.  They never fit me anyway...",
+[92881] = {
+["o"] = "Speak with Talaanis Shadowsong in Valanaar.",
+["d"] = "The attacks on both the western and eastern watchtowers are not a coincidence. Based on what you told us about what occurred at the western watchtower with that skypriest, our best guess is that the cult is trying to do something to the anchor pylons.\r\n\r\nPlease speak with High Elder Shadowsong. He will tell you about a lead that could prove to be promising.",
 },
-[4921] = {
-["o"] = "Find Mankrik's wife and then return to him in the Crossroads.",
-["d"] = "We battled in a small tauren camp when we were separated--she held three of the Bristlebacks off by herself. But the odds began to overwhelm us. I led some away only to see her overwhelmed by newcomers. In my rage, I turned to face my enemies, but they brought me down easily with their vast numbers.\n\nI awoke to a tauren druid tending my wounds--he had come across me on the Gold Road as I fell.\n\nPlease, druid, find some sign of my wife.",
+[5725] = {
+["o"] = "Bring the books Spells of Shadow and Incantations from the Nether to Varimathras in Undercity.",
+["d"] = "Many denizens of the Legion bestow gifts on their followers as you may well know. Some of these gifts the Dark Lady feels would be better off in her hands than in the hands of those with... lesser vision.\n\nA sect of the Shadow Council hidden in caverns below Orgrimmar known as the Searing Blade are a prime example. The Lady tells me that members of the Searing Blade have come into the possession of two powerful spell books--she would like to \"borrow\" these books from them. You will get them for her.",
 },
-[97245] = {
-["o"] = "Find the home of Kuramaa in the Shen'dar Highlands, and defeat the spirit in combat. Bring Kuramaa's Mask to Olariaan Swiftburn in the Gustberry Lowlands when you are victorious.",
-["d"] = "The residents of the Shen'dar Highlands speak of an ancient forest sprite called Kuramaa. They say it lives inside of a twisted stump at the summit of a hill near the highlands Anchor Pylon.\r\n\r\nGo to the highlands and find this stump. Rap your fist upon the bark and Kuramaa will appear. Best the spirit in combat, and bring me its wooden mask.\r\n\r\nBe warned however, this entity will be exceptionally resistant to much of your magic. Only the touch of flame will lay low the spirit.",
+[94488] = {
+["o"] = "Kill Commander Haalien and bring his head to Elegael Thornpaw in the Shadowgale Forest.",
+["d"] = "The reason for cultists' presence here still baffles me, but I smell a familiar scent over the bloodshed.\r\n\r\nOne of our circle druids, Haalien, disappeared months back. It appears he's thrown his sorry hide in with the cultists.\r\n\r\nShow him what happens when he spills the blood of his kin! Take his head and return it to me.",
 },
 [95350] = {
 ["o"] = "Travel to Orgrimmar and speak with Thrall in the Valley of Wisdom.",
@@ -1319,53 +1723,53 @@ ForeverDungeonJournalDB = {
 ["o"] = "Bring the Lich's Spellbook to Bethor Iceshard in the Undercity.",
 ["d"] = "There is a lich who dwells on the island in Brightwater Lake to the north.  Although he is a free-willed Forsaken, he believes all other Undead are Scourge slaves and has his minions attack anyone who approaches him.\n\nBut because he is Forsaken, the Queen will want him.  And if he is skilled in Necromancy, then his knowledge would be...quite useful to us.\n\nTo discover his identity and his talents, I must see his spellbook.  Steal into his camp and acquire it, then return to me.",
 },
-[94488] = {
-["o"] = "Kill Commander Haalien and bring his head to Elegael Thornpaw in the Shadowgale Forest.",
-["d"] = "The reason for cultists' presence here still baffles me, but I smell a familiar scent over the bloodshed.\r\n\r\nOne of our circle druids, Haalien, disappeared months back. It appears he's thrown his sorry hide in with the cultists.\r\n\r\nShow him what happens when he spills the blood of his kin! Take his head and return it to me.",
+[421] = {
+["o"] = "Dalar Dawnweaver at the Sepulcher wants you to kill 5 Moonrage Whitescalps.",
+["d"] = "Lady Sylvanas has charged Varimathras with the conquering of the human and dwarven lands to the south.\n\nBut that fool, Arugal -- charlatan of Dalaran and now cursed beast of Shadowfang Keep -- let his reckless magic wreak havoc with the strategic stronghold of Silverpine Forest.\n\nI need someone skilled in the ways of combat to help clean up Arugal's mess.  Prove yourself to me by killing 5 Moonrage Whitescalps.  The wretched beasts can often be found just off the road, down the hill below.",
 },
-[1131] = {
-["o"] = "Bring Steelsnap's Rib to Melor Stonehoof in Thunder Bluff.",
-["d"] = "At times we hunt for food.  At times we hunt for honor.  And at times we hunt to earn the Earthmother's teachings.\n\nBut the hunt I now set upon you is none of these things.  It is to slay a creature outside the Earthmother's blessing.\n\nThe hyena Steelsnap roams the Thousand Needles, south of the Barrens.  He is a tyrant, attracting other hyenas to him and spreading fear and bloodshed among more peaceful beasts.\n\nFind Steelsnap, N.  Find him, and defeat him.",
+[95774] = {
+["o"] = "Slay quilboars and collect 4 of Olgra's Adornments for Mankrik's memorial.",
+["d"] = "The healer who saved me could not save her, and she has died in battle. Her name is Olgra, and I will never forget her.\r\n\r\nYou did not find her adornments on her body? She wore many jewels of polished bone.\r\n\r\nSlay the Razormane Raiders near where she fell, and find her precious works of art!\r\n\r\nI will place them with the memorial that I build in her memory.",
 },
-[97538] = {
-["o"] = "Tah Winterhoof in Thunder Bluff wants 30 Mirkweed Pods from Mirkfallon Lake.",
-["d"] = "Greetings, friend. I wonder if I may ask a favor of you? I have just run out of red pigment for my paints, and I am looking for one with younger hooves to make the long journey into the Stonetalon Mountains on my behalf.\r\n\r\nIn the middle of the mountain pass there lies a large circular lake, Mirkfallon Lake, that has a unique plant that grows within its waters. The pods of this plant, mirkweed, turn a vibrant red when dried. Gather the pods of this plant for me, and I will reward you well for your efforts.",
+[97275] = {
+["o"] = "Give Yelmak's Potion to Whuut.",
+["d"] = "Whuut is a prodigy. That much is true. But he doesn't yet have the experience, wisdom, and time on the stirring rod to know how to respect alchemical processes.\r\n\r\nHe is exhausting all of the rarest and most exotic reagents we have available without pausing to practice and refine his basic skills.\r\n\r\nGive him this potion I've brewed with a quick tonic method. He'll reconsider everything he's doing when he learns how local remedies and careful touch are the first true mastery.",
 },
-[96638] = {
-["o"] = "Speak to Raan Wildwind near Shen'dar Village.",
-["d"] = "More and more adventurers like yourself have been seeking glory and fortune outside of the safety of Thendal Grove. There's one such adventurer who has made a camp outside of Shen'dar Village, along the road leading southwest out of Thendal Grove.\r\n\r\nSeek him out and see what you can learn from him that may help you in your own travels.",
+[92644] = {
+["o"] = "Deliver the glowing crystal to Talanaanis Shadowsong in Valanaar.",
+["d"] = "<You reach beneath the still-warm body of the turncoat cultist and recover a small, glowing blue crystal. It appears to be damaged, but it may still be important. High Elder Shadowsong may be interested in this.>",
 },
 [842] = {
 ["o"] = "Follow the western road from Kargal's Far Watch Outpost.\n\nAt the T intersection, turn left and follow the road south. \n\nFind Sergra Darkthorn at the crossing of roads within the Crossroads.",
 ["d"] = "Take this signed recruitment letter to the Crossroads.\n\nSergra Darkthorn, curse her hide, is in charge there. She's a nasty shaman who will talk your head in circles before she lets you do anything useful. Thrall is convinced she's something special, but I'm not so sure.\n\nYou'll just have to decide for yourself, pup...",
 },
-[95981] = {
-["o"] = "Slay 8 Dalaran Wizards and 8 Dalaran Watchers for Shadow Priest Allister in the Sepulcher.",
-["d"] = "Taking away their pendants is just the first step. If the Kirin Tor really are shipping a steady supply of relics from Dalaran, we must stop them at the source.\r\n\r\nSearch the roads around Ambermill for Dalaran's wizards and watchers. Their presence has allowed free access across our borders for too long. If we can cull their numbers, that should put a stop to these pendants making it into Silverpine Forest in the first place.",
+[93927] = {
+["o"] = "Collect the note you found near the dead peacekeeper and read it to determine your next steps.",
+["d"] = "<As you inspect the body of the dead peacekeeper, a bloody note falls free of his hands. Picking it up and reading it may give you a clue as to how to proceed from here.>",
 },
-[444] = {
-["o"] = "Bring the Sample Ichor to Bethor Iceshard in the Undercity.",
-["d"] = "I have reduced the ichor you brought me and separated it into its base components.  My findings are not conclusive, but I have determined that warlock and necromantic magics were used in the ichor's creation.\n\nWhile I continue to study the ichor, I want you to take a sample to Bethor Iceshard in the Undercity.  Bethor is not an apothecary, but his knowledge of magic may help to unravel the mystery of the rot hides.\n\nGo.  You will find Bethor in the Magic Quarter of the Undercity.",
-},
-[881] = {
-["o"] = "Bring Echeyakee's Hide to Sergra Darkthorn at the Crossroads.",
-["d"] = "Whitemist, Echeyakee in the Tauren tongue, is the king of the savannah cats.  He hunts with such stealth, they say he's like a thin, white mist on the earth.  And he kills so fast his prey have no time for fear, or pain.\n\nThe Tauren say he is both mercy and death.\n\nYou will learn if that's true, for I now set you on the path to hunt Echeyakee.  His lair is northeast of the Crossroads, among the bones of giant Kodo\n\nGo.  Blow this horn when you reach his lair.  Blow the horn, and he will come.",
+[96896] = {
+["o"] = "Observe the conversation between Danitha Morr and Leonid Barthalomew the Revered.",
+["d"] = "Danitha and I fought against the Scourge in the defense of the Undercity when Naxxramas attacked. We lost many good friends that day, including the hero after which this keep was named--Garek Bandarion.\r\n\r\nHe might just have been the first Forsaken to rediscover how to wield the Light as a paladin. I am encouraged to see his legacy and potential live on here with Danitha and her cohort.\r\n\r\nIf only the rest of the Forsaken felt the same way...",
 },
 [92700] = {
 ["o"] = "Find Ayessa Dawnsinger in Valanaar.",
 ["d"] = "Now that you've arrived in Valanaar, you'll likely want to check in with the other members of the Windshapers here. The current Grand Skyseer and her people operate out of the lodge near the center of Valanaar.\r\n\r\nYou should also be aware, the Windshapers and High Order don't get along very well in these parts. Be careful and give the High Order a good, wide berth. We've got enough to worry about with the cult, I won't tolerate faction violence in the streets of Valanaar.",
 },
-[451] = {
-["o"] = "Bring 6 samples of Lake Creeper Moss, 6 samples of Lake Skulker Moss and a Hardened Tumor to Master Apothecary Faranell in the Undercity.",
-["d"] = "According to Berard's Journal the moss from Lake Skulkers and Creepers might prove useful for our quest to brew a new plague.  Those beasts dwell on the islands in Lake Lordamere to the east.\n\nHe also mentions a very rare Hardened Tumor that he discovered on a Vile Fin murloc.  Apparently the tumor is so rare Berard was only able to obtain one.\n\nCollect samples of the moss as well as the rare hardened tumor and take them to Master Apothecary Faranell in the Undercity.",
+[422] = {
+["o"] = "Retrieve the Remedy of Arugal for Dalar Dawnweaver at the Sepulcher.",
+["d"] = "How Arugal gained acceptance within the Kirin Tor is beyond me.  His spell-casting knowledge seemed as transparent as a blown glass bauble.\n\nWhat's important now is learning exactly what magic Arugal used so that I can turn it against him and secure Silverpine Forest for the Dark Lady.\n\nArugal first stayed at the wheat farm just north of the bridge.  One of the Deathstalkers reported seeing some spellbooks but could not secure them.  Retrieve for me the spell labeled Remedy of Arugal from those books.",
 },
-[5725] = {
-["o"] = "Bring the books Spells of Shadow and Incantations from the Nether to Varimathras in Undercity.",
-["d"] = "Many denizens of the Legion bestow gifts on their followers as you may well know. Some of these gifts the Dark Lady feels would be better off in her hands than in the hands of those with... lesser vision.\n\nA sect of the Shadow Council hidden in caverns below Orgrimmar known as the Searing Blade are a prime example. The Lady tells me that members of the Searing Blade have come into the possession of two powerful spell books--she would like to \"borrow\" these books from them. You will get them for her.",
+[3369] = {
+["o"] = "Bring the Nightmare Shard to Hamuul Runetotem on Elder Rise.",
+["d"] = "This shard holds great secrets; it is the pure essence of the Emerald Dream. However, what I see in this shard is not a dream; one would call this sort of a vision a nightmare.\n\nI do not wish to alarm you, N, but I think it is best if you deliver this shard into the hands of a wise druid as soon as you can.\n\nHamuul Runetotem on Elder Rise is who you need to find. Head to Thunder Bluff. I cannot say more. ",
 },
-[94913] = {
-["o"] = "Use the spell \"Teleport: Moonglade\" to travel to Moonglade. When you arrive, speak with Dendrite Starblaze in the village of Nighthaven.",
-["d"] = "All druids are welcomed to the sacred lands of Moonglade. Keeper Remulos--Moonglade's guardian--keeps watch over all druids who hibernate there. I'll teach you the spell that lets you transport yourself there. Cast it whenever you seek Moonglade's knowledge or solace.\n\nAs for your first lesson here on Azeroth, travel to Moonglade and speak with Dendrite Starblaze in Nighthaven about the path you're now on. Good luck, young druid.",
+[1489] = {
+["o"] = "Speak with Hamuul Runetotem",
+["d"] = "The shells you brought me have a taint, one I have never before seen.  I am certain the water of the Oases is the cause, and I can sense the confusion they cause this land.  It is as if the land dreams and cannot awake.\n\nThe Wailing Caverns must be the source of the taint.  But before you go there, speak with Hamuul Runetotem, the elder druid.  I sent word to him of the happenings in the Barrens.  He is wise, and can offer you counsel.\n\nYou will find him in Thunder Bluff, on the Elder Rise.",
+},
+[768] = {
+["o"] = "Bring 12 pieces of Light Leather to Veren Tallstrider in Thunder Bluff.",
+["d"] = "Greetings, young one.  You have a gleam in your eye; I can tell you are eager to venture back to the plains for the hunt.  May you bring honor to your clan!\n\nI work with the skins of beasts, fashioning them into clothes and armor for the people of Thunder Bluff.\n\nIf you hunt beasts and bring me their skins, then I will fashion something for you.",
 },
 [844] = {
 ["o"] = "Collect 7 Plainstrider Beaks and return them to Sergra Darkthorn in the Crossroads.",
@@ -1375,29 +1779,29 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Messana Crestwind in Shen'dar Village to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "Mining isn't the most glamorous, but it's good honest work and a fine profession for you to explore.\r\n\r\nI reckon I know someone that can teach you how to craft a Lodestone for your camp. Build one of these and everyone who wants to swing a sword will be eager to gather round your fire and soak up the extra \"oomph\" it can provide to increase their combat prowess.",
 },
-[447] = {
-["o"] = "Collect 6 Grizzled Bear Hearts and 6 samples of Skittering Blood and deliver them to Master Apothecary Faranell in the Undercity.",
-["d"] = "Arthas's numbers are overwhelming. But with a New Plague we could eradicate both the Scourge Army and the Human infestation once and for all.\n\nMy studies have proven that spider blood combined with a toxin derived from a grizzled bear heart results in a deadly elixir. Collect samples from the spiders in the Skittering Dark to the northwest and from the bears wandering throughout Silverpine Forest. Deliver the reagents to Master Apothecary Faranell of the Royal Apothecary Society in the Undercity.",
+[94489] = {
+["o"] = "Enter the Nightfang Den and heal 7 druids and find Jorel Windsinger in Shadowgale Forest.",
+["d"] = "I have finished the poultices. Quickly, take them to the druids in the cave, north just across the clearing. I know my brethren are in much more dire condition than I. They are likely too injured to heal their own wounds. There are so few of us shen'dorei druids that every life is precious.\r\n\r\nBefore you go, I have a selfish request. My mate, Jorel Windsinger was in dire condition when I left. Please, see to his wounds if he still lives.",
 },
 [98545] = {
 ["o"] = "Deliver the Sealed Letter to Glix Xizzix in the Undercity.",
 ["d"] = "Since you are here, I'd like you to deliver this letter to an old friend of mine in the Undercity. I'd deliver myself but I have a somewhat colorful history with the Dark Lady, and it would be better if a neutral third party made the delivery.\r\n\r\nYou are looking for a goblin named Glix Xizzix in the Trade Quarter area of the Undercity. I'm sure he'd be happy to compensate you for your time.\r\n\r\n<Leonid lets out a low chuckle as he hands you the letter.>",
 },
-[845] = {
-["o"] = "Slay Zhevra Runners to collect 4 Zhevra Hooves for Sergra Darkthorn in the Crossroads.",
-["d"] = "The zhevra, although not the fiercest beast in the Barrens, are a shade tougher than the plainstriders.  Don't worry -- we'll send you against bigger prey in good time, but for now your teeth could use a little more cutting.\n\nHunt the zhevra to the north and south, and collect their hooves.  Bring them to me and perhaps we'll next send you against something tougher.",
+[423] = {
+["o"] = "Bring 6 Glutton Shackles and 3 Darksoul Shackles to Dalar Dawnweaver at the Sepulcher.",
+["d"] = "After examining Arugal's work my worst suspicions were confirmed.  The old hack was not qualified to clean chamber pots in Dalaran let alone represent the Kirin Tor in its most dire hour.  Fools!\n\nArugal used enchanted items to reinforce his weak magic.  I need to examine these items first hand.  Travel forth and slay Moonrage Gluttons and Moonrage Darksouls until you have collected enough of their enchanted shackles for my research.  The foul creatures have been seen to the north and east.",
 },
-[1061] = {
-["o"] = "Speak with Seereth Stonebreak in the Stonetalon Mountains.",
-["d"] = "The spirits of the Stonetalon Mountains are angered, for goblins and their servants are plundering and burning the land.  So the land has cried out, and those who listen for such things... have heard.\n\nSeereth Stonebreak, a promising shaman of the Horde, was sent to Stonetalon.  She reports massive deforestation at the hands of the goblins, and requests aid.\n\nMeet Seereth in Stonetalon.  To reach her, follow the road west of the Barrens' Crossroads.  She is camped near the Greatwood Vale.",
+[92693] = {
+["o"] = "Speak with Aamelia Windfield when you are ready to confront the bandit leader.",
+["d"] = "You've done a lot to give us a fighting chance. Even if we die today, we'll at least know we gave it our best shot.\r\n\r\nThis is your last chance, stranger. If you want to head back to Valanaar and live another day, I wouldn't blame you.\r\n\r\nOn the other hand, if you really have a thing for lost causes just let me know when you are ready to go. We'll walk out there with our heads held high and whatever happens, happens.",
 },
 [99152] = {
 ["o"] = "Collect 6 Faintly Glowing Bones for Hilda the Breaker.",
 ["d"] = "While the Tarnished in Shadowvale to the southwest are definitely a problem, we cannot allow the cellars below the town to fester into a full-blown Scourge uprising on Bandarion Keep.\r\n\r\nI need to get these trainees up to snuff in case that happens. You, however, are going to receive what I like to call a crash course.\r\n\r\nTravel beneath Shadowvale and retrieve some of their wretched bones so we can study them further. I need ones that still retain some of the initial reanimation magic--that's glowing ones.",
 },
-[95328] = {
-["o"] = "Deliver Whispering Horror Residue to Father Lankester in the War Quarter of Undercity.",
-["d"] = "Against your better judgement you scrape up and collect the squirming remains of the beast. Someone in Undercity might have a use for them.",
+[1487] = {
+["o"] = "Ebru in the Wailing Caverns wants you to kill 7 Deviate Ravagers, 7 Deviate Vipers, 7 Deviate Shamblers and 7 Deviate Dreadfangs.",
+["d"] = "Naralex had a noble goal.\n\nOur great leader aspired to enter the Emerald Dream and help regrow these harsh lands back into the lush forest it once was. But something went terribly wrong.\n\nNaralex's dream turned into a nightmare and corrupt creatures began to inhabit the caverns.\n\nWhile some Disciples of Naralex seek to awake our master, my concern is with ridding these caves of the evil beasts.\n\nBrave the caverns, N, and eradicate the deviate spawn.",
 },
 [5722] = {
 ["o"] = "Search Ragefire Chasm for Maur Grimtotem's corpse and search it for any items of interest.",
@@ -1415,21 +1819,21 @@ ForeverDungeonJournalDB = {
 ["o"] = "Kill Bazzalan and Jergosh the Invoker before returning to Thrall in Orgrimmar.",
 ["d"] = "Hmm, leaders of the Searing Blade... this concerns me most. If they are the ones of value to Neeru, then those are who we must target first. This satyr... Bazzalan, and the other Neeru mentioned--what was he, a warlock?--must be slain.\n\nReturn to the Cleft of Shadow and enter Ragefire Chasm, N. Find these two leaders of the Searing Blade, and kill them. But be careful not to let Neeru know it was you who did this. You must retain your identity as one of his sisters in arms.",
 },
+[424] = {
+["o"] = "Kill Grimson the Pale and bring his head to Dalar Dawnweaver at the Sepulcher.",
+["d"] = "It will indeed take me longer than I had thought to uncover the dark secrets behind the enchantments Arugal was using.\n\nBut in the meantime I need you to take care of a slight problem our Darkstalkers have discovered.  It seems that Arugal let his magic spread to the Deep Elem Mine in the hills to the southeast.\n\nThe mine would prove to be quite a resource for Varimathras's advance.\n\nI want you to behead the tainted foreman of the mine, Grimson the Pale.  With his death, the mine shall be ours.",
+},
+[872] = {
+["o"] = "Kill 8 Razormane Geomancers, 8 Razormane Defenders, and Kreenig Snarlsnout.\n\nThen bring Kreenig Snarlsnout's Tusk to Thork at the Crossroads.",
+["d"] = "One of my scouts witnessed an attack on a caravan from Durotar, N. The culprits are indeed the Razormane tribe of quilboars. One of the quilboars in particular is leading the raids: Kreenig Snarlsnout. He was seen northeast of here, just south of the road from Durotar. If the threat is to be ended, then Kreenig must die.\n\nTo be sure the attacks cease, though, I say we add insult to their injury. Kill Kreenig along with more of their tribe, and return to me when you have his tusk.",
+},
+[1486] = {
+["o"] = "Nalpak in the Wailing Caverns wants 20 Deviate Hides.",
+["d"] = "As Naralex descended deeper into his nightmare, a strange breed of beasts arose from beneath the Barrens into the Wailing Caverns.\n\nThese deviate creatures have strange, otherworldly properties. While evil in nature, it is my opinion that some good can come from their existence here in Kalimdor. I believe their hides will be of particular use in the ways of leatherworking.\n\nIf you feel up to the task, venture into the caves below and retrieve some deviate hides.",
+},
 [5730] = {
 ["o"] = "Speak to Thrall in Orgrimmar and tell him what you've learned.",
 ["d"] = "You are one of my lieutenants! Prepare yourself, warrior. I will call upon you soon.\n\nMy time spent on the Searing Blade may be all but wasted now, but that does not mean that the Shadow Council's schemes elsewhere must suffer. I will do what I can to minimize the damage here in Ragefire Chasm. In the meantime, I will have my agents in the Barrens and Ashenvale begin work on our newest agenda. Return to me soon.",
-},
-[94489] = {
-["o"] = "Enter the Nightfang Den and heal 7 druids and find Jorel Windsinger in Shadowgale Forest.",
-["d"] = "I have finished the poultices. Quickly, take them to the druids in the cave, north just across the clearing. I know my brethren are in much more dire condition than I. They are likely too injured to heal their own wounds. There are so few of us shen'dorei druids that every life is precious.\r\n\r\nBefore you go, I have a selfish request. My mate, Jorel Windsinger was in dire condition when I left. Please, see to his wounds if he still lives.",
-},
-[95508] = {
-["o"] = "Help Walton survive the encounter with Terry Longdrink and the Kul Tiras marines.",
-["d"] = "Yes, I used to be a member of the Kul Tiras navy. After Lord Admiral took Theramore and started his campaign in Durotar, I had... \"objections\" to his methods. Particularly the methods involving executing civilians.\r\n\r\nThere's more to the story but... wait... what's that?\r\n\r\nThere's a group of men coming up the ridge!",
-},
-[94490] = {
-["o"] = "Bring the Ripped Missive to Elegael Thornpaw in the Shadowgale Forest.",
-["d"] = "<Tucked behind one of Haalien's bracers is a note that's been slightly torn and bloodstained in your fight. It looks like it contains useful information about the cultist motivations for the attack on the druid den. Elegael would be interested in this intel.>",
 },
 [848] = {
 ["o"] = "Bring 4 Fungal Spores to Apothecary Helbrim at the Crossroads.",
@@ -1439,9 +1843,9 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Mendalass Tattermend in Shen'dar Village to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
 ["d"] = "Being able to skillfully harvest the skins and hides of fallen beasts is one of the more valuable skills an adventurer can possess.\r\n\r\nI reckon I know someone that can teach you how to craft a Camp Chair for your camp. Sometimes it's important to just take a load off, and you can use some of those hides you've gathered to make a comfy chair to sit in. A bit of relaxation can help ensure that you are at your peak condition and can strike where it counts the next time you find yourself in a dust-up.",
 },
-[97244] = {
-["o"] = "Slay Skypriest Faladiel in the Gustberry Lowlands and collect Faladiel's Heart.",
-["d"] = "There is an Al'Aketh Skypriest called Faladiel. He was once a caller of the flame and a stalwart Windshaper. Like so many Al'Aketh, he mortgaged his loyalty for power and his hands are now stained with the blood of his former brothers and sisters.\r\n\r\nYou will find Skypriest Faladiel at the farm to the northeast past Valanaar, just to the south of the Shrine of Akir. Kill the betrayer. Bring me his heart. It is a gruesome task, but it is needed for the ritual we are to perform.",
+[92473] = {
+["o"] = "Collect 6 Scrawny Ursera Claws from Scrawny Ursera in Thendal Grove.",
+["d"] = "The ursera den to the southwest is rapidly becoming a problem. Just last week the rangers had to kill an adolescent ursera who wandered too close to the village and attempted to attack a boy playing near the base of the elder tree in the center of the village.\r\n\r\nWe were fortunate that the boy escaped with his life. Hunger and desperation makes these beasts too dangerous to be left unchecked. Go south and put the scrawniest among the ursera down. Bring me their claws as proof when it is done.",
 },
 [361] = {
 ["o"] = "Find Yvette Farthing, and deliver to her the letter from Thurman Agamand.",
@@ -1451,29 +1855,29 @@ ForeverDungeonJournalDB = {
 ["o"] = "Kill Ivar the Foul, and bring Ivar's Head to Rane Yorick at the Ivar Patch.",
 ["d"] = "My brother Quinn and I were tasked to recon Silverpine Forest and report to High Executor Hadrec.  But we didn't get far -- when moving through this farm we were attacked by the ghoul Ivar the Foul.\n\nWe escaped from Ivar, but he seriously mauled Quinn.  He's healing from the potion you gave him, but Ivar may return before Quinn recovers.\n\nKill Ivar so Quinn will have time to heal.  Ivar is usually in the barn yonder, waiting for my guard to drop.",
 },
-[96896] = {
-["o"] = "Observe the conversation between Danitha Morr and Leonid Barthalomew the Revered.",
-["d"] = "Danitha and I fought against the Scourge in the defense of the Undercity when Naxxramas attacked. We lost many good friends that day, including the hero after which this keep was named--Garek Bandarion.\r\n\r\nHe might just have been the first Forsaken to rediscover how to wield the Light as a paladin. I am encouraged to see his legacy and potential live on here with Danitha and her cohort.\r\n\r\nIf only the rest of the Forsaken felt the same way...",
+[92474] = {
+["o"] = "Jump from the top of the watchtower in Thendal Grove and use your Walk on Air ability to slow your fall.",
+["d"] = "Well hello there, N! Want to play a game?\r\n\r\nAll you've got to do is step up on that ledge... then jump! Use your innate ability to walk on the air to slow your fall and see how far forward you can float.\r\n\r\nThe rules are made up and the points don't matter, but you get bonus points if you can land right in front of Rorian the Dayseeker and startle him! He won't like it but I'll certainly get a good laugh if you can get him all worked up! Hah!",
 },
 [99153] = {
 ["o"] = "Find the Hidden Crystal Fragment beneath Shadowvale for Ephram Barbaro.",
 ["d"] = "Oi, you! Word travels quickly among our ranks. I heard about the work you did with the cultists around the remnants of the battle with Naxxramas.\r\n\r\nProblem is, one of them cultists got away with a piece of the focusing crystal. Seems to still have some juice in it. Best guess we have is it's somewhere beneath Shadowvale. It's either raising 'em or making 'em stronger, and you don't want either one.\r\n\r\nFind that crystal before this gets out of hand.",
 },
-[92881] = {
-["o"] = "Speak with Talaanis Shadowsong in Valanaar.",
-["d"] = "The attacks on both the western and eastern watchtowers are not a coincidence. Based on what you told us about what occurred at the western watchtower with that skypriest, our best guess is that the cult is trying to do something to the anchor pylons.\r\n\r\nPlease speak with High Elder Shadowsong. He will tell you about a lead that could prove to be promising.",
+[6322] = {
+["o"] = "Bring Gordon's Crate to Michael Garrett.",
+["d"] = "I have placed the Sepulcher's supplies into this crate.  If you have already visited the Sepulcher and spoken with their bat master, then you may ride a bat back to him.\n\nSpeak with the Undercity's bat master, Michael Garrett.  He can provide you with a bat to the Sepulcher.",
 },
 [850] = {
 ["o"] = "Bring Barak's Head to Regthar Deathgate, west of the Crossroads.",
 ["d"] = "The centaurs have plagued the Tauren for years.  And recently, the Kolkar centaurs of the Barrens have grown into a real threat.  Normally they were disorganized in these lands, but new leaders have risen among them.  Rallying them.\n\nTo preserve our holdings here, these centaur leaders must be destroyed.\n\nBring me the head of Barak Kodobane.  He camps near the Forgotten Pools to the north.\n\nDefeat him, then return to me.",
 },
-[1130] = {
-["o"] = "Speak with Melor Stonehoof in Thunder Bluff.",
-["d"] = "N, Melor Stonehoof has heard of your deeds, and has set a path before you.\n\nIf you wish to take it, then go to Thunder Bluff and speak with Melor.  You will find him on Hunter's Rise.",
+[98738] = {
+["o"] = "Speak to Dendrite.",
+["d"] = "Now that you have received my blessing, return to Dendrite. He will instruct you further.\r\n\r\nUnfortunately I have little left to teach you for the moment. I do hope you come and visit me in Zephras again someday. I sense promise in you, young shen'dorei.\r\n\r\nMay the shadows forever hide you, your foes easily fall prey to your claws, and the winds guide your steps.",
 },
-[92517] = {
-["o"] = "Kill 10 Highlands Bandits and their leader, \"Badwind\" Bennic in the Shen'dar Highlands.",
-["d"] = "There's a cave not far to the north, hidden behind a waterfall. It's well known to me that there's a group of bandits that are operating out of that cave. They were a problem for us before the cult arrived, but now they are a real terror. I can't spare the people to go and clear them out, unfortunately.\r\n\r\nI need you to go there and take care of them for me. Kill as many as you can, and if possible, take out their leader, the one they call \"Badwind\" Bennic. That cave is dangerous, so be careful.",
+[2378] = {
+["o"] = "Journey to Orgrimmar and speak with Shenthul at the Cleft of Shadow.\r\n",
+["d"] = "You have served the Deathstalkers well, N, but perhaps it is time for you to venture outward. While you have shown aptitude in the ways of stealth and deception, you still require much training.\n\nThe Deathstalkers have allies within the Shattered Hand. Seek out those that would assist us - find Shenthul in Orgrimmar.\r\n",
 },
 [362] = {
 ["o"] = "Slay Devlin Agamand, and bring Devlin's Remains to Coleman Farthing in Brill.",
@@ -1483,25 +1887,25 @@ ForeverDungeonJournalDB = {
 ["o"] = "Gather 5 Notched Ribs and 3 Blackened Skulls, then return to Deathguard Dillinger in Brill.",
 ["d"] = "The Scourge are trying to form a base at the Agamand Mills.  If they do, then they can stage further attacks within Tirisfal.\n\nThe orders have been given.  The Scourge in the Mills must be destroyed.\n\nGo to the Mills.  Collect Notched Ribs from Rattlecage and Cracked Skull Soldiers, and Blackened Skulls from Darkeye Bonecasters.\n\nTo get to the Mills, follow the road west.  After crossing the bridge, take the next fork north then keep going north.  When you see windmills, the battle will begin.",
 },
-[93927] = {
-["o"] = "Collect the note you found near the dead peacekeeper and read it to determine your next steps.",
-["d"] = "<As you inspect the body of the dead peacekeeper, a bloody note falls free of his hands. Picking it up and reading it may give you a clue as to how to proceed from here.>",
+[870] = {
+["o"] = "Report back to Tonga Runetotem with your findings.",
+["d"] = "Long ago, the Barrens was a lush place, teeming with life.  But war and cataclysm raged across the land, scorching it and leaving a dry husk.  Such is the way of things, and it saddens my heart.\n\nBut within the past few years, new oases have formed in the Barrens, and life stirs.  And deep down, we druids sense a power leaking its way to the surface.\n\nWe must find its source.  Travel to the Forgotten Pools, northwest of the Crossroads.  Search its waters for a source of power, then return here.",
 },
-[877] = {
-["o"] = "Return to Tonga at The Crossroads, after investigating the Stagnant Oasis.",
-["d"] = "Like the one you found at the Forgotten Pools, there may be fissures at the other oases in the Barrens.  If so, then perhaps the fissures are the oases' source of life.\n\nWe must test this.\n\nHere, take these seeds.  They are dead and infertile, but take them to the Stagnant Oasis to the southeast.  If there is a fissure there, then place the seeds within it...and observe.",
+[2381] = {
+["o"] = "Bring the Southsea Treasure back to Wrenix the Wretched in Ratchet. Do not forget to get an E.C.A.C. and Thieves' Tools from Wrenix's Gizmotronic Apparatus. You will need both of these items to complete your mission.\n\nShould you be attacked by any unusually hostile parrots, use your E.C.A.C.!\r\n\r\n",
+["d"] = "I don't mean to scare you, N, but the last five thieves I sent to steal the southsea treasure came back to me in pieces.\n\nSouth along the coast you'll find Tide Razor, the southsea freebooter's ship. Nestled in the hold is the payoff - the southsea treasure. On the second level of that ship is the pirate's den, a place where they train all of their thieves.\n\nBoard that ship, steal the treasure, and bring it back to me. Use the pirate's den if you need to practice your thievery, but be careful!\r\n",
 },
-[92421] = {
-["o"] = "Collect 25 Intact Limbs within The Ruins of Lordaeron for Morbin Lightbane in the Undercity.",
-["d"] = "As a paladin of the Forsaken, it is my duty to exact the will of our Dark Lady while tending to our people's needs. We are fortunate with an opportunity to accomplish both.\r\n\r\nAbove the Undercity, the scourge still roam unchecked in great numbers. Our forces dwindle trying to reclaim our land, and decaying flesh cannot be reknit. Not without replacements.\r\n\r\nWould that our glorious captain Garek Bandarion still be with us, I know what he would wish. To finish what he started and heal our kin. For Lordaeron!",
+[95034] = {
+["o"] = "Speak with Lumina Windsinger in the Sepulcher.",
+["d"] = "I think you should know that it wasn't actually the Gnolls who attacked us on the road.\r\n\r\nWe were actually attacked by a giant, wolf-like creature that I now know as a \"worgen\". It dispatched our guards and came for me, but Banon threw himself in its path. I managed to get a spell off which startled the creature, causing it to flee, but Banon was already badly bitten. He insisted I leave him there but I refused.\r\n\r\nWe were limping back here when the gnolls found us. What came next was terrifying...",
 },
 [852] = {
 ["o"] = "Bring Hezrul's Head to Regthar Deathgate, west of the Crossroads.",
 ["d"] = "Hezrul Bloodmark is the leader of the Kolkar centaurs in the Barrens.  He is fierce, brutal and cunning.  Defeating him would disrupt and fracture the Kolkars, greatly reducing their threat to us.\n\nSo kill him.  As with Barak and Verog, bring me Hezrul's Head.\n\nHe leads his people from the Lushwater Oasis, to the south.",
 },
-[95034] = {
-["o"] = "Speak with Lumina Windsinger in the Sepulcher.",
-["d"] = "I think you should know that it wasn't actually the Gnolls who attacked us on the road.\r\n\r\nWe were actually attacked by a giant, wolf-like creature that I now know as a \"worgen\". It dispatched our guards and came for me, but Banon threw himself in its path. I managed to get a spell off which startled the creature, causing it to flee, but Banon was already badly bitten. He insisted I leave him there but I refused.\r\n\r\nWe were limping back here when the gnolls found us. What came next was terrifying...",
+[2379] = {
+["o"] = "Speak with Zando'zan at the Cleft of Shadow.",
+["d"] = "Your determination alone is not enough to overcome the obstacles that lay ahead of us.\n\nSpeak with Zando'zan to begin your training as an operative of the Shattered Hand.\n\nIt is only when you have mastered the practices of stealth and thievery that you may take the next step towards your destiny.\r\n",
 },
 [94427] = {
 ["o"] = "Speak to Tanis Alderwood in the Undercity.",
@@ -1511,29 +1915,29 @@ ForeverDungeonJournalDB = {
 ["o"] = "Deliver the Shadowsong Family Signet to Talaanis Shadowsong in Valanaar.",
 ["d"] = "Since you are going to Valanaar anyway, please deliver the signet ring you recovered from the tower to Talaanis Shadowsong in Valanaar. \r\n\r\nHe will want this back, and more importantly, he will want to learn the fate of his nephew. Talaanis is the High Elder of Zephras Isle and more importantly, he is a good man who is well loved by the people, despite our current hardships. It pains me to think of how he will react to this news. Please express my condolences for his loss.",
 },
-[94491] = {
-["o"] = "Give the missive to Lotheluum in Valanaar and tell him what has transpired.",
-["d"] = "It would appear that there is a correspondent hiding somewhere in Valanaar feeding information to the cult. I am clearly in no shape to make the journey, but Lotheluum needs to know what transpired here.\r\n\r\nHe should also know the fate of those who are no longer with us. Thanks to your help I think we can handle the rest of the situation from here, though the damage has been done.\r\n\r\nPlease go swiftly, N. I hope our paths will cross again someday. Until then, I have cultists to slay.",
+[2382] = {
+["o"] = "Travel to Ratchet and speak with Wrenix the Wretched.",
+["d"] = "Zando'zan has seen it! Yes, the day comes! Thrall's death... the dagger in his back, poison seeping through to his every vein... Zando'zan has said too much.\n\nN! Zando'zan has a task for N! N must travel to Ratchet, east of the Crossroads, and speak with Wrenix the Wretched. Go!\r\n",
 },
 [491] = {
 ["o"] = "Take the Woven Wand to Bethor Iceshard in the Magic Quarter of the Undercity.",
 ["d"] = "Thule once told me that, long ago, he and two colleagues created a magic wand, woven together from the apprentice wands each mage possessed.  This wand was a symbol of their friendship, and although Thule came to despise it he could not part with it, nor could he let the others have it.  So he stole the wand, and hid it in Fenris Keep.\n\nHere.  Take the wand to Bethor Iceshard, one of Thule's friends from years past.  I'm sure he will want it.",
 },
-[92685] = {
-["o"] = "Loot 7 Blood-Stained Bandit Masks from Highwayman Bandits in the Gustberry Lowlands.",
-["d"] = "The bandits have camps all over and there's a small one in the hills just north of here. Head up there and start cracking skulls. If we can catch them off guard and take them out before they come for us, we might just even the odds enough to stand a chance.\r\n\r\nBring me their masks. The bloodier the better.",
+[427] = {
+["o"] = "Executor Zygand of Brill wants you to kill 10 Scarlet Warriors.",
+["d"] = "The documents Executor Arren provided are just the break we needed in our battle with the wretched Scarlet Crusade.  We now know their exact locations throughout Tirisfal Glades.\n\nBut the Deathguard has larger concerns.  The Lich King's army grows in number each night.  We need someone with \"initiative\" like yourself to drive the Scarlet Crusade to the grave.\n\nProve to me you are capable of serving The Dark Lady by travelling west to the tower past the Solliden Farmstead and slay 10 Scarlet Warriors.",
 },
-[428] = {
-["o"] = "Find the Deathstalkers Quinn and Rane Yorick.",
-["d"] = "A couple weeks ago two of our Deathstalkers, Rane and Quinn Yorick, were sent on a reconnaissance mission through northern Silverpine.  We have not heard from them.\n\nThey may have become victim to the Scourge, though if that is true then I want it confirmed.  Find these Deathstalkers.\n\nTheir first objective was to scout the farms in northern Silverpine.  You should begin your search there.",
+[94491] = {
+["o"] = "Give the missive to Lotheluum in Valanaar and tell him what has transpired.",
+["d"] = "It would appear that there is a correspondent hiding somewhere in Valanaar feeding information to the cult. I am clearly in no shape to make the journey, but Lotheluum needs to know what transpired here.\r\n\r\nHe should also know the fate of those who are no longer with us. Thanks to your help I think we can handle the rest of the situation from here, though the damage has been done.\r\n\r\nPlease go swiftly, N. I hope our paths will cross again someday. Until then, I have cultists to slay.",
 },
 [1195] = {
 ["o"] = "Return a Filled Etched Phial to Zangen Stonehoof in Thunder Bluff.",
 ["d"] = "The Galak centaur in the Thousand Needles are protecting an artifact from the time of the centaurs' creation.\n\nWe would like to retrieve it, but we require a phial of water from one of the night elves' moonwells.\n\nTo collect the water, you will first need to obtain one of the phials carried by the dryads near the Raynewood Retreat in the heart of Ashenvale Forest. There is a moonwell near the western bank of the Falfarren River, south of the main road, where you can fill the phial.",
 },
-[492] = {
-["o"] = "Bring Johaan's Special Drink to the Captured Mountaineer.",
-["d"] = "According to the Deathguard, another one of those foolish Dwarven Mountaineers has just been captured.  The Deathguard likes to use the cellar of the Gallows End Tavern as a holding cell until prisoners can be \"properly\" dealt with.\n\nWhy don't you go see how the Captured Mountaineer enjoys this special drink I made for him?  It contains a subtle hint of what The Dark Lady has planned for the rest of Azeroth.",
+[92703] = {
+["o"] = "Speak with Alvarion Windfield in Valanaar.",
+["d"] = "I guess it doesn't feel quite right to keep calling you stranger after all of this so... thank you, N. \r\n\r\nIf you wouldn't mind and are back out that way, please let Alvarion know what happened here. Also, tell him that once he's up on his feet he needs to bring a windshaper back here to look at that construct for us to make sure it's safe to have around our... our family.\r\n\r\n<Aamelia touches her belly gently.>\r\n\r\nHe doesn't know about this part. Let's just keep that bit between us for now.",
 },
 [3921] = {
 ["o"] = "Bring the Broken Samophlange to Wenikee Boltbucket.",
@@ -1551,41 +1955,41 @@ ForeverDungeonJournalDB = {
 ["o"] = "Bring the Samophlange Manual to Rilli Greasygob in Orgrimmar.",
 ["d"] = "I think I can fix the samophlange, but I'm going to need the user's manual first.  When I was in the Venture Company I had a rival, Boss Copperplug, who hoarded the secrets of the samophlange, giving out small bits of knowledge on the device to those he trusted.  I wasn't one of the trusted few...\n\nBoss Copperplug used to stay at the Boulder Lode Mine in northeastern Barrens.  Get the manual from him, and if he's given pages from it to anyone, you'll have to collect them too.",
 },
-[768] = {
-["o"] = "Bring 12 pieces of Light Leather to Veren Tallstrider in Thunder Bluff.",
-["d"] = "Greetings, young one.  You have a gleam in your eye; I can tell you are eager to venture back to the plains for the hunt.  May you bring honor to your clan!\n\nI work with the skins of beasts, fashioning them into clothes and armor for the people of Thunder Bluff.\n\nIf you hunt beasts and bring me their skins, then I will fashion something for you.",
+[95507] = {
+["o"] = "Collect 8 Trapped Game from traps found in Sprung Traps in the Barrens.",
+["d"] = "While you are out there, it would be of great help to me if you could check on my traps for me. I've got them strewn all over the valley.\r\n\r\nBring back any small game that I've caught. Keep your eye out for the other wildlife, though. This area can be dangerous if you aren't paying attention.",
 },
-[6323] = {
-["o"] = "Buy a bat ride to the Undercity from the bat master Karos Razok, then take Podrig's Order to Gordon Wendham in the Undercity.",
-["d"] = "One of my bats can take you to the Undercity, for a small fee.  Speak with me again when you are ready so that we may arrange your transport.\n\nYou will find Gordon Wendham in the Trade Quarter of the Undercity.  That is the same quarter where my bat will land.",
+[821] = {
+["o"] = "Bring 5 Savannah Lion Tusks, 5 Plainstrider Kidneys, and 1 Thunder Lizard Horn to Brewmaster Drohn in Ratchet.",
+["d"] = "Would you like a taste of Chen's namesake? Ahh, the stormstout is a mighty brew. Chen taught the recipe to my mentor, and my mentor passed it on to me. I'll need you to get me a few things, but I can tell you this: the kick is worth it.\n\nBring me 5 savannah lion tusks from any savannah lion, 5 plainstrider kidneys from any plainstrider, and 1 thunder lizard horn from any species of thunder lizard. That should do the trick nicely.\n\nYou can find these ingredients throughout the Barrens.",
 },
-[95774] = {
-["o"] = "Slay quilboars and collect 4 of Olgra's Adornments for Mankrik's memorial.",
-["d"] = "The healer who saved me could not save her, and she has died in battle. Her name is Olgra, and I will never forget her.\r\n\r\nYou did not find her adornments on her body? She wore many jewels of polished bone.\r\n\r\nSlay the Razormane Raiders near where she fell, and find her precious works of art!\r\n\r\nI will place them with the memorial that I build in her memory.",
+[875] = {
+["o"] = "Collect 6 Harpy Lieutenant Rings from Witchwing Slayers and return them to Darsok Swiftdagger at the Crossroads.",
+["d"] = "Hahaha, N. Back for more? Good, I like to hear that.\n\nThis time I want you to assassinate some of the harpy lieutenants in the Dry Hills. Only Witchwing Slayers can be lieutenants, and you can tell them apart by the rings they carry. They are a nasty bunch, but they lead some of the underlings in that area. Taking out 6 of them will be a decisive strike against their matriarchy.\n\nMake sure they die painfully, N. We want those harpy wenches to know the idiocy of picking fights with the Horde.",
 },
-[97275] = {
-["o"] = "Give Yelmak's Potion to Whuut.",
-["d"] = "Whuut is a prodigy. That much is true. But he doesn't yet have the experience, wisdom, and time on the stirring rod to know how to respect alchemical processes.\r\n\r\nHe is exhausting all of the rarest and most exotic reagents we have available without pausing to practice and refine his basic skills.\r\n\r\nGive him this potion I've brewed with a quick tonic method. He'll reconsider everything he's doing when he learns how local remedies and careful touch are the first true mastery.",
-},
-[92644] = {
-["o"] = "Deliver the glowing crystal to Talanaanis Shadowsong in Valanaar.",
-["d"] = "<You reach beneath the still-warm body of the turncoat cultist and recover a small, glowing blue crystal. It appears to be damaged, but it may still be important. High Elder Shadowsong may be interested in this.>",
-},
-[365] = {
-["o"] = "Steal 10 pumpkins from the farm to the west, just north of Deathknell and take them to Apothecary Johaan in Brill.",
-["d"] = "What have we here?  You look like a fledgling paladin.  If you hope to prove yourself to The Dark Lady, you need to learn the ways of The Forsaken.\n\nTo the west you'll find a farm.  Humans infest the land like mold on a rotting corpse.  And worse yet, the Scarlet Crusade patrols nearby from their tower.  Teach those scum a lesson and steal 10 of their precious pumpkins.\n\nOnce you have 10, take them to Apothecary Johaan in Brill.",
-},
-[429] = {
-["o"] = "Gather 3 discolored worg hearts and bring them to Apothecary Renferrel at the Sepulcher.",
-["d"] = "My brother Quinn was badly hurt by the ghoul, Ivar the Foul, and I don't know if he will heal properly without alchemical aid.  Although I am not an apothecary, I do know that our apothecaries can make healing potions from the discolored hearts of worgs.\n\nGather such hearts and take them to Apothecary Renferrel at the Sepulcher to the south.  Then return here with the potion.\n\nYou can find plenty of worgs between here and Malden's Orchard to the east.",
+[92579] = {
+["o"] = "Deliver Aonda's Written Report to Valennia Stormfist in Valanaar.",
+["d"] = "For now it seems the pylon and the village are safe, so I'd like you to deliver this report to Valennia Stormfist in Valanaar, at the southeastern edge of the island. Valennia is the leader of the peacekeepers on the island and she needs to know what happened here.\r\n\r\nThe cult is expanding rapidly and the peacekeepers have avoided direct conflict until now, but those days are over. Valanaar will need to be ready for a fight.\r\n\r\nAt any rate, thank you. You'll always have friends in Shen'dar, N.",
 },
 [94013] = {
 ["o"] = "Use the Taming Rod to tame a Vuldren Alpha in the Gustberry Lowlands. Practice your skills, then return the Taming Rod to Quel'ana Quickgale in Valanaar.",
 ["d"] = "You've returned triumphant from taming two beasts. It's time now for your last trial. The winds of Zephras whisper of greater challenges ahead. \r\n\r\nTake this Taming Rod and journey to the Gustberry Lowlands. There, tame a Vuldren Alpha and prove your mastery. \r\n\r\nComplete this lesson and you'll be ready to learn the deeper ways of the hunter.",
 },
-[92473] = {
-["o"] = "Collect 6 Scrawny Ursera Claws from Scrawny Ursera in Thendal Grove.",
-["d"] = "The ursera den to the southwest is rapidly becoming a problem. Just last week the rangers had to kill an adolescent ursera who wandered too close to the village and attempted to attack a boy playing near the base of the elder tree in the center of the village.\r\n\r\nWe were fortunate that the boy escaped with his life. Hunger and desperation makes these beasts too dangerous to be left unchecked. Go south and put the scrawniest among the ursera down. Bring me their claws as proof when it is done.",
+[365] = {
+["o"] = "Steal 10 pumpkins from the farm to the west, just north of Deathknell and take them to Apothecary Johaan in Brill.",
+["d"] = "What have we here?  You look like a fledgling paladin.  If you hope to prove yourself to The Dark Lady, you need to learn the ways of The Forsaken.\n\nTo the west you'll find a farm.  Humans infest the land like mold on a rotting corpse.  And worse yet, the Scarlet Crusade patrols nearby from their tower.  Teach those scum a lesson and steal 10 of their precious pumpkins.\n\nOnce you have 10, take them to Apothecary Johaan in Brill.",
+},
+[6321] = {
+["o"] = "Bring Podrig's Order to Karos Razok.",
+["d"] = "Executor Hadrec asked me to take stock of our equipment at the Sepulcher.  With the Scourge, and worse, lurking in the woods, he doesn't want the Deathguards to lack gear they might need.\n\nI found that we are, in general, well stocked, but we do need more weapons to replace those lost in the field.\n\nHere is a requisition order of what is needed, for the weapon dealer Gordon Wendham in the Undercity.  Take the order to our bat master, Karos Razok, and speak with him about transport to the Undercity.",
+},
+[6323] = {
+["o"] = "Buy a bat ride to the Undercity from the bat master Karos Razok, then take Podrig's Order to Gordon Wendham in the Undercity.",
+["d"] = "One of my bats can take you to the Undercity, for a small fee.  Speak with me again when you are ready so that we may arrange your transport.\n\nYou will find Gordon Wendham in the Trade Quarter of the Undercity.  That is the same quarter where my bat will land.",
+},
+[97558] = {
+["o"] = "Bring Shelene Rhobart 8 Duskbat Wing Membranes, 6 Darkhound Hides and 3 Vile Fin Murloc Skin.",
+["d"] = "One part of undeath no one mentions is what happens when we are injured. How does the skin of an undead heal itself?\r\n\r\nWell, it doesn't.\r\n\r\nOurs is a cursed life, N. We must take from the living to further our own existence.\r\n\r\nWhen we sustain an injury, we must replace our skin which usually means animal hides. Since different hide thicknesses are better for different places on our bodies a variety is key!\r\n\r\nBring me wing membranes of a duskbat, hides from a darkhound and skin of a Vile Fin murloc.",
 },
 [92544] = {
 ["o"] = "Slay 6 Al'Aketh Brutes, 4 Al'Aketh Neophytes, and Malduko Cloudcrush in Thendal Grove.",
@@ -1595,9 +1999,9 @@ ForeverDungeonJournalDB = {
 ["o"] = "Get the Ignition Key and bring it to Wizzlecrank.",
 ["d"] = "I don't suppose Sputtervalve sent you? I'm in a bind here. I hopped in without realizing that I need a key to unlock the shredder's movement column. One of the other shredder operators asked me if everything was okay, and I panicked! Instead of telling him that I was missing my key, I told him there was some sort of mechanical problem.\n\nWe need to get out of here on the double! Go up to the control room at the top of the derrick, the supervisor should have a key for this shredder.\n\nHelp me out here!",
 },
-[92474] = {
-["o"] = "Jump from the top of the watchtower in Thendal Grove and use your Walk on Air ability to slow your fall.",
-["d"] = "Well hello there, N! Want to play a game?\r\n\r\nAll you've got to do is step up on that ledge... then jump! Use your innate ability to walk on the air to slow your fall and see how far forward you can float.\r\n\r\nThe rules are made up and the points don't matter, but you get bonus points if you can land right in front of Rorian the Dayseeker and startle him! He won't like it but I'll certainly get a good laugh if you can get him all worked up! Hah!",
+[1221] = {
+["o"] = "Grab a Crate with Holes.\nGrab a Snufflenose Command Stick.\nGrab and read the Snufflenose Owner's Manual.\n\nIn Razorfen Kraul, use the Crate with Holes to summon a Snufflenose Gopher, and use the Command Stick on the gopher to make it search for Tubers.\n\nBring 6 Blueleaf Tubers, the Snufflenose Command Stick and the Crate with Holes to Mebok Mizzyrix in Ratchet.",
+["d"] = "Blueleaf tubers are a delicacy around the world!  But they're rare, very rare.  The only place to find them is here in the Barrens, deep in the earth, in Razorfen Kraul.\n\nAnd even then, they're impossible to find unless you know just where to look!  That's why I've trained these snufflenose gophers to find them for me.  They have great noses and can smell a tuber from fifty paces away.\n\nIt won't be easy, but if you get me some tubers I'll pay you handsomely.",
 },
 [92640] = {
 ["o"] = "Speak with Valennia Stormfist in Valanaar and follow her instructions.",
@@ -1607,41 +2011,41 @@ ForeverDungeonJournalDB = {
 ["o"] = "Return Gunther's Spellbook to him, on the island of Gunther's Retreat.",
 ["d"] = "Long ago Gunther and I, along with the now Scourge Necromancer Thule Ravenclaw, were friends and students within the Kirin Tor - a society of mages in Dalaran.\n\nGunther and I both fell to the Plague, but I thought he either remained dead, or was raised into the ranks of the Lich King.  It is good to know he is free.\n\nWe must have him.  I have placed a spell on his book that, when he sees it, will show him that I too am free of the Lich King.  After knowing this, it is my hope that he will join us.",
 },
-[430] = {
-["o"] = "Bring Quinn's potion to Quinn Yorick at the Ivar Patch, north of the Sepulcher.",
-["d"] = "Here is the potion to aid in Quinn Yorick's recovery.\n\nNow if you will excuse me, I have very important work to continue...",
+[27] = {
+["o"] = "Speak with Dendrite Starblaze in the village of Nighthaven, Moonglade.",
+["d"] = "N, I have been following your progress with much delight.  You are most assuredly developing yourself into a valued protector of nature.\n\nThe time has come for you to learn more about one of the various animal aspects that Cenarius has blessed us with the ability to change into - one that affords you command and mastery of the water.  For this, you must travel to the village of Nighthaven in Moonglade and speak with Dendrite Starblaze of the Cenarion Circle there.  He will guide you further.",
 },
-[92708] = {
-["o"] = "Listen to what Ayessa Dawnsinger has to say.",
-["d"] = "The Windshapers have been hard at work trying to respond to the current crisis on Zephras Isle. We have made several surprising discoveries in our search for the missing wind spirits, and we are developing a plan of action that could help us gain the means to save the island.\r\n\r\nWe'll need strong young adventurers like yourself for this to work however. Please, if you have a moment, let us speak on this further.",
+[1130] = {
+["o"] = "Speak with Melor Stonehoof in Thunder Bluff.",
+["d"] = "N, Melor Stonehoof has heard of your deeds, and has set a path before you.\n\nIf you wish to take it, then go to Thunder Bluff and speak with Melor.  You will find him on Hunter's Rise.",
 },
-[97558] = {
-["o"] = "Bring Shelene Rhobart 8 Duskbat Wing Membranes, 6 Darkhound Hides and 3 Vile Fin Murloc Skin.",
-["d"] = "One part of undeath no one mentions is what happens when we are injured. How does the skin of an undead heal itself?\r\n\r\nWell, it doesn't.\r\n\r\nOurs is a cursed life, N. We must take from the living to further our own existence.\r\n\r\nWhen we sustain an injury, we must replace our skin which usually means animal hides. Since different hide thicknesses are better for different places on our bodies a variety is key!\r\n\r\nBring me wing membranes of a duskbat, hides from a darkhound and skin of a Vile Fin murloc.",
+[93318] = {
+["o"] = "Kill Vulgara the Insatiable in the Shen'dar Highlands and bring her head to Danarii Bellowveil.",
+["d"] = "By order of Constable Aonda of the Peacekeepers, a bounty is hereby placed upon the scourge of the highlands, Vulgara the Insatiable. Last spotted on a hilltop rise just southwest of Shen'dar Village, the winged vuldren terror is highly dangerous and should be approached with caution.\r\n\r\nDeliver the beast's head to Danarii Bellowveil to receive your reward.",
 },
-[1489] = {
-["o"] = "Speak with Hamuul Runetotem",
-["d"] = "The shells you brought me have a taint, one I have never before seen.  I am certain the water of the Oases is the cause, and I can sense the confusion they cause this land.  It is as if the land dreams and cannot awake.\n\nThe Wailing Caverns must be the source of the taint.  But before you go there, speak with Hamuul Runetotem, the elder druid.  I sent word to him of the happenings in the Barrens.  He is wise, and can offer you counsel.\n\nYou will find him in Thunder Bluff, on the Elder Rise.",
+[93949] = {
+["o"] = "Kill Skyhoppers in Valanaar until you've eliminated 8 Enchanted Skyhoppers.",
+["d"] = "We've been bugged.\r\n\r\nIt's skyhopper season in the lowlands, which means the pests are everywhere. One of the High Order mages reported that one of the insects that they killed had an enchantment of some kind placed upon it. When we inspected it closely it seems to be some sort of listening spell.\r\n\r\nWe suspect that the cult is using these enchanted insects as spies. Go and exterminate them for us. You won't be able to tell which are enchanted by looking at them, so you'll just have to kill them all.",
 },
 [860] = {
 ["o"] = "Speak with Sergra Darkthorn at the Crossroads.",
 ["d"] = "If you wish to walk the hunter's path, then your journey leads to the Barrens.  Its beasts are strong-willed and fierce.  You will learn much by hunting there, and your spirit will grow.\n\nSpeak with Sergra Darkthorn.  She will be your first guide in the Barrens.\n\nSergra is at the Crossroads.  To reach her, travel east from Bloodhoof Village into the Barrens, then north as the road forks.  And have care as you travel--the Barrens holds great danger for the unprepared and unwary.",
 },
-[95507] = {
-["o"] = "Collect 8 Trapped Game from traps found in Sprung Traps in the Barrens.",
-["d"] = "While you are out there, it would be of great help to me if you could check on my traps for me. I've got them strewn all over the valley.\r\n\r\nBring back any small game that I've caught. Keep your eye out for the other wildlife, though. This area can be dangerous if you aren't paying attention.",
+[853] = {
+["o"] = "Bring the Rendered Spores to Apothecary Zamah in Thunder Bluff, before the time limit is up.",
+["d"] = "I have rendered the spores you gave me into an emulsion.  I must now send it to my associate, Apothecary Zamah.  If you were to carry this to her, she can offer you something from our stores of alchemical goods.\n\nShe is in the Pools of Vision, a cave beneath the shamans of Thunder Bluff.  The path to this cave is well hidden, but you may find it on the Spirit Rise bluff.\n\nDo hurry.  This emulsion will maintain its potency for only a short time, and must be resealed and processed before then.",
 },
-[93165] = {
-["o"] = "Collect 5 Al'Aketh Cultist's Ears from the Al'Aketh cultists in Shadowgale Forest, the Shrine of Akir, or Gustberry Lowlands.",
-["d"] = "The Al'Aketh have visited great tragedy upon our enclave, and blood must be repaid with blood.\r\n\r\nI have an offer for you, stranger. Should you find conflict with these accursed cultists, bring me the ears of those you kill. I will reward you for each that you return with in both coin and, in time, access to the Nightclaw's secrets should you prove yourself to be a true friend.",
+[93736] = {
+["o"] = "Gather 10 Wind Hollow Essences from Wind Hollows in the Shadowgale Forest.",
+["d"] = "The paramount concern of the Windshapers is to better understand why the spirits left us, and what we may be able to do to bring them back. One curious fixture of Shadowgale Forest to the north is the presence of a curious form of wind sprite that some call \"hollows\". We know little of them and why they are there, but we do know that they first started to appear after the spirits of the wind left us.\r\n\r\nI need you to go there and disperse them. Gather the remains and bring them back here.",
 },
-[821] = {
-["o"] = "Bring 5 Savannah Lion Tusks, 5 Plainstrider Kidneys, and 1 Thunder Lizard Horn to Brewmaster Drohn in Ratchet.",
-["d"] = "Would you like a taste of Chen's namesake? Ahh, the stormstout is a mighty brew. Chen taught the recipe to my mentor, and my mentor passed it on to me. I'll need you to get me a few things, but I can tell you this: the kick is worth it.\n\nBring me 5 savannah lion tusks from any savannah lion, 5 plainstrider kidneys from any plainstrider, and 1 thunder lizard horn from any species of thunder lizard. That should do the trick nicely.\n\nYou can find these ingredients throughout the Barrens.",
+[374] = {
+["o"] = "Bring 10 Scarlet Insignia Rings to Deathguard Burgess in Brill.",
+["d"] = "Executor Zygand tells me you've been out killing Scarlet Crusaders. Tirisfal Glades is crawling with them.\n\nVarimathras, lieutenant to The Dark Lady, is seeing to it personally that the scum of Azeroth, the Human race, gets wiped into oblivion. Here in Tirisfal Glades we face a particularly annoying breed of humans: The Scarlet Crusade.\n\nVenture forth and wage an offensive on the Scarlet Crusade, paladin. Bring me back 10 Scarlet Insignia Rings as proof of your loyalty to Varimathras and The Dark Lady.",
 },
 [861] = {
 ["o"] = "Bring 4 Flatland Prowler Claws to Melor Stonehoof in Thunder Bluff.",
-["d"] = "You are eager to explore, I can tell.  I too had the lust to wander, once...\n\nWander, and hunt.  For hunting is a Tauren's greatest honor.\n\nIf you truly wish to follow the ways of the hunter, then Melor Stonehoof can show you the path.  He is in Thunder Bluff, on the Hunter's Rise.\n\nAnd to show him your skill and resolve, bring him the claws of the flatland prowlers of Mulgore.  They are tough and cunning -- fitting prey for a young paladin on the hunter's path.",
+["d"] = "You are eager to explore, I can tell.  I too had the lust to wander, once...\n\nWander, and hunt.  For hunting is a Tauren's greatest honor.\n\nIf you truly wish to follow the ways of the hunter, then Melor Stonehoof can show you the path.  He is in Thunder Bluff, on the Hunter's Rise.\n\nAnd to show him your skill and resolve, bring him the claws of the flatland prowlers of Mulgore.  They are tough and cunning -- fitting prey for a young druid on the hunter's path.",
 },
 [95036] = {
 ["o"] = "Speak with Trevan Rol in the Sepulcher and bring him the materials he requires.",
@@ -1651,21 +2055,21 @@ ForeverDungeonJournalDB = {
 ["o"] = "Bring Riptear's Heart to Deathguard Linnea.",
 ["d"] = "Damn it all! A new report came in while you were on patrol. There has been a sighting of a rogue abomination wandering Eastern Tirisfal Glades, near Venomweb Vale.\r\n\r\nSomething is wrong. Abominations don't just slip through the Bulwark unnoticed.\r\n\r\nKeep this matter on a strictly need-to-know basis. That said, such a creature will not fall easily; you will need allies if you wish to be more than its next meal.\r\n\r\nSee this through, and you will be duly rewarded. Bring me its heart as proof of the deed.",
 },
-[1487] = {
-["o"] = "Ebru in the Wailing Caverns wants you to kill 7 Deviate Ravagers, 7 Deviate Vipers, 7 Deviate Shamblers and 7 Deviate Dreadfangs.",
-["d"] = "Naralex had a noble goal.\n\nOur great leader aspired to enter the Emerald Dream and help regrow these harsh lands back into the lush forest it once was. But something went terribly wrong.\n\nNaralex's dream turned into a nightmare and corrupt creatures began to inhabit the caverns.\n\nWhile some Disciples of Naralex seek to awake our master, my concern is with ridding these caves of the evil beasts.\n\nBrave the caverns, N, and eradicate the deviate spawn.",
+[93735] = {
+["o"] = "Find Riaani Nightwind on the west side of Valanaar.",
+["d"] = "Historically, the Windshapers have seen to the tending of the magical instruments and devices that were gifted to us by the spirits of the wind. This includes the myriad of magical constructs around the island. Since the spirits left us, only a scant few of these are still functional.\r\n\r\nOne of the few remaining working constructs in Valanaar has become damaged. One of our artisans was dispatched to help, but he may be in need of aid. Travel to the west end of the city and offer any assistance you can.",
 },
 [862] = {
 ["o"] = "Bring 8 Dig Rats to Grub east of the Crossroads.",
-["d"] = "A paladin like you must get pretty hungry out here in The Barrens. Me, I'm starving all day long.\n\nTell you what, I'll fix you up a nice stew. Just need a few dig rats.\n\nSeems those filthy dwarves at Bael Modan are overrun with everyone's favorite feast. Now head on down south to Bael Modan and bring me back some dig rats.\n\nYou can't call yourself a seasoned adventurer until you've spent some time killing rats! Haw!",
+["d"] = "A rogue like you must get pretty hungry out here in The Barrens. Me, I'm starving all day long.\n\nTell you what, I'll fix you up a nice stew. Just need a few dig rats.\n\nSeems those filthy dwarves at Bael Modan are overrun with everyone's favorite feast. Now head on down south to Bael Modan and bring me back some dig rats.\n\nYou can't call yourself a seasoned adventurer until you've spent some time killing rats! Haw!",
 },
-[493] = {
-["o"] = "Deliver Apothecary Renferrel's findings to Apothecary Lydon in the town of Tarren Mill in the Hillsbrad Foothills.",
-["d"] = "The Royal Apothecary Society is under extreme pressure from the Dark Lady to develop a New Plague.  We are working diligently and have made much progress.  It is our belief that the success will be achieved much faster if we share information amongst the Society.\n\nFor that reason I want you to deliver my latest findings to Apothecary Lydon in Tarren Mill, a small town nestled in the Hillsbrad Foothills.  The journey will be a long one.\n\nHead south and stick to the roads.  Follow the signs closely!",
+[855] = {
+["o"] = "Bring 15 Centaur Bracers to Regthar Deathgate, west of the Crossroads.",
+["d"] = "The Kolkar are a threat to the Horde's claims in the Barrens; we must reduce the numbers of their troops.  And so, I have a bounty task for you.\n\nWhile in Kolkar territories, slay their warriors and collect centaur bracers.  Return when you have a heap of bracers and the Horde will reward you well.",
 },
-[1486] = {
-["o"] = "Nalpak in the Wailing Caverns wants 20 Deviate Hides.",
-["d"] = "As Naralex descended deeper into his nightmare, a strange breed of beasts arose from beneath the Barrens into the Wailing Caverns.\n\nThese deviate creatures have strange, otherworldly properties. While evil in nature, it is my opinion that some good can come from their existence here in Kalimdor. I believe their hides will be of particular use in the ways of leatherworking.\n\nIf you feel up to the task, venture into the caves below and retrieve some deviate hides.",
+[93951] = {
+["o"] = "Collect 8 Hippogryph Down feathers in the Shen'dar Highlands.",
+["d"] = "The hippogryphs that have taken up residence southwest of the village can be a nuisance, but they also present a rather unique opportunity to obtain their feathers. Many skyborne love to adorn their hair with vibrant plumes and the down feathers of a hippogryph are exceptionally vibrant and, more importantly, silky soft.\r\n\r\nIf you are heading that way, try and gather as many of the fallen feathers as you can from around their nesting grounds. Do be careful, as wild hippogryph are not tolerant of guests.",
 },
 [368] = {
 ["o"] = "Apothecary Johaan of the town of Brill needs 5 Vile Fin Scales from Murlocs in Tirisfal Glades.",
@@ -1679,25 +2083,25 @@ ForeverDungeonJournalDB = {
 ["o"] = "Bring the head of Rudolph Gelhardt to Sylvanas Windrunner in the Undercity.",
 ["d"] = "Now that we've claimed the head of the tarnished commander, I need you to deliver it to the Undercity. Sylvanas Windrunner mistrusts us greatly, and all but openly disparages us.\r\n\r\nDeliver Rudolph Gelhardt's head to the Dark Lady. Show her that we tend to our own house and are devoted to the prosperity of the forsaken.",
 },
-[93318] = {
-["o"] = "Kill Vulgara the Insatiable in the Shen'dar Highlands and bring her head to Danarii Bellowveil.",
-["d"] = "By order of Constable Aonda of the Peacekeepers, a bounty is hereby placed upon the scourge of the highlands, Vulgara the Insatiable. Last spotted on a hilltop rise just southwest of Shen'dar Village, the winged vuldren terror is highly dangerous and should be approached with caution.\r\n\r\nDeliver the beast's head to Danarii Bellowveil to receive your reward.",
+[428] = {
+["o"] = "Find the Deathstalkers Quinn and Rane Yorick.",
+["d"] = "A couple weeks ago two of our Deathstalkers, Rane and Quinn Yorick, were sent on a reconnaissance mission through northern Silverpine.  We have not heard from them.\n\nThey may have become victim to the Scourge, though if that is true then I want it confirmed.  Find these Deathstalkers.\n\nTheir first objective was to scout the farms in northern Silverpine.  You should begin your search there.",
 },
-[93949] = {
-["o"] = "Kill Skyhoppers in Valanaar until you've eliminated 8 Enchanted Skyhoppers.",
-["d"] = "We've been bugged.\r\n\r\nIt's skyhopper season in the lowlands, which means the pests are everywhere. One of the High Order mages reported that one of the insects that they killed had an enchantment of some kind placed upon it. When we inspected it closely it seems to be some sort of listening spell.\r\n\r\nWe suspect that the cult is using these enchanted insects as spies. Go and exterminate them for us. You won't be able to tell which are enchanted by looking at them, so you'll just have to kill them all.",
+[493] = {
+["o"] = "Deliver Apothecary Renferrel's findings to Apothecary Lydon in the town of Tarren Mill in the Hillsbrad Foothills.",
+["d"] = "The Royal Apothecary Society is under extreme pressure from the Dark Lady to develop a New Plague.  We are working diligently and have made much progress.  It is our belief that the success will be achieved much faster if we share information amongst the Society.\n\nFor that reason I want you to deliver my latest findings to Apothecary Lydon in Tarren Mill, a small town nestled in the Hillsbrad Foothills.  The journey will be a long one.\n\nHead south and stick to the roads.  Follow the signs closely!",
 },
-[93736] = {
-["o"] = "Gather 10 Wind Hollow Essences from Wind Hollows in the Shadowgale Forest.",
-["d"] = "The paramount concern of the Windshapers is to better understand why the spirits left us, and what we may be able to do to bring them back. One curious fixture of Shadowgale Forest to the north is the presence of a curious form of wind sprite that some call \"hollows\". We know little of them and why they are there, but we do know that they first started to appear after the spirits of the wind left us.\r\n\r\nI need you to go there and disperse them. Gather the remains and bring them back here.",
+[8368] = {
+["o"] = "Bring 3 Warsong Marks of Honor to a Horde Warbringer outside the battlegrounds.",
+["d"] = "The battle in Warsong Gulch against the Silverwing Sentinels is of great importance.  Under the guise of protecting a forest that doesn't belong to them, the Alliance seeks to deny the Horde one of our largest sources for lumber.\n\nDo not let this happen, N!  Come back to me with proof of serving the Horde in a worthy manner!",
 },
-[93320] = {
-["o"] = "Report to Yorana Windyreed at the eastern watchtower in the Gustberry Lowlands.",
-["d"] = "I've just received word that the cult is attacking the pylon watchtower just outside of town! I've sent the few extra peacekeepers we have here to try and break through the enemy back line to relieve the defenders, but any additional help could mean the difference between our people there living or dying.\r\n\r\nPlease leave immediately for the east watchtower and provide whatever aid you can.\r\n\r\nMy lieutenant Yorana Windyreed led the relief force. If she still lives she can tell you how best to help.",
+[851] = {
+["o"] = "Bring Verog's Head to Regthar Deathgate, west of the Crossroads.",
+["d"] = "The centaur Verog the Dervish wanders the Barrens, and will be difficult to find.  But he is based at the centaur command tent at the Stagnant Oasis to the southeast.  It may be possible to draw him to you.\n\nTravel to the Stagnant Oasis to the southeast and attack centaur near the command tent.  It will be dangerous, but if you can kill enough centaur then they should raise an alarm.  And Verog will come.\n\nBring me his head and I will place it with Barak Kodobane's.",
 },
-[92643] = {
-["o"] = "Find the cultist turncoat at the house just inside the highlands northwest of Valanaar.",
-["d"] = "There is a turncoat amongst the Al'Aketh. They claim to know the cult's true intentions for the island and want to come in, but will only do so with assurances of protection.\r\n\r\nThis defector is hiding at a secluded residence just northwest of Valanaar inside the highlands. I need someone who can discreetly go there, find the traitor, and escort him back to us. This might be a trap, but if this information is as important as this traitor claims, it's worth some risk.",
+[867] = {
+["o"] = "Collect 8 Witchwing talons.\n\nReturn them to Darsok Swiftdagger at the Crossroads.",
+["d"] = "The blasted harpies have been ravaging our caravan supplies for too long. It's time we slit a few of their throats and diminished their numbers.\n\nI've been snooping around their nests and figured out who leads who. The most devastating attack will destroy a good section of their lower chain of command and then we can work our way to the top.\n\nI'll start you off slow, take out Witchwing Harpies and Witchwing Roguefeathers in the Northwest and bring me 8 Witchwing talons. That should be a good start...",
 },
 [369] = {
 ["o"] = "Apothecary Johaan in the town of Brill wants you to bring him 4 samples of venom from a Vicious Night Web Spider.",
@@ -1715,17 +2119,17 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Illaya Amberwind and Coriella Calmbreeze in Shen'dar Village.",
 ["d"] = "You've got that \"Windshaper\" air about you. Something about how I can feel a tiny bit of static on my skin when near someone spirit-touched that gives it away. Before I properly put you to work around here, you should check in with our resident Windshaper elder, Illaya Amberwind. She's just outside, near the center of town.\r\n\r\nOh, and check in with Coriella Calmbreeze as well, she runs the local inn and can provide lodging and supplies, should you need them.",
 },
-[851] = {
-["o"] = "Bring Verog's Head to Regthar Deathgate, west of the Crossroads.",
-["d"] = "The centaur Verog the Dervish wanders the Barrens, and will be difficult to find.  But he is based at the centaur command tent at the Stagnant Oasis to the southeast.  It may be possible to draw him to you.\n\nTravel to the Stagnant Oasis to the southeast and attack centaur near the command tent.  It will be dangerous, but if you can kill enough centaur then they should raise an alarm.  And Verog will come.\n\nBring me his head and I will place it with Barak Kodobane's.",
+[93320] = {
+["o"] = "Report to Yorana Windyreed at the eastern watchtower in the Gustberry Lowlands.",
+["d"] = "I've just received word that the cult is attacking the pylon watchtower just outside of town! I've sent the few extra peacekeepers we have here to try and break through the enemy back line to relieve the defenders, but any additional help could mean the difference between our people there living or dying.\r\n\r\nPlease leave immediately for the east watchtower and provide whatever aid you can.\r\n\r\nMy lieutenant Yorana Windyreed led the relief force. If she still lives she can tell you how best to help.",
 },
-[870] = {
-["o"] = "Report back to Tonga Runetotem with your findings.",
-["d"] = "Long ago, the Barrens was a lush place, teeming with life.  But war and cataclysm raged across the land, scorching it and leaving a dry husk.  Such is the way of things, and it saddens my heart.\n\nBut within the past few years, new oases have formed in the Barrens, and life stirs.  And deep down, we druids sense a power leaking its way to the surface.\n\nWe must find its source.  Travel to the Forgotten Pools, northwest of the Crossroads.  Search its waters for a source of power, then return here.",
+[866] = {
+["o"] = "Bring 8 Root Samples to Mebok Mizzyrix in Ratchet.",
+["d"] = "The herbs of the Barrens are not quite like herbs in other lands.  Their properties are mostly the same, but the oasis water here alters the plants; they are just slightly different.\n\nI want to study those differences... to see if they're exploitable!\n\nIf you are skilled in herbalism, then gather root samples off the herbs you find in the Barrens.  Bring back these samples so that I may compare them with herbs from other regions.",
 },
-[92706] = {
-["o"] = "Bring Bruuz's Dorsal Fin to Gazlowe in Ratchet.",
-["d"] = "Calling all anglers!\r\n\r\nA giant shark has been circling the waters near the shipping dock, attacking sailors and small boats. Dockworkers have given it the nickname \"Bruuz\". A hefty reward will be given to whoever brings me its fin!\r\n\r\n-- Gazlowe",
+[93165] = {
+["o"] = "Collect 5 Al'Aketh Cultist's Ears from the Al'Aketh cultists in Shadowgale Forest, the Shrine of Akir, or Gustberry Lowlands.",
+["d"] = "The Al'Aketh have visited great tragedy upon our enclave, and blood must be repaid with blood.\r\n\r\nI have an offer for you, stranger. Should you find conflict with these accursed cultists, bring me the ears of those you kill. I will reward you for each that you return with in both coin and, in time, access to the Nightclaw's secrets should you prove yourself to be a true friend.",
 },
 [92642] = {
 ["o"] = "Slay 4 Al'Aketh Healers and 8 Al'Aketh Brawlers in the Gustberry Lowlands.",
@@ -1735,33 +2139,33 @@ ForeverDungeonJournalDB = {
 ["o"] = "Executor Zygand in Brill wants you to kill Captain Perrine, 3 Scarlet Zealots and 3 Scarlet Missionaries.",
 ["d"] = "The strategic documents from Executor Arren contain all the details we need to wipe the human infestation from the lands.  According to the information, The Scarlet Crusade has assigned Captain Perrine and a brigade to the ruined tower southwest of Brill.\n\nKill Perrine along with 3 Zealots and 3 Missionaries and report back to me.",
 },
-[1221] = {
-["o"] = "Grab a Crate with Holes.\nGrab a Snufflenose Command Stick.\nGrab and read the Snufflenose Owner's Manual.\n\nIn Razorfen Kraul, use the Crate with Holes to summon a Snufflenose Gopher, and use the Command Stick on the gopher to make it search for Tubers.\n\nBring 6 Blueleaf Tubers, the Snufflenose Command Stick and the Crate with Holes to Mebok Mizzyrix in Ratchet.",
-["d"] = "Blueleaf tubers are a delicacy around the world!  But they're rare, very rare.  The only place to find them is here in the Barrens, deep in the earth, in Razorfen Kraul.\n\nAnd even then, they're impossible to find unless you know just where to look!  That's why I've trained these snufflenose gophers to find them for me.  They have great noses and can smell a tuber from fifty paces away.\n\nIt won't be easy, but if you get me some tubers I'll pay you handsomely.",
+[92706] = {
+["o"] = "Bring Bruuz's Dorsal Fin to Gazlowe in Ratchet.",
+["d"] = "Calling all anglers!\r\n\r\nA giant shark has been circling the waters near the shipping dock, attacking sailors and small boats. Dockworkers have given it the nickname \"Bruuz\". A hefty reward will be given to whoever brings me its fin!\r\n\r\n-- Gazlowe",
 },
-[8368] = {
-["o"] = "Bring 3 Warsong Marks of Honor to a Horde Warbringer outside the battlegrounds.",
-["d"] = "The battle in Warsong Gulch against the Silverwing Sentinels is of great importance.  Under the guise of protecting a forest that doesn't belong to them, the Alliance seeks to deny the Horde one of our largest sources for lumber.\n\nDo not let this happen, N!  Come back to me with proof of serving the Horde in a worthy manner!",
+[430] = {
+["o"] = "Bring Quinn's potion to Quinn Yorick at the Ivar Patch, north of the Sepulcher.",
+["d"] = "Here is the potion to aid in Quinn Yorick's recovery.\n\nNow if you will excuse me, I have very important work to continue...",
 },
-[93951] = {
-["o"] = "Collect 8 Hippogryph Down feathers in the Shen'dar Highlands.",
-["d"] = "The hippogryphs that have taken up residence southwest of the village can be a nuisance, but they also present a rather unique opportunity to obtain their feathers. Many skyborne love to adorn their hair with vibrant plumes and the down feathers of a hippogryph are exceptionally vibrant and, more importantly, silky soft.\r\n\r\nIf you are heading that way, try and gather as many of the fallen feathers as you can from around their nesting grounds. Do be careful, as wild hippogryph are not tolerant of guests.",
+[429] = {
+["o"] = "Gather 3 discolored worg hearts and bring them to Apothecary Renferrel at the Sepulcher.",
+["d"] = "My brother Quinn was badly hurt by the ghoul, Ivar the Foul, and I don't know if he will heal properly without alchemical aid.  Although I am not an apothecary, I do know that our apothecaries can make healing potions from the discolored hearts of worgs.\n\nGather such hearts and take them to Apothecary Renferrel at the Sepulcher to the south.  Then return here with the potion.\n\nYou can find plenty of worgs between here and Malden's Orchard to the east.",
 },
-[867] = {
-["o"] = "Collect 8 Witchwing talons.\n\nReturn them to Darsok Swiftdagger at the Crossroads.",
-["d"] = "The blasted harpies have been ravaging our caravan supplies for too long. It's time we slit a few of their throats and diminished their numbers.\n\nI've been snooping around their nests and figured out who leads who. The most devastating attack will destroy a good section of their lower chain of command and then we can work our way to the top.\n\nI'll start you off slow, take out Witchwing Harpies and Witchwing Roguefeathers in the Northwest and bring me 8 Witchwing talons. That should be a good start...",
+[92708] = {
+["o"] = "Listen to what Ayessa Dawnsinger has to say.",
+["d"] = "The Windshapers have been hard at work trying to respond to the current crisis on Zephras Isle. We have made several surprising discoveries in our search for the missing wind spirits, and we are developing a plan of action that could help us gain the means to save the island.\r\n\r\nWe'll need strong young adventurers like yourself for this to work however. Please, if you have a moment, let us speak on this further.",
 },
 [868] = {
 ["o"] = "Bring 12 Silithid Eggs and the Digging Claw to Korran at the Crossroads.",
 ["d"] = "Hey, N. I been sent to the Crossroads to watch over the land and take note of its happenings for my masters in Orgrimmar.\n\nOne object of my studies are the insect-like creatures found to the south in the Field of Giants. We know little of the creatures, so I be makin' it a point to discover more. They seem to have intelligence to them, more so than any normal animal.\n\nTake this digging claw and collect some of the creatures' eggs from their mounds, but be careful: if alerted, they will attack you.",
 },
-[93090] = {
-["o"] = "Speak with Ayessa Dawnsinger when you are prepared to leave Zephras Isle.",
-["d"] = "Please extend my thanks to Ayessa for all that the Windshapers and your new friends from this \"Earthen Ring\" have done for Zephras Isle. I'm aware of the plan to take the Windshapers' shamans and leave the island, and your order has my blessing and well-wishes in this expedition.\r\n\r\nI can only hope that whatever solution the Windshapers find can truly provide us with the stability we've lacked these past years.\r\n\r\nWinds be with you, N.",
+[492] = {
+["o"] = "Bring Johaan's Special Drink to the Captured Mountaineer.",
+["d"] = "According to the Deathguard, another one of those foolish Dwarven Mountaineers has just been captured.  The Deathguard likes to use the cellar of the Gallows End Tavern as a holding cell until prisoners can be \"properly\" dealt with.\n\nWhy don't you go see how the Captured Mountaineer enjoys this special drink I made for him?  It contains a subtle hint of what The Dark Lady has planned for the rest of Azeroth.",
 },
-[374] = {
-["o"] = "Bring 10 Scarlet Insignia Rings to Deathguard Burgess in Brill.",
-["d"] = "Executor Zygand tells me you've been out killing Scarlet Crusaders. Tirisfal Glades is crawling with them.\n\nVarimathras, lieutenant to The Dark Lady, is seeing to it personally that the scum of Azeroth, the Human race, gets wiped into oblivion. Here in Tirisfal Glades we face a particularly annoying breed of humans: The Scarlet Crusade.\n\nVenture forth and wage an offensive on the Scarlet Crusade, paladin. Bring me back 10 Scarlet Insignia Rings as proof of your loyalty to Varimathras and The Dark Lady.",
+[94003] = {
+["o"] = "Reclaim the Skybreaker Bulwark from Zaal Stormshield at the Shrine of Akir.",
+["d"] = "I am all that remains of the line of Skybreakers here on Zephras Isle. The rest were murdered by the Al'Aketh.\r\n\r\nThe only thing that outweighs my sorrow is my shame. My family's ancestral shield--the Skybreaker Bulwark--is now in the hands of a cultist named Zaal Stormshield. Family lore holds no harm may befall a worthy wielder of this shield.\r\n\r\nZaal is not worthy, of that I am sure. Find this man at the Shrine of Akir and reclaim my shield from him. Do this and I will teach you the Skybreaker Defense.",
 },
 [371] = {
 ["o"] = "Executor Zygand in Brill has commissioned you to slay Captain Vachon and 5 Scarlet Friars.",
@@ -1783,9 +2187,9 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Senani Thunderheart at Splintertree Post, Ashenvale.",
 ["d"] = "Attention, young adventurers!  The wilds of Ashenvale await you!\n\nThe Horde has established a strong presence in the lands north of the Barrens.  Our two outposts - Splintertree Post and the Zoram Strand Outpost - strive to bring glory to the Horde!  Those who would prove themselves should seek out guidance there.  Of note: Senani Thunderheart in Splintertree Post, directly north of the Barrens, seeks adventurers willing to take part in a great hunt of Ashenvale!",
 },
-[92579] = {
-["o"] = "Deliver Aonda's Written Report to Valennia Stormfist in Valanaar.",
-["d"] = "For now it seems the pylon and the village are safe, so I'd like you to deliver this report to Valennia Stormfist in Valanaar, at the southeastern edge of the island. Valennia is the leader of the peacekeepers on the island and she needs to know what happened here.\r\n\r\nThe cult is expanding rapidly and the peacekeepers have avoided direct conflict until now, but those days are over. Valanaar will need to be ready for a fight.\r\n\r\nAt any rate, thank you. You'll always have friends in Shen'dar, N.",
+[93090] = {
+["o"] = "Speak with Ayessa Dawnsinger when you are prepared to leave Zephras Isle.",
+["d"] = "Please extend my thanks to Ayessa for all that the Windshapers and your new friends from this \"Earthen Ring\" have done for Zephras Isle. I'm aware of the plan to take the Windshapers' shamans and leave the island, and your order has my blessing and well-wishes in this expedition.\r\n\r\nI can only hope that whatever solution the Windshapers find can truly provide us with the stability we've lacked these past years.\r\n\r\nWinds be with you, N.",
 },
 [1483] = {
 ["o"] = "Speak with Ziz Fizziks in Windshear Crag.",
@@ -1803,33 +2207,33 @@ ForeverDungeonJournalDB = {
 ["o"] = "Of the Razormane tribe, kill 8 Water Seekers, 8 Thornweavers and 3 Hunters, and then return to Thork in the Crossroads.",
 ["d"] = "All the quilboars are our enemies, N. Some just prove to be more of a nuisance than others.\n\nThe Razormane tribe has been attacking our supply lines from Durotar, causing us no end of annoyance. I have scouts seeking the leader of these raids, but until then, any losses you can inflict on the filthy pig men would aid us.\n\nStart in the northeast towards Durotar. You can always tell their dens from the huge thorny vines that come up from the earth. Seek them out, and slay them.",
 },
-[855] = {
-["o"] = "Bring 15 Centaur Bracers to Regthar Deathgate, west of the Crossroads.",
-["d"] = "The Kolkar are a threat to the Horde's claims in the Barrens; we must reduce the numbers of their troops.  And so, I have a bounty task for you.\n\nWhile in Kolkar territories, slay their warriors and collect centaur bracers.  Return when you have a heap of bracers and the Horde will reward you well.",
+[94490] = {
+["o"] = "Bring the Ripped Missive to Elegael Thornpaw in the Shadowgale Forest.",
+["d"] = "<Tucked behind one of Haalien's bracers is a note that's been slightly torn and bloodstained in your fight. It looks like it contains useful information about the cultist motivations for the attack on the druid den. Elegael would be interested in this intel.>",
 },
-[93735] = {
-["o"] = "Find Riaani Nightwind on the west side of Valanaar.",
-["d"] = "Historically, the Windshapers have seen to the tending of the magical instruments and devices that were gifted to us by the spirits of the wind. This includes the myriad of magical constructs around the island. Since the spirits left us, only a scant few of these are still functional.\r\n\r\nOne of the few remaining working constructs in Valanaar has become damaged. One of our artisans was dispatched to help, but he may be in need of aid. Travel to the west end of the city and offer any assistance you can.",
+[92685] = {
+["o"] = "Loot 7 Blood-Stained Bandit Masks from Highwayman Bandits in the Gustberry Lowlands.",
+["d"] = "The bandits have camps all over and there's a small one in the hills just north of here. Head up there and start cracking skulls. If we can catch them off guard and take them out before they come for us, we might just even the odds enough to stand a chance.\r\n\r\nBring me their masks. The bloodier the better.",
 },
 [744] = {
 ["o"] = "Collect 6 Azure Feathers and 6 Bronze Feathers, and bring them to Eyahn Eagletalon in Thunder Bluff.",
 ["d"] = "N, my brother soon stands before Chief Bloodhoof, and it is my honor to make his headdress for him.\n\nI want to ask a favor of you while I finish tanning these leather straps. There is not time for me to find enough feathers, and I was wondering, would you gather more for me?\n\nYou can find feathers of the correct size from the harpies residing far to the north and northwest of Thunder Bluff. I need only 6 azure and 6 bronze feathers to complete the design.",
 },
-[872] = {
-["o"] = "Kill 8 Razormane Geomancers, 8 Razormane Defenders, and Kreenig Snarlsnout.\n\nThen bring Kreenig Snarlsnout's Tusk to Thork at the Crossroads.",
-["d"] = "One of my scouts witnessed an attack on a caravan from Durotar, N. The culprits are indeed the Razormane tribe of quilboars. One of the quilboars in particular is leading the raids: Kreenig Snarlsnout. He was seen northeast of here, just south of the road from Durotar. If the threat is to be ended, then Kreenig must die.\n\nTo be sure the attacks cease, though, I say we add insult to their injury. Kill Kreenig along with more of their tribe, and return to me when you have his tusk.",
+[2458] = {
+["o"] = "Travel to the Venture Co. Tower, north of the Sludge Fen and contact the Shattered Hand's covert operative, Taskmaster Fizzule.\n\nWhen the tower is in sight, use the Flare Gun to signal your arrival to Taskmaster Fizzule. Fire off TWO flares, then approach Taskmaster Fizzule and perform the Shattered /Salute.\n\nThese actions must be performed in the correct order, as Fizzule will attack and terminate any person he does not recognize.",
+["d"] = "The Venture Company... Perhaps you have heard of them?\n\nFor one year we have worked on planting an agent deep within their ranks. Through much hard work and careful planning, we succeeded.\n\nRecently we received word that the Venture Co. are planning something on a grand scale. Go north of the Sludge Fen to the Venture Co. tower and contact our undercover agent, Taskmaster Fizzule.\n\nWhen you find the tower, use this flare gun, then approach Fizzule and show him the salute of the Shattered Hand.\r\n",
 },
 [94911] = {
 ["o"] = "Speak with Turak Runetotem in Thunder Bluff.",
 ["d"] = "Greetings, young skyborne. I can see that you have much promise in the druidic arts. There is one who you may want to speak with in the city of Thunder Bluff by the name of Turak Runetotem. He will teach you how to reach the stronghold of the Cenarion Circle on Kalimdor, Moonglade. \r\n\r\nYou will be welcomed there, and the druids of the circle will impart their knowledge upon you. \r\n\r\nAs your people would say--go with the wind's blessing, young one. I wish you good fortune in your adventures.",
 },
-[853] = {
-["o"] = "Bring the Rendered Spores to Apothecary Zamah in Thunder Bluff, before the time limit is up.",
-["d"] = "I have rendered the spores you gave me into an emulsion.  I must now send it to my associate, Apothecary Zamah.  If you were to carry this to her, she can offer you something from our stores of alchemical goods.\n\nShe is in the Pools of Vision, a cave beneath the shamans of Thunder Bluff.  The path to this cave is well hidden, but you may find it on the Spirit Rise bluff.\n\nDo hurry.  This emulsion will maintain its potency for only a short time, and must be resealed and processed before then.",
+[2460] = {
+["o"] = "Perform the Shattered Salute on Shenthul.",
+["d"] = "As a rogue of the Shattered Hand, it is imperative that you learn the Shattered Salute. It is the only way to truly identify another member of the Hand.\n\nWatch, learn, repeat.",
 },
-[94003] = {
-["o"] = "Reclaim the Skybreaker Bulwark from Zaal Stormshield at the Shrine of Akir.",
-["d"] = "I am all that remains of the line of Skybreakers here on Zephras Isle. The rest were murdered by the Al'Aketh.\r\n\r\nThe only thing that outweighs my sorrow is my shame. My family's ancestral shield--the Skybreaker Bulwark--is now in the hands of a cultist named Zaal Stormshield. Family lore holds no harm may befall a worthy wielder of this shield.\r\n\r\nZaal is not worthy, of that I am sure. Find this man at the Shrine of Akir and reclaim my shield from him. Do this and I will teach you the Skybreaker Defense.",
+[845] = {
+["o"] = "Slay Zhevra Runners to collect 4 Zhevra Hooves for Sergra Darkthorn in the Crossroads.",
+["d"] = "The zhevra, although not the fiercest beast in the Barrens, are a shade tougher than the plainstriders.  Don't worry -- we'll send you against bigger prey in good time, but for now your teeth could use a little more cutting.\n\nHunt the zhevra to the north and south, and collect their hooves.  Bring them to me and perhaps we'll next send you against something tougher.",
 },
 [437] = {
 ["o"] = "Kill rot hide gnolls at the Dead Fields.\n\nWhen Nightlash appears, kill her.\n\nBring the Essence of Nightlash to High Executor Hadrec at the Sepulcher.",
@@ -1847,9 +2251,9 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Nara Wildmane.",
 ["d"] = "I entered the land of dreams, and dreamed of a cult of druids who dwell in the Wailing Caverns.  I saw that their goals were once noble, but they have lost their way.  They are now servants of the taint seeping through the Barrens.\n\nI am old and my strength fails.  I could not long dwell in that dreaming place and know little more of the tainted druids.  But Nara is young and her spirit is fierce.  She remained in the dreaming when I fled.\n\nSpeak with Nara.  She is in the tent, over yonder.",
 },
-[6322] = {
-["o"] = "Bring Gordon's Crate to Michael Garrett.",
-["d"] = "I have placed the Sepulcher's supplies into this crate.  If you have already visited the Sepulcher and spoken with their bat master, then you may ride a bat back to him.\n\nSpeak with the Undercity's bat master, Michael Garrett.  He can provide you with a bat to the Sepulcher.",
+[91858] = {
+["o"] = "Travel to The Sepulcher in Silverpine Forest and speak with Trevan Rol about the missing Earthen Ring travelers.",
+["d"] = "A most unfortunate turn of events in Silverpine has presented a unique opportunity for us to prove our worth in the eyes of the horde.\r\n\r\nA pair of dignitaries from the Earthen Ring went missing in Silverpine Forest en route to Tarren Mill. We don't know much else but rumors say that this is becoming quite the diplomatic incident. If we can recover these missing persons, it could help gain us the legitimacy we so dearly need.\r\n\r\nWe have a man at The Sepulcher, Trevan Rol. Travel there and speak with him.",
 },
 [1491] = {
 ["o"] = "Bring 6 portions of Wailing Essence to Mebok Mizzyrix in Ratchet.",
@@ -1867,13 +2271,13 @@ ForeverDungeonJournalDB = {
 ["o"] = "Go to the Decrepit Ferry.\n\nSearch for the reason the Scourge are there.",
 ["d"] = "N, we've discovered a new hive for the Scourge: the Decrepit Ferry.  The ferry lies east of the Sepulcher, and is heavily patrolled by rot hides and other undead.\n\nThere must be a reason for the Scourge's occupation of the area.  Go to the Decrepit Ferry and find out why the Scourge are there.",
 },
-[6321] = {
-["o"] = "Bring Podrig's Order to Karos Razok.",
-["d"] = "Executor Hadrec asked me to take stock of our equipment at the Sepulcher.  With the Scourge, and worse, lurking in the woods, he doesn't want the Deathguards to lack gear they might need.\n\nI found that we are, in general, well stocked, but we do need more weapons to replace those lost in the field.\n\nHere is a requisition order of what is needed, for the weapon dealer Gordon Wendham in the Undercity.  Take the order to our bat master, Karos Razok, and speak with him about transport to the Undercity.",
+[840] = {
+["o"] = "Follow the western road from Razor Hill to the Barrens over a bridge.\n\nStop at the orc outpost across the bridge.\n\nGive Kargal Battlescar at the Barrens outpost your recruitment letter.",
+["d"] = "Hmm, you look pretty strong.\n\nListen, my good friend Kargal needs some new recruits for Barrens duty. I know you want to do what's right for the Horde. Well, this is your chance.\n\nTake this recruitment letter to Kargal and see if he'll sign it.",
 },
-[875] = {
-["o"] = "Collect 6 Harpy Lieutenant Rings from Witchwing Slayers and return them to Darsok Swiftdagger at the Crossroads.",
-["d"] = "Hahaha, N. Back for more? Good, I like to hear that.\n\nThis time I want you to assassinate some of the harpy lieutenants in the Dry Hills. Only Witchwing Slayers can be lieutenants, and you can tell them apart by the rings they carry. They are a nasty bunch, but they lead some of the underlings in that area. Taking out 6 of them will be a decisive strike against their matriarchy.\n\nMake sure they die painfully, N. We want those harpy wenches to know the idiocy of picking fights with the Horde.",
+[1061] = {
+["o"] = "Speak with Seereth Stonebreak in the Stonetalon Mountains.",
+["d"] = "The spirits of the Stonetalon Mountains are angered, for goblins and their servants are plundering and burning the land.  So the land has cried out, and those who listen for such things... have heard.\n\nSeereth Stonebreak, a promising shaman of the Horde, was sent to Stonetalon.  She reports massive deforestation at the hands of the goblins, and requests aid.\n\nMeet Seereth in Stonetalon.  To reach her, follow the road west of the Barrens' Crossroads.  She is camped near the Greatwood Vale.",
 },
 [79007] = {
 ["o"] = "Charred remains of the note serve as your only guide.",
@@ -1883,21 +2287,21 @@ ForeverDungeonJournalDB = {
 ["o"] = "Slay Serena Bloodfeather and return her head to Darsok Swiftdagger at the Crossroads.",
 ["d"] = "You did so well with the lieutenants and underlings that I'd like you to do one last thing for me.\n\nSerena Bloodfeather is the sister of a harpy named Bloodfeather who was slain by Rexxar quite a while ago. Apparently, these attacks on the Horde caravans are revenge for her sister's death.\n\nI need you to slit her throat and bring me back her head. I want to place it on the next caravan we send out... Give those harpies something to think about.",
 },
-[92703] = {
-["o"] = "Speak with Alvarion Windfield in Valanaar.",
-["d"] = "I guess it doesn't feel quite right to keep calling you stranger after all of this so... thank you, N. \r\n\r\nIf you wouldn't mind and are back out that way, please let Alvarion know what happened here. Also, tell him that once he's up on his feet he needs to bring a windshaper back here to look at that construct for us to make sure it's safe to have around our... our family.\r\n\r\n<Aamelia touches her belly gently.>\r\n\r\nHe doesn't know about this part. Let's just keep that bit between us for now.",
+[97959] = {
+["o"] = "Speak with Brom Killian in Undercity to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
+["d"] = "Mining isn't the most glamorous, but it's good honest work and a fine profession for you to explore.\r\n\r\nI reckon I know someone that can teach you how to craft a Lodestone for your camp. Build one of these and everyone who wants to swing a sword will be eager to gather round your fire and soak up the extra \"oomph\" it can provide to increase their combat prowess.",
 },
-[427] = {
-["o"] = "Executor Zygand of Brill wants you to kill 10 Scarlet Warriors.",
-["d"] = "The documents Executor Arren provided are just the break we needed in our battle with the wretched Scarlet Crusade.  We now know their exact locations throughout Tirisfal Glades.\n\nBut the Deathguard has larger concerns.  The Lich King's army grows in number each night.  We need someone with \"initiative\" like yourself to drive the Scarlet Crusade to the grave.\n\nProve to me you are capable of serving The Dark Lady by travelling west to the tower past the Solliden Farmstead and slay 10 Scarlet Warriors.",
+[96988] = {
+["o"] = "Collect 6 Cracked Sentry Cores in the City of Dalaran for Doctor Martin Felben in Undercity.",
+["d"] = "With the city of Dalaran under siege by their own constructs, this is the perfect opportunity to, let's say, borrow a few samples.\r\n\r\nImagine an army of arcane-powered abominations. The Dark Lady would have no choice but to recognize my alchemical prowess. Maybe even grant me head of the Royal Apothecary Society?\r\n\r\nGo to the city and find the constructs' cores. They are unlikely to give them willingly, so do what you must.",
 },
 [749] = {
 ["o"] = "Morin Cloudstalker wants you to examine the contents of a supply crate at the Ravaged Caravan.",
 ["d"] = "A few days ago, we found a Venture Co. caravan traveling under guard on the northern shore of Stonebull Lake. We'd lost two of our number in an earlier battle, so we were quick to attack and lay waste to the caravan.\n\nWe left their supply crates, thinking that our torches would destroy anything of value, but given that Venture Co. salvagers have been spotted near the burned wagons, maybe we were wrong.\n\nPerhaps you could go to the caravan and examine the contents of the crates.",
 },
-[439] = {
-["o"] = "Bring Deliah's Ring to High Executor Hadrec at the Sepulcher.",
-["d"] = "Among the corpses a hand protrudes, unwrapped.  It is the hand of a woman, pockmarked from the plague but relatively fresh.  \n\nOn the hand is a ring.  Removing the ring and inspecting it reveals an engraving:\n\n\"For Deliah\"",
+[2478] = {
+["o"] = "Steal Silixiz's Tower Key from Foreman Silixiz, then kill two Mutated Venture Co. Drones, two Venture Co. Patrollers, and two Venture Co. Lookouts.\n\nAssassinate Grand Foreman Gallywix and take his head, then pick the lock on Gallywix's lockbox and steal the Cache of Zanzil's Altered Mixture. Take the Cache and Gallywix's Head back to Shenthul in Orgrimmar for further instruction.\r\n",
+["d"] = "You will need to steal the tower key from Foreman Silixiz, N. Once you've got the key in your possession, hold on to it - I may need it later.\n\nRemember, the poison has weakened everything in this tower. Use your abilities to bring chaos and destruction to its inhabitants. Slay them all -- show no mercy!\n\nOnce everything inside lays in a bloodied heap, pick Gallywix's lockbox and steal the cache of Zanzil's mixture held inside. Take both the head of Gallywix and the mixture to Shenthul in Orgrimmar.",
 },
 [92485] = {
 ["o"] = "Read the Folded Parchment then speak with Xyton Silverwind in Thendal Grove.",
@@ -1915,25 +2319,25 @@ ForeverDungeonJournalDB = {
 ["o"] = "Kill 6 Bristleback Water Seekers, 12 Bristleback Thornweavers and 12 Bristleback Geomancers and return to Mangletooth at Camp Taurajo in the Barrens.",
 ["d"] = "You must strike my enemies. <snort> You must help Mangletooth and the Razormane by weakening the Bristlebacks. Both tribes are very spiritual--tied to the earth and its power. <snort> It gives us strength in all things... especially war.\n\nIf you want to find out who really causes Thork <snort> and the Horde such anguish, then help Mangletooth! You attack the spiritual leaders of the Bristlebacks to the north; weaken them so the Razormanes can defeat them and rule the Barrens.",
 },
-[92693] = {
-["o"] = "Speak with Aamelia Windfield when you are ready to confront the bandit leader.",
-["d"] = "You've done a lot to give us a fighting chance. Even if we die today, we'll at least know we gave it our best shot.\r\n\r\nThis is your last chance, stranger. If you want to head back to Valanaar and live another day, I wouldn't blame you.\r\n\r\nOn the other hand, if you really have a thing for lost causes just let me know when you are ready to go. We'll walk out there with our heads held high and whatever happens, happens.",
+[447] = {
+["o"] = "Collect 6 Grizzled Bear Hearts and 6 samples of Skittering Blood and deliver them to Master Apothecary Faranell in the Undercity.",
+["d"] = "Arthas's numbers are overwhelming. But with a New Plague we could eradicate both the Scourge Army and the Human infestation once and for all.\n\nMy studies have proven that spider blood combined with a toxin derived from a grizzled bear heart results in a deadly elixir. Collect samples from the spiders in the Skittering Dark to the northwest and from the bears wandering throughout Silverpine Forest. Deliver the reagents to Master Apothecary Faranell of the Royal Apothecary Society in the Undercity.",
 },
 [92645] = {
 ["o"] = "Slay Commander Belguilos in the Gustberry Lowlands.",
 ["d"] = "This attack is going to be hard to repel unless we can take out the cult commander. Belguilos \"the Breaker\" they call her, and she's a veritable terror. She used to be a peacekeeper before the cult got out of control, and even then she was... off. As a cultist I can only imagine how much worse she could be now.\r\n\r\nI might just be sending you to your death, but someone needs to take Belguilos out if we are going to survive here. You can find her at the villa at the hill's base. Good luck, druid.",
 },
-[97959] = {
-["o"] = "Speak with Brom Killian in Undercity to learn to craft a camping item for your profession once you have shown proficiency in your skill.",
-["d"] = "Mining isn't the most glamorous, but it's good honest work and a fine profession for you to explore.\r\n\r\nI reckon I know someone that can teach you how to craft a Lodestone for your camp. Build one of these and everyone who wants to swing a sword will be eager to gather round your fire and soak up the extra \"oomph\" it can provide to increase their combat prowess.",
+[98298] = {
+["o"] = "Bring 6 Worgen Bits to Dalar Dawnweaver in The Sepulcher.",
+["d"] = "Ah, it's all become so embarrassingly clear! Arugal hardly had any magic at all, let alone enough to create the worgen. 'Arugal's Curse.' Pah! Barely potent enough to last a few seconds.\r\n\r\nThese shackles prove he can bind the beasts, not create them. The worgen clearly spread their curse a different way. I would know how.\r\n\r\nGo to the Greymane Wall to the south. The worgen seem to be spreading to the humans nearby. Tear the beasts apart and bring me whatever you find. This requires a more direct approach.",
 },
 [440] = {
 ["o"] = "Bring Deliah's Ring to Magistrate Sevren in Brill.",
 ["d"] = "If you want to find the husband or beloved who gave Deliah her ring... then speak with Magistrate Sevren in Brill.  He should have records of recent deaths and, with luck, can discover who Deliah is.\n\nBut I wouldn't hope.  Whoever gave her the ring is probably dead.  Or if he's undead he probably no longer cares about Deliah.",
 },
-[91858] = {
-["o"] = "Travel to The Sepulcher in Silverpine Forest and speak with Trevan Rol about the missing Earthen Ring travelers.",
-["d"] = "A most unfortunate turn of events in Silverpine has presented a unique opportunity for us to prove our worth in the eyes of the horde.\r\n\r\nA pair of dignitaries from the Earthen Ring went missing in Silverpine Forest en route to Tarren Mill. We don't know much else but rumors say that this is becoming quite the diplomatic incident. If we can recover these missing persons, it could help gain us the legitimacy we so dearly need.\r\n\r\nWe have a man at The Sepulcher, Trevan Rol. Travel there and speak with him.",
+[98362] = {
+["o"] = "Return to Thunder Bluff and speak with Turak Runetotem on the Elder Rise.",
+["d"] = "The time has come for us to part ways once again, young one, as the application of your lessons takes you back to the one who sent you to me. It would seem your instructor, Turak Runetotem, has found a worthy pupil in you. I believe I see one as well. Heed his lessons and you shall soon be able to draw upon the Great Cat Spirit to take its shape.\r\n\r\nGo back to whence you came. When the time is right, we will meet again.",
 },
 [4021] = {
 ["o"] = "Bring a Piece of Krom'zar's Banner to Regthar Deathgate, west of the Crossroads.",
@@ -1967,9 +2371,9 @@ ForeverDungeonJournalDB = {
 ["o"] = "Speak with Uzzek at Far Watch Post.",
 ["d"] = "The Horde honors its warriors because their strength is unquestioned.  But the truly great warriors are great students as well.\n\nSeek out Uzzek.  He is a veteran of many battles and now instructs young warriors in the ways of combat.  You will find him south of Far Watch Post, the orc garrison on the border of the Barrens and Durotar to the east.",
 },
-[840] = {
-["o"] = "Follow the western road from Razor Hill to the Barrens over a bridge.\n\nStop at the orc outpost across the bridge.\n\nGive Kargal Battlescar at the Barrens outpost your recruitment letter.",
-["d"] = "Hmm, you look pretty strong.\n\nListen, my good friend Kargal needs some new recruits for Barrens duty. I know you want to do what's right for the Horde. Well, this is your chance.\n\nTake this recruitment letter to Kargal and see if he'll sign it.",
+[479] = {
+["o"] = "Obtain 8 Dalaran Pendants for Shadow Priest Allister at the Sepulcher.",
+["d"] = "Dalar is attempting to locate the source of the wizards' spellcasting. For now, we'll have to slow their progress in any way we can...\n\nThe conjurers, mages and protectors are no doubt carrying the pendants. Remove and retrieve them.\n\nTake the main road south and the eastern fork into Ambermill.",
 },
 [92550] = {
 ["o"] = "Travel to the ruins of Falaath Village and slay 6 Al'Aketh Stormcallers, 4 Living Lightning and take the head of Commander Cyclas.",
@@ -1979,41 +2383,41 @@ ForeverDungeonJournalDB = {
 ["o"] = "Retrieve Apothecary Berard's journal from Pyrewood Village and take it to Apothecary Renferrel at the Sepulcher.",
 ["d"] = "You can be of further service to the Royal Apothecary Society, N.\n\nWhen Arugal cast his wretched magic on the forest, he cursed one of our most promising members, Apothecary Berard.  Now a mindless servant of Arugal, Berard is useless to us.  But his findings might prove to be of worth.  He was studying an ancient plague that killed off all the aquatic life in Lake Lordamere ages ago.\n\nRetrieve Berard's Journal from his study in the Pyrewood Village Inn and take it to Apothecary Renferrel.",
 },
-[6126] = {
-["o"] = "Travel to Moonglade and speak with Dendrite Starblaze in the village of Nighthaven.",
-["d"] = "You're now ready to learn about poison and the power we as druids have over it, N.  Cenarius has blessed us with the ability to purge even the most foul of poisons with but a mere incantation.  This gift is not to be taken lightly... and to ensure you learn this lesson, you'll work to address the effects of poisonings as a layman would.\n\nTravel to Moonglade and speak with Dendrite Starblaze; he awaits your arrival to begin your lesson.",
+[95884] = {
+["o"] = "Find the Offering Stone in Beren's Peril in Silverpine Forest.",
+["d"] = "<The scrap of note is mostly illegible. What is still readable, however, are notes about preparations for an offering.\r\n\r\nAn offering stone is mentioned, as well as a ritual.\r\n\r\nPerhaps you can find this offering stone nearby.>",
 },
 [92646] = {
 ["o"] = "Take the portal to the Rohashi Spires overhead and join Elaadrin Evengale and Ayessa Dawnsinger in their confrontation with the High Priestess Lorthuna.",
 ["d"] = "Lorthuna fled up to the spires above using some sort of portal. Ayessa and Elaadrin went in after her. That was just a few moments ago.\r\n\r\nI'm afraid I took one too many hits and this is where I stay. Go through the portal, find Ayessa and help them stop Lorthuna.\r\n\r\nUnless that help that Elaadrin and Ayessa said they sent for arrives soon, you are on your own from here. Good luck, druid.",
 },
-[421] = {
-["o"] = "Dalar Dawnweaver at the Sepulcher wants you to kill 5 Moonrage Whitescalps.",
-["d"] = "Lady Sylvanas has charged Varimathras with the conquering of the human and dwarven lands to the south.\n\nBut that fool, Arugal -- charlatan of Dalaran and now cursed beast of Shadowfang Keep -- let his reckless magic wreak havoc with the strategic stronghold of Silverpine Forest.\n\nI need someone skilled in the ways of combat to help clean up Arugal's mess.  Prove yourself to me by killing 5 Moonrage Whitescalps.  The wretched beasts can often be found just off the road, down the hill below.",
+[98299] = {
+["o"] = "Slay 5 Sickly Refugees and 5 Haggard Refugees for Dalar Dawnweaver in The Sepulcher.",
+["d"] = "If there is one thing we do know, it is that Arugal is responsible for worgen within Silverpine. Be it his own machinations or otherwise. What we don't know is how it spreads.\r\n\r\nWhile I research a way to stop the curse, our first priority is to contain it. It appears this affliction cannot infect forsaken such as ourselves, but a large group of humans have gathered by the Greymane Wall.\r\n\r\nGo to the wall and put down these refugees before they have a chance to become servants for Arugal.",
 },
-[883] = {
-["o"] = "Bring the Hoof of Lakota'mani to Jorn at Camp Taurajo.",
-["d"] = "The Hoof of Lakota'mani is a symbol of the strength of the great kodo.",
+[442] = {
+["o"] = "Bring Thule's Head to High Executor Hadrec at the Sepulcher.",
+["d"] = "Now is the time to assault the Scourge's place of strength in Silverpine: Fenris Isle.\n\nYou must again go to the Isle and destroy Thule Ravenclaw.  I want his head!\n\nThis mission is as dangerous as it is vital, N.  You must not fail.",
 },
-[478] = {
-["o"] = "Bring the strange pendant to Shadow Priest Allister at the Sepulcher.",
-["d"] = "<You quickly remove the pendant from the crate and replace the lid.>",
+[3301] = {
+["o"] = "Speak with Mura Runetotem in the Sepulcher.",
+["d"] = "My clanmate, Mura Runetotem, traveled to Silverpine so that she might aid our undead allies.  Silverpine is an ailing forest, a dying forest, and it was Mura's hope to bring it new life.  Perhaps the strange life found here in the Barrens can help her work in Silverpine.\n\nTake a sample of the shells you gathered, and bring it to Mura in Silverpine.  She is staying at the Sepulcher.  With luck, studying the shell will give her the insight she needs to heal that dying place.",
 },
-[452] = {
-["o"] = "Help Deathstalker Faerleia kill the Pyrewood Council.",
-["d"] = "You got here just in the nick of time, N!\n\nThe Pyrewood Council will be returning any moment.  Arugal has other matters to tend to in the keep.  He uses the Council as mere puppets to keep the mindless minions of Pyrewood under his control.  But I believe that without the guidance of the Pyrewood Council, the sons of Arugal will turn against their master.\n\nI cannot handle them all by myself.  I need you to help me.  Together we can lay waste to the Council for Lady Sylvanas.",
+[30] = {
+["o"] = "Find the Half Pendant of Aquatic Agility and the Half Pendant of Aquatic Endurance.  Speak with the residents of Moonglade to learn clues as to where these items may be located.\n\nForm the Pendant of the Sea Lion from the two pendant halves.  You need to be in proximity of the Shrine of Remulos to do this.\n\nBring the joined pendant to Dendrite Starblaze in the village of Nighthaven, Moonglade.",
+["d"] = "For the second trial, you'll need the two halves that make the Pendant of the Sea Lion.  One half draws power from the agility of the sea lion aspect, gliding through water; the other draws power from the incredible endurance of the sea lion aspect.  Druids draw on both these traits equally to embody the aspect of their aquatic form.\n\nSpeak with the locals of Moonglade to learn where the parts may lie, and bring both here to join them together.  Once formed, take the pendant to Dendrite Starblaze.",
 },
 [93317] = {
 ["o"] = "Collect 6 pieces of Windsong Crawler Meat.",
 ["d"] = "Are you familiar with Windsong Crawlers? You see, these crabs are native only to Windsong Lake here on Zephras, and they are only able to be harvested a few weeks of the year.\r\n\r\nWith all of the cult activity of late, I've not been able to get out to the lake to harvest them, and our window is rapidly closing. I'd be appreciative if you could go and gather some for me. They can generally be found along the shorelines around the lake and in rivers.\r\n\r\nDo be careful though, they are meaner than they look!",
 },
-[481] = {
-["o"] = "Take the rune-inscribed pendant to Dalar Dawnweaver at the Sepulcher.",
-["d"] = "Take the pendant to Dalar Dawnweaver, perhaps he can shed some light on the wizards' plans.",
+[95204] = {
+["o"] = "Bring the Crest of Lordaeron to Oran Snakewrithe in Undercity.",
+["d"] = "<A weathered crest depicting the mark of Lordaeron. With so few relics left after the kingdom's fall, someone in the Undercity would be very keen to get their hands on this.>",
 },
-[479] = {
-["o"] = "Obtain 8 Dalaran Pendants for Shadow Priest Allister at the Sepulcher.",
-["d"] = "Dalar is attempting to locate the source of the wizards' spellcasting. For now, we'll have to slow their progress in any way we can...\n\nThe conjurers, mages and protectors are no doubt carrying the pendants. Remove and retrieve them.\n\nTake the main road south and the eastern fork into Ambermill.",
+[97292] = {
+["o"] = "Inject the Hissing Serum into the system above Othmar's body for Master Apothecary Faranell.",
+["d"] = "I have concocted a lovely serum that our new guest is sure to find quite... stimulating.\r\n\r\nTake this. Feed it into the workings dripping from above him. Let's see if we can't show him why it's in his best interest to serve loyally.\r\n\r\nAnd try not to drop it. I can't afford a new assistant.",
 },
 [94435] = {
 ["o"] = "Return to Danitha Morr at Bandarion Keep.",
@@ -2027,26 +2431,11 @@ ForeverDungeonJournalDB = {
 ["o"] = "Bring 8 bottles of rot hide ichor to Apothecary Renferrel at the Sepulcher.",
 ["d"] = "Before we launch an assault on Fenris Isle, we must determine who is behind the rot hide gnolls.  Our apothecaries believe their origin lies within the strange fluid that flows through their bodies.\n\nGo to Fenris Isle, east of the Decrepit Ferry, and collect rot hide ichor from the gnolls you find there.  Bring it to Apothecary Renferrel, stationed outside the Sepulcher.",
 },
-[94568] = {
-["o"] = "Speak with Talaanis Shadowsong and observe the conversation.",
-["d"] = "The turncoat clearly was afraid of what the cult had planned, enough so to defect and seek our aid. It's truly unfortunate that he is dead and took his secrets to the grave with him.\r\n\r\nWe must discuss this further to determine our next steps.",
+[28] = {
+["o"] = "Find a Shrine Bauble in Lake Elune'ara, and take it to the Shrine of Remulos in northwestern Moonglade.  Once there, use the Shrine Bauble.\n\nYou must speak with Tajarri at the shrine afterwards in order to complete the trial.",
+["d"] = "For your first trial, search the depths of Lake Elune'ara to locate a Shrine Bauble.  It decays rapidly, so proceed with it to the Shrine of Remulos post haste.  Use the bauble at the shrine, and then speak with Tajarri there; she is one of Moonglade's most trusted wardens.\n\nYou only have a set amount of time to complete the task, and you may be competing against other druids searching for baubles themselves.  Mental and physical dexterity will be critical to your success.\n\nGood luck, N.",
 },
 },
 },
-["lootFilter"] = {
-["enabled"] = false,
-["classOnly"] = false,
-["recipes"] = false,
-["schools"] = {
-},
-["matchAll"] = true,
-["resists"] = {
-},
-["armorTypes"] = {
-},
-["stats"] = {
-},
-["weaponTypes"] = {
-},
-},
+["lastBoss"] = 1,
 }

@@ -26,8 +26,8 @@ VER 3 0100000001000016 "Cleanse Spirit" "134400"
 /cast Cleanse Spirit
 END
 VER 3 010000000100002B "Earth Shock" "134400"
-#showtooltip [harm] Earth Shock; Healing Wave
-/cast [harm] Earth Shock; Healing Wave
+#showtooltip [harm] Earth Shock; Lesser Healing Wave
+/cast [harm] Earth Shock; Lesser Healing Wave
 END
 VER 3 010000000100000D "Earth Shock(R1)" "134400"
 #showtooltip [mod:shift] Purge; Earth Shock(Rank 1)

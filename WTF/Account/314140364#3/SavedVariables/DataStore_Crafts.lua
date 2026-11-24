@@ -63,8 +63,85 @@ DataStore_Crafts_Characters = {
 ["Ranks"] = {
 },
 },
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1795378942,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1795378898,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1795379526,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1795379621,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1795379720,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1795379776,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
+{
+["Professions"] = {
+},
+["lastUpdate"] = 1795380499,
+["Indices"] = {
+},
+["Ranks"] = {
+},
+},
 }
 DataStore_Crafts_ArcheologyItems = {
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
 {
 },
 {

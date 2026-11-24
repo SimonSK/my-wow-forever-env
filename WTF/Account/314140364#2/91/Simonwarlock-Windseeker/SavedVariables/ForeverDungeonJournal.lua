@@ -3,10 +3,10 @@ ForeverDungeonJournalCharacterDB = {
 ["trackedDungeons"] = {
 },
 ["hearthSpot"] = {
-["y"] = 0.5384537577629089,
-["mapID"] = 1414,
-["name"] = "The Crossroads",
-["x"] = 0.5356472730636597,
+["y"] = 0.01164400577545166,
+["mapID"] = 1421,
+["name"] = "Undercity",
+["x"] = 0.7678229212760925,
 ["v"] = 2,
 },
 ["rpgMaps"] = {
@@ -711,6 +711,10 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
+["trackerChains"] = {
+},
+["arrowDone"] = {
+},
 ["arrowChains"] = {
 },
 ["rpgBosses"] = {
@@ -733,11 +737,11 @@ ForeverDungeonJournalCharacterDB = {
 ["flightPoints"] = {
 ["crossroads, the barrens"] = true,
 ["orgrimmar, durotar"] = true,
-["ratchet, the barrens"] = true,
+["camp taurajo, the barrens"] = true,
 ["thunder bluff, mulgore"] = true,
 ["the sepulcher, silverpine forest"] = true,
 ["undercity, tirisfal"] = true,
-["camp taurajo, the barrens"] = true,
+["ratchet, the barrens"] = true,
 },
 ["flightPointsVersion"] = 2,
 ["rpgQuests"] = {
@@ -749,6 +753,7 @@ ForeverDungeonJournalCharacterDB = {
 [5723] = true,
 [962] = true,
 [1491] = true,
+[1740] = true,
 [5724] = true,
 [5728] = true,
 [1013] = true,

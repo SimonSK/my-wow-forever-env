@@ -1,10 +1,10 @@
 
 RaidBarDB = {
 ["lx"] = 106,
-["settingsSkin"] = "forever",
+["y"] = 827,
 ["buttonSize"] = 28,
-["scale"] = 0.75,
+["settingsSkin"] = "forever",
 ["settingsSkinInit"] = true,
 ["spacing"] = 2,
-["y"] = 827,
+["scale"] = 0.75,
 }

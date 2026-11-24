@@ -1,18 +1,18 @@
 
 RaidBarDB = {
 ["minimized"] = true,
-["buttonSize"] = 28,
 ["floating"] = false,
+["buttonSize"] = 28,
 ["scale"] = 0.75,
-["lx"] = 26,
+["y"] = 1099,
 ["tooltips"] = false,
 ["locked"] = true,
-["y"] = 1099,
+["hideLeave"] = true,
 ["orientation"] = "horizontal",
 ["markersOnly"] = false,
 ["spacing"] = 2,
 ["hideUnlessRaidLeadAssist"] = false,
 ["bgPreset"] = 2,
-["hideLeave"] = true,
+["lx"] = 26,
 ["blizzui"] = true,
 }

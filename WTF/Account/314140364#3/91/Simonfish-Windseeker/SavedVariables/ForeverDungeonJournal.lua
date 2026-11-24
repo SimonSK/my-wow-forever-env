@@ -8,11 +8,13 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
+["arrowDone"] = {
+},
+["rpgQuests"] = {
+},
 ["runTracker"] = {
 },
 ["rpgKills"] = {
-},
-["rpgQuests"] = {
 },
 ["hiddenDungeons"] = {
 },

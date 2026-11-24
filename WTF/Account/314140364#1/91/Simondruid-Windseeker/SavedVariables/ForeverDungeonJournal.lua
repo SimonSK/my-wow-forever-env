@@ -3,10 +3,11 @@ ForeverDungeonJournalCharacterDB = {
 ["trackedDungeons"] = {
 },
 ["hearthSpot"] = {
-["y"] = 0.6904370784759521,
-["mapID"] = 1454,
-["name"] = "Orgrimmar",
-["x"] = 0.5388671159744263,
+["y"] = 0.5384323596954346,
+["mapID"] = 1414,
+["name"] = "The Crossroads",
+["x"] = 0.535659909248352,
+["v"] = 2,
 },
 ["rpgMaps"] = {
 },
@@ -42,26 +43,26 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794784004,
-["m"] = "Earthborer",
 ["x"] = 42,
+["m"] = "Earthborer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784025,
-["m"] = "Earthborer",
 ["x"] = 42,
+["m"] = "Earthborer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784050,
-["m"] = "Earthborer",
 ["x"] = 50,
+["m"] = "Earthborer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784064,
-["m"] = "Earthborer",
 ["x"] = 50,
+["m"] = "Earthborer",
 },
 {
 ["m"] = "Ragefire Shaman",
@@ -71,26 +72,26 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794784108,
-["m"] = "Ragefire Trogg",
 ["x"] = 42,
+["m"] = "Ragefire Trogg",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784116,
-["m"] = "Ragefire Trogg",
 ["x"] = 42,
+["m"] = "Ragefire Trogg",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784137,
-["m"] = "Ragefire Shaman",
 ["x"] = 42,
+["m"] = "Ragefire Shaman",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784157,
-["m"] = "Ragefire Shaman",
 ["x"] = 42,
+["m"] = "Ragefire Shaman",
 },
 {
 ["m"] = "Ragefire Trogg",
@@ -100,20 +101,20 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794784185,
-["m"] = "Ragefire Trogg",
 ["x"] = 52,
+["m"] = "Ragefire Trogg",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784204,
-["m"] = "Ragefire Trogg",
 ["x"] = 42,
+["m"] = "Ragefire Trogg",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784216,
-["m"] = "Ragefire Trogg",
 ["x"] = 50,
+["m"] = "Ragefire Trogg",
 },
 {
 ["m"] = "Ragefire Shaman",
@@ -123,8 +124,8 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794784272,
-["m"] = "Ragefire Trogg",
 ["x"] = 50,
+["m"] = "Ragefire Trogg",
 },
 {
 ["a"] = 1,
@@ -147,38 +148,38 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794784401,
-["m"] = "Ragefire Shaman",
 ["x"] = 42,
+["m"] = "Ragefire Shaman",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784406,
-["m"] = "Ragefire Trogg",
 ["x"] = 42,
+["m"] = "Ragefire Trogg",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784417,
-["m"] = "Ragefire Trogg",
 ["x"] = 50,
+["m"] = "Ragefire Trogg",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784448,
-["m"] = "Ragefire Trogg",
 ["x"] = 55,
+["m"] = "Ragefire Trogg",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784461,
-["m"] = "Ragefire Trogg",
 ["x"] = 46,
+["m"] = "Ragefire Trogg",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784483,
-["m"] = "Ragefire Shaman",
 ["x"] = 38,
+["m"] = "Ragefire Shaman",
 },
 {
 ["m"] = "Ragefire Trogg",
@@ -188,14 +189,14 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794784518,
-["m"] = "Ragefire Trogg",
 ["x"] = 38,
+["m"] = "Ragefire Trogg",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784522,
-["m"] = "Ragefire Shaman",
 ["x"] = 38,
+["m"] = "Ragefire Shaman",
 },
 {
 ["a"] = 1,
@@ -203,15 +204,15 @@ ForeverDungeonJournalCharacterDB = {
 ["loot"] = {
 {
 ["id"] = 272998,
-["r"] = "need",
-["w"] = "Simondruid",
 ["link"] = "|cnIQ3:|Hitem:272998::::::::15:1484::1::1:28:5244:::::|h[Bone Knuckles]|h|r",
+["w"] = "Simondruid",
+["r"] = "need",
 },
 {
 ["id"] = 253908,
-["r"] = "greed",
-["w"] = "Simondruid",
 ["link"] = "|cnIQ3:|Hitem:253908::::::::15:1484::1::1:28:5244:::::|h[Pattern: Filigreed Shadow Gown]|h|r",
+["w"] = "Simondruid",
+["r"] = "greed",
 },
 },
 ["b"] = "Oggleflint",
@@ -221,56 +222,56 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794784616,
-["m"] = "Earthborer",
 ["x"] = 46,
+["m"] = "Earthborer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784626,
-["m"] = "Earthborer",
 ["x"] = 38,
+["m"] = "Earthborer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784640,
-["m"] = "Molten Elemental",
 ["x"] = 46,
+["m"] = "Molten Elemental",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784666,
-["m"] = "Earthborer",
 ["x"] = 45,
+["m"] = "Earthborer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784704,
-["m"] = "Molten Elemental",
 ["x"] = 55,
+["m"] = "Molten Elemental",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784725,
-["m"] = "Molten Elemental",
 ["x"] = 55,
+["m"] = "Molten Elemental",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784759,
-["m"] = "Molten Elemental",
 ["x"] = 55,
+["m"] = "Molten Elemental",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784781,
-["m"] = "Molten Elemental",
 ["x"] = 55,
+["m"] = "Molten Elemental",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784797,
-["m"] = "Molten Elemental",
 ["x"] = 45,
+["m"] = "Molten Elemental",
 },
 {
 ["m"] = "Searing Blade Cultist",
@@ -280,14 +281,14 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794784843,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 37,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784856,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 55,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["m"] = "Searing Blade Enforcer",
@@ -297,14 +298,14 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794784908,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 55,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784918,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 45,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["m"] = "Searing Blade Cultist",
@@ -314,26 +315,26 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794784953,
-["m"] = "Voidwalker Minion",
 ["x"] = 19,
+["m"] = "Voidwalker Minion",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784957,
-["m"] = "Searing Blade Warlock",
 ["x"] = 45,
+["m"] = "Searing Blade Warlock",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784975,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 55,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794784981,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 45,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["x"] = 113,
@@ -351,26 +352,26 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794785059,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 37,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785069,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 45,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785086,
-["m"] = "Voidwalker Minion",
 ["x"] = 19,
+["m"] = "Voidwalker Minion",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785098,
-["m"] = "Searing Blade Warlock",
 ["x"] = 55,
+["m"] = "Searing Blade Warlock",
 },
 {
 ["m"] = "Searing Blade Cultist",
@@ -380,38 +381,38 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794785122,
-["m"] = "Searing Blade Cultist",
 ["x"] = 55,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785162,
-["m"] = "Searing Blade Cultist",
 ["x"] = 55,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785175,
-["m"] = "Searing Blade Cultist",
 ["x"] = 37,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785208,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 55,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785218,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 37,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785241,
-["m"] = "Searing Blade Cultist",
 ["x"] = 37,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["m"] = "Searing Blade Cultist",
@@ -426,26 +427,26 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794785278,
-["m"] = "Searing Blade Warlock",
 ["x"] = 45,
+["m"] = "Searing Blade Warlock",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785287,
-["m"] = "Searing Blade Cultist",
 ["x"] = 55,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785313,
-["m"] = "Searing Blade Cultist",
 ["x"] = 45,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785327,
-["m"] = "Voidwalker Minion",
 ["x"] = 19,
+["m"] = "Voidwalker Minion",
 },
 {
 ["m"] = "Searing Blade Warlock",
@@ -460,26 +461,26 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794785374,
-["m"] = "Searing Blade Cultist",
 ["x"] = 37,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785394,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 55,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785408,
-["m"] = "Searing Blade Enforcer",
 ["x"] = 55,
+["m"] = "Searing Blade Enforcer",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785444,
-["m"] = "Searing Blade Cultist",
 ["x"] = 37,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
@@ -487,9 +488,9 @@ ForeverDungeonJournalCharacterDB = {
 ["loot"] = {
 {
 ["id"] = 273005,
-["r"] = "need",
-["w"] = "Simondruid",
 ["link"] = "|cnIQ3:|Hitem:273005::::::::15:1484::1::1:28:5244:::::|h[Satyrskin Cloak]|h|r",
+["w"] = "Simondruid",
+["r"] = "need",
 },
 },
 ["b"] = "Bazzalan",
@@ -500,8 +501,8 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794785470,
-["m"] = "Searing Blade Cultist",
 ["x"] = 54,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
@@ -520,26 +521,26 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794785543,
-["m"] = "Searing Blade Cultist",
 ["x"] = 45,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785546,
-["m"] = "Searing Blade Cultist",
 ["x"] = 45,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785586,
-["m"] = "Searing Blade Cultist",
 ["x"] = 45,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["a"] = 1,
 ["t"] = 1794785597,
-["m"] = "Searing Blade Cultist",
 ["x"] = 45,
+["m"] = "Searing Blade Cultist",
 },
 {
 ["m"] = "Searing Blade Enforcer",
@@ -554,14 +555,14 @@ ForeverDungeonJournalCharacterDB = {
 {
 ["a"] = 1,
 ["t"] = 1794785733,
-["m"] = "Ragefire Shaman",
 ["x"] = 37,
+["m"] = "Ragefire Shaman",
 },
 },
 ["created"] = 1794783963,
 ["deaths"] = 1,
-["firstTrash"] = 1794783963,
-["map"] = 389,
+["lastBoss"] = 1794785525,
+["seenN"] = 82,
 ["money"] = 642,
 ["firstKill"] = 1794783963,
 ["needs"] = {
@@ -592,20 +593,20 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["closed"] = true,
 ["completed"] = true,
-["otherXP"] = 0,
-["instanceName"] = "Ragefire Chasm",
+["id"] = 1,
+["exits"] = {
+},
 ["party"] = {
 ["Simondruid-Windseeker"] = "DRUID",
 ["Evoryn-Ventus"] = "SHAMAN",
 ["Ritz-Torvis"] = "SHAMAN",
-["Gongar-Stone"] = "HUNTER",
 ["Key-Usb"] = "MAGE",
+["Gongar-Stone"] = "HUNTER",
 },
-["exits"] = {
-},
-["id"] = 1,
-["seenN"] = 82,
-["lastBoss"] = 1794785525,
+["instanceName"] = "Ragefire Chasm",
+["otherXP"] = 0,
+["map"] = 389,
+["firstTrash"] = 1794783963,
 },
 },
 },
@@ -616,6 +617,8 @@ ForeverDungeonJournalCharacterDB = {
 ["favouriteItems"] = {
 },
 ["trackerSlots"] = {
+},
+["arrowDone"] = {
 },
 ["rpgTrash"] = {
 ["Ragefire Chasm"] = {
@@ -631,27 +634,17 @@ ForeverDungeonJournalCharacterDB = {
 ["Creature-0-7066-389-76-11321-86F35C1871"] = true,
 ["Creature-0-7066-389-76-11323-471691FFB6"] = true,
 ["Creature-0-7066-389-76-11321-23338EBAB0"] = true,
-["Creature-0-7066-389-76-11322-BAE31276FF"] = true,
+["Creature-0-7066-389-76-11321-01DA003394"] = true,
 ["Creature-0-7066-389-76-11323-5626AF33DD"] = true,
 ["Creature-0-7066-389-76-11318-41C60F69DE"] = true,
 ["Creature-0-7066-389-76-11318-23338EBAB0"] = true,
 ["Creature-0-7066-389-76-11324-013C3DD8EB"] = true,
 ["Creature-0-7066-389-76-11322-A4C1E02F7C"] = true,
-["Creature-0-7066-389-76-11321-01DA003394"] = true,
+["Creature-0-7066-389-76-11322-BAE31276FF"] = true,
 },
 ["n"] = 18,
 },
 },
-["flightPointsVersion"] = 2,
-["runTracker"] = {
-},
-["flightPoints"] = {
-["thunder bluff, mulgore"] = true,
-["orgrimmar, durotar"] = true,
-},
-["hiddenDungeons"] = {
-},
-["journalMode"] = "gamer",
 ["rpgBosses"] = {
 ["Ragefire Chasm"] = {
 [11517] = true,
@@ -664,14 +657,31 @@ ForeverDungeonJournalCharacterDB = {
 ["taragaman the hungerer"] = true,
 },
 },
+["runTracker"] = {
+},
+["journalMode"] = "gamer",
+["hiddenDungeons"] = {
+},
+["flightPoints"] = {
+["orgrimmar, durotar"] = true,
+["thunder bluff, mulgore"] = true,
+["crossroads, the barrens"] = true,
+["moonglade"] = true,
+},
+["flightPointsVersion"] = 2,
 ["rpgQuests"] = {
-[5728] = true,
-[5723] = true,
-[5725] = true,
-[914] = true,
-[5722] = true,
-[5724] = true,
-[962] = true,
 [5761] = true,
+[1486] = true,
+[914] = true,
+[1487] = true,
+[5722] = true,
+[5723] = true,
+[5724] = true,
+[5725] = true,
+[962] = true,
+[5728] = true,
+[959] = true,
+[95216] = true,
+[1491] = true,
 },
 }

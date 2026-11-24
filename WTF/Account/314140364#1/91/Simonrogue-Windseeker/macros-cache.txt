@@ -7,12 +7,12 @@ END
 VER 3 0100000001000006 "Ambush" "INV_MISC_QUESTIONMARK"
 #showtooltip Ambush
 /cancelaura Blessing of Protection
+/cast Pick Pocket
 /cast Ambush
 END
 VER 3 010000000100002D "Backstab" "134400"
 #showtooltip Backstab
 /cancelaura Blessing of Protection
-/cast Pick Pocket
 /cast Backstab
 END
 VER 3 0100000001000004 "Cheap Shot" "INV_MISC_QUESTIONMARK"
@@ -24,38 +24,38 @@ END
 VER 3 0100000001000019 "Dismantle" "134400"
 #showtooltip Dismantle
 /cancelaura Blessing of Protection
-/startattack
 /cast Dismantle
+/startattack
 END
 VER 3 010000000100001A "Evasion" "134400"
 #showtooltip Evasion
 /cancelaura Blessing of Protection
-/startattack
 /cast Evasion
+/startattack
 END
 VER 3 0100000001000009 "Eviscerate" "INV_MISC_QUESTIONMARK"
 #showtooltip Eviscerate
 /cancelaura Blessing of Protection
-/startattack
 /cast Eviscerate
+/startattack
 END
 VER 3 010000000100001C "Expose Armor" "134400"
 #showtooltip Expose Armor
 /cancelaura Blessing of Protection
-/startattack
 /cast Expose Armor
+/startattack
 END
 VER 3 010000000100001B "Fan of Knives" "134400"
 #showtooltip Fan of Knives
 /cancelaura Blessing of Protection
-/startattack
 /cast Fan of Knives
+/startattack
 END
 VER 3 010000000100000D "Feint" "INV_MISC_QUESTIONMARK"
 #showtooltip Feint
 /cancelaura Blessing of Protection
-/startattack
 /cast Feint
+/startattack
 END
 VER 3 0100000001000005 "Garrote" "INV_MISC_QUESTIONMARK"
 #showtooltip Garrote
@@ -77,14 +77,14 @@ END
 VER 3 010000000100000B "Kidney Shot" "INV_MISC_QUESTIONMARK"
 #showtooltip Kidney Shot
 /cancelaura Blessing of Protection
-/startattack
 /cast Kidney Shot
+/startattack
 END
 VER 3 010000000100002B "Mutilate" "134400"
 #showtooltip Mutilate
 /cancelaura Blessing of Protection
-/startattack
 /cast Mutilate
+/startattack
 END
 VER 3 0100000001000024 "Pick Pocket" "134400"
 #showtooltip Pick Pocket
@@ -100,14 +100,14 @@ END
 VER 3 0100000001000026 "Revealing Strike" "134400"
 #showtooltip Revealing Strike
 /cancelaura Blessing of Protection
-/startattack
 /cast Revealing Strike
+/startattack
 END
 VER 3 0100000001000023 "Rupture" "134400"
 #showtooltip Rupture
 /cancelaura Blessing of Protection
-/startattack
 /cast Rupture
+/startattack
 END
 VER 3 0100000001000010 "Sap" "134400"
 #showtooltip Sap
@@ -119,20 +119,20 @@ END
 VER 3 010000000100000E "Shiv" "INV_MISC_QUESTIONMARK"
 #showtooltip Shiv
 /cancelaura Blessing of Protection
-/startattack
 /cast Shiv
+/startattack
 END
 VER 3 0100000001000003 "Sinister Strike" "INV_MISC_QUESTIONMARK"
 #showtooltip Sinister Strike
 /cancelaura Blesing of Protection
-/startattack
 /cast Sinister Strike
+/startattack
 END
 VER 3 0100000001000008 "Slice and Dice" "INV_MISC_QUESTIONMARK"
 #showtooltip Slice and Dice
 /cancelaura Blessing of Protection
-/startattack
 /cast Slice and Dice
+/startattack
 END
 VER 3 0100000001000029 "Slow Fall" "134400"
 #showtooltip

@@ -1,5 +1,6 @@
 VER 3 0000000000000001 "Decursive" "INV_MISC_QUESTIONMARK"
-/script DecursiveRootTable.Dcr:Println('No spell available')
+/stopcasting
+/cast [@mouseover,nomod,exists] Cure Poison;  [@mouseover,exists,mod:ctrl] Cure Poison; [@mouseover,exists,mod:shift] Cure Poison
 END
 VER 3 0000000000000004 "GRM_Tool" "INV_MISC_QUESTIONMARK"
 /run GRM.Report("Reserved for GRM Macro Tool Usage. Please do not delete.")

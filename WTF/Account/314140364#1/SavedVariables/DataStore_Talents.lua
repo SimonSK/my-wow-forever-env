@@ -24,14 +24,44 @@ DataStore_Talents_Characters = {
 ["Glyphs"] = {
 },
 },
+{
+["Glyphs"] = {
+},
+},
+{
+["Glyphs"] = {
+},
+},
+{
+["Glyphs"] = {
+},
+},
+{
+["Glyphs"] = {
+},
+},
+{
+["Glyphs"] = {
+},
+},
+{
+["Glyphs"] = {
+},
+},
 }
 DataStore_Talents_Specializations = {
-41,
-73,
 105,
-137,
 169,
+73,
+41,
+137,
 201,
+41,
+105,
+201,
+73,
+169,
+137,
 }
 DataStore_Talents_SpecializationInfos = {
 ["Roles"] = {

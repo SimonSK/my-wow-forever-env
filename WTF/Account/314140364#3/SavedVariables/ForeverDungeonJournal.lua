@@ -1,21 +1,35 @@
 
 ForeverDungeonJournalDB = {
 ["rpgAccount"] = {
-["rpgMaps"] = {
+["rpgQuests"] = {
 },
 ["rpgBosses"] = {
 },
 ["rpgKills"] = {
 },
-["rpgQuests"] = {
+["rpgMaps"] = {
 },
 },
 ["bossHintPending"] = true,
 ["questFaction"] = "Horde",
-["portraitCacheVersion"] = 2,
-["lastMode"] = "bosses",
-["learnedItemIDs"] = {
+["portraitCacheVersion"] = 4,
+["lootFilter"] = {
+["enabled"] = false,
+["classOnly"] = false,
+["recipes"] = false,
+["schools"] = {
 },
+["matchAll"] = true,
+["resists"] = {
+},
+["weaponTypes"] = {
+},
+["stats"] = {
+},
+["armorTypes"] = {
+},
+},
+["lastMode"] = "bosses",
 ["minimap"] = {
 ["minimapPos"] = 225,
 ["hide"] = false,
@@ -27,20 +41,6 @@ ForeverDungeonJournalDB = {
 },
 ["learnedQuestIDs"] = {
 },
-["lootFilter"] = {
-["enabled"] = false,
-["classOnly"] = false,
-["recipes"] = false,
-["schools"] = {
-},
-["matchAll"] = true,
-["resists"] = {
-},
-["armorTypes"] = {
-},
-["stats"] = {
-},
-["weaponTypes"] = {
-},
+["learnedItemIDs"] = {
 },
 }

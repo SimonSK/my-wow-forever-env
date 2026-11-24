@@ -841,6 +841,8 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
+["arrowDone"] = {
+},
 ["arrowChains"] = {
 },
 ["rpgBosses"] = {
@@ -876,6 +878,7 @@ ForeverDungeonJournalCharacterDB = {
 [5725] = true,
 [962] = true,
 [5728] = true,
+[95216] = true,
 [959] = true,
 },
 }

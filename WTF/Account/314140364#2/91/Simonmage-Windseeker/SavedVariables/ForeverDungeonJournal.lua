@@ -3,10 +3,10 @@ ForeverDungeonJournalCharacterDB = {
 ["trackedDungeons"] = {
 },
 ["hearthSpot"] = {
-["y"] = 0.538349986076355,
-["mapID"] = 1414,
-["name"] = "The Crossroads",
-["x"] = 0.535700798034668,
+["y"] = 0.3826407790184021,
+["mapID"] = 1458,
+["name"] = "Undercity",
+["x"] = 0.6777106523513794,
 ["v"] = 2,
 },
 ["rpgMaps"] = {

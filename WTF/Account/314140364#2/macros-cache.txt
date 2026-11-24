@@ -8,7 +8,7 @@ VER 3 0000000000000008 "Create Soulstone" "134400"
 END
 VER 3 0000000000000001 "Decursive" "INV_MISC_QUESTIONMARK"
 /stopcasting
-/cast [@mouseover,nomod,exists] Fear;  [@mouseover,exists,mod:ctrl] Fear; [@mouseover,exists,mod:shift] Fear
+/cast [@mouseover,nomod,exists] Remove Lesser Curse;  [@mouseover,exists,mod:ctrl] Polymorph; [@mouseover,exists,mod:shift] Remove Lesser Curse
 END
 VER 3 0000000000000004 "GRM_Tool" "INV_MISC_QUESTIONMARK"
 /run GRM.Report("Reserved for GRM Macro Tool Usage. Please do not delete.")

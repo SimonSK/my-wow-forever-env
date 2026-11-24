@@ -8,7 +8,9 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
-["arrowChains"] = {
+["arrowDone"] = {
+},
+["rpgQuests"] = {
 },
 ["rpgKills"] = {
 },
@@ -22,6 +24,6 @@ ForeverDungeonJournalCharacterDB = {
 ["runs"] = {
 },
 },
-["rpgQuests"] = {
+["arrowChains"] = {
 },
 }

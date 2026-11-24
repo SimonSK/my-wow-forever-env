@@ -2,17 +2,17 @@
 ThreatPlatesDB = {
 ["namespaces"] = {
 },
-["global"] = {
-["version"] = "13.3.8",
-},
 ["profileKeys"] = {
 ["Simonmisc Windseeker"] = "Default",
 ["Simonmetal Windseeker"] = "Default",
 ["Simonfish Windseeker"] = "Default",
-["Simoncloth Windseeker"] = "Default",
 ["Simongem Windseeker"] = "Default",
+["Simoncloth Windseeker"] = "Default",
 ["Simonmeat Windseeker"] = "Default",
 ["Simonfood Windseeker"] = "Default",
+},
+["global"] = {
+["version"] = "13.3.8",
 },
 ["profiles"] = {
 ["Default"] = {

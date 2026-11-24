@@ -2,9 +2,9 @@
 PallyPowerDB = {
 ["profileKeys"] = {
 ["Simonwarlock Windseeker"] = "Other",
-["Simonpaladin Windseeker"] = "Simon",
-["Simonpriest Windseeker"] = "Other",
 ["Simonmage Windseeker"] = "Other",
+["Simonpriest Windseeker"] = "Other",
+["Simonpaladin Windseeker"] = "Simon",
 },
 ["profiles"] = {
 ["Other"] = {
@@ -29,16 +29,16 @@ PallyPowerDB = {
 ["auraDurations"] = {
 ["Seal of Righteousness"] = 30,
 },
+["ForeverCountDefault"] = true,
+["ForeverSalvSplit"] = true,
 ["minimap"] = {
 ["show"] = false,
 },
-["ForeverSalvSplit"] = true,
-["ForeverCountDefault"] = true,
 ["display"] = {
-["frameLocked"] = true,
-["offsetY"] = 63.33323287963867,
-["HideCountText"] = true,
 ["offsetX"] = 389.4999389648438,
+["frameLocked"] = true,
+["HideCountText"] = true,
+["offsetY"] = 63.33323287963867,
 },
 ["autobuff"] = {
 ["buffDuration"] = false,
@@ -65,21 +65,21 @@ PallyPowerDB = {
 }
 PallyPower_Assignments = {
 ["Simon Windseeker"] = {
-2,
-2,
-1,
-1,
 3,
-1,
-1,
-1,
-1,
+2,
+3,
+3,
+3,
+3,
+3,
+3,
+3,
 },
 }
 PallyPower_NormalAssignments = {
 }
 PallyPower_AuraAssignments = {
-["Simon Windseeker"] = 2,
+["Simon Windseeker"] = 1,
 }
 PallyPower_SavedPresets = {
 ["PallyPower_NormalAssignments"] = {
@@ -96,9 +96,8 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[6] = "CuratorNet",
-[7] = "TrueshotLodge",
-[8] = "TrueshotLodge1413",
+[6] = "TrueshotLodge",
+[7] = "TrueshotLodge1413",
 [4] = "Services",
 [5] = "TradeLocal",
 [0] = "None",

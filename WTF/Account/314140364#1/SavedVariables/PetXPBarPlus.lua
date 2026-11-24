@@ -1,7 +1,7 @@
 
 PetXPBarPlusDB = {
+["alwaysShowPetLevel"] = true,
 ["showXPBar"] = true,
-["xpColorMode"] = "purple",
 ["xpColor"] = {
 ["b"] = 0.86,
 ["g"] = 0.24,
@@ -10,5 +10,5 @@ PetXPBarPlusDB = {
 ["locked"] = true,
 ["alwaysShowXPBar"] = true,
 ["showPetLevel"] = true,
-["alwaysShowPetLevel"] = true,
+["xpColorMode"] = "purple",
 }

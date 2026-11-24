@@ -71,4 +71,9 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/p TY",
 "/who la familia",
 "/inv Simondruid Windseeker ",
+"/inv Simonshaman Windseeker ",
+"/wave",
+"/inv Simon Windseeker ",
+"/sigh",
+"/s couldnt wait for me to turn in?",
 }

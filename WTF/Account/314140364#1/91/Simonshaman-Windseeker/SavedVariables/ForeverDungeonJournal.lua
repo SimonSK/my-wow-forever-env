@@ -3,10 +3,11 @@ ForeverDungeonJournalCharacterDB = {
 ["trackedDungeons"] = {
 },
 ["hearthSpot"] = {
-["y"] = 0.6853923797607422,
-["mapID"] = 1454,
-["name"] = "Orgrimmar",
-["x"] = 0.5426052808761597,
+["y"] = 0.2993233799934387,
+["mapID"] = 1413,
+["name"] = "The Crossroads",
+["x"] = 0.5199406147003174,
+["v"] = 2,
 },
 ["rpgMaps"] = {
 },
@@ -658,6 +659,8 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
+["arrowDone"] = {
+},
 ["rpgTrash"] = {
 ["Ragefire Chasm"] = {
 ["seen"] = {
@@ -691,8 +694,11 @@ ForeverDungeonJournalCharacterDB = {
 ["runTracker"] = {
 },
 ["flightPoints"] = {
+["crossroads, the barrens"] = true,
+["ratchet, the barrens"] = true,
 ["thunder bluff, mulgore"] = true,
 ["orgrimmar, durotar"] = true,
+["camp taurajo, the barrens"] = true,
 },
 ["hiddenDungeons"] = {
 },
@@ -710,13 +716,23 @@ ForeverDungeonJournalCharacterDB = {
 },
 },
 ["rpgQuests"] = {
-[5728] = true,
-[5723] = true,
-[5725] = true,
-[914] = true,
 [5722] = true,
-[5724] = true,
-[962] = true,
 [5761] = true,
+[959] = true,
+[92422] = true,
+[95216] = true,
+[5723] = true,
+[962] = true,
+[1491] = true,
+[5724] = true,
+[5728] = true,
+[1013] = true,
+[2843] = true,
+[1098] = true,
+[5725] = true,
+[1487] = true,
+[914] = true,
+[1486] = true,
+[1014] = true,
 },
 }

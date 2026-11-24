@@ -21,12 +21,14 @@ END
 VER 3 0100000000000009 "Cancel RF" "134400"
 #showtooltip Righteous Fury
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cancelaura Righteous Fury
 /startattack
 END
 VER 3 0100000000000001 "Consecration" "134400"
 #showtooltip Consecration
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cast Consecration
 /startattack
 END
@@ -39,6 +41,7 @@ END
 VER 3 0100000000000002 "Exorcism" "134400"
 #showtooltip Exorcism
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cast Exorcism
 /startattack
 END
@@ -63,6 +66,7 @@ END
 VER 3 0100000000000003 "HoJ" "134400"
 #showtooltip Hammer of Justice
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /stopcasting
 /cast Hammer of Justice
 END
@@ -73,24 +77,28 @@ END
 VER 3 0100000000000007 "Holy Shield" "134400"
 #showtooltip Holy Shield
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cast Holy Shield
 /startattack
 END
 VER 3 010000000000000D "Holy Strike" "134400"
 #showtooltip Holy Strike
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cast Holy Strike
 /startattack
 END
 VER 3 0100000000000014 "Holy Wrath" "134400"
 #showtooltip Holy Wrath
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cast Holy Wrath
 /startattack
 END
 VER 3 0100000000000008 "Judgment" "134400"
 #showtooltip Judgement
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cast Judgement
 /startattack
 END
@@ -105,24 +113,28 @@ END
 VER 3 010000000000000C "Seal of Crusader" "134400"
 #showtooltip Seal of the Crusader
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cast Seal of the Crusader
 /startattack
 END
 VER 3 0100000000000012 "Seal of Fury" "134400"
 #showtooltip Seal of Fury
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cast Seal of Fury
 /startattack
 END
 VER 3 0100000000000017 "Seal of Justice" "134400"
 #showtooltip Seal of Justice
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cast Seal of Justice
 /startattack
 END
 VER 3 010000000000000A "Seal of Right" "134400"
 #showtooltip Seal of Righteousness
 /cancelaura Blessing of Protection
+/cancelaura Divine Protection
 /cast Seal of Righteousness
 /startattack
 END

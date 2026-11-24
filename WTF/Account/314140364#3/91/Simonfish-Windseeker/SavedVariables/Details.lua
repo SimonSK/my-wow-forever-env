@@ -33,9 +33,9 @@ _detalhes_database = {
 ["show_options"] = false,
 ["ignored_cooldowns"] = {
 },
+["framme_locked"] = false,
 ["cooldowns"] = {
 },
-["height"] = 18,
 ["own_frame"] = {
 ["defensive-raid"] = false,
 ["ofensive"] = false,
@@ -43,7 +43,7 @@ _detalhes_database = {
 ["utility"] = false,
 ["defensive-personal"] = false,
 },
-["framme_locked"] = false,
+["height"] = 18,
 ["show_conditions"] = {
 ["only_inside_instance"] = true,
 ["only_in_group"] = true,
@@ -61,7 +61,7 @@ _detalhes_database = {
 ["utility"] = false,
 },
 },
-["combat_counter"] = 2,
+["combat_counter"] = 10,
 ["player_stats"] = {
 },
 ["force_font_outline"] = "",
@@ -69,8 +69,16 @@ _detalhes_database = {
 },
 ["arena_data_compressed"] = {
 },
-["ignore_nicktag"] = false,
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
 ["arena_data_index_selected"] = 1,
+["character_data"] = {
+["logons"] = 5,
+},
+["on_death_menu"] = false,
+["auto_combatlog"] = false,
 ["local_instances_config"] = {
 {
 ["modo"] = 2,
@@ -93,9 +101,9 @@ _detalhes_database = {
 ["attribute"] = 1,
 ["pos"] = {
 ["normal"] = {
-["y"] = -6.103515625e-05,
-["x"] = 0,
-["w"] = 309.9998779296875,
+["y"] = -73.000244140625,
+["x"] = 691.0001220703125,
+["w"] = 309.9996643066406,
 ["h"] = 158.0000152587891,
 },
 ["solo"] = {
@@ -106,14 +114,6 @@ _detalhes_database = {
 },
 },
 },
-},
-["on_death_menu"] = false,
-["auto_combatlog"] = false,
-["coach"] = {
-["enabled"] = false,
-["welcome_panel_pos"] = {
-},
-["last_coach_name"] = false,
 },
 ["cached_talents"] = {
 },
@@ -144,14 +144,17 @@ _detalhes_database = {
 },
 ["last_instance_time"] = 0,
 ["active_profile"] = "Simonfish-CAMWOW US1 Realm 1 PvE",
+["last_day"] = "22",
 ["last_realversion"] = 172,
 ["benchmark_db"] = {
 ["frame"] = {
 },
 },
-["data_harvested_for_charts"] = {
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
 },
-["cached_roles"] = {
+["last_coach_name"] = false,
 },
 ["apocalypes_info"] = {
 },
@@ -165,24 +168,7 @@ _detalhes_database = {
 ["evoker_show_realtimedps"] = false,
 ["inverse_deathlog_mplus"] = false,
 },
-["mythic_dungeon_currentsaved"] = {
-["dungeon_name"] = "",
-["started"] = false,
-["segment_id"] = 0,
-["ej_id"] = 0,
-["started_at"] = 0,
-["run_id"] = 0,
-["level"] = 0,
-["dungeon_zone_id"] = 0,
-["previous_boss_killed_at"] = 0,
-},
-["mythic_plus_log"] = {
-},
-["nick_tag_cache"] = {
-["nextreset"] = 1796339428,
-["last_version"] = 16,
-},
-["damage_meter_sessions"] = {
+["data_harvested_for_charts"] = {
 },
 ["plugin_database"] = {
 ["DETAILS_PLUGIN_TINY_THREAT"] = {
@@ -227,13 +213,13 @@ _detalhes_database = {
 ["tank_block_size"] = 150,
 ["bar_height"] = 24,
 ["tank_block_texture"] = "Details Serenity",
-["tank_block_height"] = 40,
 ["tank_block_color"] = {
 0.074509,
 0.035294,
 0.035294,
 0.832845,
 },
+["tank_block_height"] = 40,
 ["tank_block_powerbar_size_height"] = 10,
 ["show_inc_bars"] = true,
 },
@@ -261,31 +247,28 @@ _detalhes_database = {
 0.5,
 },
 ["scale"] = 1,
-["main_frame_size"] = {
-300.0000305175781,
-500,
-},
+["arrow_anchor_y"] = 0,
 ["minimap"] = {
 ["minimapPos"] = 160,
 ["radius"] = 160,
 ["hide"] = false,
 },
-["point"] = "CENTER",
+["row_height"] = 20,
 ["arrow_anchor_x"] = 0,
-["y"] = -1.52587890625e-05,
-["row_texture"] = "Details Serenity",
-["square_grow_direction"] = "right",
 ["font_color"] = {
 1,
 1,
 1,
 1,
 },
-["row_height"] = 20,
+["row_texture"] = "Details Serenity",
+["square_grow_direction"] = "right",
+["point"] = "CENTER",
+["main_frame_strata"] = "LOW",
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
-["use_spark"] = true,
+["font_size"] = 10,
 ["row_spacement"] = 21,
 ["main_frame_color"] = {
 0,
@@ -293,14 +276,13 @@ _detalhes_database = {
 0,
 0.2,
 },
-["main_frame_strata"] = "LOW",
-["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
 ["row_color"] = {
 0.1,
 0.1,
 0.1,
 0.4,
 },
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -308,21 +290,39 @@ _detalhes_database = {
 ["font_shadow"] = true,
 ["y"] = -0.000335693359375,
 ["x"] = 9.1552734375e-05,
-["update_speed"] = 0.05,
 ["size"] = 32,
+["update_speed"] = 0.05,
 ["attribute_type"] = 1,
 },
+["use_spark"] = true,
 ["x"] = -3.0517578125e-05,
 ["font_face"] = "Friz Quadrata TT",
 ["square_size"] = 32,
-["arrow_anchor_y"] = 0,
-["font_size"] = 10,
-["main_frame_locked"] = false,
+["y"] = -1.52587890625e-05,
 ["author"] = "Terciob",
+["main_frame_locked"] = false,
+["main_frame_size"] = {
+300.0000305175781,
+500,
 },
 },
-["character_data"] = {
-["logons"] = 1,
+},
+["mythic_plus_log"] = {
+},
+["cached_roles"] = {
+},
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["damage_meter_sessions"] = {
 },
 ["apocalypse_hashes"] = {
 },
@@ -333,10 +333,14 @@ _detalhes_database = {
 ["combat_id"] = 0,
 ["savedStyles"] = {
 },
-["last_day"] = "18",
-["announce_firsthit"] = {
-["enabled"] = true,
+["nick_tag_cache"] = {
+["nextreset"] = 1796339428,
+["last_version"] = 16,
+},
+["announce_prepots"] = {
+["enabled"] = false,
 ["channel"] = "SELF",
+["reverse"] = false,
 },
 ["announce_deaths"] = {
 ["enabled"] = false,
@@ -372,7 +376,7 @@ _detalhes_database = {
 },
 ["raid_roster"] = {
 },
-["tempo_start"] = 78758.36,
+["tempo_start"] = 188352.868,
 ["last_events_tables"] = {
 },
 ["alternate_power"] = {
@@ -469,19 +473,15 @@ _detalhes_database = {
 ["start_time"] = 0,
 ["TimeData"] = {
 },
-["combat_counter"] = 1,
-},
-["announce_prepots"] = {
-["enabled"] = false,
-["channel"] = "SELF",
-["reverse"] = false,
-},
-["arena_data_headers"] = {
+["combat_counter"] = 9,
 },
 ["announce_damagerecord"] = {
 ["enabled"] = true,
 ["channel"] = "SELF",
 },
+["arena_data_headers"] = {
+},
+["ignore_nicktag"] = false,
 ["announce_cooldowns"] = {
 ["enabled"] = false,
 ["ignored_cooldowns"] = {
@@ -496,6 +496,7 @@ _detalhes_database = {
 ["damage_meter_session_info"] = {
 },
 ["cached_specs"] = {
+["Player-6933-01801B2A"] = 1488,
 ["Player-6794-048B1E90"] = 1491,
 },
 }

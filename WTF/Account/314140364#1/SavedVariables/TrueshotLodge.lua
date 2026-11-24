@@ -29,49 +29,173 @@ TrueshotLodgeDB = {
 ["OPTIONS"] = "collect",
 },
 ["share_peers"] = {
-["Zanoroth Bullseye"] = {
-["first"] = 1795139074,
-["last"] = 1795139074,
+["Jessica Rabbitz"] = {
+["last"] = 1795499704,
+["first"] = 1795499704,
 },
-["Senor Huntatroll"] = {
-["first"] = 1795147811,
-["last"] = 1795147811,
+["Haraj Grimclaw"] = {
+["last"] = 1795503806,
+["first"] = 1795497982,
 },
-["Aelira Raincaller"] = {
-["first"] = 1795149367,
-["last"] = 1795149367,
+["Mara Viperstrike"] = {
+["last"] = 1795503526,
+["first"] = 1795495987,
 },
-["Mumu Nira"] = {
-["first"] = 1795139012,
-["last"] = 1795139245,
+["Pyfor Shaperunner"] = {
+["first"] = 1795503527,
+["last"] = 1795503527,
 },
-["Final Hope"] = {
-["last"] = 1795149577,
-["first"] = 1795140677,
+["Tanke Pounder"] = {
+["last"] = 1795506149,
+["first"] = 1795506149,
 },
-["Lore Thehulk"] = {
-["first"] = 1795135939,
-["last"] = 1795140678,
+["Oji Dreadtide"] = {
+["last"] = 1795495988,
+["first"] = 1795495988,
 },
-["Ozamataz Bloodshank"] = {
-["first"] = 1795148263,
-["last"] = 1795148263,
+["Mystic Blast"] = {
+["last"] = 1795506706,
+["first"] = 1795506706,
 },
-["Simonwarlock Windseeker"] = {
-["first"] = 1795149941,
-["last"] = 1795149941,
+["Hunter Blackheart"] = {
+["last"] = 1795496729,
+["first"] = 1795496729,
 },
-["Reyn Hunt"] = {
-["first"] = 1795139365,
-["last"] = 1795140441,
+["Zap Zop"] = {
+["last"] = 1795510199,
+["first"] = 1795510199,
 },
-["Rax Stormbringer"] = {
-["first"] = 1795149835,
-["last"] = 1795150063,
+["Kiss Thewall"] = {
+["first"] = 1795482040,
+["last"] = 1795503526,
 },
-["Syndrist Darkfall"] = {
-["first"] = 1795147816,
-["last"] = 1795147816,
+["Kathrina Maelstom"] = {
+["last"] = 1795508110,
+["first"] = 1795508110,
+},
+["Donee Ironsong"] = {
+["first"] = 1795495864,
+["last"] = 1795505395,
+},
+["Faulx Frostfang"] = {
+["last"] = 1795495987,
+["first"] = 1795495987,
+},
+["Caz One"] = {
+["last"] = 1795495987,
+["first"] = 1795495987,
+},
+["Koda Dreamhoof"] = {
+["last"] = 1795498063,
+["first"] = 1795498063,
+},
+["Dash Bloodsaw"] = {
+["first"] = 1795503526,
+["last"] = 1795503526,
+},
+["Local Slackjaw"] = {
+["first"] = 1795505213,
+["last"] = 1795508933,
+},
+["Chilled Cone"] = {
+["first"] = 1795503526,
+["last"] = 1795503890,
+},
+["Bon Asd"] = {
+["last"] = 1795495988,
+["first"] = 1795495988,
+},
+["Zharn Sureshot"] = {
+["first"] = 1795503526,
+["last"] = 1795503526,
+},
+["Mystic Mist"] = {
+["last"] = 1795507335,
+["first"] = 1795501912,
+},
+["Finxyz Lum"] = {
+["last"] = 1795508185,
+["first"] = 1795502180,
+},
+["Wala Janilu"] = {
+["last"] = 1795507150,
+["first"] = 1795507150,
+},
+["Wala Greens"] = {
+["last"] = 1795495987,
+["first"] = 1795495987,
+},
+["Lurem Fishbane"] = {
+["last"] = 1795506150,
+["first"] = 1795506149,
+},
+["Aven Duskwillow"] = {
+["last"] = 1795495987,
+["first"] = 1795495987,
+},
+["Redbeans Crawfish"] = {
+["last"] = 1795495987,
+["first"] = 1795495987,
+},
+["Ronan Dolor"] = {
+["first"] = 1795492764,
+["last"] = 1795495987,
+},
+["Mooey Blue"] = {
+["last"] = 1795495987,
+["first"] = 1795495987,
+},
+["Big No"] = {
+["last"] = 1795495987,
+["first"] = 1795495987,
+},
+["Urikk Beaststalker"] = {
+["first"] = 1795503527,
+["last"] = 1795508678,
+},
+["Orchrist Swifthoof"] = {
+["last"] = 1795497882,
+["first"] = 1795497852,
+},
+["Seiro Domo"] = {
+["last"] = 1795495987,
+["first"] = 1795495987,
+},
+["Trueshot Lodge"] = {
+["last"] = 1795500837,
+["first"] = 1795500837,
+},
+["Zulmo Bearbrother"] = {
+["last"] = 1795495987,
+["first"] = 1795495987,
+},
+["Gronik Hrenzak"] = {
+["first"] = 1795503527,
+["last"] = 1795503527,
+},
+["Totalee Pawsitive"] = {
+["last"] = 1795508698,
+["first"] = 1795507428,
+},
+["Zippy Cup"] = {
+["last"] = 1795501120,
+["first"] = 1795500600,
+},
+["Boqx Eldren"] = {
+["first"] = 1795503527,
+["last"] = 1795505412,
+},
+["Hanibull Lictor"] = {
+["first"] = 1795503527,
+["last"] = 1795505542,
+},
+["Wahin Ashenhide"] = {
+["first"] = 1795503527,
+["last"] = 1795503527,
+},
+["Engelbert Bockwinkel"] = {
+["first"] = 1795503527,
+["last"] = 1795503527,
 },
 },
 ["ui_scale"] = 1,
@@ -81,6 +205,117 @@ TrueshotLodgeDB = {
 ["ability_tooltips"] = true,
 },
 ["char"] = {
+["Simonrogue Windseeker - CAMWOW US2 Realm 7 PvE"] = {
+["trained_version"] = 3,
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_order"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_side"] = {
+},
+["tab_hidden"] = {
+},
+},
+["Simon Windseeker - CAMWOW US2 Realm 7 PvE"] = {
+["trained_version"] = 3,
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_order"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_side"] = {
+},
+["tab_hidden"] = {
+},
+},
+["Simonshaman Windseeker - CAMWOW US2 Realm 7 PvE"] = {
+["trained_version"] = 3,
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_order"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_side"] = {
+},
+["tab_hidden"] = {
+},
+},
+["Simon Windseeker - "] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_order"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_side"] = {
+},
+["tab_hidden"] = {
+},
+},
+["Simonshaman Windseeker - "] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_hidden"] = {
+},
+["tab_side"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_order"] = {
+},
+},
+["Simonwarrior Windseeker - "] = {
+["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_order"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_side"] = {
+},
+["tab_hidden"] = {
+},
+},
 ["Simonhunter Windseeker - CAMWOW US2 Realm 7 PvE"] = {
 ["trained_version"] = 3,
 ["trained_ids"] = {
@@ -100,7 +335,7 @@ TrueshotLodgeDB = {
 ["stable"] = {
 ["pets"] = {
 ["Bear|Bear"] = {
-["cached"] = 1795102859,
+["name"] = "Bear",
 ["stats"] = {
 ["attack_power"] = 59,
 ["xp_max"] = 2850,
@@ -120,7 +355,7 @@ nil,
 ["damage_min"] = 23.8651237487793,
 ["xp"] = 442,
 },
-["attack_speed"] = 1.705000042915344,
+["cached"] = 1795102859,
 ["spells"] = {
 {
 ["spell_id"] = 17255,
@@ -158,10 +393,10 @@ nil,
 ["family"] = "Bear",
 ["level"] = 13,
 ["icon"] = 132183,
-["name"] = "Bear",
+["attack_speed"] = 1.705000042915344,
 },
 ["Fox|Fox"] = {
-["attack_speed"] = 1.281000018119812,
+["name"] = "Fox",
 ["stats"] = {
 ["attack_power"] = 59,
 ["xp_max"] = 2850,
@@ -181,7 +416,7 @@ nil,
 ["damage_min"] = 19.71426200866699,
 ["xp"] = 2131,
 },
-["cached"] = 1795138754,
+["attack_speed"] = 1.281000018119812,
 ["spells"] = {
 {
 ["spell_id"] = 17255,
@@ -220,7 +455,7 @@ nil,
 ["family"] = "Fox",
 ["level"] = 13,
 ["icon"] = 458223,
-["name"] = "Fox",
+["cached"] = 1795242756,
 },
 },
 ["active"] = "Fox|Fox",
@@ -263,9 +498,9 @@ nil,
 ["rank"] = "Rank 2",
 },
 },
-["name"] = "Fox",
+["attack_speed"] = 1.307000041007996,
 ["display_id"] = 136523,
-["cached"] = 1795138751,
+["name"] = "Fox",
 ["stats"] = {
 ["attack_power"] = 59,
 ["xp_max"] = 2850,
@@ -288,7 +523,7 @@ nil,
 ["family"] = "Fox",
 ["level"] = 13,
 ["icon"] = 458223,
-["attack_speed"] = 1.307000041007996,
+["cached"] = 1795242753,
 },
 {
 ["creature_id"] = 250927,
@@ -326,9 +561,9 @@ nil,
 ["rank"] = "Rank 2",
 },
 },
-["name"] = "Bear",
+["attack_speed"] = 1.705000042915344,
 ["display_id"] = 136605,
-["cached"] = 1795102859,
+["name"] = "Bear",
 ["stats"] = {
 ["attack_power"] = 59,
 ["xp_max"] = 2850,
@@ -351,7 +586,7 @@ nil,
 ["family"] = "Bear",
 ["level"] = 13,
 ["icon"] = 132183,
-["attack_speed"] = 1.705000042915344,
+["cached"] = 1795102859,
 },
 },
 ["purchased"] = 1,
@@ -361,28 +596,53 @@ nil,
 ["tab_hidden"] = {
 },
 },
-["Simon Windseeker - CAMWOW US2 Realm 7 PvE"] = {
-["trained_version"] = 3,
+["Simonrogue Windseeker - "] = {
 ["trained_ids"] = {
 },
 ["trained"] = {
-},
-["tab_order"] = {
-},
-["stable"] = {
-["pets"] = {
-},
-["slots"] = {
-},
-},
-["tab_side"] = {
 },
 ["tab_hidden"] = {
 },
+["tab_side"] = {
 },
-["Simonrogue Windseeker - CAMWOW US2 Realm 7 PvE"] = {
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_order"] = {
+},
+},
+["Simondruid Windseeker - CAMWOW US2 Realm 7 PvE"] = {
 ["trained_version"] = 3,
 ["trained_ids"] = {
+},
+["trained"] = {
+},
+["tab_hidden"] = {
+},
+["tab_side"] = {
+},
+["stable"] = {
+["pets"] = {
+},
+["slots"] = {
+},
+},
+["tab_order"] = {
+},
+},
+["Simonhunter Windseeker - "] = {
+["trained_ids"] = {
+[24549] = true,
+[14916] = true,
+[16828] = true,
+[24545] = true,
+[4188] = true,
+[2649] = true,
+[4187] = true,
+[17255] = true,
 },
 ["trained"] = {
 },
@@ -390,9 +650,145 @@ nil,
 },
 ["stable"] = {
 ["pets"] = {
+["Fox|Fox"] = {
+["name"] = "Fox",
+["stats"] = {
+["attack_power"] = 59,
+["xp_max"] = 2850,
+["crit"] = 4.252000331878662,
+["armor"] = 868,
+["health"] = 365,
+["damage_max"] = 25.51973533630371,
+["speed"] = 114.2857142857143,
+["res"] = {
+nil,
+0,
+0,
+0,
+0,
+0,
+},
+["damage_min"] = 19.71426200866699,
+["xp"] = 2131,
+},
+["attack_speed"] = 1.281000018119812,
+["spells"] = {
+{
+["spell_id"] = 17255,
+["slot"] = 4,
+["name"] = "Bite",
+["rank"] = "Rank 2",
+},
+{
+["passive"] = true,
+["name"] = "Faster Attack III",
+["slot"] = 6,
+["spell_id"] = 1263102,
+["rank"] = "Rank 1",
+},
+{
+["passive"] = true,
+["name"] = "Great Stamina",
+["slot"] = 8,
+["spell_id"] = 4188,
+["rank"] = "Rank 2",
+},
+{
+["spell_id"] = 14916,
+["slot"] = 9,
+["name"] = "Growl",
+["rank"] = "Rank 2",
+},
+{
+["passive"] = true,
+["name"] = "Natural Armor",
+["slot"] = 11,
+["spell_id"] = 24549,
+["rank"] = "Rank 2",
+},
+},
+["family"] = "Fox",
+["level"] = 13,
+["icon"] = 458223,
+["cached"] = 1795259590,
+},
 },
 ["slots"] = {
+{
+["creature_id"] = 254589,
+["spells"] = {
+{
+["spell_id"] = 17255,
+["slot"] = 4,
+["name"] = "Bite",
+["rank"] = "Rank 2",
 },
+{
+["passive"] = true,
+["name"] = "Faster Attack III",
+["slot"] = 6,
+["spell_id"] = 1263102,
+["rank"] = "Rank 1",
+},
+{
+["passive"] = true,
+["name"] = "Great Stamina",
+["slot"] = 8,
+["spell_id"] = 4188,
+["rank"] = "Rank 2",
+},
+{
+["spell_id"] = 14916,
+["slot"] = 9,
+["name"] = "Growl",
+["rank"] = "Rank 2",
+},
+{
+["passive"] = true,
+["name"] = "Natural Armor",
+["slot"] = 11,
+["spell_id"] = 24549,
+["rank"] = "Rank 2",
+},
+},
+["attack_speed"] = 1.307000041007996,
+["display_id"] = 136523,
+["name"] = "Fox",
+["stats"] = {
+["attack_power"] = 59,
+["xp_max"] = 2850,
+["crit"] = 4.252000331878662,
+["armor"] = 868,
+["health"] = 365,
+["damage_max"] = 25.51973533630371,
+["speed"] = 114.2857142857143,
+["res"] = {
+nil,
+0,
+0,
+0,
+0,
+0,
+},
+["damage_min"] = 19.71426200866699,
+["xp"] = 2131,
+},
+["family"] = "Fox",
+["level"] = 13,
+["icon"] = 458223,
+["cached"] = 1795259587,
+},
+{
+["creature_id"] = 250927,
+["cached"] = 1795258468,
+["name"] = "Bear",
+["family"] = "Bear",
+["level"] = 13,
+["icon"] = 132183,
+["display_id"] = 136605,
+},
+},
+["active"] = "Fox|Fox",
 },
 ["tab_side"] = {
 },
@@ -418,28 +814,11 @@ nil,
 ["tab_hidden"] = {
 },
 },
-["Simonshaman Windseeker - CAMWOW US2 Realm 7 PvE"] = {
-["trained_version"] = 3,
+["Simondruid Windseeker - "] = {
 ["trained_ids"] = {
-},
-["trained"] = {
-},
-["tab_order"] = {
-},
-["stable"] = {
-["pets"] = {
-},
-["slots"] = {
-},
-},
-["tab_side"] = {
-},
-["tab_hidden"] = {
-},
-},
-["Simondruid Windseeker - CAMWOW US2 Realm 7 PvE"] = {
-["trained_version"] = 3,
-["trained_ids"] = {
+[24450] = true,
+[16827] = true,
+[1264494] = true,
 },
 ["trained"] = {
 },
@@ -465,13 +844,22 @@ TrueshotLodgeCollected = {
 ["locale"] = "enUS",
 ["file_id"] = "fcd076d6676b7f2c",
 ["version"] = "1.60.1.46",
-["sig"] = "13a7771c",
-["saved_at"] = 1795150313,
+["sig"] = "92eba256",
+["saved_at"] = 1795510412,
 },
 ["tames"] = {
 },
 ["creatures"] = {
 },
 ["beast_training"] = {
+["Swipe|Rank 1"] = {
+["spell_id"] = 779,
+["name"] = "Swipe",
+["cost"] = 1400,
+["sig"] = "301dae16",
+["required_level"] = 16,
+["last_seen"] = 1795487187,
+["rank"] = "Rank 1",
+},
 },
 }

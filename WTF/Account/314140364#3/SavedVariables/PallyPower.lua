@@ -4,8 +4,8 @@ PallyPowerDB = {
 ["Simonmisc Windseeker"] = "Other",
 ["Simonmetal Windseeker"] = "Other",
 ["Simonfish Windseeker"] = "Other",
-["Simoncloth Windseeker"] = "Other",
 ["Simongem Windseeker"] = "Other",
+["Simoncloth Windseeker"] = "Other",
 ["Simonmeat Windseeker"] = "Other",
 ["Simonfood Windseeker"] = "Other",
 },
@@ -45,14 +45,10 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-"TrueshotLodge",
-nil,
-"TrueshotLodge1411",
-nil,
-nil,
-"Services",
-"TradeLocal",
-"OOC",
+[6] = "TrueshotLodge",
+[7] = "TrueshotLodge1454",
+[4] = "Services",
+[5] = "TradeLocal",
 [0] = "None",
 }
 LCD_Data = nil

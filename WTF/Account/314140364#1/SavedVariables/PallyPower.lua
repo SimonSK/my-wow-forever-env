@@ -40,18 +40,18 @@ PallyPowerDB = {
 ["minimap"] = {
 ["show"] = false,
 },
-["autobuff"] = {
-["buffDuration"] = false,
-},
+["ForeverSalvSplit"] = true,
 ["display"] = {
 ["frameLocked"] = true,
 ["HideCountText"] = true,
 ["buffDuration"] = false,
-["showPlayerButtons"] = false,
 ["offsetY"] = 143,
 ["offsetX"] = -400,
+["showPlayerButtons"] = false,
 },
-["ForeverSalvSplit"] = true,
+["autobuff"] = {
+["buffDuration"] = false,
+},
 ["ForeverSealRestored"] = true,
 ["rf"] = true,
 },
@@ -74,21 +74,21 @@ PallyPowerDB = {
 }
 PallyPower_Assignments = {
 ["Simon Windseeker"] = {
-2,
-2,
-1,
-1,
 3,
-1,
-1,
-1,
-1,
+2,
+3,
+3,
+3,
+3,
+3,
+3,
+3,
 },
 }
 PallyPower_NormalAssignments = {
 }
 PallyPower_AuraAssignments = {
-["Simon Windseeker"] = 2,
+["Simon Windseeker"] = 1,
 }
 PallyPower_SavedPresets = {
 ["PallyPower_NormalAssignments"] = {
@@ -105,8 +105,8 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[6] = "TrueshotLodge",
-[7] = "CuratorNet",
+[6] = "CuratorNet",
+[7] = "TrueshotLodge",
 [8] = "TrueshotLodge1413",
 [4] = "Services",
 [5] = "TradeLocal",

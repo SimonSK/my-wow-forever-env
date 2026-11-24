@@ -1,43 +1,28 @@
 VER 3 0100000001000008 "Bash" "134400"
 #showtooltip Bash
-/cancelaura Blessing  of Protection
-/stopcasting
+/dismount
+/cancelaura Blessing of Protection
+/cast [noform:1] Dire Bear Form
+/cast [noform:1] Bear Form
 /cast Bash
-END
-VER 3 0100000001000007 "Bear Charge" "132183"
-#showtooltip Feral Charge(Bear Form)
-/cancelaura Blessing of Protection
-/cast Feral Charge(Bear Form)
-/cast Faerie Fire (Feral)
-/startattack
-END
-VER 3 0100000001000001 "Bear Mangle" "132135"
-#showtooltip Mangle(Bear Form)
-/cancelaura Blessing of Protection
-/cast Mangle(Bear Form)
 /startattack
 END
 VER 3 010000000100000A "Bear Powershift" "134400"
 #showtooltip Bear Form
-/cast !Bear Form
+/cancelform [form]
+/cast [noform] Dire Bear Form
+/cast [noform] Bear Form
 END
-VER 3 0100000001000002 "Bear Swipe" "134296"
-#showtooltip Swipe(Bear Form)
+VER 3 0100000001000022 "Claw" "134400"
+#showtooltip Claw
 /cancelaura Blessing of Protection
-/cast Swipe(Bear Form)
+/cast Claw
 /startattack
-END
-VER 3 010000000100000B "Berserk" "134400"
-#showtooltip Berserk
-/cancelaura Blessing of Protection
-/startattack
-/cast Berserk
-/cast Enrage
-/cast Lifeblood
 END
 VER 3 0100000001000016 "Demo Roar" "134400"
 #showtooltip Demoralizing Roar
 /cancelaura Blessing of Protection
+/cast Enrage
 /cast Demoralizing Roar
 END
 VER 3 0100000001000017 "Enrage" "134400"
@@ -46,27 +31,43 @@ VER 3 0100000001000017 "Enrage" "134400"
 /cast Enrage
 /startattack
 END
+VER 3 010000000100000B "Entangling Roots" "134400"
+#showtooltip Entangling Roots
+/cancelaura Blessing of Protection
+/stopcasting
+/cast Entangling Root
+END
+VER 3 0100000001000009 "Faerie Fire" "134400"
+#showtooltip Faerie Fire
+/cancelaura Blessing of Protection
+/cast Faerie Fire
+/startattack
+END
+VER 3 0100000001000007 "Feral Charge" "134400"
+#showtooltip Feral Charge
+/dismount
+/cancelaura Blessing of Protection
+/cast [noform:1/2] Dire Bear Form
+/cast [noform:1/2] Bear Form
+/cast Feral Charge
+/cast Faerie Fire
+/startattack
+END
 VER 3 010000000100000F "Ferocious Bite" "134400"
 #showtooltip Ferocious Bite
 /cancelaura Blessing of Protection
 /cast Ferocious Bite
 /startattack
 END
-VER 3 0100000001000009 "FF (Feral)" "134400"
-#showtooltip Faerie Fire (Feral)
-/cancelaura Blessing of Protection
-/cast Faerie Fire (Feral)
-/startattack
-END
-VER 3 0100000001000019 "Frenzied" "134400"
-#showtooltip Frenzied Regeneration
-/cast Frenzied Regeneration
-END
 VER 3 0100000001000004 "Growl" "INV_MISC_QUESTIONMARK"
 #showtooltip Growl
+/dismount
 /cancelaura Blessing of Protection
-/cast Growl
-/cast Faerie Fire (Feral)
+/cancelform [noform:1]
+/cast [noform:1] Dire Bear Form
+/cast [noform:1] Bear Form
+/cast [@mouseover,harm,nodead][harm,nodead] Growl
+/cast Faerie Fire
 /startattack
 END
 VER 3 0100000001000012 "Healing Touch" "134400"
@@ -77,12 +78,6 @@ VER 3 0100000001000003 "Lacerate" "INV_MISC_QUESTIONMARK"
 #showtooltip Lacerate
 /cancelaura Blessing of Protection
 /cast Lacerate
-/startattack
-END
-VER 3 0100000001000010 "Maim" "134400"
-#showtooltip Maim
-/cancelaura Blessing of Protection
-/cast Maim
 /startattack
 END
 VER 3 010000000100001C "Mark of the Wild" "134400"
@@ -100,9 +95,26 @@ VER 3 010000000100001E "Moonfire" "134400"
 /cast Moonfire
 /startattack
 END
-VER 3 0100000001000020 "Nature's Grasp" "134400"
+VER 3 0100000001000023 "Nature's Grasp" "134400"
 #showtooltip Nature's Grasp
 /cast Nature's Grasp
+END
+VER 3 010000000100001A "Primal Bite" "134400"
+#showtooltip Primal Bite
+/cancelaura Blessing of Protection
+/cast Primal Bite
+/startattack
+END
+VER 3 0100000001000021 "Prowl" "134400"
+#showtooltip Prowl
+/cancelaura Blessing of Protection
+/cast Prowl
+END
+VER 3 0100000001000010 "Rake" "134400"
+#showtooltip Rake
+/cancelaura Blessing of Protection
+/cast Rake
+/startattack
 END
 VER 3 0100000001000013 "Ravage" "134400"
 #showtooltip Ravage
@@ -134,15 +146,20 @@ VER 3 010000000100000C "Shred" "134400"
 /cast Shred
 /startattack
 END
-VER 3 010000000100001F "Thorns" "134400"
+VER 3 0100000001000001 "Starfire" "134400"
+#showtooltip Starfire
+/cast Starfire
+/startattack
+END
+VER 3 0100000001000002 "Swipe" "134296"
+#showtooltip Swipe
+/cancelaura Blessing of Protection
+/cast Swipe
+/startattack
+END
+VER 3 0100000001000024 "Thorns" "134400"
 #showtooltip Thorns
 /cast Thorns
-END
-VER 3 010000000100001A "Tranquility" "134400"
-#showtooltip Tranquility
-/cast Tranquility
-/yell I'M TRANQING
-/raid I'M TRANQING
 END
 VER 3 0100000001000011 "Travel" "134400"
 #showtooltip Swift Flight Form
