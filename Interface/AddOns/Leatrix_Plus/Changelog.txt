@@ -1,6 +1,14 @@
-﻿1.60.35 - 20th November 2026
-- For 'Class colored frames' ('Frames'), added an option to use class color for the health bar.
-- Some options will now be locked if EllesmereUI has certain modules enabled that conflict.
+﻿1.60.37 - 22nd November 2026
+- Updated flight times.
+
+1.60.36 - 20th November 2026
+- For 'Class colored frames' ('Frames'), added an option to use class color for the target and focus frame health bar.
+- For 'Enhance minimap' ('Interface'), fixed a situational issue which may have cause the minimap to move after the UI is toggled such as following a pet battle.
+- Updated flight times.
+
+1.60.35 - 20th November 2026
+- For 'Class colored frames' ('Frames'), added an option to use class color for the player frame health bar.
+- Some options will now be locked if EllesmereUI has certain modules enabled that conflict (similar to ElvUI).
 - Updated flight times.
 
 1.60.34 - 19th November 2026

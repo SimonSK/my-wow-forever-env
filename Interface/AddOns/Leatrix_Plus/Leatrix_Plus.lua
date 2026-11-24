@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- 	Leatrix Plus 1.60.35 (20th November 2026)
+-- 	Leatrix Plus 1.60.37 (22nd November 2026)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks,  03:Restart 40:Player
@@ -18,7 +18,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.60.35"
+	LeaPlusLC["AddonVer"] = "1.60.37"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -8549,6 +8549,24 @@
 				end
 			end
 
+			-- Function to set target and focus health bar color (Blizzard sets lockColor on the target and focus health bars so
+			-- it never colors them itself, the green is in the bar texture, so the texture is desaturated and the color set)
+			local targetHealthTinted = {}
+			local function TintHealthBar(healthBar, col)
+				if not healthBar then return end
+				local tex = healthBar:GetStatusBarTexture()
+				if col then
+					if tex then tex:SetDesaturated(true) end
+					healthBar:SetStatusBarColor(col.r, col.g, col.b)
+					targetHealthTinted[healthBar] = true
+				elseif targetHealthTinted[healthBar] then
+					-- Not a player, class not known or option turned off so restore Blizzard health bar
+					if tex then tex:SetDesaturated(false) end
+					healthBar:SetStatusBarColor(1, 1, 1)
+					targetHealthTinted[healthBar] = nil
+				end
+			end
+
 			-- Create color function for target and focus frames
 			local function TargetFrameCol()
 				local targetCol, focusCol
@@ -8573,6 +8591,10 @@
 				local borderOn = LeaPlusLC["ClassColTargetBorder"] == "On"
 				TintFrameBorder(TargetFrame.TargetFrameContainer.FrameTexture, borderOn and targetCol or nil)
 				TintFrameBorder(FocusFrame.TargetFrameContainer.FrameTexture, borderOn and focusCol or nil)
+				-- Health bars
+				local healthOn = LeaPlusLC["ClassColTargetHealth"] == "On"
+				TintHealthBar(TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar, healthOn and targetCol or nil)
+				TintHealthBar(FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar, healthOn and focusCol or nil)
 			end
 
 			local ColTar = CreateFrame("FRAME")
@@ -8581,10 +8603,21 @@
 			-- Refresh color if focus frame size changes
 			if FocusFrame_SetSmallSize then
 				hooksecurefunc(FocusFrame, "SetSmallSize", function()
-					if LeaPlusLC["ClassColTarget"] == "On" or LeaPlusLC["ClassColTargetBorder"] == "On" then
+					if LeaPlusLC["ClassColTarget"] == "On" or LeaPlusLC["ClassColTargetBorder"] == "On" or LeaPlusLC["ClassColTargetHealth"] == "On" then
 						TargetFrameCol()
 					end
 				end)
+			end
+
+			-- Refresh health bar color after Blizzard sets the health bar art (when the target or focus changes classification)
+			for i, frame in ipairs({TargetFrame, FocusFrame}) do
+				if frame.UpdateHealthBarVisuals then
+					hooksecurefunc(frame, "UpdateHealthBarVisuals", function()
+						if LeaPlusLC["ClassColTargetHealth"] == "On" then
+							TargetFrameCol()
+						end
+					end)
+				end
 			end
 
 			-- Create configuration panel
@@ -8599,6 +8632,7 @@
 			LeaPlusLC:MakeTx(ClassFrame, "Target and focus frames", 16, -192)
 			LeaPlusLC:MakeCB(ClassFrame, "ClassColTarget", "Show target and focus name background in class color", 16, -212, false, "If checked, the background behind the target name and focus name will be shown in class color.")
 			LeaPlusLC:MakeCB(ClassFrame, "ClassColTargetBorder", "Show target and focus frame border in class color", 16, -232, false, "If checked, the target frame border and focus frame border including the ring around the portrait will be shown in class color.")
+			LeaPlusLC:MakeCB(ClassFrame, "ClassColTargetHealth", "Show target and focus health bar in class color", 16, -252, false, "If checked, the target health bar and focus health bar will be shown in class color when the target or focus is a player.")
 
 			-- Help button hidden
 			ClassFrame.h:Hide()
@@ -8626,7 +8660,7 @@
 					TargetFrame.CheckFaction(TargetFrame) -- Reset target frame colors
 					TargetFrame.CheckFaction(FocusFrame) -- Reset focus frame colors
 				end
-				if LeaPlusLC["ClassColTarget"] == "On" or LeaPlusLC["ClassColTargetBorder"] == "On" then
+				if LeaPlusLC["ClassColTarget"] == "On" or LeaPlusLC["ClassColTargetBorder"] == "On" or LeaPlusLC["ClassColTargetHealth"] == "On" then
 					ColTar:RegisterEvent("GROUP_ROSTER_UPDATE")
 					ColTar:RegisterEvent("PLAYER_TARGET_CHANGED")
 					ColTar:RegisterEvent("PLAYER_FOCUS_CHANGED")
@@ -8636,6 +8670,8 @@
 					ColTar:UnregisterAllEvents()
 					TintFrameBorder(TargetFrame.TargetFrameContainer.FrameTexture, nil) -- Reset target frame border
 					TintFrameBorder(FocusFrame.TargetFrameContainer.FrameTexture, nil) -- Reset focus frame border
+					TintHealthBar(TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar, nil) -- Reset target health bar
+					TintHealthBar(FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar, nil) -- Reset focus health bar
 				end
 			end
 
@@ -8646,6 +8682,7 @@
 			LeaPlusCB["ClassColTargetBorder"]:HookScript("OnClick", SetClassColFrames)
 			LeaPlusCB["ClassColChain"]:HookScript("OnClick", SetClassColFrames)
 			LeaPlusCB["ClassColPlayerHealth"]:HookScript("OnClick", SetClassColFrames)
+			LeaPlusCB["ClassColTargetHealth"]:HookScript("OnClick", SetClassColFrames)
 			SetClassColFrames()
 
 			-- Reset button handler
@@ -8658,6 +8695,7 @@
 				LeaPlusLC["ClassColTargetBorder"] = "On"
 				LeaPlusLC["ClassColChain"] = "On"
 				LeaPlusLC["ClassColPlayerHealth"] = "Off"
+				LeaPlusLC["ClassColTargetHealth"] = "Off"
 
 				-- Update colors and refresh configuration panel
 				SetClassColFrames()
@@ -11242,6 +11280,61 @@
 				Minimap:ClearAllPoints()
 				Minimap:SetPoint("CENTER", MinimapCluster, "TOP", 14, -124)
 
+				-- Keep the minimap container on Blizzard's normal top anchor.  With the header underneath, Blizzard pins the
+				-- container to the bottom of the minimap cluster, but the square minimap and its header are placed from the
+				-- top of the cluster.  The cluster sizes itself to fit its children, so a container pinned to its bottom
+				-- makes the cluster grow when Blizzard lays it out again (such as after a pet battle or Alt+Z), and when the
+				-- cluster is anchored by its middle (Edit Mode snapping) the minimap moves up.  The container is only
+				-- re-anchored (no Blizzard functions are replaced, no fields are written to Blizzard frames, the cluster
+				-- itself is not moved).  With the header on top, Blizzard already uses this anchor.
+				do
+					local container = MinimapCluster.MinimapContainer
+					local anchorWaiting -- Event frame used while waiting for combat to end
+
+					local function SetContainerAnchor()
+						if not container then return end
+						-- Wait for combat to end only if the game would block the move (the container isn't protected)
+						if InCombatLockdown() and container:IsProtected() then
+							if not anchorWaiting then
+								anchorWaiting = CreateFrame("Frame")
+								anchorWaiting:SetScript("OnEvent", function(self)
+									self:UnregisterEvent("PLAYER_REGEN_ENABLED")
+									SetContainerAnchor()
+								end)
+							end
+							anchorWaiting:RegisterEvent("PLAYER_REGEN_ENABLED")
+							return
+						end
+						-- Offsets are divided by the container scale, the same as Blizzard does
+						local scale = container:GetScale()
+						if not scale or (issecretvalue and issecretvalue(scale)) or scale <= 0 then scale = 1 end
+						-- Blizzard's own saved top anchor if it's there (only read), otherwise its default from Minimap.xml
+						local points = container.defaultFramePoints
+						local usable = type(points) == "table" and #points > 0
+						if usable then
+							for i = 1, #points do
+								local p = points[i]
+								if type(p) ~= "table" or type(p.point) ~= "string" then usable = false break end
+							end
+						end
+						miniFrame.ClearAllPoints(container)
+						if usable then
+							for i = 1, #points do
+								local p = points[i]
+								container:SetPoint(p.point, p.relativeTo, p.relativePoint, (p.offsetX or 0) / scale, (p.offsetY or 0) / scale)
+							end
+						else
+							container:SetPoint("TOP", MinimapCluster, "TOP", 10 / scale, -30 / scale)
+						end
+					end
+
+					-- Set the anchor on startup and again whenever Blizzard moves the header (post-hook only)
+					SetContainerAnchor()
+					if MinimapCluster.SetHeaderUnderneath then
+						hooksecurefunc(MinimapCluster, "SetHeaderUnderneath", SetContainerAnchor)
+					end
+				end
+
 				-- Hide the default compass border
 				MinimapCompassTexture:Hide()
 
@@ -11910,6 +12003,14 @@
 					-- Set header position from the current anchor (in case Edit Mode has already placed it)
 					headerUnderneath = zoneButton:GetPoint(1) == "BOTTOM"
 					LayoutHeader()
+
+					-- Lay out the minimap cluster once now that the minimap container and the header are in place.  Edit Mode
+					-- lays out the cluster before Leatrix Plus loads (with Blizzard's own arrangement), so without this the
+					-- cluster keeps that size until Blizzard lays it out again (such as after a pet battle or Alt+Z), and when
+					-- the cluster is anchored by its middle (Edit Mode snapping) the minimap moves when its size changes.  This
+					-- runs once during the loading screen.  Blizzard's layout writes its own dirty flag and OnUpdate script, which
+					-- Blizzard sets again itself before it reads them, and the cluster holds no protected frames.
+					if MinimapCluster.Layout then MinimapCluster:Layout() end
 
 					-- Lay out the header again when Blizzard moves it or rescales the minimap
 					hooksecurefunc(MinimapCluster, "SetHeaderUnderneath", function(self, underneath)
@@ -18876,6 +18977,7 @@
 				LeaPlusLC:LoadVarChk("ClassColTargetBorder", "On")			-- Class colored target frame border
 				LeaPlusLC:LoadVarChk("ClassColChain", "On")				-- Class colored player chain
 				LeaPlusLC:LoadVarChk("ClassColPlayerHealth", "Off")		-- Class colored player health bar
+			LeaPlusLC:LoadVarChk("ClassColTargetHealth", "Off")		-- Class colored target and focus health bars
 
 				LeaPlusLC:LoadVarChk("NoAlerts", "Off")						-- Hide alerts
 				LeaPlusLC:LoadVarChk("HideCleanupBtns", "Off")				-- Hide clean-up buttons
@@ -19263,6 +19365,7 @@
 			LeaPlusDB["ClassColTargetBorder"]	= LeaPlusLC["ClassColTargetBorder"]
 			LeaPlusDB["ClassColChain"]			= LeaPlusLC["ClassColChain"]
 			LeaPlusDB["ClassColPlayerHealth"]	= LeaPlusLC["ClassColPlayerHealth"]
+		LeaPlusDB["ClassColTargetHealth"]	= LeaPlusLC["ClassColTargetHealth"]
 
 			LeaPlusDB["NoAlerts"]				= LeaPlusLC["NoAlerts"]
 			LeaPlusDB["HideCleanupBtns"]		= LeaPlusLC["HideCleanupBtns"]
