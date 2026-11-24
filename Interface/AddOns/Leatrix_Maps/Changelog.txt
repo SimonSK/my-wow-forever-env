@@ -1,4 +1,11 @@
-﻿1.60.34 - 20th November 2026
+﻿1.60.36 - 22nd November 2026
+- Toggling the 'Show discovery areas' option now requires a UI reload to ensure it does nothing at all if not enabled.  When it is enabled, it will do virtually nothing now until you click the map button to enable it.  The option has a new configuration panel that lets you show areas that you've already explored and change the color of explored and unexplored areas.
+- The 'Show unexplored areas' option now has a new color picker.  The default color hasn't changed and your current color will be carried over.
+
+1.60.35 - 20th November 2026
+- Fixed a potential microstutter when opening the map with 'Show discovery button' enabled.  The discovery button state is no longer saved between sessions.
+
+1.60.34 - 20th November 2026
 - Bosses and rares that have multiple known spawn points on dungeon maps will now show a faded icon for each spawn point.  Hovering the icon will highlight all known spawn points for that mob.  This currently affects Stockade, Wailing Caverns, Blackfathom Deeps, Scarlet Monastery (Graveyard) and Stratholme (living side).
 
 1.60.33 - 19th November 2026
