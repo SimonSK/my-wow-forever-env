@@ -36,8 +36,6 @@ function Auctionator.Utilities.DBKeyFromLink(itemLink, callback)
       local suffixString = Auctionator.Utilities.SuffixStringIDTOSuffixString[suffixStringID]
       if suffixString then
         callback({"gr:" .. basicKey .. ":" .. suffixString, basicKey})
-      else
-        callback({basicKey})
       end
     else
       local item = Item:CreateFromItemLink(itemLink)
@@ -47,11 +45,42 @@ function Auctionator.Utilities.DBKeyFromLink(itemLink, callback)
       end
 
       item:ContinueOnItemLoad(function()
-        local itemLevel = C_Item.GetDetailedItemLevelInfo(itemLink) or 0
-        if itemLevel >= Auctionator.Constants.ITEM_LEVEL_THRESHOLD then
-          callback({"g:" .. basicKey .. ":" .. itemLevel, basicKey})
+        if Auctionator.Constants.IsForever then
+          local name = C_Item.GetItemNameByID(itemLink)
+          local itemID = C_Item.GetItemInfoInstant(itemLink)
+          local baseName = C_Item.GetItemNameByID(itemID)
+          if name ~= baseName then
+            local suffix = name:sub(string.len(baseName.. " ") + 1)
+            local index = Auctionator.Utilities.SuffixesToLabel[suffix]
+            if index then
+              callback({"gr:" .. itemID .. ":" .. index, basicKey})
+            elseif #Auctionator.Utilities.SuffixesExtraChecks > 0 then
+              for _, bonusID in ipairs(Auctionator.Utilities.SuffixesExtraChecks) do
+                local newLink = "item:" .. itemID .. string.rep(":", 12) .. "1:" .. bonusID
+                local newName = C_Item.GetItemNameByID(newLink)
+                if newName == name then
+                  local index = Auctionator.Utilities.SuffixBonusIDs[bonusID]
+                  callback({"gr:" .. itemID .. ":" .. index, basicKey})
+                  seen = true
+                  break
+                end
+              end
+              if not seen then
+                callback({basicKey})
+              end
+            else
+              callback({basicKey})
+            end
+          else
+            callback({basicKey})
+          end
         else
-          callback({basicKey})
+          local itemLevel = C_Item.GetDetailedItemLevelInfo(itemLink) or 0
+          if itemLevel >= Auctionator.Constants.ITEM_LEVEL_THRESHOLD then
+            callback({"g:" .. basicKey .. ":" .. itemLevel, basicKey})
+          else
+            callback({basicKey})
+          end
         end
       end)
     end

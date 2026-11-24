@@ -1,6 +1,7 @@
 # Auctionator
 
-## [343](https://github.com/TheMouseNest/Auctionator/tree/343) (2026-11-08)
-[Full Changelog](https://github.com/TheMouseNest/Auctionator/compare/342...343) 
+## [353](https://github.com/TheMouseNest/Auctionator/tree/353) (2026-11-24)
+[Full Changelog](https://github.com/TheMouseNest/Auctionator/compare/352...353) 
 
-- Properly segment RPPvP auction house  
+- Only store suffix index, not entire thing (hopefully reduce risk of CBOR issues)  
+- Fix suffix detection for other locales  
