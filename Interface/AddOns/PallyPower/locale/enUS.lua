@@ -118,6 +118,7 @@ L["MINIMAP_ICON_TOOLTIP"] = [=[|cffffffff[Left-Click]|r Open Blessing Assignment
 |cffffffff[Right-Click]|r Open Options]=]
 L["None"] = "None"
 L["None Buffed"] = "None Buffed"
+L["Oath of Light"] = "Oath of Light"
 L["Options"] = "Options"
 L["OPTIONS_BUTTON_TOOLTIP"] = [=[Opens the PallyPower
 addon options panel.]=]
@@ -179,6 +180,7 @@ L["Select the Normal Blessing you wish to use to over-write the Main Tank: Warri
 L["Select the Seal you want to track"] = "Select the Seal you want to track"
 L["Show Aura Icons"] = "Show Aura Icons"
 L["Show Minimap Icon"] = "Show Minimap Icon"
+L["Show or hide the Oath of Light and its associated timer."] = "Show or hide the Oath of Light and its associated timer."
 L["Show Pets"] = "Show Pets"
 L["Show Tooltips"] = "Show Tooltips"
 L["SHOWPETS_OPTION_TOOLTIP_BCC"] = [=[If you enable this option, pets will appear under the respective class they share Greater Blessings with.

@@ -124,6 +124,8 @@ L["MINIMAP_ICON_TOOLTIP"] = [=[|cffffffff [Clic izquierdo]|r Abrir asignaciones 
 |cffffffff [clic derecho]|r Abrir opciones]=]
 L["None"] = "Ninguno"
 L["None Buffed"] = "Ninguno pulido"
+--[[Translation missing --]]
+L["Oath of Light"] = "Oath of Light"
 L["Options"] = "Opciones"
 L["OPTIONS_BUTTON_TOOLTIP"] = [=[Abre el PallyPower
 panel de opciones de complementos.]=]
@@ -195,6 +197,8 @@ L["Select the Seal you want to track"] = "Seleccione el sello que desea rastrear
 --[[Translation missing --]]
 L["Show Aura Icons"] = "Show Aura Icons"
 L["Show Minimap Icon"] = "Mostrar icono de minimapa"
+--[[Translation missing --]]
+L["Show or hide the Oath of Light and its associated timer."] = "Show or hide the Oath of Light and its associated timer."
 L["Show Pets"] = "Mostrar mascotas"
 L["Show Tooltips"] = "Mostrar información sobre herramientas"
 --[[Translation missing --]]

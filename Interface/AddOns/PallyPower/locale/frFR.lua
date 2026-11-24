@@ -120,6 +120,8 @@ L["MINIMAP_ICON_TOOLTIP"] = [=[|cffffffff [clic gauche]|r Ouvrir les affectation
 |cffffffff [Clic droit]|r Ouvrir les options]=]
 L["None"] = "Aucun"
 L["None Buffed"] = "Aucun buffé"
+--[[Translation missing --]]
+L["Oath of Light"] = "Oath of Light"
 L["Options"] = "Options"
 L["OPTIONS_BUTTON_TOOLTIP"] = "Ouvre le panneau d'options PallyPower"
 L["Override Druids / Paladins..."] = "Surcharger pour les druides / paladins ..."
@@ -185,6 +187,8 @@ L["Select the Seal you want to track"] = "Sélectionnez le sceau que vous souhai
 --[[Translation missing --]]
 L["Show Aura Icons"] = "Show Aura Icons"
 L["Show Minimap Icon"] = "Afficher l'icône de la mini-carte"
+--[[Translation missing --]]
+L["Show or hide the Oath of Light and its associated timer."] = "Show or hide the Oath of Light and its associated timer."
 L["Show Pets"] = "Montrer les familiers"
 L["Show Tooltips"] = "Afficher les info-bulles"
 --[[Translation missing --]]

@@ -105,6 +105,8 @@ L["MAIN_ROLES_DESCRIPTION_WRATH"] = "Estas opciones pueden usarse para asignar a
 L["MINIMAP_ICON_TOOLTIP"] = "|cffffffff [Clic izquierdo]|r Abrir asignaciones de bendición |cffffffff [Clic derecho]|r Abrir opciones"
 L["None"] = "Ninguno"
 L["None Buffed"] = "Ninguno pulido"
+--[[Translation missing --]]
+L["Oath of Light"] = "Oath of Light"
 L["Options"] = "Opciones"
 L["OPTIONS_BUTTON_TOOLTIP"] = [=[Abre el PallyPower
 panel de opciones de complementos.]=]
@@ -159,6 +161,8 @@ L["Select the Seal you want to track"] = "Seleccione el sello que desea rastrear
 --[[Translation missing --]]
 L["Show Aura Icons"] = "Show Aura Icons"
 L["Show Minimap Icon"] = "Mostrar icono de minimapa"
+--[[Translation missing --]]
+L["Show or hide the Oath of Light and its associated timer."] = "Show or hide the Oath of Light and its associated timer."
 L["Show Pets"] = "Mostrar mascotas"
 L["Show Tooltips"] = "Mostrar tooltips"
 L["SHOWPETS_OPTION_TOOLTIP_BCC"] = "Si activas esta opción, las mascotas aparecerán bajo la clase correspondiente con la que comparten Bendiciones superiores. |cffffff00Nota: Los diablillos de los Brujos se ocultarán a menos que Fase de Cambio esté desactivada. Sayaad (Súcubos/Íncubos) siempre estarán ocultos, ya que su uso principal es Sacrificio demoníaco.|r"

@@ -127,6 +127,8 @@ By having a separate setting for both roles it will allow Paladin Class Leaders 
 L["MINIMAP_ICON_TOOLTIP"] = "|cffffffff[좌-클릭]|r 축복 할당 열기 |cffffffff[우-클릭]|r 설정 열기"
 L["None"] = "없음"
 L["None Buffed"] = "버프 없음"
+--[[Translation missing --]]
+L["Oath of Light"] = "Oath of Light"
 L["Options"] = "옵션"
 L["OPTIONS_BUTTON_TOOLTIP"] = [=[PallyPower 애드온 
 설정창을 엽니다.]=]
@@ -198,6 +200,8 @@ L["Select the Seal you want to track"] = "추적하려는 문장을 선택하세
 --[[Translation missing --]]
 L["Show Aura Icons"] = "Show Aura Icons"
 L["Show Minimap Icon"] = "미니맵 아이콘 표시"
+--[[Translation missing --]]
+L["Show or hide the Oath of Light and its associated timer."] = "Show or hide the Oath of Light and its associated timer."
 L["Show Pets"] = "소환수 표시"
 L["Show Tooltips"] = "툴팁 표시"
 --[[Translation missing --]]

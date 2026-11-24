@@ -113,6 +113,8 @@ L["MINIMAP_ICON_TOOLTIP"] = [=[|cffffffff[點擊左鍵]|r 打開祝福輔助視�
 |cffffffff[點擊右鍵]|r 開打設置]=]
 L["None"] = "無"
 L["None Buffed"] = "無增益"
+--[[Translation missing --]]
+L["Oath of Light"] = "Oath of Light"
 L["Options"] = "選項"
 L["OPTIONS_BUTTON_TOOLTIP"] = "打開聖騎威能插件選項面板。"
 L["Override Druids / Paladins..."] = "覆蓋 德魯伊 / 聖騎士..."
@@ -169,6 +171,8 @@ L["Select the Seal you want to track"] = "選擇你要追蹤的聖印"
 --[[Translation missing --]]
 L["Show Aura Icons"] = "Show Aura Icons"
 L["Show Minimap Icon"] = "顯示小地圖圖標"
+--[[Translation missing --]]
+L["Show or hide the Oath of Light and its associated timer."] = "Show or hide the Oath of Light and its associated timer."
 L["Show Pets"] = "顯示寵物"
 L["Show Tooltips"] = "顯示滑鼠提示"
 L["SHOWPETS_OPTION_TOOLTIP_BCC"] = [=[如果你開啟此選項，寵物將會依附在玩家職業下面。

@@ -114,6 +114,8 @@ L["MINIMAP_ICON_TOOLTIP"] = [=[|cffffffff[Left-Click]|r 打开祝福分配面板
 |cffffffff[Right-Click]|r 打开选项]=]
 L["None"] = "None"
 L["None Buffed"] = "未祝福"
+--[[Translation missing --]]
+L["Oath of Light"] = "Oath of Light"
 L["Options"] = "选项设置"
 L["OPTIONS_BUTTON_TOOLTIP"] = "打开PallyPower选项面板"
 L["Override Druids / Paladins..."] = "覆盖 德鲁伊 / 圣骑士..."
@@ -168,6 +170,8 @@ L["Select the Seal you want to track"] = "选择你想监视的圣印"
 --[[Translation missing --]]
 L["Show Aura Icons"] = "Show Aura Icons"
 L["Show Minimap Icon"] = "显示小地图图标"
+--[[Translation missing --]]
+L["Show or hide the Oath of Light and its associated timer."] = "Show or hide the Oath of Light and its associated timer."
 L["Show Pets"] = "显示宠物"
 L["Show Tooltips"] = "显示鼠标提示"
 --[[Translation missing --]]

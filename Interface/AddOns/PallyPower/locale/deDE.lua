@@ -124,6 +124,8 @@ L["MINIMAP_ICON_TOOLTIP"] = [=[|cffffffff [Linksklick]|r Segen-Zuweisungs-Übers
 |cffffffff [Rechtsklick]|r Optionen öffnen]=]
 L["None"] = "Keine"
 L["None Buffed"] = "Keine gebuffed"
+--[[Translation missing --]]
+L["Oath of Light"] = "Oath of Light"
 L["Options"] = "Optionen"
 L["OPTIONS_BUTTON_TOOLTIP"] = "Öffnet die PallyPower Optionen."
 L["Override Druids / Paladins..."] = "Überschreibe großen Segen der Druiden / Paladine ..."
@@ -197,6 +199,8 @@ L["Select the Seal you want to track"] = "Wähle das Siegel aus, das du überwac
 --[[Translation missing --]]
 L["Show Aura Icons"] = "Show Aura Icons"
 L["Show Minimap Icon"] = "Minimap-Symbol anzeigen"
+--[[Translation missing --]]
+L["Show or hide the Oath of Light and its associated timer."] = "Show or hide the Oath of Light and its associated timer."
 L["Show Pets"] = "Begleiter zeigen"
 L["Show Tooltips"] = "Tooltips anzeigen"
 L["SHOWPETS_OPTION_TOOLTIP_BCC"] = [=[Wenn du diese Option aktiviert hast, werden Begleiter in der Schaltfläche angezeigt, die den gleichen großen Segen teilt.

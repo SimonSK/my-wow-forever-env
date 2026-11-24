@@ -122,6 +122,8 @@ L["MINIMAP_ICON_TOOLTIP"] = [=[|cffffffff[ЛКМ]|r Открыть назнач�
 |cffffffff[ПКМ]|r Открыть настройки]=]
 L["None"] = "Нет"
 L["None Buffed"] = "Нет баффов"
+--[[Translation missing --]]
+L["Oath of Light"] = "Oath of Light"
 L["Options"] = "Настройки"
 L["OPTIONS_BUTTON_TOOLTIP"] = "Открыть окно настроек PallyPower."
 L["Override Druids / Paladins..."] = "Автозамена для Друидов/Паладинов..."
@@ -181,6 +183,8 @@ L["Select the Seal you want to track"] = "Выбор Печати для отс�
 --[[Translation missing --]]
 L["Show Aura Icons"] = "Show Aura Icons"
 L["Show Minimap Icon"] = "Иконка у миникарты"
+--[[Translation missing --]]
+L["Show or hide the Oath of Light and its associated timer."] = "Show or hide the Oath of Light and its associated timer."
 L["Show Pets"] = "Показывать питомцев"
 L["Show Tooltips"] = "Показывать подсказки"
 L["SHOWPETS_OPTION_TOOLTIP_BCC"] = "Если вы включите эту опцию, питомцы будут отображаться в соответствующем классе, с которым у них общие Великие Благословения. |cffffff00Примечание: Бесы чернокнижника будут скрыты, если Фазовый сдвиг не отключен. Сайаад (Суккубы/Инкубы) всегда будут скрыты, так как их основное использование — Демоническое Жертвоприношение.|r"
