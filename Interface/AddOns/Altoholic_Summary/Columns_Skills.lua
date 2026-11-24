@@ -37,7 +37,6 @@ local function GetSkillRankColor(rank, skillCap)
 	if index > #skillColors then
 		index = #skillColors
 	end
-	
 	return skillColors[index]
 end
 
@@ -136,7 +135,7 @@ local function Tradeskill_OnEnter(frame, professionIndex, showRecipeStats)
 			
 				local orange, yellow, green, grey = DataStore:GetNumRecipesByColor(profession)
 				
-				tt:AddLine(" ")
+				--tt:AddLine(" ")
 				tt:AddLine(format("%d %s",
 					(orange + yellow + green + grey),
 					TRADESKILL_SERVICE_LEARN),1,1,1)

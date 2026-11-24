@@ -98,7 +98,7 @@ local function RegisterCurrency(name, id)
 	
 	-- [28] = 132775
 	-- iconFileID in retail, itemID in non-retail
-	currenciesInfo[currencyIndex] = id 
+	currenciesInfo[currencyIndex] = id
 	
 	return currencyIndex
 end
@@ -220,7 +220,7 @@ local function ScanCurrencies_NonRetail()
 		else
 			-- currencies[i] = format("1|%s|%d|%d", name, count or 0, itemID or 0)
 			
-			local currencyIndex = RegisterCurrency(name, itemID or 0)
+			local currencyIndex = RegisterCurrency(name, C_CurrencyInfo.GetCurrencyInfo(itemID).iconFileID) or 0
 			SaveCurrency(categoryIndex, currencyIndex, count or 0)
 		end
 	end

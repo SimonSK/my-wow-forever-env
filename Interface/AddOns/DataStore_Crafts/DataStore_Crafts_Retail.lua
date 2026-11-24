@@ -17,6 +17,7 @@ local isRetail = AddonFactory.isRetail
 local isForever = AddonFactory.isForever
 local isMainline = AddonFactory.isMainline
 local isCata = AddonFactory.isCata
+local isSeasonOfDiscovery = AddonFactory.isSeasonOfDiscovery
 local API_GetSpellName = GetSpellInfo or C_Spell.GetSpellName
 local hasArchaeology = (LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_CATACLYSM)
 local hasAdvancedProfessionInfo = (LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_CATACLYSM)
@@ -372,31 +373,39 @@ local function ScanRecipeCategories(profession, professionIndex)
 	
 	-- loop through this profession's categories
 	for _, id in ipairs( { C_TradeSkillUI.GetCategories() } ) do
+		-- Forever is showing SEASON OF DISCOVERY as a category, try to skip it
 		local info = C_TradeSkillUI.GetCategoryInfo(id)
-		
-		local skillLineCurrentLevel = info.skillLineCurrentLevel or 0
-		local skillLineMaxLevel = info.skillLineMaxLevel or 0
-		
-		cumulatedRank = cumulatedRank + skillLineCurrentLevel
-		cumulatedMaxRank = cumulatedMaxRank + skillLineMaxLevel
-		recipeCategoriesDB[info.categoryID] = info.name
-	
-		-- Save the ranks of the current category
-		local attributes = skillLineCurrentLevel			-- bits 0-9 rank
-				+ bit64:LeftShift(skillLineMaxLevel, 10)	-- bits 10-19 = max rank
-				+ bit64:LeftShift(info.categoryID, 20)		-- bits 20 = categoryID
-	
-		TableInsert(profession.CategoryInfo, attributes)
-		
-		-- save the names of subcategories
-		local subCats = { C_TradeSkillUI.GetSubCategories(info.categoryID) }
-		for _, subCatID in pairs(subCats) do
-			local subCatInfo = C_TradeSkillUI.GetCategoryInfo(subCatID)
+		if (info.name == "SEASON OF DISCOVERY" and isSeasonOfDiscovery) or info.name ~= "SEASON OF DISCOVERY" then
+			local skillLineCurrentLevel = info.skillLineCurrentLevel or 0
+			local skillLineMaxLevel = info.skillLineMaxLevel or 0
+			if type(C_TradeSkillUI) == "table" then
+				local baseInfo = C_TradeSkillUI.GetBaseProfessionInfo()
+				skillLineCurrentLevel = baseInfo.skillLevel
+				skillLineMaxLevel = baseInfo.maxSkillLevel
+			end
 			
-			recipeCategoriesDB[subCatInfo.categoryID] = subCatInfo.name
-		end
-		TableInsert(profession.Categories, subCats)
+			cumulatedRank = cumulatedRank + skillLineCurrentLevel
+			cumulatedMaxRank = cumulatedMaxRank + skillLineMaxLevel
+			recipeCategoriesDB[info.categoryID] = info.name
 		
+			-- Save the ranks of the current category
+			local attributes = skillLineCurrentLevel			-- bits 0-9 rank
+					+ bit64:LeftShift(skillLineMaxLevel, 10)	-- bits 10-19 = max rank
+					+ bit64:LeftShift(info.categoryID, 20)		-- bits 20 = categoryID
+		
+			TableInsert(profession.CategoryInfo, attributes)
+			
+			-- save the names of subcategories
+			local subCats = { C_TradeSkillUI.GetSubCategories(info.categoryID) }
+			for _, subCatID in pairs(subCats) do
+				local subCatInfo = C_TradeSkillUI.GetCategoryInfo(subCatID)
+				
+				recipeCategoriesDB[subCatInfo.categoryID] = subCatInfo.name
+			end
+			TableInsert(profession.Categories, subCats)
+		else
+			--print(profession.Name, "- skipped Category", info.name)
+		end
 	end
 	
 	SetProfessionRank(professionIndex, cumulatedRank, cumulatedMaxRank)
@@ -803,7 +812,7 @@ local function _GetNumRecipeCategories(profession)
 end
 
 local function _GetRecipeCategoryInfo(profession, index)
-	if not isMainline then
+	if not isMainline or isForever then
 		return profession.Categories[index]
 	end
 
@@ -938,12 +947,16 @@ local function _GetNumRecipesByColor(profession)
 	
 	_IterateRecipes(profession, 0, 0, function(recipeData) 
 		if recipeData then
-			local color = _GetRecipeInfo(recipeData)
-			counts[color] = counts[color] + 1
+			local color, _, isLearned = _GetRecipeInfo(recipeData)
+			-- Only count the recipes learned
+			if isLearned then
+				counts[color] = counts[color] + 1
+			end
 		end
 	end)
 	
-	return counts[3], counts[2], counts[1], counts[0]		-- orange, yellow, green, grey
+	--return counts[3], counts[2], counts[1], counts[0]		-- orange, yellow, green, grey
+	return counts[0], counts[1], counts[2], counts[3]		-- orange, yellow, green, grey (Forever version)
 end
 
 local function _IsCraftKnown(profession, spellID)

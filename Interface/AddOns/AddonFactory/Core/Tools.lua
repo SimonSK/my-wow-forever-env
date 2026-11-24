@@ -148,6 +148,9 @@ elseif version >= 16000 and version < 20000 then
 	addon.isMainline = true
 else
 	addon.isClassic = true
+	if type(C_Seasons) == "table" and (C_Seasons.GetActiveSeason() == Enum.SeasonID.SeasonOfDiscovery) then
+		addon.isSeasonOfDiscovery = true
+	end
 end
 
 

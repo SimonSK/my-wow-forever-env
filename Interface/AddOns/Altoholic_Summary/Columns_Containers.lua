@@ -141,18 +141,16 @@ Columns.RegisterColumn("BankSlots", {
 				return L["Bank not visited yet"]
 			end
 
-			return "98/98/98/98/98/98"
-
-			-- return format("%s/%s|r/%s|r/%s|r/%s|r/%s|r/%s|r/%s",
-				-- DataStore:GetContainerSize(character, -1),
-				-- DataStore:GetColoredContainerSize(character, 6),
-				-- DataStore:GetColoredContainerSize(character, 7),
-				-- DataStore:GetColoredContainerSize(character, 8),
-				-- DataStore:GetColoredContainerSize(character, 9),
-				-- DataStore:GetColoredContainerSize(character, 10),
-				-- DataStore:GetColoredContainerSize(character, 11),
-				-- DataStore:GetColoredContainerSize(character, 12)
-			-- )
+			if type(Constants.InventoryConstants) == "table" and type(Enum.BagIndex) == "table" then
+				local containerString = DataStore:GetContainerSize(character, Enum.BagIndex.CharacterBankTab_1)
+				for bag = 2, Constants.InventoryConstants.NumCharacterBankSlots do
+					containerString = format("%s/%s|r", containerString, DataStore:GetColoredContainerSize(character, Enum.BagIndex["CharacterBankTab_"..bag]))
+				end
+				return containerString
+			else
+				-- Stuff is broken if this is returned
+				return "98/98/98/98/98/98"
+			end
 		end,
 	OnEnter = function(frame)
 			local character = frame:GetParent().character
@@ -192,7 +190,8 @@ Columns.RegisterColumn("BankSlots", {
 				elseif size and size > 0 then
 					-- bank bags: show the bag itself
 					local link, _, _, bagType = DataStore:GetContainerInfo(character, tabID)
-					tt:AddDoubleLine(FormatBagType(link, bagType), FormatBagSlots(size, free))
+					--tt:AddDoubleLine(FormatBagType(link, bagType), FormatBagSlots(size, free))
+					tt:AddDoubleLine(format("%s %s", Formatter.Texture18(C_Item.GetItemIconByID(link)), C_Item.GetItemNameByID(link)), FormatBagSlots(size, free))
 				end
 					
 					

@@ -1,12 +1,12 @@
-## Interface: 120105, 16001
-## Title: DataStore_Stats
+## Interface: 120105, 50504, 20506, 11509
+## Title: DataStore_Achievements
 ## IconTexture: Interface\Icons\garrison_building_storehouse
 
-## Notes: Stores information about character statistics
+## Notes: Stores information about character achievements
 ## Author: Thaoky (EU-Marécages de Zangar)
 ## Version: 2026.10.14
 ## Dependencies: AddonFactory, DataStore
-## SavedVariables: DataStore_Stats_Characters, DataStore_Stats_Weekly, DataStore_Stats_Dungeons
+## SavedVariables: DataStore_Achievements_Characters
 ## X-Category: Interface Enhancements
 
 ## Category: Libraries
@@ -21,4 +21,5 @@
 ## Category-zhCN: 函数库
 ## Category-zhTW: 函式庫
 
-DataStore_Stats.lua
+Enum.lua
+DataStore_Achievements.lua

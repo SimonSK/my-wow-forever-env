@@ -21,6 +21,24 @@ addon.Version = format("v%s", GetAddOnMetadata(addonName, "Version"))
 
 addon.ThisAccount = "Default"
 addon.ThisRealm = GetRealmName()
+
+if addon.ThisRealm == "" then
+	if AddonFactory.isForever then
+		addon.ThisRealm = "Forever"
+		if C_GameRules.IsGameRuleActive(Enum.GameRule.RPRuleset) and C_GameRules.IsGameRuleActive(Enum.GameRule.PvPRuleset) then
+			addon.ThisRealm = addon.ThisRealm.."RPPvP"
+		elseif C_GameRules.IsGameRuleActive(Enum.GameRule.RPRuleset) then
+			addon.ThisRealm = addon.ThisRealm.."RP"
+		elseif C_GameRules.IsGameRuleActive(Enum.GameRule.PvPRuleset) then
+			addon.ThisRealm = addon.ThisRealm.."PvP"
+		elseif C_GameRules.IsGameRuleActive(Enum.GameRule.HardcoreRuleset) then
+			addon.ThisRealm = addon.ThisRealm.."Hardcore"
+		end
+	else
+		assert(addon.ThisRealm and addon.ThisRealm ~= "", addonName..": Realm is nil/empty")
+	end
+end
+
 addon.ThisChar = AddonFactory:GetPlayerName()
 
 addon.ThisCharKey = format("%s.%s.%s", addon.ThisAccount, addon.ThisRealm, addon.ThisChar)
