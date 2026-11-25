@@ -20,7 +20,10 @@ CHATTYNATOR_CONFIG = {
 ["remove_old_messages"] = true,
 ["edit_box_height"] = 32,
 ["timestamp_on_right"] = false,
+["hide_last_names"] = false,
 ["applied_message_ids"] = true,
+["show_combat_log"] = true,
+["message_font_outline"] = "none",
 ["chat_colors"] = {
 ["CHANNEL12"] = {
 ["r"] = 1,
@@ -72,6 +75,11 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
+["CHANNEL8"] = {
+["r"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
+},
 ["SYSTEM"] = {
 ["r"] = 1,
 ["g"] = 1,
@@ -112,30 +120,30 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 0.988235354423523,
 },
-["INSTANCE_CHAT_LEADER"] = {
+["CHANNEL_Custom: TrueshotLodge1454"] = {
 ["r"] = 1,
-["g"] = 0.2823529541492462,
-["b"] = 0.03529411926865578,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["BATTLENET"] = {
 ["r"] = 1,
 ["g"] = 1,
 ["b"] = 1,
 },
-["CHANNEL_Custom: TrueshotLodge1454"] = {
+["RAID"] = {
 ["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["g"] = 0.4980392456054688,
+["b"] = 0,
 },
 ["PET_BATTLE_INFO"] = {
 ["r"] = 0.8823530077934265,
 ["g"] = 0.8705883026123047,
 ["b"] = 0.364705890417099,
 },
-["RAID"] = {
+["DND"] = {
 ["r"] = 1,
-["g"] = 0.4980392456054688,
-["b"] = 0,
+["g"] = 0.501960813999176,
+["b"] = 1,
 },
 ["LOOT"] = {
 ["r"] = 0,
@@ -152,12 +160,17 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["WHISPER_FOREIGN"] = {
+["CHANNEL_Custom: TrueshotLodge1442"] = {
 ["r"] = 1,
-["g"] = 0.501960813999176,
-["b"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["CHANNEL_Custom: TrueshotLodge1456"] = {
+["r"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
+},
+["CHANNEL_TrueshotLodge1414"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
@@ -166,11 +179,6 @@ CHATTYNATOR_CONFIG = {
 ["r"] = 1,
 ["g"] = 1,
 ["b"] = 1,
-},
-["CHANNEL_TrueshotLodge1415"] = {
-["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
 },
 ["CHANNEL14"] = {
 ["r"] = 1,
@@ -187,7 +195,7 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 0,
 },
-["CHANNEL_TrueshotLodge1414"] = {
+["CHANNEL_TrueshotLodge1415"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
@@ -197,10 +205,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.250980406999588,
 },
-["CHANNEL_Custom: TrueshotLodge1412"] = {
+["WHISPER_FOREIGN"] = {
 ["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["g"] = 0.501960813999176,
+["b"] = 1,
 },
 ["CHANNEL_Custom: curatorhord"] = {
 ["r"] = 1,
@@ -217,10 +225,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7725490927696228,
 ["b"] = 1,
 },
-["RESTRICTED"] = {
+["CHANNEL13"] = {
 ["r"] = 1,
-["g"] = 0,
-["b"] = 0,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["COMBAT_MISC_INFO"] = {
 ["r"] = 0.501960813999176,
@@ -232,15 +240,15 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 0.9647059440612793,
 },
-["MONSTER_SAY"] = {
-["r"] = 1,
-["g"] = 1,
-["b"] = 0.6235294342041016,
-},
 ["CHANNEL_Custom: TrueshotLodge1415"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
+},
+["RAID_LEADER"] = {
+["r"] = 1,
+["g"] = 0.2823529541492462,
+["b"] = 0.03529411926865578,
 },
 ["CHANNEL11"] = {
 ["r"] = 1,
@@ -252,10 +260,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 0.250980406999588,
 },
-["RAID_LEADER"] = {
+["RESTRICTED"] = {
 ["r"] = 1,
-["g"] = 0.2823529541492462,
-["b"] = 0.03529411926865578,
+["g"] = 0,
+["b"] = 0,
 },
 ["MONSTER_PARTY"] = {
 ["r"] = 0.6666666865348816,
@@ -272,7 +280,7 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["CHANNEL_Trade"] = {
+["CHANNEL_Custom: TrueshotLodge1450"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
@@ -287,7 +295,7 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["CHANNEL_Custom: TrueshotLodge1442"] = {
+["CHANNEL_Custom: TrueshotLodge1412"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
@@ -307,10 +315,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["FILTERED"] = {
+["BG_SYSTEM_NEUTRAL"] = {
 ["r"] = 1,
-["g"] = 0,
-["b"] = 0,
+["g"] = 0.4705882668495178,
+["b"] = 0.03921568766236305,
 },
 ["MONSTER_WHISPER"] = {
 ["r"] = 1,
@@ -332,12 +340,12 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.501960813999176,
 ["b"] = 0.250980406999588,
 },
-["CHANNEL13"] = {
+["CHANNEL9"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["CHANNEL_Custom: TrueshotLodge1450"] = {
+["CHANNEL_Custom: General"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
@@ -367,11 +375,6 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["CHANNEL_Custom: General"] = {
-["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
-},
 ["GUILD_DISCORD"] = {
 ["r"] = 0.4470588564872742,
 ["g"] = 0.4941176772117615,
@@ -382,14 +385,19 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["BG_SYSTEM_NEUTRAL"] = {
+["CHANNEL_Custom: TrueshotLodge1440"] = {
 ["r"] = 1,
-["g"] = 0.4705882668495178,
-["b"] = 0.03921568766236305,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
-["MONEY"] = {
+["CHANNEL_Trade"] = {
 ["r"] = 1,
-["g"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
+},
+["FILTERED"] = {
+["r"] = 1,
+["g"] = 0,
 ["b"] = 0,
 },
 ["TEXT_EMOTE"] = {
@@ -407,10 +415,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 0.250980406999588,
 },
-["CHANNEL_Custom: TrueshotLodge1440"] = {
-["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["DISCORD_PLAYER_NAME"] = {
+["r"] = 0.8784314393997192,
+["g"] = 0.8901961445808411,
+["b"] = 1,
 },
 ["CHANNEL_TrueshotLodge2521"] = {
 ["r"] = 1,
@@ -432,12 +440,12 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.6666666865348816,
 ["b"] = 1,
 },
-["DISCORD_PLAYER_NAME"] = {
-["r"] = 0.8784314393997192,
-["g"] = 0.8901961445808411,
-["b"] = 1,
+["CHANNEL18"] = {
+["r"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
-["CHANNEL_Services"] = {
+["CHANNEL_Custom: ttgssync"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
@@ -462,7 +470,7 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 0,
 },
-["CHANNEL18"] = {
+["CHANNEL_Services"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
@@ -542,10 +550,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7843137979507446,
 ["b"] = 1,
 },
-["CHANNEL9"] = {
+["MONEY"] = {
 ["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["g"] = 1,
+["b"] = 0,
 },
 ["CHANNEL_NOTICE"] = {
 ["r"] = 0.7529412508010864,
@@ -587,12 +595,12 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.8666667342185974,
 ["b"] = 0,
 },
-["CHANNEL16"] = {
+["MONSTER_SAY"] = {
 ["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["g"] = 1,
+["b"] = 0.6235294342041016,
 },
-["CHANNEL8"] = {
+["CHANNEL16"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
@@ -617,10 +625,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["DND"] = {
+["INSTANCE_CHAT_LEADER"] = {
 ["r"] = 1,
-["g"] = 0.501960813999176,
-["b"] = 1,
+["g"] = 0.2823529541492462,
+["b"] = 0.03529411926865578,
 },
 ["PET_BATTLE_COMBAT_LOG"] = {
 ["r"] = 0.9058824181556702,
@@ -643,20 +651,18 @@ CHATTYNATOR_CONFIG = {
 ["b"] = 1,
 },
 },
-["message_font_outline"] = "none",
-["show_combat_log"] = true,
 ["reduce_redundant_text"] = false,
 ["show_tabs_1"] = "always",
 ["class_colors"] = true,
-["fade_completely"] = false,
 ["combat_log_migration"] = 1,
+["enable_smooth_scrolling_combat"] = false,
 ["show_font_shadow"] = false,
 ["disabled_skins"] = {
 },
 ["edit_box_width"] = 430,
 ["show_buttons"] = "always",
 ["copy_timestamps"] = true,
-["force_tab_overflow"] = false,
+["message_font_size"] = 14,
 ["skins"] = {
 ["blizzard"] = {
 ["chat_transparency"] = 0.2,
@@ -697,9 +703,8 @@ CHATTYNATOR_CONFIG = {
 ["edit_box_separator_gap"] = false,
 },
 },
-["message_font_size"] = 14,
+["force_tab_overflow"] = false,
 ["edit_box_position"] = "bottom",
-["timestamp_format"] = "%X",
 ["keep_edit_box_visible"] = true,
 ["enable_combat_messages"] = false,
 ["show_level"] = true,
@@ -787,16 +792,17 @@ CHATTYNATOR_CONFIG = {
 },
 },
 ["store_messages"] = true,
+["timestamp_format"] = "%X",
 ["current_skin"] = "boxed",
 ["link_urls"] = true,
 ["button_position"] = "outside_left",
 ["timestamp_spacing"] = 1,
 ["new_whisper_new_tab"] = 1,
-["enable_smooth_scrolling_combat"] = false,
+["fade_completely"] = false,
 ["line_spacing_2"] = 0,
 ["applied_player_table_5"] = true,
 ["edit_box_vertical_offset"] = 0,
-["hide_last_names"] = false,
+["item_icons"] = false,
 },
 ["DEFAULT"] = {
 ["tab_flash_on"] = "all",
@@ -1437,7 +1443,7 @@ CHATTYNATOR_CONFIG = {
 },
 }
 CHATTYNATOR_MESSAGE_LOG = {
-["cleanIndex"] = 4248,
+["cleanIndex"] = 4327,
 ["current"] = {
 {
 ["recordedBy"] = "Simonshaman-Windseeker",
@@ -82188,8 +82194,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "EMOTE",
 ["event"] = "CHAT_MSG_TEXT_EMOTE",
+["type"] = "EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82210,8 +82216,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 51,
 },
-["type"] = "EMOTE",
 ["event"] = "CHAT_MSG_TEXT_EMOTE",
+["type"] = "EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82232,8 +82238,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 51,
 },
-["type"] = "EMOTE",
 ["event"] = "CHAT_MSG_TEXT_EMOTE",
+["type"] = "EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82254,8 +82260,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -82276,8 +82282,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -82298,8 +82304,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -82320,8 +82326,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -82338,8 +82344,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Orokai",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82356,8 +82362,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Orokai",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82374,8 +82380,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Orokai",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82396,8 +82402,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "ROGUE",
 ["level"] = 51,
 },
-["type"] = "YELL",
 ["event"] = "CHAT_MSG_YELL",
+["type"] = "YELL",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82414,8 +82420,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82432,8 +82438,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82450,8 +82456,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82468,8 +82474,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82486,8 +82492,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82504,8 +82510,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82526,8 +82532,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "HUNTER",
 ["level"] = 31,
 },
-["type"] = "YELL",
 ["event"] = "CHAT_MSG_YELL",
+["type"] = "YELL",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82544,8 +82550,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82562,8 +82568,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82580,8 +82586,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82598,8 +82604,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82616,8 +82622,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82634,8 +82640,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82652,8 +82658,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82670,8 +82676,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82688,8 +82694,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82706,8 +82712,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82724,8 +82730,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82742,8 +82748,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82760,8 +82766,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82778,8 +82784,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82796,8 +82802,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82814,8 +82820,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82836,8 +82842,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "HUNTER",
 ["level"] = 18,
 },
-["type"] = "EMOTE",
 ["event"] = "CHAT_MSG_TEXT_EMOTE",
+["type"] = "EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82854,8 +82860,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82872,8 +82878,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82890,8 +82896,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82908,8 +82914,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82926,8 +82932,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82944,8 +82950,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Magatha Grimtotem",
 },
-["type"] = "MONSTER_SAY",
 ["event"] = "CHAT_MSG_MONSTER_SAY",
+["type"] = "MONSTER_SAY",
 },
 ["color"] = {
 ["b"] = 0.6235294342041016,
@@ -82962,8 +82968,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Herald of Thrall",
 },
-["type"] = "MONSTER_YELL",
 ["event"] = "CHAT_MSG_MONSTER_YELL",
+["type"] = "MONSTER_YELL",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -82980,8 +82986,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Herald of Thrall",
 },
-["type"] = "MONSTER_YELL",
 ["event"] = "CHAT_MSG_MONSTER_YELL",
+["type"] = "MONSTER_YELL",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -83002,8 +83008,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83017,8 +83023,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 {
 ["recordedBy"] = "Simondruid-Windseeker",
 ["typeInfo"] = {
-["type"] = "SKILL",
 ["event"] = "CHAT_MSG_SKILL",
+["type"] = "SKILL",
 },
 ["color"] = {
 ["b"] = 1,
@@ -83039,8 +83045,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83061,8 +83067,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83083,8 +83089,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83105,8 +83111,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83120,8 +83126,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 {
 ["recordedBy"] = "Simondruid-Windseeker",
 ["typeInfo"] = {
-["type"] = "SKILL",
 ["event"] = "CHAT_MSG_SKILL",
+["type"] = "SKILL",
 },
 ["color"] = {
 ["b"] = 1,
@@ -83142,8 +83148,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83157,8 +83163,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 {
 ["recordedBy"] = "Simondruid-Windseeker",
 ["typeInfo"] = {
-["type"] = "SKILL",
 ["event"] = "CHAT_MSG_SKILL",
+["type"] = "SKILL",
 },
 ["color"] = {
 ["b"] = 1,
@@ -83175,8 +83181,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Greater Plainstrider",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -83197,8 +83203,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83215,8 +83221,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Greater Plainstrider",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -83233,8 +83239,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Greater Plainstrider",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -83255,8 +83261,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83277,8 +83283,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83295,8 +83301,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Greater Plainstrider",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -83317,8 +83323,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83332,8 +83338,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 {
 ["recordedBy"] = "Simondruid-Windseeker",
 ["typeInfo"] = {
-["type"] = "SKILL",
 ["event"] = "CHAT_MSG_SKILL",
+["type"] = "SKILL",
 },
 ["color"] = {
 ["b"] = 1,
@@ -83354,8 +83360,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83372,8 +83378,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Greater Plainstrider",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -83390,8 +83396,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Greater Plainstrider",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -83408,8 +83414,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Greater Plainstrider",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -83430,8 +83436,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83452,8 +83458,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83474,8 +83480,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83496,8 +83502,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83514,8 +83520,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["player"] = {
 ["name"] = "Greater Plainstrider",
 },
-["type"] = "MONSTER_EMOTE",
 ["event"] = "CHAT_MSG_MONSTER_EMOTE",
+["type"] = "MONSTER_EMOTE",
 },
 ["color"] = {
 ["b"] = 0.250980406999588,
@@ -83536,8 +83542,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83558,8 +83564,8 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["class"] = "DRUID",
 ["level"] = 20,
 },
-["type"] = "LOOT",
 ["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
 },
 ["color"] = {
 ["b"] = 0,
@@ -83569,6 +83575,152 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["text"] = "You receive loot: |cnIQ1:|Hitem:15297::::::::20:1484:::::::::|h[Grizzly Bracers]|h|r",
 ["id"] = "s10_4320",
 ["timestamp"] = 1795510188,
+},
+{
+["recordedBy"] = "Simondruid-Windseeker",
+["typeInfo"] = {
+["player"] = {
+["race"] = "Troll",
+["name"] = "Dazgar Fadedsmite",
+["sex"] = 2,
+["class"] = "PRIEST",
+["level"] = 17,
+},
+["event"] = "CHAT_MSG_TEXT_EMOTE",
+["type"] = "EMOTE",
+},
+["color"] = {
+["r"] = 1,
+["g"] = 0.501960813999176,
+["b"] = 0.250980406999588,
+},
+["text"] = "|Hplayer:Dazgar Fadedsmite:231:TEXT_EMOTE:|h|cffffffffDazgar Fadedsmite|r|h greets everyone with a hearty hello!",
+["timestamp"] = 1795567190,
+["id"] = "s10_4321",
+},
+{
+["recordedBy"] = "Simondruid-Windseeker",
+["typeInfo"] = {
+["player"] = {
+["race"] = "Orc",
+["name"] = "Jager Grimbones",
+["sex"] = 2,
+["class"] = "HUNTER",
+["level"] = 14,
+},
+["event"] = "CHAT_MSG_TEXT_EMOTE",
+["type"] = "EMOTE",
+},
+["color"] = {
+["r"] = 1,
+["g"] = 0.501960813999176,
+["b"] = 0.250980406999588,
+},
+["text"] = "|Hplayer:Jager Grimbones:236:TEXT_EMOTE:|h|cffaad372Jager Grimbones|r|h welcomes Barg.",
+["timestamp"] = 1795567198,
+["id"] = "s10_4322",
+},
+{
+["recordedBy"] = "Simondruid-Windseeker",
+["typeInfo"] = {
+["player"] = {
+["race"] = "Scourge",
+["name"] = "Simonmage Windseeker",
+["sex"] = 3,
+["class"] = "MAGE",
+["level"] = 22,
+},
+["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
+},
+["color"] = {
+["r"] = 0,
+["g"] = 0.6666666865348816,
+["b"] = 0,
+},
+["text"] = "Simonmage Windseeker creates: |cnIQ1:|Hitem:2136::::::::20:1484:::::::::|h[Conjured Purified Water]|h|rx6.",
+["timestamp"] = 1795567314,
+["id"] = "s10_4323",
+},
+{
+["recordedBy"] = "Simondruid-Windseeker",
+["typeInfo"] = {
+["player"] = {
+["race"] = "Scourge",
+["name"] = "Simonmage Windseeker",
+["sex"] = 3,
+["class"] = "MAGE",
+["level"] = 22,
+},
+["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
+},
+["color"] = {
+["r"] = 0,
+["g"] = 0.6666666865348816,
+["b"] = 0,
+},
+["text"] = "Simonmage Windseeker creates: |cnIQ1:|Hitem:2136::::::::20:1484:::::::::|h[Conjured Purified Water]|h|rx6.",
+["timestamp"] = 1795567317,
+["id"] = "s10_4324",
+},
+{
+["recordedBy"] = "Simondruid-Windseeker",
+["typeInfo"] = {
+["player"] = {
+["race"] = "Scourge",
+["name"] = "Simonmage Windseeker",
+["sex"] = 3,
+["class"] = "MAGE",
+["level"] = 22,
+},
+["event"] = "CHAT_MSG_LOOT",
+["type"] = "LOOT",
+},
+["color"] = {
+["r"] = 0,
+["g"] = 0.6666666865348816,
+["b"] = 0,
+},
+["text"] = "Simonmage Windseeker creates: |cnIQ1:|Hitem:2136::::::::20:1484:::::::::|h[Conjured Purified Water]|h|rx6.",
+["timestamp"] = 1795567320,
+["id"] = "s10_4325",
+},
+{
+["recordedBy"] = "Simondruid-Windseeker",
+["typeInfo"] = {
+["player"] = {
+["name"] = "Herald of Thrall",
+},
+["event"] = "CHAT_MSG_MONSTER_YELL",
+["type"] = "MONSTER_YELL",
+},
+["color"] = {
+["b"] = 0.250980406999588,
+["g"] = 0.250980406999588,
+["r"] = 1,
+},
+["text"] = "Herald of Thrall yells: Honor your heroes! On this day, they have dealt a great blow against one of our most hated enemies! The false Warchief, Rend Blackhand, has fallen!",
+["id"] = "s10_4326",
+["timestamp"] = 1795567420,
+},
+{
+["recordedBy"] = "Simondruid-Windseeker",
+["typeInfo"] = {
+["player"] = {
+["name"] = "Herald of Thrall",
+},
+["event"] = "CHAT_MSG_MONSTER_YELL",
+["type"] = "MONSTER_YELL",
+},
+["color"] = {
+["b"] = 0.250980406999588,
+["g"] = 0.250980406999588,
+["r"] = 1,
+},
+["text"] = "Herald of Thrall yells: Be bathed in the power of the Warchief! Drink in his might! Battle for the glory of the Horde!",
+["id"] = "s10_4327",
+["timestamp"] = 1795567424,
 },
 },
 ["version"] = 1,

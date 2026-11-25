@@ -11,7 +11,7 @@ ThreatPlatesDB = {
 ["Simon Windseeker"] = "Simon",
 },
 ["global"] = {
-["version"] = "13.3.8",
+["version"] = "13.3.9",
 },
 ["profiles"] = {
 ["Simon"] = {

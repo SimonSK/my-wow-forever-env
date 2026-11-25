@@ -92,6 +92,36 @@ NRCdatabase = {
 ["meClass"] = "DRUID",
 ["me"] = "Simondruid Windseeker",
 ["where"] = "The Barrens",
+["time"] = 1795567324,
+["tradeWho"] = "Simonmage Windseeker",
+["tradeWhoClass"] = "MAGE",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:2136::::::::20:1484:::::::::|h[Conjured Purified Water]|h|r",
+["count"] = 18,
+["texture"] = 132816,
+},
+},
+},
+{
+["meClass"] = "DRUID",
+["me"] = "Simondruid Windseeker",
+["where"] = "The Barrens",
+["time"] = 1795567309,
+["tradeWho"] = "Simonmage Windseeker",
+["tradeWhoClass"] = "MAGE",
+["targetItems"] = {
+{
+["itemLink"] = "|cnIQ1:|Hitem:1114::::::::20:1484:::::::::|h[Conjured Rye]|h|r",
+["count"] = 20,
+["texture"] = 133968,
+},
+},
+},
+{
+["meClass"] = "DRUID",
+["me"] = "Simondruid Windseeker",
+["where"] = "The Barrens",
 ["targetItems"] = {
 {
 ["count"] = 2,

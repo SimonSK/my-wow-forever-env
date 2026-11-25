@@ -1,9 +1,6 @@
 
 CHATTYNATOR_CURRENT_PROFILE = "Simon"
 CHATTYNATOR_COMMAND_HISTORY = {
-" yea but too much in one basket",
-"/s /ss",
-"/s /ea",
 "/s /inv Simonmage Windseeker ",
 "/s /reload",
 "/s /tptp",

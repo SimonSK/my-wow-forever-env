@@ -709,41 +709,6 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["favouriteItems"] = {
 },
-["trackerSlots"] = {
-},
-["trackerChains"] = {
-},
-["arrowDone"] = {
-},
-["arrowChains"] = {
-},
-["rpgBosses"] = {
-["Ragefire Chasm"] = {
-[11517] = true,
-["oggleflint"] = true,
-[11518] = true,
-["jergosh the invoker"] = true,
-[11519] = true,
-["bazzalan"] = true,
-[11520] = true,
-["taragaman the hungerer"] = true,
-},
-},
-["runTracker"] = {
-},
-["journalMode"] = "gamer",
-["hiddenDungeons"] = {
-},
-["flightPoints"] = {
-["crossroads, the barrens"] = true,
-["orgrimmar, durotar"] = true,
-["camp taurajo, the barrens"] = true,
-["thunder bluff, mulgore"] = true,
-["the sepulcher, silverpine forest"] = true,
-["undercity, tirisfal"] = true,
-["ratchet, the barrens"] = true,
-},
-["flightPointsVersion"] = 2,
 ["rpgQuests"] = {
 [5722] = true,
 [5761] = true,
@@ -766,5 +731,56 @@ ForeverDungeonJournalCharacterDB = {
 [92401] = true,
 [95216] = true,
 [1014] = true,
+},
+["trackerSlots"] = {
+},
+["trackerChains"] = {
+},
+["arrowDone"] = {
+},
+["rpgBosses"] = {
+["Ragefire Chasm"] = {
+[11517] = true,
+["oggleflint"] = true,
+[11518] = true,
+["jergosh the invoker"] = true,
+[11519] = true,
+["bazzalan"] = true,
+[11520] = true,
+["taragaman the hungerer"] = true,
+},
+},
+["journalMode"] = "gamer",
+["runTracker"] = {
+},
+["flightPointsVersion"] = 2,
+["hiddenDungeons"] = {
+},
+["flightPoints"] = {
+["crossroads, the barrens"] = true,
+["orgrimmar, durotar"] = true,
+["ratchet, the barrens"] = true,
+["thunder bluff, mulgore"] = true,
+["the sepulcher, silverpine forest"] = true,
+["undercity, tirisfal"] = true,
+["camp taurajo, the barrens"] = true,
+},
+["arrowChains"] = {
+},
+["lootFilter"] = {
+["enabled"] = false,
+["classOnly"] = false,
+["weaponTypes"] = {
+},
+["schools"] = {
+},
+["matchAll"] = true,
+["resists"] = {
+},
+["stats"] = {
+},
+["armorTypes"] = {
+},
+["recipes"] = false,
 },
 }

@@ -1,6 +1,6 @@
 
 BugGrabberDB = {
-["session"] = 512,
+["session"] = 524,
 ["lastSanitation"] = 3,
 ["errors"] = {
 {
@@ -300,6 +300,34 @@ BugGrabberDB = {
 ["stack"] = "[Interface/AddOns/DataStore/DataStore.lua]:185: in function 'GetCharacterInfoByID'\n[Interface/AddOns/DataStore_Quests/DataStore_Quests.lua]:605: in function <...terface/AddOns/DataStore_Quests/DataStore_Quests.lua:598>\n[tail call]: ?\n[Interface/AddOns/Altoholic/Main.lua]:324: in function 'ListCharsOnQuest'\n[Interface/AddOns/Altoholic/Services/Tooltip.lua]:812: in function <Interface/AddOns/Altoholic/Services/Tooltip.lua:811>\n[C]: in function 'Show'\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:300: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:245>\n[C]: in function 'securecallfunction'\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:242: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:241>\n[tail call]: ?\n[tail call]: ?\n[Interface/AddOns/Blizzard_UIPanels_Game/Mainline/ItemRef.lua]:394: in function 'ItemRefSetHyperlink'\n[Interface/AddOns/Blizzard_UIPanels_Game/Mainline/ItemRef.lua]:25: in function <...e/AddOns/Blizzard_UIPanels_Game/Mainline/ItemRef.lua:6>\n[C]: in function 'SetItemRef'\n[*CommunitiesChatFrame.xml:20_OnHyperlinkClick]:1: in function <[string \"*CommunitiesChatFrame.xml:20_OnHyperlinkCli...\"]:1>\n",
 ["session"] = 512,
 ["counter"] = 26,
+},
+{
+["message"] = "LUA_WARNING: AddOn [DataStore_Stats] failure to load: missing",
+["session"] = 513,
+["time"] = 1795566006,
+["counter"] = 1,
+},
+{
+["message"] = "LUA_WARNING: AddOn [Altoholic] Failed to load missing dependency [DataStore_Stats]",
+["session"] = 513,
+["time"] = 1795566006,
+["counter"] = 1,
+},
+{
+["message"] = "...face/AddOns/DataStore_Talents/API/Specialization.lua:57: attempt to index field 'ref' (a nil value)",
+["time"] = 1795567682,
+["locals"] = "class=\"SHAMAN\"\n(*temporary)=nil\n(*temporary)=\"SHAMAN\"\n(*temporary)=\"attempt to index field 'ref' (a nil value)\"\naddon=<table>{\n name=\"DataStore_Talents\"\n CharacterIdTables=<table>\n ThisCharID=7\n}\n",
+["stack"] = "[Interface/AddOns/DataStore_Talents/API/Specialization.lua]:57: in function <...face/AddOns/DataStore_Talents/API/Specialization.lua:55>\n[Interface/AddOns/DataStore_Talents/API/Specialization.lua]:64: in function <...face/AddOns/DataStore_Talents/API/Specialization.lua:61>\n[tail call]: ?\n[Interface/AddOns/Altoholic_Characters/Frames/Talents.lua]:32: in function 'Update'\n[Interface/AddOns/Altoholic_Characters/TabCharacters.lua]:612: in function 'ShowPanel'\n[Interface/AddOns/Altoholic_Characters/TabCharacters.lua]:682: in function 'Update'\n[Interface/AddOns/Altoholic_Characters/TabCharacters.lua]:92: in function 'func'\n[Interface/AddOns/AddonFactory/Templates/DropDownMenu.lua]:48: in function 'OnClick'\n[*DropDownMenu.xml:142_OnClick]:1: in function <[string \"*DropDownMenu.xml:142_OnClick\"]:1>\n",
+["session"] = 515,
+["counter"] = 2,
+},
+{
+["message"] = "Interface/AddOns/DataStore/DataStore.lua:253: bad argument #1 to 'pairs' (table expected, got nil)",
+["time"] = 1795567956,
+["locals"] = "self=<table>{\n ThisCharKey=\"Default.Forever.Simonhunter Windseeker\"\n ThisCharID=10\n Enum=<table>\n Version=\"v2026.10.14\"\n ThisChar=\"Simonhunter Windseeker\"\n ThisAccount=\"Default\"\n name=\"DataStore\"\n ThisRealm=\"Forever\"\n Frames=DataStoreFrames <DataStore.lua:122>\n AltGroups=<table>\n ThisFaction=\"Horde\"\n}\nout=<table>\nallCharacters=<table>\n",
+["stack"] = "[Interface/AddOns/DataStore/DataStore.lua]:253: in function 'GetAccounts'\n[Interface/AddOns/Altoholic_Summary/Services/Characters.lua]:41: in function <...ace/AddOns/Altoholic_Summary/Services/Characters.lua:27>\n[Interface/AddOns/Altoholic_Summary/Services/Characters.lua]:358: in function <...ace/AddOns/Altoholic_Summary/Services/Characters.lua:329>\n[Interface/AddOns/Altoholic_Summary/Services/Characters.lua]:437: in function 'GetView'\n[Interface/AddOns/Altoholic_Summary/TabSummary.lua]:679: in function 'Update'\n[Interface/AddOns/Altoholic_Summary/TabSummary.lua]:169: in function 'onClickButton1'\n[Interface/AddOns/AddonFactory/Templates/MessageBox.lua]:35: in function 'Button_OnClick'\n[*MessageBox.xml:53_OnClick]:1: in function <[string \"*MessageBox.xml:53_OnClick\"]:1>\n",
+["session"] = 518,
+["counter"] = 2,
 },
 },
 }

@@ -178,4 +178,5 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/ss",
 "/inv Simonrogue Windseeker ",
 "/inv Simonshaman Windseeker ",
+"/inv Simondruid Windseeker ",
 }

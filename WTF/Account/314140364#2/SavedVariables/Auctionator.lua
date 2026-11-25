@@ -55,7 +55,8 @@ AUCTIONATOR_CONFIG = {
 ["crafting_info_show_cost"] = true,
 ["columns_cancelling"] = {
 },
-["show_selling_bid_price"] = false,
+["columns_shopping_buy_commodity"] = {
+},
 ["default_quantities"] = {
 0,
 1,
@@ -84,8 +85,7 @@ nil,
 ["auction_mean_days_limit"] = 21,
 ["selling_bag_collapsed"] = false,
 ["selling_auto_select_next"] = false,
-["columns_shopping_buy_commodity"] = {
-},
+["show_selling_bid_price"] = false,
 ["auction_sales_preference"] = "percentage",
 ["autoscan_interval"] = 15,
 ["splash_screen_version"] = "anything",
@@ -100,7 +100,7 @@ AUCTIONATOR_SHOPPING_LISTS = {
 }
 AUCTIONATOR_PRICE_DATABASE = {
 ["__dbversion"] = 8,
-["PvE"] = "¡Gversion",
+["PvE Horde"] = "¢HsuffixesõGversion",
 }
 AUCTIONATOR_POSTING_HISTORY = {
 ["__dbversion"] = 1,
@@ -330,7 +330,7 @@ AUCTIONATOR_VENDOR_PRICE_CACHE = {
 ["20753"] = 4000,
 ["4599"] = 400,
 ["6369"] = 1980,
-["6529"] = 50,
+["10317"] = 4000,
 ["5772"] = 450,
 ["8924"] = 100,
 ["6368"] = 360,
@@ -394,7 +394,7 @@ AUCTIONATOR_VENDOR_PRICE_CACHE = {
 ["277114"] = 23,
 ["2399"] = 217,
 ["16358"] = 4000,
-["10317"] = 4000,
+["6529"] = 50,
 ["253668"] = 225,
 ["852"] = 1739,
 ["17033"] = 1800,

@@ -1,6 +1,6 @@
 
 QuestieTrace = {
-["schemaVersion"] = 19,
+["schemaVersion"] = 21,
 ["settings"] = {
 ["debug"] = false,
 ["dataCollectionConsent"] = true,
@@ -2985,7 +2985,7 @@ QuestieTraceDumps = {
 1417,
 1424,
 },
-["capturedAt"] = "2026-11-23_23-14-22",
+["capturedAt"] = "2026-11-24_17-56-36",
 ["schemaVersion"] = 1,
 ["topUiMapIDs"] = {
 947,

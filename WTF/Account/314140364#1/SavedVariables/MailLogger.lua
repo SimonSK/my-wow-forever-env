@@ -12434,5 +12434,43 @@ true,
 },
 },
 },
+{
+["TargetName"] = "Simonmage-Windseeker",
+["Date"] = "2026-11-24",
+["Time"] = "17:41:46",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simondruid-",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cnIQ1:|Hitem:1114::::::::20:1484:::::::::|h[Conjured Rye]|h|r",
+["Name"] = "Conjured Rye",
+},
+},
+},
+{
+["TargetName"] = "Simonmage-Windseeker",
+["Date"] = "2026-11-24",
+["Time"] = "17:42:02",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "The Barrens",
+["PlayerName"] = "Simondruid-",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 18,
+["ItemLink"] = "|cnIQ1:|Hitem:2136::::::::20:1484:::::::::|h[Conjured Purified Water]|h|r",
+["Name"] = "Conjured Purified Water",
+},
+},
+},
 },
 }

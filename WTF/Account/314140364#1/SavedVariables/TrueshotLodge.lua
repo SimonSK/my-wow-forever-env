@@ -5,135 +5,81 @@ TrueshotLodgeDB = {
 },
 ["filter_by_level"] = false,
 ["last_tab"] = "OPTIONS",
+["tooltip_off"] = {
+},
 ["npc_tooltips"] = true,
 ["zone_filter"] = false,
 ["receive_shared"] = false,
+["favorites"] = {
+},
 ["share_shard"] = true,
 ["debug_on"] = {
 },
 ["send_name"] = false,
 ["filter_by_pet"] = false,
+["send_name_tip"] = true,
 ["minimapIcon"] = {
 ["minimapPos"] = 35.2439680356677,
 ["showInCompartment"] = true,
 ["hide"] = false,
 },
 ["share_moderators"] = true,
+["filter_favorites"] = false,
 ["share_group"] = true,
 ["filter_rares"] = false,
 ["collect"] = true,
-["send_name_tip"] = true,
-["sticky_selections"] = true,
 ["selections"] = {
 ["FAMILIES"] = "Fox",
 ["OPTIONS"] = "collect",
 },
+["sticky_selections"] = true,
+["ui_scale"] = 1,
 ["share_peers"] = {
+["Last Nycti"] = {
+["first"] = 1795567663,
+["last"] = 1795567663,
+},
 ["Jessica Rabbitz"] = {
 ["last"] = 1795499704,
 ["first"] = 1795499704,
 },
-["Haraj Grimclaw"] = {
-["last"] = 1795503806,
-["first"] = 1795497982,
+["Zug Izland"] = {
+["last"] = 1795567924,
+["first"] = 1795567924,
 },
-["Mara Viperstrike"] = {
-["last"] = 1795503526,
-["first"] = 1795495987,
+["Trueshot Lodge"] = {
+["last"] = 1795500837,
+["first"] = 1795500837,
 },
 ["Pyfor Shaperunner"] = {
 ["first"] = 1795503527,
 ["last"] = 1795503527,
 },
-["Tanke Pounder"] = {
-["last"] = 1795506149,
-["first"] = 1795506149,
+["Wala Greens"] = {
+["last"] = 1795566521,
+["first"] = 1795495987,
 },
 ["Oji Dreadtide"] = {
 ["last"] = 1795495988,
 ["first"] = 1795495988,
 },
-["Mystic Blast"] = {
-["last"] = 1795506706,
-["first"] = 1795506706,
+["Mooey Blue"] = {
+["last"] = 1795495987,
+["first"] = 1795495987,
 },
 ["Hunter Blackheart"] = {
-["last"] = 1795496729,
+["last"] = 1795566800,
 ["first"] = 1795496729,
 },
-["Zap Zop"] = {
-["last"] = 1795510199,
-["first"] = 1795510199,
+["Orchrist Swifthoof"] = {
+["last"] = 1795497882,
+["first"] = 1795497852,
 },
 ["Kiss Thewall"] = {
 ["first"] = 1795482040,
 ["last"] = 1795503526,
 },
-["Kathrina Maelstom"] = {
-["last"] = 1795508110,
-["first"] = 1795508110,
-},
-["Donee Ironsong"] = {
-["first"] = 1795495864,
-["last"] = 1795505395,
-},
-["Faulx Frostfang"] = {
-["last"] = 1795495987,
-["first"] = 1795495987,
-},
-["Caz One"] = {
-["last"] = 1795495987,
-["first"] = 1795495987,
-},
-["Koda Dreamhoof"] = {
-["last"] = 1795498063,
-["first"] = 1795498063,
-},
-["Dash Bloodsaw"] = {
-["first"] = 1795503526,
-["last"] = 1795503526,
-},
-["Local Slackjaw"] = {
-["first"] = 1795505213,
-["last"] = 1795508933,
-},
-["Chilled Cone"] = {
-["first"] = 1795503526,
-["last"] = 1795503890,
-},
-["Bon Asd"] = {
-["last"] = 1795495988,
-["first"] = 1795495988,
-},
-["Zharn Sureshot"] = {
-["first"] = 1795503526,
-["last"] = 1795503526,
-},
-["Mystic Mist"] = {
-["last"] = 1795507335,
-["first"] = 1795501912,
-},
-["Finxyz Lum"] = {
-["last"] = 1795508185,
-["first"] = 1795502180,
-},
-["Wala Janilu"] = {
-["last"] = 1795507150,
-["first"] = 1795507150,
-},
-["Wala Greens"] = {
-["last"] = 1795495987,
-["first"] = 1795495987,
-},
-["Lurem Fishbane"] = {
-["last"] = 1795506150,
-["first"] = 1795506149,
-},
 ["Aven Duskwillow"] = {
-["last"] = 1795495987,
-["first"] = 1795495987,
-},
-["Redbeans Crawfish"] = {
 ["last"] = 1795495987,
 ["first"] = 1795495987,
 },
@@ -141,66 +87,30 @@ TrueshotLodgeDB = {
 ["first"] = 1795492764,
 ["last"] = 1795495987,
 },
-["Mooey Blue"] = {
-["last"] = 1795495987,
-["first"] = 1795495987,
-},
-["Big No"] = {
-["last"] = 1795495987,
-["first"] = 1795495987,
-},
-["Urikk Beaststalker"] = {
-["first"] = 1795503527,
-["last"] = 1795508678,
-},
-["Orchrist Swifthoof"] = {
-["last"] = 1795497882,
-["first"] = 1795497852,
-},
-["Seiro Domo"] = {
-["last"] = 1795495987,
-["first"] = 1795495987,
-},
-["Trueshot Lodge"] = {
-["last"] = 1795500837,
-["first"] = 1795500837,
-},
-["Zulmo Bearbrother"] = {
-["last"] = 1795495987,
-["first"] = 1795495987,
-},
-["Gronik Hrenzak"] = {
-["first"] = 1795503527,
-["last"] = 1795503527,
-},
-["Totalee Pawsitive"] = {
-["last"] = 1795508698,
-["first"] = 1795507428,
-},
-["Zippy Cup"] = {
-["last"] = 1795501120,
-["first"] = 1795500600,
-},
 ["Boqx Eldren"] = {
 ["first"] = 1795503527,
 ["last"] = 1795505412,
 },
-["Hanibull Lictor"] = {
-["first"] = 1795503527,
-["last"] = 1795505542,
+["Koda Dreamhoof"] = {
+["last"] = 1795498063,
+["first"] = 1795498063,
 },
-["Wahin Ashenhide"] = {
-["first"] = 1795503527,
-["last"] = 1795503527,
+["Bugdoctor Bacon"] = {
+["first"] = 1795566117,
+["last"] = 1795566960,
+},
+["Local Slackjaw"] = {
+["first"] = 1795505213,
+["last"] = 1795568025,
 },
 ["Engelbert Bockwinkel"] = {
 ["first"] = 1795503527,
 ["last"] = 1795503527,
 },
 },
-["ui_scale"] = 1,
-["share_zone"] = true,
 ["debug"] = false,
+["share_zone"] = true,
+["filter_tamed"] = false,
 ["filter_by_faction"] = false,
 ["ability_tooltips"] = true,
 },
@@ -675,9 +585,9 @@ nil,
 ["spells"] = {
 {
 ["spell_id"] = 17255,
-["slot"] = 4,
-["name"] = "Bite",
 ["rank"] = "Rank 2",
+["name"] = "Bite",
+["slot"] = 4,
 },
 {
 ["passive"] = true,
@@ -695,9 +605,9 @@ nil,
 },
 {
 ["spell_id"] = 14916,
-["slot"] = 9,
-["name"] = "Growl",
 ["rank"] = "Rank 2",
+["name"] = "Growl",
+["slot"] = 9,
 },
 {
 ["passive"] = true,
@@ -710,7 +620,7 @@ nil,
 ["family"] = "Fox",
 ["level"] = 13,
 ["icon"] = 458223,
-["cached"] = 1795259590,
+["cached"] = 1795568352,
 },
 },
 ["slots"] = {
@@ -719,9 +629,9 @@ nil,
 ["spells"] = {
 {
 ["spell_id"] = 17255,
-["slot"] = 4,
-["name"] = "Bite",
 ["rank"] = "Rank 2",
+["name"] = "Bite",
+["slot"] = 4,
 },
 {
 ["passive"] = true,
@@ -739,9 +649,9 @@ nil,
 },
 {
 ["spell_id"] = 14916,
-["slot"] = 9,
-["name"] = "Growl",
 ["rank"] = "Rank 2",
+["name"] = "Growl",
+["slot"] = 9,
 },
 {
 ["passive"] = true,
@@ -751,9 +661,9 @@ nil,
 ["rank"] = "Rank 2",
 },
 },
-["attack_speed"] = 1.307000041007996,
-["display_id"] = 136523,
 ["name"] = "Fox",
+["display_id"] = 136523,
+["cached"] = 1795568349,
 ["stats"] = {
 ["attack_power"] = 59,
 ["xp_max"] = 2850,
@@ -776,16 +686,16 @@ nil,
 ["family"] = "Fox",
 ["level"] = 13,
 ["icon"] = 458223,
-["cached"] = 1795259587,
+["attack_speed"] = 1.307000041007996,
 },
 {
 ["creature_id"] = 250927,
-["cached"] = 1795258468,
-["name"] = "Bear",
+["cached"] = 1795567821,
+["display_id"] = 136605,
 ["family"] = "Bear",
 ["level"] = 13,
 ["icon"] = 132183,
-["display_id"] = 136605,
+["name"] = "Bear",
 },
 },
 ["active"] = "Fox|Fox",
@@ -843,9 +753,9 @@ TrueshotLodgeCollected = {
 ["addon"] = {
 ["locale"] = "enUS",
 ["file_id"] = "fcd076d6676b7f2c",
-["version"] = "1.60.1.46",
-["sig"] = "92eba256",
-["saved_at"] = 1795510412,
+["version"] = "1.60.1.47",
+["sig"] = "f8768bcf",
+["saved_at"] = 1795568446,
 },
 ["tames"] = {
 },

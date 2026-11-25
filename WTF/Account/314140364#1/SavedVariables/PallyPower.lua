@@ -37,20 +37,20 @@ PallyPowerDB = {
 },
 ["ForeverCountDefault"] = true,
 ["seal"] = 0,
-["minimap"] = {
-["show"] = false,
-},
 ["ForeverSalvSplit"] = true,
+["autobuff"] = {
+["buffDuration"] = false,
+},
 ["display"] = {
 ["frameLocked"] = true,
 ["HideCountText"] = true,
 ["buffDuration"] = false,
 ["offsetY"] = 143,
-["offsetX"] = -400,
 ["showPlayerButtons"] = false,
+["offsetX"] = -400,
 },
-["autobuff"] = {
-["buffDuration"] = false,
+["minimap"] = {
+["show"] = false,
 },
 ["ForeverSealRestored"] = true,
 ["rf"] = true,
@@ -105,9 +105,9 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[6] = "CuratorNet",
-[7] = "TrueshotLodge",
-[8] = "TrueshotLodge1413",
+[6] = "TrueshotLodge",
+[7] = "TrueshotLodge1413",
+[8] = "ttgssync",
 [4] = "Services",
 [5] = "TradeLocal",
 [0] = "None",

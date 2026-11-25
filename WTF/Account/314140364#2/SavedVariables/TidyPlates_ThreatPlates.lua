@@ -3,7 +3,7 @@ ThreatPlatesDB = {
 ["namespaces"] = {
 },
 ["global"] = {
-["version"] = "13.3.8",
+["version"] = "13.3.9",
 },
 ["profileKeys"] = {
 ["Simonwarlock Windseeker"] = "Simon",
@@ -21,9 +21,9 @@ ThreatPlatesDB = {
 ["settings"] = {
 ["frame"] = {
 ["heightFriend"] = 20,
-["widthFriend"] = 140,
-["height"] = 20,
 ["width"] = 140,
+["height"] = 20,
+["widthFriend"] = 140,
 },
 },
 },

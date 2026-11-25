@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
 ["lastSanitation"] = 3,
-["session"] = 317,
+["session"] = 323,
 ["errors"] = {
 {
 ["message"] = "Interface/AddOns/Details/Libs/DF/cooltip.lua:2517: attempt to perform arithmetic on a secret number value (execution tainted by 'Details')",
@@ -214,6 +214,26 @@ BugGrabberDB = {
 ["stack"] = "[Interface/AddOns/Altoholic_Summary/Columns_CharacterInformation.lua]:564: in function <...s/Altoholic_Summary/Columns_CharacterInformation.lua:554>\n",
 ["session"] = 292,
 ["counter"] = 11,
+},
+{
+["message"] = "LUA_WARNING: AddOn [DataStore_Stats] failure to load: missing",
+["session"] = 318,
+["time"] = 1795566904,
+["counter"] = 1,
+},
+{
+["message"] = "LUA_WARNING: AddOn [Altoholic] Failed to load missing dependency [DataStore_Stats]",
+["session"] = 318,
+["time"] = 1795566904,
+["counter"] = 1,
+},
+{
+["message"] = "Interface/AddOns/DataStore/DataStore.lua:253: bad argument #1 to 'pairs' (table expected, got nil)",
+["time"] = 1795567950,
+["locals"] = "self=<table>{\n ThisCharKey=\"Default.Forever.Simonwarlock Windseeker\"\n ThisCharID=10\n Enum=<table>\n Version=\"v2026.10.14\"\n ThisChar=\"Simonwarlock Windseeker\"\n ThisAccount=\"Default\"\n name=\"DataStore\"\n ThisRealm=\"Forever\"\n Frames=DataStoreFrames <DataStore.lua:122>\n AltGroups=<table>\n ThisFaction=\"Horde\"\n}\nout=<table>\nallCharacters=<table>\n",
+["stack"] = "[Interface/AddOns/DataStore/DataStore.lua]:253: in function 'GetAccounts'\n[Interface/AddOns/Altoholic_Summary/Services/Characters.lua]:41: in function <...ace/AddOns/Altoholic_Summary/Services/Characters.lua:27>\n[Interface/AddOns/Altoholic_Summary/Services/Characters.lua]:358: in function <...ace/AddOns/Altoholic_Summary/Services/Characters.lua:329>\n[Interface/AddOns/Altoholic_Summary/Services/Characters.lua]:437: in function 'GetView'\n[Interface/AddOns/Altoholic_Summary/TabSummary.lua]:679: in function 'Update'\n[Interface/AddOns/Altoholic_Summary/TabSummary.lua]:169: in function 'onClickButton1'\n[Interface/AddOns/AddonFactory/Templates/MessageBox.lua]:35: in function 'Button_OnClick'\n[*MessageBox.xml:53_OnClick]:1: in function <[string \"*MessageBox.xml:53_OnClick\"]:1>\n",
+["session"] = 320,
+["counter"] = 6,
 },
 },
 }

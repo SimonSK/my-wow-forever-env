@@ -596,7 +596,7 @@ ForeverDungeonJournalCharacterDB = {
 ["deaths"] = 0,
 ["firstTrash"] = 1794766102,
 ["seenN"] = 87,
-["money"] = 675,
+["id"] = 1,
 ["firstKill"] = 1794766102,
 ["needs"] = {
 {
@@ -646,7 +646,7 @@ ForeverDungeonJournalCharacterDB = {
 ["exits"] = {
 },
 ["map"] = 389,
-["id"] = 1,
+["money"] = 675,
 ["lastBoss"] = 1794767789,
 },
 },
@@ -659,8 +659,53 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["trackerSlots"] = {
 },
+["rpgQuests"] = {
+[5722] = true,
+[5761] = true,
+[959] = true,
+[92422] = true,
+[95216] = true,
+[5723] = true,
+[962] = true,
+[1491] = true,
+[5724] = true,
+[5728] = true,
+[1013] = true,
+[2843] = true,
+[1098] = true,
+[5725] = true,
+[1487] = true,
+[914] = true,
+[1486] = true,
+[1014] = true,
+},
 ["arrowDone"] = {
 },
+["flightPointsVersion"] = 2,
+["flightPoints"] = {
+["crossroads, the barrens"] = true,
+["ratchet, the barrens"] = true,
+["thunder bluff, mulgore"] = true,
+["orgrimmar, durotar"] = true,
+["camp taurajo, the barrens"] = true,
+},
+["runTracker"] = {
+},
+["rpgBosses"] = {
+["Ragefire Chasm"] = {
+[11517] = true,
+["oggleflint"] = true,
+[11518] = true,
+["jergosh the invoker"] = true,
+[11519] = true,
+["bazzalan"] = true,
+[11520] = true,
+["taragaman the hungerer"] = true,
+},
+},
+["hiddenDungeons"] = {
+},
+["journalMode"] = "gamer",
 ["rpgTrash"] = {
 ["Ragefire Chasm"] = {
 ["seen"] = {
@@ -690,49 +735,20 @@ ForeverDungeonJournalCharacterDB = {
 ["n"] = 22,
 },
 },
-["flightPointsVersion"] = 2,
-["runTracker"] = {
+["lootFilter"] = {
+["armorTypes"] = {
 },
-["flightPoints"] = {
-["crossroads, the barrens"] = true,
-["ratchet, the barrens"] = true,
-["thunder bluff, mulgore"] = true,
-["orgrimmar, durotar"] = true,
-["camp taurajo, the barrens"] = true,
+["classOnly"] = false,
+["recipes"] = false,
+["schools"] = {
 },
-["hiddenDungeons"] = {
+["matchAll"] = true,
+["resists"] = {
 },
-["journalMode"] = "gamer",
-["rpgBosses"] = {
-["Ragefire Chasm"] = {
-[11517] = true,
-["oggleflint"] = true,
-[11518] = true,
-["jergosh the invoker"] = true,
-[11519] = true,
-["bazzalan"] = true,
-[11520] = true,
-["taragaman the hungerer"] = true,
+["weaponTypes"] = {
 },
+["stats"] = {
 },
-["rpgQuests"] = {
-[5722] = true,
-[5761] = true,
-[959] = true,
-[92422] = true,
-[95216] = true,
-[5723] = true,
-[962] = true,
-[1491] = true,
-[5724] = true,
-[5728] = true,
-[1013] = true,
-[2843] = true,
-[1098] = true,
-[5725] = true,
-[1487] = true,
-[914] = true,
-[1486] = true,
-[1014] = true,
+["enabled"] = false,
 },
 }
