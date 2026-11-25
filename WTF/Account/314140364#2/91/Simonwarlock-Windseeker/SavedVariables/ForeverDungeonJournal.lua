@@ -759,11 +759,11 @@ ForeverDungeonJournalCharacterDB = {
 ["flightPoints"] = {
 ["crossroads, the barrens"] = true,
 ["orgrimmar, durotar"] = true,
-["ratchet, the barrens"] = true,
+["camp taurajo, the barrens"] = true,
 ["thunder bluff, mulgore"] = true,
 ["the sepulcher, silverpine forest"] = true,
 ["undercity, tirisfal"] = true,
-["camp taurajo, the barrens"] = true,
+["ratchet, the barrens"] = true,
 },
 ["arrowChains"] = {
 },

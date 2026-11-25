@@ -61,7 +61,7 @@ Bagnon_Sets = {
 },
 },
 ["bank"] = {
-["y"] = -241.0004573622729,
+["y"] = -241.0005183974291,
 ["rules"] = {
 ["sidebar"] = {
 "all",
@@ -93,15 +93,15 @@ Bagnon_Sets = {
 },
 ["soul"] = {
 },
-["inscribe"] = {
+["leather"] = {
 },
 ["mine"] = {
 },
 ["gem"] = {
 },
-["leather"] = {
+["inscribe"] = {
 },
-["fridge"] = {
+["reagent"] = {
 },
 ["engineer"] = {
 },
@@ -109,7 +109,7 @@ Bagnon_Sets = {
 },
 ["tackle"] = {
 },
-["reagent"] = {
+["fridge"] = {
 },
 ["enchant"] = {
 },

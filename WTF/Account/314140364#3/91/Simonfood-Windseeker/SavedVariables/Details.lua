@@ -33,8 +33,9 @@ _detalhes_database = {
 ["width"] = 120,
 ["ignored_cooldowns"] = {
 },
+["cooldowns"] = {
+},
 ["height"] = 18,
-["framme_locked"] = false,
 ["own_frame"] = {
 ["defensive-raid"] = false,
 ["ofensive"] = false,
@@ -42,8 +43,7 @@ _detalhes_database = {
 ["utility"] = false,
 ["defensive-personal"] = false,
 },
-["cooldowns"] = {
-},
+["framme_locked"] = false,
 ["show_conditions"] = {
 ["only_inside_instance"] = true,
 ["only_in_group"] = true,
@@ -61,7 +61,7 @@ _detalhes_database = {
 ["utility"] = false,
 },
 },
-["combat_counter"] = 14,
+["combat_counter"] = 22,
 ["player_stats"] = {
 },
 ["force_font_outline"] = "",
@@ -69,54 +69,20 @@ _detalhes_database = {
 },
 ["arena_data_compressed"] = {
 },
-["damage_meter_sessions"] = {
+["cached_roles"] = {
 },
 ["arena_data_index_selected"] = 1,
-["character_data"] = {
-["logons"] = 6,
+["damage_meter_sessions"] = {
 },
 ["on_death_menu"] = false,
 ["damage_meter_session_info"] = {
 },
-["local_instances_config"] = {
-{
-["modo"] = 2,
-["sub_attribute"] = 1,
-["horizontalSnap"] = false,
-["verticalSnap"] = false,
-["isLocked"] = false,
-["is_open"] = true,
-["sub_atributo_last"] = {
-1,
-1,
-1,
-1,
-1,
+["character_data"] = {
+["logons"] = 10,
 },
-["snap"] = {
-},
-["segment"] = 0,
-["mode"] = 2,
-["attribute"] = 1,
-["pos"] = {
-["normal"] = {
-["y"] = 36.99993896484375,
-["x"] = 383,
-["w"] = 309.9996643066406,
-["h"] = 158.0000152587891,
-},
-["solo"] = {
-["y"] = 2,
-["x"] = 1,
-["w"] = 300,
-["h"] = 200,
-},
-},
-},
-},
-["announce_firsthit"] = {
-["enabled"] = true,
-["channel"] = "SELF",
+["nick_tag_cache"] = {
+["nextreset"] = 1796338236,
+["last_version"] = 16,
 },
 ["last_instance_id"] = 0,
 ["data_harvest_for_charsts"] = {
@@ -143,16 +109,32 @@ _detalhes_database = {
 ["custom"] = "",
 ["next"] = "",
 },
-["last_instance_time"] = 0,
-["active_profile"] = "Simonfood-CAMWOW US1 Realm 1 PvE",
-["last_day"] = "22",
-["cached_talents"] = {
+["announce_prepots"] = {
+["enabled"] = false,
+["channel"] = "SELF",
+["reverse"] = false,
 },
+["active_profile"] = "Simonfood-CAMWOW US1 Realm 1 PvE",
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["last_instance_time"] = 0,
 ["benchmark_db"] = {
 ["frame"] = {
 },
 },
-["ignore_nicktag"] = false,
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
 ["arena_data_headers"] = {
 },
 ["combat_log"] = {
@@ -165,9 +147,7 @@ _detalhes_database = {
 ["evoker_show_realtimedps"] = false,
 ["inverse_deathlog_mplus"] = false,
 },
-["announce_damagerecord"] = {
-["enabled"] = true,
-["channel"] = "SELF",
+["cached_talents"] = {
 },
 ["plugin_database"] = {
 ["DETAILS_PLUGIN_TINY_THREAT"] = {
@@ -260,7 +240,7 @@ _detalhes_database = {
 ["author"] = "Terciob",
 ["row_texture"] = "Details Serenity",
 ["square_grow_direction"] = "right",
-["y"] = -1.52587890625e-05,
+["font_size"] = 10,
 ["row_color"] = {
 0.1,
 0.1,
@@ -270,6 +250,16 @@ _detalhes_database = {
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
+["use_spark"] = true,
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["main_frame_strata"] = "LOW",
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -281,17 +271,7 @@ _detalhes_database = {
 ["update_speed"] = 0.05,
 ["size"] = 32,
 },
-["row_spacement"] = 21,
-["main_frame_color"] = {
-0,
-0,
-0,
-0.2,
-},
-["main_frame_strata"] = "LOW",
-["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
-["use_spark"] = true,
-["font_size"] = 10,
+["y"] = -1.52587890625e-05,
 ["x"] = -3.0517578125e-05,
 ["font_face"] = "Friz Quadrata TT",
 ["square_size"] = 32,
@@ -306,40 +286,30 @@ _detalhes_database = {
 ["scale"] = 1,
 },
 },
-["data_harvested_for_charts"] = {
+["last_realversion"] = 172,
+["ignore_nicktag"] = false,
+["announce_damagerecord"] = {
+["enabled"] = true,
+["channel"] = "SELF",
 },
 ["mythic_plus_log"] = {
-},
-["announce_prepots"] = {
-["enabled"] = false,
-["channel"] = "SELF",
-["reverse"] = false,
-},
-["nick_tag_cache"] = {
-["nextreset"] = 1796338236,
-["last_version"] = 16,
 },
 ["apocalypse_hashes"] = {
 },
 ["SoloTablesSaved"] = {
 ["Mode"] = 1,
 },
-["last_version"] = "1.60.1 15410",
+["last_version"] = "1.60.1 15450",
 ["combat_id"] = 0,
 ["savedStyles"] = {
 },
-["mythic_dungeon_currentsaved"] = {
-["dungeon_name"] = "",
-["started"] = false,
-["segment_id"] = 0,
-["ej_id"] = 0,
-["started_at"] = 0,
-["run_id"] = 0,
-["level"] = 0,
-["dungeon_zone_id"] = 0,
-["previous_boss_killed_at"] = 0,
+["data_harvested_for_charts"] = {
 },
-["cached_roles"] = {
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
+},
+["last_coach_name"] = false,
 },
 ["announce_deaths"] = {
 ["enabled"] = false,
@@ -375,7 +345,7 @@ _detalhes_database = {
 },
 ["raid_roster"] = {
 },
-["tempo_start"] = 189076.191,
+["tempo_start"] = 22361.182,
 ["last_events_tables"] = {
 },
 ["alternate_power"] = {
@@ -472,17 +442,47 @@ _detalhes_database = {
 ["start_time"] = 0,
 ["TimeData"] = {
 },
-["combat_counter"] = 13,
+["combat_counter"] = 21,
 },
-["coach"] = {
-["enabled"] = false,
-["welcome_panel_pos"] = {
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["horizontalSnap"] = false,
+["verticalSnap"] = false,
+["isLocked"] = false,
+["is_open"] = true,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
 },
-["last_coach_name"] = false,
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = 36.99993896484375,
+["x"] = 383,
+["w"] = 309.9996643066406,
+["h"] = 158.0000152587891,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
 },
 ["apocalypes_info"] = {
 },
-["last_realversion"] = 172,
+["last_day"] = "25",
 ["announce_cooldowns"] = {
 ["ignored_cooldowns"] = {
 },
@@ -496,7 +496,7 @@ _detalhes_database = {
 },
 ["auto_combatlog"] = false,
 ["cached_specs"] = {
+["Player-6933-018019EA"] = 1485,
 ["Player-6794-048B1D94"] = 1491,
-["Player-6933-01801B2A"] = 1488,
 },
 }

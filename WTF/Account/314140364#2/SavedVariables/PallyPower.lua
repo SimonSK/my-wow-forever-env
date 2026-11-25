@@ -35,10 +35,10 @@ PallyPowerDB = {
 ["show"] = false,
 },
 ["display"] = {
-["HideCountText"] = true,
-["offsetY"] = 63.33323287963867,
 ["offsetX"] = 389.4999389648438,
 ["frameLocked"] = true,
+["HideCountText"] = true,
+["offsetY"] = 63.33323287963867,
 },
 ["autobuff"] = {
 ["buffDuration"] = false,
@@ -96,7 +96,7 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[6] = "ttgssync",
+[6] = "CuratorNet",
 [7] = "TrueshotLodge",
 [8] = "TrueshotLodge1413",
 [4] = "Services",

@@ -27,18 +27,30 @@ TrueshotLodgeDB = {
 ["share_group"] = true,
 ["filter_rares"] = false,
 ["collect"] = true,
-["ui_scale"] = 1,
-["sticky_selections"] = true,
 ["share_peers"] = {
-["Bugdoctor Bacon"] = {
-["first"] = 1795566954,
-["last"] = 1795566954,
+["Simonhunter Windseeker"] = {
+["first"] = 1795583103,
+["last"] = 1795583373,
+},
+["Arther Moorgan"] = {
+["first"] = 1795575455,
+["last"] = 1795575455,
+},
+["Amina Smokefang"] = {
+["first"] = 1795582264,
+["last"] = 1795582841,
 },
 ["Trueshot Lodge"] = {
 ["last"] = 1795500844,
 ["first"] = 1795494077,
 },
+["Bo Blaze"] = {
+["first"] = 1795582854,
+["last"] = 1795582854,
 },
+},
+["sticky_selections"] = true,
+["ui_scale"] = 1,
 ["selections"] = {
 },
 ["tooltip_off"] = {
@@ -100,11 +112,11 @@ TrueshotLodgeDB = {
 ["pets"] = {
 ["Gelrin|Imp"] = {
 ["stats"] = {
-["attack_power"] = 42,
 ["damage_min"] = 16.66298294067383,
+["attack_power"] = 42,
 ["health"] = 212,
 ["damage_max"] = 21.94161987304688,
-["speed"] = 114.2857142857143,
+["armor"] = 323,
 ["res"] = {
 nil,
 0,
@@ -114,7 +126,7 @@ nil,
 0,
 },
 ["crit"] = 0,
-["armor"] = 323,
+["speed"] = 114.2857142857143,
 },
 ["attack_speed"] = 1.739000082015991,
 ["cached"] = 1795103745,
@@ -137,11 +149,11 @@ nil,
 },
 ["Juk'mon|Voidwalker"] = {
 ["stats"] = {
-["speed"] = 114.2857142857143,
+["armor"] = 1412,
 ["crit"] = 4.78000020980835,
 ["health"] = 811,
 ["damage_max"] = 18.29338455200195,
-["armor"] = 1412,
+["speed"] = 114.2857142857143,
 ["res"] = {
 nil,
 0,
@@ -150,8 +162,8 @@ nil,
 3,
 0,
 },
-["damage_min"] = 13.882981300354,
 ["attack_power"] = 78,
+["damage_min"] = 13.882981300354,
 },
 ["attack_speed"] = 1.739000082015991,
 ["name"] = "Juk'mon",
@@ -235,11 +247,11 @@ nil,
 ["pets"] = {
 ["Gelrin|Imp"] = {
 ["stats"] = {
-["attack_power"] = 63,
 ["damage_min"] = 26.64869117736816,
+["attack_power"] = 63,
 ["health"] = 275,
 ["damage_max"] = 35.01360702514648,
-["speed"] = 114.2857142857143,
+["armor"] = 512,
 ["res"] = {
 nil,
 0,
@@ -249,10 +261,10 @@ nil,
 0,
 },
 ["crit"] = 0,
-["armor"] = 512,
+["speed"] = 114.2857142857143,
 },
 ["attack_speed"] = 1.739000082015991,
-["cached"] = 1795568031,
+["cached"] = 1795596338,
 ["family"] = "Imp",
 ["spells"] = {
 {
@@ -272,11 +284,11 @@ nil,
 },
 ["Juk'mon|Voidwalker"] = {
 ["stats"] = {
-["damage_min"] = 14.14007472991943,
 ["attack_power"] = 78,
+["damage_min"] = 14.14007472991943,
 ["health"] = 837,
 ["damage_max"] = 18.63215255737305,
-["armor"] = 1468,
+["speed"] = 114.2857142857143,
 ["res"] = {
 nil,
 0,
@@ -286,7 +298,7 @@ nil,
 0,
 },
 ["crit"] = 0,
-["speed"] = 114.2857142857143,
+["armor"] = 1468,
 },
 ["attack_speed"] = 1.739000082015991,
 ["cached"] = 1795305806,
@@ -351,8 +363,8 @@ TrueshotLodgeCollected = {
 ["locale"] = "enUS",
 ["file_id"] = "560adae66e75ca73",
 ["version"] = "1.60.1.47",
-["sig"] = "4014bee8",
-["saved_at"] = 1795568449,
+["sig"] = "8ba8f890",
+["saved_at"] = 1795596417,
 },
 ["tames"] = {
 },

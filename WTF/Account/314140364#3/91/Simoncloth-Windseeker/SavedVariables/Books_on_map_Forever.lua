@@ -1,8 +1,8 @@
 
 BooksOnMapForeverDB = {
-["collected"] = {
-},
 ["minimapIcon"] = {
 ["minimapPos"] = 200,
+},
+["collected"] = {
 },
 }

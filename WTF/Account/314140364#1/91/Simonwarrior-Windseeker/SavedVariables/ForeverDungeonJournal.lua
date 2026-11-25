@@ -681,6 +681,13 @@ ForeverDungeonJournalCharacterDB = {
 ["n"] = 20,
 },
 },
+["flightPoints"] = {
+["orgrimmar, durotar"] = true,
+["thunder bluff, mulgore"] = true,
+["crossroads, the barrens"] = true,
+},
+["runTracker"] = {
+},
 ["rpgBosses"] = {
 ["Ragefire Chasm"] = {
 [11517] = true,
@@ -692,13 +699,6 @@ ForeverDungeonJournalCharacterDB = {
 [11520] = true,
 ["taragaman the hungerer"] = true,
 },
-},
-["runTracker"] = {
-},
-["flightPoints"] = {
-["orgrimmar, durotar"] = true,
-["thunder bluff, mulgore"] = true,
-["crossroads, the barrens"] = true,
 },
 ["hiddenDungeons"] = {
 },

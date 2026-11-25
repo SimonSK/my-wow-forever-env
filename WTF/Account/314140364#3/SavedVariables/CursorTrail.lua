@@ -3,15 +3,15 @@ CursorTrail_Config = {
 ["NewFeaturesSeen"] = {
 },
 ["ProfileOptions"] = {
-["bSaveOnOkay"] = false,
 ["bConfirmDelete"] = true,
+["bSaveOnOkay"] = false,
 ["bConfirmCopy"] = true,
 ["bUseAccountProfile"] = false,
+},
+["ProfileBackups"] = {
 },
 ["Profiles"] = {
 ["_SelectedName"] = {
 },
-},
-["ProfileBackups"] = {
 },
 }

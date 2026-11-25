@@ -30,27 +30,27 @@ PallyPowerDB = {
 ["ForeverShamanColumn"] = true,
 ["enable"] = true,
 ["auraDurations"] = {
-["Seal of Fury"] = 30,
-["Seal of the Crusader"] = 30,
 ["Seal of Righteousness"] = 30,
+["Seal of the Crusader"] = 30,
+["Seal of Fury"] = 30,
 ["Righteous Fury"] = 1800,
 },
 ["ForeverCountDefault"] = true,
 ["seal"] = 0,
 ["ForeverSalvSplit"] = true,
-["autobuff"] = {
-["buffDuration"] = false,
+["minimap"] = {
+["show"] = false,
 },
 ["display"] = {
 ["frameLocked"] = true,
 ["HideCountText"] = true,
 ["buffDuration"] = false,
 ["offsetY"] = 143,
-["showPlayerButtons"] = false,
 ["offsetX"] = -400,
+["showPlayerButtons"] = false,
 },
-["minimap"] = {
-["show"] = false,
+["autobuff"] = {
+["buffDuration"] = false,
 },
 ["ForeverSealRestored"] = true,
 ["rf"] = true,
@@ -105,9 +105,9 @@ PallyPower_SavedPresets = {
 },
 }
 PallyPower_ChanNames = {
-[6] = "TrueshotLodge",
-[7] = "TrueshotLodge1413",
-[8] = "ttgssync",
+[6] = "CuratorNet",
+[7] = "TrueshotLodge",
+[8] = "TrueshotLodge1413",
 [4] = "Services",
 [5] = "TradeLocal",
 [0] = "None",

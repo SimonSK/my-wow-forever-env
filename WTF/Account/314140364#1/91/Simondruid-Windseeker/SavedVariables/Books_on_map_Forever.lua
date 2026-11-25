@@ -12,8 +12,11 @@ BooksOnMapForeverDB = {
 },
 ["collected"] = {
 ["baxtan"] = true,
-["abecedaire"] = true,
 ["tazo"] = true,
+["ataeric"] = true,
+["reveurs"] = true,
+["dalaran"] = true,
+["abecedaire"] = true,
 ["arcaniques"] = true,
 },
 ["minimapPinSize"] = 14,

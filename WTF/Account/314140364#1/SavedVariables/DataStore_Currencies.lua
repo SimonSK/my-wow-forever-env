@@ -12,15 +12,15 @@ DataStore_Currencies_Characters = {
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1795568119,
+["lastUpdate"] = 1795583317,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1795568204,
+["lastUpdate"] = 1795583274,
 },
 {
-["lastUpdate"] = 1795568267,
+["lastUpdate"] = 1795583189,
 ["Totals"] = {
 },
 ["Currencies"] = {
@@ -29,12 +29,12 @@ DataStore_Currencies_Characters = {
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1795568345,
+["lastUpdate"] = 1795594241,
 },
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1795568380,
+["lastUpdate"] = 1795583118,
 },
 {
 ["Currencies"] = {
@@ -74,12 +74,12 @@ DataStore_Currencies_Characters = {
 },
 }
 DataStore_Currencies_Catalog = {
-["List"] = {
-"Honor Points",
-},
-["Count"] = 1,
 ["Set"] = {
 ["Honor Points"] = 1,
+},
+["Count"] = 1,
+["List"] = {
+"Honor Points",
 },
 }
 DataStore_Currencies_Info = {
@@ -89,12 +89,12 @@ DataStore_Currencies_Max = {
 [1792] = 25000,
 }
 DataStore_Currencies_Headers = {
-["List"] = {
-"Player vs. Player",
-},
-["Count"] = 1,
 ["Set"] = {
 ["Player vs. Player"] = 1,
+},
+["Count"] = 1,
+["List"] = {
+"Player vs. Player",
 },
 }
 DataStore_Currencies_Archeology = {

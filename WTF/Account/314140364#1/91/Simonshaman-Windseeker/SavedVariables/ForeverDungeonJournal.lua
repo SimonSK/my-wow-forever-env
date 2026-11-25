@@ -596,7 +596,7 @@ ForeverDungeonJournalCharacterDB = {
 ["deaths"] = 0,
 ["firstTrash"] = 1794766102,
 ["seenN"] = 87,
-["id"] = 1,
+["money"] = 675,
 ["firstKill"] = 1794766102,
 ["needs"] = {
 {
@@ -646,7 +646,7 @@ ForeverDungeonJournalCharacterDB = {
 ["exits"] = {
 },
 ["map"] = 389,
-["money"] = 675,
+["id"] = 1,
 ["lastBoss"] = 1794767789,
 },
 },

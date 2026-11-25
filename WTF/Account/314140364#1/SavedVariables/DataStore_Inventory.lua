@@ -43,7 +43,7 @@ nil,
 "|cnIQ3:|Hitem:15444::::::::21:1489::11:::::::|h[Staff of Orgrimmar]|h|r",
 [18] = "|cnIQ2:|Hitem:263412::::::::21:1489::11:::::::|h[Totem of Charged Flames]|h|r",
 },
-["lastUpdate"] = 1795568123,
+["lastUpdate"] = 1795583321,
 ["averageItemLvl"] = 12.4375,
 ["overallAIL"] = 12.4375,
 ["EquipmentInfo"] = 0,
@@ -69,7 +69,7 @@ nil,
 "|cnIQ2:|Hitem:5279::::::::21:1488::11:::::::|h[Harpy Skinner]|h|r",
 "|cnIQ2:|Hitem:8180::::::::21:1488:::::::::|h[Hunting Bow]|h|r",
 },
-["lastUpdate"] = 1795568208,
+["lastUpdate"] = 1795583278,
 ["averageItemLvl"] = 11.9375,
 ["overallAIL"] = 11.9375,
 ["EquipmentInfo"] = 0,
@@ -79,21 +79,25 @@ nil,
 nil,
 nil,
 nil,
-"|cnIQ1:|Hitem:271668::::::::20:1484::75:::::::|h[Thendal Survivalist's Shirt]|h|r",
-"|cnIQ2:|Hitem:15311:41:::::::20:1484::1:1:12727:1:28:5254:::::|h[Feral Harness of the Tiger]|h|r",
-"|cnIQ2:|Hitem:263405::::::::20:1484::11:::::::|h[Belt of Blades]|h|r",
-"|cnIQ2:|Hitem:5327::::::::20:1484::11:::::::|h[Greasy Tinker's Pants]|h|r",
-"|cnIQ2:|Hitem:11853::::::::20:1484::11:::::::|h[Rambling Boots]|h|r",
-"|cnIQ2:|Hitem:15453:924:::::::20:1484::11:::::::|h[Savannah Bracers]|h|r",
-"|cnIQ2:|Hitem:15310::::::::20:1484::1:1:12722:1:28:5254:::::|h[Feral Gloves of the Bear]|h|r",
-"|cnIQ1:|Hitem:264908::::::::20:1484::11:::::::|h[Ancient Heirloom]|h|r",
-[16] = "|cnIQ3:|Hitem:15445::::::::20:1484::11:::::::|h[Hammer of Orgrimmar]|h|r",
-[15] = "|cnIQ3:|Hitem:273005::::::::20:1484::1::1:28:5244:::::|h[Satyrskin Cloak]|h|r",
-[17] = "|cnIQ2:|Hitem:7554::::::::20:1484:::1:12722::::::|h[Willow Branch of the Bear]|h|r",
+"|cnIQ1:|Hitem:271668::::::::21:1484::75:::::::|h[Thendal Survivalist's Shirt]|h|r",
+"|cnIQ2:|Hitem:15311:41:::::::21:1484::1:1:12727:1:28:5254:::::|h[Feral Harness of the Tiger]|h|r",
+"|cnIQ2:|Hitem:263405::::::::21:1484::11:::::::|h[Belt of Blades]|h|r",
+"|cnIQ2:|Hitem:5327::::::::21:1484::11:::::::|h[Greasy Tinker's Pants]|h|r",
+"|cnIQ2:|Hitem:11853::::::::21:1484::11:::::::|h[Rambling Boots]|h|r",
+"|cnIQ2:|Hitem:15453:924:::::::21:1484::11:::::::|h[Savannah Bracers]|h|r",
+"|cnIQ2:|Hitem:15310::::::::21:1484::1:1:12722:1:28:5254:::::|h[Feral Gloves of the Bear]|h|r",
+"|cnIQ1:|Hitem:264908::::::::21:1484::11:::::::|h[Ancient Heirloom]|h|r",
+"|cnIQ2:|Hitem:5351::::::::21:1484::11:::::::|h[Bounty Hunter's Ring]|h|r",
+nil,
+nil,
+"|cnIQ3:|Hitem:273005::::::::21:1484::1::1:28:5244:::::|h[Satyrskin Cloak]|h|r",
+"|cnIQ3:|Hitem:15445::::::::21:1484::11:::::::|h[Hammer of Orgrimmar]|h|r",
+"|cnIQ2:|Hitem:7554::::::::21:1484:::1:12722::::::|h[Willow Branch of the Bear]|h|r",
+"|cnIQ2:|Hitem:263411::::::::21:1484::11:::::::|h[Idol of Shifting Tides]|h|r",
 },
-["lastUpdate"] = 1795568271,
-["averageItemLvl"] = 10.3125,
-["overallAIL"] = 10.5,
+["lastUpdate"] = 1795583193,
+["averageItemLvl"] = 11.5625,
+["overallAIL"] = 11.6875,
 ["EquipmentInfo"] = 0,
 },
 {
@@ -101,24 +105,24 @@ nil,
 nil,
 nil,
 nil,
-"|cnIQ1:|Hitem:271668::::::::16:1485::75:::::::|h[Thendal Survivalist's Shirt]|h|r",
-"|cnIQ2:|Hitem:3288:24:::::::16:1485:::::::::|h[Tribal Vest]|h|r",
-"|cnIQ2:|Hitem:263335::::::::16:1485::11:::::::|h[Hunter's Cord]|h|r",
-"|cnIQ2:|Hitem:263330::::::::16:1485::11:::::::|h[Tracker's Pants]|h|r",
-"|cnIQ2:|Hitem:273875::::::::16:1485::11:::::::|h[Empyrean Treads]|h|r",
-"|cnIQ2:|Hitem:14561:924:::::::16:1485::1::1:28:5244:::::|h[Prospector's Cuffs]|h|r",
-"|cnIQ2:|Hitem:263306::::::::16:1485::11:::::::|h[Nightclaw Gloves]|h|r",
-"|cnIQ1:|Hitem:264908::::::::16:1485::11:::::::|h[Ancient Heirloom]|h|r",
+"|cnIQ1:|Hitem:271668::::::::19:1485::75:::::::|h[Thendal Survivalist's Shirt]|h|r",
+"|cnIQ2:|Hitem:15304:24:::::::19:1485:::1:12724::::::|h[Grizzly Jerkin of the Falcon]|h|r",
+"|cnIQ2:|Hitem:9775::::::::19:1485:::1:12724::::::|h[Bandit Cinch of the Falcon]|h|r",
+"|cnIQ2:|Hitem:5327::::::::19:1485::11:::::::|h[Greasy Tinker's Pants]|h|r",
+"|cnIQ2:|Hitem:11853::::::::19:1485::11:::::::|h[Rambling Boots]|h|r",
+"|cnIQ2:|Hitem:14561:924:::::::19:1485::1::1:28:5244:::::|h[Prospector's Cuffs]|h|r",
+"|cnIQ2:|Hitem:263306::::::::19:1485::11:::::::|h[Nightclaw Gloves]|h|r",
+"|cnIQ1:|Hitem:264908::::::::19:1485::11:::::::|h[Ancient Heirloom]|h|r",
 nil,
 nil,
 nil,
-"|cnIQ2:|Hitem:15309::::::::16:1485::1:1:12724:1:28:5244:::::|h[Feral Cloak of the Falcon]|h|r",
-"|cnIQ3:|Hitem:15444::::::::16:1485::11:::::::|h[Staff of Orgrimmar]|h|r",
-[18] = "|cnIQ2:|Hitem:3036::::::::16:1485:::::::::|h[Heavy Shortbow]|h|r",
+"|cnIQ2:|Hitem:15114::::::::19:1485:::1:12728::::::|h[Rigid Cape of Agility]|h|r",
+"|cnIQ3:|Hitem:15444::::::::19:1485::11:::::::|h[Staff of Orgrimmar]|h|r",
+[18] = "|cnIQ2:|Hitem:3036::::::::19:1485:::::::::|h[Heavy Shortbow]|h|r",
 },
-["lastUpdate"] = 1795568349,
-["averageItemLvl"] = 8.375,
-["overallAIL"] = 8.375,
+["lastUpdate"] = 1795596373,
+["averageItemLvl"] = 9.6875,
+["overallAIL"] = 9.6875,
 ["EquipmentInfo"] = 0,
 },
 {
@@ -131,7 +135,7 @@ nil,
 "|cnIQ2:|Hitem:15492::::::::16:1491::1:1:12721:1:28:5244:::::|h[Bloodspattered Sash of the Monkey]|h|r",
 "|cnIQ2:|Hitem:257342::::::::16:1491::11:::::::|h[Elite Peacekeeper's Leggings]|h|r",
 "|cnIQ2:|Hitem:15489::::::::16:1491:::1:12733::::::|h[Bloodspattered Sabatons of Power]|h|r",
-"|cnIQ2:|Hitem:9785:924:::::::16:1491:::1:12725::::::|h[Raider's Bracers of the Boar]|h|r",
+"|cnIQ2:|Hitem:9785:924:::::::16:1491:::1:12731::::::|h[Raider's Bracers of Stamina]|h|r",
 "|cnIQ2:|Hitem:263337::::::::16:1491::11:::::::|h[Breaker's Gauntlets]|h|r",
 "|cnIQ1:|Hitem:264908::::::::16:1491::11:::::::|h[Ancient Heirloom]|h|r",
 nil,
@@ -142,7 +146,7 @@ nil,
 "|cnIQ2:|Hitem:15494::::::::16:1491::1:1:12753:1:28:5254:::::|h[Bloodspattered Shield of the Champion]|h|r",
 "|cnIQ2:|Hitem:3036::::::::16:1491:::::::::|h[Heavy Shortbow]|h|r",
 },
-["lastUpdate"] = 1795568382,
+["lastUpdate"] = 1795583122,
 ["averageItemLvl"] = 9.1875,
 ["overallAIL"] = 9.1875,
 ["EquipmentInfo"] = 0,
@@ -299,7 +303,7 @@ DataStore_Inventory_Guilds = {
 {
 ["Members"] = {
 ["Simonhunter Windseeker"] = {
-["averageItemLvl"] = 8,
+["averageItemLvl"] = 9,
 },
 ["Simonrogue Windseeker"] = {
 ["averageItemLvl"] = 11,
@@ -313,20 +317,20 @@ DataStore_Inventory_Guilds = {
 ["Simonshaman Windseeker"] = {
 ["averageItemLvl"] = 12,
 },
-["Sir Culation"] = {
-["averageItemLvl"] = 29,
+["Simondruid Windseeker"] = {
+["averageItemLvl"] = 11,
 },
 ["Simonwarlock Windseeker"] = {
 ["averageItemLvl"] = 11,
 },
-["Simonmage Windseeker"] = {
-["averageItemLvl"] = 14,
-},
 ["Simonpriest Windseeker"] = {
 ["averageItemLvl"] = 12,
 },
-["Simondruid Windseeker"] = {
-["averageItemLvl"] = 10,
+["Simonmage Windseeker"] = {
+["averageItemLvl"] = 14,
+},
+["Sir Culation"] = {
+["averageItemLvl"] = 30,
 },
 },
 },
@@ -347,20 +351,20 @@ DataStore_Inventory_Guilds = {
 ["Simonshaman Windseeker"] = {
 ["averageItemLvl"] = 12,
 },
-["Sir Culation"] = {
-["averageItemLvl"] = 29,
+["Simonpriest Windseeker"] = {
+["averageItemLvl"] = 11,
 },
 ["Simonwarlock Windseeker"] = {
 ["averageItemLvl"] = 11,
 },
-["Simonmage Windseeker"] = {
-["averageItemLvl"] = 14,
-},
 ["Simondruid Windseeker"] = {
 ["averageItemLvl"] = 10,
 },
-["Simonpriest Windseeker"] = {
-["averageItemLvl"] = 11,
+["Simonmage Windseeker"] = {
+["averageItemLvl"] = 14,
+},
+["Sir Culation"] = {
+["averageItemLvl"] = 29,
 },
 },
 },
@@ -379,23 +383,23 @@ DataStore_Inventory_Guilds = {
 ["averageItemLvl"] = 13,
 },
 ["Simonshaman Windseeker"] = {
-["averageItemLvl"] = 8,
-},
-["Simondruid Windseeker"] = {
-["averageItemLvl"] = 9,
-},
-["Simonwarlock Windseeker"] = {
-["averageItemLvl"] = 11,
-},
-["Simonmage Windseeker"] = {
-["averageItemLvl"] = 13,
-},
-["Simonpriest Windseeker"] = {
 ["averageItemLvl"] = 8,
 },
 ["Sir Culation"] = {
 ["averageItemLvl"] = 28,
 },
+["Simonwarlock Windseeker"] = {
+["averageItemLvl"] = 11,
+},
+["Simonpriest Windseeker"] = {
+["averageItemLvl"] = 8,
+},
+["Simonmage Windseeker"] = {
+["averageItemLvl"] = 13,
+},
+["Simondruid Windseeker"] = {
+["averageItemLvl"] = 9,
+},
 },
 },
 {
@@ -415,20 +419,20 @@ DataStore_Inventory_Guilds = {
 ["Simondruid Windseeker"] = {
 ["averageItemLvl"] = 8,
 },
-["Sir Culation"] = {
-["averageItemLvl"] = 29,
+["Simonshaman Windseeker"] = {
+["averageItemLvl"] = 9,
 },
 ["Simonwarlock Windseeker"] = {
+["averageItemLvl"] = 11,
+},
+["Simonpriest Windseeker"] = {
 ["averageItemLvl"] = 11,
 },
 ["Simonmage Windseeker"] = {
 ["averageItemLvl"] = 14,
 },
-["Simonpriest Windseeker"] = {
-["averageItemLvl"] = 11,
-},
-["Simonshaman Windseeker"] = {
-["averageItemLvl"] = 9,
+["Sir Culation"] = {
+["averageItemLvl"] = 29,
 },
 },
 },
@@ -439,16 +443,16 @@ DataStore_Inventory_CollectedSets = {
 }
 DataStore_Inventory_AppearancesCounters = {
 ["HUNTER"] = {
-[25] = 24618,
-[26] = 20517,
-[14] = 41047,
-[16] = 57435,
+[25] = 36906,
+[26] = 32805,
+[14] = 69723,
+[16] = 86110,
 [17] = 4113,
-[19] = 4211,
-[20] = 24625,
-[21] = 32825,
-[23] = 53337,
-[13] = 24632,
+[19] = 28788,
+[20] = 45106,
+[21] = 53306,
+[23] = 73820,
+[13] = 32824,
 },
 ["WARRIOR"] = {
 [25] = 36906,
@@ -484,15 +488,6 @@ DataStore_Inventory_AppearancesCounters = {
 [16] = 86110,
 [23] = 73820,
 },
-["ROGUE"] = {
-[13] = 32824,
-[15] = 77915,
-[25] = 36906,
-[17] = 4113,
-[14] = 69723,
-[16] = 86110,
-[19] = 28788,
-},
 ["PALADIN"] = {
 [24] = 23,
 [13] = 32824,
@@ -503,6 +498,15 @@ DataStore_Inventory_AppearancesCounters = {
 [20] = 41009,
 [21] = 53306,
 [22] = 49213,
+},
+["ROGUE"] = {
+[13] = 32824,
+[15] = 77915,
+[25] = 36906,
+[14] = 69723,
+[19] = 28788,
+[16] = 86110,
+[17] = 4113,
 },
 }
 DataStore_Inventory_Options = {

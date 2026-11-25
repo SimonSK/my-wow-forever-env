@@ -30,16 +30,16 @@ Bartender4DB = {
 ["point"] = "BOTTOM",
 },
 },
-["Simongem Windseeker"] = {
+["Simoncloth Windseeker"] = {
 ["enabled"] = true,
+["version"] = 3,
 ["position"] = {
 ["y"] = 82,
 ["x"] = -601,
 ["point"] = "BOTTOM",
 },
-["version"] = 3,
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["enabled"] = true,
 ["version"] = 3,
 ["position"] = {
@@ -59,12 +59,12 @@ Bartender4DB = {
 },
 ["Simonfood Windseeker"] = {
 ["enabled"] = true,
-["version"] = 3,
 ["position"] = {
 ["y"] = 82,
 ["x"] = -601,
 ["point"] = "BOTTOM",
 },
+["version"] = 3,
 },
 },
 },
@@ -94,15 +94,15 @@ Bartender4DB = {
 ["point"] = "BOTTOM",
 },
 },
-["Simongem Windseeker"] = {
+["Simoncloth Windseeker"] = {
+["version"] = 3,
 ["position"] = {
 ["y"] = 100,
 ["x"] = 640,
 ["point"] = "BOTTOM",
 },
-["version"] = 3,
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["version"] = 3,
 ["position"] = {
 ["y"] = 100,
@@ -119,12 +119,12 @@ Bartender4DB = {
 },
 },
 ["Simonfood Windseeker"] = {
-["version"] = 3,
 ["position"] = {
 ["y"] = 100,
 ["x"] = 640,
 ["point"] = "BOTTOM",
 },
+["version"] = 3,
 },
 },
 },
@@ -385,67 +385,67 @@ Bartender4DB = {
 },
 },
 },
-["Simongem Windseeker"] = {
+["Simoncloth Windseeker"] = {
 ["actionbars"] = {
 {
 ["version"] = 3,
+["padding"] = 1.9,
+["WoW10Layout"] = true,
 ["position"] = {
 ["y"] = 51,
 ["x"] = -595.5,
 ["point"] = "BOTTOM",
 },
-["padding"] = 1.9,
-["WoW10Layout"] = true,
 },
 {
 ["enabled"] = false,
 ["version"] = 3,
+["WoW10Layout"] = true,
 ["position"] = {
 ["y"] = -224.0000457763672,
 ["x"] = -284.4999389648438,
 ["point"] = "CENTER",
 },
-["WoW10Layout"] = true,
 },
 {
 ["flyoutDirection"] = "LEFT",
-["rows"] = 12,
-["version"] = 3,
 ["position"] = {
 ["y"] = 200,
 ["x"] = -96,
 ["point"] = "RIGHT",
 },
+["rows"] = 12,
 ["WoW10Layout"] = true,
+["version"] = 3,
 },
 {
 ["flyoutDirection"] = "LEFT",
-["rows"] = 12,
-["version"] = 3,
 ["position"] = {
 ["y"] = 200,
 ["x"] = -49,
 ["point"] = "RIGHT",
 },
+["rows"] = 12,
 ["WoW10Layout"] = true,
+["version"] = 3,
 },
 {
 ["version"] = 3,
+["WoW10Layout"] = true,
 ["position"] = {
 ["y"] = 118,
 ["x"] = 4,
 ["point"] = "BOTTOM",
 },
-["WoW10Layout"] = true,
 },
 {
 ["version"] = 3,
+["WoW10Layout"] = true,
 ["position"] = {
 ["y"] = 118,
 ["x"] = -570,
 ["point"] = "BOTTOM",
 },
-["WoW10Layout"] = true,
 },
 {
 ["WoW10Layout"] = true,
@@ -470,7 +470,7 @@ Bartender4DB = {
 },
 },
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["actionbars"] = {
 {
 ["WoW10Layout"] = true,
@@ -643,64 +643,64 @@ Bartender4DB = {
 ["Simonfood Windseeker"] = {
 ["actionbars"] = {
 {
-["WoW10Layout"] = true,
-["padding"] = 1.9,
 ["version"] = 3,
 ["position"] = {
 ["y"] = 51,
 ["x"] = -595.5,
 ["point"] = "BOTTOM",
 },
+["padding"] = 1.9,
+["WoW10Layout"] = true,
 },
 {
 ["enabled"] = false,
-["WoW10Layout"] = true,
 ["version"] = 3,
 ["position"] = {
 ["y"] = -224.0000457763672,
 ["x"] = -284.4999389648438,
 ["point"] = "CENTER",
 },
+["WoW10Layout"] = true,
 },
 {
 ["flyoutDirection"] = "LEFT",
+["rows"] = 12,
+["version"] = 3,
 ["position"] = {
 ["y"] = 200,
 ["x"] = -96,
 ["point"] = "RIGHT",
 },
-["rows"] = 12,
 ["WoW10Layout"] = true,
-["version"] = 3,
 },
 {
 ["flyoutDirection"] = "LEFT",
+["rows"] = 12,
+["version"] = 3,
 ["position"] = {
 ["y"] = 200,
 ["x"] = -49,
 ["point"] = "RIGHT",
 },
-["rows"] = 12,
 ["WoW10Layout"] = true,
-["version"] = 3,
 },
 {
-["WoW10Layout"] = true,
 ["version"] = 3,
 ["position"] = {
 ["y"] = 118,
 ["x"] = 4,
 ["point"] = "BOTTOM",
 },
+["WoW10Layout"] = true,
 },
 {
-["WoW10Layout"] = true,
 ["version"] = 3,
 ["position"] = {
 ["y"] = 118,
 ["x"] = -570,
 ["point"] = "BOTTOM",
 },
+["WoW10Layout"] = true,
 },
 {
 ["WoW10Layout"] = true,
@@ -753,15 +753,15 @@ Bartender4DB = {
 ["point"] = "CENTER",
 },
 },
-["Simongem Windseeker"] = {
+["Simoncloth Windseeker"] = {
+["version"] = 3,
 ["position"] = {
 ["y"] = -217.0000610351563,
 ["x"] = -63.5,
 ["point"] = "CENTER",
 },
-["version"] = 3,
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["version"] = 3,
 ["position"] = {
 ["y"] = -217.0000610351563,
@@ -778,12 +778,12 @@ Bartender4DB = {
 },
 },
 ["Simonfood Windseeker"] = {
-["version"] = 3,
 ["position"] = {
 ["y"] = -217.0000610351563,
 ["x"] = -63.5,
 ["point"] = "CENTER",
 },
+["version"] = 3,
 },
 },
 },
@@ -816,16 +816,16 @@ Bartender4DB = {
 ["point"] = "BOTTOM",
 },
 },
-["Simongem Windseeker"] = {
+["Simoncloth Windseeker"] = {
+["padding"] = 3,
+["version"] = 3,
 ["position"] = {
 ["y"] = 48,
 ["x"] = -24,
 ["point"] = "BOTTOM",
 },
-["version"] = 3,
-["padding"] = 3,
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["padding"] = 3,
 ["version"] = 3,
 ["position"] = {
@@ -844,13 +844,13 @@ Bartender4DB = {
 },
 },
 ["Simonfood Windseeker"] = {
-["padding"] = 3,
-["version"] = 3,
 ["position"] = {
 ["y"] = 48,
 ["x"] = -24,
 ["point"] = "BOTTOM",
 },
+["version"] = 3,
+["padding"] = 3,
 },
 },
 },
@@ -883,16 +883,16 @@ Bartender4DB = {
 ["point"] = "BOTTOM",
 },
 },
-["Simongem Windseeker"] = {
+["Simoncloth Windseeker"] = {
+["padding"] = 0,
 ["version"] = 3,
 ["position"] = {
 ["y"] = 50,
 ["x"] = 285,
 ["point"] = "BOTTOM",
 },
-["padding"] = 0,
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["padding"] = 0,
 ["version"] = 3,
 ["position"] = {
@@ -911,13 +911,13 @@ Bartender4DB = {
 },
 },
 ["Simonfood Windseeker"] = {
-["padding"] = 0,
 ["version"] = 3,
 ["position"] = {
 ["y"] = 50,
 ["x"] = 285,
 ["point"] = "BOTTOM",
 },
+["padding"] = 0,
 },
 },
 },
@@ -953,17 +953,17 @@ Bartender4DB = {
 ["version"] = 3,
 ["artLayout"] = "MODERNARTCLASSIC",
 },
-["Simongem Windseeker"] = {
+["Simoncloth Windseeker"] = {
 ["enabled"] = true,
 ["artLayout"] = "MODERNARTCLASSIC",
+["version"] = 3,
 ["position"] = {
 ["y"] = 57,
 ["x"] = -600,
 ["point"] = "BOTTOM",
 },
-["version"] = 3,
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["enabled"] = true,
 ["position"] = {
 ["y"] = 57,
@@ -985,13 +985,13 @@ Bartender4DB = {
 },
 ["Simonfood Windseeker"] = {
 ["enabled"] = true,
+["artLayout"] = "MODERNARTCLASSIC",
 ["position"] = {
 ["y"] = 57,
 ["x"] = -600,
 ["point"] = "BOTTOM",
 },
 ["version"] = 3,
-["artLayout"] = "MODERNARTCLASSIC",
 },
 },
 },
@@ -1024,7 +1024,7 @@ Bartender4DB = {
 ["scale"] = 1,
 },
 },
-["Simongem Windseeker"] = {
+["Simoncloth Windseeker"] = {
 ["version"] = 3,
 ["position"] = {
 ["y"] = 150,
@@ -1033,7 +1033,7 @@ Bartender4DB = {
 ["scale"] = 1,
 },
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["version"] = 3,
 ["position"] = {
 ["y"] = 150,
@@ -1088,7 +1088,7 @@ Bartender4DB = {
 ["point"] = "BOTTOM",
 },
 },
-["Simongem Windseeker"] = {
+["Simoncloth Windseeker"] = {
 ["version"] = 3,
 ["position"] = {
 ["y"] = 150,
@@ -1096,7 +1096,7 @@ Bartender4DB = {
 ["point"] = "BOTTOM",
 },
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["version"] = 3,
 ["position"] = {
 ["y"] = 150,
@@ -1148,15 +1148,15 @@ Bartender4DB = {
 ["point"] = "BOTTOM",
 },
 },
-["Simongem Windseeker"] = {
+["Simoncloth Windseeker"] = {
+["version"] = 3,
 ["position"] = {
 ["y"] = 158,
 ["x"] = -676,
 ["point"] = "BOTTOM",
 },
-["version"] = 3,
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["version"] = 3,
 ["position"] = {
 ["y"] = 158,
@@ -1173,12 +1173,12 @@ Bartender4DB = {
 },
 },
 ["Simonfood Windseeker"] = {
-["version"] = 3,
 ["position"] = {
 ["y"] = 158,
 ["x"] = -676,
 ["point"] = "BOTTOM",
 },
+["version"] = 3,
 },
 },
 },
@@ -1187,8 +1187,8 @@ Bartender4DB = {
 ["Simonmisc Windseeker"] = "Simonmisc Windseeker",
 ["Simonmetal Windseeker"] = "Simonmetal Windseeker",
 ["Simonfish Windseeker"] = "Simonfish Windseeker",
-["Simongem Windseeker"] = "Simongem Windseeker",
 ["Simoncloth Windseeker"] = "Simoncloth Windseeker",
+["Simongem Windseeker"] = "Simongem Windseeker",
 ["Simonmeat Windseeker"] = "Simonmeat Windseeker",
 ["Simonfood Windseeker"] = "Simonfood Windseeker",
 },
@@ -1208,12 +1208,12 @@ Bartender4DB = {
 ["blizzardVehicle"] = true,
 ["outofrange"] = "hotkey",
 },
-["Simongem Windseeker"] = {
-["blizzardVehicle"] = true,
+["Simoncloth Windseeker"] = {
 ["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
 ["outofrange"] = "hotkey",
 },
-["Simoncloth Windseeker"] = {
+["Simongem Windseeker"] = {
 ["focuscastmodifier"] = false,
 ["blizzardVehicle"] = true,
 ["outofrange"] = "hotkey",
@@ -1224,8 +1224,8 @@ Bartender4DB = {
 ["outofrange"] = "hotkey",
 },
 ["Simonfood Windseeker"] = {
-["focuscastmodifier"] = false,
 ["blizzardVehicle"] = true,
+["focuscastmodifier"] = false,
 ["outofrange"] = "hotkey",
 },
 },

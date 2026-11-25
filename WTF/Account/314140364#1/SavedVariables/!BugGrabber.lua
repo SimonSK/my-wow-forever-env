@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
-["session"] = 524,
 ["lastSanitation"] = 3,
+["session"] = 535,
 ["errors"] = {
 {
 ["message"] = "[ADDON_ACTION_FORBIDDEN] AddOn 'Decursive' tried to call the protected function 'ClearTarget()'.",
@@ -21,14 +21,14 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: ...face/AddOns/Blizzard_TextStatusBar/TextStatusBar.lua:110: attempt to compare a secret number value (execution tainted by 'Decursive')\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1487: in function 'UpdateSystems'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1025: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1672: in function 'RevertAllChanges'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1569: in function 'MakeNewLayout'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1255: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1253>\n[tail call]: ?\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua]:132: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua:130>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/Shared/Button/UIButtonTemplate.lua]:16: in function <...lizzard_SharedXML/Shared/Button/UIButtonTemplate.lua:12>\n",
-["session"] = 1,
 ["time"] = 1793847199,
+["session"] = 1,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: ...face/AddOns/Blizzard_TextStatusBar/TextStatusBar.lua:110: attempt to compare a secret number value (execution tainted by 'Decursive')\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1487: in function 'UpdateSystems'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1025: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:197: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:196>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:196: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n[C]: in function 'OnLayoutAdded'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1587: in function 'MakeNewLayout'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1255: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1253>\n[tail call]: ?\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua]:132: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua:130>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/Shared/Button/UIButtonTemplate.lua]:16: in function <...lizzard_SharedXML/Shared/Button/UIButtonTemplate.lua:12>\n",
-["session"] = 1,
 ["time"] = 1793847199,
+["session"] = 1,
 ["counter"] = 1,
 },
 {
@@ -192,14 +192,6 @@ BugGrabberDB = {
 ["counter"] = 8,
 },
 {
-["message"] = "Interface/AddOns/Blizzard_GameTooltip/HealthBar.lua:8: attempt to compare local 'value' (a secret number value, while execution tainted by 'Curator')",
-["time"] = 1794765841,
-["locals"] = "self=CuratorRestoreTipStatusBar <GameTooltip.xml:9>\nvalue=<secret number>\nsmooth=nil\nr=nil\ng=nil\nb=nil\nmin=<secret number>\nmax=<secret number>\n(*temporary)=<secret number>\n(*temporary)=<secret number>\n(*temporary)=nil\n(*temporary)=nil\n(*temporary)=nil\n(*temporary)=\"attempt to compare local 'value' (a secret number value, while execution tainted by 'Curator')\"\n",
-["stack"] = "[Interface/AddOns/Blizzard_GameTooltip/HealthBar.lua]:8: in function 'HealthBar_OnValueChanged'\n[*GameTooltip.xml:18_OnValueChanged]:1: in function <[string \"*GameTooltip.xml:18_OnValueChanged\"]:1>\n[C]: in function 'SetValue'\n[Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua]:1069: in function 'ResetUnitHealth'\n[Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua]:1096: in function 'ResetUnitHealth'\n[Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua]:1052: in function 'SetWatch'\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataRules.lua]:134: in function 'func'\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:56: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:51>\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:78: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:74>\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:142: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:141>\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:298: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:245>\n[C]: in function 'securecallfunction'\n...[Interface/AddOns/Curator/Restore.lua]:97: in function 'IsEnchanter'\n[Interface/AddOns/Curator/UI/Gossip.lua]:78: in function 'Role'\n[Interface/AddOns/Curator/UI/Gossip.lua]:127: in function 'Begin'\n[Interface/AddOns/Curator/UI/Gossip.lua]:195: in function <Interface/AddOns/Curator/UI/Gossip.lua:192>\n[C]: in function 'pcall'\n[Interface/AddOns/Curator/UI/Gossip.lua]:283: in function <Interface/AddOns/Curator/UI/Gossip.lua:282>\n[C]: in function 'Update'\n[Interface/AddOns/Blizzard_UIPanels_Game/Mainline/GossipFrame.lua]:65: in function 'HandleShow'\n[Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CustomGossipFrameBase.lua]:53: in function 'HandleOpenEvent'\n[Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CustomGossipFrameBase.lua]:39: in function <...ard_UIPanels_Game/Mainline/CustomGossipFrameBase.lua:37>\n",
-["session"] = 315,
-["counter"] = 5,
-},
-{
 ["message"] = "[ADDON_ACTION_BLOCKED] AddOn 'Questie' tried to call the protected function 'SendChatMessage()'.",
 ["time"] = 1794774699,
 ["locals"] = "self=<table>\nevent=\"ADDON_ACTION_BLOCKED\"\naddonName=\"Questie\"\naddonFunc=\"SendChatMessage()\"\nname=\"Questie\"\nbadAddons=<table>{\n Questie=true\n}\nL=<table>{\n NO_DISPLAY_2=\"|cffffff00The standard display is called BugSack, and can probably be found on the same site where you found !BugGrabber.|r\"\n ERROR_DETECTED=\"%s |cffffff00captured, click the link for more information.|r\"\n BUGGRABBER_STOPPED=\"|cffffff00There are too many errors in your UI. As a result, your game experience may be degraded. Disable or update the failing addons if you don't want to see this message again.|r\"\n USAGE=\"|cffffff00Usage: /buggrabber <1-%d>.|r\"\n STOP_NAG=\"|cffffff00!BugGrabber will not nag about missing a display addon again until next patch.|r\"\n NO_DISPLAY_STOP=\"|cffffff00If you don't want to be reminded about this again, run /stopnag.|r\"\n NO_DISPLAY_1=\"|cffffff00You seem to be running !BugGrabber with no display addon to go along with it. Although a slash command is provided for accessing error reports, a display can help you manage these errors in a more convenient way.|r\"\n ERROR_UNABLE=\"|cffffff00!BugGrabber is unable to retrieve errors from other players by itself. Please install BugSack or a similar display addon that might give you this functionality.|r\"\n ADDON_CALL_PROTECTED=\"[%s] AddOn '%s' tried to call the protected function '%s'.\"\n}\n",
@@ -280,20 +272,6 @@ BugGrabberDB = {
 ["counter"] = 1,
 },
 {
-["message"] = "LUA_WARNING: GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1054: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1050>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1050: in function 'InvokeOnAnyEditModeSystemAnchorChanged'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1036: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:206: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n",
-["session"] = 507,
-["time"] = 1795490985,
-["counter"] = 7,
-},
-{
-["message"] = "GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator",
-["time"] = 1795490985,
-["locals"] = "",
-["stack"] = "[Interface/AddOns/Blizzard_MawBuffs/Blizzard_MawBuffs.lua]:4: in function 'ShouldShowMawBuffs'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ScenarioObjectiveTracker.lua]:187: in function 'LayoutContents'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerModule.lua]:147: in function 'Update'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.lua]:82: in function 'Update'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua]:70: in function <...zzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua:62>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/MixinUtil.lua]:341: in function <Interface/AddOns/Blizzard_SharedXML/MixinUtil.lua:340>\n",
-["session"] = 507,
-["counter"] = 6,
-},
-{
 ["message"] = "Interface/AddOns/DataStore/DataStore.lua:185: bad argument #2 to 'strsplit' (string expected, got nil)",
 ["time"] = 1795505712,
 ["locals"] = "self=<table>{\n ThisCharKey=\"Default..Simondruid Windseeker\"\n ThisCharID=5\n Enum=<table>\n Version=\"v2026.10.14\"\n ThisChar=\"Simondruid Windseeker\"\n ThisAccount=\"Default\"\n name=\"DataStore\"\n ThisRealm=\"\"\n Frames=DataStoreFrames <DataStore.lua:104>\n AltGroups=<table>\n ThisFaction=\"Horde\"\n}\nid=6\naddon=<table>{\n ThisCharKey=\"Default..Simondruid Windseeker\"\n ThisCharID=5\n Enum=<table>\n Version=\"v2026.10.14\"\n ThisChar=\"Simondruid Windseeker\"\n ThisAccount=\"Default\"\n name=\"DataStore\"\n ThisRealm=\"\"\n Frames=DataStoreFrames <DataStore.lua:104>\n AltGroups=<table>\n ThisFaction=\"Horde\"\n}\n",
@@ -303,14 +281,14 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: AddOn [DataStore_Stats] failure to load: missing",
-["session"] = 513,
 ["time"] = 1795566006,
+["session"] = 513,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: AddOn [Altoholic] Failed to load missing dependency [DataStore_Stats]",
-["session"] = 513,
 ["time"] = 1795566006,
+["session"] = 513,
 ["counter"] = 1,
 },
 {
@@ -328,6 +306,36 @@ BugGrabberDB = {
 ["stack"] = "[Interface/AddOns/DataStore/DataStore.lua]:253: in function 'GetAccounts'\n[Interface/AddOns/Altoholic_Summary/Services/Characters.lua]:41: in function <...ace/AddOns/Altoholic_Summary/Services/Characters.lua:27>\n[Interface/AddOns/Altoholic_Summary/Services/Characters.lua]:358: in function <...ace/AddOns/Altoholic_Summary/Services/Characters.lua:329>\n[Interface/AddOns/Altoholic_Summary/Services/Characters.lua]:437: in function 'GetView'\n[Interface/AddOns/Altoholic_Summary/TabSummary.lua]:679: in function 'Update'\n[Interface/AddOns/Altoholic_Summary/TabSummary.lua]:169: in function 'onClickButton1'\n[Interface/AddOns/AddonFactory/Templates/MessageBox.lua]:35: in function 'Button_OnClick'\n[*MessageBox.xml:53_OnClick]:1: in function <[string \"*MessageBox.xml:53_OnClick\"]:1>\n",
 ["session"] = 518,
 ["counter"] = 2,
+},
+{
+["message"] = "LUA_WARNING: GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1054: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1050>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1050: in function 'InvokeOnAnyEditModeSystemAnchorChanged'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1036: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:206: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n",
+["time"] = 1795585594,
+["session"] = 534,
+["counter"] = 8,
+},
+{
+["message"] = "GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator",
+["time"] = 1795585594,
+["locals"] = "",
+["stack"] = "[Interface/AddOns/Blizzard_MawBuffs/Blizzard_MawBuffs.lua]:4: in function 'ShouldShowMawBuffs'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ScenarioObjectiveTracker.lua]:187: in function 'LayoutContents'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerModule.lua]:147: in function 'Update'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTrackerContainer.lua]:82: in function 'Update'\n[Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua]:70: in function <...zzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua:62>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/MixinUtil.lua]:341: in function <Interface/AddOns/Blizzard_SharedXML/MixinUtil.lua:340>\n",
+["session"] = 534,
+["counter"] = 8,
+},
+{
+["message"] = "Interface/AddOns/DataStore/DataStore.lua:203: bad argument #2 to 'strsplit' (string expected, got nil)",
+["time"] = 1795590224,
+["locals"] = "self=<table>{\n ThisCharKey=\"Default.Forever.Simonhunter Windseeker\"\n ThisCharID=5\n Enum=<table>\n Version=\"v2026.10.14\"\n ThisChar=\"Simonhunter Windseeker\"\n ThisAccount=\"Default\"\n name=\"DataStore\"\n ThisRealm=\"Forever\"\n Frames=DataStoreFrames <DataStore.lua:122>\n AltGroups=<table>\n ThisFaction=\"Horde\"\n}\nid=7\naddon=<table>{\n ThisCharKey=\"Default.Forever.Simonhunter Windseeker\"\n ThisCharID=5\n Enum=<table>\n Version=\"v2026.10.14\"\n ThisChar=\"Simonhunter Windseeker\"\n ThisAccount=\"Default\"\n name=\"DataStore\"\n ThisRealm=\"Forever\"\n Frames=DataStoreFrames <DataStore.lua:122>\n AltGroups=<table>\n ThisFaction=\"Horde\"\n}\n",
+["stack"] = "[Interface/AddOns/DataStore/DataStore.lua]:203: in function 'GetCharacterInfoByID'\n[Interface/AddOns/DataStore_Quests/DataStore_Quests.lua]:605: in function <...terface/AddOns/DataStore_Quests/DataStore_Quests.lua:598>\n[tail call]: ?\n[Interface/AddOns/Altoholic/Main.lua]:324: in function 'ListCharsOnQuest'\n[Interface/AddOns/Altoholic/Services/Tooltip.lua]:812: in function <Interface/AddOns/Altoholic/Services/Tooltip.lua:811>\n[C]: in function 'Show'\n[Interface/AddOns/BagSync/wireframe/tooltip.lua]:1472: in function 'TallyUnits'\n[Interface/AddOns/BagSync/wireframe/tooltip.lua]:1724: in function <Interface/AddOns/BagSync/wireframe/tooltip.lua:1703>\n[tail call]: ?\n[C]: in function 'securecallfunction'\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:67: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:62>\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:87: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:83>\n...[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:148: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:141>\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:298: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:245>\n[C]: in function 'securecallfunction'\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:242: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:241>\n[tail call]: ?\n[tail call]: ?\n[Interface/AddOns/Blizzard_UIPanels_Game/Mainline/ItemRef.lua]:394: in function 'ItemRefSetHyperlink'\n[Interface/AddOns/Blizzard_UIPanels_Game/Mainline/ItemRef.lua]:25: in function <...e/AddOns/Blizzard_UIPanels_Game/Mainline/ItemRef.lua:6>\n[C]: in function 'SetItemRef'\n[Interface/AddOns/Blizzard_ChatFrameBase/Shared/ChatFrame.lua]:23: in function <...e/AddOns/Blizzard_ChatFrameBase/Shared/ChatFrame.lua:19>\n",
+["session"] = 534,
+["counter"] = 5,
+},
+{
+["message"] = "Interface/AddOns/Blizzard_GameTooltip/HealthBar.lua:8: attempt to compare local 'value' (a secret number value, while execution tainted by 'Curator')",
+["time"] = 1795596461,
+["locals"] = "self=CuratorRestoreTipStatusBar <GameTooltip.xml:9>\nvalue=<secret number>\nsmooth=nil\nr=nil\ng=nil\nb=nil\nmin=<secret number>\nmax=<secret number>\n(*temporary)=<secret number>\n(*temporary)=<secret number>\n(*temporary)=nil\n(*temporary)=nil\n(*temporary)=nil\n(*temporary)=\"attempt to compare local 'value' (a secret number value, while execution tainted by 'Curator')\"\n",
+["stack"] = "[Interface/AddOns/Blizzard_GameTooltip/HealthBar.lua]:8: in function 'HealthBar_OnValueChanged'\n[*GameTooltip.xml:18_OnValueChanged]:1: in function <[string \"*GameTooltip.xml:18_OnValueChanged\"]:1>\n[C]: in function 'SetValue'\n[Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua]:1069: in function 'ResetUnitHealth'\n[Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua]:1096: in function 'ResetUnitHealth'\n[Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua]:1052: in function 'SetWatch'\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataRules.lua]:134: in function 'func'\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:56: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:51>\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:78: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:74>\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:142: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:141>\n[Interface/AddOns/Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua]:298: in function <...lizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua:245>\n[C]: in function 'securecallfunction'\n...[Interface/AddOns/Curator/Restore.lua]:102: in function 'IsEnchanter'\n[Interface/AddOns/Curator/UI/Gossip.lua]:80: in function 'Role'\n[Interface/AddOns/Curator/UI/Gossip.lua]:145: in function 'Begin'\n[Interface/AddOns/Curator/UI/Gossip.lua]:215: in function <Interface/AddOns/Curator/UI/Gossip.lua:212>\n[C]: in function 'pcall'\n[Interface/AddOns/Curator/UI/Gossip.lua]:303: in function <Interface/AddOns/Curator/UI/Gossip.lua:302>\n[C]: in function 'Update'\n[Interface/AddOns/Blizzard_UIPanels_Game/Mainline/GossipFrame.lua]:65: in function 'HandleShow'\n[Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CustomGossipFrameBase.lua]:53: in function 'HandleOpenEvent'\n[Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CustomGossipFrameBase.lua]:39: in function <...ard_UIPanels_Game/Mainline/CustomGossipFrameBase.lua:37>\n",
+["session"] = 535,
+["counter"] = 34,
 },
 },
 }

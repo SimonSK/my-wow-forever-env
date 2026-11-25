@@ -20,7 +20,7 @@ nil,
 "|cnIQ3:|Hitem:6505::::::::22:1482::11:::::::|h[Crescent Staff]|h|r",
 [18] = "|cnIQ2:|Hitem:8071::::::::22:1482::11:::::::|h[Sizzle Stick]|h|r",
 },
-["lastUpdate"] = 1795567976,
+["lastUpdate"] = 1795596375,
 ["averageItemLvl"] = 14.25,
 ["overallAIL"] = 14.25,
 ["EquipmentInfo"] = 0,
@@ -45,7 +45,7 @@ nil,
 "|cnIQ3:|Hitem:15444::::::::22:1490::11:::::::|h[Staff of Orgrimmar]|h|r",
 [18] = "|cnIQ2:|Hitem:11287::::::::22:1490::::::::Player-6923-005A94FC:|h[Lesser Magic Wand]|h|r",
 },
-["lastUpdate"] = 1795568027,
+["lastUpdate"] = 1795596335,
 ["averageItemLvl"] = 11.6875,
 ["overallAIL"] = 11.6875,
 ["EquipmentInfo"] = 0,
@@ -70,7 +70,7 @@ nil,
 "|cnIQ3:|Hitem:15444::::::::21:1487::11:::::::|h[Staff of Orgrimmar]|h|r",
 [18] = "|cnIQ2:|Hitem:11287::::::::21:1487::::::::Player-6923-005A94FC:|h[Lesser Magic Wand]|h|r",
 },
-["lastUpdate"] = 1795568200,
+["lastUpdate"] = 1795591880,
 ["averageItemLvl"] = 12.5625,
 ["overallAIL"] = 12.5625,
 ["EquipmentInfo"] = 0,
@@ -227,7 +227,7 @@ DataStore_Inventory_Guilds = {
 {
 ["Members"] = {
 ["Simonhunter Windseeker"] = {
-["averageItemLvl"] = 8,
+["averageItemLvl"] = 9,
 },
 ["Simonrogue Windseeker"] = {
 ["averageItemLvl"] = 11,
@@ -241,6 +241,9 @@ DataStore_Inventory_Guilds = {
 ["Simonpaladin Windseeker"] = {
 ["averageItemLvl"] = 0,
 },
+["Sir Culation"] = {
+["averageItemLvl"] = 30,
+},
 ["Simonwarrior Windseeker"] = {
 ["averageItemLvl"] = 9,
 },
@@ -251,7 +254,7 @@ DataStore_Inventory_Guilds = {
 ["averageItemLvl"] = 14,
 },
 ["Simondruid Windseeker"] = {
-["averageItemLvl"] = 10,
+["averageItemLvl"] = 11,
 },
 ["Simonshaman Windseeker"] = {
 ["averageItemLvl"] = 12,
@@ -421,11 +424,11 @@ DataStore_Inventory_CollectedSets = {
 }
 DataStore_Inventory_AppearancesCounters = {
 ["MAGE"] = {
-[16] = 82013,
+[23] = 82012,
 [12] = 28722,
-[19] = 32884,
-[23] = 73819,
 [14] = 69723,
+[16] = 86110,
+[19] = 32884,
 },
 ["PALADIN"] = {
 [18] = 32883,
@@ -434,11 +437,11 @@ DataStore_Inventory_AppearancesCounters = {
 [22] = 20538,
 },
 ["WARLOCK"] = {
-[14] = 69723,
-[12] = 28722,
 [19] = 28788,
-[23] = 73820,
+[12] = 28722,
+[14] = 69723,
 [16] = 82013,
+[23] = 73820,
 },
 ["PRIEST"] = {
 [15] = 77915,

@@ -1,13 +1,13 @@
 
 DecursiveDB = {
 ["global"] = {
-["LastVersionAnnounce"] = 1795378755,
-["NonRelease"] = "2.9.0-RC4",
+["LastVersionAnnounce"] = 1795590448,
+["NonRelease"] = "2.9.0-RC5",
 ["t_SpellIDsSoundReg"] = {
 [9991] = {
 ["enabled"] = true,
-["from"] = "history",
 ["spellType"] = 8,
+["from"] = "history",
 },
 },
 },
@@ -15,8 +15,8 @@ DecursiveDB = {
 ["Simonmisc Windseeker"] = "Default",
 ["Simonmetal Windseeker"] = "Default",
 ["Simonfish Windseeker"] = "Default",
-["Simongem Windseeker"] = "Default",
 ["Simoncloth Windseeker"] = "Default",
+["Simongem Windseeker"] = "Default",
 ["Simonmeat Windseeker"] = "Default",
 ["Simonfood Windseeker"] = "Default",
 },

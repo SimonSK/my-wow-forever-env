@@ -1,6 +1,5 @@
 VER 3 0100000001000008 "Bash" "134400"
 #showtooltip Bash
-/dismount
 /cancelaura Blessing of Protection
 /cast [noform:1] Dire Bear Form
 /cast [noform:1] Bear Form
@@ -45,10 +44,9 @@ VER 3 0100000001000009 "Faerie Fire" "134400"
 END
 VER 3 0100000001000007 "Feral Charge" "134400"
 #showtooltip Feral Charge
-/dismount
 /cancelaura Blessing of Protection
-/cast [noform:1/2] Dire Bear Form
-/cast [noform:1/2] Bear Form
+/cast [noform:1/3] Dire Bear Form
+/cast [noform:1/3] Bear Form
 /cast Feral Charge
 /cast Faerie Fire
 /startattack
@@ -61,7 +59,6 @@ VER 3 010000000100000F "Ferocious Bite" "134400"
 END
 VER 3 0100000001000004 "Growl" "INV_MISC_QUESTIONMARK"
 #showtooltip Growl
-/dismount
 /cancelaura Blessing of Protection
 /cancelform [noform:1]
 /cast [noform:1] Dire Bear Form
@@ -162,11 +159,8 @@ VER 3 0100000001000024 "Thorns" "134400"
 /cast Thorns
 END
 VER 3 0100000001000011 "Travel" "134400"
-#showtooltip Swift Flight Form
-/cancelform
-/cast [swimming] Aquatic Form
-/cast [flyable] Swift Flight Form
-/cast [nomounted,combat,outdoors] Travel Form
+#showtooltip [swimming] Aquatic Form; Travel Form
+/cast [swimming] Aquatic Form; Travel Form
 END
 VER 3 010000000100001B "Wrath" "134400"
 #showtooltip Wrath

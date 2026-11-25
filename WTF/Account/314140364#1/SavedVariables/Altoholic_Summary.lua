@@ -1,6 +1,6 @@
 
 Altoholic_SummaryTab_Options = {
-["CurrentMode"] = 8,
+["CurrentMode"] = 1,
 ["CurrentMisc"] = 0,
 ["CurrentLevels"] = 1,
 ["CurrentColumn"] = "Level",
@@ -9,14 +9,14 @@ Altoholic_SummaryTab_Options = {
 ["CurrentLevelsMax"] = 60,
 ["CurrentLevelsMin"] = 1,
 ["CurrentBankType"] = 0,
-["ShowGuildRank"] = false,
-["UseColorForTradeSkills"] = true,
 ["CurrentRealms"] = 2,
+["UseColorForTradeSkills"] = true,
+["ShowGuildRank"] = false,
 ["CurrentRaces"] = 0,
 ["ShowILevelDecimals"] = true,
 ["CurrentClasses"] = 0,
-["CurrentFactions"] = 3,
+["SortAscending"] = false,
 ["ShowLevelDecimals"] = true,
 ["ShowRestXP150pc"] = false,
-["SortAscending"] = false,
+["CurrentFactions"] = 3,
 }

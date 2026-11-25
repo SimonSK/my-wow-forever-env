@@ -173,9 +173,8 @@ _detalhes_database = {
 ["show_options"] = false,
 ["ignored_cooldowns"] = {
 },
+["height"] = 18,
 ["framme_locked"] = false,
-["cooldowns"] = {
-},
 ["own_frame"] = {
 ["defensive-raid"] = false,
 ["ofensive"] = false,
@@ -183,7 +182,8 @@ _detalhes_database = {
 ["utility"] = false,
 ["defensive-personal"] = false,
 },
-["height"] = 18,
+["cooldowns"] = {
+},
 ["show_conditions"] = {
 ["only_inside_instance"] = true,
 ["only_in_group"] = true,
@@ -209,16 +209,66 @@ _detalhes_database = {
 },
 ["arena_data_compressed"] = {
 },
-["announce_firsthit"] = {
-["enabled"] = true,
+["announce_prepots"] = {
+["enabled"] = false,
 ["channel"] = "SELF",
+["reverse"] = false,
 },
 ["arena_data_index_selected"] = 1,
-["character_data"] = {
-["logons"] = 5,
+["damage_meter_sessions"] = {
 },
 ["on_death_menu"] = false,
 ["auto_combatlog"] = false,
+["character_data"] = {
+["logons"] = 9,
+},
+["nick_tag_cache"] = {
+["nextreset"] = 1796338769,
+["last_version"] = 16,
+},
+["last_instance_id"] = 0,
+["data_harvest_for_charsts"] = {
+["players"] = {
+{
+["name"] = "Damage of Each Individual Player",
+["playerOnly"] = true,
+["playerKey"] = "total",
+["combatObjectContainer"] = 1,
+},
+},
+["totals"] = {
+{
+["combatObjectSubTableKey"] = 1,
+["name"] = "Damage of All Player Combined",
+["combatObjectSubTableName"] = "totals",
+},
+},
+},
+["announce_interrupts"] = {
+["enabled"] = false,
+["whisper"] = "",
+["channel"] = "SAY",
+["custom"] = "",
+["next"] = "",
+},
+["last_instance_time"] = 0,
+["active_profile"] = "Simonmisc-CAMWOW US1 Realm 1 PvE",
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["last_day"] = "25",
+["benchmark_db"] = {
+["frame"] = {
+},
+},
 ["local_instances_config"] = {
 {
 ["modo"] = 2,
@@ -255,47 +305,6 @@ _detalhes_database = {
 },
 },
 },
-["cached_talents"] = {
-},
-["last_instance_id"] = 0,
-["data_harvest_for_charsts"] = {
-["players"] = {
-{
-["name"] = "Damage of Each Individual Player",
-["playerOnly"] = true,
-["playerKey"] = "total",
-["combatObjectContainer"] = 1,
-},
-},
-["totals"] = {
-{
-["combatObjectSubTableKey"] = 1,
-["name"] = "Damage of All Player Combined",
-["combatObjectSubTableName"] = "totals",
-},
-},
-},
-["announce_interrupts"] = {
-["enabled"] = false,
-["whisper"] = "",
-["channel"] = "SAY",
-["custom"] = "",
-["next"] = "",
-},
-["last_instance_time"] = 0,
-["active_profile"] = "Simonmisc-CAMWOW US1 Realm 1 PvE",
-["last_day"] = "22",
-["last_realversion"] = 172,
-["benchmark_db"] = {
-["frame"] = {
-},
-},
-["coach"] = {
-["enabled"] = false,
-["welcome_panel_pos"] = {
-},
-["last_coach_name"] = false,
-},
 ["apocalypes_info"] = {
 },
 ["combat_log"] = {
@@ -308,8 +317,7 @@ _detalhes_database = {
 ["evoker_show_realtimedps"] = false,
 ["inverse_deathlog_mplus"] = false,
 },
-["data_harvested_for_charts"] = {
-},
+["last_realversion"] = 172,
 ["plugin_database"] = {
 ["DETAILS_PLUGIN_TINY_THREAT"] = {
 ["enabled"] = true,
@@ -408,7 +416,7 @@ _detalhes_database = {
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
-["font_size"] = 10,
+["y"] = -1.52587890625e-05,
 ["row_spacement"] = 21,
 ["main_frame_color"] = {
 0,
@@ -423,6 +431,7 @@ _detalhes_database = {
 0.4,
 },
 ["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["use_spark"] = true,
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -434,11 +443,10 @@ _detalhes_database = {
 ["update_speed"] = 0.05,
 ["attribute_type"] = 1,
 },
-["use_spark"] = true,
 ["x"] = -3.0517578125e-05,
 ["font_face"] = "Friz Quadrata TT",
 ["square_size"] = 32,
-["y"] = -1.52587890625e-05,
+["font_size"] = 10,
 ["author"] = "Terciob",
 ["main_frame_locked"] = false,
 ["main_frame_size"] = {
@@ -447,40 +455,31 @@ _detalhes_database = {
 },
 },
 },
-["mythic_plus_log"] = {
+["ignore_nicktag"] = false,
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
+},
+["last_coach_name"] = false,
+},
+["data_harvested_for_charts"] = {
 },
 ["cached_roles"] = {
-},
-["mythic_dungeon_currentsaved"] = {
-["dungeon_name"] = "",
-["started"] = false,
-["segment_id"] = 0,
-["ej_id"] = 0,
-["started_at"] = 0,
-["run_id"] = 0,
-["level"] = 0,
-["dungeon_zone_id"] = 0,
-["previous_boss_killed_at"] = 0,
-},
-["damage_meter_sessions"] = {
 },
 ["apocalypse_hashes"] = {
 },
 ["SoloTablesSaved"] = {
 ["Mode"] = 1,
 },
-["last_version"] = "1.60.1 15410",
+["last_version"] = "1.60.1 15450",
 ["combat_id"] = 0,
 ["savedStyles"] = {
 },
-["nick_tag_cache"] = {
-["nextreset"] = 1796338769,
-["last_version"] = 16,
+["mythic_plus_log"] = {
 },
-["announce_prepots"] = {
-["enabled"] = false,
+["announce_damagerecord"] = {
+["enabled"] = true,
 ["channel"] = "SELF",
-["reverse"] = false,
 },
 ["announce_deaths"] = {
 ["enabled"] = false,
@@ -567,7 +566,20 @@ _detalhes_database = {
 },
 ["compressed_charts"] = {
 },
-["data_inicio"] = 0,
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage"] = {
+},
+},
 ["end_time"] = 188603.636,
 ["mapId"] = 1,
 ["raid_roster"] = {
@@ -594,29 +606,6 @@ _detalhes_database = {
 },
 },
 ["is_challenge"] = false,
-["spells_cast_timeline"] = {
-},
-["combat_counter"] = 5,
-["overall_enemy_name"] = "Unknown",
-["frags"] = {
-},
-["PhaseData"] = {
-{
-1,
-1,
-},
-["damage_section"] = {
-},
-["heal_section"] = {
-},
-["heal"] = {
-},
-["damage"] = {
-},
-},
-["start_time"] = 0,
-["TimeData"] = {
-},
 ["segments_added"] = {
 {
 ["elapsed"] = 188603.636,
@@ -625,14 +614,25 @@ _detalhes_database = {
 ["clock"] = 0,
 },
 },
+["combat_counter"] = 5,
+["overall_enemy_name"] = "Unknown",
+["frags"] = {
 },
-["announce_damagerecord"] = {
-["enabled"] = true,
-["channel"] = "SELF",
+["data_inicio"] = 0,
+["start_time"] = 0,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+["cached_talents"] = {
 },
 ["arena_data_headers"] = {
 },
-["ignore_nicktag"] = false,
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
 ["announce_cooldowns"] = {
 ["enabled"] = false,
 ["ignored_cooldowns"] = {
@@ -647,7 +647,7 @@ _detalhes_database = {
 ["damage_meter_session_info"] = {
 },
 ["cached_specs"] = {
-["Player-6933-01801B2A"] = 1488,
+["Player-6933-018019EA"] = 1485,
 ["Player-6794-048B62E1"] = 1491,
 },
 }

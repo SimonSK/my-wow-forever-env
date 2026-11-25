@@ -1,7 +1,7 @@
 
 DataStore_Currencies_Characters = {
 {
-["lastUpdate"] = 1795567973,
+["lastUpdate"] = 1795596371,
 ["Totals"] = {
 [1792] = 3,
 },
@@ -10,7 +10,7 @@ DataStore_Currencies_Characters = {
 },
 },
 {
-["lastUpdate"] = 1795568023,
+["lastUpdate"] = 1795596331,
 ["Totals"] = {
 [1792] = 6,
 },
@@ -21,7 +21,7 @@ DataStore_Currencies_Characters = {
 {
 ["Currencies"] = {
 },
-["lastUpdate"] = 1795568198,
+["lastUpdate"] = 1795591876,
 },
 {
 ["Currencies"] = {

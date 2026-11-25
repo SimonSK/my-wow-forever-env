@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
-["session"] = 30,
 ["lastSanitation"] = 3,
+["session"] = 49,
 ["errors"] = {
 {
 ["message"] = "...erface/AddOns/Altoholic_Characters/TabCharacters.lua:728: attempt to index upvalue 'realmTable' (a nil value)",

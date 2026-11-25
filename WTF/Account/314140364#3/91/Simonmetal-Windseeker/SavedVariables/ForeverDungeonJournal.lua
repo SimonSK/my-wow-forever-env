@@ -10,7 +10,23 @@ ForeverDungeonJournalCharacterDB = {
 },
 ["arrowDone"] = {
 },
-["arrowChains"] = {
+["lootFilter"] = {
+["armorTypes"] = {
+},
+["stats"] = {
+},
+["recipes"] = false,
+["schools"] = {
+},
+["matchAll"] = true,
+["resists"] = {
+},
+["weaponTypes"] = {
+},
+["enabled"] = false,
+["classOnly"] = false,
+},
+["rpgQuests"] = {
 },
 ["rpgKills"] = {
 },
@@ -24,6 +40,6 @@ ForeverDungeonJournalCharacterDB = {
 ["runs"] = {
 },
 },
-["rpgQuests"] = {
+["arrowChains"] = {
 },
 }

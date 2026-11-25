@@ -13,13 +13,6 @@ X: 0
 Y: 0
 W: 600
 H: 535
-Frame: GRM_SyncTrackerWindow
-FrameLevel: 1
-Anchor: CENTER
-X: 0
-Y: 0
-W: 375
-H: 60
 Frame: BagnonInventory1
 FrameLevel: 1
 Anchor: RIGHT
