@@ -1,6 +1,6 @@
 ﻿
 	----------------------------------------------------------------------
-	-- 	Leatrix Maps 1.60.36 (22nd November 2026)
+	-- 	Leatrix Maps 1.60.38 (26th November 2026)
 	----------------------------------------------------------------------
 
 	-- 10:Func, 20:Comm, 30:Evnt, 40:Panl
@@ -12,7 +12,7 @@
 	local LeaMapsLC, LeaMapsCB, LeaConfigList, LeaLockList = {}, {}, {}, {}
 
 	-- Version
-	LeaMapsLC["AddonVer"] = "1.60.36"
+	LeaMapsLC["AddonVer"] = "1.60.38"
 
 	-- Get locale table
 	local void, Leatrix_Maps = ...
@@ -2624,14 +2624,12 @@
 				end
 				gemState = "play"
 				GemEdges()
-				gems:Idle()
 			end
 
 			-- Function to swap two gems next to each other (it swaps back if it makes no line). A hypercube swapped with a
 			-- gem clears every gem of that kind, two hypercubes swapped together clear the whole board.
 			local function GemSwap(c1, r1, c2, r2)
 				gemState = "busy"
-				gems:Idle() -- Stops the auto hint timer
 				gemX.swapA, gemX.swapB = c2 * 100 + r2, c1 * 100 + r1
 				gemPickC, gemPickR = nil, nil
 				GemEdges()
@@ -2679,7 +2677,6 @@
 						GemPlay("move", 0.15, function()
 							gemState = "play"
 							GemEdges()
-							gems:Idle()
 						end)
 					end
 				end)
@@ -2741,7 +2738,6 @@
 						gems.hints = gems.hints - 1
 						LeaMapsLC.GemHintLabel()
 						PlayPowerSound(567416)
-						gems:Idle()
 					end
 				end
 			end
@@ -2854,7 +2850,6 @@
 				GemDropAll(function()
 					gemState = "play"
 					GemEdges()
-					gems:Idle()
 				end)
 			end
 
@@ -3462,7 +3457,6 @@
 						GemDropAll(function()
 							gemState = "play"
 							GemEdges()
-							gems:Idle()
 						end)
 					end)
 				end
@@ -3497,22 +3491,6 @@
 					gems.fx.hintTime = 0
 					gems.fx:SetScript("OnUpdate", GemFxUpdate)
 					return true
-				end
-
-				-- Auto hint: after 12 seconds with no move, a possible move glows on its own (it doesn't use up a hint, and it
-				-- glows again every 12 seconds until a move is made). It's a one-off timer, started again after each move.
-				function gems:Idle()
-					if self.idleTimer then self.idleTimer:Cancel() end
-					self.idleTimer = nil
-					if gemState == "play" and self:IsVisible() then
-						self.idleTimer = C_Timer.NewTimer(12, function()
-							self.idleTimer = nil
-							if gemState == "play" and self:IsVisible() and not self.help:IsShown() and not self.confirm:IsShown() then
-								self.ShowHint()
-								self:Idle()
-							end
-						end)
-					end
 				end
 
 				-- Idle shimmer: every few seconds a random gem catches the light with a little glint (an animation group
@@ -3664,7 +3642,7 @@
 					{L["Match gems"], {{G(1), G(1), G(1)}}, {1, 1, 1},
 						L["Swap two gems side by side to make a line of 3 or more of the same color."] .. "\n\n" .. L["Drag a gem onto its neighbour, or click one gem then the other."]},
 					{L["Score big"], {{G(2), G(2), G(2), G(2)}}, {2, 2, 2, 2},
-						L["Longer lines score more."] .. "\n\n" .. L["When falling gems make more lines, that's a chain. Chains score more each time and show a word."]},
+						L["Longer lines score more."] .. "\n\n" .. L["When falling gems make more lines, that's a chain. Chains score more each time."]},
 					{L["Flame gem"], {{G(1), G(1), G(1), G(1), "=", fireball}}, {1, 1, 1, 1, 0, 1},
 						L["Line up 4 gems of the same color to make a Flame gem of that color."] .. "\n\n" .. L["Match it with gems of its color and it explodes, clearing the gems round it."]},
 					{L["Star gem"], {{G(3), "", ""}, {G(3), "", ""}, {G(3), G(3), G(3)}, {"", "=", holy}}, {3, 0, 0, 3, 0, 0, 3, 3, 3, 0, 0, 3},
@@ -3674,7 +3652,7 @@
 					{L["Level up"], {{"art:arrow"}}, {0},
 						L["Clearing gems fills the bar above the board. A full bar takes you up a level."] .. "\n\n" .. L["Each level scores more, shatters the board for a fresh one, and has its own colors and sound."]},
 					{L["Hints"], {{"btn:hint"}}, {0},
-						L["Press Hint to light up a possible move. You get 3 each game, and each level up gives one back."] .. "\n\n" .. L["Stuck? Wait a few seconds and a move lights up for free."]},
+						L["Press Hint to light up a possible move. You get 3 each game, and each level up gives one back."]},
 					{L["Buttons"], quad = {
 						{"btn:gemfall", L["Shows or hides the game. A hidden game is paused."]},
 						{"btn:reset", L["Starts a new game. It asks first."]},
@@ -3758,15 +3736,13 @@
 				local quadArea = CreateFrame("Frame", nil, helpArea)
 				quadArea:SetPoint("TOPLEFT", 0, -44)
 				quadArea:SetPoint("BOTTOMRIGHT")
+				-- (the buttons sit on an inner frame in the middle so they can be shrunk to fit without changing the page area)
+				local quadInner = CreateFrame("Frame", nil, quadArea)
+				quadInner:SetPoint("CENTER")
 				local quads = {}
 				for i = 1, 4 do
-					local q = CreateFrame("Frame", nil, quadArea)
-					local col, row = (i - 1) % 2, math.floor((i - 1) / 2)
-					q:SetPoint("TOPLEFT", quadArea, col == 0 and "TOPLEFT" or "TOP", 0, 0)
-					q:SetPoint("BOTTOMRIGHT", quadArea, col == 0 and "BOTTOM" or "BOTTOMRIGHT", 0, 0)
-					q:ClearAllPoints()
-					q:SetPoint(row == 0 and (col == 0 and "TOPLEFT" or "TOPRIGHT") or (col == 0 and "BOTTOMLEFT" or "BOTTOMRIGHT"))
-					q.col, q.row = col, row
+					local q = CreateFrame("Frame", nil, quadInner)
+					q.col, q.row = (i - 1) % 2, math.floor((i - 1) / 2)
 					q.disc = q:CreateTexture(nil, "ARTWORK")
 					q.disc:SetTexture(hhWhite)
 					q.disc:SetSize(64, 64)
@@ -3789,17 +3765,39 @@
 					q.text:SetSpacing(2)
 					quads[i] = q
 				end
-				-- Function to size the quarters to the page (each is half as wide and half as tall)
+				-- Function to lay out the buttons in two rows (the buttons in a row line up with each other, and the whole
+				-- layout is shrunk to fit if it is too tall for the page, such as on a small map)
+				local rowGap = 18
+				local function MeasureQuads(w)
+					local rowHeight = {0, 0}
+					for i, q in ipairs(quads) do
+						q.text:SetWidth(w / 2 - 30)
+						local height = 64 + 10 + q.name:GetStringHeight() + 6 + q.text:GetStringHeight()
+						rowHeight[q.row + 1] = math.max(rowHeight[q.row + 1], height)
+					end
+					return rowHeight[1], rowHeight[2], rowHeight[1] + rowGap + rowHeight[2]
+				end
 				local function SizeQuads()
 					local w, h = quadArea:GetWidth(), quadArea:GetHeight()
-					if not w or not h or (issecretvalue and (issecretvalue(w) or issecretvalue(h))) or w < 10 then return end
+					if not w or not h or (issecretvalue and (issecretvalue(w) or issecretvalue(h))) or w < 10 or h < 10 then return end
+					local top, void, total = MeasureQuads(w)
+					local scale = 1
+					if total > h then
+						-- (the text has more room to spread out when shrunk, so measure it again)
+						scale = h / total
+						top, void, total = MeasureQuads(w / scale)
+					end
+					quadInner:SetScale(scale)
+					quadInner:SetSize(w / scale, h / scale)
+					w, h = w / scale, h / scale
+					-- The two rows sit together in the middle of the page
+					local y = (h - total) / 2
 					for i, q in ipairs(quads) do
-						q:SetSize(w / 2, h / 2)
-						q.text:SetWidth(w / 2 - 30)
-						-- The button, name and text sit together in the middle of the quarter
-						local height = 64 + 10 + q.name:GetStringHeight() + 6 + q.text:GetStringHeight()
+						q:ClearAllPoints()
+						q:SetPoint("TOPLEFT", q.col * w / 2, 0)
+						q:SetSize(w / 2, h)
 						q.disc:ClearAllPoints()
-						q.disc:SetPoint("TOP", q, "TOP", 0, -(h / 2 - height) / 2)
+						q.disc:SetPoint("TOP", q, "TOP", 0, -(y + (q.row == 1 and (top + rowGap) or 0)))
 					end
 				end
 				quadArea:SetScript("OnSizeChanged", SizeQuads)
@@ -3829,6 +3827,7 @@
 						SizeQuads()
 						return
 					end
+					block:SetScale(1) -- (measured at full size, it is shrunk below if it is too tall for the page)
 					pageHead:SetText(p[1])
 					local size, gap, n = 44, 4, 0
 					local rows, cols = #p[2], 0
@@ -3940,6 +3939,13 @@
 					-- Center the block on the page
 					local height = pageHead:GetStringHeight() + 16 + picHeight + 18 + pageText:GetStringHeight()
 					block:SetHeight(height)
+					-- If it is taller than the page (such as on a small map), shrink it to fit so it doesn't cover the title or the arrows
+					local room = helpArea:GetHeight()
+					if room and not (issecretvalue and issecretvalue(room)) and room > 0 and height > room then
+						block:SetScale(room / height)
+						-- (the text has more room to spread out when shrunk, so measure it again)
+						block:SetHeight(pageHead:GetStringHeight() + 16 + picHeight + 18 + pageText:GetStringHeight())
+					end
 					block:ClearAllPoints()
 					block:SetPoint("LEFT", helpArea, "LEFT")
 					block:SetPoint("RIGHT", helpArea, "RIGHT")
@@ -3965,6 +3971,8 @@
 				gems.help:EnableMouseWheel(true)
 				gems.help:SetScript("OnMouseWheel", function(self, delta) ShowPage(helpPage - delta) end)
 				gems.help:SetScript("OnShow", function() ShowPage(1) end) -- Starts at the first page each time
+				-- Fit the page again if the map is resized while the help shows
+				helpArea:SetScript("OnSizeChanged", function() if gems.help:IsShown() then ShowPage(helpPage) end end)
 				-- Reset confirmation (a box in the middle of the board asking to start a new game, with yes and no buttons,
 				-- the board can't be played while it shows)
 				gems.confirm = CreateFrame("Frame", nil, gems)
@@ -4054,7 +4062,6 @@
 				end)
 				gems:SetScript("OnHide", function(self)
 					self:Hide() -- Stays hidden when the map is opened again
-					self:Idle() -- Stops the auto hint timer
 					self.help:Hide()
 					self.confirm:Hide()
 					self.levelUp:Hide()
@@ -4065,7 +4072,6 @@
 				end)
 				gems:SetScript("OnShow", function(self)
 					self.fadeIn:Play()
-					self:Idle()
 					GemMusic()
 				end)
 				gems:SetScript("OnSizeChanged", function() if gemState then GemLayout() end end)
