@@ -277,7 +277,7 @@ Ns.Options = {
 	{ stat="BarColor", group=5, spellclass="BarColor", default={ r=0.2, g=0.6, b=0.2, }, widget={ type="ColorPicker", }, baropt=true, staticopt=true, newline=true, },
 	{ stat="BarAutoColor", group=5, spellclass="BarAutoColor", widget={ type="CheckBox", }, tooltip=true, default=false, labels={ "BarAutoColor"}, baropt=true, linked={ "BarColor", true, }, },
 	{ stat="BarAlpha", group=5, spellclass="BarAlpha", default=1, widget={ type="Slider", min=0, max=1, valuestep=0.01, width=145, }, baropt=true, staticopt=true, newline=true, },
-	{ stat="BarHeight", group=5, spellclass="BarHeight", default=0, widget={ type="Slider", min=0, max=100, valuestep=1, width=145, }, tooltip=false, baropt=true, staticopt=true, newline=true, },
+	{ stat="BarHeight", group=5, spellclass="BarHeight", default=0, widget={ type="Slider", min=0, max=100, valuestep=1, width=145, }, tooltip=true, baropt=true, staticopt=true, newline=true, },
 	{ stat="BarBgColor", group=5, spellclass="BarBgColor", default={ r=0.1, g=0.1, b=0.1, }, widget={ type="ColorPicker", }, baropt=true, newline=true, },
 	{ stat="BarBgAlpha", group=5, spellclass="BarBgAlpha", default=1, widget={ type="Slider", min=0, max=1, valuestep=0.01, width=145, }, baropt=true, newline=true, },
 }

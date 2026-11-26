@@ -127,11 +127,11 @@ function Ns.FunctionList.DMG(HUD, data, options, ...)
 
 	local avgOhDmg, lowOH
 	if not issecretvalue(offhiDmg) and not issecretvalue(offlowDmg) then
-		avgOhDmg = "/" .. (decimals):format((offhiDmg + offlowDmg) / 2)
-		lowOH = "/" .. (decimals):format(offlowDmg)
+		avgOhDmg = "/" .. Ns.DecimalNumber(options.Decimals_Default, (offhiDmg + offlowDmg) / 2)
+		lowOH = "/" .. Ns.DecimalNumber(options.Decimals_Default, offlowDmg)
 	else
-		avgOhDmg = "/" .. (decimals):format(offhiDmg)
-		lowOH = "/" .. (decimals):format(offlowDmg)
+		avgOhDmg = "/" ..Ns.DecimalNumber(options.Decimals_Default, offhiDmg)
+		lowOH = "/" .. Ns.DecimalNumber(options.Decimals_Default, offlowDmg)
 	end
 
 	if not issecretvalue(speed) and speed > 0 then
@@ -162,9 +162,9 @@ function Ns.FunctionList.DMG(HUD, data, options, ...)
 
 	if not issecretvalue(negBuff) and negBuff ~= nil and negBuff < 0 then debuffColor = "|cffC41E3A" end
 
-	if Ns.Band(EB, Max) then returnText = debuffColor .. (decimals):format(totalDamage) .. meleeDamageOH end
-	if Ns.Band(EB, Average) then returnText = debuffColor .. (decimals):format(avgDamage) .. avgOhDmg end
-	if Ns.Band(EB, Low) then returnText = debuffColor .. (decimals):format(lowDmg) .. lowOH end
+	if Ns.Band(EB, Max) then returnText = debuffColor .. Ns.DecimalNumber(options.Decimals_Default, totalDamage) .. meleeDamageOH end
+	if Ns.Band(EB, Average) then returnText = debuffColor .. Ns.DecimalNumber(options.Decimals_Default, avgDamage) .. avgOhDmg end
+	if Ns.Band(EB, Low) then returnText = debuffColor .. Ns.DecimalNumber(options.Decimals_Default, lowDmg) .. lowOH end
 	if returnText == nil then returnText = 0 end
 
 	HUD:UpdateText(data, returnText)
