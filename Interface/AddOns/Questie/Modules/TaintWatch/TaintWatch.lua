@@ -32,6 +32,8 @@ local BREADCRUMB_EVENTS = {
 }
 
 _TaintWatch.notes = {}
+-- The first time of each Questie action, as the taint it caused often shows long after the last notes dropped it
+_TaintWatch.firstActions = {}
 _TaintWatch.captures = {}
 _TaintWatch.otherCaptures = {}
 _TaintWatch.reported = {}
@@ -56,6 +58,9 @@ function TaintWatch.Note(label, detail)
     local notes = _TaintWatch.notes
     local now = GetTime()
     local combat = InCombatLockdown()
+    if (not _TaintWatch.firstActions[label]) and label:sub(1, 1) ~= "[" then
+        _TaintWatch.firstActions[label] = {time = now, detail = detail, combat = combat}
+    end
     for i = #notes, math.max(1, #notes - NOTE_COALESCE_DEPTH + 1), -1 do
         local note = notes[i]
         if note.label == label and note.detail == detail and note.combat == combat and (now - note.time) < NOTE_COALESCE_SECONDS then
@@ -191,6 +196,11 @@ function _TaintWatch.GetPolledValues()
 
     Add("QuestDetailScrollChildFrame.alphaDependentText", function() return QuestDetailScrollChildFrame end, "alphaDependentText")
 
+    local function QuestDetails() return QuestMapFrame and QuestMapFrame.DetailsFrame end
+    for _, key in ipairs({"questID", "returnMapID", "questMapID"}) do
+        Add("QuestMapFrame.DetailsFrame." .. key, QuestDetails, key)
+    end
+
     local function Tracker() return ObjectiveTrackerFrame end
     for _, key in ipairs({"dirty", "dirtyCallback", "layoutParent"}) do
         Add("ObjectiveTrackerFrame." .. key, Tracker, key)
@@ -254,6 +264,16 @@ function _TaintWatch.InstallHooks()
         WorldMapFrame:HookScript("OnHide", function() TaintWatch.Note("[event] WorldMap hidden") end)
     end
 
+    -- Blizzard's panel manager keeps the open panels. Code that changes them tainted taints every later panel.
+    for _, functionName in ipairs({"ShowUIPanel", "HideUIPanel", "CloseSpecialWindows"}) do
+        if _G[functionName] then
+            hooksecurefunc(functionName, function(frame)
+                local isFrame = type(frame) == "table" and frame.GetName and (not frame:IsForbidden())
+                TaintWatch.Note("[event] " .. functionName, isFrame and frame:GetName() or nil)
+            end)
+        end
+    end
+
     if ObjectiveTrackerFrame and ObjectiveTrackerFrame.MarkDirty then
         hooksecurefunc(ObjectiveTrackerFrame, "MarkDirty", function(self)
             _TaintWatch.CheckWrite("ObjectiveTrackerFrame.dirty", self, "dirty")
@@ -308,6 +328,29 @@ function _TaintWatch.FormatNotes(now)
     return table.concat(lines, "\n")
 end
 
+---@param now number
+---@return string
+function _TaintWatch.FormatFirstActions(now)
+    local actions = {}
+    for label, action in pairs(_TaintWatch.firstActions) do
+        table.insert(actions, {label = label, time = action.time, detail = action.detail, combat = action.combat})
+    end
+    table.sort(actions, function(a, b) return a.time > b.time end)
+    local lines = {}
+    for _, action in ipairs(actions) do
+        table.insert(lines, ("  -%.1fs %s%s%s"):format(
+            now - action.time,
+            action.label,
+            action.detail ~= nil and (" " .. tostring(action.detail)) or "",
+            action.combat and " (combat)" or ""
+        ))
+    end
+    if #lines == 0 then
+        return "  none"
+    end
+    return table.concat(lines, "\n")
+end
+
 ---@return string
 function _TaintWatch.GetOtherAddons()
     local names = {}
@@ -351,6 +394,8 @@ function _TaintWatch.BuildReport(title)
         table.insert(lines, ("Also tainted: -%.1fs %s by %s%s"):format(
             now - capture.time, capture.label, capture.taintedBy, capture.combat and " (combat)" or ""))
     end
+    table.insert(lines, "First time of each Questie action this session:")
+    table.insert(lines, _TaintWatch.FormatFirstActions(now))
     table.insert(lines, "Last actions and events:")
     table.insert(lines, _TaintWatch.FormatNotes(now))
     return table.concat(lines, "\n")

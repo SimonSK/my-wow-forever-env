@@ -12,6 +12,8 @@ local TrackerUtils = QuestieLoader:ImportModule("TrackerUtils")
 local QuestieTracker = QuestieLoader:ImportModule("QuestieTracker")
 ---@type Sorter
 local Sorter = QuestieLoader:ImportModule("Sorter")
+---@type QuestAcceptOrder
+local QuestAcceptOrder = QuestieLoader:ImportModule("QuestAcceptOrder")
 ---@type TrackerLinePool
 local TrackerLinePool = QuestieLoader:ImportModule("TrackerLinePool")
 ---@type TrackerLayout
@@ -97,6 +99,7 @@ function TrackerUtils:ShowQuestLog(quest)
             QuestieCompat.OpenWorldMap(uiMapId)
         else
             -- Checked in the Forever UI source: QuestUtil.OpenQuestDetails opens QuestLogPopupDetailFrame without touching WorldMapFrame
+            TaintWatch.Note("QuestUtil.OpenQuestDetails", quest.Id)
             QuestUtil.OpenQuestDetails(quest.Id)
         end
         return
@@ -714,26 +717,30 @@ local function _GetZoneName(zoneOrSort, questId, nativeHeader)
             zoneName = TrackerUtils:GetCategoryNameByID(zoneOrSort)
         else
             -- The quest has no explicit zone or category. Fallback to "Unknown Zone"
-            zoneName = "Unknown Zone"
+            zoneName = l10n("Unknown Zone")
             Questie.Debug(Questie.DEBUG_CRITICAL, "[TrackerUtils:_GetZoneName] zoneOrSort", zoneOrSort, "of quest", questId, "is not in the Database!")
         end
     else
         -- Let's create custom Zones based on Sorting type.
         if sortObj == "byComplete" then
-            zoneName = "Quests (By %% Complete)"
+            zoneName = l10n("Quests (By %% Complete)")
         elseif sortObj == "byCompleteReversed" then
-            zoneName = "Quests (By %% Complete Reversed)"
+            zoneName = l10n("Quests (By %% Complete Reversed)")
         elseif sortObj == "byLevel" then
-            zoneName = "Quests (By Level)"
+            zoneName = l10n("Quests (By Level)")
         elseif sortObj == "byLevelReversed" then
-            zoneName = "Quests (By Level Reversed)"
+            zoneName = l10n("Quests (By Level Reversed)")
+        elseif sortObj == "byLatest" then
+            zoneName = l10n("Quests (By Latest)")
+        elseif sortObj == "byLatestReversed" then
+            zoneName = l10n("Quests (By Latest Reversed)")
         elseif sortObj == "byProximity" then
-            zoneName = "Quests (By Proximity)"
+            zoneName = l10n("Quests (By Proximity)")
         elseif sortObj == "byProximityReversed" then
-            zoneName = "Quests (By Proximity Reversed)"
+            zoneName = l10n("Quests (By Proximity Reversed)")
         end
     end
-    return zoneName or "Unknown Zone"
+    return zoneName or l10n("Unknown Zone")
 end
 
 ---Returns the tracker group a quest is listed under; `collapsedZones` is keyed by this name.
@@ -751,6 +758,7 @@ function TrackerUtils:GetSortedQuestIds()
     ---@type table<QuestId, QuestSortDetails>
     local questDetails = {}
     local sortObj = Questie.db.profile.trackerSortObjectives
+    local acceptOrder = (sortObj == "byLatest" or sortObj == "byLatestReversed") and QuestAcceptOrder.Get()
 
     -- Update quest objectives
     for questId, quest in pairs(TrackerData.GetQuests()) do
@@ -775,6 +783,7 @@ function TrackerUtils:GetSortedQuestIds()
                 quest = quest,
                 zoneName = TrackerUtils.GetQuestGroupName(quest),
                 questCompletePercent = percent,
+                acceptOrder = acceptOrder and acceptOrder[questId] or 0,
             }
         end
     end
@@ -790,6 +799,10 @@ function TrackerUtils:GetSortedQuestIds()
         Sorter.byLevel(sortedQuestIds, questDetails)
     elseif sortObj == "byLevelReversed" then
         Sorter.byLevelReverse(sortedQuestIds, questDetails)
+    elseif sortObj == "byLatest" then
+        Sorter.byLatest(sortedQuestIds, questDetails)
+    elseif sortObj == "byLatestReversed" then
+        Sorter.byLatestReverse(sortedQuestIds, questDetails)
     elseif sortObj == "byZonePlayerProximity" or sortObj == "byZonePlayerProximityReversed" then
         local toSort = {}
         local zoneDistances = {}

@@ -58,16 +58,27 @@ end
 ---@return XP experience
 local function getAdjustedXP(xp, qLevel, ignorePlayerLevel)
     local charLevel = UnitLevel("player")
+    local xpMultiplier
     if charLevel == GetMaxPlayerLevel() and (not ignorePlayerLevel) then
         return 0
     end
 
-    --? These calculations are fetched from cmangos
-    local xpMultiplier = 2 * (qLevel - charLevel) + 20
-    if (xpMultiplier < 1) then
-        xpMultiplier = 1
-    elseif (xpMultiplier > 10) then
-        xpMultiplier = 10
+    if Questie.IsForever then
+        -- On Forever the fractions are 100% 80% 60% 50%
+        xpMultiplier = 2 * (qLevel - charLevel) + 20
+        if (xpMultiplier < 5) then
+            xpMultiplier = 5
+        elseif (xpMultiplier > 10) then
+            xpMultiplier = 10
+        end
+     else
+        --? These calculations are fetched from cmangos
+        xpMultiplier = 2 * (qLevel - charLevel) + 20
+        if (xpMultiplier < 1) then
+            xpMultiplier = 1
+        elseif (xpMultiplier > 10) then
+            xpMultiplier = 10
+        end
     end
 
     xp = xp * xpMultiplier / 10
