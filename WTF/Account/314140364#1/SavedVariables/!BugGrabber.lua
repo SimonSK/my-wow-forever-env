@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
+["session"] = 536,
 ["lastSanitation"] = 3,
-["session"] = 535,
 ["errors"] = {
 {
 ["message"] = "[ADDON_ACTION_FORBIDDEN] AddOn 'Decursive' tried to call the protected function 'ClearTarget()'.",
@@ -21,14 +21,14 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: ...face/AddOns/Blizzard_TextStatusBar/TextStatusBar.lua:110: attempt to compare a secret number value (execution tainted by 'Decursive')\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1487: in function 'UpdateSystems'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1025: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1672: in function 'RevertAllChanges'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1569: in function 'MakeNewLayout'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1255: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1253>\n[tail call]: ?\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua]:132: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua:130>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/Shared/Button/UIButtonTemplate.lua]:16: in function <...lizzard_SharedXML/Shared/Button/UIButtonTemplate.lua:12>\n",
-["time"] = 1793847199,
 ["session"] = 1,
+["time"] = 1793847199,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: ...face/AddOns/Blizzard_TextStatusBar/TextStatusBar.lua:110: attempt to compare a secret number value (execution tainted by 'Decursive')\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1487: in function 'UpdateSystems'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1025: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:197: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:196>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:196: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n[C]: in function 'OnLayoutAdded'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1587: in function 'MakeNewLayout'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1255: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1253>\n[tail call]: ?\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua]:132: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeDialogs.lua:130>\n[tail call]: ?\n[Interface/AddOns/Blizzard_SharedXML/Shared/Button/UIButtonTemplate.lua]:16: in function <...lizzard_SharedXML/Shared/Button/UIButtonTemplate.lua:12>\n",
-["time"] = 1793847199,
 ["session"] = 1,
+["time"] = 1793847199,
 ["counter"] = 1,
 },
 {
@@ -281,14 +281,14 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: AddOn [DataStore_Stats] failure to load: missing",
-["time"] = 1795566006,
 ["session"] = 513,
+["time"] = 1795566006,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: AddOn [Altoholic] Failed to load missing dependency [DataStore_Stats]",
-["time"] = 1795566006,
 ["session"] = 513,
+["time"] = 1795566006,
 ["counter"] = 1,
 },
 {
@@ -309,8 +309,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted by 'Curator'\nLua Taint: Curator\n|cffffd200Stack:|r\n[C]: in function 'secureexecuterange'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1054: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:1050>\n[C]: in function 'pcall'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1050: in function 'InvokeOnAnyEditModeSystemAnchorChanged'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:1036: in function 'UpdateLayoutInfo'\n[Interface/AddOns/Blizzard_EditMode/Shared/EditModeManager.lua]:206: in function <.../AddOns/Blizzard_EditMode/Shared/EditModeManager.lua:192>\n",
-["time"] = 1795585594,
 ["session"] = 534,
+["time"] = 1795585594,
 ["counter"] = 8,
 },
 {

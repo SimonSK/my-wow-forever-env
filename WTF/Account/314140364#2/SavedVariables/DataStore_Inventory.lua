@@ -70,7 +70,7 @@ nil,
 "|cnIQ3:|Hitem:15444::::::::21:1487::11:::::::|h[Staff of Orgrimmar]|h|r",
 [18] = "|cnIQ2:|Hitem:11287::::::::21:1487::::::::Player-6923-005A94FC:|h[Lesser Magic Wand]|h|r",
 },
-["lastUpdate"] = 1795591880,
+["lastUpdate"] = 1795622365,
 ["averageItemLvl"] = 12.5625,
 ["overallAIL"] = 12.5625,
 ["EquipmentInfo"] = 0,
@@ -424,11 +424,11 @@ DataStore_Inventory_CollectedSets = {
 }
 DataStore_Inventory_AppearancesCounters = {
 ["MAGE"] = {
-[23] = 82012,
-[12] = 28722,
-[14] = 69723,
 [16] = 86110,
+[12] = 28722,
 [19] = 32884,
+[23] = 82012,
+[14] = 69723,
 },
 ["PALADIN"] = {
 [18] = 32883,
@@ -437,11 +437,11 @@ DataStore_Inventory_AppearancesCounters = {
 [22] = 20538,
 },
 ["WARLOCK"] = {
-[19] = 28788,
-[12] = 28722,
 [14] = 69723,
-[16] = 82013,
+[12] = 28722,
+[19] = 28788,
 [23] = 73820,
+[16] = 82013,
 },
 ["PRIEST"] = {
 [15] = 77915,

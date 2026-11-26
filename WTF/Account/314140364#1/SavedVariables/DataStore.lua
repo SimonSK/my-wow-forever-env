@@ -1,11 +1,11 @@
 
 DataStore_GuildIDs = {
-["List"] = {
-"Default.Forever.The Lusty Argonian Maid",
-},
-["Count"] = 1,
 ["Set"] = {
 ["Default.Forever.The Lusty Argonian Maid"] = 1,
+},
+["Count"] = 1,
+["List"] = {
+"Default.Forever.The Lusty Argonian Maid",
 },
 }
 DataStore_GuildFactions = {
@@ -15,6 +15,15 @@ DataStore_GuildFactions = {
 "Horde",
 }
 DataStore_CharacterIDs = {
+["Set"] = {
+["Default.Forever.Simonwarrior Windseeker"] = 6,
+["Default.Forever.Simondruid Windseeker"] = 4,
+["Default.Forever.Simonhunter Windseeker"] = 5,
+["Default.Forever.Simon Windseeker"] = 1,
+["Default.Forever.Simonrogue Windseeker"] = 3,
+["Default.Forever.Simonshaman Windseeker"] = 2,
+},
+["Count"] = 6,
 ["List"] = {
 "Default.Forever.Simon Windseeker",
 "Default.Forever.Simonshaman Windseeker",
@@ -22,15 +31,6 @@ DataStore_CharacterIDs = {
 "Default.Forever.Simondruid Windseeker",
 "Default.Forever.Simonhunter Windseeker",
 "Default.Forever.Simonwarrior Windseeker",
-},
-["Count"] = 6,
-["Set"] = {
-["Default.Forever.Simonwarrior Windseeker"] = 6,
-["Default.Forever.Simondruid Windseeker"] = 4,
-["Default.Forever.Simonhunter Windseeker"] = 5,
-["Default.Forever.Simon Windseeker"] = 1,
-["Default.Forever.Simonshaman Windseeker"] = 2,
-["Default.Forever.Simonrogue Windseeker"] = 3,
 },
 }
 DataStore_CharacterGUIDs = {

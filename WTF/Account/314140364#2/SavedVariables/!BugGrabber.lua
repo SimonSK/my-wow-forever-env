@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
 ["lastSanitation"] = 3,
-["session"] = 337,
+["session"] = 339,
 ["errors"] = {
 {
 ["message"] = "Interface/AddOns/Details/Libs/DF/cooltip.lua:2517: attempt to perform arithmetic on a secret number value (execution tainted by 'Details')",

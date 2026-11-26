@@ -179,10 +179,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["CHANNEL_Custom: TrueshotLodge1456"] = {
-["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["BN_INLINE_TOAST_BROADCAST_INFORM"] = {
+["r"] = 0.5098039507865906,
+["g"] = 0.7725490927696228,
+["b"] = 1,
 },
 ["BN_WHISPER"] = {
 ["r"] = 0,
@@ -194,15 +194,15 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.250980406999588,
 ["b"] = 0.250980406999588,
 },
-["BN_INLINE_TOAST_BROADCAST_INFORM"] = {
-["r"] = 0.5098039507865906,
-["g"] = 0.7725490927696228,
-["b"] = 1,
-},
-["DND"] = {
+["CHANNEL_Custom: TrueshotLodge1456"] = {
 ["r"] = 1,
-["g"] = 0.501960813999176,
-["b"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
+},
+["CHANNEL11"] = {
+["r"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["COMBAT_MISC_INFO"] = {
 ["r"] = 0.501960813999176,
@@ -214,17 +214,17 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 1,
 },
-["CHANNEL_TrueshotLodge1415"] = {
-["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["BN_INLINE_TOAST_ALERT"] = {
+["r"] = 0.5098039507865906,
+["g"] = 0.7725490927696228,
+["b"] = 1,
 },
 ["CHANNEL_Custom: TrueshotLodge1442"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["CHANNEL11"] = {
+["CHANNEL16"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
@@ -234,30 +234,30 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 0.250980406999588,
 },
-["RAID_WARNING"] = {
-["r"] = 1,
-["g"] = 0.2823529541492462,
-["b"] = 0,
+["CHANNEL_NOTICE_USER"] = {
+["r"] = 0.7529412508010864,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["MONSTER_PARTY"] = {
 ["r"] = 0.6666666865348816,
 ["g"] = 0.6666666865348816,
 ["b"] = 1,
 },
-["BN_INLINE_TOAST_ALERT"] = {
-["r"] = 0.5098039507865906,
-["g"] = 0.7725490927696228,
-["b"] = 1,
+["CHANNEL_TrueshotLodge1415"] = {
+["r"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["CHANNEL4"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["MONSTER_SAY"] = {
+["TRADESKILLS"] = {
 ["r"] = 1,
 ["g"] = 1,
-["b"] = 0.6235294342041016,
+["b"] = 1,
 },
 ["CHANNEL_Custom: TrueshotLodge"] = {
 ["r"] = 1,
@@ -269,35 +269,35 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["CHANNEL_Custom: TrueshotLodge1412"] = {
+["CHANNEL_TrueshotLodge1414"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["CHANNEL_NOTICE_USER"] = {
-["r"] = 0.7529412508010864,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
-},
-["BG_SYSTEM_HORDE"] = {
+["RAID_WARNING"] = {
 ["r"] = 1,
-["g"] = 0,
+["g"] = 0.2823529541492462,
 ["b"] = 0,
+},
+["CHANNEL_Custom: CuratorNet"] = {
+["r"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["CHANNEL_Custom: TrueshotLodge1458"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["TRADESKILLS"] = {
+["MONSTER_SAY"] = {
 ["r"] = 1,
 ["g"] = 1,
-["b"] = 1,
+["b"] = 0.6235294342041016,
 },
-["MONSTER_WHISPER"] = {
+["CHANNEL_Custom: curatorhord"] = {
 ["r"] = 1,
-["g"] = 0.7098039388656616,
-["b"] = 0.9215686917304993,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["CHANNEL_JOIN"] = {
 ["r"] = 0.7529412508010864,
@@ -354,15 +354,15 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 0,
 },
-["CHANNEL9"] = {
+["CHANNEL13"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["MONSTER_EMOTE"] = {
-["r"] = 1,
-["g"] = 0.501960813999176,
-["b"] = 0.250980406999588,
+["DISCORD_PLAYER_NAME"] = {
+["r"] = 0.8784314393997192,
+["g"] = 0.8901961445808411,
+["b"] = 1,
 },
 ["CHANNEL_Trade"] = {
 ["r"] = 1,
@@ -384,20 +384,20 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.501960813999176,
 ["b"] = 1,
 },
-["CHANNEL13"] = {
+["GUILD_ITEM_LOOTED"] = {
+["r"] = 0.250980406999588,
+["g"] = 1,
+["b"] = 0.250980406999588,
+},
+["CHANNEL18"] = {
 ["r"] = 1,
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["GUILD_DISCORD"] = {
-["r"] = 0.4470588564872742,
-["g"] = 0.4941176772117615,
-["b"] = 1,
-},
-["CHANNEL_Custom: General"] = {
+["MONSTER_EMOTE"] = {
 ["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["g"] = 0.501960813999176,
+["b"] = 0.250980406999588,
 },
 ["GUILD"] = {
 ["r"] = 0.250980406999588,
@@ -414,10 +414,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.6666666865348816,
 ["b"] = 1,
 },
-["CHANNEL_TrueshotLodge"] = {
+["COLLECTED_APPEARANCE"] = {
 ["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["g"] = 1,
+["b"] = 0,
 },
 ["CHANNEL_Custom: ttgssync"] = {
 ["r"] = 1,
@@ -429,10 +429,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.501960813999176,
 ["b"] = 1,
 },
-["DISCORD_PLAYER_NAME"] = {
-["r"] = 0.8784314393997192,
-["g"] = 0.8901961445808411,
-["b"] = 1,
+["CHANNEL_Custom: General"] = {
+["r"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["CHANNEL_LEAVE"] = {
 ["r"] = 0.7529412508010864,
@@ -464,10 +464,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["COLLECTED_APPEARANCE"] = {
+["CHANNEL_TrueshotLodge"] = {
 ["r"] = 1,
-["g"] = 1,
-["b"] = 0,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["ACHIEVEMENT"] = {
 ["r"] = 1,
@@ -504,10 +504,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["b"] = 0.7529412508010864,
 },
-["CHANNEL18"] = {
-["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["GUILD_DISCORD"] = {
+["r"] = 0.4470588564872742,
+["g"] = 0.4941176772117615,
+["b"] = 1,
 },
 ["BG_SYSTEM_ALLIANCE"] = {
 ["r"] = 0,
@@ -524,10 +524,10 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7843137979507446,
 ["b"] = 1,
 },
-["GUILD_ITEM_LOOTED"] = {
-["r"] = 0.250980406999588,
-["g"] = 1,
-["b"] = 0.250980406999588,
+["CHANNEL9"] = {
+["r"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["CHANNEL_NOTICE"] = {
 ["r"] = 0.7529412508010864,
@@ -554,40 +554,40 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["b"] = 0,
 },
-["CHANNEL_Custom: curatorhord"] = {
+["MONSTER_WHISPER"] = {
 ["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["g"] = 0.7098039388656616,
+["b"] = 0.9215686917304993,
 },
-["CHANNEL_Custom: CuratorNet"] = {
+["BG_SYSTEM_HORDE"] = {
 ["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["g"] = 0,
+["b"] = 0,
 },
 ["ENCOUNTER_EVENT"] = {
 ["r"] = 1,
 ["g"] = 0.8666667342185974,
 ["b"] = 0,
 },
-["CHANNEL16"] = {
-["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
-},
-["WHISPER_FOREIGN"] = {
+["DND"] = {
 ["r"] = 1,
 ["g"] = 0.501960813999176,
 ["b"] = 1,
+},
+["CHANNEL_Custom: TrueshotLodge1412"] = {
+["r"] = 1,
+["g"] = 0.7529412508010864,
+["b"] = 0.7529412508010864,
 },
 ["BN_INLINE_TOAST_CONVERSATION"] = {
 ["r"] = 0.5098039507865906,
 ["g"] = 0.7725490927696228,
 ["b"] = 1,
 },
-["CHANNEL_TrueshotLodge1414"] = {
+["WHISPER_FOREIGN"] = {
 ["r"] = 1,
-["g"] = 0.7529412508010864,
-["b"] = 0.7529412508010864,
+["g"] = 0.501960813999176,
+["b"] = 1,
 },
 ["BN_INLINE_TOAST_BROADCAST"] = {
 ["r"] = 0.5098039507865906,
@@ -700,10 +700,10 @@ CHATTYNATOR_CONFIG = {
 },
 ["isTemporary"] = false,
 ["groups"] = {
-["PET_BATTLE_COMBAT_LOG"] = false,
-["COMBAT_MISC_INFO"] = false,
-["VOICE_TEXT"] = false,
 ["OPENING"] = false,
+["PET_BATTLE_COMBAT_LOG"] = false,
+["VOICE_TEXT"] = false,
+["COMBAT_MISC_INFO"] = false,
 ["COMBAT_XP_GAIN"] = false,
 ["PET_INFO"] = false,
 ["TRADESKILLS"] = false,
@@ -804,10 +804,10 @@ CHATTYNATOR_CONFIG = {
 ["invert"] = true,
 ["name"] = "GENERAL",
 ["groups"] = {
-["OPENING"] = false,
-["PET_BATTLE_COMBAT_LOG"] = false,
-["COMBAT_XP_GAIN"] = false,
 ["COMBAT_MISC_INFO"] = false,
+["OPENING"] = false,
+["COMBAT_XP_GAIN"] = false,
+["PET_BATTLE_COMBAT_LOG"] = false,
 ["VOICE_TEXT"] = false,
 ["PET_INFO"] = false,
 ["TRADESKILLS"] = false,
@@ -1109,14 +1109,14 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.7529412508010864,
 ["r"] = 1,
 },
-["BG_SYSTEM_NEUTRAL"] = {
-["b"] = 0.03921568766236305,
-["g"] = 0.4705882668495178,
-["r"] = 1,
-},
 ["CHANNEL_Trade"] = {
 ["b"] = 0.7529412508010864,
 ["g"] = 0.7529412508010864,
+["r"] = 1,
+},
+["BG_SYSTEM_NEUTRAL"] = {
+["b"] = 0.03921568766236305,
+["g"] = 0.4705882668495178,
 ["r"] = 1,
 },
 ["FILTERED"] = {
@@ -1189,18 +1189,18 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 0.501960813999176,
 ["r"] = 0.7529412508010864,
 },
-["CHANNEL_Services"] = {
-["b"] = 0.7529412508010864,
-["g"] = 0.7529412508010864,
-["r"] = 1,
-},
 ["GUILD_DISCORD"] = {
 ["b"] = 1,
 ["g"] = 0.4941176772117615,
 ["r"] = 0.4470588564872742,
 },
-["ACHIEVEMENT"] = {
-["b"] = 0,
+["CHANNEL18"] = {
+["b"] = 0.7529412508010864,
+["g"] = 0.7529412508010864,
+["r"] = 1,
+},
+["ARENA_POINTS"] = {
+["b"] = 1,
 ["g"] = 1,
 ["r"] = 1,
 },
@@ -1219,15 +1219,15 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["r"] = 1,
 },
-["ARENA_POINTS"] = {
-["b"] = 1,
+["ACHIEVEMENT"] = {
+["b"] = 0,
 ["g"] = 1,
 ["r"] = 1,
 },
-["INSTANCE_CHAT"] = {
-["b"] = 0,
-["g"] = 0.4980392456054688,
-["r"] = 1,
+["BN_WHISPER_INFORM"] = {
+["b"] = 0.9647059440612793,
+["g"] = 1,
+["r"] = 0,
 },
 ["CHANNEL8"] = {
 ["b"] = 0.7529412508010864,
@@ -1304,12 +1304,12 @@ CHATTYNATOR_CONFIG = {
 ["g"] = 1,
 ["r"] = 1,
 },
-["BN_WHISPER_INFORM"] = {
-["b"] = 0.9647059440612793,
-["g"] = 1,
-["r"] = 0,
+["INSTANCE_CHAT"] = {
+["b"] = 0,
+["g"] = 0.4980392456054688,
+["r"] = 1,
 },
-["CHANNEL18"] = {
+["CHANNEL_Services"] = {
 ["b"] = 0.7529412508010864,
 ["g"] = 0.7529412508010864,
 ["r"] = 1,
@@ -63768,6 +63768,28 @@ CHATTYNATOR_MESSAGE_LOG = {
 ["text"] = "You create: |cnIQ1:|Hitem:2997::::::::21:1487:::::::::|h[Bolt of Woolen Cloth]|h|r.",
 ["id"] = "s5_3184",
 ["timestamp"] = 1795591909,
+},
+{
+["recordedBy"] = "Simonpriest-Windseeker",
+["typeInfo"] = {
+["player"] = {
+["race"] = "Scourge",
+["name"] = "Zerreck Andrethin",
+["sex"] = 2,
+["class"] = "PALADIN",
+["level"] = 36,
+},
+["type"] = "YELL",
+["event"] = "CHAT_MSG_YELL",
+},
+["color"] = {
+["b"] = 0.250980406999588,
+["g"] = 0.250980406999588,
+["r"] = 1,
+},
+["text"] = "|Hplayer:Zerreck Andrethin:40:YELL:|h[|cfff48cbaZerreck Andrethin|r]|h yells: The same kind as warlocks who get mines",
+["id"] = "s5_3185",
+["timestamp"] = 1795622420,
 },
 },
 ["version"] = 1,

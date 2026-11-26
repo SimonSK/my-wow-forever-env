@@ -30,27 +30,27 @@ PallyPowerDB = {
 ["ForeverShamanColumn"] = true,
 ["enable"] = true,
 ["auraDurations"] = {
-["Seal of Righteousness"] = 30,
-["Seal of the Crusader"] = 30,
 ["Seal of Fury"] = 30,
+["Seal of the Crusader"] = 30,
+["Seal of Righteousness"] = 30,
 ["Righteous Fury"] = 1800,
 },
 ["ForeverCountDefault"] = true,
 ["seal"] = 0,
 ["ForeverSalvSplit"] = true,
-["minimap"] = {
-["show"] = false,
+["autobuff"] = {
+["buffDuration"] = false,
 },
 ["display"] = {
 ["frameLocked"] = true,
 ["HideCountText"] = true,
 ["buffDuration"] = false,
 ["offsetY"] = 143,
-["offsetX"] = -400,
 ["showPlayerButtons"] = false,
+["offsetX"] = -400,
 },
-["autobuff"] = {
-["buffDuration"] = false,
+["minimap"] = {
+["show"] = false,
 },
 ["ForeverSealRestored"] = true,
 ["rf"] = true,

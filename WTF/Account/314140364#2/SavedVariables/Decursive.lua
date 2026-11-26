@@ -1,7 +1,7 @@
 
 DecursiveDB = {
 ["global"] = {
-["LastVersionAnnounce"] = 1795596340,
+["LastVersionAnnounce"] = 1795622242,
 ["delayedDebuffOccurences"] = 4,
 ["NonRelease"] = "2.9.0-RC5",
 ["t_SpellIDsSoundReg"] = {

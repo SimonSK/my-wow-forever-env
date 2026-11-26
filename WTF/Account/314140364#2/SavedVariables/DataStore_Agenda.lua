@@ -7,7 +7,7 @@ DataStore_Agenda_Characters = {
 ["lastUpdate"] = 1795596331,
 },
 {
-["lastUpdate"] = 1795591876,
+["lastUpdate"] = 1795622361,
 },
 {
 ["lastUpdate"] = 1794166796,

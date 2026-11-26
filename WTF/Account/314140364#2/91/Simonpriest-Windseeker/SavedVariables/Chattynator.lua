@@ -83,4 +83,5 @@ CHATTYNATOR_COMMAND_HISTORY = {
 "/inv Simondruid Windseeker ",
 "/reload",
 "/inv Simonshaman Windseeker ",
+"/align",
 }

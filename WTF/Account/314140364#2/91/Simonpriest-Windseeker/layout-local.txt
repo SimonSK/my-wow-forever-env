@@ -55,3 +55,10 @@ X: -154
 Y: -120
 W: 384
 H: 318
+Frame: GRM_SyncTrackerWindow
+FrameLevel: 1
+Anchor: CENTER
+X: 0
+Y: 0
+W: 375
+H: 60

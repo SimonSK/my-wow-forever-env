@@ -43,7 +43,7 @@ nil,
 "|cnIQ3:|Hitem:15444::::::::21:1489::11:::::::|h[Staff of Orgrimmar]|h|r",
 [18] = "|cnIQ2:|Hitem:263412::::::::21:1489::11:::::::|h[Totem of Charged Flames]|h|r",
 },
-["lastUpdate"] = 1795583321,
+["lastUpdate"] = 1795622587,
 ["averageItemLvl"] = 12.4375,
 ["overallAIL"] = 12.4375,
 ["EquipmentInfo"] = 0,
@@ -317,20 +317,20 @@ DataStore_Inventory_Guilds = {
 ["Simonshaman Windseeker"] = {
 ["averageItemLvl"] = 12,
 },
-["Simondruid Windseeker"] = {
-["averageItemLvl"] = 11,
+["Sir Culation"] = {
+["averageItemLvl"] = 30,
 },
 ["Simonwarlock Windseeker"] = {
 ["averageItemLvl"] = 11,
 },
-["Simonpriest Windseeker"] = {
-["averageItemLvl"] = 12,
-},
 ["Simonmage Windseeker"] = {
 ["averageItemLvl"] = 14,
 },
-["Sir Culation"] = {
-["averageItemLvl"] = 30,
+["Simonpriest Windseeker"] = {
+["averageItemLvl"] = 12,
+},
+["Simondruid Windseeker"] = {
+["averageItemLvl"] = 11,
 },
 },
 },
@@ -351,20 +351,20 @@ DataStore_Inventory_Guilds = {
 ["Simonshaman Windseeker"] = {
 ["averageItemLvl"] = 12,
 },
-["Simonpriest Windseeker"] = {
-["averageItemLvl"] = 11,
+["Sir Culation"] = {
+["averageItemLvl"] = 29,
 },
 ["Simonwarlock Windseeker"] = {
 ["averageItemLvl"] = 11,
 },
-["Simondruid Windseeker"] = {
-["averageItemLvl"] = 10,
-},
 ["Simonmage Windseeker"] = {
 ["averageItemLvl"] = 14,
 },
-["Sir Culation"] = {
-["averageItemLvl"] = 29,
+["Simondruid Windseeker"] = {
+["averageItemLvl"] = 10,
+},
+["Simonpriest Windseeker"] = {
+["averageItemLvl"] = 11,
 },
 },
 },
@@ -383,23 +383,23 @@ DataStore_Inventory_Guilds = {
 ["averageItemLvl"] = 13,
 },
 ["Simonshaman Windseeker"] = {
+["averageItemLvl"] = 8,
+},
+["Simondruid Windseeker"] = {
+["averageItemLvl"] = 9,
+},
+["Simonwarlock Windseeker"] = {
+["averageItemLvl"] = 11,
+},
+["Simonmage Windseeker"] = {
+["averageItemLvl"] = 13,
+},
+["Simonpriest Windseeker"] = {
 ["averageItemLvl"] = 8,
 },
 ["Sir Culation"] = {
 ["averageItemLvl"] = 28,
 },
-["Simonwarlock Windseeker"] = {
-["averageItemLvl"] = 11,
-},
-["Simonpriest Windseeker"] = {
-["averageItemLvl"] = 8,
-},
-["Simonmage Windseeker"] = {
-["averageItemLvl"] = 13,
-},
-["Simondruid Windseeker"] = {
-["averageItemLvl"] = 9,
-},
 },
 },
 {
@@ -419,20 +419,20 @@ DataStore_Inventory_Guilds = {
 ["Simondruid Windseeker"] = {
 ["averageItemLvl"] = 8,
 },
-["Simonshaman Windseeker"] = {
-["averageItemLvl"] = 9,
+["Sir Culation"] = {
+["averageItemLvl"] = 29,
 },
 ["Simonwarlock Windseeker"] = {
-["averageItemLvl"] = 11,
-},
-["Simonpriest Windseeker"] = {
 ["averageItemLvl"] = 11,
 },
 ["Simonmage Windseeker"] = {
 ["averageItemLvl"] = 14,
 },
-["Sir Culation"] = {
-["averageItemLvl"] = 29,
+["Simonpriest Windseeker"] = {
+["averageItemLvl"] = 11,
+},
+["Simonshaman Windseeker"] = {
+["averageItemLvl"] = 9,
 },
 },
 },
@@ -488,6 +488,15 @@ DataStore_Inventory_AppearancesCounters = {
 [16] = 86110,
 [23] = 73820,
 },
+["ROGUE"] = {
+[13] = 32824,
+[15] = 77915,
+[25] = 36906,
+[17] = 4113,
+[14] = 69723,
+[16] = 86110,
+[19] = 28788,
+},
 ["PALADIN"] = {
 [24] = 23,
 [13] = 32824,
@@ -498,15 +507,6 @@ DataStore_Inventory_AppearancesCounters = {
 [20] = 41009,
 [21] = 53306,
 [22] = 49213,
-},
-["ROGUE"] = {
-[13] = 32824,
-[15] = 77915,
-[25] = 36906,
-[14] = 69723,
-[19] = 28788,
-[16] = 86110,
-[17] = 4113,
 },
 }
 DataStore_Inventory_Options = {
